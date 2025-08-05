@@ -126,7 +126,7 @@ local function sync_tips_db_from_file(path)
     file:close()
 end
 
--- 获取文件内容哈希值，使用 FNV-1a 哈希算法（增强兼容性，避免位运算依赖）
+-- 获取文件内容哈希值，使用 FNV-1a 哈希算法
 local function calculate_file_hash(filepath)
     local file = io.open(filepath, "rb")
     if not file then return nil end
@@ -136,6 +136,11 @@ local function calculate_file_hash(filepath)
     local FNV_PRIME = 0x01000193
 
     local bit_xor = function(a, b)
+        if jit and jit.version then
+            local bit = require("bit")
+            return bit.bxor(a, b)
+        end
+
         local p, c = 1, 0
         while a > 0 and b > 0 do
             local ra, rb = a % 2, b % 2
@@ -152,6 +157,11 @@ local function calculate_file_hash(filepath)
     end
 
     local bit_and = function(a, b)
+        if jit and jit.version then
+            local bit = require("bit")
+            return bit.band(a, b)
+        end
+
         local p, c = 1, 0
         while a > 0 and b > 0 do
             local ra, rb = a % 2, b % 2
@@ -161,41 +171,16 @@ local function calculate_file_hash(filepath)
         return c
     end
 
-    local function hash_compt()
-        local hash = FNV_OFFSET_BASIS
-        while true do
-            local chunk = file:read(4096)
-            if not chunk then break end
-            for i = 1, #chunk do
-                local byte = string.byte(chunk, i)
-                hash = bit_xor(hash, byte)
-                hash = (hash * FNV_PRIME) % 0x100000000
-                hash = bit_and(hash, 0xFFFFFFFF)
-            end
+    local hash = FNV_OFFSET_BASIS
+    while true do
+        local chunk = file:read(4096)
+        if not chunk then break end
+        for i = 1, #chunk do
+            local byte = string.byte(chunk, i)
+            hash = bit_xor(hash, byte)
+            hash = (hash * FNV_PRIME) % 0x100000000
+            hash = bit_and(hash, 0xFFFFFFFF)
         end
-        return hash
-    end
-
-    local function hash_native()
-        local hash = FNV_OFFSET_BASIS
-        while true do
-            local chunk = file:read(4096)
-            if not chunk then break end
-            for i = 1, #chunk do
-                local byte = string.byte(chunk, i)
-                hash = hash ~ byte
-                hash = hash * FNV_PRIME
-                hash = hash & 0xFFFFFFFF
-            end
-        end
-        return hash
-    end
-
-    local r, hash = pcall(hash_native)
-    if not r then
-        file:seek("set", 0)
-        hash = hash_compt()
-        log.warning("[super_tips] 不支持位运算符，使用兼容 hash 计算方式")
     end
 
     file:close()
