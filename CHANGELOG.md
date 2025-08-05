@@ -1,5 +1,27 @@
 # Changelog
 
+## [10.0.8](https://github.com/amzxyz/rime_wanxiang/compare/v10.0.7...v10.0.8) (2025-08-05)
+
+
+### 📚 词库更新
+
+* 修正忒字读音 ([b9e0435](https://github.com/amzxyz/rime_wanxiang/commit/b9e04351bea30ad60701a74d56ffe81cc96a6bd1))
+* 词库调整 ([1e8ad3f](https://github.com/amzxyz/rime_wanxiang/commit/1e8ad3f75f81c9a8d7ea8bbc5eccd72753af3e2b))
+* 词库调整 ([5be8c0d](https://github.com/amzxyz/rime_wanxiang/commit/5be8c0df9c483db80348abbb5d20b86981ff80ac))
+* 词库调整 ([315ef5a](https://github.com/amzxyz/rime_wanxiang/commit/315ef5af5af84b4832bbbfce2c6dcb060284cf61))
+* 词库调整 ([8215f39](https://github.com/amzxyz/rime_wanxiang/commit/8215f39362e32b50c9993bee9dd62420c9d17cae))
+
+
+### 🐛 Bug 修复
+
+* 分号引导快符改成双击分号上屏分号，分号+'重复上屏 ([14c0716](https://github.com/amzxyz/rime_wanxiang/commit/14c0716c750aaae2ba339a8a8e59e4b421ed0ca2))
+
+
+### 🏡 杂项
+
+* **wanxiang:** release 10.0.7 ([b0056dd](https://github.com/amzxyz/rime_wanxiang/commit/b0056dd7dc085446d8ad7bf3888937a611f985f1))
+* 修正说明 ([3f8db4e](https://github.com/amzxyz/rime_wanxiang/commit/3f8db4e91e5db0d86756c39c70fdfdd04a6d0c16))
+
 ## [10.0.7](https://github.com/amzxyz/rime_wanxiang/compare/v10.0.6...v10.0.7) (2025-07-30)
 
 
