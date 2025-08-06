@@ -1,5 +1,17 @@
 # Changelog
 
+## [10.0.10](https://github.com/amzxyz/rime_wanxiang/compare/v10.0.9...v10.0.10) (2025-08-06)
+
+
+### 🐛 Bug 修复
+
+* 修复中英混输转写逻辑 ([d961407](https://github.com/amzxyz/rime_wanxiang/commit/d961407943191de7e6e2fa1b3cfe45ef61a3c7a0))
+
+
+### 🏡 杂项
+
+* 更新版本 ([963be43](https://github.com/amzxyz/rime_wanxiang/commit/963be43f144b482b0f8f5ab142db8b51ff196b8f))
+
 ## [10.0.9](https://github.com/amzxyz/rime_wanxiang/compare/v10.0.8...v10.0.9) (2025-08-06)
 
 
