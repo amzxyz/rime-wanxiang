@@ -314,6 +314,9 @@ punctuator:
 # 从 default 继承快捷键
 key_binder:
   import_preset: default  # 从 default.yaml 继承通用的
+  # Lua 配置: 以词定字（上屏当前词句的第一个或最后一个字），和中括号翻页有冲突
+  select_first_character: "bracketleft"  # 左中括号 [
+  select_last_character: "bracketright"  # 右中括号 ]
   sequence: # Lua 配置：手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
     up: "Control+j"    # 上移
     down: "Control+k"  # 下移
