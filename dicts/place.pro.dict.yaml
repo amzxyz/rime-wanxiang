@@ -3784,6 +3784,7 @@ sort: by_weight
 大湖乡	dà;ar;un;ad;xx;md;dd;an hú;do;do;dh;kl;kv;id;do xiāng;vp;vp;ap,vp;ru;ix;xt;vp	1
 大湖镇	dà;ar;un;ad;xx;md;dd;an hú;do;do;dh;kl;kv;id;do zhèn;jb;jb;jv;df;zh;qf;jb	178
 大皇堡	dà;ar;un;ad;xx;md;dd;an huáng;bw;bw;bw;sa;un;rg;bw bǎo;rt;rt;tb;xg;jg;wk;rt	251
+大黄堡	dà;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb bǎo;rt;rt;tb;xg;jg;wk;rt	175
 大甲区	dà;ar;un;ad;xx;md;dd;an jiǎ;ol,tl;ll;aa,oa;vp;sj;lh;aa qū;kx;kx;ki;dr;nb;aq;kx	1
 大甲镇	dà;ar;un;ad;xx;md;dd;an jiǎ;ol,tl;ll;aa,oa;vp;sj;lh;aa zhèn;jb;jb;jv;df;zh;qf;jb	297
 大朗镇	dà;ar;un;ad;xx;md;dd;an lǎng;lo;do;ol;hl;iv;yv;do zhèn;jb;jb;jv;df;zh;qf;jb	399
@@ -3843,7 +3844,6 @@ sort: by_weight
 大城县	dài;ar;un;ad;xx;md;dd;an chéng;ti;ti;ti;gh;ga;fd;tg xiàn;qs;qs;sq,qs;pp;fk;eg;qv	174
 大城乡	dài;ar;un;ad;xx;md;dd;an chéng;ti;ti;ti;gh;ga;fd;tg xiāng;vp;vp;ap,vp;ru;ix;xt;vp	1
 大城镇	dài;ar;un;ad;xx;md;dd;an chéng;ti;ti;ti;gh;ga;fd;tg zhèn;jb;jb;jv;df;zh;qf;jb	300
-大黄堡	dài;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb bǎo;rt;rt;tb;xg;jg;wk;rt	175
 岱山县	dài;ru;re;ud;xp;jv;wa;rs shān;kl;lk;aa;pp;vs;mm;aa xiàn;qs;qs;sq,qs;pp;fk;eg;qv	170
 岱岳区	dài;ru;re;ud;xp;jv;wa;rs yuè;qu;qe;uq,qu;up;tv;rg;qs qū;kx;kx;ki;dr;nb;aq;kx	174
 丹巴县	dān;kd;pa;pd;oz;mz;my;pa bā;sl;vv,sl;ag,kg,vg;tt;mb;cn;vv xiàn;qs;qs;sq,qs;pp;fk;eg;qv	188
@@ -14215,8 +14215,14 @@ sort: by_weight
 大槐树村	dà;ar;un;ad;xx;md;dd;an huái;mg;mg;mg;wp;ea;sr;lv shù;mc;mc;md;wk;ek;sc;lc cūn;mc;mc;mc;wk;ek;sf;lc	187
 大槐树镇	dà;ar;un;ad;xx;md;dd;an huái;mg;mg;mg;wp;ea;sr;lv shù;mc;mc;md;wk;ek;sc;lc zhèn;jb;jb;jv;df;zh;qf;jb	225
 大唤起乡	dà;ar;un;ad;xx;md;dd;an huàn;kr;kd;kh;oe;dm;kq;kd qǐ;tj;tj;zj;gt;pv;fh;tj xiāng;vp;vp;ap,vp;ru;ix;xt;vp	35
+大黄堡乡	dà;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb bǎo;rt;rt;tb;xg;jg;wk;rt xiāng;vp;vp;ap,vp;ru;ix;xt;vp	1
 大荒地村	dà;ar;un;ad;xx;md;dd;an huāng;ci;cv;ci;zr;lo;ay;cv dì;ty;ty;ty;ga;ge;fb;ty cūn;mc;mc;mc;wk;ek;sf;lc	285
 大荒沟村	dà;ar;un;ad;xx;md;dd;an huāng;ci;cv;ci;zr;lo;ay;cv gōu;dg;ds;dg;kp;kk;iq;dv cūn;mc;mc;mc;wk;ek;sf;lc	116
+大黄沟乡	dà;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb gōu;dg;ds;dg;kp;kk;iq;dv xiāng;vp;vp;ap,vp;ru;ix;xt;vp	105
+大黄集镇	dà;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb jí;rm;rm;mv,vm;xw;ue;wy;rl zhèn;jb;jb;jv;df;zh;qf;jb	35
+大黄巍乡	dà;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb wēi;ug;eg;uw;pp;va;mt;sv xiāng;vp;vp;ap,vp;ru;ix;xt;vp	156
+大黄冶村	dà;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb yě;dk;dk;dt;fo;wd;uc;dk cūn;mc;mc;mc;wk;ek;sf;lc	1
+大黄庄镇	dà;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb zhuāng;gt;gt;gt;rg;xg;yf;gt zhèn;jb;jb;jv;df;zh;qf;jb	35
 大灰厂村	dà;ar;un;ad;xx;md;dd;an huī;uh;uh;hu,uh;st;nc;do;ah chǎng;ap;ap;ap;rr;xc;dg;ap cūn;mc;mc;mc;wk;ek;sf;lc	105
 大汲店村	dà;ar;un;ad;xx;md;dd;an jí;dj;dj;dj;kh;kc;ie;dj diàn;gv;gk;gv;ro;xd;yh;gk cūn;mc;mc;mc;wk;ek;sf;lc	207
 大箕铺镇	dà;ar;un;ad;xx;md;dd;an jī;vb;vb;vq;nf;rh;ta;vb pù;jf;jf;jf;dh;zn;qg;jf zhèn;jb;jb;jv;df;zh;qf;jb	282
@@ -14786,13 +14792,7 @@ sort: by_weight
 岱格庄村	dài;ru;re;ud;xp;jv;wa;rs gé;mk;mk;mg;wo;es;st;lk zhuāng;gt;gt;gt;rg;xg;yf;gt cūn;mc;mc;mc;wk;ek;sf;lc	1
 代官屯村	dài;ry;ry;ry;xa;jp;wa;rg guān;bl;bk;bg,bk;id;wk;pn;ga tún;av;av;ag;dr;fs;gb;av cūn;mc;mc;mc;wk;ek;sf;lc	77
 带湖山庄	dài;cj;fj;jb;zy;lr;gk;aj hú;do;do;dh;kl;kv;id;do shān;kl;lk;aa;pp;vs;mm;aa zhuāng;gt;gt;gt;rg;xg;yf;gt	1
-大黄堡乡	dài;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb bǎo;rt;rt;tb;xg;jg;wk;rt xiāng;vp;vp;ap,vp;ru;ix;xt;vp	1
-大黄沟乡	dài;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb gōu;dg;ds;dg;kp;kk;iq;dv xiāng;vp;vp;ap,vp;ru;ix;xt;vp	105
-大黄集镇	dài;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb jí;rm;rm;mv,vm;xw;ue;wy;rl zhèn;jb;jb;jv;df;zh;qf;jb	35
 代黄口村	dài;ry;ry;ry;xa;jp;wa;rg huáng;cb;cb;ad,cb;zf;nh;am;cb kǒu;la;la;aa;oo;dk;kk;aa cūn;mc;mc;mc;wk;ek;sf;lc	1
-大黄巍乡	dài;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb wēi;ug;eg;uw;pp;va;mt;sv xiāng;vp;vp;ap,vp;ru;ix;xt;vp	156
-大黄冶村	dài;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb yě;dk;dk;dt;fo;wd;uc;dk cūn;mc;mc;mc;wk;ek;sf;lc	1
-大黄庄镇	dài;ar;un;ad;xx;md;dd;an huáng;cb;cb;ad,cb;zf;nh;am;cb zhuāng;gt;gt;gt;rg;xg;yf;gt zhèn;jb;jb;jv;df;zh;qf;jb	35
 代家坝镇	dài;ry;ry;ry;xa;jp;wa;rg jiā;bu;bu;bu;ih;wj;pe;gn bà;tb;tr;tb;gm;go;fm;tr zhèn;jb;jb;jv;df;zh;qf;jb	187
 戴家场村	dài;gg;ub;gg,gy;ha;nh;fa;bg jiā;bu;bu;bu;ih;wj;pe;gn chǎng;tp;tp;ty;gu;ge;fn;tp cūn;mc;mc;mc;wk;ek;sf;lc	1
 戴家场镇	dài;gg;ub;gg,gy;ha;nh;fa;bg jiā;bu;bu;bu;ih;wj;pe;gn chǎng;tp;tp;ty;gu;ge;fn;tp zhèn;jb;jb;jv;df;zh;qf;jb	162

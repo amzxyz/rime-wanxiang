@@ -11,7 +11,7 @@ conf:
   num_line:
     height: 12 # 数字行按键高度
     width: 10 # 数字行按键宽度
-    key_back_color: main_back_color
+    key_back_color: off_key_back_color
     hilited_key_back_color: hilited_main_back_color
   main:
     height: 52 #按键高度
