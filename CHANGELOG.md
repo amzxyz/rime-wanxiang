@@ -1,5 +1,21 @@
 # Changelog
 
+## [10.1.0](https://github.com/amzxyz/rime_wanxiang/compare/v10.0.10...v10.1.0) (2025-08-09)
+
+
+### ✨ 新特性
+
+* 新增/gongcun创建一个全拼+共存方案 ([03c7b81](https://github.com/amzxyz/rime_wanxiang/commit/03c7b8103573e6445e5d21fff6226fe4ca8c40b9))
+* 调整同文皮肤 ([e0bea09](https://github.com/amzxyz/rime_wanxiang/commit/e0bea0912ef0d7f75ca402c3c8d8d8bf7b2a865c))
+
+
+### 📚 词库更新
+
+* 增加x也没x过 ([9a8730a](https://github.com/amzxyz/rime_wanxiang/commit/9a8730a67b73486686d8dfe3ba4449bb0b2bf874))
+* 词库新增 ([98198ce](https://github.com/amzxyz/rime_wanxiang/commit/98198ce9a76ab2b2345dbaef318c0275ad24279f))
+* 词库调整 ([bd97187](https://github.com/amzxyz/rime_wanxiang/commit/bd97187bf4f0fef6eb33f43fc47468bbe29e84d8))
+* 词库调整 ([9f54b32](https://github.com/amzxyz/rime_wanxiang/commit/9f54b32cdf355d61ceb13c9e5f975982487ff4bc))
+
 ## [10.0.10](https://github.com/amzxyz/rime_wanxiang/compare/v10.0.9...v10.0.10) (2025-08-06)
 
 
