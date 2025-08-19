@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.2.1](https://github.com/amzxyz/rime_wanxiang/compare/v11.2.0...v11.2.1) (2025-08-19)
+
+
+### 🐛 Bug 修复
+
+* 调整反查数据排序 ([406bab0](https://github.com/amzxyz/rime_wanxiang/commit/406bab0a79d92b8431ab00750b1ee4bafd2e992b))
+
 ## [11.2.0](https://github.com/amzxyz/rime_wanxiang/compare/v11.1.5...v11.2.0) (2025-08-19)
 
 
