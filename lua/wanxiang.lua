@@ -186,49 +186,50 @@ function wanxiang.get_user_id()
     return user_id
 end
 
---- 根据 speller/algebra 中的特殊符号返回输入类型 id
----@param env Env    # Rime 传入的环境对象
----@return string    # 返回输入类型 id，如 "quanpin" / "zrm" / ...
 wanxiang.INPUT_METHOD_MARKERS = {
-    ["Ⅰ"] = "pinyin",  --全拼
-    ["Ⅱ"] = "zrm",  --自然码双拼
-    ["Ⅲ"] = "flypy",  --小鹤双拼
-    ["Ⅳ"] = "mspy",  --微软双拼
-    ["Ⅴ"] = "sogou",  --搜狗双拼
-    ["Ⅵ"] = "abc",  --智能abc双拼
-    ["Ⅶ"] = "zihuang",  --紫光双拼
-    ["Ⅷ"] = "pyjj",  --拼音加加
-    ["Ⅸ"] = "gbpy",  --国标双拼
-    ["Ⅹ"] = "lxsq",  --乱序17
-    ["Ⅺ"] = "zrlong",  --自然龙
-    ["Ⅻ"] = "hxlong",  --汉心龙
+    ["Ⅰ"] = "pinyin", --全拼
+    ["Ⅱ"] = "zrm", --自然码双拼
+    ["Ⅲ"] = "flypy", --小鹤双拼
+    ["Ⅳ"] = "mspy", --微软双拼
+    ["Ⅴ"] = "sogou", --搜狗双拼
+    ["Ⅵ"] = "abc", --智能abc双拼
+    ["Ⅶ"] = "zihuang", --紫光双拼
+    ["Ⅷ"] = "pyjj", --拼音加加
+    ["Ⅸ"] = "gbpy", --国标双拼
+    ["Ⅹ"] = "lxsq", --乱序17
+    ["Ⅺ"] = "zrlong", --自然龙
+    ["Ⅻ"] = "hxlong", --汉心龙
 }
 
 local __input_type_cache = {}
 
+--- 根据 speller/algebra 中的特殊符号返回输入类型 id
+---@param env Env    # Rime 传入的环境对象
+---@return string    # 返回输入类型 id，如 "quanpin" / "zrm" / ...
 function wanxiang.get_input_method_type(env)
     local schema_id = env.engine.schema.schema_id or "unknown"
     if __input_type_cache[schema_id] then
-      return __input_type_cache[schema_id]
+        return __input_type_cache[schema_id]
     end
-  
+
     local cfg = env.engine.schema.config
     local result = "unknown"
-  
+
     local n = cfg:get_list_size("speller/algebra")
     for i = 0, n - 1 do
-      local s = cfg:get_string(("speller/algebra/@%d"):format(i))
-      if s then
-        for symbol, id in pairs(wanxiang.INPUT_METHOD_MARKERS) do
-          if s:find(symbol, 1, true) then
-            result = id
-            break
-          end
+        local s = cfg:get_string(("speller/algebra/@%d"):format(i))
+        if s then
+            for symbol, id in pairs(wanxiang.INPUT_METHOD_MARKERS) do
+                if s:find(symbol, 1, true) then
+                    result = id
+                    break
+                end
+            end
         end
-      end
-      if result ~= "unknown" then break end
+        if result ~= "unknown" then break end
     end
     __input_type_cache[schema_id] = result
     return result
 end
+
 return wanxiang
