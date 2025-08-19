@@ -418,9 +418,9 @@ local function sqrt(a, b)
     if type(a) ~= "number" or type(b) ~= "number" then
         return "参数必须是数字"
     end
-    local t1 = (math.sqrt(a^2 + b^2)+a)/2
-    local t2 = (math.sqrt(a^2 + b^2)-a)/2
-    local x1,x2,y1,y2
+    local t1 = (math.sqrt(a ^ 2 + b ^ 2) + a) / 2
+    local t2 = (math.sqrt(a ^ 2 + b ^ 2) - a) / 2
+    local x1, x2, y1, y2
     x1 = fn(math.sqrt(t1))
     x2 = fn(-math.sqrt(t1))
     y1 = fn(math.sqrt(t2))
@@ -429,15 +429,15 @@ local function sqrt(a, b)
         return 0
     elseif a ~= 0 and b == 0 then
         if a > 0 then
-            return x1.." , "..x2
+            return x1 .. " , " .. x2
         else
-            return y1.."i".." , "..y2.."i"
+            return y1 .. "i" .. " , " .. y2 .. "i"
         end
     elseif b ~= 0 then
         if b > 0 then
-            return x1.."+"..y1.."i".." , "..x2.."-"..-y2.."i"
+            return x1 .. "+" .. y1 .. "i" .. " , " .. x2 .. "-" .. -y2 .. "i"
         else
-            return x1.."-"..-y2.."i".." , "..x2.."+"..y1.."i"
+            return x1 .. "-" .. -y2 .. "i" .. " , " .. x2 .. "+" .. y1 .. "i"
         end
     end
 end
@@ -2460,7 +2460,7 @@ local function prime_factorization(n)
     -- 处理2的因子
     while n % 2 == 0 do
         factors[2] = (factors[2] or 0) + 1
-        n = n // 2
+        n = math.floor(n / 2)
     end
     -- 处理奇数因子
     local divisor = 3
@@ -2468,7 +2468,7 @@ local function prime_factorization(n)
     while divisor <= max_divisor and n > 1 do
         while n % divisor == 0 do
             factors[divisor] = (factors[divisor] or 0) + 1
-            n = n // divisor
+            n = math.floor(n / divisor)
             max_divisor = math.floor(math.sqrt(n))
         end
         divisor = divisor + 2
@@ -3155,7 +3155,7 @@ function T.func(input, seg, env)
             local success, result = pcall(loaded_func)
             if success then
                 local display_value
-                if type(result) =="number" then
+                if type(result) == "number" then
                     display_value = format_number_for_display(result)
                 else
                     display_value = tostring(result)
