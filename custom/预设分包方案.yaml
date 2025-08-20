@@ -123,6 +123,12 @@ engine:
     - lua_filter@*text_formatting                   #给自定义用户词扩展一个换行:\n, 制表符：\t, 回车符：\r, 空格：\s
     - uniquifier                                    #去重
 
+# Tips 配置项
+tips:
+  # 禁用的 tips 类型，初始化 tips 数据库的时候会直接忽略相关规则，修改部署后生效
+  # 可选项为：偏旁，符号，化学式，时间，符号，组字，翻译，表情，货币，车牌
+  disabled_types: []
+
 #shijian:仅仅作为提示使用，编码已经写死，引导适应性更高，如有需求lua中修改
 #时间：osj 或者 /sj
 #日期：orq 或者 /rq

@@ -75,6 +75,8 @@ end
 
 local userdb = {}
 
+userdb.META_KEY_PREFIX = META_KEY_PREFIX
+
 ---@return MetadataUserDb
 function userdb.UserDb(db_name, db_class)
   local wrapper = {

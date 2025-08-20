@@ -10,55 +10,6 @@ local userdb = require("lib/userdb")
 
 local tips_db = userdb.LevelDb("lua/tips")
 
-local META_KEY_VERSION = "wanxiang_version"
-local META_KEY_USER_TIPS_FILE_HASH = "user_tips_file_hash"
-
-local FILENAME_TIPS_PRESET = "lua/tips/tips_show.txt"
-local FILENAME_TIPS_USER = "lua/tips/tips_user.txt"
-
-local tips = {}
-
-function tips.empty_db()
-    local da
-    da = tips_db:query("")
-    for key, _ in da:iter() do
-        tips_db:erase(key)
-    end
-    da = nil
-end
-
-function tips.get_db_version()
-    return tips_db:meta_fetch(META_KEY_VERSION)
-end
-
----@param version string
-function tips.update_db_version(version)
-    return tips_db:meta_update(META_KEY_VERSION, version)
-end
-
-function tips.get_db_file_hash()
-    return tips_db:meta_fetch(META_KEY_USER_TIPS_FILE_HASH)
-end
-
----@param hash string
-function tips.update_db_file_hash(hash)
-    return tips_db:meta_update(META_KEY_USER_TIPS_FILE_HASH, hash)
-end
-
-function tips.init_db_from_file(path)
-    local file = io.open(path, "r")
-    if not file then return end
-
-    for line in file:lines() do
-        local value, key = line:match("([^\t]+)\t([^\t]+)")
-        if value and key then
-            tips_db:update(key, value)
-        end
-    end
-
-    file:close()
-end
-
 -- 获取文件内容哈希值，使用 FNV-1a 哈希算法
 local function calculate_file_hash(filepath)
     local file = io.open(filepath, "rb")
@@ -84,27 +35,123 @@ local function calculate_file_hash(filepath)
     return string.format("%08x", hash)
 end
 
-function tips.init()
-    tips_db:open()
+local tips = {}
 
-    local has_preset_tips_changed = wanxiang.version ~= tips.get_db_version()
+tips.disabled_types = {}
+tips.preset_file_path = wanxiang.get_filename_with_fallback("lua/tips/tips_show.txt")
+tips.user_override_path = rime_api.get_user_data_dir() .. "/lua/tips/tips_user.txt"
 
-    local has_user_tips_changed = false
-    local user_override_path = rime_api.get_user_data_dir() .. "/" .. FILENAME_TIPS_USER
-    local user_tips_file_hash = calculate_file_hash(user_override_path)
-    if user_tips_file_hash then
-        has_user_tips_changed = user_tips_file_hash ~= tips.get_db_file_hash()
+function tips.empty_db()
+    local da
+    da = tips_db:query("")
+    for key, _ in da:iter() do
+        local is_meta_key = key:find(userdb.META_KEY_PREFIX, 1, true) == 1
+        -- 仅更新非 meta fields
+        if not is_meta_key then
+            tips_db:erase(key)
+        end
+    end
+    da = nil
+end
+
+function tips.has_wanxiang_version_updated()
+    local meta_key = "user_tips_file_hash"
+    local db_version = tips_db:meta_fetch(meta_key)
+    local changed = db_version ~= wanxiang.version
+
+    if changed then
+        tips_db:meta_update(meta_key, wanxiang.version)
     end
 
-    if has_preset_tips_changed and has_user_tips_changed then
+    return changed
+end
+
+function tips.has_user_tips_file_updated()
+    local meta_key = "user_tips_file_hash"
+    local db_hash = tips_db:meta_fetch(meta_key)
+    local file_hash = calculate_file_hash(tips.user_override_path) or ""
+    local changed = file_hash ~= db_hash
+
+    if changed then
+        tips_db:meta_update(meta_key, file_hash)
+    end
+
+    return changed
+end
+
+function tips.has_disabled_types_updated()
+    local meta_key = "disabled_types"
+    local db_types = {}
+    local value = tips_db:meta_fetch(meta_key)
+    if value then
+        for each in value:gmatch(",") do
+            table.insert(db_types, each)
+        end
+    end
+
+    local changed = not (Set(db_types) - Set(tips.disabled_types)):empty()
+
+    if changed then
+        tips_db:meta_update(meta_key, table.concat(tips.disabled_types, ","))
+    end
+
+    return changed
+end
+
+---@param tip string
+function tips.is_disabled(tip)
+    if #tips.disabled_types == 0 then
+        return false
+    end
+
+    for _, type in ipairs(tips.disabled_types) do
+        if tip:find(type .. ":", 1, true) == 1
+            or tip:find(type .. "：", 1, true) == 1 then
+            return true
+        end
+    end
+
+    return false
+end
+
+function tips.init_db_from_file(path)
+    local file = io.open(path, "r")
+    if not file then return end
+
+    for line in file:lines() do
+        local value, key = line:match("([^\t]+)\t([^\t]+)")
+        if key and value
+            and not tips.is_disabled(value)
+        then
+            tips_db:update(key, value)
+        end
+    end
+
+    file:close()
+end
+
+---@param config Config
+function tips.init(config)
+    local disabled_types_list = config:get_list("tips/disabled_types")
+
+    if disabled_types_list then
+        for i = 1, disabled_types_list.size do
+            local item = disabled_types_list:get_value_at(i - 1)
+            if item and #item.value > 0 then
+                table.insert(tips.disabled_types, item.value)
+            end
+        end
+    end
+
+    tips_db:open()
+
+    if tips.has_disabled_types_updated()
+        or tips.has_wanxiang_version_updated()
+        or tips.has_user_tips_file_updated()
+    then
         tips.empty_db()
-
-        tips.update_db_version(wanxiang.version)
-        tips.update_db_file_hash(user_tips_file_hash or "")
-
-        local preset_file_path = wanxiang.get_filename_with_fallback(FILENAME_TIPS_PRESET)
-        tips.init_db_from_file(preset_file_path)
-        tips.init_db_from_file(user_override_path)
+        tips.init_db_from_file(tips.preset_file_path)
+        tips.init_db_from_file(tips.user_override_path)
     end
 
     tips_db:close()
@@ -174,6 +221,7 @@ local function ensure_dir_exist(dir)
 end
 
 -- Processor：按键触发上屏 (S)
+---@param env Env
 function P.init(env)
     local dist = rime_api.get_distribution_code_name() or ""
     local user_lua_dir = rime_api.get_user_data_dir() .. "/lua"
@@ -182,9 +230,11 @@ function P.init(env)
         ensure_dir_exist(user_lua_dir .. "/tips")
     end
 
-    tips.init()
+    local config = env.engine.schema.config
 
-    P.tips_key = env.engine.schema.config:get_string("key_binder/tips_key")
+    tips.init(config)
+
+    P.tips_key = config:get_string("key_binder/tips_key")
 
     -- 注册 tips 查找监听器
     local context = env.engine.context
