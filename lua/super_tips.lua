@@ -4,123 +4,55 @@
 -- https://github.com/amzxyz/rime_wanxiang
 --     - lua_processor@*super_tips
 --     key_binder/tips_key: "slash" # 上屏按键配置
+local wanxiang = require("wanxiang")
+local bit = require("lib/bit")
+local userdb = require("lib/userdb")
 
-local META_KEY_PREFIX = "\001" .. "/"
+local tips_db = userdb.LevelDb("lua/tips")
+
 local META_KEY_VERSION = "wanxiang_version"
 local META_KEY_USER_TIPS_FILE_HASH = "user_tips_file_hash"
 
 local FILENAME_TIPS_PRESET = "lua/tips/tips_show.txt"
 local FILENAME_TIPS_USER = "lua/tips/tips_user.txt"
 
-local wanxiang = require("wanxiang")
-local bit = require("lib/bit")
+local tips = {}
 
-local tips_db = {}
----@type UserDb | nil
-tips_db.instance = nil -- 数据库池
-function tips_db.close()
-    if tips_db.instance and tips_db.instance:loaded() then
-        collectgarbage()
-        local result = tips_db.instance:close()
-        tips_db.instance = nil
-        return result
-    end
-    return true
-end
-
--- 获取或创建 LevelDb 实例，避免重复打开
----@param write_mode? boolean 是否需要写权限
----@return UserDb
-function tips_db.get(write_mode)
-    if tips_db.instance == nil then tips_db.instance = LevelDb("lua/tips") end
-
-    local is_loaded = tips_db.instance:loaded()
-    local needs_open = false
-
-    if is_loaded and write_mode and tips_db.instance.read_only then
-        -- 需要写权限，但当前是只读模式，需要重新打开
-        needs_open = true
-    elseif not is_loaded then
-        -- 尚未加载，需要打开
-        needs_open = true
-    end
-
-    if needs_open then
-        if is_loaded then tips_db.instance:close() end -- 确保关闭旧连接
-        if write_mode then
-            tips_db.instance:open()
-        else
-            tips_db.instance:open_read_only()
-        end
-    end
-
-    return tips_db.instance
-end
-
-function tips_db.empty()
-    local db = tips_db.get(true)
+function tips.empty_db()
     local da
-    da = db:query("")
+    da = tips_db:query("")
     for key, _ in da:iter() do
-        db:erase(key)
+        tips_db:erase(key)
     end
     da = nil
 end
 
-function tips_db.fetch(key)
-    return tips_db.get():fetch(key)
-end
-
-function tips_db.update(key, value)
-    return tips_db.get(true):update(key, value)
-end
-
-function tips_db.meta_fetch(key)
-    return tips_db.fetch(META_KEY_PREFIX .. key)
-end
-
-function tips_db.meta_update(key, value)
-    return tips_db.update(META_KEY_PREFIX .. key, value)
-end
-
-function tips_db.get_wanxiang_version()
-    return tips_db.meta_fetch(META_KEY_VERSION)
+function tips.get_db_version()
+    return tips_db:meta_fetch(META_KEY_VERSION)
 end
 
 ---@param version string
-function tips_db.update_wanxiang_version(version)
-    return tips_db.meta_update(META_KEY_VERSION, version)
+function tips.update_db_version(version)
+    return tips_db:meta_update(META_KEY_VERSION, version)
 end
 
-function tips_db.get_user_tips_file_hash()
-    return tips_db.meta_fetch(META_KEY_USER_TIPS_FILE_HASH)
+function tips.get_db_file_hash()
+    return tips_db:meta_fetch(META_KEY_USER_TIPS_FILE_HASH)
 end
 
 ---@param hash string
-function tips_db.update_user_tips_file_hash(hash)
-    return tips_db.meta_update(META_KEY_USER_TIPS_FILE_HASH, hash)
+function tips.update_db_file_hash(hash)
+    return tips_db:meta_update(META_KEY_USER_TIPS_FILE_HASH, hash)
 end
 
-local function ensure_dir_exist(dir)
-    -- 获取系统路径分隔符
-    local sep = package.config:sub(1, 1)
-
-    dir = dir:gsub([["]], [[\"]]) -- 处理双引号
-
-    if sep == "/" then
-        local cmd = 'mkdir -p "' .. dir .. '" 2>/dev/null'
-        os.execute(cmd)
-    end
-end
-
-local function sync_tips_db_from_file(path)
+function tips.init_db_from_file(path)
     local file = io.open(path, "r")
     if not file then return end
 
     for line in file:lines() do
         local value, key = line:match("([^\t]+)\t([^\t]+)")
         if value and key then
-            tips_db.update(key, value)
+            tips_db:update(key, value)
         end
     end
 
@@ -152,30 +84,51 @@ local function calculate_file_hash(filepath)
     return string.format("%08x", hash)
 end
 
-local function init_tips_userdb()
-    local has_preset_tips_changed = wanxiang.version ~= tips_db.get_wanxiang_version()
+function tips.init()
+    tips_db:open()
+
+    local has_preset_tips_changed = wanxiang.version ~= tips.get_db_version()
 
     local has_user_tips_changed = false
     local user_override_path = rime_api.get_user_data_dir() .. "/" .. FILENAME_TIPS_USER
     local user_tips_file_hash = calculate_file_hash(user_override_path)
     if user_tips_file_hash then
-        has_user_tips_changed = user_tips_file_hash ~= tips_db.get_user_tips_file_hash()
+        has_user_tips_changed = user_tips_file_hash ~= tips.get_db_file_hash()
     end
 
-    if not has_preset_tips_changed and not has_user_tips_changed then
-        return
+    if has_preset_tips_changed and has_user_tips_changed then
+        tips.empty_db()
+
+        tips.update_db_version(wanxiang.version)
+        tips.update_db_file_hash(user_tips_file_hash or "")
+
+        local preset_file_path = wanxiang.get_filename_with_fallback(FILENAME_TIPS_PRESET)
+        tips.init_db_from_file(preset_file_path)
+        tips.init_db_from_file(user_override_path)
     end
 
-    tips_db.empty()
+    tips_db:close()
+    tips_db:open_read_only()
+end
 
-    tips_db.update_wanxiang_version(wanxiang.version)
-    tips_db.update_user_tips_file_hash(user_tips_file_hash or "")
+---@param ... string[] | string
+---@return string | nil
+function tips.get_tip(...)
+    local key_input = ...
+    if type(key_input) == 'string' then
+        return tips_db:fetch(key_input)
+    end
 
-    local preset_file_path = wanxiang.get_filename_with_fallback(FILENAME_TIPS_PRESET)
-    sync_tips_db_from_file(preset_file_path)
-    sync_tips_db_from_file(user_override_path)
+    for _, key in ipairs(key_input) do
+        if key and key ~= "" then
+            local tip = tips_db:fetch(key)
+            if tip and #tip > 0 then
+                return tip
+            end
+        end
+    end
 
-    tips_db.close() -- 主动关闭数据库，后续只需要只读方式打开
+    return nil
 end
 
 ---@class Env
@@ -190,24 +143,10 @@ local function update_tips_prompt(context, env)
     local segment = context.composition:back()
     if segment == nil then return end
 
-    ---@param key string
-    ---@param fallback_key? string
-    ---@return string | nil
-    local function get_tip(key, fallback_key)
-        if not key or key == "" then return nil end
-
-        if not fallback_key then return tips_db.fetch(key) end
-
-        local tip = tips_db.fetch(key)
-        return (tip and #tip > 0)
-            and tip
-            or tips_db.fetch(fallback_key)
-    end
-
     local cand = context:get_selected_candidate() or {}
     env.current_tip = segment.selected_index == 0
-        and get_tip(context.input, cand.text)
-        or get_tip(cand.text)
+        and tips.get_tip({ context.input, cand.text })
+        or tips.get_tip(cand.text)
 
     if env.current_tip ~= nil and env.current_tip ~= "" then
         -- 有 tips 则直接设置 prompt
@@ -222,6 +161,18 @@ end
 
 local P = {}
 
+local function ensure_dir_exist(dir)
+    -- 获取系统路径分隔符
+    local sep = package.config:sub(1, 1)
+
+    dir = dir:gsub([["]], [[\"]]) -- 处理双引号
+
+    if sep == "/" then
+        local cmd = 'mkdir -p "' .. dir .. '" 2>/dev/null'
+        os.execute(cmd)
+    end
+end
+
 -- Processor：按键触发上屏 (S)
 function P.init(env)
     local dist = rime_api.get_distribution_code_name() or ""
@@ -231,7 +182,7 @@ function P.init(env)
         ensure_dir_exist(user_lua_dir .. "/tips")
     end
 
-    init_tips_userdb()
+    tips.init()
 
     P.tips_key = env.engine.schema.config:get_string("key_binder/tips_key")
 
@@ -248,7 +199,7 @@ function P.init(env)
 end
 
 function P.fini(env)
-    tips_db.close()
+    tips_db:close()
     -- 清理连接
     if env.tips_update_connection then
         env.tips_update_connection:disconnect()
