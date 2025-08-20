@@ -13,6 +13,7 @@ local FILENAME_TIPS_PRESET = "lua/tips/tips_show.txt"
 local FILENAME_TIPS_USER = "lua/tips/tips_user.txt"
 
 local wanxiang = require("wanxiang")
+local bit = require("lib/bit")
 
 local tips_db = {}
 ---@type UserDb | nil
@@ -135,51 +136,15 @@ local function calculate_file_hash(filepath)
     local FNV_OFFSET_BASIS = 0x811C9DC5
     local FNV_PRIME = 0x01000193
 
-    local bit_xor = function(a, b)
-        if jit and jit.version then
-            local bit = require("bit")
-            return bit.bxor(a, b)
-        end
-
-        local p, c = 1, 0
-        while a > 0 and b > 0 do
-            local ra, rb = a % 2, b % 2
-            if ra ~= rb then c = c + p end
-            a, b, p = (a - ra) / 2, (b - rb) / 2, p * 2
-        end
-        if a < b then a = b end
-        while a > 0 do
-            local ra = a % 2
-            if ra > 0 then c = c + p end
-            a, p = (a - ra) / 2, p * 2
-        end
-        return c
-    end
-
-    local bit_and = function(a, b)
-        if jit and jit.version then
-            local bit = require("bit")
-            return bit.band(a, b)
-        end
-
-        local p, c = 1, 0
-        while a > 0 and b > 0 do
-            local ra, rb = a % 2, b % 2
-            if ra + rb > 1 then c = c + p end
-            a, b, p = (a - ra) / 2, (b - rb) / 2, p * 2
-        end
-        return c
-    end
-
     local hash = FNV_OFFSET_BASIS
     while true do
         local chunk = file:read(4096)
         if not chunk then break end
         for i = 1, #chunk do
             local byte = string.byte(chunk, i)
-            hash = bit_xor(hash, byte)
+            hash = bit.bxor(hash, byte)
             hash = (hash * FNV_PRIME) % 0x100000000
-            hash = bit_and(hash, 0xFFFFFFFF)
+            hash = bit.band(hash, 0xFFFFFFFF)
         end
     end
 
