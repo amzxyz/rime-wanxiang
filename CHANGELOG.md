@@ -1,5 +1,29 @@
 # Changelog
 
+## [11.3.0](https://github.com/amzxyz/rime_wanxiang/compare/v11.2.1...v11.3.0) (2025-08-20)
+
+
+### ✨ 新特性
+
+* **tips:** 支持通过配置禁用特定类型tips ([b092851](https://github.com/amzxyz/rime_wanxiang/commit/b0928510342be55fd70b0222aeb0247772887162))
+
+
+### 📚 词库更新
+
+* 增加一些常用词的emoji联想 ([c0943c4](https://github.com/amzxyz/rime_wanxiang/commit/c0943c4a425c6130fcbc011017ba5beb90a7fd7f))
+* 词库调整 ([d0951f8](https://github.com/amzxyz/rime_wanxiang/commit/d0951f8c88d4841cea75204babccdb10095eb490))
+* 词库调整 ([b4a34e7](https://github.com/amzxyz/rime_wanxiang/commit/b4a34e7bf5e0b887b491527904e5eeaa650d1ca1))
+
+
+### 🔥 性能优化
+
+* **tips:** 使用 Lua 5.2 的 bit32 库提升哈希计算效率 ([58a01e0](https://github.com/amzxyz/rime_wanxiang/commit/58a01e05dfbbfc181bd7d4a89b03d52649fb6302))
+
+
+### 💅 重构
+
+* **tips:** 使用独立的 userdb 管理数据库连接 ([117723e](https://github.com/amzxyz/rime_wanxiang/commit/117723e2e08fec3976e0489590cc8c6506df18d0))
+
 ## [11.2.1](https://github.com/amzxyz/rime_wanxiang/compare/v11.2.0...v11.2.1) (2025-08-19)
 
 
