@@ -5,6 +5,7 @@ local META_KEY_PREFIX = "\001" .. "/"
 ---@field meta_fetch fun(self: self, key: string): string|nil
 ---@field meta_update fun(self: self, key: string, value: string): boolean
 ---@field meta_erase fun(self: self, key: string): boolean
+---@field clear fun(self: self, include_metafield?: boolean)
 
 local db_pool_ = {}
 
@@ -73,9 +74,23 @@ function userdb_mt:meta_erase(key)
   return self:erase(META_KEY_PREFIX .. key)
 end
 
-local userdb = {}
+function userdb_mt:clear(include_metafield)
+  local da
+  da = self:query("")
 
-userdb.META_KEY_PREFIX = META_KEY_PREFIX
+  for key, _ in da:iter() do
+    local is_metafield = key:find(META_KEY_PREFIX, 1, true) == 1
+    if include_metafield  -- 包含 meta fields
+        or not is_metafield -- 或者不包含且当前不是 meta fields
+    then
+      self:erase(key)
+    end
+  end
+
+  da = nil
+end
+
+local userdb = {}
 
 ---@return MetadataUserDb
 function userdb.UserDb(db_name, db_class)

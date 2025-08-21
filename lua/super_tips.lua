@@ -4,6 +4,7 @@
 -- https://github.com/amzxyz/rime_wanxiang
 --     - lua_processor@*super_tips
 --     key_binder/tips_key: "slash" # 上屏按键配置
+--     tips/disabled_types: [] # 禁用的 tips 类型
 local wanxiang = require("wanxiang")
 local bit = require("lib/bit")
 local userdb = require("lib/userdb")
@@ -37,81 +38,24 @@ end
 
 local tips = {}
 
+---@type table<string, boolean>
 tips.disabled_types = {}
 tips.preset_file_path = wanxiang.get_filename_with_fallback("lua/tips/tips_show.txt")
 tips.user_override_path = rime_api.get_user_data_dir() .. "/lua/tips/tips_user.txt"
 
-function tips.empty_db()
-    local da
-    da = tips_db:query("")
-    for key, _ in da:iter() do
-        local is_meta_key = key:find(userdb.META_KEY_PREFIX, 1, true) == 1
-        -- 仅更新非 meta fields
-        if not is_meta_key then
-            tips_db:erase(key)
-        end
-    end
-    da = nil
-end
-
-function tips.has_wanxiang_version_updated()
-    local meta_key = "user_tips_file_hash"
-    local db_version = tips_db:meta_fetch(meta_key)
-    local changed = db_version ~= wanxiang.version
-
-    if changed then
-        tips_db:meta_update(meta_key, wanxiang.version)
-    end
-
-    return changed
-end
-
-function tips.has_user_tips_file_updated()
-    local meta_key = "user_tips_file_hash"
-    local db_hash = tips_db:meta_fetch(meta_key)
-    local file_hash = calculate_file_hash(tips.user_override_path) or ""
-    local changed = file_hash ~= db_hash
-
-    if changed then
-        tips_db:meta_update(meta_key, file_hash)
-    end
-
-    return changed
-end
-
-function tips.has_disabled_types_updated()
-    local meta_key = "disabled_types"
-    local db_types = {}
-    local value = tips_db:meta_fetch(meta_key)
-    if value then
-        for each in value:gmatch(",") do
-            table.insert(db_types, each)
-        end
-    end
-
-    local changed = not (Set(db_types) - Set(tips.disabled_types)):empty()
-
-    if changed then
-        tips_db:meta_update(meta_key, table.concat(tips.disabled_types, ","))
-    end
-
-    return changed
-end
+local META_KEY = {
+    version = "wanxiang_version",
+    user_file_hash = "user_tips_file_hash",
+    disabled_types = "disabled_types",
+}
 
 ---@param tip string
 function tips.is_disabled(tip)
-    if #tips.disabled_types == 0 then
-        return false
-    end
+    local type = tip:match("^([^:]+):")
+        or tip:match("^([^：]+)：")
 
-    for _, type in ipairs(tips.disabled_types) do
-        if tip:find(type .. ":", 1, true) == 1
-            or tip:find(type .. "：", 1, true) == 1 then
-            return true
-        end
-    end
-
-    return false
+    if not type then return false end
+    return tips.disabled_types[type] == true
 end
 
 function tips.init_db_from_file(path)
@@ -132,41 +76,75 @@ end
 
 ---@param config Config
 function tips.init(config)
+    -- 读取配置
     local disabled_types_list = config:get_list("tips/disabled_types")
-
     if disabled_types_list then
         for i = 1, disabled_types_list.size do
             local item = disabled_types_list:get_value_at(i - 1)
             if item and #item.value > 0 then
-                table.insert(tips.disabled_types, item.value)
+                tips.disabled_types[item.value] = true
             end
         end
     end
 
+    -- 检查是否需要重建数据库
     tips_db:open()
+    local needs_rebuild = false
 
-    if tips.has_disabled_types_updated()
-        or tips.has_wanxiang_version_updated()
-        or tips.has_user_tips_file_updated()
-    then
-        tips.empty_db()
-        tips.init_db_from_file(tips.preset_file_path)
-        tips.init_db_from_file(tips.user_override_path)
+    -- 检查 1: 万象版本号
+    if tips_db:meta_fetch(META_KEY.version) ~= wanxiang.version then
+        needs_rebuild = true
     end
 
+    -- 检查 2: 用户文件哈希 (仅在版本号相同时检查)
+    local user_file_hash = calculate_file_hash(tips.user_override_path) or ""
+    if not needs_rebuild
+        and (tips_db:meta_fetch(META_KEY.user_file_hash) or "") ~= user_file_hash
+    then
+        needs_rebuild = true
+    end
+
+    -- 检查 3: 禁用类型 (仅在前两者都相同时检查)
+    local disabled_keys = {}
+    for k, _ in pairs(tips.disabled_types) do
+        table.insert(disabled_keys, k)
+    end
+    table.sort(disabled_keys) -- 排序以确保顺序一致
+    local disabled_types_str = table.concat(disabled_keys, ",")
+
+    if not needs_rebuild
+        and (tips_db:meta_fetch(META_KEY.disabled_types) or "") ~= disabled_types_str
+    then
+        needs_rebuild = true
+    end
+
+    -- 如果需要，则执行重建
+    if needs_rebuild then
+        tips_db:clear()
+        tips.init_db_from_file(tips.preset_file_path)
+        tips.init_db_from_file(tips.user_override_path)
+
+        -- 重建成功后，再更新所有元数据，确保操作的原子性
+        tips_db:meta_update(META_KEY.version, wanxiang.version)
+        tips_db:meta_update(META_KEY.user_file_hash, user_file_hash)
+        tips_db:meta_update(META_KEY.disabled_types, disabled_types_str)
+    end
+
+    -- 关闭并以只读模式重新打开
     tips_db:close()
     tips_db:open_read_only()
 end
 
----@param ... string[] | string
+---从数据库中查询 tips
+---@param keys string | string[] 接受一个字符串或一个字符串数组作为键，使用数组时会挨个查询，直到获得有效值
 ---@return string | nil
-function tips.get_tip(...)
-    local key_input = ...
-    if type(key_input) == 'string' then
-        return tips_db:fetch(key_input)
+function tips.get_tip(keys)
+    -- 输入归一化：如果输入是 string，将其包装成单元素的 table
+    if type(keys) == 'string' then
+        keys = { keys }
     end
 
-    for _, key in ipairs(key_input) do
+    for _, key in ipairs(keys) do
         if key and key ~= "" then
             local tip = tips_db:fetch(key)
             if tip and #tip > 0 then
@@ -191,9 +169,12 @@ local function update_tips_prompt(context, env)
     if segment == nil then return end
 
     local cand = context:get_selected_candidate() or {}
-    env.current_tip = segment.selected_index == 0
-        and tips.get_tip({ context.input, cand.text })
-        or tips.get_tip(cand.text)
+
+    if segment.selected_index == 0 then
+        env.current_tip = tips.get_tip({ context.input, cand.text })
+    else
+        env.current_tip = tips.get_tip(cand.text)
+    end
 
     if env.current_tip ~= nil and env.current_tip ~= "" then
         -- 有 tips 则直接设置 prompt
