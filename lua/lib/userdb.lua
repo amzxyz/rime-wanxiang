@@ -1,104 +1,108 @@
 local META_KEY_PREFIX = "\001" .. "/"
 
----@class MetadataUserDb: UserDb
+-- UserDb 缓存，使用弱引用表，不阻止垃圾回收并能自动清理
+local db_pool = setmetatable({}, { __mode = "v" })
+
+---@class WrappedUserDb: UserDb
 ---@field meta_query fun(self: self, prefix: string): DbAccessor
 ---@field meta_fetch fun(self: self, key: string): string|nil
 ---@field meta_update fun(self: self, key: string, value: string): boolean
 ---@field meta_erase fun(self: self, key: string): boolean
----@field clear fun(self: self, include_metafield?: boolean)
+---@field query_with fun(self: self, prefix: string, handler: fun(key: string, value: string))
+---@field empty fun(self: self, include_metafield?: boolean) -- 清空数据库
 
-local db_pool_ = {}
+-- 用于存放包装器对象的自定义方法
+local extends = {}
 
-function db_pool_.get_key(db_name, db_class)
-  return db_name .. "." .. db_class
+--- @param key string
+--- @return string|nil
+function extends:meta_fetch(key)
+  return self._db:fetch(META_KEY_PREFIX .. key)
 end
 
----从池中获取连接
----@param name string
----@param class "userdb" | "plain_userdb"
----@return UserDb|unknown
-function db_pool_.get(name, class)
-  local key = db_pool_.get_key(name, class)
-  local db = db_pool_[key]
-  if not db then
-    db = UserDb(name, class)
-    db_pool_[key] = db
-  end
-  return db
+--- @param key string
+--- @param value string
+--- @return boolean
+function extends:meta_update(key, value)
+  return self._db:update(META_KEY_PREFIX .. key, value)
 end
 
-local userdb_mt = {}
+--- @param key string
+--- @return boolean
+function extends:meta_erase(key)
+  return self._db:erase(META_KEY_PREFIX .. key)
+end
 
-function userdb_mt.__index(wrapper, key)
-  local extends = rawget(userdb_mt, key)
-  if extends then
-    return extends
+--- @param prefix string
+--- @return DbAccessor
+function extends:meta_query(prefix)
+  return self._db:query(META_KEY_PREFIX .. prefix)
+end
+
+function extends:query_with(prefix, handler)
+  local da = self._db:query(prefix)
+  if da then
+    for key, value in da:iter() do
+      handler(key, value)
+    end
   end
+  da = nil
+  collectgarbage()
+end
 
-  local real_db = db_pool_.get(wrapper._db_name, wrapper._db_class)
-  local value = real_db[key]
+--- @param include_metafield boolean 是否也清理元数据。
+function extends:empty(include_metafield)
+  self:query_with("", function(key, _)
+    local is_metafield = key:find(META_KEY_PREFIX, 1, true) == 1
+    if include_metafield or not is_metafield then
+      self._db:erase(key)
+    end
+  end)
+end
 
-  if type(value) == "function" then
-    local proxy_fn = function(wrapper_self, ...)
-      return value(real_db, ...)
+local mt = {
+  __index = function(wrapper, key)
+    -- 优先使用自定义方法
+    if extends[key] then
+      return extends[key]
     end
 
-    if key == "close" then
-      proxy_fn = function(wrapper_self, ...)
-        -- 在关闭 userdb 之前手动出发垃圾回收，降低内存泄露概率
-        collectgarbage()
-        local result = value(real_db, ...)
-        return result
+    -- 不是自定义方法，委托给真实的 UserDb 对象
+    local real_db = wrapper._db
+    local value = real_db[key]
+
+    if type(value) == "function" then
+      return function(_, ...)
+        return value(real_db, ...)
       end
     end
-    rawset(wrapper, key, proxy_fn)
-    return proxy_fn
-  end
 
-  return value
-end
-
-function userdb_mt:meta_query(prefix)
-  return self:query(META_KEY_PREFIX .. prefix)
-end
-
-function userdb_mt:meta_fetch(key)
-  return self:fetch(META_KEY_PREFIX .. key)
-end
-
-function userdb_mt:meta_update(key, value)
-  return self:update(META_KEY_PREFIX .. key, value)
-end
-
-function userdb_mt:meta_erase(key)
-  return self:erase(META_KEY_PREFIX .. key)
-end
-
-function userdb_mt:clear(include_metafield)
-  local da
-  da = self:query("")
-
-  for key, _ in da:iter() do
-    local is_metafield = key:find(META_KEY_PREFIX, 1, true) == 1
-    if include_metafield  -- 包含 meta fields
-        or not is_metafield -- 或者不包含且当前不是 meta fields
-    then
-      self:erase(key)
-    end
-  end
-
-  da = nil
-end
+    return value
+  end,
+}
 
 local userdb = {}
 
----@return MetadataUserDb
+--- @param db_name string
+--- @param db_class "userdb" | "plain_userdb" | nil
+--- @return WrappedUserDb
 function userdb.UserDb(db_name, db_class)
+  db_class = db_class or "userdb"
+  local key = db_name .. "." .. db_class
+
+  ---@type UserDb
+  local db = db_pool[key]
+  if not db then
+    db = UserDb(db_name, db_class)
+    db_pool[key] = db
+  end
+
   local wrapper = {
-    _db_name = db_name,
-    _db_class = db_class,
+    _db = db,
+    _pool_key = key,
   }
-  return setmetatable(wrapper, userdb_mt)
+
+  return setmetatable(wrapper, mt)
 end
 
 function userdb.LevelDb(db_name)

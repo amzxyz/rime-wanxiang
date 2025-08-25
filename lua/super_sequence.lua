@@ -5,7 +5,9 @@
 -- ctrl+l 重置
 -- ctrl+p 置顶
 local wanxiang = require("wanxiang")
+local userdb = require("lib/userdb")
 
+local LAST_MIGRATION_VERSION = "9.1.3"
 local DEFAULT_SEQ_KEY = {
     up    = "Control+j",
     down  = "Control+k",
@@ -13,55 +15,7 @@ local DEFAULT_SEQ_KEY = {
     pin   = "Control+p",
 }
 
---- seq_db start
-local seq_db = {}
-seq_db.db_name = "lua/sequence"
-seq_db._instance = nil
-function seq_db.close()
-    if seq_db._instance and seq_db._instance:loaded() then
-        collectgarbage()
-        seq_db._instance:close()
-        seq_db._instance = nil
-    end
-end
-
-function seq_db._get()
-    seq_db._instance = seq_db._instance or LevelDb(seq_db.db_name)
-    if seq_db._instance and not seq_db._instance:loaded() then
-        seq_db._instance:open()
-    end
-    return seq_db._instance
-end
-
-local META_KEY_PREFIX = "\001" .. "/"
-local META_KEY_MIGRATION_VERSION = "migration_version"
-local LAST_MIGRATION_VERSION = "9.1.3"
-
-function seq_db.update(key, value) return seq_db._get():update(key, value) end
-
-function seq_db.fetch(key) return seq_db._get():fetch(key) end
-
-function seq_db.erase(key) return seq_db._get():erase(key) end
-
-function seq_db.query(prefix) return seq_db._get():query(prefix) end
-
-function seq_db.meta_fetch(key)
-    return seq_db.fetch(META_KEY_PREFIX .. key)
-end
-
-function seq_db.meta_update(key, value)
-    return seq_db.update(META_KEY_PREFIX .. key, value)
-end
-
-function seq_db.get_migration_version()
-    return seq_db.meta_fetch(META_KEY_MIGRATION_VERSION)
-end
-
-function seq_db.update_migration_version()
-    return seq_db.meta_update(META_KEY_MIGRATION_VERSION, LAST_MIGRATION_VERSION)
-end
-
---- seq_db end
+local seq_db = userdb.LevelDb("lua/sequence")
 
 local seq_property = {
     ADJUST_KEY = "sequence_adjustment_code",
@@ -164,23 +118,15 @@ local function parse_adjustment_values(values_str)
     return next(adjustments) and adjustments or nil
 end
 
-local adjustments_cache = {
-    key = nil,
-    value = nil,
-}
 ---@param input string 当前输入码
 ---@return table<string, RuntimeAdjustment> | nil
 local function get_input_adjustments(input)
-    if adjustments_cache.key == input then return adjustments_cache.value end
-
     if input == "" or input == nil then return nil end
 
-    local value_str = seq_db.fetch(input)
+    local value_str = seq_db:fetch(input)
     if value_str == nil then return nil end
 
-    local adjustments = parse_adjustment_values(value_str)
-    adjustments_cache.value = adjustments
-    return adjustments_cache.value
+    return parse_adjustment_values(value_str)
 end
 
 -- 由于 lua os.time() 的精度只到秒，排序过快可能会引起问题
@@ -226,12 +172,7 @@ local function save_adjustment(input, item, adjustment)
         table.insert(values, value_str)
     end
 
-    if adjustments_cache.key == input then
-        adjustments_cache.key = nil
-        adjustments_cache.value = nil
-    end
-
-    return seq_db.update(input, table.concat(values, "\t"))
+    return seq_db:update(input, table.concat(values, "\t"))
 end
 
 ---从 context 中获取当前排序匹配码
@@ -249,7 +190,7 @@ local function extract_adjustment_code(context)
     return context.input:sub(1, context.caret_pos)
 end
 
-local sync_file_name = rime_api.get_user_data_dir() .. "/" .. seq_db.db_name .. ".txt"
+local sync_file_name = rime_api.get_user_data_dir() .. "/lua/sequence.txt"
 
 ---将旧数据转化为新数据格式
 ---@param key string db key
@@ -268,106 +209,47 @@ local function transform_legacy_record(key, value)
     return new_input, new_value
 end
 
-local function db_migration()
-    local migration_version = seq_db.get_migration_version()
+local seq_data = {}
+---@type "pending" | "initialing" | "done"
+seq_data.status = "pending"
+
+function seq_data.init()
+    if seq_data.status ~= "pending" then return end
+
+    seq_db:open()
+    seq_data.status = "initialing"
+    seq_data.db_migration()
+    seq_data.import_from_file()
+    seq_data.status = "done"
+end
+
+function seq_data.db_migration()
+    local migration_key = "migration_version"
+    local migration_version = seq_db:meta_fetch(migration_key)
     if migration_version == LAST_MIGRATION_VERSION then
         return
     end
 
     local migration_count = 0
-    ---@type nil | DbAccessor
-    local da = nil
-    da = seq_db.query("")
-    if not da then return end
-
-    for key, value in da:iter() do
+    seq_db:query_with("", function(key, value)
         local new_key, new_value = transform_legacy_record(key, value)
         if key ~= new_key then
             local item, adjustment = parse_adjustment_value_item(new_value)
             if item and adjustment then
                 save_adjustment(new_key, item, adjustment)
-                seq_db.erase(key)
+                seq_db:erase(key)
                 migration_count = migration_count + 1
             end
         end
-    end
-    da = nil
+    end)
 
-    seq_db.update_migration_version()
+    seq_db:meta_update(migration_key, LAST_MIGRATION_VERSION)
     if migration_count > 0 then
         log.info(string.format("[sequence] 完成旧格式数据迁移，共 %s 条", migration_count))
     end
 end
 
-
--- 导出排序数据
---
--- 每行数据格式如下：
--- ```console
---   制表符分割
---       |        空格分割
---       |            |
---       v            v
---  /rq	i=2 p=1 o=0 t=1752737077.5417
---  vuvj	i=主站 p=1 o=0 t=1752737072.5412
---   ^        ^     ^   ^          ^
---   |        |     |   |          |
--- 输入码   排序项  | 偏移量     时间戳
---                  |
---                 位置
--- ```
---
--- 其中：
--- - i 排序项：普通模式为「候选词」，功能模式为「候选索引」（从 0  开始计算）
--- - p 位置：
---   - 重置为 `0`
---   - 置顶为 `1`
---   - 其他值为移动后的位置。（此种情况只做记录，实际排序按偏移量计算）
--- - o 偏移量：前／后移动的偏移量
---   - 前移 `<0`
---   - 后移 `>0`
---   - 「重置」、「置顶」等非前／后移操作为 `0`
-local function export_to_file()
-    -- 文件已存在不进行覆盖
-    if wanxiang.file_exists(sync_file_name) then return end
-
-    local file = io.open(sync_file_name, "w")
-    if not file then return end;
-
-    ---@type nil | DbAccessor
-    local da = nil
-    da = seq_db.query("")
-    if not da then return end
-
-    for key, value in da:iter() do
-        -- 兼容旧数据
-        key, value = transform_legacy_record(key, value)
-
-        if key:sub(1, 2) == "\001" .. "/" then
-            local line = string.format("%s\t%s", key, value)
-            local from_user_id = string.match(line, "^" .. "\001" .. "/user_id\t(.+)")
-            if from_user_id ~= nil then
-                local fixed_user_id = wanxiang.get_user_id()
-                if fixed_user_id ~= from_user_id then
-                    line = "\001" .. "/user_id\t" .. fixed_user_id
-                end
-            end
-            file:write(line, "\n")
-        else
-            for adj_str in value:gmatch("[^\t]+") do
-                local line = string.format("%s\t%s", key, adj_str)
-                file:write(line, "\n")
-            end
-        end
-    end
-    da = nil
-
-    log.info(string.format("[sequence] 已导出排序数据至文件 %s", sync_file_name))
-
-    file:close()
-end
-
-local function import_from_file()
+function seq_data.import_from_file()
     local file = io.open(sync_file_name, "r")
     if not file then return end;
 
@@ -420,10 +302,71 @@ local function import_from_file()
     end
 end
 
+-- 导出排序数据
+--
+-- 每行数据格式如下：
+-- ```console
+--   制表符分割
+--       |        空格分割
+--       |            |
+--       v            v
+--  /rq	i=2 p=1 o=0 t=1752737077.5417
+--  vuvj	i=主站 p=1 o=0 t=1752737072.5412
+--   ^        ^     ^   ^          ^
+--   |        |     |   |          |
+-- 输入码   排序项  | 偏移量     时间戳
+--                  |
+--                 位置
+-- ```
+--
+-- 其中：
+-- - i 排序项：普通模式为「候选词」，功能模式为「候选索引」（从 0  开始计算）
+-- - p 位置：
+--   - 重置为 `0`
+--   - 置顶为 `1`
+--   - 其他值为移动后的位置。（此种情况只做记录，实际排序按偏移量计算）
+-- - o 偏移量：前／后移动的偏移量
+--   - 前移 `<0`
+--   - 后移 `>0`
+--   - 「重置」、「置顶」等非前／后移操作为 `0`
+function seq_data:export_to_file()
+    -- 文件已存在不进行覆盖
+    if wanxiang.file_exists(sync_file_name) then return end
+
+    local file = io.open(sync_file_name, "w")
+    if not file then return end;
+
+    ---@type nil | DbAccessor
+    seq_db:query_with("", function(key, value)
+        -- 兼容旧数据
+        local new_key, new_value = transform_legacy_record(key, value)
+
+        if new_key:sub(1, 2) == "\001" .. "/" then
+            local line = string.format("%s\t%s", new_key, new_value)
+            local from_user_id = string.match(line, "^" .. "\001" .. "/user_id\t(.+)")
+            if from_user_id ~= nil then
+                local fixed_user_id = wanxiang.get_user_id()
+                if fixed_user_id ~= from_user_id then
+                    line = "\001" .. "/user_id\t" .. fixed_user_id
+                end
+            end
+            file:write(line, "\n")
+        else
+            for adj_str in new_value:gmatch("[^\t]+") do
+                local line = string.format("%s\t%s", new_key, adj_str)
+                file:write(line, "\n")
+            end
+        end
+    end)
+
+    log.info(string.format("[sequence] 已导出排序数据至文件 %s", sync_file_name))
+
+    file:close()
+end
+
 local P = {}
 function P.init()
-    db_migration()
-    import_from_file()
+    seq_data.init()
 end
 
 ---执行排序调整
@@ -490,11 +433,9 @@ function P.func(key_event, env)
 end
 
 local F = {}
-function F.init() end
 
 function F.fini()
-    export_to_file()
-    seq_db.close()
+    seq_data:export_to_file()
 end
 
 ---应用之前的调整

@@ -38,6 +38,9 @@ end
 
 local tips = {}
 
+---@type "pending" | "initialing" | "done"
+tips.status = "pending"
+
 ---@type table<string, boolean>
 tips.disabled_types = {}
 tips.preset_file_path = wanxiang.get_filename_with_fallback("lua/tips/tips_show.txt")
@@ -74,8 +77,29 @@ function tips.init_db_from_file(path)
     file:close()
 end
 
+function tips.ensure_dir_exist(dir)
+    -- 获取系统路径分隔符
+    local sep = package.config:sub(1, 1)
+
+    dir = dir:gsub([["]], [[\"]]) -- 处理双引号
+
+    if sep == "/" then
+        local cmd = 'mkdir -p "' .. dir .. '" 2>/dev/null'
+        os.execute(cmd)
+    end
+end
+
 ---@param config Config
 function tips.init(config)
+    if tips.status ~= "pending" then return end
+
+    local dist = rime_api.get_distribution_code_name() or ""
+    local user_lua_dir = rime_api.get_user_data_dir() .. "/lua"
+    if dist ~= "hamster" and dist ~= "Weasel" then
+        tips.ensure_dir_exist(user_lua_dir)
+        tips.ensure_dir_exist(user_lua_dir .. "/tips")
+    end
+
     -- 读取配置
     local disabled_types_list = config:get_list("tips/disabled_types")
     if disabled_types_list then
@@ -120,7 +144,7 @@ function tips.init(config)
 
     -- 如果需要，则执行重建
     if needs_rebuild then
-        tips_db:clear()
+        tips_db:empty()
         tips.init_db_from_file(tips.preset_file_path)
         tips.init_db_from_file(tips.user_override_path)
 
@@ -159,14 +183,19 @@ end
 ---@class Env
 ---@field current_tip string | nil 当前 tips 值
 ---@field last_prompt string 最后一次设置的 prompt 值
----@field tips_update_connection any update notifier
+---@field tips_update_connection Connection
 
 ---tips prompt 处理
 ---@param context Context
 ---@param env Env
 local function update_tips_prompt(context, env)
+    env.current_tip = nil
+
+    local is_tips_enabled = context:get_option("super_tips")
+    if not is_tips_enabled then return end
+
     local segment = context.composition:back()
-    if segment == nil then return end
+    if not segment then return end
 
     local cand = context:get_selected_candidate() or {}
 
@@ -189,30 +218,10 @@ end
 
 local P = {}
 
-local function ensure_dir_exist(dir)
-    -- 获取系统路径分隔符
-    local sep = package.config:sub(1, 1)
-
-    dir = dir:gsub([["]], [[\"]]) -- 处理双引号
-
-    if sep == "/" then
-        local cmd = 'mkdir -p "' .. dir .. '" 2>/dev/null'
-        os.execute(cmd)
-    end
-end
-
 -- Processor：按键触发上屏 (S)
 ---@param env Env
 function P.init(env)
-    local dist = rime_api.get_distribution_code_name() or ""
-    local user_lua_dir = rime_api.get_user_data_dir() .. "/lua"
-    if dist ~= "hamster" and dist ~= "Weasel" then
-        ensure_dir_exist(user_lua_dir)
-        ensure_dir_exist(user_lua_dir .. "/tips")
-    end
-
     local config = env.engine.schema.config
-
     tips.init(config)
 
     P.tips_key = config:get_string("key_binder/tips_key")
@@ -221,16 +230,12 @@ function P.init(env)
     local context = env.engine.context
     env.tips_update_connection = context.update_notifier:connect(
         function(context)
-            local is_tips_enabled = context:get_option("super_tips")
-            if is_tips_enabled == true then
-                update_tips_prompt(context, env)
-            end
+            update_tips_prompt(context, env)
         end
     )
 end
 
 function P.fini(env)
-    tips_db:close()
     -- 清理连接
     if env.tips_update_connection then
         env.tips_update_connection:disconnect()
@@ -245,15 +250,15 @@ function P.func(key, env)
     local context = env.engine.context
 
     local is_tips_enabled = context:get_option("super_tips")
-    local segment = context.composition:back()
-    if not is_tips_enabled or not segment then
+    if not is_tips_enabled then
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
     -- 如果启用了 tips 功能，则应使用此 workaround
     -- rime 内核在移动候选时并不会触发 update_notifier，这里做一个临时修复
     -- 如果是 paging，则主动调用 update_tips_prompt
-    if segment:has_tag("paging") then
+    local segment = context.composition:back()
+    if segment and segment:has_tag("paging") then
         update_tips_prompt(context, env)
     end
 

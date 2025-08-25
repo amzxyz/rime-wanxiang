@@ -1,8 +1,8 @@
 local bit_ok, bit_ = pcall(require, "bit")       -- LuaJIT 内置 bit 库
 local bit32_ok, bit32_ = pcall(require, "bit32") -- Lua 5.2 内置 bit32 库
 
----@alias fn_band fun(a: string, b: string): string
----@alias fn_bxor fun(a: string, b: string): string
+---@alias fn_band fun(a: integer, b: integer): integer
+---@alias fn_bxor fun(a: integer, b: integer): integer
 ---@type nil | { band: fn_band, bxor: fn_bxor }
 local bit53_ = nil -- Lua 5.3 引入的原生位运算操作符
 
@@ -21,6 +21,7 @@ end
 
 local bit = {}
 
+---@return integer
 function bit.bxor(a, b)
     if bit_ok then
         return bit_.bxor(a, b)
@@ -45,6 +46,7 @@ function bit.bxor(a, b)
     return c
 end
 
+---@return integer
 function bit.band(a, b)
     if bit_ok then
         return bit_.band(a, b)
