@@ -72,7 +72,7 @@ CHANGES=$(
   echo "### 4. 周边推荐"
   echo " - [高度适配万象拼音的仓输入法皮肤](https://github.com/BlackCCCat/ResourceforHamster/tree/main/Skin_Keyboard/)"
   echo ""
-  echo " - [好用的更新脚本，助你优雅管理版本](https://github.com/expoli/rime-wanxiang-weasel-update-tools)"
+  echo " - [好用的更新脚本，助你优雅管理版本](https://github.com/rimeinn/rime-wanxiang-update-tools)"
   echo ""
   echo " - [万象cnb仓库，无需梯子的类GitHub仓库国内平台](https://cnb.cool/amzxyz/rime-wanxiang)"
 } >release_notes.md
