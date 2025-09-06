@@ -1,5 +1,13 @@
 # Changelog
 
+## [12.0.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.0.0...v12.0.1) (2025-09-06)
+
+
+### 🏡 杂项
+
+* 修改说明 ([b2b65b5](https://github.com/amzxyz/rime_wanxiang/commit/b2b65b582ea3059e9a94fb2f472e501db39fd16e))
+* 创建release ([0e3cca0](https://github.com/amzxyz/rime_wanxiang/commit/0e3cca08967d8e00b3c6dc0dba6690fac3317ae8))
+
 ## [12.0.0](https://github.com/amzxyz/rime_wanxiang/compare/v11.4.4...v12.0.0) (2025-09-05)
 
 
