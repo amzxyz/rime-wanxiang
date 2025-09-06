@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.2](https://github.com/amzxyz/rime_wanxiang/compare/v12.0.1...v12.0.2) (2025-09-06)
+
+
+### 🐛 Bug 修复
+
+* 恢复次翻译器置后的逻辑 ([a3b303e](https://github.com/amzxyz/rime_wanxiang/commit/a3b303e8f3a98d12bcaaeb0242e88612d7d83c3a))
+
 ## [12.0.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.0.0...v12.0.1) (2025-09-06)
 
 
