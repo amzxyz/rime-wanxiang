@@ -1,5 +1,25 @@
 # Changelog
 
+## [12.0.3](https://github.com/amzxyz/rime_wanxiang/compare/v12.0.2...v12.0.3) (2025-09-07)
+
+
+### 📚 词库更新
+
+* 修复 ([b77cfc8](https://github.com/amzxyz/rime_wanxiang/commit/b77cfc892e3fde7bfd65aef8b1aaa88bf4d58abc))
+* 去掉无读音单字 ([68834f7](https://github.com/amzxyz/rime_wanxiang/commit/68834f763dcee2a8bea419a7f01cbce91981d7e2))
+* 词库调整 ([3dc7592](https://github.com/amzxyz/rime_wanxiang/commit/3dc75927f44de66e7bfa6f33e67ebe1c1f5c1bc7))
+* 词库调整 ([7501c62](https://github.com/amzxyz/rime_wanxiang/commit/7501c62d771f0b771186e3a042e388d514144413))
+
+
+### 🐛 Bug 修复
+
+* 反查改成权重排序，便于协作维护，Lua解决与单字表不对齐导致反查太极问题，删除单字表无读音字 ([cf86172](https://github.com/amzxyz/rime_wanxiang/commit/cf861724e9c97e87e72932996ba624a710c45f9e))
+
+
+### 🏡 杂项
+
+* 变更说明 ([43015bb](https://github.com/amzxyz/rime_wanxiang/commit/43015bb3458638de1dfb072e66a1a000d8285b53))
+
 ## [12.0.2](https://github.com/amzxyz/rime_wanxiang/compare/v12.0.1...v12.0.2) (2025-09-06)
 
 
