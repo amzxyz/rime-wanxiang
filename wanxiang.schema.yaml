@@ -1164,6 +1164,7 @@ add_user_dict:
   enable_encoder: true # 是否开启自动造词〔仅 table_translator 有效〕
   enable_sentence: true #  是否开启自动造句
   enable_user_dict: false
+  enable_auto_phrase: false
   encode_commit_history: false # 是否对已上屛词自动成词〔仅 table_translator 有效〕  
   comment_format:
   prefix: "``"

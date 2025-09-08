@@ -67,6 +67,8 @@ patch:
   #recognizer/patterns/add_user_dict: "^``[A-Za-z/`']*$"      #自造词引导方式
   #user_dict_set/enable_user_dict: true     
   #add_user_dict/enable_user_dict: true
+  # 取消注释以开启自动无词频造词
+  #add_user_dict/enable_auto_phrase: true
 #按需造词全功能段落结束---------------------------------------------------------------
 
 

@@ -238,7 +238,124 @@ local function get_fz_comment(cand, env, initial_comment)
         return ""
     end
 end
+-- #########################
+-- # 自动无词频造词模块
+-- #########################
+local AP = {}
+local comment_cache = {}
 
+function AP.init(env)
+    local config = env.engine.schema.config
+    local enable_auto_phrase = config:get_string("add_user_dict/enable_auto_phrase") or false
+
+        -- 依据配置选择是否开始缓存comment
+    if enable_auto_phrase:lower() == "true" then 
+        env._commit_conn = env.engine.context.commit_notifier:connect(
+            function(ctx)
+                AP.commit_handler(ctx, env)
+            end
+        )
+    end
+end
+
+function AP.fini(env)
+    if env._commit_conn then
+        env._commit_conn:disconnect()
+        env._commit_conn = nil
+    end
+end
+
+function AP.save_comment_cache(cand)
+    local comment = cand.comment
+    local comment_text = cand.text
+
+    if comment_text and comment_text ~= "" and comment and comment ~= "" then
+        comment_cache[comment_text] = comment
+    end
+end
+
+function AP.commit_handler(ctx, env)
+    if not ctx or not ctx.composition then
+        comment_cache = {}
+        return
+    end
+
+    local segments = ctx.composition:toSegmentation():get_segments()
+    local segments_count = #segments
+    local commit_text = ctx:get_commit_text()
+
+    -- 检查是否符合最小造词单元要求
+    if segments_count <= 1 or utf8.len(commit_text) <= 1 then
+        comment_cache = {}
+        return
+    end
+
+    -- 检查是否符合造词内容要求
+    if not AP.is_chinese_only(commit_text) or comment_cache[commit_text] then
+        comment_cache = {}
+        return
+    end
+
+    local preedits_table = {}
+    local config = env.engine.schema.config
+    local delimiter = config:get_string("speller/delimiter") or " '"
+    local escaped_delimiter = utf8.char(utf8.codepoint(delimiter)):gsub("(%W)", "%%%1")
+
+    for i = 1, segments_count do
+        local seg = segments[i]
+        local cand = seg:get_selected_candidate()
+
+        if cand then
+            local cand_text = cand.text
+            local preedit = comment_cache[cand_text]
+
+            if preedit and preedit ~= "" then
+                for part in preedit:gmatch("[^" .. escaped_delimiter .. "]+") do
+                    table.insert(preedits_table, part)
+                end
+            end
+        end
+    end
+
+    local memory = Memory(env.engine, env.engine.schema, "add_user_dict")
+    local dictEntry = DictEntry()
+
+    dictEntry.text = commit_text
+    dictEntry.weight = 1
+    dictEntry.custom_code = table.concat(preedits_table, " ") .. " "
+
+    memory:update_userdict(dictEntry, 1, "")
+
+    log.info(string.format("[auto_phrase] 自动造词：[%s]，编码：[%s]", dictEntry.text, dictEntry.custom_code))
+
+    comment_cache = {}
+end
+
+-- 判断字符是否为汉字
+function AP.is_chinese_only(text)
+    local non_chinese_pattern = "[%w%p]"
+
+    if not text or text == "" then
+        return false
+    end
+
+    if text:match(non_chinese_pattern) then
+        return false
+    end
+
+    for _, cp in utf8.codes(text) do
+        -- 常用汉字区 + 扩展 A/B/C/D/E/F/G
+        if
+            not ((cp >= 0x4E00 and cp <= 0x9FFF) or -- CJK Unified Ideographs
+                (cp >= 0x3400 and cp <= 0x4DBF) or -- CJK Ext-A
+                (cp >= 0x20000 and cp <= 0x2EBEF) or -- CJK Ext-B~G（需 5.3+ 支持大码点）
+                false)
+         then
+            return false
+        end
+    end
+    return true
+end
 -- #########################
 -- 主函数：根据优先级处理候选词的注释和preedit
 -- #########################
@@ -258,10 +375,12 @@ function ZH.init(env)
         fuzhu_type = config:get_string("super_comment/fuzhu_type") or ""
     }
     CR.init(env)
+    AP.init(env)
 end
 function ZH.fini(env)
     -- 清理
     CF.fini(env)
+    AP.fini(env)
 end
 function ZH.func(input, env)
     local config = env.engine.schema.config
@@ -283,12 +402,20 @@ function ZH.func(input, env)
     local is_tone_display = context:get_option("tone_display")
     local is_full_pinyin = context:get_option("full_pinyin")
     local index = 0
+    -- auto_phrase 相关声明
+    local enable_auto_phrase = config:get_string("add_user_dict/enable_auto_phrase") or false
+
     for cand in input:iter() do
         local genuine_cand = cand:get_genuine()
         local preedit = genuine_cand.preedit or ""
         local initial_comment = genuine_cand.comment
         local final_comment = initial_comment
         index = index + 1
+
+        -- auto_phrase 相关处理,只保存comment
+        if enable_auto_phrase then 
+            AP.save_comment_cache(cand)
+        end
 
         -- preedit相关处理只跳过 preedit，不影响注释
         if is_radical_mode then
