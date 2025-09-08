@@ -246,10 +246,11 @@ local comment_cache = {}
 
 function AP.init(env)
     local config = env.engine.schema.config
-    local enable_auto_phrase = config:get_string("add_user_dict/enable_auto_phrase") or false
+    local enable_auto_phrase = config:get_bool("add_user_dict/enable_auto_phrase") or false
+    local enable_user_dict = config:get_bool("add_user_dict/enable_user_dict") or false
 
         -- 依据配置选择是否开始缓存comment
-    if enable_auto_phrase:lower() == "true" then 
+    if enable_auto_phrase and enable_user_dict then 
         env._commit_conn = env.engine.context.commit_notifier:connect(
             function(ctx)
                 AP.commit_handler(ctx, env)
@@ -403,7 +404,8 @@ function ZH.func(input, env)
     local is_full_pinyin = context:get_option("full_pinyin")
     local index = 0
     -- auto_phrase 相关声明
-    local enable_auto_phrase = config:get_string("add_user_dict/enable_auto_phrase") or false
+    local enable_auto_phrase = config:get_bool("add_user_dict/enable_auto_phrase") or false
+    local enable_user_dict = config:get_bool("add_user_dict/enable_user_dict") or false
 
     for cand in input:iter() do
         local genuine_cand = cand:get_genuine()
@@ -413,7 +415,7 @@ function ZH.func(input, env)
         index = index + 1
 
         -- auto_phrase 相关处理,只保存comment
-        if enable_auto_phrase then 
+        if enable_auto_phrase and enable_user_dict then 
             AP.save_comment_cache(cand)
         end
 
