@@ -1,5 +1,23 @@
 # Changelog
 
+## [12.1.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.1.0...v12.1.1) (2025-09-08)
+
+
+### 📚 词库更新
+
+* 词库更新 ([a88d545](https://github.com/amzxyz/rime_wanxiang/commit/a88d545b29f0d0e88ebf52701a53acc188966c4a))
+* 词库调整 ([293fcb8](https://github.com/amzxyz/rime_wanxiang/commit/293fcb85e309bb514978000cf9757f72f3e77f59))
+
+
+### 🐛 Bug 修复
+
+* 让造词的时候显示辅助码，移除wanxiang.lua中关于add加词的tag标签 ([f683b12](https://github.com/amzxyz/rime_wanxiang/commit/f683b126956d8f9b0d1c034514c689761f02328b))
+
+
+### 🏡 杂项
+
+* 创建release ([8102c55](https://github.com/amzxyz/rime_wanxiang/commit/8102c554e6125dc17a012767c7183346a04292d5))
+
 ## [12.1.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.0.3...v12.1.0) (2025-09-08)
 
 
