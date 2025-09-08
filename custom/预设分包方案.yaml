@@ -1247,12 +1247,9 @@ add_user_dict:
   dictionary: wanxiang_pro
   initial_quality: -1
   user_dict: zc
-  enable_charset_filter: false # 是否开启字符集过滤
   enable_completion: true # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
-  enable_encoder: true # 是否开启自动造词〔仅 table_translator 有效〕
-  enable_sentence: true #  是否开启自动造句
   enable_user_dict: true
-  encode_commit_history: false # 是否对已上屛词自动成词〔仅 table_translator 有效〕  
+  enable_auto_phrase: false    # lua造词功能，在custom开启，相关功能位于super_comment_preedit，开启后：模型能造的句子不造词，现有的词不造词，只造词库没有的，选词可造词
   comment_format:
   prefix: "``"
   tips: "〔开始造词〕"

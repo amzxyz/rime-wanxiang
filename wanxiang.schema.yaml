@@ -185,10 +185,10 @@ translator:
 #  user_dict: zrm.userdb       # 用户词典的文件名称
 #  db_class: tabledb           #开启后就不会产生wanxiang.userdb这样的文件夹，会直接输出文本wanxiang.txt同时无法使用同步能力，可设 tabledb〔文本〕或 userdb〔二进制〕
   enable_user_dict: true       # 是否开启自动调频，即开启用户词典
-  enable_encoder: true         #是否开启自动造词
-  enable_sentence: false       #是否开启自动造句
-  enable_correction: false     #是否开启自动纠错
-  encode_commit_history: true  # 预留历史上屏自动编码成词
+#  enable_encoder: true         #是否开启自动造词
+#  enable_sentence: false       #是否开启自动造句
+#  enable_correction: false     #是否开启自动纠错
+#  encode_commit_history: true  # 预留历史上屏自动编码成词
   core_word_length: 4          # >0 启用，按段学词 + 相邻段拼接
   max_word_length: 7           # >0 启用，过长短语不记整词，只加元素权重
   initial_quality: 3           #初始质量拼音的权重应该比英文大
@@ -1164,7 +1164,7 @@ add_user_dict:
   enable_encoder: true # 是否开启自动造词〔仅 table_translator 有效〕
   enable_sentence: true #  是否开启自动造句
   enable_user_dict: false
-  enable_auto_phrase: false
+  enable_auto_phrase: false    # lua造词功能，在custom开启，相关功能位于super_comment_preedit，开启后：模型能造的句子不造词，现有的词不造词，只造词库没有的，选词可造词
   encode_commit_history: false # 是否对已上屛词自动成词〔仅 table_translator 有效〕  
   comment_format:
   prefix: "``"
