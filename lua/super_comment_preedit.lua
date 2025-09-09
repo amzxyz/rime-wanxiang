@@ -250,9 +250,15 @@ function AP.init(env)
 
         -- 依据配置选择是否开始缓存comment
     if enable_auto_phrase and enable_user_dict then 
+        env.memory = Memory(env.engine, env.engine.schema, "add_user_dict")
         env._commit_conn = env.engine.context.commit_notifier:connect(
             function(ctx)
                 AP.commit_handler(ctx, env)
+            end
+        )
+        env._delete_conn = env.engine.context.delete_notifier:connect(
+            function(ctx)
+                comment_cache = {}
             end
         )
     end
@@ -262,6 +268,16 @@ function AP.fini(env)
     if env._commit_conn then
         env._commit_conn:disconnect()
         env._commit_conn = nil
+    end
+
+    if env._delete_conn then
+        env._delete_conn:disconnect()
+        env._delete_conn = nil
+    end
+
+    if env.memory then
+        env.memory:disconnect()
+        env.memory = nil
     end
 end
 
@@ -317,14 +333,13 @@ function AP.commit_handler(ctx, env)
         end
     end
 
-    local memory = Memory(env.engine, env.engine.schema, "add_user_dict")
     local dictEntry = DictEntry()
 
     dictEntry.text = commit_text
     dictEntry.weight = 1
     dictEntry.custom_code = table.concat(preedits_table, " ") .. " "
 
-    memory:update_userdict(dictEntry, 1, "")
+    env.memory:update_userdict(dictEntry, 1, "")
 
     log.info(string.format("[auto_phrase] 自动造词：[%s]，编码：[%s]", dictEntry.text, dictEntry.custom_code))
 
