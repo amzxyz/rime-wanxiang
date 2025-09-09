@@ -1,5 +1,17 @@
 # Changelog
 
+## [12.2.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.1.1...v12.2.0) (2025-09-09)
+
+
+### ✨ 新特性
+
+* 新增简码前置第二候选，并合并格式化候选，英文大写过滤 ([0183ed8](https://github.com/amzxyz/rime_wanxiang/commit/0183ed8c4f4e1bd15684aa9fce8ddac82e419208))
+
+
+### 📚 词库更新
+
+* 词库调整 ([5079228](https://github.com/amzxyz/rime_wanxiang/commit/507922849f92e0abaec0a5f9ddb86e98b5fcb184))
+
 ## [12.1.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.1.0...v12.1.1) (2025-09-08)
 
 
