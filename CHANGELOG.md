@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.2.2](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.1...v12.2.2) (2025-09-10)
+
+
+### 🐛 Bug 修复
+
+* 调整策略与输入编码一样的英文优先前置 ([a81f716](https://github.com/amzxyz/rime_wanxiang/commit/a81f7161ce3f9d1612dabbb790e2095624494b99))
+
 ## [12.2.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.0...v12.2.1) (2025-09-10)
 
 
