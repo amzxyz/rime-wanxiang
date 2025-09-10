@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.2.3](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.2...v12.2.3) (2025-09-10)
+
+
+### 🐛 Bug 修复
+
+* 调整英文转写匹配全大写筛选 ([44571d9](https://github.com/amzxyz/rime_wanxiang/commit/44571d9f9b40e40cd95e93414bc7d69fccf5973e))
+
 ## [12.2.2](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.1...v12.2.2) (2025-09-10)
 
 
