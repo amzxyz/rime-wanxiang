@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.2.7](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.6...v12.2.7) (2025-09-10)
+
+
+### 🐛 Bug 修复
+
+* 仓t9优化 ([406cfc4](https://github.com/amzxyz/rime_wanxiang/commit/406cfc48b75a7d0044c6da4cf4c964a4cf6dd308))
+
 ## [12.2.6](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.5...v12.2.6) (2025-09-10)
 
 
