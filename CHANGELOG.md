@@ -1,5 +1,17 @@
 # Changelog
 
+## [12.2.6](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.5...v12.2.6) (2025-09-10)
+
+
+### 📚 词库更新
+
+* 词库调整 ([9abc4f5](https://github.com/amzxyz/rime_wanxiang/commit/9abc4f53668520d57a8cd9043f09e816498a5484))
+
+
+### 🐛 Bug 修复
+
+* 优化性能 ([f9d0088](https://github.com/amzxyz/rime_wanxiang/commit/f9d0088503930e51708514a229d74fce5d0358c7))
+
 ## [12.2.5](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.4...v12.2.5) (2025-09-10)
 
 
