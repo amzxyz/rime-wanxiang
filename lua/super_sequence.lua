@@ -85,7 +85,7 @@ end
 ---@return string | nil, RuntimeAdjustment | nil
 local function parse_adjustment_value_item(value_item)
     local item, fixed_position, offset, updated_at =
-        value_item:match("i=(%S+) p=(%S+) o=(%S*) t=(%S+)") -- 兼容旧数据格式，offset 可能为 0
+        value_item:match("i=(.+) p=(%S+) o=(%S*) t=(%S+)") -- item 可能包含空格（英文）；offset 可能为 0（旧数据格式）
     fixed_position = fixed_position and tonumber(fixed_position)
     offset = offset and tonumber(offset) or 0
     updated_at = updated_at and tonumber(updated_at)
