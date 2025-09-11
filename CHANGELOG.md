@@ -1,5 +1,23 @@
 # Changelog
 
+## [12.3.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.7...v12.3.0) (2025-09-11)
+
+
+### ✨ 新特性
+
+* 无法一句话描述，见release ([bd15d38](https://github.com/amzxyz/rime_wanxiang/commit/bd15d38b817d0e08adead47fbd9b3e26821b0ffa))
+
+
+### 📚 词库更新
+
+* 词库调整 ([96ecfd6](https://github.com/amzxyz/rime_wanxiang/commit/96ecfd62348ddf558970eb4a135eb77ef6dd034c))
+
+
+### 🐛 Bug 修复
+
+* **sequence:** 排序内容可能包含空格 ([2df201c](https://github.com/amzxyz/rime_wanxiang/commit/2df201cb0c1ce8acd2a2e7a5288147b020e9b4c6)), closes [#402](https://github.com/amzxyz/rime_wanxiang/issues/402)
+* 移除一个纠错数据 ([9c97ed3](https://github.com/amzxyz/rime_wanxiang/commit/9c97ed313c2fdb028f2fd1b868c591c6a0c74ec7))
+
 ## [12.2.7](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.6...v12.2.7) (2025-09-10)
 
 
