@@ -1,5 +1,20 @@
 # Changelog
 
+## [12.3.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.3.0...v12.3.1) (2025-09-12)
+
+
+### 📚 词库更新
+
+* 词库调整 ([ff101a2](https://github.com/amzxyz/rime_wanxiang/commit/ff101a2b94bd9a24f802cc5e8fe9b312e8a1856c))
+* 词库调整 ([3cdedc5](https://github.com/amzxyz/rime_wanxiang/commit/3cdedc5f1de42777df4b9693bd351e99b92fdaea))
+* 词库调整 ([f2459ee](https://github.com/amzxyz/rime_wanxiang/commit/f2459ee9751c1506ee8ae70c937371cf61a6d0c2))
+
+
+### 🐛 Bug 修复
+
+* 分号次选恢复send2 ([78fa572](https://github.com/amzxyz/rime_wanxiang/commit/78fa57269561116690f739edc599b46d9cded88d))
+* 继续完善现在完全支持副键盘不上屏，配合输入混合验证码等场景 ([ceaa212](https://github.com/amzxyz/rime_wanxiang/commit/ceaa2120f5b94bd6e5547939eb091fb561a3e00e))
+
 ## [12.3.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.7...v12.3.0) (2025-09-11)
 
 
