@@ -1,5 +1,22 @@
 # Changelog
 
+## [12.4.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.3.4...v12.4.0) (2025-09-14)
+
+
+### ✨ 新特性
+
+* 排序Lua变更为随同步目录开启，并实现了多设备合并数据逻辑，本次更新为rc验证阶段 ([d4a0380](https://github.com/amzxyz/rime_wanxiang/commit/d4a0380e49284f4f8ab0d1231344f6729538cb63))
+
+
+### 📚 词库更新
+
+* 词库调整 ([37168c3](https://github.com/amzxyz/rime_wanxiang/commit/37168c3ca3c3056a397a8122f813d0a712aba672))
+
+
+### 🐛 Bug 修复
+
+* 修复去重高亮 ([2fe04d9](https://github.com/amzxyz/rime_wanxiang/commit/2fe04d9320b8d57c99b55cca4a5e698b83f70d2f))
+
 ## [12.3.4](https://github.com/amzxyz/rime_wanxiang/compare/v12.3.3...v12.3.4) (2025-09-13)
 
 
