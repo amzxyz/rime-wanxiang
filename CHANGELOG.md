@@ -1,5 +1,17 @@
 # Changelog
 
+## [12.4.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.4.0...v12.4.1) (2025-09-15)
+
+
+### 📚 词库更新
+
+* 词库调整 ([d6c3e3a](https://github.com/amzxyz/rime_wanxiang/commit/d6c3e3a70da8f6202727bff47b54cf39f5291e76))
+
+
+### 🐛 Bug 修复
+
+* 去掉编码与单词一致时前置，改为转写/加一码提权 ([d778709](https://github.com/amzxyz/rime_wanxiang/commit/d7787093e4d86b632950f30ecbbab1ee81965d51))
+
 ## [12.4.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.3.4...v12.4.0) (2025-09-14)
 
 
