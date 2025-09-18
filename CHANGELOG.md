@@ -1,5 +1,18 @@
 # Changelog
 
+## [12.5.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.5.0...v12.5.1) (2025-09-18)
+
+
+### 📚 词库更新
+
+* 词库调整 ([a55c91a](https://github.com/amzxyz/rime_wanxiang/commit/a55c91a0538975fb139b063c96ebfe2c17aaecc3))
+
+
+### 🐛 Bug 修复
+
+* 修复成对符号包裹时候次选异常的问题 ([5428a6e](https://github.com/amzxyz/rime_wanxiang/commit/5428a6e357a7da8cbb0909effe18185fd5783690))
+* 快符同时简化为单字母加/ ([c57da1f](https://github.com/amzxyz/rime_wanxiang/commit/c57da1fd9b3def31d4543090cbbc322ed7cbb07d))
+
 ## [12.5.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.4.1...v12.5.0) (2025-09-18)
 
 
