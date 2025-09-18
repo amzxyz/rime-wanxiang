@@ -1,5 +1,17 @@
 # Changelog
 
+## [12.5.2](https://github.com/amzxyz/rime_wanxiang/compare/v12.5.1...v12.5.2) (2025-09-18)
+
+
+### 🐛 Bug 修复
+
+* 成对符号候选修复若干bug ([cf472a4](https://github.com/amzxyz/rime_wanxiang/commit/cf472a48d4f56d78a4192f2bda7ce9cb297aa33d))
+
+
+### 🏡 杂项
+
+* 创建release ([80ee7f5](https://github.com/amzxyz/rime_wanxiang/commit/80ee7f5da96ea571632dda41feb0b0b38442014b))
+
 ## [12.5.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.5.0...v12.5.1) (2025-09-18)
 
 
