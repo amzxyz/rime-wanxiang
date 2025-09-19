@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.6.2](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.1...v12.6.2) (2025-09-19)
+
+
+### 🐛 Bug 修复
+
+* 修复全拼 ([aab2949](https://github.com/amzxyz/rime_wanxiang/commit/aab2949bf4b028e3c062579ff6a493a6f29b5784))
+
 ## [12.6.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.0...v12.6.1) (2025-09-19)
 
 
