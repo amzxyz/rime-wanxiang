@@ -1,5 +1,14 @@
 # Changelog
 
+## [12.6.3](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.2...v12.6.3) (2025-09-20)
+
+
+### 🐛 Bug 修复
+
+* **lua:** 成对符号一次性解决了排序后不能被包裹、表词汇不能被包裹、不打全编码不能被包裹 ([fc6b6b0](https://github.com/amzxyz/rime_wanxiang/commit/fc6b6b0a088391add4a9a29c32c3f44be1efc04d))
+* **lua:** 次选上屏消耗所有编码 ([457a6d0](https://github.com/amzxyz/rime_wanxiang/commit/457a6d02251bf9159ea3d5ca44721be6f3a225d6))
+* 默认开启无感造词 ([f73bb13](https://github.com/amzxyz/rime_wanxiang/commit/f73bb134fc2777544841e1c30434ba9ce0fa76c8))
+
 ## [12.6.2](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.1...v12.6.2) (2025-09-19)
 
 
