@@ -1,5 +1,22 @@
 # Changelog
 
+## [12.6.5](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.4...v12.6.5) (2025-09-22)
+
+
+### 📚 词库更新
+
+* 词库调整 ([fd507bf](https://github.com/amzxyz/rime_wanxiang/commit/fd507bf70747420aeafccd573b4abcf4b66d7a14))
+
+
+### 🐛 Bug 修复
+
+* 部分英文加括号兜底候选保证\后面时时有输出 ([8871808](https://github.com/amzxyz/rime_wanxiang/commit/8871808a65f8b6d4226309bd7e5e58650a3e0495))
+
+
+### 🏡 杂项
+
+* 说明变更 ([9145376](https://github.com/amzxyz/rime_wanxiang/commit/914537685ed357e419d70b87253871d06e1b031e))
+
 ## [12.6.4](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.3...v12.6.4) (2025-09-21)
 
 
