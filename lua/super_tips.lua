@@ -54,8 +54,8 @@ local META_KEY = {
 
 ---@param tip string
 function tips.is_disabled(tip)
-    local type = tip:match("^([^:]+):")
-        or tip:match("^([^：]+)：")
+    local type = tip:match("^(..-):")
+        or tip:match("^(..-)：")
 
     if not type then return false end
     return tips.disabled_types[type] == true
