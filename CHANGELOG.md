@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.6.8](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.7...v12.6.8) (2025-09-25)
+
+
+### 🐛 Bug 修复
+
+* 修改说明 ([0ad748d](https://github.com/amzxyz/rime_wanxiang/commit/0ad748d4df77dd794d82d364bf501f8c549c639b))
+
 ## [12.6.7](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.6...v12.6.7) (2025-09-25)
 
 
