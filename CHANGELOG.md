@@ -1,5 +1,26 @@
 # Changelog
 
+## [12.6.7](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.6...v12.6.7) (2025-09-25)
+
+
+### 📚 词库更新
+
+* 梳理otheremoji迁移到symbol ([669d39b](https://github.com/amzxyz/rime_wanxiang/commit/669d39bed612586a2171b1096ae482c3c47babdf))
+* 词库调整 ([5a50395](https://github.com/amzxyz/rime_wanxiang/commit/5a50395b70eb099171381ae2e1f497356e57055c))
+
+
+### 🐛 Bug 修复
+
+* 与前端配合的考量后续default将以custom形式提供，相关功能patch请直接编辑 ([88dd034](https://github.com/amzxyz/rime_wanxiang/commit/88dd034c1b344b406b52d00fe1fc050f83adf2e5))
+* 反查新增乱序17选项 ([08753f4](https://github.com/amzxyz/rime_wanxiang/commit/08753f409a13357fe07ef31ca965e5b07f8b9456))
+* 梳理数据tips翻译部分在线提供不随zip打包 ([dcfbd3e](https://github.com/amzxyz/rime_wanxiang/commit/dcfbd3ec268f3f7b280ab7b7629c52cdd733e31b))
+* 超级提示 disabled type 匹配由排除集合改成非贪婪模式,修复"化学式"类型无法排除的问题 ([f9fd0d7](https://github.com/amzxyz/rime_wanxiang/commit/f9fd0d730892fb3016b0e762afd3d728ab265750))
+
+
+### 🏡 杂项
+
+* 修改说明 ([8217e68](https://github.com/amzxyz/rime_wanxiang/commit/8217e6887925ae519b137135c0c7eecfa5b23e64))
+
 ## [12.6.6](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.5...v12.6.6) (2025-09-23)
 
 
