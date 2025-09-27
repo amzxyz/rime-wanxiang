@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.6.11](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.10...v12.6.11) (2025-09-27)
+
+
+### 🐛 Bug 修复
+
+* 移除侵入性太强的编码纠错，后续想办法提供词库类型的纠错 ([ffdd368](https://github.com/amzxyz/rime_wanxiang/commit/ffdd368857e8bdbf1d594e710ef41eb2e23bf0d7))
+
 ## [12.6.10](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.9...v12.6.10) (2025-09-27)
 
 
