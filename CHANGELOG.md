@@ -1,5 +1,30 @@
 # Changelog
 
+## [13.0.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.13...v13.0.0) (2025-09-29)
+
+
+### 📚 词库更新
+
+* 词库调整 ([9d37d82](https://github.com/amzxyz/rime_wanxiang/commit/9d37d82c3230707419009717acc99af6e65cdc5f))
+* 词库调整 ([3c614be](https://github.com/amzxyz/rime_wanxiang/commit/3c614be8d3b703f54b3e94a56beff13a69cf11cb))
+
+
+### 🐛 Bug 修复
+
+* 调整反查数据排序 ([0eddcc0](https://github.com/amzxyz/rime_wanxiang/commit/0eddcc094b9464fbcaf7bb47890ea12a9f1a24af))
+* 超级注释调整，去掉辅助类型选择，削减拆分数据大小括号内容交给程序实时添加，并在配置中统一了括号加占位的形式减少之前大括号外面再加括号的困惑 ([6872786](https://github.com/amzxyz/rime_wanxiang/commit/687278648f027853e2c06b083d730ecf9f83eed5))
+
+
+### 💅 重构
+
+* 转写单独文件调用，避免交叉引用，本次更新会导致原patch失效，按照示例简单修改即可恢复 ([4955e96](https://github.com/amzxyz/rime_wanxiang/commit/4955e9667cb8919f5eaf48fafdbdf7269bfebfe4))
+
+
+### 🏡 杂项
+
+* pr ([ebf8224](https://github.com/amzxyz/rime_wanxiang/commit/ebf82243cdf6cf66199f097b296f94f8decb33a5))
+* release 13.0.0 ([f77be14](https://github.com/amzxyz/rime_wanxiang/commit/f77be145f5db41dbbda3462abb0dc814c8fd7a7b))
+
 ## [12.6.13](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.12...v12.6.13) (2025-09-28)
 
 
