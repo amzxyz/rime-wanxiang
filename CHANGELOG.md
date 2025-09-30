@@ -1,5 +1,18 @@
 # Changelog
 
+## [13.0.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.1...v13.0.2) (2025-09-30)
+
+
+### 📚 词库更新
+
+* 词库调整 ([9803597](https://github.com/amzxyz/rime_wanxiang/commit/98035976d1446d3f63797538ffdef6a3e86e36ba))
+
+
+### 🐛 Bug 修复
+
+* 候选格式化新增非标空格转换为标准空格的能力，先期主要解决OpenCC字符连续所产生的候选 ([8c07306](https://github.com/amzxyz/rime_wanxiang/commit/8c0730637820302c3292b272d9f7290b6cb6b442))
+* 推出过渡性set_schema ([fd9ac58](https://github.com/amzxyz/rime_wanxiang/commit/fd9ac58370c2c95c4878d0f0a3e54266b9c0532d))
+
 ## [13.0.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.0...v13.0.1) (2025-09-29)
 
 
