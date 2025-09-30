@@ -1,5 +1,13 @@
 # Changelog
 
+## [13.0.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.2...v13.0.3) (2025-09-30)
+
+
+### 🐛 Bug 修复
+
+* 修复一个bug ([0a6eb34](https://github.com/amzxyz/rime_wanxiang/commit/0a6eb3460d60d31a403df985f9338d250a935df8))
+* 现在可以通过/jjf,/zjf进行pro辅助码类型切换 ([eae853c](https://github.com/amzxyz/rime_wanxiang/commit/eae853c5f96c28df86e8d889d92e4e39533ead92))
+
 ## [13.0.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.1...v13.0.2) (2025-09-30)
 
 
