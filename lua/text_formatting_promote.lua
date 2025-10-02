@@ -17,7 +17,7 @@
 --   - 输入为空时释放缓存/锁定
 -- 镜像：
 --   - schema: paired_symbols/mirror (bool，默认 true)
---   - 包裹后可抑制“包裹前文本/包裹后文本”再次出现在后续候选里
+--   - 包裹后可抑制"包裹前文本/包裹后文本"再次出现在后续候选里
 
 local M = {}
 
@@ -33,7 +33,7 @@ end
 
 local function is_table_type(c)
     local t = fast_type(c)
-    return t == "table" or t == "user_table"
+    return t == "table" or t == "user_table" or t == "fixed"
 end
 
 local function has_english_token_fast(s)
@@ -313,7 +313,7 @@ function M.func(input, env)
     local symbol = env.symbol
     local code_has_symbol = symbol and #symbol == 1 and (find(code, symbol, 1, true) ~= nil)
 
-    -- segmentation：用于判断最后一段是否“完全消耗”
+    -- segmentation：用于判断最后一段是否"完全消耗"
     local last_seg, last_text, fully_consumed = nil, nil, false
     if code_has_symbol then
         last_seg = comp and comp:back()
@@ -395,38 +395,41 @@ function M.func(input, env)
         return nc, (formatted.text or ""), wrapped
     end
 
-    -- 兜底：无上游候选但输入含 "\"，主动产出一次
-    local function fallback_emit_when_no_upstream()
+    -- ========= 改进的兜底逻辑：无候选时使用输入码 =========
+    local function improved_fallback_emit()
         if not code_has_symbol or not tail_text then return false end
+        
+        -- 尝试从输入码中解析 prefix\suffix
         local pos = tail_text:find(symbol, 1, true)
         if not (pos and pos > 1) then return false end
+        
         local left  = sub(tail_text, 1, pos - 1)
         local right = sub(tail_text, pos + 1)
         if not (left and #left > 0) then return false end
 
         local start_pos = (last_seg and last_seg.start) or 0
         local end_pos_full = (last_seg and last_seg._end) or #code
-        local base = env.cache
-        if not base then
-            base = Candidate("completion", start_pos, end_pos_full, left, "")
-            base.preedit = (ctx and ctx:get_commit_text()) or base.preedit
-        end
-        base = format_and_autocap(base, code_ctx)
-
+        
+        -- 使用输入码作为基础文本
+        local base_text = left
+        
+        -- 检查是否有匹配的包裹键
         local key = (right or ""):lower()
         if key ~= "" and env.wrap_map[key] then
-            local pr = env.wrap_parts[key] or { l = "", r = "" }
-            local wrapped = (pr.l or "") .. (base.text or "") .. (pr.r or "")
-            local nc = Candidate(base.type, start_pos, end_pos_full, wrapped, base.comment)
-            nc.preedit = base.preedit
-            yield(nc) -- 包裹场景：直接吞尾显示
-        else
-            local keep_tail = 1 + #(right or "")
-            local end_pos_show = math.max(start_pos, end_pos_full - keep_tail)
-            local nc = Candidate(base.type, start_pos, end_pos_show, base.text or "", base.comment)
-            nc.preedit = base.preedit
-            yield(nc) -- 无合法 suffix：至少置顶 base 文本
+            -- 创建基础候选并包裹
+            local base_cand = Candidate("completion", start_pos, end_pos_full, base_text, "")
+            local nc, base_text, wrapped_text = wrap_from_base(base_cand, key)
+            if nc then
+                yield(nc)
+                return true
+            end
         end
+        
+        -- 没有匹配的包裹键，只显示基础文本
+        local keep_tail = 1 + #(right or "")
+        local end_pos_show = math.max(start_pos, end_pos_full - keep_tail)
+        local nc = Candidate("completion", start_pos, end_pos_show, base_text, "")
+        yield(nc)
         return true
     end
 
@@ -436,7 +439,7 @@ function M.func(input, env)
         for cand in input:iter() do
             idx = idx + 1
             if idx == 1 and (not env.locked) then
-                -- 缓存“已格式化”的第一候选（确保后续 \ 包裹保持形态）
+                -- 缓存"已格式化"的第一候选（确保后续 \ 包裹保持形态）
                 env.cache = clone_candidate(format_and_autocap(cand, code_ctx))
             end
 
@@ -474,7 +477,7 @@ function M.func(input, env)
 
         -- 上游 0 候选但包含 "\"：兜底产出
         if idx == 0 then
-            if fallback_emit_when_no_upstream() then return end
+            if improved_fallback_emit() then return end
         end
         return
     end
@@ -572,7 +575,7 @@ function M.func(input, env)
 
     -- 上游 0 候选但包含 "\"：兜底产出（分组路径）
     if idx == 0 then
-        fallback_emit_when_no_upstream()
+        improved_fallback_emit()
     end
 
     -- 结束时刷新分组缓存
