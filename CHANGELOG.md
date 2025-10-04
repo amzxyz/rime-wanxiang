@@ -1,5 +1,20 @@
 # Changelog
 
+## [13.0.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.3...v13.0.4) (2025-10-04)
+
+
+### 📚 词库更新
+
+* 反查词库新增扩17组字与笔画 ([8108e1f](https://github.com/amzxyz/rime_wanxiang/commit/8108e1f1393cb29e98d57f21d33a9d3b48644f82))
+* 词库调整 ([4a97129](https://github.com/amzxyz/rime_wanxiang/commit/4a971291cfd638d4e1fff08ef07629be4f56c3c9))
+* 词库调整 ([04b3348](https://github.com/amzxyz/rime_wanxiang/commit/04b3348dd095c86a53821ed4ecfa198c51d7532d))
+* 词库调整 ([cc183e7](https://github.com/amzxyz/rime_wanxiang/commit/cc183e73a16400712b9711c37209701bbd857e8b))
+
+
+### 🔥 性能优化
+
+* **lua:** text_formatting_promote.lua符号成对功能支持无候选时使用输入码作为包裹对象 ([bec5630](https://github.com/amzxyz/rime_wanxiang/commit/bec5630168a812ff7b7949c86619e7684cc9ddea))
+
 ## [13.0.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.2...v13.0.3) (2025-09-30)
 
 
