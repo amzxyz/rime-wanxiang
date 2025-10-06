@@ -1,5 +1,21 @@
 # Changelog
 
+## [13.0.6](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.5...v13.0.6) (2025-10-06)
+
+
+### 📚 词库更新
+
+* 词库调整 ([fecdb8a](https://github.com/amzxyz/rime_wanxiang/commit/fecdb8afc846f44664d1e88ff0954902af0bdd66))
+* 词库调整 ([c6a7904](https://github.com/amzxyz/rime_wanxiang/commit/c6a79041283f1f3089f82ca6c1bb6f3546f10663))
+* 词库调整 ([114ddc2](https://github.com/amzxyz/rime_wanxiang/commit/114ddc2afcc67255a4a3486fc1e491344518d972))
+* 词库调整 ([187adb6](https://github.com/amzxyz/rime_wanxiang/commit/187adb615f7bcfeca8d2c4f2e4705660a1e97a8a))
+
+
+### 🐛 Bug 修复
+
+* 恢复emoji误删除参数 ([244fa33](https://github.com/amzxyz/rime_wanxiang/commit/244fa335a71bd503019d4e5b0e652c966e097d41))
+* 恢复emoji误删除参数 ([dfa0884](https://github.com/amzxyz/rime_wanxiang/commit/dfa0884da468d338a5c2c3c560dffbe48f77b991))
+
 ## [13.0.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.4...v13.0.5) (2025-10-04)
 
 
