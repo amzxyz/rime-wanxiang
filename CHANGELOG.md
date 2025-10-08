@@ -1,5 +1,22 @@
 # Changelog
 
+## [13.0.7](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.6...v13.0.7) (2025-10-08)
+
+
+### 📚 词库更新
+
+* 词库调整 ([f14b1ee](https://github.com/amzxyz/rime_wanxiang/commit/f14b1ee5fca10b113afe31338bdb8dbce85f23be))
+* 词库调整 ([d0706b7](https://github.com/amzxyz/rime_wanxiang/commit/d0706b793d83b4e870de7899d3bd59b15bffc584))
+* 词库调整 ([268da43](https://github.com/amzxyz/rime_wanxiang/commit/268da43a08c61fd248d59e9b3bb06e322025b93a))
+
+
+### 🐛 Bug 修复
+
+* 修复方案设置为智能ABC再切换其他导致ABC残留的问题 ([e7a2db0](https://github.com/amzxyz/rime_wanxiang/commit/e7a2db015885672130ce12f2f3e4d9a80ce0a891))
+* 去掉shift变分词，输入中可以按下让数字变符号 ([63aad4f](https://github.com/amzxyz/rime_wanxiang/commit/63aad4f84f7bee042f21e6148cc77140b6b8e318))
+* 计算器支持大部分情况下无需括号的运算 ([ab665da](https://github.com/amzxyz/rime_wanxiang/commit/ab665dacf067516189060e3b11444111f7b2cdb2))
+* 调整若干方案参数 ([325846f](https://github.com/amzxyz/rime_wanxiang/commit/325846fa9aec34324f08a5a7bd2e56b0c631b3eb))
+
 ## [13.0.6](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.5...v13.0.6) (2025-10-06)
 
 
