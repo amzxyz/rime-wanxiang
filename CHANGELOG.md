@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.0.9](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.8...v13.0.9) (2025-10-08)
+
+
+### 📚 词库更新
+
+* 词库调整 ([4857c9c](https://github.com/amzxyz/rime_wanxiang/commit/4857c9cfb8ac214e36888028980d810d6e783639))
+
+
+### 🐛 Bug 修复
+
+* 删除残留的声调回退字符 ([6132aa8](https://github.com/amzxyz/rime_wanxiang/commit/6132aa87eb4305c3ab985a5128416283f43f9e03))
+
 ## [13.0.8](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.7...v13.0.8) (2025-10-08)
 
 
