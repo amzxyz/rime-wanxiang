@@ -1,5 +1,28 @@
 # Changelog
 
+## [13.1.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.9...v13.1.0) (2025-10-09)
+
+
+### ✨ 新特性
+
+* 新增通过双击分词符号触发重新分词，并在持续输入分词符号时，能在预设方式之间循环，用于应对类似自然码：必输 必须是 为相同编码导致的必输前置的问题 ([806e066](https://github.com/amzxyz/rime_wanxiang/commit/806e06653cb69789c47c5e2c837ba752123e0958))
+
+
+### 📚 词库更新
+
+* 词库调整 ([01edfb4](https://github.com/amzxyz/rime_wanxiang/commit/01edfb4de434b0f3ee6b7d3c9c252ff553c62282))
+* 词库调整 ([ec4d1dd](https://github.com/amzxyz/rime_wanxiang/commit/ec4d1dde4891924e5a8b68803d6bf39708247e70))
+
+
+### 🐛 Bug 修复
+
+* 通过双击分词符号触发重新分词，并在持续输入分词符号时，能在预设方式之间循环，用于应对类似自然码：必输 必须是 为相同编码导致的必输前置的问题 ([158b0fe](https://github.com/amzxyz/rime_wanxiang/commit/158b0feab3f2a73465cfcdb1821752021c9c16cb))
+
+
+### 🏡 杂项
+
+* 调整说明 ([a3235ef](https://github.com/amzxyz/rime_wanxiang/commit/a3235efd25840a1877cdf242573c918addd7724c))
+
 ## [13.0.9](https://github.com/amzxyz/rime_wanxiang/compare/v13.0.8...v13.0.9) (2025-10-08)
 
 
