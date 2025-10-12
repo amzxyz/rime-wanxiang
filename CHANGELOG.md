@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.2...v13.1.3) (2025-10-12)
+
+
+### 🐛 Bug 修复
+
+* 减少空格转换，避免emoji被异化 ([5cd9c05](https://github.com/amzxyz/rime_wanxiang/commit/5cd9c05b6bc10555968b14daf0a8d54548c7a6b0))
+
 ## [13.1.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.1...v13.1.2) (2025-10-12)
 
 
