@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.1...v13.1.2) (2025-10-12)
+
+
+### 🐛 Bug 修复
+
+* 移除并击处理器,避免在串击干扰反查特性 ([11c0f43](https://github.com/amzxyz/rime_wanxiang/commit/11c0f43d85e643e8c4a74f4d5a284cf37499749b))
+
 ## [13.1.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.0...v13.1.1) (2025-10-11)
 
 
