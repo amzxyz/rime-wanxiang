@@ -9,6 +9,13 @@
 -- 可能是自定义名称，可能是随机串号
 -- sequence_开头，后面跟着installation_id，这个参数来自用户目录installation.yaml
 -- 清单有什么文件就会读取什么文件
+-- 仅使用 installation.yaml 的 sync_dir；读不到就回退到 user_dir/sync
+-- 核心规则： 向前移动 = "Control+j", 向后移动 = "Control+k", 重置 = "Control+l", 置顶 = "Control+p"
+-- 1) p>0：有效排序（DB upsert + 导出）
+-- 2) p=0：墓碑（DB 删除 + 导出墓碑）
+-- 3) 初始化：先 flush 本机增量到导出 → 外部合并(所有设备文件+本机DB，LWW) → 重写本机导出(含墓碑) → 导入覆盖DB，p=0删除键，不导入
+-- 4) 同步路径策略：能从 installation.yaml 读取到 sync_dir 就用它；读不到才用默认 user_dir/sync
+
 local wanxiang = require("wanxiang")
 local userdb   = require("lib/userdb")
 
@@ -17,15 +24,44 @@ local userdb   = require("lib/userdb")
 ------------------------------------------------------------
 local DEFAULT_SEQ_KEY = { up = "Control+j", down = "Control+k", reset = "Control+l", pin = "Control+p" }
 local SYNC_FILE_PREFIX, SYNC_FILE_SUFFIX = "sequence", ".txt"
-local function _manifest_path(dir) return dir .. "/sequence_device_list.txt" end
+
+-- 运行期是否立刻写出到导出文件（只在重新部署时写出→设为 false）
+local RUNTIME_EXPORT = false
+
+-- ☆☆ 前向声明，避免被当作全局导致 nil ☆☆
+local _normalize_path, _is_abs_path, _path_join, _manifest_path
 
 ------------------------------------------------------------
--- 二、通用工具
+-- 二、通用工具（仅处理 "\" 与 "\\", 统一成 "/"）
 ------------------------------------------------------------
-local function _path_join(a, b)
+_normalize_path = function(p)
+    if not p or p == "" then return "" end
+    if p:sub(1, 2) == "\\\\" then
+        -- UNC：\\server\share\foo -> //server/share/foo
+        return "//" .. p:sub(3):gsub("\\", "/"):gsub("/+", "/")
+    else
+        -- 普通：D:\dir\\file -> D:/dir/file
+        return p:gsub("\\", "/"):gsub("/+", "/")
+    end
+end
+
+_is_abs_path = function(p)
+    p = _normalize_path(p)
+    return p:sub(1, 2) == "//" or p:match("^[A-Za-z]:/")
+end
+
+_path_join = function(a, b)
+    a = _normalize_path(a)
+    b = _normalize_path(b)
     if not a or a == "" then return b end
-    if a:sub(-1) == "/" or a:sub(-1) == "\\" then return a .. b end
-    return a .. "/" .. b
+    if not b or b == "" then return a end
+    if _is_abs_path(b) then return b end
+    if a:sub(-1) ~= "/" then a = a .. "/" end
+    return a .. b
+end
+
+_manifest_path = function(dir)
+    return _path_join(dir, "sequence_device_list.txt")
 end
 
 local function _read_lines(path)
@@ -44,7 +80,6 @@ local function _write_lines(path, lines)
 end
 
 local function _trim(s) return (s:gsub("^%s+", ""):gsub("%s+$", "")) end
-local function _is_abs_path(p) return p:sub(1, 1) == "/" or p:match("^[A-Za-z]:[\\/]") end
 local function _file_exists(path)
     if not path or path == "" then return false end
     local f = io.open(path, "r"); if f then f:close(); return true end
@@ -52,7 +87,7 @@ local function _file_exists(path)
 end
 
 ------------------------------------------------------------
--- 三、安装信息 & 同步目录
+-- 三、安装信息 & 同步目录（仅看 YAML；读不到就默认）
 ------------------------------------------------------------
 local function _read_installation_yaml()
     local user_dir = rime_api.get_user_data_dir()
@@ -64,33 +99,49 @@ local function _read_installation_yaml()
         line = line:gsub("%s+#.*$", "")
         local key, val = line:match("^%s*([%w_]+)%s*:%s*(.+)$")
         if key and val then
+            -- 去引号
             val = val:gsub('^%s*"(.*)"%s*$', "%1"):gsub("^%s*'(.*)'%s*$", "%1")
             val = val:gsub("^%s+", ""):gsub("%s+$", "")
-            if key == "installation_id" then installation_id = val
-            elseif key == "sync_dir"     then sync_dir        = val end
+            if key == "installation_id" then
+                installation_id = val
+            elseif key == "sync_dir" then
+                sync_dir = _normalize_path(val)
+            end
         end
     end
     f:close()
     return installation_id, sync_dir
 end
 
+-- 只看 installation.yaml，读到就用；读不到就 user_dir/sync
 local function _sync_dir()
     local user_dir = rime_api.get_user_data_dir() or ""
-    local d = rime_api.get_sync_dir()
-    if d and d ~= "" then
-        return d == "sync" and ((user_dir ~= "" and (user_dir .. "/sync")) or "sync") or d
-    end
     local _, ysync = _read_installation_yaml()
-    if ysync and ysync ~= "" then
-        return ysync == "sync" and ((user_dir ~= "" and (user_dir .. "/sync")) or "sync") or ysync
+
+    local function fix(x)
+        if not x or x == "" then return "" end
+        if x == "sync" then
+            return (user_dir ~= "" and _path_join(user_dir, "sync")) or "sync"
+        end
+        return _normalize_path(x)
     end
-    return user_dir .. "/sync"
+
+    if ysync and ysync ~= "" then
+        return fix(ysync)
+    end
+    return _path_join(user_dir, "sync")
 end
 
 local function _sync_ready()
-    local install_id, install_sync = _read_installation_yaml()
-    local api_sync = rime_api.get_sync_dir()
-    local dir = (api_sync and api_sync ~= "" and api_sync) or install_sync
+    local install_id, ysync = _read_installation_yaml()
+    local user_dir = rime_api.get_user_data_dir() or ""
+    local dir
+    if ysync and ysync ~= "" then
+        dir = _normalize_path(ysync)
+        if dir == "sync" then dir = _path_join(user_dir, "sync") end
+    else
+        dir = _path_join(user_dir, "sync")
+    end
     local ok = (install_id and install_id ~= "") and (dir and dir ~= "")
     return ok, dir, install_id
 end
@@ -153,30 +204,37 @@ function curr_state.is_reset_mode()  return curr_state.mode == curr_state.ADJUST
 function curr_state.is_adjust_mode() return curr_state.mode == curr_state.ADJUST_MODE.Adjust end
 function curr_state.has_adjustment() return curr_state.mode ~= curr_state.ADJUST_MODE.None end
 
-local function _debug_paths_once()
-    local api_sync = tostring(rime_api.get_sync_dir() or "")
+------------------------------------------------------------
+-- 六、关键日志（精简）
+------------------------------------------------------------
+local function _print_sync_probe(phase)
     local user_dir = tostring(rime_api.get_user_data_dir() or "")
-    local install_id, install_sync = _read_installation_yaml()
+    local iid, ysync = _read_installation_yaml()
+    local chosen = _sync_dir()
+    local inst_yaml = _path_join(user_dir, "installation.yaml")
+    log.warning(string.format(
+        "[sequence][%s] installation_id=%s yaml_sync_dir=%s chosen_sync_dir=%s inst_yaml=%s exists=%s",
+        phase, tostring(iid), tostring(ysync), tostring(chosen),
+        inst_yaml, tostring(_file_exists(inst_yaml))
+    ))
+end
+
+local function _debug_paths_once()
     local dir = _sync_dir()
     local device_name = _detect_device_name()
     local export_name = string.format("%s_%s%s", SYNC_FILE_PREFIX, device_name, SYNC_FILE_SUFFIX)
     local export_path = _path_join(dir, export_name)
-    local manifest = _manifest_path(dir)
-    log.info(string.format("[sequence] api_sync_dir=%s", api_sync))
-    log.info(string.format("[sequence] installation_id=%s", tostring(install_id)))
-    log.info(string.format("[sequence] installation_sync_dir=%s", tostring(install_sync)))
-    log.info(string.format("[sequence] user_data_dir=%s", user_dir))
-    log.info(string.format("[sequence] chosen_sync_dir=%s manifest_exists=%s", tostring(dir), tostring(_file_exists(_manifest_path(dir)))))
-    log.info(string.format("[sequence] manifest=%s exists=%s", tostring(manifest), tostring(_file_exists(manifest))))
-    log.info(string.format("[sequence] export_name=%s", tostring(export_name)))
-    log.info(string.format("[sequence] export_path=%s exists=%s", tostring(export_path), tostring(_file_exists(export_path))))
+    log.info(string.format("[sequence] chosen_sync_dir=%s manifest_exists=%s",
+                           tostring(dir), tostring(_file_exists(_manifest_path(dir)))))
+    log.info(string.format("[sequence] export_path=%s exists=%s",
+                           tostring(export_path), tostring(_file_exists(export_path))))
 end
 
 ------------------------------------------------------------
--- 六、记录解析（新格式）
+-- 七、记录解析（新格式）
 ------------------------------------------------------------
 local function parse_adjustment_value_item(value_item)
-    local item, p, o, t = value_item:match("i=(.+) p=(%S+) o=(%S*) t=(%S+)")  -- item 可能包含空格（英文）；offset 可能为 0（旧数据格式）
+    local item, p, o, t = value_item:match("i=(.+) p=(%S+) o=(%S*) t=(%S+)")
     if not item then return nil, nil end
     return item, { fixed_position = tonumber(p) or 0, offset = tonumber(o) or 0, updated_at = tonumber(t) }
 end
@@ -197,7 +255,7 @@ local function get_input_adjustments(input)
 end
 
 ------------------------------------------------------------
--- 七、导出缓冲（去重 + 节流）
+-- 八、导出缓冲（去重 + 节流）
 ------------------------------------------------------------
 local seq_data = {
     status = "pending",
@@ -275,7 +333,7 @@ function seq_data.maybe_export(force)
 end
 
 ------------------------------------------------------------
--- 八、保存（本机操作）：p=0 也导出墓碑（DB 不存墓碑）
+-- 九、保存（本机操作）：p=0 也导出墓碑（运行期不写盘；DB 暂存墓碑以便重部署覆盖）
 ------------------------------------------------------------
 local function save_adjustment(input, item, adjustment, no_export)
     if not input or input == "" or not item or item == "" then return end
@@ -285,29 +343,27 @@ local function save_adjustment(input, item, adjustment, no_export)
 
     local mp = get_input_adjustments(input) or {}
     if p <= 0 then
-        mp[item] = nil
+        -- 关键：DB 内也保留 p=0 墓碑（含时间戳），用于重部署时 LWW 覆盖外部文件
+        mp[item] = { fixed_position = 0, offset = o, updated_at = t }
     else
         mp[item] = { fixed_position = p, offset = o, updated_at = t }
     end
 
-    if next(mp) == nil then
-        seq_db:erase(input)
-    else
-        local arr = {}
-        for it, a in pairs(mp) do
-            arr[#arr + 1] = string.format("i=%s p=%s o=%s t=%s",
-                it, a.fixed_position, a.offset or 0, a.updated_at or "")
-        end
-        seq_db:update(input, table.concat(arr, "\t"))
+    local arr = {}
+    for it, a in pairs(mp) do
+        arr[#arr + 1] = string.format("i=%s p=%s o=%s t=%s",
+            it, a.fixed_position, a.offset or 0, a.updated_at or "")
     end
+    seq_db:update(input, table.concat(arr, "\t"))
 
-    if not no_export then
+    -- 仅在允许运行期写出时才入队（默认 RUNTIME_EXPORT=false，不入队）
+    if (not no_export) and RUNTIME_EXPORT then
         _enqueue_export(input, item, { fixed_position = p, offset = o, updated_at = t }) -- 包含 p=0 墓碑
     end
 end
 
 ------------------------------------------------------------
--- 九、合并器：收集“所有文件 + 本机DB”，按 t 取最新（包含 p=0）
+-- 十、合并器：收集“所有文件 + 本机DB”，按 t 取最新（包含 p=0）
 ------------------------------------------------------------
 local function _keep_latest(latest, input, item, adj)
     latest[input] = latest[input] or {}
@@ -324,13 +380,12 @@ end
 local function collect_latest_from_all_sources()
     local latest = {}
 
-    -- A) 本机 DB（仅 p>0）
+    -- A) 本机 DB（包含 p=0 墓碑：让 DB 能覆盖外部）
     seq_db:query_with("", function(key, value)
         local mp = parse_adjustment_values(value)
         if mp then
             for item, a in pairs(mp) do
-                local p = tonumber(a.fixed_position) or 0
-                if p > 0 then _keep_latest(latest, key, item, a) end
+                _keep_latest(latest, key, item, a)
             end
         end
     end)
@@ -370,7 +425,7 @@ local function collect_latest_from_all_sources()
 end
 
 ------------------------------------------------------------
--- 十、把“合并结果”重写到我机导出（含 p=0）
+-- 十一、把“合并结果”重写到我机导出（含 p=0）
 ------------------------------------------------------------
 local function rewrite_export_from_latest(latest)
     local ok = _sync_ready()
@@ -412,7 +467,7 @@ local function rewrite_export_from_latest(latest)
 end
 
 ------------------------------------------------------------
--- 十一、把“合并结果”导入覆盖 DB（p<=0 删）
+-- 十二、把“合并结果”导入覆盖 DB（p<=0 删）
 ------------------------------------------------------------
 local function apply_latest_to_db(latest)
     local updated_keys = 0
@@ -438,28 +493,32 @@ local function apply_latest_to_db(latest)
 end
 
 ------------------------------------------------------------
--- 十二、初始化：先导出→合并→重写导出→导入DB
+-- 十三、初始化：先导出→合并→重写导出→导入DB
 ------------------------------------------------------------
 local function init_once()
+    -- 1) 先导出：把本机 pending 增量写出去（如果是旧版本留下的队列，这里可一次性落盘；RUNTIME_EXPORT 与此无关）
     seq_data._ensure_export_file()
-    -- 1) 先导出：把本机 pending 增量写出去（含墓碑）
     seq_data.maybe_export(true)
+
     -- 2) 外部合并（所有设备文件 + 本机 DB），LWW（含 p=0）
     local latest = collect_latest_from_all_sources()
-    -- 3) 用合并结果重写我机导出（包含 p=0）
+
+    -- 3) 用合并结果重写我机导出（包含 p=0）——始终写盘
     rewrite_export_from_latest(latest)
+
     -- 4) 导入合并结果覆盖 DB（p<=0 删）
     apply_latest_to_db(latest)
 end
 
 ------------------------------------------------------------
--- 十三、Pipeline：P / F
+-- 十四、Pipeline：P / F
 ------------------------------------------------------------
 local P = {}
 function P.init(env)
     seq_db:open()
     seq_data.device_name = _detect_device_name()
-    _debug_paths_once()
+    _print_sync_probe("init")   -- 关键：一次性输出最终使用的 sync_dir
+    _debug_paths_once()         -- 关键：简要输出导出与清单路径是否存在
     init_once()
 end
 
@@ -505,8 +564,10 @@ end
 local F = {}
 
 function F.fini()
-    -- 退出时：把 pending 增量刷掉（如果你希望“退出也不写”，可注释掉）
-    seq_data.maybe_export(true)
+    -- 退出时不落盘（仅在重新部署 init_once 重写导出）
+    if RUNTIME_EXPORT then
+        seq_data.maybe_export(true)
+    end
 end
 
 local function apply_prev_adjustment(cands, prev)
@@ -568,7 +629,8 @@ local function apply_curr_adjustment(candidates, curr_adjustment)
             local candidate = table.remove(candidates, from_position)
             table.insert(candidates, to_position, candidate)
 
-            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment)
+            -- 运行期仅写 DB，不入导出队列
+            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment, true)
         end
     end
 
@@ -621,18 +683,18 @@ function F.func(input, env)
     end
     prev_adjustments = prev_adjustments or {}
 
-    -- 非位移：置顶/重置立即保存；重置(p=0)不立刻写导出
+    -- 非位移：置顶/重置立即仅保存到 DB（不入队）
     if curr_adjustment and not curr_state.is_adjust_mode() then
         curr_adjustment.offset = 0
         local key = tostring(curr_state.adjust_key)
         if curr_state.is_reset_mode() then
             curr_adjustment.fixed_position = 0
             prev_adjustments[key] = nil
-            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment)
+            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment, true)
         elseif curr_state.is_pin_mode() then
             curr_adjustment.fixed_position = 1
             prev_adjustments[key] = curr_adjustment
-            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment)
+            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment, true)
         end
     end
 
@@ -641,8 +703,8 @@ function F.func(input, env)
 
     for _, cand in ipairs(cands) do yield(cand) end
 
-    -- 位移 / 置顶可节流写出；重置不写
-    if not curr_state.is_reset_mode() then
+    -- 运行期不写盘；如需调试可改为 if RUNTIME_EXPORT then ... end
+    if RUNTIME_EXPORT and (not curr_state.is_reset_mode()) then
         seq_data.maybe_export(false)
     end
 end

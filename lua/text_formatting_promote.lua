@@ -63,7 +63,7 @@ local function ascii_equal_ignore_case_to_pure(text, pure_code_lc)
     end
     return true
 end
--- ========= 空白规范化（NBSP/全角空格→普通空格；去零宽/BOM）=========
+-- ========= 空白规范化备用=========
 local NBSP = string.char(0xC2, 0xA0)       -- U+00A0 不换行空格
 local FWSP = string.char(0xE3, 0x80, 0x80) -- U+3000 全角空格
 local ZWSP = string.char(0xE2, 0x80, 0x8B) -- U+200B 零宽空格
@@ -73,13 +73,9 @@ local ZWJ  = string.char(0xE2, 0x80, 0x8D) -- U+200D 零宽连字
 
 local function normalize_spaces(s)
     if not s or s == "" then return s end
-    -- 统一空格，并去掉零宽类字符
-    s = s:gsub(NBSP, " ")
-         :gsub(FWSP, " ")
-         :gsub(ZWSP, "")
-         :gsub(BOM,  "")
-         :gsub(ZWNJ, "")
-         :gsub(ZWJ,  "")
+    -- 转换空格
+    s = s:gsub(NBSP, " ") --opencc中译英转换英文间隔空格为正常空格
+        -- :gsub(FWSP, " ")
     return s
 end
 
