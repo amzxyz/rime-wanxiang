@@ -1,5 +1,19 @@
 # Changelog
 
+## [13.1.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.3...v13.1.4) (2025-10-13)
+
+
+### 📚 词库更新
+
+* 词库调整 ([2868e4c](https://github.com/amzxyz/rime_wanxiang/commit/2868e4cf00e5a621997b1fa383c791d388ab112d))
+* 词库调整 ([f264f7b](https://github.com/amzxyz/rime_wanxiang/commit/f264f7bac0d7c1f4e7c7eb8be2a1d6da3e14833a))
+* 辅助码3变2词汇权重调整 ([08f4148](https://github.com/amzxyz/rime_wanxiang/commit/08f4148d7c8051fea07f64cffdc0f049e48819b7))
+
+
+### 🐛 Bug 修复
+
+* 修复手动排序windows路径处理bug ([1c66ea5](https://github.com/amzxyz/rime_wanxiang/commit/1c66ea58073511e87d04479448a0316d7ab0e6d5))
+
 ## [13.1.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.2...v13.1.3) (2025-10-12)
 
 
