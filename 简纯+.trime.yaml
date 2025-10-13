@@ -83,7 +83,7 @@ conf:
 
 style:
   color_scheme: default #默认配色方案
-  keyboard_height: 260 #锁定键盘高度，避免切换时键盘高度变化而造成闪烁
+  keyboard_height: 290 #锁定键盘高度，避免切换时键盘高度变化而造成闪烁
   keyboard_height_land: 200 #锁定横屏下键盘高度，避免切换时键盘高度变化而造成闪烁
   horizontal: true #水平模式。改变方向键的功能 （true：方向键适配横排候选；false：方向键适配竖排候选）
   keyboard_padding: 2 #竖屏模式下，屏幕左右两侧与键盘的距离（曲面屏减少误触）
@@ -3501,8 +3501,8 @@ preset_keyboards:
       - { click: 'k', long_click: ':', __include: styl/key, swipe_down: rightyi, hint: '右移' }
       - { click: 'l', long_click: ";", __include: styl/key, swipe_down: chongzhi, hint: '重置' }
       # 第 3 行
-      - { click: Shift_L, composing: split_word, width: 15, key_back_color: off_key_back_color }   
-    #  - { click: Shift_L, width: 15 }
+      #- { click: Shift_L, composing: split_word, width: 15, key_back_color: off_key_back_color }   
+      - { click: Shift_L, width: 15, key_back_color: off_key_back_color }
       - { click: 'z',long_click: 'rev', __include: styl/key }
       - { click: 'x', long_click: cut, __include: styl/key }
       - { click: 'c', long_click: copy, __include: styl/key }
@@ -3809,7 +3809,7 @@ preset_keys:
   Deploy: { label: 部署, command: broadcast, option: 'com.osfans.trime.deploy' }
   Sync: { label: 同步, command: broadcast, option: 'com.osfans.trime.sync' }
   # 编辑
-#  Shift_L: { label: Shift, send: Shift_L, shift_lock: ascii_long }
+  #Shift_L: { label: Shift, send: Shift_L, shift_lock: ascii_long }
   Shift_L: { label: Shift, send: Shift_L, shift_lock: long }
   Return: { label: Enter, send: Return }
   Return1: { label: 回车, send: Return }

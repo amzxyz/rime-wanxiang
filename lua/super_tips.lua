@@ -4,103 +4,80 @@
 -- https://github.com/amzxyz/rime_wanxiang
 --     - lua_processor@*super_tips
 --     key_binder/tips_key: "slash" # 上屏按键配置
-
-local META_KEY_PREFIX = "\001" .. "/"
-local META_KEY_VERSION = "wanxiang_version"
-local META_KEY_USER_TIPS_FILE_HASH = "user_tips_file_hash"
-
-local FILENAME_TIPS_PRESET = "lua/tips/tips_show.txt"
-local FILENAME_TIPS_USER = "lua/tips/tips_user.txt"
-
+--     tips/disabled_types: [] # 禁用的 tips 类型
 local wanxiang = require("wanxiang")
+local bit = require("lib/bit")
+local userdb = require("lib/userdb")
 
-local tips_db = {}
----@type UserDb | nil
-tips_db.instance = nil -- 数据库池
-function tips_db.close()
-    if tips_db.instance and tips_db.instance:loaded() then
-        collectgarbage()
-        local result = tips_db.instance:close()
-        tips_db.instance = nil
-        return result
-    end
-    return true
-end
+local tips_db = userdb.LevelDb("lua/tips")
 
--- 获取或创建 LevelDb 实例，避免重复打开
----@param write_mode? boolean 是否需要写权限
----@return UserDb
-function tips_db.get(write_mode)
-    if tips_db.instance == nil then tips_db.instance = LevelDb("lua/tips") end
+-- 获取文件内容哈希值，使用 FNV-1a 哈希算法
+local function calculate_file_hash(filepath)
+    local file = io.open(filepath, "rb")
+    if not file then return nil end
 
-    local is_loaded = tips_db.instance:loaded()
-    local needs_open = false
+    -- FNV-1a 哈希参数（32位）
+    local FNV_OFFSET_BASIS = 0x811C9DC5
+    local FNV_PRIME = 0x01000193
 
-    if is_loaded and write_mode and tips_db.instance.read_only then
-        -- 需要写权限，但当前是只读模式，需要重新打开
-        needs_open = true
-    elseif not is_loaded then
-        -- 尚未加载，需要打开
-        needs_open = true
-    end
-
-    if needs_open then
-        if is_loaded then tips_db.instance:close() end -- 确保关闭旧连接
-        if write_mode then
-            tips_db.instance:open()
-        else
-            tips_db.instance:open_read_only()
+    local hash = FNV_OFFSET_BASIS
+    while true do
+        local chunk = file:read(4096)
+        if not chunk then break end
+        for i = 1, #chunk do
+            local byte = string.byte(chunk, i)
+            hash = bit.bxor(hash, byte)
+            hash = (hash * FNV_PRIME) % 0x100000000
+            hash = bit.band(hash, 0xFFFFFFFF)
         end
     end
 
-    return tips_db.instance
+    file:close()
+    return string.format("%08x", hash)
 end
 
-function tips_db.empty()
-    local db = tips_db.get(true)
-    local da
-    da = db:query("")
-    for key, _ in da:iter() do
-        db:erase(key)
+local tips = {}
+
+---@type "pending" | "initialing" | "done"
+tips.status = "pending"
+
+---@type table<string, boolean>
+tips.disabled_types = {}
+tips.preset_file_path = wanxiang.get_filename_with_fallback("lua/tips/tips_show.txt")
+tips.user_override_path = rime_api.get_user_data_dir() .. "/lua/tips/tips_user.txt"
+
+local META_KEY = {
+    version = "wanxiang_version",
+    user_file_hash = "user_tips_file_hash",
+    disabled_types = "disabled_types",
+}
+
+---@param tip string
+function tips.is_disabled(tip)
+    local type = tip:match("^(..-):")
+        or tip:match("^(..-)：")
+
+    if not type then return false end
+    return tips.disabled_types[type] == true
+end
+
+function tips.init_db_from_file(path)
+    local file = io.open(path, "r")
+    if not file then return end
+
+    for line in file:lines() do
+        local value, key = line:match("([^\t]+)\t([^\t]+)")
+        if key and value
+            and not tips.is_disabled(value)
+        then
+            tips_db:update(key, value)
+        end
     end
-    da = nil
+
+    file:close()
 end
 
-function tips_db.fetch(key)
-    return tips_db.get():fetch(key)
-end
-
-function tips_db.update(key, value)
-    return tips_db.get(true):update(key, value)
-end
-
-function tips_db.meta_fetch(key)
-    return tips_db.fetch(META_KEY_PREFIX .. key)
-end
-
-function tips_db.meta_update(key, value)
-    return tips_db.update(META_KEY_PREFIX .. key, value)
-end
-
-function tips_db.get_wanxiang_version()
-    return tips_db.meta_fetch(META_KEY_VERSION)
-end
-
----@param version string
-function tips_db.update_wanxiang_version(version)
-    return tips_db.meta_update(META_KEY_VERSION, version)
-end
-
-function tips_db.get_user_tips_file_hash()
-    return tips_db.meta_fetch(META_KEY_USER_TIPS_FILE_HASH)
-end
-
----@param hash string
-function tips_db.update_user_tips_file_hash(hash)
-    return tips_db.meta_update(META_KEY_USER_TIPS_FILE_HASH, hash)
-end
-
-local function ensure_dir_exist(dir)
+function tips.ensure_dir_exist(dir)
     -- 获取系统路径分隔符
     local sep = package.config:sub(1, 1)
 
@@ -112,137 +89,121 @@ local function ensure_dir_exist(dir)
     end
 end
 
-local function sync_tips_db_from_file(path)
-    local file = io.open(path, "r")
-    if not file then return end
+---@param config Config
+function tips.init(config)
+    if tips.status ~= "pending" then return end
 
-    for line in file:lines() do
-        local value, key = line:match("([^\t]+)\t([^\t]+)")
-        if value and key then
-            tips_db.update(key, value)
+    local dist = rime_api.get_distribution_code_name() or ""
+    local user_lua_dir = rime_api.get_user_data_dir() .. "/lua"
+    if dist ~= "hamster" and dist ~= "Weasel" then
+        tips.ensure_dir_exist(user_lua_dir)
+        tips.ensure_dir_exist(user_lua_dir .. "/tips")
+    end
+
+    -- 读取配置
+    local disabled_types_list = config:get_list("tips/disabled_types")
+    if disabled_types_list then
+        for i = 1, disabled_types_list.size do
+            local item = disabled_types_list:get_value_at(i - 1)
+            if item and #item.value > 0 then
+                tips.disabled_types[item.value] = true
+            end
         end
     end
 
-    file:close()
+    -- 检查是否需要重建数据库
+    tips_db:open()
+    local needs_rebuild = false
+
+    -- 检查 1: 万象版本号
+    if tips_db:meta_fetch(META_KEY.version) ~= wanxiang.version then
+        needs_rebuild = true
+    end
+
+    -- 检查 2: 用户文件哈希 (仅在版本号相同时检查)
+    local user_file_hash = calculate_file_hash(tips.user_override_path) or ""
+    if not needs_rebuild
+        and (tips_db:meta_fetch(META_KEY.user_file_hash) or "") ~= user_file_hash
+    then
+        needs_rebuild = true
+    end
+
+    -- 检查 3: 禁用类型 (仅在前两者都相同时检查)
+    local disabled_keys = {}
+    for k, _ in pairs(tips.disabled_types) do
+        table.insert(disabled_keys, k)
+    end
+    table.sort(disabled_keys) -- 排序以确保顺序一致
+    local disabled_types_str = table.concat(disabled_keys, ",")
+
+    if not needs_rebuild
+        and (tips_db:meta_fetch(META_KEY.disabled_types) or "") ~= disabled_types_str
+    then
+        needs_rebuild = true
+    end
+
+    -- 如果需要，则执行重建
+    if needs_rebuild then
+        tips_db:empty()
+        tips.init_db_from_file(tips.preset_file_path)
+        tips.init_db_from_file(tips.user_override_path)
+
+        -- 重建成功后，再更新所有元数据，确保操作的原子性
+        tips_db:meta_update(META_KEY.version, wanxiang.version)
+        tips_db:meta_update(META_KEY.user_file_hash, user_file_hash)
+        tips_db:meta_update(META_KEY.disabled_types, disabled_types_str)
+    end
+
+    -- 关闭并以只读模式重新打开
+    tips_db:close()
+    tips_db:open_read_only()
 end
 
--- 获取文件内容哈希值，使用 FNV-1a 哈希算法
-local function calculate_file_hash(filepath)
-    local file = io.open(filepath, "rb")
-    if not file then return nil end
-
-    -- FNV-1a 哈希参数（32位）
-    local FNV_OFFSET_BASIS = 0x811C9DC5
-    local FNV_PRIME = 0x01000193
-
-    local bit_xor = function(a, b)
-        if jit and jit.version then
-            local bit = require("bit")
-            return bit.bxor(a, b)
-        end
-
-        local p, c = 1, 0
-        while a > 0 and b > 0 do
-            local ra, rb = a % 2, b % 2
-            if ra ~= rb then c = c + p end
-            a, b, p = (a - ra) / 2, (b - rb) / 2, p * 2
-        end
-        if a < b then a = b end
-        while a > 0 do
-            local ra = a % 2
-            if ra > 0 then c = c + p end
-            a, p = (a - ra) / 2, p * 2
-        end
-        return c
+---从数据库中查询 tips
+---@param keys string | string[] 接受一个字符串或一个字符串数组作为键，使用数组时会挨个查询，直到获得有效值
+---@return string | nil
+function tips.get_tip(keys)
+    -- 输入归一化：如果输入是 string，将其包装成单元素的 table
+    if type(keys) == 'string' then
+        keys = { keys }
     end
 
-    local bit_and = function(a, b)
-        if jit and jit.version then
-            local bit = require("bit")
-            return bit.band(a, b)
-        end
-
-        local p, c = 1, 0
-        while a > 0 and b > 0 do
-            local ra, rb = a % 2, b % 2
-            if ra + rb > 1 then c = c + p end
-            a, b, p = (a - ra) / 2, (b - rb) / 2, p * 2
-        end
-        return c
-    end
-
-    local hash = FNV_OFFSET_BASIS
-    while true do
-        local chunk = file:read(4096)
-        if not chunk then break end
-        for i = 1, #chunk do
-            local byte = string.byte(chunk, i)
-            hash = bit_xor(hash, byte)
-            hash = (hash * FNV_PRIME) % 0x100000000
-            hash = bit_and(hash, 0xFFFFFFFF)
+    for _, key in ipairs(keys) do
+        if key and key ~= "" then
+            local tip = tips_db:fetch(key)
+            if tip and #tip > 0 then
+                return tip
+            end
         end
     end
 
-    file:close()
-    return string.format("%08x", hash)
-end
-
-local function init_tips_userdb()
-    local has_preset_tips_changed = wanxiang.version ~= tips_db.get_wanxiang_version()
-
-    local has_user_tips_changed = false
-    local user_override_path = rime_api.get_user_data_dir() .. "/" .. FILENAME_TIPS_USER
-    local user_tips_file_hash = calculate_file_hash(user_override_path)
-    if user_tips_file_hash then
-        has_user_tips_changed = user_tips_file_hash ~= tips_db.get_user_tips_file_hash()
-    end
-
-    if not has_preset_tips_changed and not has_user_tips_changed then
-        return
-    end
-
-    tips_db.empty()
-
-    tips_db.update_wanxiang_version(wanxiang.version)
-    tips_db.update_user_tips_file_hash(user_tips_file_hash or "")
-
-    local preset_file_path = wanxiang.get_filename_with_fallback(FILENAME_TIPS_PRESET)
-    sync_tips_db_from_file(preset_file_path)
-    sync_tips_db_from_file(user_override_path)
-
-    tips_db.close() -- 主动关闭数据库，后续只需要只读方式打开
+    return nil
 end
 
 ---@class Env
 ---@field current_tip string | nil 当前 tips 值
 ---@field last_prompt string 最后一次设置的 prompt 值
----@field tips_update_connection any update notifier
+---@field tips_update_connection Connection
 
 ---tips prompt 处理
 ---@param context Context
 ---@param env Env
 local function update_tips_prompt(context, env)
+    env.current_tip = nil
+
+    local is_tips_enabled = context:get_option("super_tips")
+    if not is_tips_enabled then return end
+
     local segment = context.composition:back()
-    if segment == nil then return end
-
-    ---@param key string
-    ---@param fallback_key? string
-    ---@return string | nil
-    local function get_tip(key, fallback_key)
-        if not key or key == "" then return nil end
-
-        if not fallback_key then return tips_db.fetch(key) end
-
-        local tip = tips_db.fetch(key)
-        return (tip and #tip > 0)
-            and tip
-            or tips_db.fetch(fallback_key)
-    end
+    if not segment then return end
 
     local cand = context:get_selected_candidate() or {}
-    env.current_tip = segment.selected_index == 0
-        and get_tip(context.input, cand.text)
-        or get_tip(cand.text)
+
+    if segment.selected_index == 0 then
+        env.current_tip = tips.get_tip({ context.input, cand.text })
+    else
+        env.current_tip = tips.get_tip(cand.text)
+    end
 
     if env.current_tip ~= nil and env.current_tip ~= "" then
         -- 有 tips 则直接设置 prompt
@@ -258,32 +219,23 @@ end
 local P = {}
 
 -- Processor：按键触发上屏 (S)
+---@param env Env
 function P.init(env)
-    local dist = rime_api.get_distribution_code_name() or ""
-    local user_lua_dir = rime_api.get_user_data_dir() .. "/lua"
-    if dist ~= "hamster" and dist ~= "Weasel" then
-        ensure_dir_exist(user_lua_dir)
-        ensure_dir_exist(user_lua_dir .. "/tips")
-    end
+    local config = env.engine.schema.config
+    tips.init(config)
 
-    init_tips_userdb()
-
-    P.tips_key = env.engine.schema.config:get_string("key_binder/tips_key")
+    P.tips_key = config:get_string("key_binder/tips_key")
 
     -- 注册 tips 查找监听器
     local context = env.engine.context
     env.tips_update_connection = context.update_notifier:connect(
         function(context)
-            local is_tips_enabled = context:get_option("super_tips")
-            if is_tips_enabled == true then
-                update_tips_prompt(context, env)
-            end
+            update_tips_prompt(context, env)
         end
     )
 end
 
 function P.fini(env)
-    tips_db.close()
     -- 清理连接
     if env.tips_update_connection then
         env.tips_update_connection:disconnect()
@@ -298,15 +250,15 @@ function P.func(key, env)
     local context = env.engine.context
 
     local is_tips_enabled = context:get_option("super_tips")
-    local segment = context.composition:back()
-    if not is_tips_enabled or not segment then
+    if not is_tips_enabled then
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
     -- 如果启用了 tips 功能，则应使用此 workaround
     -- rime 内核在移动候选时并不会触发 update_notifier，这里做一个临时修复
     -- 如果是 paging，则主动调用 update_tips_prompt
-    if segment:has_tag("paging") then
+    local segment = context.composition:back()
+    if segment and segment:has_tag("paging") then
         update_tips_prompt(context, env)
     end
 

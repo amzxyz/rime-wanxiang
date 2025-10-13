@@ -5,8 +5,8 @@ local M            = {}
 local ACCEPT, PASS = 1, 2
 
 local MAX_REPEAT   = 8  -- 连续重复输入声母上限
-local MAX_SEGMENTS = 30 -- 允许的最大“分段”数
-local INITIALS     = "[bpmfdtnlgkhjqxrzcsyw]"
+local MAX_SEGMENTS = 40 -- 允许的最大“分段”数
+local INITIALS     = "[bpmfdtnlgkhjqxrzcsywiu]"
 
 -- 计算末尾重复
 local function tail_rep(s)

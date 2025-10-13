@@ -6,28 +6,47 @@
 
 local wanxiang = require("wanxiang")
 
----@return string
-local function get_fallback_input(input_text)
-    return input_text:gsub("%d+", function(match) return match:sub(-1) end)
+-- 将目标字符的连续段压缩为“最后一个字符”
+local function compress_runs_keep_last(text)
+    local changed = false
+    local out = text:gsub('([7890])([7890]+)', function(_, tail)
+        changed = true
+        return tail:sub(-1)
+    end)
+    return out, changed
 end
 
-local function should_ignore_context(ctx)
+local function should_ignore(ctx)
     return wanxiang.is_function_mode_active(ctx) or ctx.input == ""
 end
 
 local P = {}
+
 function P.init(env)
-    env.tone_fallback_update_connection =
-        env.engine.context.update_notifier:connect(function(ctx)
-            local input_text = ctx.input
+    local ctx = env.engine and env.engine.context
+    if not ctx or not ctx.update_notifier then return end
 
-            if should_ignore_context(ctx) then return end
+    env.tone_fallback_update_connection = ctx.update_notifier:connect(function(c)
+        if should_ignore(c) then return end
 
-            local new_input = get_fallback_input(input_text)
-            if new_input ~= input_text then
-                ctx.input = new_input
-            end
-        end)
+        local input = c.input
+        local caret = (c.caret_pos ~= nil) and c.caret_pos or #input
+        if caret < 0 then caret = 0 end
+        if caret > #input then caret = #input end
+
+        -- 仅处理光标左侧；右侧保持不变
+        local left  = (caret > 0) and input:sub(1, caret) or ""
+        local right = (caret < #input) and input:sub(caret + 1) or ""
+
+        local left_new, changed = compress_runs_keep_last(left)
+        if not changed then return end
+
+        -- 只改左侧，避免干扰右侧；并精确设置 caret_pos
+        if caret > 0 then c:pop_input(caret) end
+        if #left_new > 0 then c:push_input(left_new) end
+        if c.caret_pos ~= nil then c.caret_pos = #left_new end
+        -- 右侧 right 不需处理，Rime 会保持不变
+    end)
 end
 
 function P.fini(env)
@@ -39,17 +58,20 @@ end
 ---@return ProcessResult
 function P.func(_, env)
     local ctx = env.engine.context
-    local input_text = ctx.input
-
-    if should_ignore_context(ctx) then
+    if should_ignore(ctx) then
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
-    local new_fallback = get_fallback_input(input_text)
+    local input = ctx.input
+    local caret = (ctx.caret_pos ~= nil) and ctx.caret_pos or #input
+    if caret < 0 then caret = 0 end
+    if caret > #input then caret = #input end
 
-    return new_fallback ~= input_text
-        and wanxiang.RIME_PROCESS_RESULTS.kAccepted
-        or wanxiang.RIME_PROCESS_RESULTS.kNoop
+    local left = (caret > 0) and input:sub(1, caret) or ""
+    local _, changed = compress_runs_keep_last(left)
+
+    return changed and wanxiang.RIME_PROCESS_RESULTS.kAccepted
+                   or wanxiang.RIME_PROCESS_RESULTS.kNoop
 end
 
 return P

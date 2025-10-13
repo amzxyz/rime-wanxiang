@@ -8,130 +8,109 @@ CUSTOM_DIR="$ROOT_DIR/custom"
 
 # 成成 PRO 分包文件
 echo "▶️ PRO 分包开始"
-python3 "$ROOT_DIR/.github/workflows/scripts/万象分包.py"
+python3 "$ROOT_DIR/.github/workflows/scripts/aux_go.py"
 echo "✅ PRO 分包完毕"
 echo
-remove_schema() {
-    SCHEMA=$1
-    OUT_DIR=$2
-
-    sed -i -E "/^\s+-\s+schema:\s+${SCHEMA}\s*$/d" "$OUT_DIR/default.yaml"
-}
 
 package_schema_base() {
-    OUT_DIR=$1
-    rm -rf "$OUT_DIR"
-    mkdir -p "$OUT_DIR"
+  OUT_DIR=$1
+  rm -rf "$OUT_DIR"
+  mkdir -p "$OUT_DIR"
 
-    # 1. 拷贝 custom/ 下除 wanxiang_pro.custom* 外的所有 yaml、md、jpg、ng 文件
-    mkdir -p "$OUT_DIR"/custom
-    find "$CUSTOM_DIR" -type f \( -name "*.yaml" -o -name "*.md" -o -name "*.jpg" -o -name "*.png" -o -name "*.txt" \) \
-        ! \( -name "wanxiang_pro.custom*" -o -name "预设分包方案.yaml" \) -exec cp {} "$OUT_DIR"/custom \;
+  # 1) custom/：仅拷贝 yaml/md/jpg/png，排除指定文件（保留目录结构）
+  mkdir -p "$OUT_DIR/custom"
+  rsync -av --prune-empty-dirs \
+    --include='*/' \
+    --exclude='wanxiang_chaifen_*.dict.yaml' \
+    --exclude='wanxiang_chaifen.schema.yaml' \
+    --exclude='wanxiang_pro.custom.yaml' \
+    --exclude='wanxiang_pro.dict.yaml' \
+    --exclude='wanxiang_pro.schema.yaml' \
+    --include='*.yaml' --include='*.md' --include='*.jpg' --include='*.png' \
+    --exclude='*' \
+    "$CUSTOM_DIR/" "$OUT_DIR/custom/"
 
-    # 2. 拷贝根目录下除指定内容外的文件/文件夹
-    for item in "$ROOT_DIR"/*; do
-        name="$(basename "$item")"
-        if [[ "$name" =~ ^\. ]]; then continue; fi
-        if [[ "$name" == "release-please-config.json" ]]; then continue; fi
-        if [[ "$name" == "pro-"*-fuzhu-dicts ]]; then continue; fi
-        if [[ "$name" == "chaifen" ]]; then continue; fi 
-        if [[ "$name" == "wanxiang_pro.dict.yaml" || "$name" == "wanxiang_pro.schema.yaml" ]]; then continue; fi
-        if [[ "$name" == "wanxiang_chaifen.dict.yaml" || "$name" == "wanxiang_chaifen.schema.yaml" ]]; then continue; fi
-        if [[ "$name" == "wanxiang_charset.dict.yaml" || "$name" == "wanxiang_charset.schema.yaml" ]]; then continue; fi
-        #if [[ "$name" == "custom_phrase_flypy.txt" ]]; then continue; fi
-        if [[ "$name" == "custom" || "$name" == "dist" ]]; then continue; fi
-        if [[ "$name" == "LICENSE" ]]; then continue; fi
-
-        # 处理 dicts 文件夹
-        if [[ "$name" == "dicts" ]]; then
-            mkdir -p "$OUT_DIR/dicts"
-            cd "$ROOT_DIR/dicts"
-
-            # 复制指定文件
-            for f in \
-            "cn&en.dict.yaml" \
-            en.dict.yaml \
-            chengyu.txt \
-            correlation.dict.yaml \
-            base.dict.yaml \
-            chars.dict.yaml \
-            compatible.dict.yaml \
-            corrections.dict.yaml \
-            place.dict.yaml \
-            poetry.dict.yaml \
-            suggestion.dict.yaml; do
-                if [ -f "$f" ]; then
-                    cp "$f" "$OUT_DIR/dicts/"
-                else
-                    echo "Warning: $f not found in dicts"
-                fi
-            done
-            cd "$ROOT_DIR"
-            continue
-        fi
-        cp -r "$item" "$OUT_DIR/"
-    done
-
-    # 3. 修改 default.yaml，删除 schema_list: 中的 - schema: wanxiang_pro
-    remove_schema wanxiang_pro "$OUT_DIR"
+  # 2) 根目录 → $OUT_DIR（不排 dicts/），排除若干
+  OUT_BASE="$(basename "$OUT_DIR")"
+  rsync -av --ignore-existing \
+    --exclude='/.*' \
+    --exclude='/dist/' \
+    --exclude='/release-please-config.json' \
+    --exclude='/pro-*-fuzhu-dicts' \
+    --exclude='/chaifen' \
+    --exclude='/CHANGELOG.md' \
+    --exclude='/custom' \
+    --exclude='/LICENSE' \
+    --exclude="/$OUT_BASE" \
+    "$ROOT_DIR/" "$OUT_DIR/"
 }
 
 package_schema_pro() {
-    SCHEMA_NAME="$1"
-    OUT_DIR="$2"
-    rm -rf "$OUT_DIR"
-    mkdir -p "$OUT_DIR"
+  SCHEMA_NAME="$1"
+  OUT_DIR="$2"
+  rm -rf "$OUT_DIR"
+  mkdir -p "$OUT_DIR"
 
-    # 1. 将 pro-方案名-fuzhu-dicts 移动为 zh_dicts_pro
-    if [[ -d "$ROOT_DIR/pro-$SCHEMA_NAME-fuzhu-dicts" ]]; then
-        mv "$ROOT_DIR/pro-$SCHEMA_NAME-fuzhu-dicts" "$OUT_DIR/dicts"
+  # 1) 移动分包后的 dicts
+  if [[ -d "$ROOT_DIR/pro-$SCHEMA_NAME-fuzhu-dicts" ]]; then
+    mv "$ROOT_DIR/pro-$SCHEMA_NAME-fuzhu-dicts" "$OUT_DIR/dicts"
+  fi
+  # 1.1) 补充必要的附加文件
+  for f in en.dict.yaml "cn&en.dict.yaml" chengyu.txt; do
+    if [[ -f "$ROOT_DIR/dicts/$f" ]]; then
+      cp "$ROOT_DIR/dicts/$f" "$OUT_DIR/dicts/"
     fi
-    # 1.1 补充复制必需的附加文件
-    for f in en.dict.yaml "cn&en.dict.yaml" chengyu.txt; do
-        if [ -f "$ROOT_DIR/dicts/$f" ]; then
-            cp "$ROOT_DIR/dicts/$f" "$OUT_DIR/dicts/"
-            echo "✅ Copied $f to $OUT_DIR/dicts/"
-        else
-            echo "⚠️ Warning: $f not found in dicts"
-        fi
-    done
-    # 2. 从 chaifen 文件夹中复制对应文件并重命名
-    LOOKUP_SRC="$ROOT_DIR/chaifen/wanxiang_chaifen_${SCHEMA_NAME}.dict.yaml"
-    LOOKUP_DST="$OUT_DIR/wanxiang_chaifen.dict.yaml"
+  done
 
-    if [[ -f "$LOOKUP_SRC" ]]; then
-        cp "$LOOKUP_SRC" "$LOOKUP_DST"
-        sed -i "s/^name:\s*wanxiang_chaifen_${SCHEMA_NAME}$/name: wanxiang_chaifen/" "$LOOKUP_DST"
-        sed -i 's/[ⒶⒷⒸⒹⒺⒻ]//g' "$LOOKUP_DST"
-    fi
+  # 2) 复制拆分表并重命名，同时拷贝 schema
+  src="$ROOT_DIR/custom/wanxiang_chaifen_${SCHEMA_NAME}.dict.yaml"
+  dst="$OUT_DIR/wanxiang_chaifen.dict.yaml"
+  [[ -f "$src" ]] && cp "$src" "$dst"
 
-    # 3. 复制 schema 主文件
-    if [[ -f "$CUSTOM_DIR/预设分包方案.yaml" ]]; then
-        cp "$CUSTOM_DIR/预设分包方案.yaml" "$OUT_DIR/wanxiang_pro.schema.yaml"
-    fi
+  for f in \
+    wanxiang_pro.dict.yaml \
+    wanxiang_pro.schema.yaml \
+    wanxiang_chaifen.schema.yaml
+  do
+    src="$ROOT_DIR/custom/$f"
+    dst="$OUT_DIR/$f"
+    [[ -f "$src" ]] && cp "$src" "$dst"
+  done
 
-    # 4. 拷贝 custom/ 下除 wanxiang.custom.yaml 外的所有 yaml、md、jpg、png 文件
-    mkdir -p "$OUT_DIR"/custom
-    find "$ROOT_DIR/custom" -type f \( -name "*.yaml" -o -name "*.md" -o -name "*.jpg" -o -name "*.png" -o -name "*.txt" \) \
-        ! \( -name "wanxiang.custom*" -o -name "预设分包方案.yaml" \) -exec cp {} "$OUT_DIR"/custom \;
+  # 3) custom/：仅拷贝 yaml/md/jpg/png，排除若干（保留目录结构）
+  mkdir -p "$OUT_DIR/custom"
+  rsync -av --prune-empty-dirs \
+    --include='*/' \
+    --exclude='wanxiang.custom*' \
+    --exclude='wanxiang_chaifen_*.dict.yaml' \
+    --exclude='wanxiang_chaifen.schema.yaml' \
+    --exclude='wanxiang_pro.dict.yaml' \
+    --exclude='wanxiang_pro.schema.yaml' \
+    --include='*.yaml' --include='*.md' --include='*.jpg' --include='*.png' \
+    --exclude='*' \
+    "$ROOT_DIR/custom/" "$OUT_DIR/custom/"
 
-    # 5. 拷贝根目录下除指定内容外的文件/文件夹
-    for item in "$ROOT_DIR"/*; do
-        name="$(basename "$item")"
-        if [[ "$name" =~ ^\. ]]; then continue; fi
-        if [[ "$name" == "release-please-config.json" ]]; then continue; fi
-        if [[ "$name" == "pro-"*-fuzhu-dicts ]]; then continue; fi
-        if [[ "$name" == "chaifen" ]]; then continue; fi
-        if [[ "$name" == "wanxiang.dict.yaml" || "$name" == "wanxiang.schema.yaml" ]]; then continue; fi
-        if [[ -e "$OUT_DIR/$name" ]]; then continue; fi
-        if [[ "$name" == "custom" || "$name" == "dist" ]]; then continue; fi
-        if [[ "$name" == "LICENSE" ]]; then continue; fi
-        cp -r "$item" "$OUT_DIR/"
-    done
+  # 4) 根目录 → $OUT_DIR（排除若干）
+  OUT_BASE="$(basename "$OUT_DIR")"
+  rsync -av --ignore-existing \
+    --exclude='/.*' \
+    --exclude='/dist/' \
+    --exclude='/dicts' \
+    --exclude='release-please-config.json' \
+    --exclude='pro-*-fuzhu-dicts' \
+    --exclude='wanxiang_t9.schema.yaml' \
+    --exclude='CHANGELOG.md' \
+    --exclude='wanxiang.dict.yaml' \
+    --exclude='wanxiang.schema.yaml' \
+    --exclude='custom' \
+    --exclude='LICENSE' \
+    --exclude="/$OUT_BASE" \
+    "$ROOT_DIR/" "$OUT_DIR/"
 
-    # 6. 修改 default.yaml，删除 schema_list 中的 - schema: wanxiang
-    remove_schema wanxiang "$OUT_DIR"
+  # 5) default.yaml:  - schema: wanxiang  ->  - schema: wanxiang_pro
+  sed -i -E 's/^([[:space:]]*)-\s*schema:\s*wanxiang\s*$/\1- schema: wanxiang_pro/' "$OUT_DIR/default.yaml"
 }
+
 
 
 package_schema() {

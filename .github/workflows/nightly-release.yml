@@ -43,77 +43,61 @@ jobs:
           python-version: "3.x"
 
       # 5. 运行Python 脚本对 dicts 进行处理，生成多个词库文件夹
-      - name: Process Rime dicts
+      - name: Process Rime dicts (python) & prepare base-dicts
         if: env.SKIP != 'true'
         run: |
+          set -euo pipefail
+
           echo "Processing dicts with Python script..."
           pip install --upgrade pip
-          python .github/workflows/scripts/万象分包.py
-          echo "Done"
+          python .github/workflows/scripts/aux_go.py
+          echo "Python done."
 
-          # 处理 all dicts 与 base dicts
-          echo "Processing pro_all dicts and base dicts"
-          mkdir -p pro-all-dicts
-          mkdir -p base-dicts
-          echo "Copy dicts..."
-          if [ -d "dicts" ]; then
-            cd dicts
-            cp correlation.pro.dict.yaml \
-               base.pro.dict.yaml \
-               chars.pro.dict.yaml \
-               compatible.pro.dict.yaml \
-               corrections.pro.dict.yaml \
-               place.pro.dict.yaml \
-               poetry.pro.dict.yaml \
-               suggestion.pro.dict.yaml \
-               ../pro-all-dicts
-            cp correlation.dict.yaml \
-               base.dict.yaml \
-               chars.dict.yaml \
-               compatible.dict.yaml \
-               corrections.dict.yaml \
-               place.dict.yaml \
-               poetry.dict.yaml \
-               suggestion.dict.yaml \
-               ../base-dicts
-            echo "Copy File completed"
-            cd ..
+          # 直接用 dicts/ 作为 base-dicts 全量来源
+          if [[ -d "dicts" ]]; then
+            echo "Syncing ./dicts -> ./base-dicts ..."
+            rm -rf base-dicts
+            # 用 rsync 更快更稳；没有 rsync 也可改用 cp -a
+            rsync -a --delete "dicts/" "base-dicts/"
+            echo "base-dicts ready."
           else
             echo "Error: dicts folder does not exist."
             exit 1
           fi
 
-      # 6. 将拆分后的词库文件夹一并打包，并先复制通用文件
       - name: Pack splitted dicts
         if: env.SKIP != 'true'
         run: |
+          set -euo pipefail
           echo "Packing splitted dict folders..."
-
-          # 定义文件夹 -> ZIP文件名的映射关系
-          declare -A dict_map=(
-            ["pro-moqi-fuzhu-dicts"]="1-pro-moqi-fuzhu-dicts.zip"
-            ["pro-flypy-fuzhu-dicts"]="2-pro-flypy-fuzhu-dicts.zip"
-            ["pro-zrm-fuzhu-dicts"]="3-pro-zrm-fuzhu-dicts.zip"
-            ["pro-tiger-fuzhu-dicts"]="4-pro-tiger-fuzhu-dicts.zip"
-            ["pro-wubi-fuzhu-dicts"]="5-pro-wubi-fuzhu-dicts.zip"
-            ["pro-hanxin-fuzhu-dicts"]="6-pro-hanxin-fuzhu-dicts.zip"
-            ["pro-all-dicts"]="7-pro-all-dicts.zip"
-            ["base-dicts"]="8-base-dicts.zip"
-          )
 
           mkdir -p dist
 
-          # 遍历字典并按指定顺序命名 ZIP 文件
-          for dict_dir in "${!dict_map[@]}"; do
-            if [ -d "$dict_dir" ]; then
-              echo "Copying common files into $dict_dir..."
-              cp dicts/en.dict.yaml "$dict_dir"/
-              cp dicts/cn\&en.dict.yaml "$dict_dir"/
-              cp dicts/chengyu.txt "$dict_dir"/
+          # 按固定顺序打包；zip 名不带数字前缀
+          folders=(
+            "pro-moqi-fuzhu-dicts"
+            "pro-flypy-fuzhu-dicts"
+            "pro-zrm-fuzhu-dicts"
+            "pro-tiger-fuzhu-dicts"
+            "pro-wubi-fuzhu-dicts"
+            "pro-hanxin-fuzhu-dicts"
+            "base-dicts"
+          )
 
-              echo "Packing: ${dict_map[$dict_dir]}"
-              zip -r "dist/${dict_map[$dict_dir]}" "$dict_dir"
-              echo "Packed: dist/${dict_map[$dict_dir]}"
+          for dict_dir in "${folders[@]}"; do
+            if [[ -d "$dict_dir" ]]; then
+              # 只给 pro-* 目录补通用文件；base-dicts 已是 dicts 全量，无需拷贝
+              if [[ "$dict_dir" == pro-* ]]; then
+                echo "Copying common files into $dict_dir ..."
+                cp -f dicts/en.dict.yaml      "$dict_dir/" || true
+                cp -f "dicts/cn&en.dict.yaml" "$dict_dir/" || true
+                cp -f dicts/chengyu.txt       "$dict_dir/" || true
+              fi
+
+              zip_name="${dict_dir}.zip"
+              echo "Packing: ${zip_name}"
+              zip -r -q "dist/${zip_name}" "$dict_dir"
+              echo "Packed: dist/${zip_name}"
             else
               echo "Warning: $dict_dir folder does not exist. Skipped."
             fi
@@ -174,7 +158,6 @@ jobs:
           name: "实时提交的词库更新"
           body: |
             - **base-dicts.zip**：最新的标准版原始中文词库文件
-            - **pro-all-dicts.zip**：最新的全辅助码原始中文词库文件
             - **pro-moqi-fuzhu-dicts.zip**：携带了墨奇辅助码的词库文件
             - **pro-flypy-fuzhu-dicts.zip**：携带了小鹤辅助码的词库文件
             - **pro-zrm-fuzhu-dicts.zip**：携带了自然码辅助码的词库文件
@@ -183,14 +166,13 @@ jobs:
             - **pro-hanxin-fuzhu-dicts.zip**：携带了汉心辅助码的词库文件
             - **[wanxiang-lts-zh-hans.gram](https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram)**：与词库同步更新的语法模型
           files: |
-            dist/1-pro-moqi-fuzhu-dicts.zip
-            dist/2-pro-flypy-fuzhu-dicts.zip
-            dist/3-pro-zrm-fuzhu-dicts.zip
-            dist/4-pro-tiger-fuzhu-dicts.zip
-            dist/5-pro-wubi-fuzhu-dicts.zip
-            dist/6-pro-hanxin-fuzhu-dicts.zip
-            dist/7-pro-all-dicts.zip
-            dist/8-base-dicts.zip
+            dist/pro-moqi-fuzhu-dicts.zip
+            dist/pro-flypy-fuzhu-dicts.zip
+            dist/pro-zrm-fuzhu-dicts.zip
+            dist/pro-tiger-fuzhu-dicts.zip
+            dist/pro-wubi-fuzhu-dicts.zip
+            dist/pro-hanxin-fuzhu-dicts.zip
+            dist/base-dicts.zip
             wanxiang-lts-zh-hans.gram
           draft: false
           prerelease: false

@@ -225,6 +225,14 @@ local function format_number_for_display(n)
     if type(n) ~= "number" then
         return tostring(n)
     end
+    -- 分离整数部分和小数部分
+    local integer_part = math.floor(math.abs(n))
+    local integer_digits = #tostring(integer_part)
+    
+    -- 只检查整数部分的位数
+    if integer_digits > 19 then
+        return "数字超限!"
+    end
     -- 检查是否为整数
     if n == math.floor(n) then
         return tostring(math.floor(n))
@@ -413,10 +421,27 @@ calc_methods["exp"] = exp
 methods_desc["exp"] = "返回 e^x"
 
 -- 计算复数的平方根
-local function sqrt(a, b)
+local function sqrt(...)
+    local data = {...}
+    local n = #data
+    local a,b
+    if n == 0 then
+        return "请输入至少一个数"
+    elseif n > 2 then
+        return "参数数量不能超过2个"
+    end
     -- 检查参数正确性
-    if type(a) ~= "number" or type(b) ~= "number" then
-        return "参数必须是数字"
+    for i = 1, n do
+        if type(data[i]) ~= "number" then
+            return "参数必须是数字"
+        end
+    end
+    if n == 1 then
+        a = data[1]
+        b = 0
+    elseif n == 2 then
+        a = data[1]
+        b = data[2]
     end
     local t1 = (math.sqrt(a ^ 2 + b ^ 2) + a) / 2
     local t2 = (math.sqrt(a ^ 2 + b ^ 2) - a) / 2
@@ -2059,38 +2084,99 @@ methods_desc["sjxx"] = "已知三角形三个顶点坐标，求其“心”的�
 
 -- 计算排列数
 local function permutation(n, r)
-    -- 检查参数正确性
+    -- 参数检查
     if type(n) ~= "number" or type(r) ~= "number" then
         return "错误：参数必须为数字"
     end
-    if n < 0 or r < 0 or n ~= floor(n) or r ~= floor(r) then
+    if n < 0 or r < 0 or n ~= math.floor(n) or r ~= math.floor(r) then
         return "错误：参数必须为非负整数"
     end
     if r > n then
         return "错误：第二个参数不能大于第一个参数"
     end
-    -- 计算排列数
-    local result = factorial(n) / factorial(n - r)
-    return fn(result)
+    -- 特殊情况处理
+    if r == 0 then return 1 end
+    if r == 1 then return n end
+    -- 创建分子和分母的因数数组
+    local numerator_factors = {}
+    local denominator_factors = {}
+    -- 填充分子因数 (1 到 n)
+    for i = 1, n do
+        table.insert(numerator_factors, i)
+    end
+    -- 填充分母因数 (1 到 n-r)
+    for i = 1, n-r do
+        table.insert(denominator_factors, i)
+    end
+    -- 约分过程
+    for i = 1, #denominator_factors do
+        local d = denominator_factors[i]
+        for j = 1, #numerator_factors do
+            local n = numerator_factors[j]
+            local gcd_value = gcd(n, d)
+            if gcd_value > 1 then
+                numerator_factors[j] = n / gcd_value
+                denominator_factors[i] = d / gcd_value
+                d = denominator_factors[i] -- 更新d值
+            end
+        end
+    end
+    -- 计算最终结果（此时分母应全部为1）
+    local result = 1
+    for _, v in ipairs(numerator_factors) do
+        result = result * v
+    end
+    return result
 end
 calc_methods["pls"] = permutation
 methods_desc["pls"] = "计算排列数"
 
 -- 计算组合数
 local function combination(n, r)
-    -- 检查参数正确性
+    -- 参数检查
     if type(n) ~= "number" or type(r) ~= "number" then
         return "错误：参数必须为数字"
     end
-    if n < 0 or r < 0 or n ~= floor(n) or r ~= floor(r) then
+    if n < 0 or r < 0 or n ~= math.floor(n) or r ~= math.floor(r) then
         return "错误：参数必须为非负整数"
     end
     if r > n then
         return "错误：第二个参数不能大于第一个参数"
     end
-    -- 计算组合数
-    local result = factorial(n) / (factorial(r) * factorial(n - r))
-    return fn(result)
+    -- 使用组合数性质 C(n,r) = C(n,n-r) 减少计算量
+    r = math.min(r, n - r)
+    if r == 0 or r == n then return 1 end
+    if r == 1 or r == n-1 then return n end
+    -- 创建分子和分母的因数数组
+    local numerator_factors = {}
+    local denominator_factors = {}
+    -- 填充分子因数 (n-r+1 到 n)
+    for i = n - r + 1, n do
+        table.insert(numerator_factors, i)
+    end
+    -- 填充分母因数 (1 到 r)
+    for i = 1, r do
+        table.insert(denominator_factors, i)
+    end
+    -- 约分过程
+    for i = 1, #denominator_factors do
+        local d = denominator_factors[i]
+        for j = 1, #numerator_factors do
+            local n = numerator_factors[j]
+            local gcd_value = gcd(n, d)
+            if gcd_value > 1 then
+                numerator_factors[j] = n / gcd_value
+                denominator_factors[i] = d / gcd_value
+                d = denominator_factors[i] -- 更新d值
+            end
+        end
+    end
+    -- 计算最终结果（此时分母应全部为1）
+    local result = 1
+    for _, v in ipairs(numerator_factors) do
+        result = result * v
+    end
+    return result
 end
 calc_methods["zhs"] = combination
 methods_desc["zhs"] = "计算组合数"
@@ -3008,7 +3094,7 @@ local function dwhs(value, from_unit, to_unit)
     return formatted_result
 end
 calc_methods["dwhs"] = dwhs
-methods_desc["dwhs"] = "单位换算，支持面积、质量、长度、体积，(数字, '原单位', '目标单位')"
+methods_desc["dwhs"] = "单位换算，支持面积、质量、长度、体积"
 
 -- 数字进制转换
 -- 注意：在输入有字母的非10进制数时，需加上引号（单双均可，但不能混用）
@@ -3130,48 +3216,275 @@ local function convertBase(...)
     return table.concat(result)
 end
 calc_methods["jzzh"] = convertBase
-methods_desc["jzzh"] = "数字进制转换，支持2~36进制，(数字, 原进制, 目标进制)"
+methods_desc["jzzh"] = "数字进制转换，支持2~36进制"
 
--- 简单计算器
+-- 执行普通计算的辅助函数
+local function execute_normal_calculation(input, seg, express, env)
+    if (string.len(express) < 2) and (not calc_methods[express]) then return end
+    if (string.len(express) == 2) and (express:match("^%d[^%!]$")) then return end
+    local code = replaceToFactorial(express)
+    local loaded_func, load_error = load("return " .. code, "calculate", "t", calc_methods)
+    if loaded_func then
+        local success, result = pcall(loaded_func)
+        if success then
+            local display_value
+            if type(result) == "number" then
+                display_value = format_number_for_display(result)
+            else
+                display_value = tostring(result)
+            end
+            yield(Candidate(input, seg.start, seg._end, display_value, ""))
+            yield(Candidate(input, seg.start, seg._end, express .. "=" .. display_value, ""))
+        else
+            yield(Candidate(input, seg.start, seg._end, express, "执行错误"))
+        end
+    else
+        yield(Candidate(input, seg.start, seg._end, express, "解析失败"))
+    end
+end
+
+-- 执行函数调用的辅助函数
+local function execute_function_call(input, seg, func_name, params, env)
+    -- 检查函数是否存在
+    if not calc_methods[func_name] then
+        yield(Candidate(input, seg.start, seg._end, "错误: 函数 " .. func_name .. " 不存在", ""))
+        return
+    end
+    local func = calc_methods[func_name]
+
+    -- 获取函数的参数数量
+    local function get_function_param_count(func)
+        if type(func) ~= "function" then
+            return nil  -- 不是函数，返回nil
+        end
+        -- 获取函数的字符串表示，从中提取参数信息
+        local func_str = string.dump(func)
+        if not func_str then return nil end
+        -- 从函数的调试信息中获取参数数量（更可靠的方法）
+        local info = debug.getinfo(func)
+        if info and info.nparams then
+            return info.nparams
+        end
+        return nil  -- 无法确定参数数量
+    end
+
+    -- 获取函数的参数数量
+    local expected_param_count = get_function_param_count(func)
+    -- 如果有明确的参数数量要求，进行验证
+    if expected_param_count and expected_param_count > 0 then
+        if #params ~= expected_param_count then
+            yield(Candidate(input, seg.start, seg._end, 
+                "错误: 函数 " .. func_name .. " 需要 " .. expected_param_count .. " 个参数，但提供了 " .. #params .. " 个", ""))
+            return
+        end
+    end
+
+    local function smart_quote_params(param_list, fn_name)
+        -- 判断哪些函数需要特殊处理其字符串参数
+        -- key: 函数名, value: 需要加引号的参数索引表
+        local string_param_funcs = {
+            jzzh = {1}, -- jzzh函数的第1个参数（要转换的数字）可能需要引号
+            dwhs = {2, 3} -- dwhs函数的第2（原单位）和第3（目标单位）个参数需要引号
+        }
+        local indices_to_quote = string_param_funcs[fn_name]
+        if not indices_to_quote then
+            -- 如果这个函数不需要特殊处理，直接返回原参数列表
+            return param_list
+        end
+        local processed_params = {}
+        for i, param in ipairs(param_list) do
+            local p = param
+            -- 检查当前参数索引是否需要被引号包裹
+            for _, idx in ipairs(indices_to_quote) do
+                if i == idx then
+                    -- 检查这个参数：如果它不是纯数字，也不是一个已经被引号括起来的字符串，则为其加上引号
+                    if not p:match("^%d+$") and not p:match("^['\"].*['\"]$") then
+                        p = "'" .. p .. "'"
+                    end
+                    break -- 找到匹配的索引后就跳出内层循环
+                end
+            end
+            table.insert(processed_params, p)
+        end
+        return processed_params
+    end
+
+    local success, result
+    -- 关键修改：正确处理无参数情况
+    if #params > 0 then
+        -- 有参数的情况：构建函数调用字符串
+        -- 在处理参数之前，先进行智能引号处理
+        local processed_params = smart_quote_params(params, func_name)
+        local param_str = table.concat(processed_params, ", ")
+        local call_str = func_name .. "(" .. param_str .. ")"
+        local loaded_func, load_error = load("return " .. call_str, "calculate", "t", calc_methods)
+        if loaded_func then
+            success, result = pcall(loaded_func)
+        else
+            success = false
+            result = "函数调用语法错误: " .. tostring(load_error)
+        end
+    else
+        -- 无参数情况：直接调用函数
+        if type(func) == "function" then
+            success, result = pcall(func)
+        else
+            -- 如果不是函数，可能是其他类型的值
+            success = true
+            result = func
+        end
+    end
+    -- 显示结果
+    if success then
+        -- 关键修改：正确处理函数返回值
+        if type(result) == "function" then
+            -- 如果结果是函数，说明需要执行它
+            success, result = pcall(result)
+            if not success then
+                yield(Candidate(input, seg.start, seg._end, "错误: 函数执行失败: " .. tostring(result), ""))
+                return
+            end
+        end
+        local display_value
+        if type(result) == "number" then
+            display_value = format_number_for_display(result)
+        else
+            display_value = tostring(result)
+        end
+        -- 显示当前结果
+        yield(Candidate(input, seg.start, seg._end, display_value, ""))
+        -- 显示完整调用
+        local param_display = #params > 0 and table.concat(params, ", ") or ""
+        local call_display = func_name .. "(" .. param_display .. ")"
+        yield(Candidate(input, seg.start, seg._end, call_display .. " = " .. display_value, ""))
+    else
+        -- 显示错误信息
+        yield(Candidate(input, seg.start, seg._end, "错误: " .. tostring(result), ""))
+    end
+end
+
 function T.func(input, seg, env)
     local composition = env.engine.context.composition
     if composition:empty() then return end
     local segment = composition:back()
-
     if startsWith(input, T.prefix) or (seg:has_tag("calculator")) then
         segment.prompt = "〔" .. T.tips .. "〕"
         segment.tags = segment.tags + Set({ "calculator" })
         -- 提取算式
         local express = input:gsub(T.prefix, ""):gsub("^/vs", "")
-        -- 算式长度 < 2 直接终止(没有计算意义)
-        if (string.len(express) < 2) and (not calc_methods[express]) then return end
-        if (string.len(express) == 2) and (express:match("^%d[^%!]$")) then return end
-        local code = replaceToFactorial(express)
 
+        local code = replaceToFactorial(express)
         local loaded_func, load_error = load("return " .. code, "calculate", "t", calc_methods)
         if loaded_func and (type(methods_desc[code]) == "string") then
             yield(Candidate(input, seg.start, seg._end, express .. ":" .. methods_desc[code], ""))
-        elseif loaded_func then
-            local success, result = pcall(loaded_func)
-            if success then
-                local display_value
-                if type(result) == "number" then
-                    display_value = format_number_for_display(result)
-                else
-                    display_value = tostring(result)
-                end
-                yield(Candidate(input, seg.start, seg._end, display_value, ""))
-                yield(Candidate(input, seg.start, seg._end, express .. "=" .. display_value, ""))
-                --yield(Candidate(input, seg.start, seg._end, tostring((result)), ""))
-                --yield(Candidate(input, seg.start, seg._end, express .. "=" .. tostring((result)), ""))
-            else
-                -- 处理执行错误
-                yield(Candidate(input, seg.start, seg._end, express, "执行错误"))
-            end
-        else
-            -- 处理加载错误
-            yield(Candidate(input, seg.start, seg._end, express, "解析失败"))
         end
+
+        -- 检查是否是单个全局变量（不包含运算符的纯标识符）
+        if express:match("^[a-zA-Z][a-zA-Z0-9_]*$") then
+            local identifier = express
+            local value = calc_methods[identifier]
+            -- 如果是已定义的数值常量，直接显示其值
+            if type(value) == "number" then
+                local formatted_result = format_number_for_display(value)
+                local description = methods_desc[identifier] or ""
+                
+                -- 创建候选词
+                local cand = Candidate("calculator", seg.start, seg._end, formatted_result, description)
+                cand.preedit = input
+                cand.quality = 100
+                yield(cand)
+                
+                -- 同时显示带变量名的完整表达式结果
+                local expr_cand = Candidate("calculator", seg.start, seg._end, 
+                    identifier .. " = " .. formatted_result, description)
+                expr_cand.preedit = input
+                expr_cand.quality = 99
+                yield(expr_cand)               
+                return
+            end
+        -- 让全局变量可以参与运算
+        elseif express:match("^([a-zA-Z][a-zA-Z0-9_]*)") then
+            local identifier = express:match("^([a-zA-Z][a-zA-Z0-9_]*)")
+            if identifier then
+                local value = calc_methods[identifier]
+                -- 如果是已定义的数值常量，按普通计算处理
+                if type(value) == "number" then
+                    execute_normal_calculation(input, seg, express, env)
+                    return
+                end
+            end
+        end
+
+        -- 检查是否是函数调用（英文字母开头且不包含括号）
+        if express:match("^[a-zA-Z]") and not express:find("[()]") then
+            -- 尝试按免括号方式处理函数调用
+            local func_name = nil
+            local param_part = ""
+        
+            -- 从长到短尝试匹配函数名
+            for i = #express, 1, -1 do
+                local potential_name = express:sub(1, i)
+                if calc_methods[potential_name] ~= nil then
+                    func_name = potential_name
+                    param_part = express:sub(i + 1)
+                    break
+                end
+            end
+        
+            if func_name then
+                -- 如果找到函数名，提取参数部分
+                local params = {}
+                if param_part and param_part ~= "" then
+                    local current_param = ""
+                    local in_quotes = false
+                    local quote_char = ""
+            
+                    for i = 1, #param_part do
+                        local char = param_part:sub(i, i)
+                
+                        if in_quotes then
+                            if char == quote_char then
+                                in_quotes = false
+                                table.insert(params, current_param)
+                                current_param = ""
+                            else
+                                current_param = current_param .. char
+                            end
+                        else
+                            if char == '"' or char == "'" then
+                                in_quotes = true
+                                quote_char = char
+                                if current_param ~= "" then
+                                    table.insert(params, current_param)
+                                    current_param = ""
+                                end
+                            elseif char == "," then
+                                if current_param ~= "" then
+                                    table.insert(params, current_param)
+                                    current_param = ""
+                                end
+                            else
+                                current_param = current_param .. char
+                            end
+                        end
+                    end
+            
+                    if current_param ~= "" then
+                        table.insert(params, current_param)
+                    end
+                end
+                -- 清理参数
+                for i, param in ipairs(params) do
+                    params[i] = param:match("^%s*(.-)%s*$")
+                end
+                -- 执行函数
+                execute_function_call(input, seg, func_name, params, env)
+                return
+            end
+        end
+
+        -- 其他情况执行普通计算
+        execute_normal_calculation(input, seg, express, env)
     end
 end
 

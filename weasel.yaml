@@ -17,7 +17,7 @@ app_options:
       ascii_punct: true
   firefox.exe:
     inline_preedit: true # 行内显示预编辑区：规避 <https://github.com/rime/weasel/issues/946>
-  # cmd.exe:               # 带 .exe 的进程名：Weasel 15.0 及之前版本须小写; PR #1049 合并后释出的版本大小写不敏感
+  # cmd.exe:               
   #   ascii_mode: true     # 英文模式
   # conhost.exe:
   #   ascii_mode: true
@@ -68,7 +68,7 @@ style:
   vertical_text_with_wrap: false           # 文本竖排模式下，自动换行：true；false
   vertical_auto_reverse: false             # 文本竖排模式下，候选窗口位于光标上方时倒序排列：true；false
 
-  label_format: "%s"                       # 标签字符：例如 %s. 效果为 1. 2. 3. ....
+  label_format: "%s."                       # 标签字符：例如 %s. 效果为 1. 2. 3. ....
   mark_text: ""                           # 标记字符，显示在选中的候选标签前，需要在配色方案中指定颜色；如该项为空字符串 "" 而配色方案中 hilited_mark_color 非透明色，则显示 Windows 11 输入法风格标记
   ascii_tip_follow_cursor: false           # 切换 ASCII 模式时，提示跟随鼠标，而非输入光标
   enhanced_position: true                  # 无法定位候选框时，在窗口左上角显示候选框：true；false
@@ -82,30 +82,27 @@ style:
   click_to_capture: false                  # 鼠标点击候选项，创建截图：true；false
 
   layout:
-    baseline: 0                            # 0 - 100，字号百分比。<https://github.com/rime/weasel/pull/1177>
-    linespacing: 0                         # 0 - 100，字号百分比。与 baseline 一同设置可解决字体跳动问题，设置为 0 为禁用
-    align_type: bottom                    # 标签、候选文字、注解文字之间的相对对齐方式：top ; center ; bottom
-    max_height: 600                        # 候选框最大高度，文本竖排模式下如高度超此尺寸则换列显示候选，设置为 0 不启用此功能
-    max_width: 0                           # 候选框最大宽度，horizontal 布局如宽超此尺寸则换行显示候选，设置为 0 不启用此功能
-    min_height: 0                          # 候选框最小高度
-    min_width: 0                          # 候选框最小宽度
-    border_width: 1                       # 边框宽度；又名 border                      
-    margin_x: 4                            # 主体元素和候选框的左右边距；为负值时，不显示候选框
-    margin_y: 4                            # 主体元素的上下边距；为负值时，不显示候选框
-    spacing: 13                            # inline_preedit 为否时，编码区域和候选区域的间距
-    candidate_spacing: 12                  # 候选项之间的间距
-    line_spacing: 5
-    hilite_spacing: 5                      # 候选项和相应标签的间距
-    hilite_padding: 5                      # 高亮区域和内部文字的间距，影响高亮区域大小
-    # hilite_padding_x: 8                  # 高亮区域和内部文字的左右间距，如无特殊指定则依 hilite_padding 设置
-    # hilite_padding_y: 8                  # 高亮区域和内部文字的上下间距，如无特殊指定则依 hilite_padding 设置
-    shadow_radius: 0                       # 阴影区域半径，为 0 不显示阴影；需要同时在配色方案中指定非透明的阴影颜色
-    shadow_offset_x: 4                     # 阴影左右偏移距离
-    shadow_offset_y: 4                     # 阴影上下偏移距离
-    corner_radius: 6                       # 候选窗口圆角半径
-    round_corner: 6                        # 候选背景色块圆角半径，又名 hilited_corner_radius
-    # type: vertical                       # 布局设置，效果和 style 下的设置相同：
-                                           # horizontal（横向）；vertical（竖向） ; vertical_text（竖排文本） ; vertical+fullscreen（全屏） ; horizontal+fullscreen（横向全屏）
+    align_type: center    # 标签、候选文字、注解文字之间的相对对齐方式
+    max_height: 2800        # 候选框最大高度、宽度。超过设定值会尝试自动折叠，设置为 0 不启用此功能
+    max_width: 1400          # 2800
+    min_height: 0              # 候选框最小高度、宽度
+    min_width: 50 #80
+    #type: horizontal        # 布局类型；功能近似 style 下的窗口控制选项   horizontal; vertical
+    border_width: 1         # 边框宽度，别名 `border`
+    border: 1
+    margin_x: 8                # 主体元素和候选框的左右、上下边距，为负值时，不显示候选框
+    margin_y: 8           
+    spacing: 18                  # inline_preedit 为 false 时，编码区域和候选区域的间距
+    candidate_spacing: 15   # 候选项之间的间距
+    hilite_spacing: 6         # 候选项和相应标签的间距，候选项与注解文字之间的距离
+    hilite_padding: 6           # 高亮区域和内部文字的间距，影响高亮区域大小
+    hilite_padding_y: 5       # 高亮区域和内部文字的左右、上下间距，如无特殊指定则依 hilite_padding 设置
+    hilite_padding_x: 5      
+    shadow_offset_x: "-8"   # 阴影绘制的偏离距离
+    shadow_offset_y: "8"
+    shadow_radius: 8        # 阴影区域半径，为 0 不显示阴影；需要同时在配色方案中指定非透明的阴影颜色
+    corner_radius: 8        # 候选窗口圆角半径
+    round_corner: 8          # 候选背景色块圆角半径，别名 `hilited_corner_radius`
 preset_color_schemes:
   jianchun:
     name: 简纯
@@ -190,3 +187,79 @@ preset_color_schemes:
     label_color: 0x888785
     text_color: 0x8100EB
     shadow_color: 0x20000000
+
+  amber-7:
+    name: 淡白/weasel
+    author: 五笔小筑 <wubixiaozhu@126.com>
+    # 背景设置
+    back_color: 0xffffff                # 窗口背景
+    border_color: 0xE99321            # 窗口边框
+    shadow_color: 0x00000000        # 窗口阴影
+    # 内选区域
+    text_color: 0xE99321                            # 文字
+    hilited_text_color: 0x2238dc           # 编码
+    hilited_back_color: 0xffffff           # 背景
+    hilited_shadow_color: 0x00000000   # 阴影
+    # 以下两项在 inline_preedit: false 时生效
+    nextpage_color: 0x0000FF          # 翻页箭头颜色：下一页；不设置则不显示箭头
+    prevpage_color: 0x0000FF          # 翻页箭头颜色：上一页；不设置则不显示箭头
+    # 激活候选项
+    hilited_mark_color: 0x00000000        # 激活标签
+    hilited_label_color: 0x2021FF          #序号文字
+    hilited_candidate_text_color: 0x2021FF           #候选文字
+    hilited_comment_text_color: 0x000000               #提示文字
+    hilited_candidate_back_color: 0xECF1FC           #激活背景
+    hilited_candidate_border_color: 0xCFDCFD       #激活边框
+    hilited_candidate_shadow_color: 0x00000000   #激活阴影
+    # 其它候选项
+    label_color: 0xE99321                               #序号文字
+    candidate_text_color: 0xE99321            #候选文字
+    comment_text_color: 0x000000                #提示文字
+    candidate_back_color: 0xffffff            #候选背景
+    candidate_border_color: 0xffffff        #候选边框
+    candidate_shadow_color: 0x00000000    #候选阴影
+
+  win10gray:
+    name: win10灰／win10gray
+    author: 五笔小筑 <wubixiaozhu@126.com>
+    back_color: 0xfff4f4f4
+    shadow_color: 0xf7606060
+    border_color: 0xff305c3c
+    text_color: 0xff000000
+    hilited_text_color: 0xff000000
+    hilited_back_color: 0x4ff4f4f4
+    hilited_shadow_color: 0x00000000
+    hilited_mark_color: 0xffd77800
+    hilited_label_color: 0xff555555
+    hilited_candidate_text_color: 0xff000000
+    hilited_comment_text_color: 0xff555555
+    hilited_candidate_back_color: 0x4fcccccc
+    hilited_candidate_border_color: 0x00000000
+    hilited_candidate_shadow_color: 0x00000000
+    label_color: 0xff888888
+    candidate_text_color: 0xff222222
+    comment_text_color: 0xff888888
+    candidate_back_color: 0x00000000
+    candidate_border_color: 0x00000000
+    candidate_shadow_color: 0x00000000
+  
+  mint_light_blue:
+    name: "蓝水鸭／Mint Light Blue"
+    author: Mintimate <"Mintimate's Blog">
+    text_color: 0x6495ed
+    back_color: 0xefefef
+    label_color: 0xcac9c8
+    border_color: 0xefefef
+    shadow_color: 0xb4000000
+    comment_text_color: 0xcac9c8
+    candidate_text_color: 0x424242
+    hilited_text_color: 0xed9564
+    hilited_back_color: 0xefefef
+    hilited_candidate_back_color: 0xed9564
+    hilited_candidate_text_color: 0xefefef 
+    hilited_candidate_label_color: 0xcac9c8
+    hilited_label_color: 0xcac9c8 
+    hilited_comment_text_color: 0xefefef
+    nextpage_color: 0x0000FF
+    prevpage_color: 0x0000FF
+ 
