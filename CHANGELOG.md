@@ -1,5 +1,27 @@
 # Changelog
 
+## [13.1.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.4...v13.1.5) (2025-10-17)
+
+
+### 📚 词库更新
+
+* 词库调整 ([ec9cb75](https://github.com/amzxyz/rime_wanxiang/commit/ec9cb75e8ea00cc3f9f9502c8592fd853bf5cb35))
+* 词库调整 ([5804cfc](https://github.com/amzxyz/rime_wanxiang/commit/5804cfc19293859673ac72a12f738fb9b2f62e00))
+* 词库调整 ([7d9c291](https://github.com/amzxyz/rime_wanxiang/commit/7d9c2910ae4bfff951ed07972244709061ef3364))
+* 词库调整 ([8c9ad2a](https://github.com/amzxyz/rime_wanxiang/commit/8c9ad2ac59b642cf86b88eb80f251392eb6c5613))
+* 词库调整 ([5276236](https://github.com/amzxyz/rime_wanxiang/commit/5276236320fd33fa24308359f79e01a1e1958edd))
+
+
+### 🐛 Bug 修复
+
+* 呣呒放到me编码下 ([1fcd59f](https://github.com/amzxyz/rime_wanxiang/commit/1fcd59fe6ae014a9b430747fec1b57d2511e1ede))
+* 手动排序Lua将不再支持单小写字母,时间复杂度过高容易卡顿,对单字母有固定需求的,请使用根目录custom_phrase.txt,具有良好的效果 ([60e5e38](https://github.com/amzxyz/rime_wanxiang/commit/60e5e38e43310aa7b6b60203c5366cde6b372b48))
+
+
+### 🏡 杂项
+
+* 修改说明 ([0291272](https://github.com/amzxyz/rime_wanxiang/commit/0291272aa106c40db48e5936729af3d3e6934928))
+
 ## [13.1.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.3...v13.1.4) (2025-10-13)
 
 
