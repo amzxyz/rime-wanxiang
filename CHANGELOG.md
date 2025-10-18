@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.1.7](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.6...v13.1.7) (2025-10-18)
+
+
+### 🐛 Bug 修复
+
+* 成对符号包裹现已支持|作为分隔符,以此扩展许多md文档用法 ([3c2eeaa](https://github.com/amzxyz/rime_wanxiang/commit/3c2eeaa5ab0746f200f9b59783a2afb27859204d))
+
+
+### 🏡 杂项
+
+* 修改说明 ([7821664](https://github.com/amzxyz/rime_wanxiang/commit/7821664c4bb77a3619da35b6cfca32bb8d8c6f7e))
+
 ## [13.1.6](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.5...v13.1.6) (2025-10-18)
 
 
