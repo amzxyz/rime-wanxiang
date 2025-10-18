@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.6](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.5...v13.1.6) (2025-10-18)
+
+
+### 📚 词库更新
+
+* 词库调整 ([2acd9e4](https://github.com/amzxyz/rime_wanxiang/commit/2acd9e4e01aa4745bd61690d6ccdb4a847b47f60))
+
 ## [13.1.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.4...v13.1.5) (2025-10-17)
 
 
