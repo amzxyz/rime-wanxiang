@@ -1,33 +1,5 @@
 # Changelog
 
-## [13.1.7](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.6...v13.1.7) (2025-10-21)
-
-
-### 📚 词库更新
-
-* fix ([1850071](https://github.com/amzxyz/rime_wanxiang/commit/1850071a8ba6b15907954e1acde881e643228b98))
-* ic t ([ef525f2](https://github.com/amzxyz/rime_wanxiang/commit/ef525f2454639ca7462169f79f829a6e4fa2fa86))
-* 词库更新 ([5e9c888](https://github.com/amzxyz/rime_wanxiang/commit/5e9c8886fef31407e52631dabe8884f26d727ab3))
-* 词库更新 ([cf34898](https://github.com/amzxyz/rime_wanxiang/commit/cf34898dbec62063af233b2c4b80009ae347b2c9))
-* 词库调整 ([9e33d0a](https://github.com/amzxyz/rime_wanxiang/commit/9e33d0a59857931f80d45eeecc08a17fb013675b))
-* 词库调整 ([dcac3a9](https://github.com/amzxyz/rime_wanxiang/commit/dcac3a9df7af4757a7d6a63f305ae18a7bd7662a))
-* 词库调整 ([7db0bce](https://github.com/amzxyz/rime_wanxiang/commit/7db0bcebd49cdd857c518aad2752b08f237ce1a8))
-* 词库调整 ([00cf691](https://github.com/amzxyz/rime_wanxiang/commit/00cf69119cea5f6a02fe46be2bce222a2e44b62b))
-* 词库调整 ([30e304e](https://github.com/amzxyz/rime_wanxiang/commit/30e304e4e14f57588f8d15ee26a91f364d9e09d0))
-
-
-### 🐛 Bug 修复
-
-* 微调翻译器权重 ([92b0f43](https://github.com/amzxyz/rime_wanxiang/commit/92b0f43ccace8607efcad79e6df6c6fc55c925d3))
-* 成对符号包裹现已支持|作为分隔符,以此扩展许多md文档用法 ([3c2eeaa](https://github.com/amzxyz/rime_wanxiang/commit/3c2eeaa5ab0746f200f9b59783a2afb27859204d))
-* 调整一些细节 ([af07c07](https://github.com/amzxyz/rime_wanxiang/commit/af07c07fa5c5dbb08e8716b97f7668a75dcb3d73))
-
-
-### 🏡 杂项
-
-* 修改说明 ([c5dab7b](https://github.com/amzxyz/rime_wanxiang/commit/c5dab7b9fe29b75a86e4f922c9b44a83e6b318b1))
-* 修改说明 ([7821664](https://github.com/amzxyz/rime_wanxiang/commit/7821664c4bb77a3619da35b6cfca32bb8d8c6f7e))
-
 ## [13.1.6](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.5...v13.1.6) (2025-10-18)
 
 
