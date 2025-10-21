@@ -1,6 +1,6 @@
 # Changelog
 
-## [13.1.7](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.6...v13.1.7) (2025-10-21)
+## [13.1.8](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.7...v13.1.8) (2025-10-21)
 
 
 ### 📚 词库更新
