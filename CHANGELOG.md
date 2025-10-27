@@ -1,5 +1,34 @@
 # Changelog
 
+## [13.1.10](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.9...v13.1.10) (2025-10-27)
+
+
+### 📚 词库更新
+
+* 从现在开始启动人名模式计划,人名后置,斜杠可前置,后续工作将人名移动到人名词库,并梳理排序 ([3985ef8](https://github.com/amzxyz/rime_wanxiang/commit/3985ef8ef4be33fc6f47462d7bff2e99b97ad714))
+* 词库调整 ([ab0c5a5](https://github.com/amzxyz/rime_wanxiang/commit/ab0c5a5630e76566ae35c0447085505375c439fe))
+* 词库调整 ([71479b9](https://github.com/amzxyz/rime_wanxiang/commit/71479b9f38d7e2fb22a1e629b0d59c5bf4359485))
+* 词库调整 ([115ebb2](https://github.com/amzxyz/rime_wanxiang/commit/115ebb23dc68abd2b80a8eba40b2041e0cdb3165))
+* 词库调整 ([8e6563a](https://github.com/amzxyz/rime_wanxiang/commit/8e6563a173d1f472167feb264d525701c715aeed))
+* 词库调整 ([f34c6a0](https://github.com/amzxyz/rime_wanxiang/commit/f34c6a0e09f0f45dd28b26b8cc39bb51e01591cc))
+* 词库调整 ([f16b68c](https://github.com/amzxyz/rime_wanxiang/commit/f16b68cd4dc7f6fcdc1ce6b700cb02f819f65407))
+* 词库调整 ([4fcd3c7](https://github.com/amzxyz/rime_wanxiang/commit/4fcd3c77cf2101a8a3dd7a5b8c842974571ca881))
+* 词库调整 ([3cfc168](https://github.com/amzxyz/rime_wanxiang/commit/3cfc168ff77903469830e985db12db330577e30c))
+* 词库调整 ([526f125](https://github.com/amzxyz/rime_wanxiang/commit/526f12549516e0cf2b79989c42704700be205eda))
+* 词库调整 ([1298adf](https://github.com/amzxyz/rime_wanxiang/commit/1298adfbc0f04aed737f639c97c466905c7127ed))
+* 词库调整 ([9a25e14](https://github.com/amzxyz/rime_wanxiang/commit/9a25e14fc089cc847d4691fceaab1aaede954c24))
+* 词库调整 ([c4a13e2](https://github.com/amzxyz/rime_wanxiang/commit/c4a13e2be786e6587e54aa41c34d613317b836c3))
+
+
+### 🐛 Bug 修复
+
+* 修改转写 ([dfc1c50](https://github.com/amzxyz/rime_wanxiang/commit/dfc1c50295a5ca7488b4147f1ef2d44e148f9060))
+
+
+### 🏡 杂项
+
+* 修改说明 ([2932c43](https://github.com/amzxyz/rime_wanxiang/commit/2932c4391666332f0da0560832fbf3c7515043e1))
+
 ## [13.1.9](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.7...v13.1.9) (2025-10-22)
 
 
