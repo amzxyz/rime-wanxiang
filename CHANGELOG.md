@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.2.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.2.1...v13.2.2) (2025-10-28)
+
+
+### 🐛 Bug 修复
+
+* 修改转写 ([b2dbe7f](https://github.com/amzxyz/rime_wanxiang/commit/b2dbe7f6c62cf4cf8c0027f0a475574ca5cf1fb6))
+
 ## [13.2.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.2.0...v13.2.1) (2025-10-28)
 
 
