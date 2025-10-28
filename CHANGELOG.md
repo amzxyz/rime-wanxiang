@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.2.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.2.0...v13.2.1) (2025-10-28)
+
+
+### 🐛 Bug 修复
+
+* 补全失误造成的逗号缺失 ([34fd2f6](https://github.com/amzxyz/rime_wanxiang/commit/34fd2f688edf0d18036983bbc94ec5f19bd7e7ec))
+
 ## [13.2.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.1.11...v13.2.0) (2025-10-28)
 
 ### ✨ 新特性
