@@ -1,5 +1,21 @@
 # Changelog
 
+## [13.2.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.2.2...v13.2.3) (2025-10-29)
+
+
+### 📚 词库更新
+
+* 移动地名 ([727ba58](https://github.com/amzxyz/rime_wanxiang/commit/727ba58eddb3986f97ba75a9af3db2fabae3b5f3))
+* 词库调整 ([24c9a3c](https://github.com/amzxyz/rime_wanxiang/commit/24c9a3cbb330b0941d9f9898ddafb619686b2f0a))
+* 词库调整 ([0ff93ab](https://github.com/amzxyz/rime_wanxiang/commit/0ff93ab1859e7bb10298af28c80d5be4c524d94a))
+* 调整人名词库 ([3380cd9](https://github.com/amzxyz/rime_wanxiang/commit/3380cd909de02e1ef9464582b4379399da1b620e))
+
+
+### 🐛 Bug 修复
+
+* **lua:** shijian新增节日 ([0a58acd](https://github.com/amzxyz/rime_wanxiang/commit/0a58acde5b78ef073fa885406e34733b6773db81))
+* 小修改 ([922eca0](https://github.com/amzxyz/rime_wanxiang/commit/922eca07d0c45b5fcdd36216de65bc43b68386e5))
+
 ## [13.2.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.2.1...v13.2.2) (2025-10-28)
 
 
