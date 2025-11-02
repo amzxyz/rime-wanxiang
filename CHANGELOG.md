@@ -1,5 +1,31 @@
 # Changelog
 
+## [13.3.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.2.4...v13.3.0) (2025-11-02)
+
+
+### ✨ 新特性
+
+* 移除经调研无人使用的生日功能，新增基于方案自定义的N20250101模式下和/rq模式下，日期类型、顺序进行完全的自定义能力，简单到爆 ([2eeda09](https://github.com/amzxyz/rime_wanxiang/commit/2eeda09143e8f40fd39cdc3941177a72e201d7d1))
+
+
+### 📚 词库更新
+
+* 词库删减 ([12a2618](https://github.com/amzxyz/rime_wanxiang/commit/12a2618b753a4e37c5639c184069242782b97fb2))
+* 词库调整 ([d25450a](https://github.com/amzxyz/rime_wanxiang/commit/d25450a87cd06c5654024530abe63de66714fd2b))
+* 词库调整 ([9c4dbb8](https://github.com/amzxyz/rime_wanxiang/commit/9c4dbb81ff6382d15bbaf31a083be645d2f8859c))
+* 词库调整 ([d46348e](https://github.com/amzxyz/rime_wanxiang/commit/d46348e4610b7582b18e065a2de923ea7f749f78))
+
+
+### 🐛 Bug 修复
+
+* 移除多于函数 ([f2b0b91](https://github.com/amzxyz/rime_wanxiang/commit/f2b0b91dd1aa2ed3a25fb5766a0d026e48e62f32))
+* 调整一些细节 ([0e38eab](https://github.com/amzxyz/rime_wanxiang/commit/0e38eab00d2a75d70faa4748c279f69c6bae9320))
+
+
+### 🏡 杂项
+
+* 修改说明 ([fec9cba](https://github.com/amzxyz/rime_wanxiang/commit/fec9cba9e62bbe366c15f4438a1772da575e6ebe))
+
 ## [13.2.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.2.3...v13.2.4) (2025-10-31)
 
 
