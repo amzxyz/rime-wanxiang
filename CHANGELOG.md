@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.3.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.1...v13.3.2) (2025-11-03)
+
+
+### 🐛 Bug 修复
+
+* 添加首右拆分预备文件 ([15d76a4](https://github.com/amzxyz/rime_wanxiang/commit/15d76a4e12a56717f9d3dbc85c08316d93234fc6))
+
 ## [13.3.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.0...v13.3.1) (2025-11-03)
 
 
