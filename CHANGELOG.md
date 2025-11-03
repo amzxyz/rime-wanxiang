@@ -1,5 +1,23 @@
 # Changelog
 
+## [13.3.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.0...v13.3.1) (2025-11-03)
+
+
+### 📚 词库更新
+
+* 词库调整 ([f51bd49](https://github.com/amzxyz/rime_wanxiang/commit/f51bd491942b076e201b5b04a6a5fdde624ba341))
+* 词库调整 ([efed2e8](https://github.com/amzxyz/rime_wanxiang/commit/efed2e874270d664deea223e6786a842a97d2809))
+
+
+### 🐛 Bug 修复
+
+* 添加首右辅助码 ([3403284](https://github.com/amzxyz/rime_wanxiang/commit/3403284c3e0c3876fcc6578badcaa055a3d5d057))
+
+
+### 🏡 杂项
+
+* 修改说明 ([3029775](https://github.com/amzxyz/rime_wanxiang/commit/3029775cc1bd15a3703c54318a5d919f13543504))
+
 ## [13.3.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.2.4...v13.3.0) (2025-11-02)
 
 
