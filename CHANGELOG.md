@@ -1,5 +1,19 @@
 # Changelog
 
+## [13.3.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.4...v13.3.5) (2025-11-06)
+
+
+### 📚 词库更新
+
+* 词库调整 ([d250e72](https://github.com/amzxyz/rime_wanxiang/commit/d250e725f048c7d2f9a25517b2ce3a3b8c9a50d3))
+
+
+### 🐛 Bug 修复
+
+* 为了解决大家不会用的问题，位于custom预设了两种ctrl+数字跳转对应音节并提交前半部分，此举可能会造成通过行数patch其他功能的用户参数不正确，请大家手工做出调整 ([9d7a25c](https://github.com/amzxyz/rime_wanxiang/commit/9d7a25c3055400e8a54e326eeeab4e33a26fb5ee))
+* 补齐首右拆分数据 ([b2dc5c2](https://github.com/amzxyz/rime_wanxiang/commit/b2dc5c2a6a3d9278e9fd9f3dc6b5972359b56838))
+* 调整预设快捷键的代码顺序，使得经常可能自定义替换行的这种写法居于靠前的位置这样更稳定，减少因新增内容导致的失效 ([da5615d](https://github.com/amzxyz/rime_wanxiang/commit/da5615dbb5d2c3539077d4e2964158d44f9a3214))
+
 ## [13.3.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.3...v13.3.4) (2025-11-05)
 
 
