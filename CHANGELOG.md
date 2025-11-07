@@ -1,5 +1,14 @@
 # Changelog
 
+## [13.3.9](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.8...v13.3.9) (2025-11-07)
+
+
+### 🐛 Bug 修复
+
+* 修复国标、加加base版本转写 ([d885ed2](https://github.com/amzxyz/rime_wanxiang/commit/d885ed2414a36882bf64b7083dc45feafa246a46))
+* 修复声调拼音状态下ctrl+数字上屏不可用的问题 ([df4003a](https://github.com/amzxyz/rime_wanxiang/commit/df4003aeadc3c1692a9e2349140164be683ab481))
+* 关闭Lua日志 ([0cb0ac1](https://github.com/amzxyz/rime_wanxiang/commit/0cb0ac17c9f0f2740a053b9df83d9bf55dc1b3ec))
+
 ## [13.3.8](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.7...v13.3.8) (2025-11-07)
 
 
