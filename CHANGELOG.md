@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.3.8](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.7...v13.3.8) (2025-11-07)
+
+
+### 🐛 Bug 修复
+
+* 新增NR开头的模式下使用qwertyuio替代数字来选词上屏 ([1ed9e44](https://github.com/amzxyz/rime_wanxiang/commit/1ed9e44fc2eb498839df1faf9536a9359d8c69c6))
+
 ## [13.3.7](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.6...v13.3.7) (2025-11-07)
 
 
