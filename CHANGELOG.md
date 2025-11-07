@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.3.7](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.6...v13.3.7) (2025-11-07)
+
+
+### 🐛 Bug 修复
+
+* 句子局部提交改用Lua实现，这与按键定义中ctrl+1~0冲突，请大家更新后删除custom文件中相关引用段落 ([d4153e2](https://github.com/amzxyz/rime_wanxiang/commit/d4153e2e55df45e16f9db284c3e4f15208a3f709))
+
 ## [13.3.6](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.5...v13.3.6) (2025-11-07)
 
 
