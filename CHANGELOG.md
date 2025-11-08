@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.3.11](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.10...v13.3.11) (2025-11-08)
+
+
+### 📚 词库更新
+
+* 调整生物学词库 ([25d2c0e](https://github.com/amzxyz/rime_wanxiang/commit/25d2c0e3a78f4d6505b7921d6c36a46ebbbc4684))
+
+
+### 🐛 Bug 修复
+
+* 修复日期格式化错误 ([56955d7](https://github.com/amzxyz/rime_wanxiang/commit/56955d7a0381045187b181dd4ea273e8ae8c00d9))
+
 ## [13.3.10](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.9...v13.3.10) (2025-11-08)
 
 
