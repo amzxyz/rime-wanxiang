@@ -1,5 +1,18 @@
 # Changelog
 
+## [13.3.10](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.9...v13.3.10) (2025-11-08)
+
+
+### 📚 词库更新
+
+* 词库调整 ([ee91f52](https://github.com/amzxyz/rime_wanxiang/commit/ee91f52c778053cd9f185fe489e47ad0af7c1e8f))
+
+
+### 🐛 Bug 修复
+
+* 修复N模式qwert错误的导致上屏问题，并新增/dt,/sj的自定义能力，结合之前的/sj,N0101整个能力更加完整 ([dd16f49](https://github.com/amzxyz/rime_wanxiang/commit/dd16f4961d2766ba45da488a0fb9685b97dc93ef))
+* 修复自定义的preedit转换逻辑 ([b1f0db1](https://github.com/amzxyz/rime_wanxiang/commit/b1f0db119eb8840e65283b3a6701797e49113c10))
+
 ## [13.3.9](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.8...v13.3.9) (2025-11-07)
 
 
