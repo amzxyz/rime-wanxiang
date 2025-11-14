@@ -1,5 +1,30 @@
 # Changelog
 
+## [13.3.13](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.12...v13.3.13) (2025-11-14)
+
+
+### 📚 词库更新
+
+* 整理生物学词库 ([66cf587](https://github.com/amzxyz/rime_wanxiang/commit/66cf587a7cbcb3f3305abe15c025a1b14ec3a1b2))
+* 整理生物学词库 ([23ee04c](https://github.com/amzxyz/rime_wanxiang/commit/23ee04ca377d835f1a4d1f8c8765dd3b533d02ef))
+* 词库调整 ([4d6ab58](https://github.com/amzxyz/rime_wanxiang/commit/4d6ab58366abaaa6d2fbc6196c6b535e0a47e918))
+* 词库调整 ([621a326](https://github.com/amzxyz/rime_wanxiang/commit/621a3260a9a33233296a1b37e59beb58bc0b107c))
+* 词库调整 ([c982719](https://github.com/amzxyz/rime_wanxiang/commit/c982719107b475b97bccf592365c88babf1ba944))
+* 词库调整 ([d79bef1](https://github.com/amzxyz/rime_wanxiang/commit/d79bef1094d60958eb85e6f20e78a17c2e869add))
+* 词库调整 ([5d42e87](https://github.com/amzxyz/rime_wanxiang/commit/5d42e8708dab35be12c7fc941b7df46eedded1e3))
+* 词库调整 ([db69ba3](https://github.com/amzxyz/rime_wanxiang/commit/db69ba34953859770f7d72d4b62f715afbc5cd60))
+
+
+### 🐛 Bug 修复
+
+* **lua:** 修复ctrl+数字上屏功能中，光标不在末尾补充编码时导致整段input与光标前preedit组合成的上下文信息，致使消耗编码错位的问题 ([f2f8c72](https://github.com/amzxyz/rime_wanxiang/commit/f2f8c72fa22bd628825d26c1ba4bcb4718afd390))
+* **lua:** 限制上下文变量范围 ([8910c74](https://github.com/amzxyz/rime_wanxiang/commit/8910c745c32764745d7c4cde0c7381a9c2ef87ba))
+
+
+### 🏡 杂项
+
+* 更新 README.md ([69a7907](https://github.com/amzxyz/rime_wanxiang/commit/69a79077de7f762e4002c7397d00197b4e4053e6))
+
 ## [13.3.12](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.11...v13.3.12) (2025-11-08)
 
 
