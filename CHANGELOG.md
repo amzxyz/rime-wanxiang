@@ -1,5 +1,25 @@
 # Changelog
 
+## [13.3.14](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.13...v13.3.14) (2025-11-16)
+
+
+### 📚 词库更新
+
+* 生物词库整理 ([57eaa3b](https://github.com/amzxyz/rime_wanxiang/commit/57eaa3bd76e2f638d6953bba1ba820bd71577da8))
+
+
+### 🐛 Bug 修复
+
+* 同步首右的辅助码更新 ([70d7793](https://github.com/amzxyz/rime_wanxiang/commit/70d7793f2f86870b32350a6eb80e951820d6420e))
+* 自然码辅助删减兼容 ([352d5a0](https://github.com/amzxyz/rime_wanxiang/commit/352d5a0e38a4653b8161a0b4d9ba9ca7085d13a3))
+* 调整模型参数以匹配新的模型数据 ([a552813](https://github.com/amzxyz/rime_wanxiang/commit/a5528130c786ad3ac6eef7a83058ce45a8e81b1c))
+* 调整若干细节 ([2871b21](https://github.com/amzxyz/rime_wanxiang/commit/2871b21d9840cf45d320628c503cf9415a8d42bf))
+
+
+### 🏡 杂项
+
+* 修改说明 ([d109f95](https://github.com/amzxyz/rime_wanxiang/commit/d109f95b48e2c747e82249af7579de04ffef0a9d))
+
 ## [13.3.13](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.12...v13.3.13) (2025-11-14)
 
 
