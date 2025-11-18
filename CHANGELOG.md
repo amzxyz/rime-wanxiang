@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.4.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.0...v13.4.1) (2025-11-18)
+
+
+### 🐛 Bug 修复
+
+* 调整转写 ([fc49fca](https://github.com/amzxyz/rime_wanxiang/commit/fc49fca599eb3fe74d19f3a91605a151c2b0333c))
+
 ## [13.4.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.17...v13.4.0) (2025-11-18)
 
 
