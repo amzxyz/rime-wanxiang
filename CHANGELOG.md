@@ -1,5 +1,23 @@
 # Changelog
 
+## [13.4.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.17...v13.4.0) (2025-11-18)
+
+
+### ✨ 新特性
+
+* 新增万象双拼 ([5cc99fb](https://github.com/amzxyz/rime_wanxiang/commit/5cc99fbbff726ffa1843f9feeef5eb9db35dba04))
+
+
+### 📚 词库更新
+
+* 词库调整 ([c112067](https://github.com/amzxyz/rime_wanxiang/commit/c1120671a447a26cf8124d77fc7862346a277aa7))
+
+
+### 🐛 Bug 修复
+
+* NUM contamination (https://github.com/amzxyz/rime_wanxiang/issues/555) ([10167b2](https://github.com/amzxyz/rime_wanxiang/commit/10167b2e60c7a2f578f5d7ae2e9b33b002d91bee))
+* 修复拼音加加拼写运算的问题 ([6f148a7](https://github.com/amzxyz/rime_wanxiang/commit/6f148a713fb80dedc4fda8aef5ab1c4b85d43d4c))
+
 ## [13.3.17](https://github.com/amzxyz/rime_wanxiang/compare/v13.3.16...v13.3.17) (2025-11-17)
 
 
