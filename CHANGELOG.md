@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.4.6](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.5...v13.4.6) (2025-11-21)
+
+
+### 🐛 Bug 修复
+
+* 处理脚本导致的错误 ([57c6877](https://github.com/amzxyz/rime_wanxiang/commit/57c6877dbeb7f72bd46b6937fa083b79a95652b8))
+
 ## [13.4.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.4...v13.4.5) (2025-11-21)
 
 
