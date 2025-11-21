@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.4.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.4...v13.4.5) (2025-11-21)
+
+
+### 📚 词库更新
+
+* 词库调整 ([c5839c3](https://github.com/amzxyz/rime_wanxiang/commit/c5839c3aadfb771d453ea117beb37cd98eea6a89))
+
+
+### 🐛 Bug 修复
+
+* 由于windows系统utf-8问题文件名变更为采用拼音命名 ([8f87a91](https://github.com/amzxyz/rime_wanxiang/commit/8f87a91fde6a59a7d0250242c4eef57db4448e48))
+
 ## [13.4.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.3...v13.4.4) (2025-11-21)
 
 
