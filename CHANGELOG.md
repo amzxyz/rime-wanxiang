@@ -1,5 +1,24 @@
 # Changelog
 
+## [13.4.7](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.6...v13.4.7) (2025-11-24)
+
+
+### 📚 词库更新
+
+* 归类《三字经》词条 ([ac766c3](https://github.com/amzxyz/rime_wanxiang/commit/ac766c3afa9a2c758351188076eb13c82e49ea95))
+* 词库调整 ([f804c61](https://github.com/amzxyz/rime_wanxiang/commit/f804c610845035d1c2fa5b860b763e7aa1a3f611))
+* 词库调整 ([009f8f9](https://github.com/amzxyz/rime_wanxiang/commit/009f8f9c210e9b40a6ef439c024a7e9850177b9b))
+* 词库调整 ([31135e6](https://github.com/amzxyz/rime_wanxiang/commit/31135e691ec72b9d128a1afc2649b3392939c0bc))
+* 词库调整 ([caf175e](https://github.com/amzxyz/rime_wanxiang/commit/caf175e7f5872e0663639e51d62d6371da3d898c))
+* 词库调整 ([bbe5e6e](https://github.com/amzxyz/rime_wanxiang/commit/bbe5e6ef60f10ad6ef790239dd847050c5bdc670))
+* 词库调整 ([565547d](https://github.com/amzxyz/rime_wanxiang/commit/565547d1331bd2f3e6cce56b90596faf5e7ad84b))
+
+
+### 🐛 Bug 修复
+
+* **lua:** tips高亮相关上游更新移除相关代码[#260](https://github.com/amzxyz/rime_wanxiang/issues/260) ([c83c217](https://github.com/amzxyz/rime_wanxiang/commit/c83c217d2d72252eb132cad438f400511b40a9e6))
+* 调整模型测试参数 ([d5e6501](https://github.com/amzxyz/rime_wanxiang/commit/d5e6501179404fa3c2322fde22b454439f0ae861))
+
 ## [13.4.6](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.5...v13.4.6) (2025-11-21)
 
 
