@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.4.8](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.7...v13.4.8) (2025-11-25)
+
+
+### 🐛 Bug 修复
+
+* 修正opencc数据重复导致的无法工作 ([7337e1c](https://github.com/amzxyz/rime_wanxiang/commit/7337e1cdf0bca8373d521636a45deac3e5f55b05))
+
 ## [13.4.7](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.6...v13.4.7) (2025-11-24)
 
 
