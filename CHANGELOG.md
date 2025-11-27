@@ -1,5 +1,13 @@
 # Changelog
 
+## [13.4.9](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.8...v13.4.9) (2025-11-27)
+
+
+### 📚 词库更新
+
+* 细化细胞词库 ([c30450c](https://github.com/amzxyz/rime_wanxiang/commit/c30450c42818e475b69c8bdb17f79531ffc69ccd))
+* 默认注释掉两个细胞词库 ([09d1594](https://github.com/amzxyz/rime_wanxiang/commit/09d1594157de71e16ea72e38e940ec3dcacea721))
+
 ## [13.4.8](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.7...v13.4.8) (2025-11-25)
 
 
