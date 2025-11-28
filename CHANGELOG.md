@@ -1,5 +1,30 @@
 # Changelog
 
+## [13.4.10](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.9...v13.4.10) (2025-11-28)
+
+
+### 📚 词库更新
+
+* 归类-物化生医药-地矿-基础 ([8b46c98](https://github.com/amzxyz/rime_wanxiang/commit/8b46c988a0aa4da2537ea0df3b6ad0cdcf0eb3c7))
+* 归类物化生、物种词库 ([2c580a5](https://github.com/amzxyz/rime_wanxiang/commit/2c580a5260725532ae4119c6a9494d28172c6206))
+* 归类物化生医药 ([7a8e512](https://github.com/amzxyz/rime_wanxiang/commit/7a8e5127a3d5ed0fcd2293759cd5996c5d584850))
+* 归类物种、物化生医药词库 ([7303774](https://github.com/amzxyz/rime_wanxiang/commit/7303774690e9cd9f3c68551086755e9e93ad02e9))
+* 归类至地矿、物化生医药、联想、基础 ([5779c45](https://github.com/amzxyz/rime_wanxiang/commit/5779c450b294cb431855e846bf2fc783ae824d33))
+* 归类至物种、物化生医药 ([285ac5e](https://github.com/amzxyz/rime_wanxiang/commit/285ac5e5b61ad608018e8d48e6703a356d3016b7))
+* 词库调整 ([8db858b](https://github.com/amzxyz/rime_wanxiang/commit/8db858b2f1e6c86c9dbde3f239b8d2990339fb0a))
+* 词库调整 ([8732ec7](https://github.com/amzxyz/rime_wanxiang/commit/8732ec7e8b9d6aaff5c1f4735cb29742494924d6))
+* 词库调整 ([7a0a451](https://github.com/amzxyz/rime_wanxiang/commit/7a0a451a6af83c444d7db6472d6c292626ae9fb4))
+* 词库调整 ([8a5d757](https://github.com/amzxyz/rime_wanxiang/commit/8a5d757a908237a5b9fdf41aa2b3abbc63ac41ad))
+* 词库调整 ([9e1f6ba](https://github.com/amzxyz/rime_wanxiang/commit/9e1f6baba817cbed9db1bb3d4e52337743932ca3))
+* 词库调整 ([5a70301](https://github.com/amzxyz/rime_wanxiang/commit/5a70301340ebf1d16124d305e0836bc62d870de7))
+* 词库调整 ([9ed0a78](https://github.com/amzxyz/rime_wanxiang/commit/9ed0a78f3665276c1cb11e2b7d51ccee9c184c2c))
+* 词库调整 ([1bfa673](https://github.com/amzxyz/rime_wanxiang/commit/1bfa6733d4df387db0ffe1b6c8a8b1e769ad5823))
+* 词库调整 ([d76f773](https://github.com/amzxyz/rime_wanxiang/commit/d76f77375d830def8ae6d58e80243bc6e752fdaf))
+* 词库调整 ([f874428](https://github.com/amzxyz/rime_wanxiang/commit/f87442870fedc349ce8f26a9ccfe2dada930a183))
+* 词库调整 ([99569e6](https://github.com/amzxyz/rime_wanxiang/commit/99569e633119dee92593273217122016d7f25f36))
+* 词库调整 ([1a008f6](https://github.com/amzxyz/rime_wanxiang/commit/1a008f6388b2cb4a5d36778896f78b1715bb9e92))
+* 调整九键转写 ([95d6a5e](https://github.com/amzxyz/rime_wanxiang/commit/95d6a5e1dabc7068374a5455339587e2288b6f6d))
+
 ## [13.4.9](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.8...v13.4.9) (2025-11-27)
 
 
