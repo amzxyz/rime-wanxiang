@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.4.11](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.10...v13.4.11) (2025-11-28)
+
+
+### 🐛 Bug 修复
+
+* 调整Lua顺序 ([da4ebce](https://github.com/amzxyz/rime_wanxiang/commit/da4ebcee58253ec892ce703987d6be64a97e664b))
+
+
+### 🏡 杂项
+
+* 修改说明 ([a2e2d8a](https://github.com/amzxyz/rime_wanxiang/commit/a2e2d8ab4cc124650d55b2805bb4187035db01a4))
+
 ## [13.4.10](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.9...v13.4.10) (2025-11-28)
 
 
