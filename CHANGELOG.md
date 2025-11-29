@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.5.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.1...v13.5.2) (2025-11-29)
+
+
+### 🐛 Bug 修复
+
+* 字符集过滤仅限单字 ([ebf255b](https://github.com/amzxyz/rime_wanxiang/commit/ebf255b4c486cd8186228b7d78c957fbbcc1f49d))
+
 ## [13.5.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.0...v13.5.1) (2025-11-29)
 
 
