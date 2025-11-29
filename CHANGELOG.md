@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.5.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.12...v13.5.0) (2025-11-29)
+
+
+### ✨ 新特性
+
+* 合并字符集过滤功能滤镜，并采用全新方式给用户留出自定义空间，从而可以放心移除了charset方案和词库文件，进一步完成了功能的垂直整合，方案文件结构更加紧密 ([c35f63d](https://github.com/amzxyz/rime_wanxiang/commit/c35f63db8b32dcd790b081beff0ccc0db77c6083))
+
+
+### 📚 词库更新
+
+* 词库调整 ([44afdae](https://github.com/amzxyz/rime_wanxiang/commit/44afdae8ce86732161f528061b9d39e8819942dc))
+
 ## [13.4.12](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.11...v13.4.12) (2025-11-29)
 
 
