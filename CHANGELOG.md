@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.5.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.0...v13.5.1) (2025-11-29)
+
+
+### 📚 词库更新
+
+* 词库调整 ([7a955f7](https://github.com/amzxyz/rime_wanxiang/commit/7a955f7b116c4a627ea29b4ea303e678e8ad4c6e))
+
+
+### 🐛 Bug 修复
+
+* 修复preedit转换声调的bug ([2f567ee](https://github.com/amzxyz/rime_wanxiang/commit/2f567eead5b93538e1ca83aed0e2eb12162a8843))
+
 ## [13.5.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.4.12...v13.5.0) (2025-11-29)
 
 
