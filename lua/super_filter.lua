@@ -481,7 +481,8 @@ end
 -- 从 schema 里读取 charsetlist / charsetblacklist
 local function init_charset_filter(env, cfg)
     -- 主字符集（表滤镜）
-    env.charset       = ReverseDb("lua/charset.bin")
+    local charsetFile = wanxiang.get_filename_with_fallback("lua/charset.bin") or "lua/charset.bin"
+    env.charset       = ReverseDb(charsetFile)
     env.charset_memo  = {}
     env.charset_extra = {}  -- 白名单
     env.charset_block = {}  -- 黑名单
