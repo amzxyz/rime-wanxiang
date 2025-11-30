@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.5.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.2...v13.5.3) (2025-11-30)
+
+
+### 🐛 Bug 修复
+
+* **super_filter:** 字符集数据路径兼容系统目录 ([fe2f7da](https://github.com/amzxyz/rime_wanxiang/commit/fe2f7dabc216ad2238f4c3ab7039c71ae5f31f47))
+
 ## [13.5.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.1...v13.5.2) (2025-11-29)
 
 
