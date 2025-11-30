@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.5.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.4...v13.5.5) (2025-11-30)
+
+
+### 🐛 Bug 修复
+
+* 有时英文候选输入会同时派生一些生僻字在次选，比较碍眼，做了一点逻辑规避 ([f20c483](https://github.com/amzxyz/rime_wanxiang/commit/f20c48346c1d5f11262503a0a0fbc29c4d047e9f))
+
 ## [13.5.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.3...v13.5.4) (2025-11-30)
 
 
