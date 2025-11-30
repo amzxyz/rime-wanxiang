@@ -1,5 +1,19 @@
 # Changelog
 
+## [13.5.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.3...v13.5.4) (2025-11-30)
+
+
+### 🐛 Bug 修复
+
+* 恢复不小心去掉的lookup ([33616f7](https://github.com/amzxyz/rime_wanxiang/commit/33616f742e9d7948d31960e19458a9a4a75e39ee))
+* 自动化变更 ([cf8f8d8](https://github.com/amzxyz/rime_wanxiang/commit/cf8f8d8b96cd7a470b10a60b2f6bef20201a2850))
+* 自动化变更 ([7dfd990](https://github.com/amzxyz/rime_wanxiang/commit/7dfd990412dbc9d804be5e66081d689a818e4e21))
+
+
+### 🏡 杂项
+
+* 修改说明 ([cb92b45](https://github.com/amzxyz/rime_wanxiang/commit/cb92b45d0b7c61f2d935ca768b0f7af44384ade1))
+
 ## [13.5.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.2...v13.5.3) (2025-11-30)
 
 
