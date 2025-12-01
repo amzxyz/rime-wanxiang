@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+if [[ -z "${plum_repo}" ]]; then
+    plum_repo='rime/plum'
+fi
+
+if [[ -z "${plum_dir}" ]]; then
+    # am I in a working copy already?
+    plum_dir="$(dirname "$(readlink -f "$0")")"
+    if ! [[ -f "${plum_dir}"/scripts/install-packages.sh ]]; then
+        # make a copy of plum in a subdirectory
+        plum_dir='plum'
+    fi
+fi
+
+if ! [[ -e "${plum_dir}" ]]; then
+    git clone --depth 1 "https://github.com/${plum_repo}.git" "${plum_dir}"
+fi
+
+if ! [[ "$0" -ef "${plum_dir}"/rime-install ]]; then
+    # run the newer version of rime-install
+    "${plum_dir}"/rime-install "$@"
+    exit
+fi
+
+export root_dir="${plum_dir}"
+source "${root_dir}"/scripts/bootstrap.sh
+require 'styles'
+
+if [[ -z "${rime_dir}" ]]; then
+    # Output to Rime user directory
+    require 'frontend'
+    guess_rime_user_dir  # exports `rime_dir`
+fi
+
+if [[ "$1" == '--select' ]]; then
+    shift
+    interactive=1
+fi
+
+if [[ $# -eq 0 ]]; then
+    targets=(':preset')
+else
+    targets=("$@")
+fi
+
+if [[ -n "${interactive}" ]]; then
+    require 'selector'
+    select_packages "${targets[@]}"
+    targets=("${selected_packages[@]}")
+fi
+
+for target in "${targets[@]}"; do
+    if [[ "${target}" == 'plum' ]]; then
+        echo $(print_result 'Updating plum at') "'${plum_dir}'"
+        (cd "${plum_dir}"; git pull)
+        continue
+    fi
+
+    "${root_dir}"/scripts/install-packages.sh "${target}" "${rime_dir:-.}"
+done
