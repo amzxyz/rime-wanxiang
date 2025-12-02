@@ -1,5 +1,43 @@
 # Changelog
 
+## [13.6.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.5...v13.6.0) (2025-12-02)
+
+
+### ✨ 新特性
+
+* 新增小键盘双模式策略 ([c016b07](https://github.com/amzxyz/rime_wanxiang/commit/c016b075338013ecbec8272222c5e2aba064ecaf))
+
+
+### 📚 词库更新
+
+* 词库调整 ([97143ee](https://github.com/amzxyz/rime_wanxiang/commit/97143eea3c5b139b7918ad2c08a6464847f9b3bd))
+* 词库调整 ([d3eba76](https://github.com/amzxyz/rime_wanxiang/commit/d3eba7614308102b7e5f1668bb46d77c9a42000e))
+
+
+### 🐛 Bug 修复
+
+* **lua:** get_filename_with_fallback 用户目录使用传入路径 ([3ad1378](https://github.com/amzxyz/rime_wanxiang/commit/3ad137822c812365c8d1cfd119e6a2f7b2aba44c))
+* 为配合小键盘输入，preedit转换数字两个以上挨着的不转换,保持编码大小一致性 ([551a51d](https://github.com/amzxyz/rime_wanxiang/commit/551a51dba843e257ef0b9ee3aa0af281dc4cc76d))
+* 主键盘策略要在需要数字作为编码的情况下去掉上屏动作维持输入状态 ([9142f4e](https://github.com/amzxyz/rime_wanxiang/commit/9142f4e299b23dd1f7bcbcf6e22d208ecb44450c))
+* 修复上屏提交算法 ([de7f0bc](https://github.com/amzxyz/rime_wanxiang/commit/de7f0bc05de0643b796909a8956a11f9d65df198))
+* 修复不能再中间补充分隔符的问题 ([2077b92](https://github.com/amzxyz/rime_wanxiang/commit/2077b92ba8340b2920f1e0f6bece59d07515eca5))
+* 修正主键盘逻辑 ([3eb65b0](https://github.com/amzxyz/rime_wanxiang/commit/3eb65b02b3575f284146d9676fd6fec9823d6dce))
+* 原本没有候编码后按下\可创建首选英文词，现在支持有候选的时候按两下\\创建英文候选词，两种状态下创建的候选都能被记录到en.userdb ([621d5de](https://github.com/amzxyz/rime_wanxiang/commit/621d5dee1954c00c81395ba1a26639c09a6f6f70))
+* 更新 ([5de6db6](https://github.com/amzxyz/rime_wanxiang/commit/5de6db66656d1b088698d9474acb2e796e3d7271))
+* 由于新增小键盘输入中功能逻辑，现在将声调回退功能做限制，只有主键盘的7890才触发回退 ([714bc8b](https://github.com/amzxyz/rime_wanxiang/commit/714bc8b73866e43362e4a1323b35118078912a94))
+* 细化N模式正则，提供恰到好处地数字键上屏体验 ([2839dd4](https://github.com/amzxyz/rime_wanxiang/commit/2839dd4b17eee7c9a3bf7b7ba0c57a2596897bf3))
+* 自动化变更 ([c041b7b](https://github.com/amzxyz/rime_wanxiang/commit/c041b7bc8be0d9d81c52c31a2e4edb1d22160c59))
+* 自动化变更 ([f4126e1](https://github.com/amzxyz/rime_wanxiang/commit/f4126e1b541854a5c536f18d7b76c77e13bd81e5))
+* 调整Utag ([ea6ab26](https://github.com/amzxyz/rime_wanxiang/commit/ea6ab2660be3e9550c156a1fdd0057950de4052f))
+* 键盘上屏还是输入的策略以正则组的形式提供 ([ab89afb](https://github.com/amzxyz/rime_wanxiang/commit/ab89afb601c2c8f9d4081015080cd67c87f4cb8e))
+
+
+### 🏡 杂项
+
+* 修改说明 ([76a39f2](https://github.com/amzxyz/rime_wanxiang/commit/76a39f23c38c8fe2e8715f414ac5ea6d657117f5))
+* 修改说明 ([8f6b8e8](https://github.com/amzxyz/rime_wanxiang/commit/8f6b8e82c19c2df6b404165c306a23a0fe37832e))
+* 修改说明 ([5fcf6eb](https://github.com/amzxyz/rime_wanxiang/commit/5fcf6ebcd30d1c898f79ab386079db134887a62d))
+
 ## [13.5.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.4...v13.5.5) (2025-11-30)
 
 
