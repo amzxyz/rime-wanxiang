@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.6.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.6.2...v13.6.3) (2025-12-02)
+
+
+### 🐛 Bug 修复
+
+* 移除手机端判断 ([937ae6d](https://github.com/amzxyz/rime_wanxiang/commit/937ae6d220bd75f8e7977333bab51898376da562))
+
 ## [13.6.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.6.1...v13.6.2) (2025-12-02)
 
 
