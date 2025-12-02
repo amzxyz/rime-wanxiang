@@ -147,7 +147,7 @@ function wanxiang.get_filename_with_fallback(filename)
 
     local user_path = rime_api.get_user_data_dir() .. '/' .. _path
     if wanxiang.file_exists(user_path) then
-        return user_path
+        return filename
     end
 
     local shared_path = rime_api.get_shared_data_dir() .. '/' .. _path
