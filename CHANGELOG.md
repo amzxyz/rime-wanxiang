@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.6.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.6.1...v13.6.2) (2025-12-02)
+
+
+### 🐛 Bug 修复
+
+* 回复误删除函数 ([ce406eb](https://github.com/amzxyz/rime_wanxiang/commit/ce406eb8e1d262f381d073f3f865186bf2bd3799))
+
 ## [13.6.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.6.0...v13.6.1) (2025-12-02)
 
 
