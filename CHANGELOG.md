@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.6.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.6.0...v13.6.1) (2025-12-02)
+
+
+### 🐛 Bug 修复
+
+* 让小狼毫不检测路径直接使用相对路径 ([f953655](https://github.com/amzxyz/rime_wanxiang/commit/f953655cbe718543e5840e2040ba7403eff17cf5))
+
 ## [13.6.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.5.5...v13.6.0) (2025-12-02)
 
 
