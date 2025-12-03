@@ -1,5 +1,20 @@
 # Changelog
 
+## [13.6.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.6.3...v13.6.4) (2025-12-03)
+
+
+### 📚 词库更新
+
+* 词库调整 ([6aea67c](https://github.com/amzxyz/rime_wanxiang/commit/6aea67ce88741f37e3dd769ed7209fdb542dd308))
+* 词库调整 ([54bdcca](https://github.com/amzxyz/rime_wanxiang/commit/54bdcca658c9c7234f0f990df39bc1b0462d1152))
+* 词库调整 ([dab8fca](https://github.com/amzxyz/rime_wanxiang/commit/dab8fca8fd27cea088a9ad4aa8e683908876df01))
+
+
+### 🐛 Bug 修复
+
+* 增加一些细化的场景 ([d3ef1f5](https://github.com/amzxyz/rime_wanxiang/commit/d3ef1f51835fce3a84c8e6a066d4537c2a040996))
+* 改进转写 ([9934fc6](https://github.com/amzxyz/rime_wanxiang/commit/9934fc64e090f12b4e392edbbb6d97690adf4fdd))
+
 ## [13.6.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.6.2...v13.6.3) (2025-12-02)
 
 
