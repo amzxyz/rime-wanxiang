@@ -1,5 +1,22 @@
 # Changelog
 
+## [13.7.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.6.5...v13.7.0) (2025-12-05)
+
+
+### ✨ 新特性
+
+* 新增alt+字母跳转对应编码后面，但asdt等字母有被rime屏蔽，其他快捷键有不同程度占用，先发布 ([f129585](https://github.com/amzxyz/rime_wanxiang/commit/f1295850ee7dad64a7c7ec4791f77d381c2944a8))
+
+
+### 📚 词库更新
+
+* 词库调整 ([3ec0c32](https://github.com/amzxyz/rime_wanxiang/commit/3ec0c32b053093245cab286108a5f00faab0edb7))
+
+
+### 🐛 Bug 修复
+
+* 修复N模式正则错写 ([8c601c4](https://github.com/amzxyz/rime_wanxiang/commit/8c601c4774193ed20a56cdceea08b340e127581b))
+
 ## [13.6.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.6.4...v13.6.5) (2025-12-04)
 
 
