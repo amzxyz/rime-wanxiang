@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.7.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.7.0...v13.7.1) (2025-12-06)
+
+
+### 📚 词库更新
+
+* 词库调整 ([8b306f0](https://github.com/amzxyz/rime_wanxiang/commit/8b306f0ba8c465fb21f3635baff55dca61461bf3))
+
+
+### 🐛 Bug 修复
+
+* 移除alt跳转存在多平台不一致的多种问题，移除龙三 ([974ca2d](https://github.com/amzxyz/rime_wanxiang/commit/974ca2da176076225216c1e968d9a57fe3d33e9b))
+
 ## [13.7.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.6.5...v13.7.0) (2025-12-05)
 
 
