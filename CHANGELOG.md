@@ -1,5 +1,18 @@
 # Changelog
 
+## [13.8.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.7.2...v13.8.0) (2025-12-10)
+
+
+### ✨ 新特性
+
+* 统计新增数据库储存方式，全新的格式化样式，多数据维度 ([3d21e84](https://github.com/amzxyz/rime_wanxiang/commit/3d21e84609895595b902596ef05a79750fa5f18d))
+
+
+### 📚 词库更新
+
+* 词库调整 ([71fa958](https://github.com/amzxyz/rime_wanxiang/commit/71fa9583d8a8d545d523564c694007f688f81f01))
+* 词库调整 ([986f2e2](https://github.com/amzxyz/rime_wanxiang/commit/986f2e293a9354e4487c80036b9b455939a5aa78))
+
 ## [13.7.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.7.1...v13.7.2) (2025-12-10)
 
 
