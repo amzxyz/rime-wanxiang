@@ -78,8 +78,21 @@ end
 
 -- translator 主函数
 local function translator(input, seg, env)
-    if input == "/zjf" or input == "/jjf" then
-        local target_aux = (input == "/zjf") and "直接辅助" or "间接辅助"
+    local aux_map = {
+        ["/zjf"]   = "直接辅助",
+        ["/jjf"]   = "间接辅助",
+        ["/dxf"]   = "大写辅助",
+        ["/zjdxf"] = "直接大写辅助",
+    }
+
+    local target_aux = aux_map[input]
+    if target_aux then
+        -- 待匹配的所有辅助模式来自 aux_map 的值，保持单一来源
+        local aux_patterns = {}
+        for _, v in pairs(aux_map) do
+            aux_patterns[#aux_patterns + 1] = v
+        end
+
         local user_dir = rime_api.get_user_data_dir()
         local paths = {
             user_dir .. "/wanxiang_pro.custom.yaml",
@@ -92,11 +105,15 @@ local function translator(input, seg, env)
             if f then
                 local content = f:read("*a"); f:close()
 
-                -- 两次 gsub 都要接收“新文本 + 命中次数”
-                local n1, n2 = 0, 0
-                content, n1 = content:gsub("(%-+%s*wanxiang_algebra:/pro/)直接辅助(%s*#?.*)", "%1" .. target_aux .. "%2")
-                content, n2 = content:gsub("(%-+%s*wanxiang_algebra:/pro/)间接辅助(%s*#?.*)", "%1" .. target_aux .. "%2")
-                local n = n1 + n2
+                local n = 0
+                for _, aux_name in ipairs(aux_patterns) do
+                    local hits = 0
+                    content, hits = content:gsub(
+                        "(%-+%s*wanxiang_algebra:/pro/)" .. aux_name .. "(%s*#?.*)",
+                        "%1" .. target_aux .. "%2"
+                    )
+                    n = n + hits
+                end
 
                 if n > 0 then
                     local w = io.open(p, "w")
