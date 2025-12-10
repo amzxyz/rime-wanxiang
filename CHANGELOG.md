@@ -1,5 +1,29 @@
 # Changelog
 
+## [13.7.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.7.1...v13.7.2) (2025-12-10)
+
+
+### 📚 词库更新
+
+* 自然码辅助删除部分兼容 ([641d352](https://github.com/amzxyz/rime_wanxiang/commit/641d352084164b2c3846ed1772bcaa0f4ff575e1))
+* 词库调整 ([dccd8cc](https://github.com/amzxyz/rime_wanxiang/commit/dccd8cc387bfa4da3c5f7b46852355a439bc059b))
+* 词库调整 ([04a6c87](https://github.com/amzxyz/rime_wanxiang/commit/04a6c87e9bda4ad52de622652816d1726ac2ee61))
+* 词库调整 ([bf4d252](https://github.com/amzxyz/rime_wanxiang/commit/bf4d2523e9ef9dc8fab9d0496196bbcf66c98c0c))
+* 词库调整 ([966f732](https://github.com/amzxyz/rime_wanxiang/commit/966f732fa25b2356250edb1173fd90227dbdf9bc))
+* 词库调整 ([88805d2](https://github.com/amzxyz/rime_wanxiang/commit/88805d29024b9991d311154a5287835a1d895da1))
+* 词库调整 ([3276e30](https://github.com/amzxyz/rime_wanxiang/commit/3276e30ea178876538e1daf6363b9cf49fbd7390))
+
+
+### 🐛 Bug 修复
+
+* lookup反查策略变更，更简约，同时修复笔画变更编码导致的无法查询 ([39f08e5](https://github.com/amzxyz/rime_wanxiang/commit/39f08e5b2ada2ae858ca18752fad12e133719ebf))
+* 增加对号叉号/ch,/dh序列 ([b3256f2](https://github.com/amzxyz/rime_wanxiang/commit/b3256f28b91b33bce19a92d5800882b9de91a301))
+
+
+### 📖 文档
+
+* AUR 包将删除 ([c366647](https://github.com/amzxyz/rime_wanxiang/commit/c36664787ce3e5b95a253264008e8f341c0b87ff))
+
 ## [13.7.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.7.0...v13.7.1) (2025-12-06)
 
 
