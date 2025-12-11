@@ -1,5 +1,18 @@
 # Changelog
 
+## [13.8.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.0...v13.8.1) (2025-12-11)
+
+
+### 🐛 Bug 修复
+
+* 修复统计数据格式化错误 ([c28793d](https://github.com/amzxyz/rime_wanxiang/commit/c28793d87e05d25913f4836be200b4d470bfe3bf))
+* 直接辅助支持大写辅助 ([6108845](https://github.com/amzxyz/rime_wanxiang/commit/6108845d0e2c19ec0b6e3648364fd532507c496b))
+
+
+### 🏡 杂项
+
+* 更新版本 ([5232b97](https://github.com/amzxyz/rime_wanxiang/commit/5232b97e0b0ff6662cf195c466ecf53536da65e4))
+
 ## [13.8.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.7.2...v13.8.0) (2025-12-10)
 
 
