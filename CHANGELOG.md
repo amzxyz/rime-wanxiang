@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.8.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.2...v13.8.3) (2025-12-11)
+
+
+### 📚 词库更新
+
+* 词库调整 ([4c0572f](https://github.com/amzxyz/rime_wanxiang/commit/4c0572f9d7c4ec44b45e65e2e8f29673e3cb901e))
+
+
+### 🐛 Bug 修复
+
+* 紧急调整，正则依赖更新导致全角字符不能按.匹配 ([c96afbd](https://github.com/amzxyz/rime_wanxiang/commit/c96afbd59cd032f204b48e576faaeed8be5b66b3))
+
 ## [13.8.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.1...v13.8.2) (2025-12-11)
 
 
