@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.8.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.3...v13.8.4) (2025-12-11)
+
+
+### 🐛 Bug 修复
+
+* 小键盘Lua优化 ([0ceeb87](https://github.com/amzxyz/rime_wanxiang/commit/0ceeb87b8e425afd9617bb337babbe87a9c65196))
+
+
+### 🏡 杂项
+
+* 修改说明 ([0049d92](https://github.com/amzxyz/rime_wanxiang/commit/0049d926fb596df79506be7dce96bf8a6c960de7))
+
 ## [13.8.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.2...v13.8.3) (2025-12-11)
 
 
