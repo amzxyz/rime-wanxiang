@@ -1,5 +1,13 @@
 # Changelog
 
+## [13.8.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.1...v13.8.2) (2025-12-11)
+
+
+### 🐛 Bug 修复
+
+* 优化模糊音写法 ([71e9742](https://github.com/amzxyz/rime_wanxiang/commit/71e9742bce96ac41e85d53e24a98bb9189f6ed7c))
+* 移动设备小键盘逻辑同主键盘 ([f3a9bb4](https://github.com/amzxyz/rime_wanxiang/commit/f3a9bb49858a09a0650b4ed27606f8cccdfcb172))
+
 ## [13.8.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.0...v13.8.1) (2025-12-11)
 
 
