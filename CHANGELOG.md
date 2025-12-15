@@ -1,5 +1,24 @@
 # Changelog
 
+## [13.8.6](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.5...v13.8.6) (2025-12-15)
+
+
+### 📚 词库更新
+
+* 词库调整 ([fd659c9](https://github.com/amzxyz/rime_wanxiang/commit/fd659c984c2ad9dbb9050334714fa877a32a0165))
+* 词库调整 ([dd2150c](https://github.com/amzxyz/rime_wanxiang/commit/dd2150c28f93f06b7d7bef2864eeaf72b3248282))
+
+
+### 🐛 Bug 修复
+
+* **super_lookup:** 采用全新的词组匹配算法，支持有序模糊，词组匹配不再需要复杂的设计对应到某个字就像单字那样按序输入即可，pro支持词库辅助码数据，两类数据可方案中配置启用类型，支持两类顺序优先进而候选排序优先 ([b42985a](https://github.com/amzxyz/rime_wanxiang/commit/b42985ad1d0630ffeec86c6d40bdfa8c2cfcef64))
+* 增加仓、元数统计中的命名 ([455309c](https://github.com/amzxyz/rime_wanxiang/commit/455309c3cc222a2ab4898262cc5cd512d584582d))
+
+
+### 🏡 杂项
+
+* 修改说明 ([46bd670](https://github.com/amzxyz/rime_wanxiang/commit/46bd670e04d65ed83d1a9c5fa9b079e01e48a3cb))
+
 ## [13.8.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.4...v13.8.5) (2025-12-11)
 
 
