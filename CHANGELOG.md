@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.8.8](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.7...v13.8.8) (2025-12-20)
+
+
+### 🐛 Bug 修复
+
+* 间接辅助模式增加直接大写 ([05205a9](https://github.com/amzxyz/rime_wanxiang/commit/05205a9f0a5aa5acbd572dc5f140a198849327c8))
+
 ## [13.8.7](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.6...v13.8.7) (2025-12-19)
 
 
