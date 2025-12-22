@@ -41,101 +41,112 @@ jobs:
           mkdir -p "$GITHUB_WORKSPACE/common_assets"
           curl -L "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram" \
                -o "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram"
-      # 2. 注入方案 (核弹模式 + 智能分流)
+
+
+      # 2. 注入方案 (修复替换Bug + 防闪退 + 源码注入)
       - name: Inject Scheme & Smart Sync
         env:
           # 垃圾文件过滤
           DELETE_LIST: ".git .github .gitignore *.md plum weasel.yaml version.txt wanxiang_t9.schema.yaml LICENSE *.png *.jpg unused_folder update_log.txt"
         run: |
-          # === 0. 安装编译工具 ===
-          echo ">>> [System] 安装 OpenCC 工具..."
-          sudo apt-get update
-          sudo apt-get install -y opencc
-
-          echo ">>> [Scheme] 正在执行【核弹级】重置..."
+          # === 0. 准备工作 ===
+          sudo apt-get update && sudo apt-get install -y opencc
+          
           RIME_DEST="$GITHUB_WORKSPACE/trime_src/app/src/main/assets/rime"
           SHARED_DEST="$GITHUB_WORKSPACE/trime_src/app/src/main/assets/shared"
           SCRIPT_PATH="$GITHUB_WORKSPACE/wanxiang_root/.github/workflows/scripts/openccset.py"
           DM_PATH="$GITHUB_WORKSPACE/trime_src/app/src/main/java/com/osfans/trime/data/base/DataManager.kt"
-          # === 1. 彻底删除官方 rime 目录 (纯净模式) ===
-          rm -rf "$RIME_DEST"
-          rm -rf "$SHARED_DEST"
-          mkdir -p "$RIME_DEST"
-          mkdir -p "$SHARED_DEST"
-          # === 2. 拉取你的分支代码 ===
-          echo ">>> [Scheme] 拉取分支: ${{ matrix.branch }} ..."
+          
+          # === 1. 清理目录 ===
+          rm -rf "$RIME_DEST" "$SHARED_DEST"
+          mkdir -p "$RIME_DEST" "$SHARED_DEST"
+          
+          # === 2. 拉取方案 ===
           git clone -b ${{ matrix.branch }} --single-branch --depth 1 https://github.com/${{ github.repository }}.git temp_scheme
-          # === 3. 执行 Python 转换脚本 ===
+          
+          # === 3. OpenCC 预处理 ===
           if [ -d "temp_scheme/opencc" ]; then
-            echo ">>> [OpenCC] 发现 opencc 目录，开始预编译..."
             python3 "$SCRIPT_PATH" "$GITHUB_WORKSPACE/temp_scheme/opencc"
-          else
-            echo ">>> [OpenCC] 未发现 opencc 目录，跳过。"
           fi
+          
           # === 4. 清理垃圾 ===
           cd temp_scheme
-          for pattern in ${{ env.DELETE_LIST }}; do
-             rm -rf $pattern || true
-          done
+          for pattern in ${{ env.DELETE_LIST }}; do rm -rf $pattern || true; done
           cd ..
           
-          # === 5. 将所有文件注入 rime (Engine Base) ===
-          echo ">>> [Scheme] 全量注入 rime 目录..."
+          # === 5. 资源分配 ===
+          # 5.1 方案配置 -> Shared
           cp -rf temp_scheme/* "$SHARED_DEST"/
           rm -rf temp_scheme
-          # === 注入 Gram 模型 ===
-          echo ">>> [Gram] 注入公共模型到 Shared..."
+          
+          # 5.2 物理复制素材 -> Shared (确保 APK 包里有这些文件)
+          if [ -d "wanxiang_root/fonts" ]; then cp -rf "wanxiang_root/fonts" "$SHARED_DEST/"; fi
+          if [ -d "wanxiang_root/backgrounds" ]; then cp -rf "wanxiang_root/backgrounds" "$SHARED_DEST/"; fi
+
+          # 5.3 Gram 模型
           cp -f "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram" "$SHARED_DEST/wanxiang-lts-zh-hans.gram"
+          
+          # 5.4 锁定默认主题
           cd "$SHARED_DEST"
           THEME_FILE=$(find . -maxdepth 1 -name "*简纯*.yaml" | head -n 1)
           if [ -n "$THEME_FILE" ]; then
-             echo "🎨 锁定默认主题: $THEME_FILE -> trime.yaml"
+             echo "🎨 锁定默认主题: $THEME_FILE"
              mv -f "$THEME_FILE" "trime.yaml"
           fi
-          echo ">>> [Cleanup] 正在执行多目录深度清理..."
           
-          # 清理 custom 目录 (例如图片、多余文本)
-          if [ -d "custom" ]; then
-             rm -rf custom/*.jpg custom/*.png custom/*.md 2>/dev/null || true
-          fi
-
-          # 清理 opencc 目录 (例如转换后的冗余 txt)
-          if [ -d "opencc" ]; then
-             rm -rf opencc/*.txt 2>/dev/null || true
-          fi
-
-          # 清理 dicts 目录 (例如文档、说明文件)
-          if [ -d "dicts" ]; then
-             rm -rf dicts/wuzhong.dict.yaml 2>/dev/null || true
-          fi
-          # 修改源码 DataManager.kt
+          # 5.5 深度清理
+          if [ -d "custom" ]; then rm -rf custom/*.jpg custom/*.png custom/*.md 2>/dev/null || true; fi
+          if [ -d "opencc" ]; then rm -rf opencc/*.txt 2>/dev/null || true; fi
+          if [ -d "dicts" ]; then rm -rf dicts/wuzhong.dict.yaml 2>/dev/null || true; fi
+          
+          # =======================================================
+          # === [核心逻辑] DataManager.kt 源码注入 ===
+          # =======================================================
           echo ">>> [Source] 正在修改 DataManager.kt ..."
           if [ -f "$DM_PATH" ]; then
-            # (1) 修改默认数据目录 (rime -> wanxiang)
+            
+            # (1) 修改默认目录名为 wanxiang
             sed -i 's/File(Environment.getExternalStorageDirectory(), "rime")/File(Environment.getExternalStorageDirectory(), "wanxiang")/g' "$DM_PATH"
 
-            # (2) 动态修改默认 Schema List
-            # 判断当前编译的分支
-            if [[ "${{ matrix.branch }}" == "wanxiang-base" ]]; then
-              echo "📝 检测为 Base 包，注入 wanxiang 方案"
-              NEW_SCHEMAS="          - schema: wanxiang"
-            else
-              echo "📝 检测为 Pro 包，注入 wanxiang_pro 方案"
-              NEW_SCHEMAS="          - schema: wanxiang_pro"
+            # (2) 注入 Schema List (先删 Simp，再改名，防止 wanxiang_simp)
+            TARGET_SCHEMA="wanxiang"
+            if [[ "${{ matrix.branch }}" != "wanxiang-base" ]]; then
+               TARGET_SCHEMA="wanxiang_pro"
             fi
+            
+            echo ">>> [Source] 修改 Schema 列表 (Target: $TARGET_SCHEMA)..."
+            # 步骤A: 【关键】先删掉 simp 行！
+            sed -i "/schema: luna_pinyin_simp/d" "$DM_PATH"
+            # 步骤B: 再替换剩下的 luna_pinyin
+            sed -i "s/schema: luna_pinyin/schema: $TARGET_SCHEMA/" "$DM_PATH"
 
-            # 使用 perl 进行多行精准替换，处理那个包含 luna_pinyin 的段落
-            # 我们直接替换整个 schema_list 部分
-            perl -i -0777 -pe 's/- schema: luna_pinyin\n\s+- schema: luna_pinyin_simp/'"$NEW_SCHEMAS"'/g' "$DM_PATH"
+            # -----------------------------------------------------------
+            # (3) 【强力注入】定义要注入的 Kotlin 代码块
+            # -----------------------------------------------------------
+            echo ">>> [Source] 注入防闪退同步代码..."
+            
+            # 这里的顺序：先 Fonts/Backgrounds，最后 trime.yaml
+            export INJECT_CODE='
+            try {
+                val am = appContext.assets
+                val fd = java.io.File(userDataDir, "fonts").apply { mkdirs() }
+                am.list("shared/fonts")?.forEach { try { ResourceUtils.copyFile("shared/fonts/$it", java.io.File(fd, it).absolutePath) } catch(e:Exception){} }
+                
+                val bd = java.io.File(userDataDir, "backgrounds").apply { mkdirs() }
+                am.list("shared/backgrounds")?.forEach { try { ResourceUtils.copyFile("shared/backgrounds/$it", java.io.File(bd, it).absolutePath) } catch(e:Exception){} }
+
+                try { ResourceUtils.copyFile("shared/trime.yaml", java.io.File(userDataDir, "trime.yaml").absolutePath) } catch(e:Exception){}
+            } catch(e: Exception) { Timber.e(e, "Assets inject error") }
+            Timber.d("Synced!")'
+
+            # 注入代码
+            perl -i -pe 's/Timber.d\("Synced!"\)/$ENV{INJECT_CODE}/' "$DM_PATH"
             
             echo "✅ DataManager.kt 源码 Patch 完成"
           fi
+          
           echo ">>> [Check] 最终状态检查:"
-          echo "--- Shared (只有配置):"
           ls -1 "$SHARED_DEST"
-          echo "--- Rime (完整数据):"
-          ls -1 "$RIME_DEST" | head -n 10
-
       # 编译环境准备 (删除 NDK 28)
       - name: Setup Java
         uses: actions/setup-java@v4
