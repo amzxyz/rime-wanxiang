@@ -104,14 +104,51 @@ jobs:
             fi
           }
 
-          pack_dict "dist/rime-wanxiang-moqi-fuzhu/dicts"    "pro-moqi-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-flypy-fuzhu/dicts"   "pro-flypy-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-zrm-fuzhu/dicts"     "pro-zrm-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-tiger-fuzhu/dicts"   "pro-tiger-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-wubi-fuzhu/dicts"    "pro-wubi-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-hanxin-fuzhu/dicts"  "pro-hanxin-fuzhu-dicts.zip"
+          fcitx5_pack_dict() {
+            local src="$1"
+            local zip_name="$2"
+            if [[ -d "$src" ]]; then
+              echo "Packing $src -> dist/${zip_name}"
+              (
+                cd "$src"
+                mkdir -p "fcitx5/external/data/rime/dicts"
+                cp ./* "fcitx5/external/data/rime/dicts/" || true
+                touch "fcitx5/metadata.json"
+                exportTime=$(date +%s)
+                # 版本不重要
+                cat >"fcitx5/metadata.json" <<EOF
+          {
+              "packageName": "org.fcitx.fcitx5.android",
+              "versionCode": 999,
+              "versionName": "9.9.9-99-999999999-release",
+              "exportTime": $exportTime
+          }
+          EOF
+                cd "fcitx5"
+                zip -r -q "../../../${zip_name}" .
+              )
+            else
+              echo "Warning: $src does not exist, skipped."
+            fi
+          }
+
+          pack_dict "dist/rime-wanxiang-moqi-fuzhu/dicts" "pro-moqi-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-flypy-fuzhu/dicts" "pro-flypy-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-zrm-fuzhu/dicts" "pro-zrm-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-tiger-fuzhu/dicts" "pro-tiger-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-wubi-fuzhu/dicts" "pro-wubi-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-hanxin-fuzhu/dicts" "pro-hanxin-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-shouyou-fuzhu/dicts" "pro-shouyou-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-base/dicts"          "base-dicts.zip"
+          pack_dict "dist/rime-wanxiang-base/dicts" "base-dicts.zip"
+
+          fcitx5_pack_dict "dist/rime-wanxiang-moqi-fuzhu/dicts" "fcitx5-pro-moqi-fuzhu-dicts.zip"
+          fcitx5_pack_dict "dist/rime-wanxiang-flypy-fuzhu/dicts" "fcitx5-pro-flypy-fuzhu-dicts.zip"
+          fcitx5_pack_dict "dist/rime-wanxiang-zrm-fuzhu/dicts" "fcitx5-pro-zrm-fuzhu-dicts.zip"
+          fcitx5_pack_dict "dist/rime-wanxiang-tiger-fuzhu/dicts" "fcitx5-pro-tiger-fuzhu-dicts.zip"
+          fcitx5_pack_dict "dist/rime-wanxiang-wubi-fuzhu/dicts" "fcitx5-pro-wubi-fuzhu-dicts.zip"
+          fcitx5_pack_dict "dist/rime-wanxiang-hanxin-fuzhu/dicts" "fcitx5-pro-hanxin-fuzhu-dicts.zip"
+          fcitx5_pack_dict "dist/rime-wanxiang-shouyou-fuzhu/dicts" "fcitx5-pro-shouyou-fuzhu-dicts.zip"
+          fcitx5_pack_dict "dist/rime-wanxiang-base/dicts" "fcitx5-base-dicts.zip"
 
           echo "Nightly dict zips in dist/:"
           ls -1 dist/*.zip || true
@@ -162,6 +199,7 @@ jobs:
           tag_name: dict-nightly
           name: "实时提交的词库更新"
           body: |
+            ** 打包词库 **
             - **base-dicts.zip**：最新的标准版原始中文词库文件
             - **pro-moqi-fuzhu-dicts.zip**：携带了墨奇辅助码的词库文件
             - **pro-flypy-fuzhu-dicts.zip**：携带了小鹤辅助码的词库文件
@@ -171,6 +209,15 @@ jobs:
             - **pro-hanxin-fuzhu-dicts.zip**：携带了汉心辅助码的词库文件
             - **pro-shouyou-fuzhu-dicts.zip**：携带了首右辅助码的词库文件
             - **[wanxiang-lts-zh-hans.gram](https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram)**：与词库同步更新的语法模型
+            ** 小企鹅输入法更新包 **
+            - **fcitx5-base-dicts.zip**：适用于小企鹅输入法更新的最新的标准版原始中文词库文件
+            - **fcitx5-pro-moqi-fuzhu-dicts.zip**：适用于小企鹅输入法更新的携带了墨奇辅助码的词库文件
+            - **fcitx5-pro-flypy-fuzhu-dicts.zip**：适用于小企鹅输入法更新的携带了小鹤辅助码的词库文件
+            - **fcitx5-pro-zrm-fuzhu-dicts.zip**：适用于小企鹅输入法更新的携带了自然码辅助码的词库文件
+            - **fcitx5-pro-tiger-fuzhu-dicts.zip**：适用于小企鹅输入法更新的携带了虎码辅助码的词库文件
+            - **fcitx5-pro-wubi-fuzhu-dicts.zip**：适用于小企鹅输入法更新的携带了五笔辅助码的词库文件
+            - **fcitx5-pro-hanxin-fuzhu-dicts.zip**：适用于小企鹅输入法更新的携带了汉心辅助码的词库文件
+            - **fcitx5-pro-shouyou-fuzhu-dicts.zip**：适用于小企鹅输入法更新的携带了首右辅助码的词库文件
           files: |
             dist/pro-moqi-fuzhu-dicts.zip
             dist/pro-flypy-fuzhu-dicts.zip
@@ -180,6 +227,14 @@ jobs:
             dist/pro-hanxin-fuzhu-dicts.zip
             dist/pro-shouyou-fuzhu-dicts.zip
             dist/base-dicts.zip
+            dist/fcitx5-pro-moqi-fuzhu-dicts.zip
+            dist/fcitx5-pro-flypy-fuzhu-dicts.zip
+            dist/fcitx5-pro-zrm-fuzhu-dicts.zip
+            dist/fcitx5-pro-tiger-fuzhu-dicts.zip
+            dist/fcitx5-pro-wubi-fuzhu-dicts.zip
+            dist/fcitx5-pro-hanxin-fuzhu-dicts.zip
+            dist/fcitx5-pro-shouyou-fuzhu-dicts.zip
+            dist/fcitx5-base-dicts.zip
           draft: false
           prerelease: false
           make_latest: true
