@@ -1,5 +1,38 @@
 # Changelog
 
+## [13.9.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.8...v13.9.1) (2025-12-23)
+
+
+### ✨ 新特性
+
+* 英文造词现在支持按源编码结构写入一份，全小写写入一份，我们很多时候有一些大小写约定结构的词汇 ([bf0affc](https://github.com/amzxyz/rime_wanxiang/commit/bf0affcffd364674413516fd926e43e8f1e21517))
+
+
+### 📚 词库更新
+
+* add dicts ([e096851](https://github.com/amzxyz/rime_wanxiang/commit/e096851068228a0118b5051c124a6773801d6909))
+* 词库调整 ([875c66c](https://github.com/amzxyz/rime_wanxiang/commit/875c66c015be6f83b1bec40c731824eaaf3886db))
+* 词库调整 ([8bd56cb](https://github.com/amzxyz/rime_wanxiang/commit/8bd56cbb33ae4ae3c541441fef8ffa7614dc5510))
+
+
+### 🐛 Bug 修复
+
+* 变更Lua引入顺序解决OpenCC繁体字被字符集过滤的问题 ([29ad19f](https://github.com/amzxyz/rime_wanxiang/commit/29ad19f33fb821954654972a2988ff6a0821c288))
+* 同文皮肤加回来14、18键，custom也加了可引用的转写，这些内容将打包到app ([357e51b](https://github.com/amzxyz/rime_wanxiang/commit/357e51b8a625f09a056c967486d3bfd4c5399c79))
+* 增加校验规避在[#579](https://github.com/amzxyz/rime_wanxiang/issues/579)提到的Lua更在内容不变的情况下更新时间戳导致同步软件认为变更，进而频繁同步的问题 ([264136e](https://github.com/amzxyz/rime_wanxiang/commit/264136e53fb6a22b839208429502878f2b2869d9))
+* 拍扁共键运算 ([8ab48ae](https://github.com/amzxyz/rime_wanxiang/commit/8ab48aecf5663f987f7d9013c27d325e4012ea62))
+* 移除声调回退中多余的字符 ([aed63fb](https://github.com/amzxyz/rime_wanxiang/commit/aed63fb7dd4673cf247801cd60ede8d284abbbb8))
+* 自动化测试 ([de6a0bf](https://github.com/amzxyz/rime_wanxiang/commit/de6a0bfb0c2c844a1aa6c50145b55eda61be4665))
+* 自动化测试 ([1e445fb](https://github.com/amzxyz/rime_wanxiang/commit/1e445fbffa04236737458aa5864ba7807aaeca46))
+* 英文造词或者叫首选强制英文统一为\\双击 ([39e39eb](https://github.com/amzxyz/rime_wanxiang/commit/39e39eb030743f71909aa98ffa8c8325e08a49ca))
+
+
+### 🏡 杂项
+
+* release 13.9.1 ([b59cf1f](https://github.com/amzxyz/rime_wanxiang/commit/b59cf1f642e352310082adfdea6f444b3e143f12))
+* release 13.9.1 ([f7749c4](https://github.com/amzxyz/rime_wanxiang/commit/f7749c473e6cd1d6e9dc37b4a27625e867476118))
+* release 13.9.1 ([f7749c4](https://github.com/amzxyz/rime_wanxiang/commit/f7749c473e6cd1d6e9dc37b4a27625e867476118))
+
 ## [13.8.8](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.7...v13.8.8) (2025-12-20)
 
 
