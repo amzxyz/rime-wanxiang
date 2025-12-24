@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.9.2](https://github.com/amzxyz/rime_wanxiang/compare/v13.9.1...v13.9.2) (2025-12-24)
+
+
+### 🐛 Bug 修复
+
+* **shijian.lua:** 新增/rc日期差模式，可通过/rc\d+[-=+op]来生成当前时间从前与未来的日期，=+p都代表未来，-o都代表从前。同时还支持/utc热门世界时钟查询 ([4cf1d23](https://github.com/amzxyz/rime_wanxiang/commit/4cf1d2379dfc92371263a3d4eb9e4d8b1efaedca))
+
+
+### 🏡 杂项
+
+* 修改说明 ([fbe1697](https://github.com/amzxyz/rime_wanxiang/commit/fbe16976eddf9259707be0077e8eb58a84fe7293))
+
 ## [13.9.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.8.8...v13.9.1) (2025-12-23)
 
 
