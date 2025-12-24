@@ -63,7 +63,7 @@ CHANGES=$(
   echo ""
   echo "3. **语法模型需单独下载**，并放入输入法用户目录根目录（与方案文件放一起），**无需配置**。"
   echo ""
-  echo "4. **可采用万象提供的更新器完成更新操作[点击跳转下载](https://github.com/amzxyz/RIME-LMDG/releases/tag/tool)"
+  echo "4. **可采用万象提供的更新器完成更新操作[点击跳转下载](https://github.com/amzxyz/RIME-LMDG/releases/tag/tool)**"
   echo ""
   echo "5. 💾 飞机盘下载地址（最快更新）：[点击访问](https://share.feijipan.com/s/xiGvXdKz)"
   echo ""

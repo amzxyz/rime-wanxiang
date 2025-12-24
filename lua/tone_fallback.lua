@@ -10,7 +10,7 @@ local wanxiang = require("wanxiang")
 -- 将目标字符的连续段压缩为“最后一个字符”
 local function compress_runs_keep_last(text)
     local changed = false
-    local out = text:gsub('([:"<>7890])([:"<>7890]+)', function(_, tail)
+    local out = text:gsub('([7890])([7890]+)', function(_, tail)
         changed = true
         return tail:sub(-1)
     end)

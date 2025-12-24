@@ -98,13 +98,13 @@ engine:
     - lua_filter@*auto_phrase                       #comment前，无感造词，关闭调频的时候将汉字写入次翻译器，当没有英文候选的时候追加\上屏可完成英文造词
     - lua_filter@*super_lookup                      #comment前，字词输入中反查辅助筛选
     - lua_filter@*super_comment_preedit             #OpenCC前，超级注释模块、超级preedit，支持错词提示、辅助码显示，部件组字读音注释，有声调、无声调全拼编码的转换，支持个性化配置和关闭相应的功能，详情搜索super_comment_preedit进行详细配置
+    - lua_filter@*super_filter                      #功能太多详见Lua文件
     - simplifier@emoji                              #Emoji滤镜
     - simplifier@s2t                                #简繁切换通繁
     - simplifier@s2tw                               #简繁切换台繁
     - simplifier@s2hk                               #简繁切换港繁
     - simplifier@chinese_english                    #中英翻译滤镜
     - lua_filter@*super_sequence*F                  #手动排序，对高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
-    - lua_filter@*super_filter                      #功能太多详见Lua文件
     - uniquifier                                    # 去重
 
 grammar:
@@ -460,6 +460,7 @@ recognizer:
     #add_user_dict: "^ac[A-Za-z/`']*$"   #引导式造词
     unicode: "^U[a-f0-9]+"              # U 作为触发前缀，响应 lua_translator@unicode，输出 Unicode 字符
     number: "^R[0-9]+[.]?[0-9]*"        # R 作为触发前缀, 响应 lua_translator@number_translator，数字金额大写
+    sjc: "^.rc\\d+[-+=op]?$"
     yr1: "^N0[1-9]?0?[1-9]?"
     yr2: "^N1[02]?0?[1-9]?"
     yr3: "^N0[1-9]?[1-2]?[1-9]?"
@@ -489,6 +490,8 @@ kp_number:
     - "^U[%da-f]+$"
     # R模式
     - "^R[0-9]+%.?[0-9]*$"
+    # 时间差
+    - "^.rc%d+[-+=op]?$"
     # N模式
     # Lua 不支持 {1,8}，改成等价写法：N 后 1~8 个数字
     - "^N0[1-9]?0?[1-9]?$"

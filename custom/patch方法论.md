@@ -1,12 +1,77 @@
 
 # Rime YAML Custom Patch 语法指南
+patch是对方案文件前端配置文件做出补丁修改的最高权重配置文件
+权重排序为 custom.yaml > schema.yaml > default.yaml
+我们修改方案功能要找准目标，例如修改wanxiang.schema.yaml则需要创建或者修改wanxiang.custom.yaml，dict.yaml是不能被patch的
 
+知道了以上信息我们还要了解custom的工作逻辑，在编译的时候，文件将先处理本文件内的引用如：引用__include: 补丁__patch:  跟随__append:
+因此当schema中如果涉及到__include等这些方法，那么你看到的则不是最终形态，最终形态可以在build文件夹中看到他递归整理后的样子，而我们custom patch就是对这个最终形态进行修改，所以我们不能patch一个__include段落就是这个缘故。
+同样在custom文件中我们为了简化也可以使用__include这样的命令，比如我们预设文件中引用了关系到双拼类型的转写文件，同样是先将这个文件对应的段落拿进来，再用这个段落替换schema原本的段落从而完成修改。
+```
+patch:
+  speller/algebra:
+    __patch:
+      - wanxiang_algebra:/pro/自然码
+      - wanxiang_algebra:/pro/直接辅助
+```
+知道了这些我们说一个极为重要的点：**一个custom文件顶层必须只有一个patch:**
+
+在YAML语法中同一个段落内的内容必须按层级进行两个空格的缩进，依次4个、6个缩进下去，因此写在patch:下面的内容也不例外，那么能不能顶层再写东西了？答案是可以
+但不能插入到patch内容的中间，这将会截断整个patch段落，你可以将这些内容放在文件的最后，不干扰patch段落，就像万象携带的模糊音等段落。
+
+1、引用__include
+```
+schema:
+  __include: xxx
+```
+将顶层段落xxx下面的内容放在schema下面  
+
+```
+schema:
+__include: xxx
+```
+将顶层段落xxx下面的内容放在与schema同级的位置，注意看缩进的位置  
+
+```
+  schema:
+    __include: wanxiang_algebra:/xxx
+```
+将wanxiang_algebra.yaml文件中，顶层段落xxx下面的内容放在与schema下面  
+
+2、补丁__patch: 跟随__append:
+
+在单个段落下功能用法等同于__include，几乎没什么区别，但他可以叠加使用，如：  
+```
+patch:
+  speller/algebra:
+    __include: wanxiang_algebra:/mixed/通用派生规则
+    __patch: wanxiang_algebra:/mixed/全拼
+```
+在使用了__include的下面我们可以继续使用__patch来让另一个段落继续跟过来，如果是两个__include摞起来是没用的
+但这也并非__patch自己完全的功劳，因为在转写段落跟随在一起的情况下我们还会在原段落加入跟随__append命令，形如：
+```
+patch:
+  speller/algebra:
+    __include: wanxiang_algebra:/mixed/通用派生规则
+    __patch: wanxiang_algebra:/mixed/全拼
+#另一个文件中
+mixed:
+  全拼:
+    __append:
+      - xxx
+      - yyy
+```
+patch可单用于段落整合，也可用于表与表之间的内容拼接，拼接时叠加__append:跟随命令使得两个表段落拼接到一起共同作为上层段落的值
+
+知道了以上几个命令我们大概率能完成本文件内“最终态”的认识，在这个基础上我们开始了对schema打补丁的操作。
+
+在打补丁前我们可以将段落的上层认为是本层的key键，本层及其下面所有认为是上层的值value，在这个概念的加持下，我们学习一些patch语法如下：
 ## 语法表格
 
 | 操作类型       | 语法                      | 说明                         |
 | -------------- | ------------------------- | ---------------------------- |
 | **新增**       | `key/+:`                  | 在某个列表中追加值,自动加在末尾 |
-| **删除**       | `key/-:`（不可用）        | 从列表中移除值（不可用）        |
+| **删除**       | `key/-:`（错误示例不可用）        | 从列表中移除值（错误示例不可用）        |
 | **全局替换**   | `key: new_value`          | 替换整个键的值                |
 | **部分替换**   | `key/index/subkey: value` | 修改列表中的特定项,不影响其他项 |
 | **特定行替换** | engine/filters/@12        | 替换列表中第13行的值           |
@@ -34,6 +99,8 @@ patch:
 ```
 
 # Rime YAML Patch 机制解析
+
+我们看到可以基于层级使用/依次代表下一层的路径，也可以:换行空两格代表，但是在patch中这个事情确整出了差别，如下：
 
 ## 为什么 `menu/page_size: 10` 和 `menu: { page_size: 10 }` 结果不同？
 

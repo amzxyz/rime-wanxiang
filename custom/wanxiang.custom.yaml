@@ -20,11 +20,6 @@ patch:
   charsetlist: [你]
   charsetblacklist: [鹵, 彔]
 
-  #小键盘数字处理逻辑
-  #  "compose" : 小键盘数字始终参与编码
-  #  "auto"    : 输入中 push，空闲时 commit（默认）
-  kp_number_mode: auto
-
   #下面用于对/rq和N20250101这样的日期候选自定义（顺序、类型、候选个数）由你完全掌控，前面是对于公历后面默认携带农历
   # 通用日期时间格式化函数（供 /rq、/sj、/dt、N0101、N20150101 场景复用）
   # 支持转义：
@@ -267,3 +262,10 @@ patch:
     # s - sh
     - derive/^s([^h]*)/sh$1
     - derive/^sh/s
+#使用方案跟在拼写运算后面
+18jian:
+  __append:
+    - xlit/qwertyuiopasdfghjklzxcvbnm/QWWRRYUIIPASSFFHJJLZXXVBBM
+14jian:
+  __append:
+    - xlit/qwertyuiopasdfghjklzxcvbnm/QQEETTUUOOAADDGGJJLZZCCBBM

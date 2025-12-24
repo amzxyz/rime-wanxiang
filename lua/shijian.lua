@@ -6,7 +6,7 @@
 ------http://98wb.ys168.com/--------
 -----万象新增节日候选,格式化问候语,重写农历倒计
 -- *******农历节气计算部分
--- ========角度变换===============
+--=====角度变换===============
 local rad = 180 * 3600 / math.pi -- 每弧度的角秒数
 local RAD = 180 / math.pi        -- 每弧度的角度数
 function int2(v)                 -- 取整数部分
@@ -80,7 +80,7 @@ function rad2str(d, tim) -- 将弧度转为字串
     return s
 end
 
--- ================日历计算===============
+--=============日历计算===============
 local J2000 = 2451545 -- 2000年前儒略日数(2000-1-1 12:00:00格林威治平时)
 
 local JDate = {       -- 日期元件
@@ -270,7 +270,7 @@ local JDate = {       -- 日期元件
         end
     end
 }
--- =========黄赤交角及黄赤坐标变换===========
+--======黄赤交角及黄赤坐标变换===========
 local hcjjB = { 84381.448, -46.8150, -0.00059, 0.001813 }                                   -- 黄赤交角系数表
 local preceB = { 0, 50287.92262, 111.24406, 0.07699, -0.23479, -0.00178, 0.00018, 0.00001 } -- Date黄道上的岁差p
 
@@ -305,7 +305,7 @@ function addPrece(jd, zb) -- 补岁差
     zb[1] = rad2mrad(zb[1] + (v + 2.9965 * t1) / rad)
 end
 
--- ===============光行差==================
+--============光行差==================
 local GXC_e = { 0.016708634, -0.000042037, -0.0000001267 }                                                              -- 离心率
 local GXC_p = { 102.93735 / RAD, 1.71946 / RAD, 0.00046 / RAD }                                                         -- 近点
 local GXC_l = { 280.4664567 / RAD, 36000.76982779 / RAD, 0.0003032028 / RAD, 1 / 49931000 / RAD, -1 / 153000000 / RAD } -- 太平黄经
@@ -327,7 +327,7 @@ function addGxc(t, zb)                                                          
     zb[1] = rad2mrad(zb[1])
 end
 
--- ===============章动计算==================
+--============章动计算==================
 local nutB = { -- 章动表
     2.1824391966, -33.757045954, 0.0000362262, 3.7340E-08, -2.8793E-10, -171996, -1742, 92025, 89, 3.5069406862,
     1256.663930738, 0.0000105845, 6.9813E-10, -2.2815E-10, -13187, -16, 5736, -31, 1.3375032491, 16799.418221925,
@@ -374,7 +374,7 @@ function nutationRaDec(t, zb) -- 本函数计算赤经章动及赤纬章动
     zb[1] = rad2mrad(zb[1])
 end
 
--- =================以下是月球及地球运动参数表===================
+--==============以下是月球及地球运动参数表===================
 --[[***************************************
 * 如果用记事本查看此代码,请在"格式"菜单中去除"自动换行"
 * E10是关于地球的,格式如下:
@@ -629,7 +629,7 @@ local M31 = { 0.5139500, 12.0108556517, 14914.4523349355, -6.3524240E-05, 6.3330
 local M1n = { 3.81034392032, 8.39968473021E+03, -3.31919929753E-05, -- 月球平黄经系数
     3.20170955005E-08, -1.53637455544E-10 }
 
--- ==================日位置计算===================
+--===============日位置计算===================
 local EnnT = 0  -- 调用Enn前先设置EnnT时间变量
 function Enn(F) -- 计算E10,E11,E20等,即:某一组周期项或泊松项算出,计算前先设置EnnT时间
     local i
@@ -671,7 +671,7 @@ function sunCal2(jd) -- 传回jd时刻太阳的地心视黄经及黄纬
     return sun                        -- 返回太阳视位置
 end
 
--- ==================月位置计算===================
+--===============月位置计算===================
 local MnnT = 0  -- 调用Mnn前先设置MnnT时间变量
 function Mnn(F) -- 计算M10,M11,M20等,计算前先设置MnnT时间
     local i
@@ -717,7 +717,7 @@ function moonCal3(jd) -- 传回月球的地心视赤经及视赤纬
     return moon
 end
 
--- ==================地心坐标中的日月位置计算===================
+--===============地心坐标中的日月位置计算===================
 function jiaoCai(lx, t, jiao)
     -- lx=1时计算t时刻日月角距与jiao的差, lx=0计算t时刻太阳黄经与jiao的差
     local sun = earCal(t) -- 计算太阳真位置(先算出日心坐标中地球的位置)
@@ -734,7 +734,7 @@ function jiaoCai(lx, t, jiao)
     return rad2mrad(jiao - (moon[1] - sun[1]))
 end
 
--- ==================已知位置反求时间===================
+--===============已知位置反求时间===================
 function jiaoCal(t1, jiao, lx) -- t1是J2000起算儒略日数
     -- 已知角度(jiao)求时间(t)
     -- lx=0是太阳黄经达某角度的时刻计算(用于节气计算)
@@ -781,7 +781,7 @@ function jiaoCal(t1, jiao, lx) -- t1是J2000起算儒略日数
     return t
 end
 
--- ==================节气计算===================
+--===============节气计算===================
 local jqB = { -- 节气表
     "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露",
     "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至", "小寒", "大寒", "立春", "雨水", "惊蛰" }
@@ -856,7 +856,7 @@ function getYearJQ(y)
     return jq
 end
 
--- =================定朔弦望计算========================
+--==============定朔弦望计算========================
 function dingSuo(y, arc) -- 这是个测试函数
     local i, jd = 365.2422 * (y - 2000), q, s1, s2
     log.info("月份:世界时  原子时<br>")
@@ -870,7 +870,7 @@ function dingSuo(y, arc) -- 这是个测试函数
     end
 end
 
--- =================农历计算========================
+--==============农历计算========================
 --[[*****
 1.冬至所在的UTC日期保存在A[0],根据"规定1"得知在A[0]之前(含A[0])的那个UTC朔日定为年首日期
 冬至之后的中气分保存在A[1],A[2],A[3]...A[13],其中A[12]又回到了冬至,共计算13次中气
@@ -1154,7 +1154,7 @@ function GanZhiLi:getShiZhi()
     return self:calR2(idx, 12)
 end
 
--- ====================以下是测试代码=============
+--=================以下是测试代码=============
 
 local jqB = { -- 节气表
     "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑",
@@ -1848,7 +1848,7 @@ local function QueryLunarInfo(env, date)
             else
                 -- 使用默认格式
                 result = {
-                    -- ===== 公历格式 =====
+                    -- ==公历格式==
                     { dateRQ, "" },
                     { string.sub(str, 1, 4) .. "." .. string.sub(str, 5, 6) .. "." .. string.sub(str, 7, 8), "" },
                     { string.sub(str, 1, 4) .. "-" .. string.sub(str, 5, 6) .. "-" .. string.sub(str, 7, 8), "" },
@@ -2628,6 +2628,89 @@ local function translator(input, seg, env)
         return
     end
 
+    -- 1. 纯 rc (今天)
+    -- 2. rc + 数字 (输入中)
+    -- 3. rc + 数字 + 符号 (完成，支持 - + = o p)
+    local is_today = (command == "rc")
+    local pending_num = string.match(command, "^rc(%d+)$")
+    local finished_num, sign = string.match(command, "^rc(%d+)([-+=op])$")
+
+    if is_today or pending_num or finished_num then
+        segment.tags = segment.tags + Set({ "shijian" })
+        context:set_property("sequence_adjustment_code", "/rc")
+
+        -- 状态 1：正在输入数字
+        if pending_num then
+            local hint = string.format("差值%s天 (从前按 -/o，未来按 +/p/=)", pending_num)
+            generate_candidates("date", seg, { { hint, "等待输入..." } })
+            return
+        end
+
+        -- 状态 2 & 3：计算并显示日期
+        local offset = 0
+        if finished_num then
+            local num = tonumber(finished_num)
+            if sign == "+" or sign == "=" or sign == "p" then
+                offset = num
+            else
+                offset = -num
+            end
+        end
+
+        -- 计算目标时间戳
+        local now_ts = os.time()
+        local target_ts = now_ts + (offset * 24 * 3600)
+        
+        -- 生成目标时间对象
+        local today = os.date("*t", target_ts)
+        local ymd = os.date("%Y%m%d", target_ts)
+        local ymdh = os.date("%Y%m%d%H", target_ts)
+        local num_year = string.format(" 〔%03d/%d〕", today.yday, IsLeap(today.year))
+
+        -- 格式生成逻辑
+        local date_variants = {}
+        local custom_formats = config:get_list("date_formats")
+        
+        if custom_formats and custom_formats.size > 0 then
+            for i = 1, custom_formats.size do
+                local format_str = custom_formats:get_value_at(i-1):get_string()
+                local formatted_date = format_dt(today, format_str)
+                if formatted_date and formatted_date ~= "" then
+                    table.insert(date_variants, { formatted_date, "" })
+                end
+            end
+        else
+            -- 默认格式
+            date_variants = {
+                { os.date("%Y年%m月%d日", target_ts), "" },
+                { os.date("%Y.%m.%d", target_ts), "" },
+                { os.date("%Y-%m-%d", target_ts), "" },
+                { os.date("%Y/%m/%d", target_ts), "" },
+                { os.date("%Y%m%d", target_ts), "" },
+                { os.date("%y年%m月%d日", target_ts), "" },
+                { os.date("%y%m%d", target_ts), "" },
+                { string.format("%d年%d月%d日", today.year, today.month, today.day), "" },
+                { string.format("%d年%d月%d日", today.year % 100, today.month, today.day), "" },
+                { string.format("%d月%d日", today.month, today.day), "" },
+            }
+        end
+        
+        -- 农历部分
+        local lunar_variants = {
+            { CnDate_translator(ymd), "" },
+            { lunarJzl(ymdh), "" },
+            { Date2LunarDate(ymd) .. JQtest(ymd), "" },
+            { Date2LunarDate(ymd) .. GetLunarSichen(os.date("%H", target_ts), 1), "" }
+        }
+        
+        for _, variant in ipairs(lunar_variants) do
+            table.insert(date_variants, variant)
+        end
+        
+        generate_candidates("date", seg, date_variants)
+        set_prompt_if_invalid(context, num_year)
+        return
+    end
     -- **时间候选项**
     if (command == "sj" or command == "uj") then
         --- 设置手动排序的排序编码，以启用手动排序支持
@@ -2663,6 +2746,87 @@ local function translator(input, seg, env)
 
         generate_candidates("time", seg, time_variants)
         set_prompt_if_invalid(context, time_discrpt)
+        return
+    end
+    -- 世界时钟功能 (/utc)
+    if command == "utc" then
+        segment.tags = segment.tags + Set({ "shijian" })
+        context:set_property("sequence_adjustment_code", "/utc")
+
+        local now = os.time() -- 当前时间戳(UTC)
+
+        -- 1. 构造 UTC 和 本地时间
+        local utc_tab = os.date("!*t", now)
+        local utc_str = string.format("%02d:%02d", utc_tab.hour, utc_tab.min)
+
+        local local_tab = os.date("*t", now)
+        local local_str = string.format("%02d:%02d", local_tab.hour, local_tab.min)
+        
+        -- 计算本地时区
+        local local_offset_sec = os.difftime(os.time(local_tab), os.time(utc_tab))
+        local local_offset_hr = math.floor((local_offset_sec + 1800) / 3600)
+        local local_sign = local_offset_hr >= 0 and "+" or ""
+        
+        local candidates = {}
+
+        -- 置顶：UTC 和 本地时间
+        table.insert(candidates, { utc_str, "UTC (世界标准时间)" })
+        table.insert(candidates, { local_str, "Local (UTC"..local_sign..local_offset_hr..") [北京]" })
+
+        -- 2. 热门城市列表 (直接按书写顺序显示)
+        -- 请在这里调整您想要的显示顺序
+        local zones_data = {
+            { name="北京", offset=8 },   -- 基准
+            { name="伦敦", offset=0 },   -- 英国
+            { name="纽约", offset=-5 },  -- 美东 (夏令时-4)
+            { name="东京", offset=9 },   -- 日本
+            { name="洛杉矶", offset=-8 },-- 美西 (夏令时-7)
+            { name="香港", offset=8 },
+            { name="新加坡", offset=8 },
+            { name="巴黎", offset=1 },   -- 法国 (夏令时+2)
+            { name="柏林", offset=1 },   -- 德国 (夏令时+2)
+            { name="悉尼", offset=10 },  -- 澳洲 (夏令时+11)
+            { name="首尔", offset=9 },
+            { name="莫斯科", offset=3 },
+            { name="旧金山", offset=-8 },
+            { name="多伦多", offset=-5 },
+            { name="芝加哥", offset=-6 },
+            { name="迪拜", offset=4 },
+            { name="孟买", offset=5.5 },
+            { name="温哥华", offset=-8 },
+            { name="曼谷", offset=7 },
+        }
+
+        -- 3. 遍历生成候选直接按上面顺序输出
+        local bj_ts = now + (8 * 3600)
+        local bj_date = os.date("!*t", bj_ts)
+
+        for _, z in ipairs(zones_data) do
+            -- 计算目标时间
+            local target_ts = now + (z.offset * 3600)
+            local target_str = os.date("!%H:%M", target_ts)
+            
+            -- 计算相对北京时差
+            local diff = z.offset - 8
+            local diff_str = ""
+            if diff > 0 then diff_str = "北京+"..diff
+            elseif diff == 0 then diff_str = "同频"
+            else diff_str = "北京"..diff end 
+
+            -- 计算日期差异
+            local target_date = os.date("!*t", target_ts)
+            local day_hint = ""
+            if target_date.day ~= bj_date.day then
+                if diff < 0 then day_hint = " [昨天]"
+                elseif diff > 0 then day_hint = " [明天]" end
+            end
+
+            -- 格式化输出
+            local comment = string.format("%s (%s)%s", z.name, diff_str, day_hint)
+            table.insert(candidates, { target_str, comment })
+        end
+
+        generate_candidates("time", seg, candidates)
         return
     end
     -- **日期+时间（/dt，别名）**
