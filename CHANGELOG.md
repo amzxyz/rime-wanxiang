@@ -1,5 +1,20 @@
 # Changelog
 
+## [13.9.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.9.3...v13.9.4) (2025-12-25)
+
+
+### 📚 词库更新
+
+* 词库调整 ([f3f01c1](https://github.com/amzxyz/rime_wanxiang/commit/f3f01c126cde479ead085c581bc5263a37483c74))
+* 词库调整 ([c5393ed](https://github.com/amzxyz/rime_wanxiang/commit/c5393ed4b41cb371d771055e1d124d6910e865d1))
+* 词库调整 ([c283011](https://github.com/amzxyz/rime_wanxiang/commit/c2830114f4efb39faec053f65f8acc25bce280d0))
+
+
+### 🐛 Bug 修复
+
+* 完善全拼反查辅筛模式下，两分首字母(声母)的提取策略 ([ab33660](https://github.com/amzxyz/rime_wanxiang/commit/ab3366013883261e2638f7a21cc12815212e2c24))
+* 很多被大厂惯坏的用户认为设置成9个能让自己不用翻页，我再多宠爱一下，现在你可以按下0上屏第10个候选 ([6cd1d5e](https://github.com/amzxyz/rime_wanxiang/commit/6cd1d5e87cff3787eab3a482c1e2a13ac4038541))
+
 ## [13.9.3](https://github.com/amzxyz/rime_wanxiang/compare/v13.9.2...v13.9.3) (2025-12-24)
 
 
