@@ -1,5 +1,19 @@
 # Changelog
 
+## [13.9.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.9.4...v13.9.5) (2025-12-28)
+
+
+### 📚 词库更新
+
+* 扩展成语简码 ([be9f100](https://github.com/amzxyz/rime_wanxiang/commit/be9f10058f87a7a955604c77ad30a4068c92d01c))
+* 词库调整 ([8409d60](https://github.com/amzxyz/rime_wanxiang/commit/8409d603f4cfdd140146140433f9dfb7fa32823a))
+* 词库调整 ([2f93913](https://github.com/amzxyz/rime_wanxiang/commit/2f939138fe2fa41d858373a1c189c54cc21d047a))
+
+
+### 🐛 Bug 修复
+
+* 变更模型参数 ([c8e3d38](https://github.com/amzxyz/rime_wanxiang/commit/c8e3d380e592021aa1e9cf8ba7e1af64c92bae36))
+
 ## [13.9.4](https://github.com/amzxyz/rime_wanxiang/compare/v13.9.3...v13.9.4) (2025-12-25)
 
 
