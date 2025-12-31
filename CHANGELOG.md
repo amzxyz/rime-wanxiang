@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.11.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.11.0...v13.11.1) (2025-12-31)
+
+
+### 🐛 Bug 修复
+
+* 英文后符号,.!?后面输入也能自动加空格 ([85243e0](https://github.com/amzxyz/rime_wanxiang/commit/85243e0caee3b47d332102b1aaf5c3cb03bb5739))
+
+
+### 🏡 杂项
+
+* 修改说明 ([0c29da6](https://github.com/amzxyz/rime_wanxiang/commit/0c29da68f1a19eb1c6fae9b817b6c242393e99a4))
+
 ## [13.11.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.10.0...v13.11.0) (2025-12-31)
 
 
