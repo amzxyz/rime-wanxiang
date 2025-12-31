@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.11.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.10.0...v13.11.0) (2025-12-31)
+
+
+### ✨ 新特性
+
+* **super_filter:** 新增英文智能空格，前所未有的体验 ([01b1735](https://github.com/amzxyz/rime_wanxiang/commit/01b1735cb2dca525a4fc8daee7cc864fd86d972a))
+
+
+### 🐛 Bug 修复
+
+* 调整自动化策略 ([79c6a2f](https://github.com/amzxyz/rime_wanxiang/commit/79c6a2f71940d8c65cb2f2ad59433aa57ee78be4))
+
 ## [13.10.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.9.5...v13.10.0) (2025-12-31)
 
 
