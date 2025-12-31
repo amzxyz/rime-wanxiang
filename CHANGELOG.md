@@ -1,5 +1,23 @@
 # Changelog
 
+## [13.10.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.9.5...v13.10.0) (2025-12-31)
+
+
+### ✨ 新特性
+
+* **seq:** 新增按下Ctrl的时候显示数据库中“被动过”的词条标记，你可以根据这个信息洞察做出决策 ([fd71f4a](https://github.com/amzxyz/rime_wanxiang/commit/fd71f4a96663467022a5a8589510cfde3445f990))
+
+
+### 📚 词库更新
+
+* 词库调整 ([6b73223](https://github.com/amzxyz/rime_wanxiang/commit/6b7322307fae79b527c70f4e739aa8f0c8389733))
+
+
+### 🐛 Bug 修复
+
+* 简单调整oday格式 ([91aa62b](https://github.com/amzxyz/rime_wanxiang/commit/91aa62b4719d62ac0bb50fcfdbf917222aa49a5b))
+* 词库调整 ([39028a8](https://github.com/amzxyz/rime_wanxiang/commit/39028a8334d549801e8636f01df71fa0dd810bce))
+
 ## [13.9.5](https://github.com/amzxyz/rime_wanxiang/compare/v13.9.4...v13.9.5) (2025-12-28)
 
 
