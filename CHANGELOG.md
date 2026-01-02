@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.12.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.12.0...v13.12.1) (2026-01-02)
+
+
+### 🐛 Bug 修复
+
+* 调整模型参数 ([fc5367c](https://github.com/amzxyz/rime_wanxiang/commit/fc5367cf3e0700d9f7713a057e48fee029bc25db))
+
 ## [13.12.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.11.1...v13.12.0) (2026-01-02)
 
 
