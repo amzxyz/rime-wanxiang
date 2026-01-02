@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.12.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.11.1...v13.12.0) (2026-01-02)
+
+
+### ✨ 新特性
+
+* 新增仅英文模式下支持输入英文句子，三元开关组的快捷键也修改为常态化Shift+space不用非要在输入中切换 ([b6ce63c](https://github.com/amzxyz/rime_wanxiang/commit/b6ce63c5a6a5ccc3e9184d53861180120c17b8c8))
+
+
+### 🐛 Bug 修复
+
+* default不跟随东风破脚本 ([05a6f40](https://github.com/amzxyz/rime_wanxiang/commit/05a6f40bf649a666fd45d885a849d930614eed28))
+
 ## [13.11.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.11.0...v13.11.1) (2025-12-31)
 
 
