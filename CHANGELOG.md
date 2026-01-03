@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.1...v14.0.2) (2026-01-03)
+
+
+### 🐛 Bug 修复
+
+* 混合编码为固定码表 ([a76be86](https://github.com/amzxyz/rime_wanxiang/commit/a76be862c90bf0c57bff399731536aa89fcd7360))
+
 ## [14.0.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.0...v14.0.1) (2026-01-03)
 
 
