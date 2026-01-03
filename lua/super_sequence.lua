@@ -15,6 +15,7 @@
 -- 2) p=0：墓碑（DB 删除 + 导出墓碑）
 -- 3) 初始化：先 flush 本机增量到导出 → 外部合并(所有设备文件+本机DB，LWW) → 重写本机导出(含墓碑) → 导入覆盖DB，p=0删除键，不导入
 -- 4) 同步路径策略：能从 installation.yaml 读取到 sync_dir 就用它；读不到才用默认 user_dir/sync
+-- 带 Ctrl 可视化标记
 
 local wanxiang = require("wanxiang")
 local userdb   = require("lib/userdb")
@@ -24,23 +25,17 @@ local userdb   = require("lib/userdb")
 ------------------------------------------------------------
 local DEFAULT_SEQ_KEY = { up = "Control+j", down = "Control+k", reset = "Control+l", pin = "Control+p" }
 local SYNC_FILE_PREFIX, SYNC_FILE_SUFFIX = "sequence", ".txt"
-
--- 运行期是否立刻写出到导出文件（只在重新部署时写出→设为 false）
 local RUNTIME_EXPORT = false
 
--- ☆☆ 前向声明，避免被当作全局导致 nil ☆☆
 local _normalize_path, _is_abs_path, _path_join, _manifest_path
-
 ------------------------------------------------------------
--- 二、通用工具（仅处理 "\" 与 "\\", 统一成 "/"）
+-- 二、通用工具（路径处理）
 ------------------------------------------------------------
 _normalize_path = function(p)
     if not p or p == "" then return "" end
     if p:sub(1, 2) == "\\\\" then
-        -- UNC：\\server\share\foo -> //server/share/foo
         return "//" .. p:sub(3):gsub("\\", "/"):gsub("/+", "/")
     else
-        -- 普通：D:\dir\\file -> D:/dir/file
         return p:gsub("\\", "/"):gsub("/+", "/")
     end
 end
@@ -87,7 +82,7 @@ local function _file_exists(path)
 end
 
 ------------------------------------------------------------
--- 三、安装信息 & 同步目录（仅看 YAML；读不到就默认）
+-- 三、安装信息 & 同步目录
 ------------------------------------------------------------
 local function _read_installation_yaml()
     local user_dir = rime_api.get_user_data_dir()
@@ -99,36 +94,25 @@ local function _read_installation_yaml()
         line = line:gsub("%s+#.*$", "")
         local key, val = line:match("^%s*([%w_]+)%s*:%s*(.+)$")
         if key and val then
-            -- 去引号
             val = val:gsub('^%s*"(.*)"%s*$', "%1"):gsub("^%s*'(.*)'%s*$", "%1")
             val = val:gsub("^%s+", ""):gsub("%s+$", "")
-            if key == "installation_id" then
-                installation_id = val
-            elseif key == "sync_dir" then
-                sync_dir = _normalize_path(val)
-            end
+            if key == "installation_id" then installation_id = val
+            elseif key == "sync_dir" then sync_dir = _normalize_path(val) end
         end
     end
     f:close()
     return installation_id, sync_dir
 end
 
--- 只看 installation.yaml，读到就用；读不到就 user_dir/sync
 local function _sync_dir()
     local user_dir = rime_api.get_user_data_dir() or ""
     local _, ysync = _read_installation_yaml()
-
     local function fix(x)
         if not x or x == "" then return "" end
-        if x == "sync" then
-            return (user_dir ~= "" and _path_join(user_dir, "sync")) or "sync"
-        end
+        if x == "sync" then return (user_dir ~= "" and _path_join(user_dir, "sync")) or "sync" end
         return _normalize_path(x)
     end
-
-    if ysync and ysync ~= "" then
-        return fix(ysync)
-    end
+    if ysync and ysync ~= "" then return fix(ysync) end
     return _path_join(user_dir, "sync")
 end
 
@@ -172,20 +156,11 @@ end
 ------------------------------------------------------------
 local seq_db = userdb.LevelDb("lua/sequence")
 
-local seq_property = {
-    ADJUST_KEY = "sequence_adjustment_code",
-}
----@param context Context
-function seq_property.get(context)
-    return context:get_property(seq_property.ADJUST_KEY)
-end
-
----@param context Context
+local seq_property = { ADJUST_KEY = "sequence_adjustment_code" }
+function seq_property.get(context) return context:get_property(seq_property.ADJUST_KEY) end
 function seq_property.reset(context)
     local code = seq_property.get(context)
-    if code ~= nil and code ~= "" then
-        context:set_property(seq_property.ADJUST_KEY, "")
-    end
+    if code ~= nil and code ~= "" then context:set_property(seq_property.ADJUST_KEY, "") end
 end
 
 local curr_state = {}
@@ -205,34 +180,7 @@ function curr_state.is_adjust_mode() return curr_state.mode == curr_state.ADJUST
 function curr_state.has_adjustment() return curr_state.mode ~= curr_state.ADJUST_MODE.None end
 
 ------------------------------------------------------------
--- 六、关键日志（精简）
-------------------------------------------------------------
---[[
-local function _print_sync_probe(phase)
-    local user_dir = tostring(rime_api.get_user_data_dir() or "")
-    local iid, ysync = _read_installation_yaml()
-    local chosen = _sync_dir()
-    local inst_yaml = _path_join(user_dir, "installation.yaml")
-    log.warning(string.format(
-        "[sequence][%s] installation_id=%s yaml_sync_dir=%s chosen_sync_dir=%s inst_yaml=%s exists=%s",
-        phase, tostring(iid), tostring(ysync), tostring(chosen),
-        inst_yaml, tostring(_file_exists(inst_yaml))
-    ))
-end
-
-local function _debug_paths_once()
-    local dir = _sync_dir()
-    local device_name = _detect_device_name()
-    local export_name = string.format("%s_%s%s", SYNC_FILE_PREFIX, device_name, SYNC_FILE_SUFFIX)
-    local export_path = _path_join(dir, export_name)
-    log.info(string.format("[sequence] chosen_sync_dir=%s manifest_exists=%s",
-                           tostring(dir), tostring(_file_exists(_manifest_path(dir)))))
-    log.info(string.format("[sequence] export_path=%s exists=%s",
-                           tostring(export_path), tostring(_file_exists(export_path))))
-end ]]--
-
-------------------------------------------------------------
--- 七、记录解析（新格式）
+-- 六、记录解析
 ------------------------------------------------------------
 local function parse_adjustment_value_item(value_item)
     local item, p, o, t = value_item:match("i=(.+) p=(%S+) o=(%S*) t=(%S+)")
@@ -256,16 +204,12 @@ local function get_input_adjustments(input)
 end
 
 ------------------------------------------------------------
--- 八、导出缓冲（去重 + 节流）
+-- 七、导出缓冲
 ------------------------------------------------------------
 local seq_data = {
-    status = "pending",
-    device_name = "device",
-    last_export_ts = 0,
-    export_interval = 1.2,      -- 秒
-    pending_map = {},           -- key: input.."\t"..item  =>  line
+    status = "pending", device_name = "device",
+    last_export_ts = 0, export_interval = 1.2, pending_map = {},
 }
-
 local function _pending_count() local n = 0; for _ in pairs(seq_data.pending_map) do n = n + 1 end; return n end
 
 function seq_data._current_paths()
@@ -279,10 +223,7 @@ end
 
 function seq_data._ensure_export_file()
     local ok = _sync_ready()
-    if not ok then
-        --log.info("[sequence] installation_id 或 sync_dir 缺失，跳过导出")
-        return false
-    end
+    if not ok then return false end
     local _, _, export_name, export_path, manifest = seq_data._current_paths()
     if not _file_exists(manifest) then
         local mf = io.open(manifest, "w"); if not mf then return false end; mf:close()
@@ -321,51 +262,35 @@ function seq_data.flush_pending(max_lines)
 end
 
 function seq_data.maybe_export(force)
-    if force then
-        seq_data.flush_pending(nil)
-        seq_data.last_export_ts = get_timestamp()
-        return
-    end
+    if force then seq_data.flush_pending(nil); seq_data.last_export_ts = get_timestamp(); return end
     if _pending_count() == 0 then return end
     local now = get_timestamp()
     if now - (seq_data.last_export_ts or 0) < (seq_data.export_interval or 1.2) then return end
-    seq_data.flush_pending(200)
-    seq_data.last_export_ts = now
+    seq_data.flush_pending(200); seq_data.last_export_ts = now
 end
 
 ------------------------------------------------------------
--- 九、保存（本机操作）：p=0 也导出墓碑（运行期不写盘；DB 暂存墓碑以便重部署覆盖）
+-- 八、保存与合并 (Save & Merge)
 ------------------------------------------------------------
 local function save_adjustment(input, item, adjustment, no_export)
     if not input or input == "" or not item or item == "" then return end
     local p = tonumber(adjustment.fixed_position) or 0
     local o = tonumber(adjustment.offset) or 0
     local t = adjustment.updated_at
-
     local mp = get_input_adjustments(input) or {}
-    if p <= 0 then
-        -- 关键：DB 内也保留 p=0 墓碑（含时间戳），用于重部署时 LWW 覆盖外部文件
-        mp[item] = { fixed_position = 0, offset = o, updated_at = t }
-    else
-        mp[item] = { fixed_position = p, offset = o, updated_at = t }
-    end
+    mp[item] = { fixed_position = p > 0 and p or 0, offset = o, updated_at = t }
 
     local arr = {}
     for it, a in pairs(mp) do
-        arr[#arr + 1] = string.format("i=%s p=%s o=%s t=%s",
-            it, a.fixed_position, a.offset or 0, a.updated_at or "")
+        arr[#arr + 1] = string.format("i=%s p=%s o=%s t=%s", it, a.fixed_position, a.offset or 0, a.updated_at or "")
     end
     seq_db:update(input, table.concat(arr, "\t"))
 
-    -- 仅在允许运行期写出时才入队（默认 RUNTIME_EXPORT=false，不入队）
     if (not no_export) and RUNTIME_EXPORT then
-        _enqueue_export(input, item, { fixed_position = p, offset = o, updated_at = t }) -- 包含 p=0 墓碑
+        _enqueue_export(input, item, { fixed_position = p, offset = o, updated_at = t })
     end
 end
 
-------------------------------------------------------------
--- 十、合并器：收集“所有文件 + 本机DB”，按 t 取最新（包含 p=0）
-------------------------------------------------------------
 local function _keep_latest(latest, input, item, adj)
     latest[input] = latest[input] or {}
     local prev = latest[input][item]
@@ -380,25 +305,16 @@ end
 
 local function collect_latest_from_all_sources()
     local latest = {}
-
-    -- A) 本机 DB（包含 p=0 墓碑：让 DB 能覆盖外部）
     seq_db:query_with("", function(key, value)
         local mp = parse_adjustment_values(value)
-        if mp then
-            for item, a in pairs(mp) do
-                _keep_latest(latest, key, item, a)
-            end
-        end
+        if mp then for item, a in pairs(mp) do _keep_latest(latest, key, item, a) end end
     end)
-
-    -- B) 清单里的所有导出文件（包含 p=0）
     local dir = _sync_dir()
     local names = _read_lines(_manifest_path(dir))
     for _, raw in ipairs(names) do
         local name = _trim(raw or "")
         if name ~= "" and name:sub(1, 1) ~= "#" then
-            if name:sub(1, #SYNC_FILE_PREFIX) == SYNC_FILE_PREFIX
-                and name:sub(-#SYNC_FILE_SUFFIX) == SYNC_FILE_SUFFIX then
+            if name:sub(1, #SYNC_FILE_PREFIX) == SYNC_FILE_PREFIX and name:sub(-#SYNC_FILE_SUFFIX) == SYNC_FILE_SUFFIX then
                 local path = _is_abs_path(name) and name or _path_join(dir, name)
                 local f = io.open(path, "r")
                 if f then
@@ -407,12 +323,8 @@ local function collect_latest_from_all_sources()
                             local key, value = line:match("^(%S+)\t(.+)$")
                             if key and value then
                                 local item, adj1 = parse_adjustment_value_item(value)
-                                if item then
-                                    _keep_latest(latest, key, item, adj1)
-                                else
-                                    local mp = parse_adjustment_values(value)
-                                    if mp then for it, a in pairs(mp) do _keep_latest(latest, key, it, a) end end
-                                end
+                                if item then _keep_latest(latest, key, item, adj1)
+                                else local mp = parse_adjustment_values(value); if mp then for it, a in pairs(mp) do _keep_latest(latest, key, it, a) end end end
                             end
                         end
                     end
@@ -421,14 +333,9 @@ local function collect_latest_from_all_sources()
             end
         end
     end
-
     return latest
 end
 
-------------------------------------------------------------
--- 十一、把“合并结果”重写到我机导出（含 p=0）
--- [优化]：增加内容比对，仅在内容实质发生变化时才写盘，避免无效刷新 mtime
-------------------------------------------------------------
 local function rewrite_export_from_latest(latest)
     local ok = _sync_ready()
     if not ok then return end
@@ -439,68 +346,40 @@ local function rewrite_export_from_latest(latest)
     local export_path = _path_join(dir, export_name)
     local manifest = _manifest_path(dir)
 
-    -- 1. 确保清单文件存在并包含当前文件（这部分本身开销极小，保留原逻辑或同样做排重均可）
     if not _file_exists(manifest) then local mf = io.open(manifest, "w"); if mf then mf:close() end end
     do
         local names = _read_lines(manifest); local seen = {}; for _, n in ipairs(names) do seen[_trim(n)] = true end
         if not seen[export_name] then names[#names + 1] = export_name; _write_lines(manifest, names) end
     end
 
-    -- 2. 【核心修改】在内存中构建即将写入的内容
     local buffer = {}
-    
     local user_id = wanxiang.get_user_id()
-    if user_id then 
-        table.insert(buffer, "\001/user_id\t" .. user_id) 
-    end
+    if user_id then table.insert(buffer, "\001/user_id\t" .. user_id) end
     table.insert(buffer, "\001/device_name\t" .. device_name)
 
-    local inputs = {}
-    for input, _ in pairs(latest) do inputs[#inputs + 1] = input end
+    local inputs = {}; for input, _ in pairs(latest) do inputs[#inputs + 1] = input end
     table.sort(inputs)
-    
     for _, input in ipairs(inputs) do
         local items, keys = latest[input], {}
         for item, _ in pairs(items) do keys[#keys + 1] = item end
         table.sort(keys)
         for _, item in ipairs(keys) do
             local a = items[item]
-            -- 构建行内容
-            local line = string.format("%s\ti=%s p=%s o=%s t=%s",
-                input, item, a.fixed_position or 0, a.offset or 0, a.updated_at or "")
-            table.insert(buffer, line)
+            table.insert(buffer, string.format("%s\ti=%s p=%s o=%s t=%s", input, item, a.fixed_position or 0, a.offset or 0, a.updated_at or ""))
         end
     end
-
-    -- 拼接成完整字符串 (末尾添加换行符以符合通常的文件习惯)
     local new_content = table.concat(buffer, "\n") .. "\n"
-
-    -- 3. 【核心修改】读取旧文件内容进行对比
-    local old_content = nil
     local f_read = io.open(export_path, "r")
-    if f_read then
-        old_content = f_read:read("*a") -- 读取全部内容
-        f_read:close()
-    end
+    local old_content = f_read and f_read:read("*a")
+    if f_read then f_read:close() end
 
-    -- 4. 【核心修改】只有内容不一致时才写入
-    -- 如果文件不存在(old_content为nil) 或者 内容不同，则写入
     if old_content ~= new_content then
         local f_write = io.open(export_path, "w")
-        if not f_write then return end
-        f_write:write(new_content)
-        f_write:close()
-        -- log.info(string.format("[sequence] export updated: %s", export_path))
-    else
-        -- log.info(string.format("[sequence] export skipped (no changes): %s", export_path))
+        if f_write then f_write:write(new_content); f_write:close() end
     end
 end
 
-------------------------------------------------------------
--- 十二、把“合并结果”导入覆盖 DB（p<=0 删）
-------------------------------------------------------------
 local function apply_latest_to_db(latest)
-    local updated_keys = 0
     for input, kv in pairs(latest) do
         local keep = {}
         for item, a in pairs(kv) do
@@ -508,8 +387,7 @@ local function apply_latest_to_db(latest)
                 keep[item] = { fixed_position = a.fixed_position, offset = a.offset or 0, updated_at = a.updated_at }
             end
         end
-        if next(keep) == nil then
-            seq_db:erase(input)
+        if next(keep) == nil then seq_db:erase(input)
         else
             local arr = {}
             for item, a in pairs(keep) do
@@ -517,38 +395,24 @@ local function apply_latest_to_db(latest)
             end
             seq_db:update(input, table.concat(arr, "\t"))
         end
-        updated_keys = updated_keys + 1
     end
-    --log.info(string.format("[sequence] DB applied from merged LWW: %d keys", updated_keys))
 end
 
-------------------------------------------------------------
--- 十三、初始化：先导出→合并→重写导出→导入DB
-------------------------------------------------------------
 local function init_once()
-    -- 1) 先导出：把本机 pending 增量写出去（如果是旧版本留下的队列，这里可一次性落盘；RUNTIME_EXPORT 与此无关）
     seq_data._ensure_export_file()
     seq_data.maybe_export(true)
-
-    -- 2) 外部合并（所有设备文件 + 本机 DB），LWW（含 p=0）
     local latest = collect_latest_from_all_sources()
-
-    -- 3) 用合并结果重写我机导出（包含 p=0）——始终写盘
     rewrite_export_from_latest(latest)
-
-    -- 4) 导入合并结果覆盖 DB（p<=0 删）
     apply_latest_to_db(latest)
 end
 
 ------------------------------------------------------------
--- 十四、Pipeline：P / F
+-- 九、Processor (含 Ctrl 监听)
 ------------------------------------------------------------
 local P = {}
 function P.init(env)
     seq_db:open()
     seq_data.device_name = _detect_device_name()
-    --_print_sync_probe("init")   -- 关键：一次性输出最终使用的 sync_dir
-    --_debug_paths_once()         -- 关键：简要输出导出与清单路径是否存在
     init_once()
 end
 
@@ -560,13 +424,36 @@ local function process_adjustment(context)
         context:highlight(curr_state.highlight_index)
     end
 end
--- 辅助：判断是否单个 ASCII 小写字母
+
 local function _is_single_lowercase_letter(s)
     return type(s) == "string" and #s == 1 and s:match("^[a-z]$") ~= nil
 end
+
 function P.func(key_event, env)
     local context = env.engine.context
-    -- 不要在早期就重置 offset（保持原代码行为）
+    local code = key_event.keycode
+
+    -- Ctrl 监听，用于开关可视化标记
+    -- 0xffe3 = Left Ctrl, 0xffe4 = Right Ctrl
+    if code == 0xffe3 or code == 0xffe4 then
+        if context.composition:empty() then return wanxiang.RIME_PROCESS_RESULTS.kNoop end 
+        
+        local current = context:get_option("_seq_show_markers")
+        local target = not key_event:release() -- 按下为true，松开为false
+        
+        if current ~= target then
+            -- 获取当前光标位置，并存入全局状态 highlight_index
+            local segment = context.composition:back()
+            curr_state.highlight_index = segment.selected_index
+            -- 切换开关
+            context:set_option("_seq_show_markers", target)
+            -- 恢复高亮
+            process_adjustment(context)
+        end
+        return wanxiang.RIME_PROCESS_RESULTS.kNoop 
+    end
+
+    -- 重置状态
     curr_state.reset()
 
     local selected_cand = context:get_selected_candidate()
@@ -574,27 +461,20 @@ function P.func(key_event, env)
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
-    -- 先判断当前的 adjust_code（与 extract_adjustment_code 的逻辑一致）
     local function get_adjust_code()
         if wanxiang.is_function_mode_active(context) then
-            local code = seq_property.get(context)
-            if code and code ~= "" then return code end
-            return nil
+            local c = seq_property.get(context); if c and c ~= "" then return c end; return nil
         end
         return context.input:sub(1, context.caret_pos)
     end
-
     local adjust_code = get_adjust_code()
 
-    -- 如果不是 function-mode 且 adjust_code 是单个小写字母，则按键不应改变 curr_state.offset，因为单字母存在时间复杂度
     if (not wanxiang.is_function_mode_active(context)) and _is_single_lowercase_letter(adjust_code) then
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
     local key_repr = key_event:repr()
-    local function get_seq_key(type)
-        return env.engine.schema.config:get_string("key_binder/sequence/" .. type) or DEFAULT_SEQ_KEY[type]
-    end
+    local function get_seq_key(type) return env.engine.schema.config:get_string("key_binder/sequence/" .. type) or DEFAULT_SEQ_KEY[type] end
 
     if key_repr == get_seq_key("up") then
         curr_state.offset = -1; curr_state.mode = curr_state.ADJUST_MODE.Adjust
@@ -612,13 +492,13 @@ function P.func(key_event, env)
     return wanxiang.RIME_PROCESS_RESULTS.kAccepted
 end
 
+------------------------------------------------------------
+-- 十、Filter (含标记可视化)
+------------------------------------------------------------
 local F = {}
 
 function F.fini()
-    -- 退出时不落盘（仅在重新部署 init_once 重写导出）
-    if RUNTIME_EXPORT then
-        seq_data.maybe_export(true)
-    end
+    if RUNTIME_EXPORT then seq_data.maybe_export(true) end
 end
 
 local function apply_prev_adjustment(cands, prev)
@@ -634,6 +514,10 @@ local function apply_prev_adjustment(cands, prev)
         if fromp and (record.fixed_position or 0) > 0 then
             local top = (record.offset == 0) and record.fixed_position or (record.raw_position + record.offset)
             if top < 1 then top = 1 elseif top > n then top = n end
+            
+            -- 记录初步的最终位置
+            record.final_position = top
+
             if fromp ~= top then
                 local cand = table.remove(cands, fromp)
                 table.insert(cands, top, cand)
@@ -651,16 +535,10 @@ end
 
 local function apply_curr_adjustment(candidates, curr_adjustment)
     if curr_adjustment == nil then return end
-
-    ---@type integer | nil
     local from_position = nil
     for position, cand in ipairs(candidates) do
-        if cand.text == curr_state.selected_phrase then
-            from_position = position
-            break
-        end
+        if cand.text == curr_state.selected_phrase then from_position = position; break end
     end
-
     if from_position == nil then return end
 
     local to_position = from_position
@@ -671,41 +549,36 @@ local function apply_curr_adjustment(candidates, curr_adjustment)
 
         local min_position, max_position = 1, #candidates
         if from_position ~= to_position then
-            if to_position < min_position then
-                to_position = min_position
-            elseif to_position > max_position then
-                to_position = max_position
-            end
+            if to_position < min_position then to_position = min_position
+            elseif to_position > max_position then to_position = max_position end
+            
+            -- 记录当前移动后的最终位置，供标记逻辑使用
+            curr_adjustment.final_position = to_position 
 
             local candidate = table.remove(candidates, from_position)
             table.insert(candidates, to_position, candidate)
-
-            -- 运行期仅写 DB，不入导出队列
             save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment, true)
         end
+    else
+        -- 如果不是移动模式（比如点了一下），当前位置也是最终位置
+        curr_adjustment.final_position = from_position
     end
-
     curr_state.highlight_index = to_position - 1
 end
 
 local function extract_adjustment_code(context)
     if wanxiang.is_function_mode_active(context) then
-        local code = seq_property.get(context)
-        if code and code ~= "" then return code end
-        return nil
+        local code = seq_property.get(context); if code and code ~= "" then return code end; return nil
     end
     return context.input:sub(1, context.caret_pos)
 end
 
 function F.func(input, env)
     local function original_list() for cand in input:iter() do yield(cand) end end
-
     local context = env.engine.context
+
     local adjustment_allowed = not (wanxiang.is_function_mode_active(context) and seq_property.get(context) == nil)
-    if not adjustment_allowed then
-        --log.warning("[sequence] 当前指令不支持手动排序")
-        return original_list()
-    end
+    if not adjustment_allowed then return original_list() end
 
     local adjust_code = extract_adjustment_code(context)
     if not adjust_code then return original_list() end
@@ -716,17 +589,21 @@ function F.func(input, env)
 
     local cands, seen = {}, {}
     local is_fun_mode = wanxiang.is_function_mode_active(context)
+    local show_markers = context:get_option("_seq_show_markers")
+
     local pos = 0
     for candidate in input:iter() do
         local phrase = candidate.text
         if not seen[phrase] then
             seen[phrase] = true; pos = pos + 1; table.insert(cands, candidate)
             local curr_key = is_fun_mode and tostring(pos - 1) or phrase
+            
             if curr_adjustment and curr_state.selected_phrase == phrase then
                 curr_state.adjust_code = adjust_code
                 curr_state.adjust_key  = curr_key
                 curr_adjustment.raw_position = pos
             end
+            
             if prev_adjustments and prev_adjustments[curr_key] then
                 prev_adjustments[curr_key].raw_position = pos
             end
@@ -734,7 +611,7 @@ function F.func(input, env)
     end
     prev_adjustments = prev_adjustments or {}
 
-    -- 非位移：置顶/重置立即仅保存到 DB（不入队）
+    -- 非位移模式（Reset/Pin）立即存 DB
     if curr_adjustment and not curr_state.is_adjust_mode() then
         curr_adjustment.offset = 0
         local key = tostring(curr_state.adjust_key)
@@ -744,6 +621,7 @@ function F.func(input, env)
             save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment, true)
         elseif curr_state.is_pin_mode() then
             curr_adjustment.fixed_position = 1
+            curr_adjustment.final_position = 1 -- 置顶的最终位置肯定是1
             prev_adjustments[key] = curr_adjustment
             save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment, true)
         end
@@ -752,12 +630,47 @@ function F.func(input, env)
     apply_prev_adjustment(cands, prev_adjustments)
     apply_curr_adjustment(cands, curr_adjustment)
 
-    for _, cand in ipairs(cands) do yield(cand) end
+    -- 将当前的实时操作同步到历史记录表中，确保标记逻辑能读到最新状态
+    if curr_adjustment and curr_state.adjust_key then
+        local key = tostring(curr_state.adjust_key)
+        -- 确保 raw_position 不丢失（如果之前没记录，用当前的）
+        if not curr_adjustment.raw_position and prev_adjustments[key] then
+             curr_adjustment.raw_position = prev_adjustments[key].raw_position
+        end
+        -- 直接覆盖内存中的旧记录
+        prev_adjustments[key] = curr_adjustment
+    end
 
-    -- 运行期不写盘；如需调试可改为 if RUNTIME_EXPORT then ... end
+    -- 渲染可视化标记
+    for _, cand in ipairs(cands) do
+        local cmt = cand.comment or ""
+        if show_markers and prev_adjustments then
+            local key = is_fun_mode and tostring(cand.text) or cand.text
+            
+            if not is_fun_mode then
+                local rec = prev_adjustments[key]
+                -- 必须有有效记录(p>0)且知道原始位置
+                if rec and rec.fixed_position > 0 and rec.raw_position then
+                    -- 获取当前最终位置
+                    local target = rec.final_position or rec.fixed_position
+                    local diff = target - rec.raw_position
+                    local mark = ""
+                    if diff > 0 then
+                        mark = "+" .. diff  -- 提升，显示 +N
+                    elseif diff < 0 then
+                        mark = "" .. diff   -- 下降，显示 -N (diff自带负号)
+                    else
+                        mark = " ●"          -- 原地不动
+                    end
+                    cand.comment = (cand.comment or "") .. mark
+                end
+            end
+        end
+        yield(cand)
+    end
+
     if RUNTIME_EXPORT and (not curr_state.is_reset_mode()) then
         seq_data.maybe_export(false)
     end
 end
-
 return { P = P, F = F }

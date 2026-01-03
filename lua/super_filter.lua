@@ -26,6 +26,8 @@
 -- 功能G 由于在混输场景中输入comment commit等等之类的英文时候，由于直接辅助码的派生能力，会将三个好不想干的单字组合在一起，这会造成不好的体验
 --      因此在首选已经是英文的时候，且type=completion且大于等于4个字符，这个时候后面如果有type=sentence的派生词则直接干掉，这个还要依赖，表翻译器
 --      权重设置与主翻译器不可相差太大
+-- 功能H：英文自动空格（english_spacing）
+--      支持模式：off(默认), before(前), after(后), smart(连续英文时在前加空格)
 local wanxiang = require("wanxiang")
 local M = {}
 
@@ -172,50 +174,70 @@ local function apply_escape_fast(text)
 end
 
 local function format_and_autocap(cand, code_ctx)
-    -- 对候选做：空白规范化 → 转义替换 → 英文大写
     local text = cand.text
     if not text or text == "" then return cand end
-
-    -- ① 空白规范化
+    
+    local changed = false
+    -- 空白规范化
     local norm = normalize_spaces(text)
-    local changed = (norm ~= text)
-    text = norm
-
-    local has_backslash = (find(text, "\\", 1, true) ~= nil)
-    local b1 = byte(text, 1)
-
-    -- ② 转义替换
-    if has_backslash then
-        local t2, ch = apply_escape_fast(text)
-        if ch then text, changed = t2, true end
+    if norm ~= text then
+        text = norm
+        changed = true
     end
-    -- ③ 英文自动大写：
-    --    - 允许 ASCII 短语（he's / e-mail）
-    --    - 只有“纯字母单词”才会在 all_upper 时变成全大写
-    if code_ctx.enable_cap then
-        if b1 and b1 <= 127 and is_ascii_phrase_fast(text) then
-            -- 纯字母单词：a..z / A..Z
-            local pure_word = is_ascii_word_fast(text)
+    -- 转义替换 (\n, \t, \s 等)
+    -- 必须先处理转义，因为转义可能会改变字符串开头 (如 \sApple -> Apple)
+    if find(text, "\\", 1, true) then
+        local t2, ch = apply_escape_fast(text)
+        if ch then 
+            text = t2
+            changed = true
+        end
+    end
+    -- 状态检测：转义完成后，检测当前文本是否为 ASCII 短语
+    local b1 = byte(text, 1)
+    local is_ascii_phrase = (b1 and b1 <= 127 and is_ascii_phrase_fast(text))
+    -- 英文自动大写
+    if code_ctx.enable_cap and is_ascii_phrase then
+        local pure_word = is_ascii_word_fast(text)
 
-            if cand.type == "completion" or ascii_equal_ignore_case_to_pure(text, code_ctx.pure_code_lc) then
-                local new_text
-                if code_ctx.all_upper and pure_word then
-                    -- 只有纯单词才允许全大写：HELLO
-                    new_text = upper(text)
-                else
-                    -- 带符号（he's、e-mail…）即使 all_upper 也只做首字母大写
-                    new_text = text:gsub("^%a", string.upper)
-                end
+        if cand.type == "completion" or ascii_equal_ignore_case_to_pure(text, code_ctx.pure_code_lc) then
+            local new_text = nil
+            
+            if code_ctx.all_upper and pure_word then
+                -- 全大写逻辑 (HELLO)
+                new_text = upper(text)
+            else
+                -- 首字母大写逻辑 (Hello)
+                new_text = text:gsub("^%a", string.upper)
+            end
 
-                if new_text and new_text ~= text then
-                    text = new_text
-                    changed = true
-                end
+            if new_text and new_text ~= text then
+                text = new_text
+                changed = true
             end
         end
     end
-
+    -- 英文自动空格
+    if is_ascii_phrase and code_ctx.spacing_mode and code_ctx.spacing_mode ~= "off" then
+        local mode = code_ctx.spacing_mode
+        
+        -- smart模式: 若“上次上屏是英文”且“当前也是英文”，则在前面补空格
+        if mode == "smart" then
+            if code_ctx.prev_is_eng then
+                text = " " .. text
+                changed = true
+            end
+        elseif mode == "before" then
+            text = " " .. text
+            changed = true
+        elseif mode == "after" then
+            text = text .. " "
+            changed = true
+        end
+    end
+    -- 输出结果
     if not changed then return cand end
+    
     local nc = Candidate(cand.type, cand.start, cand._end, text, cand.comment)
     nc.preedit = cand.preedit
     return nc
@@ -530,7 +552,88 @@ local function init_charset_filter(env, cfg)
     -- charsetblacklist: 黑名单
     load_charset_list("charsetblacklist", env.charset_block)
 end
+-- =======================================================
+-- 基于英文模式Preedit的智能分段空格
+-- =======================================================
+local function restore_sentence_spacing(cand)
+    local guide = cand.preedit or ""
+    -- 如果 Preedit 没空格，说明没分段，直接返回
+    if not string.find(guide, " ") then return cand end
 
+    local text = cand.text
+    local text_len = #text
+    local parts = {}
+    local p = 1 -- 全局扫描指针
+    -- 辅助：取纯字母小写指纹
+    local function pure(s) return string.gsub(s, "[^a-zA-Z]", ""):lower() end
+    local function find_target_in_text(start_pos, target_fp)
+        -- 剪枝：如果剩下的长度比 target 还短，肯定没了
+        if (text_len - start_pos + 1) < #target_fp then return nil, nil end
+        -- 从 start_pos 开始，向后逐字尝试
+        for i = start_pos, text_len do
+            -- 首字母必须匹配，才值得进去做全词扫描
+            -- 比如 target="apple"，只有遇到 'a'/'A' 才进去看
+            local char_i = string.sub(text, i, i)
+            local first_char_fp = string.lower(char_i)
+            if first_char_fp == string.sub(target_fp, 1, 1) then
+                -- 潜入匹配：尝试从位置 i 开始凑齐 target
+                local scan_p = i
+                local letters_acc = ""
+                while scan_p <= text_len do
+                    local char = string.sub(text, scan_p, scan_p)
+                    -- 只收集字母
+                    if string.find(char, "[a-zA-Z]") then
+                        letters_acc = letters_acc .. string.lower(char)
+                    end
+                    if letters_acc == target_fp then
+                        -- 找到了！返回 (起点, 终点)
+                        return i, scan_p 
+                    end
+                    -- 剪枝：如果凑出来的字母已经比目标不一样或更长，说明不是这个
+                    -- 比如 target="app", 凑出了 "apx" -> 失败，跳出 while，继续外层 for
+                    if #letters_acc > #target_fp then break end
+                    if string.sub(letters_acc, 1, #letters_acc) ~= string.sub(target_fp, 1, #letters_acc) then break end
+                    scan_p = scan_p + 1
+                end
+            end
+        end
+        return nil, nil
+    end
+    -- 遍历 Preedit 的每一段
+    for seg in string.gmatch(guide, "%S+") do
+        local target = pure(seg)
+        if #target > 0 then
+            -- 在当前指针 p 往后无限寻找
+            local match_start, match_end = find_target_in_text(p, target)
+            if match_start then
+                -- 隔离病灶（中间跳过不匹配的）
+                if match_start > p then
+                    local lesion = string.sub(text, p, match_start - 1)
+                    table.insert(parts, lesion)
+                end
+                -- 存入正确单词
+                local valid_word = string.sub(text, match_start, match_end)
+                table.insert(parts, valid_word)
+                -- 更新指针
+                p = match_end + 1
+            else
+                -- 没找到：说明这个 preedit 词完全消失了（比如 preedit 有 5 个词，candidate 只有 4 个）
+                -- 策略：忽略这个 guide，继续用下一个 guide 找
+            end
+        end
+    end
+    -- 尾部处理
+    if p <= text_len then
+        local tail = string.sub(text, p)
+        if #parts > 0 then table.insert(parts, tail)
+        else table.insert(parts, tail) end
+    end
+    -- 重组
+    local new_text = table.concat(parts, " ")
+    local nc = Candidate(cand.type, cand.start, cand._end, new_text, cand.comment)
+    nc.preedit = cand.preedit
+    return nc
+end
 -- ========= 生命周期 =========
 function M.init(env)
     local cfg = env.engine and env.engine.schema and env.engine.schema.config or nil
@@ -563,7 +666,38 @@ function M.init(env)
         local okb, bv = pcall(function() return cfg:get_bool("paired_symbols/mirror") end)
         if okb and bv ~= nil then env.suppress_mirror = bv end
     end
-
+    -- 英文自动空格配置
+    -- off: 关闭; before: 前加; after: 后加; smart: 连续英文时前加
+    env.english_spacing_mode = "off"
+    if cfg then
+        local oks, sv = pcall(function() return cfg:get_string("english_spacing") end)
+        if oks and sv and (sv == "before" or sv == "after" or sv == "smart") then
+            env.english_spacing_mode = sv
+        end
+    end
+    -- 上一次上屏是否为英文（用于 smart 模式）
+    env.prev_commit_is_eng = false
+    -- 注册 commit 通知器来追踪上屏历史
+    if env.engine and env.engine.context then
+        env.commit_notifier = env.engine.context.commit_notifier:connect(function(ctx)
+            local commit_text = ctx:get_commit_text()
+            -- 判断是不是常规的英文单词
+            local is_eng = is_ascii_phrase_fast(commit_text)
+            -- 如果不是单词，再检查是不是单独的英文标点
+            if not is_eng then
+                -- 去掉末尾可能的空格，防止影响判断
+                local clean = commit_text:gsub("%s+$", "") 
+                -- 如果是 逗号、句号、感叹号、问号，也强行算作英文
+                if clean == "," or clean == "." or clean == "!" or clean == "?" then
+                    is_eng = true
+                end
+            end
+            -- 更新状态
+            env.prev_commit_is_eng = is_eng
+            -- 屏后，立即清除打断信号
+            ctx:set_property("english_spacing", "") 
+        end)
+    end
     env.cache  = nil   -- 首候选缓存（已格式化）
     env.locked = false -- 是否进入锁定态（检测到 prefix\suffix）
 
@@ -577,8 +711,12 @@ function M.init(env)
     init_charset_filter(env, cfg)
 end
 
-function M.fini(env) end
-
+function M.fini(env) 
+    if env.commit_notifier then
+        env.commit_notifier:disconnect()
+        env.commit_notifier = nil
+    end
+end
 -- ========= 统一产出通道 =========
 -- ctxs:
 --   charset          : 字符集过滤
@@ -593,37 +731,43 @@ local function emit_with_pipeline(cand, ctxs)
 
     local env = ctxs.env
 
-    -- ① 字符集过滤：只有在 charset_strict = true 时才启用
+    -- 1. 字符集过滤：只有在 charset_strict = true 时才启用
     if ctxs.charset_strict and cand.text and cand.text ~= "" then
         if not in_charset(env, cand.text) then
             return
         end
     end
-
-    -- ② 三态语言模式
+    -- 2. 准备变量
     local is_en = ctxs.is_english and ctxs.is_english(cand) or false
+    local BAGUA_SYMBOL = "\226\152\175"
+    local is_bagua_sentence = (fast_type(cand) == "sentence") and (cand.comment and string.find(cand.comment, BAGUA_SYMBOL))
 
-    if ctxs.en_only and (not is_en) then
-        return
-    end
+    -- 3. 三态语言过滤
+    if ctxs.zh_only and is_en then return end
+    if ctxs.en_only and (not is_en) then return end
 
-    if ctxs.zh_only and is_en then
-        return
-    end
-
-    -- **③ 若需抑制句子候选：删掉所有 type 为 sentence 的候选（除了首候选本身不会被标记）**
-    if ctxs.drop_sentence_after_completion then
-        if fast_type(cand) == "sentence" then
-            return
+    -- 4. 八卦图处理
+    if ctxs.en_only then
+        -- 英文模式：如果是八卦图，用 Preedit 还原空格
+        if is_bagua_sentence then
+            cand = restore_sentence_spacing(cand)
         end
+    elseif (not ctxs.zh_only) then
+        -- 混合模式：隐藏
+        if is_bagua_sentence then return end
     end
 
-    -- ④ 镜像抑制
+    -- 5. 抑制句子
+    if (not ctxs.en_only) and ctxs.drop_sentence_after_completion then
+        if fast_type(cand) == "sentence" then return end
+    end
+
+    -- 6 镜像抑制
     if ctxs.suppress_mirror and ctxs.suppress_set and ctxs.suppress_set[cand.text] then
         return
     end
 
-    -- ⑤ 格式化 + 大写 + span 对齐
+    -- 7 格式化 + 大写 + span 对齐
     cand = format_and_autocap(cand, ctxs.code_ctx)
     cand = ctxs.unify_tail_span(cand)
     yield(cand)
@@ -732,12 +876,21 @@ function M.func(input, env)
     local all_upper      = code:find("^%u%u") ~= nil
     local first_upper    = (not all_upper) and (code:find("^%u") ~= nil)
     local enable_cap     = (code_len > 1 and not code:find("^[%l%p]"))
+    local break_signal = (ctx:get_property("english_spacing") == "true")  --接受空状态下的空格或者回车信号
+    -- 计算最终的 prev_is_eng (上文是否为英文)
+    local effective_prev_is_eng = env.prev_commit_is_eng
+    if break_signal then
+        -- 收到打断信号，强制认为上文不是英文（从而不自动加空格）
+        effective_prev_is_eng = false
+    end
     local code_ctx = {
         pure_code     = pure_code,
         pure_code_lc  = pure_code_lc,
         all_upper     = all_upper,
         first_upper   = first_upper,
         enable_cap    = enable_cap,
+        spacing_mode  = env.english_spacing_mode, -- 传递空格模式配置
+        prev_is_eng   = effective_prev_is_eng,     -- 传递上一次上屏是否英文
     }
 
     local en_only, zh_only = false, false

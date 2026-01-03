@@ -223,22 +223,25 @@ function P.func(key, env)
         -- 有候选菜单时，用数字选「当前页」的第 n 个候选
         if has_menu then
             local d = tonumber(r)
+            -- 如果按下的是 0，视为第 10 个选项
+            if d == 0 then d = 10 end 
+            -- 检查是否在有效范围内 (例如 page_size 是 10，那么 1-10 都有效)
             if d and d >= 1 and d <= page_sz then
                 local composition = context and context.composition
                 if composition and not composition:empty() then
-                    local seg  = composition:back()       -- 当前正在编辑的 segment
+                    local seg  = composition:back()
                     local menu = seg and seg.menu
                     if menu and not menu:empty() then
-                        -- 当前高亮候选的全局下标（0 开始）
                         local sel_index = seg.selected_index or 0
                         local page_size = page_sz
-                        -- 当前页号 = 高亮索引 / 每页大小
+                        -- 计算当前页起始位置
                         local page_no   = math.floor(sel_index / page_size)
                         local page_start = page_no * page_size
-                        -- 当前页第 n 个候选的全局下标
+                        
+                        -- 计算目标候选的全局下标 (d=10 则取第10个)
                         local index = page_start + (d - 1)
 
-                        -- 防止越界（最后一页候选不足一整页）
+                        -- 防止越界并执行上屏
                         if index < menu:candidate_count() then
                             if context:select(index) then
                                 return wanxiang.RIME_PROCESS_RESULTS.kAccepted
@@ -247,6 +250,8 @@ function P.func(key, env)
                     end
                 end
             end
+            -- 如果数字超出了 page_size (例如设置每页6个，按了7)，
+            -- 或者没有选中成功，返回 kNoop，交给 Rime 默认处理
             return wanxiang.RIME_PROCESS_RESULTS.kNoop
         end
     end

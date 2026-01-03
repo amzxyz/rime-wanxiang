@@ -3036,7 +3036,7 @@ local function translator(input, seg, env)
             local diff_days = days_until(target_time)
             return diff_days
         end
-        -- 遍历候选中最近的 3 个节气，原因是上面向后计算了一个节气
+        -- 遍历候选中最近的 3 个节气
         for i = 1, math.min(3, #jqs) do
             local jieqi = jqs[i]
             local diff_days = days_until_jieqi(jieqi)
@@ -3055,22 +3055,10 @@ local function translator(input, seg, env)
             table.insert(jieqi_days, days_until_jieqi(jieqi))
         end
 
-        -- 计算距离下一年1月1日的天数
-        local next_year = year + 1
-        local new_year_time = os.time({
-            year = next_year,
-            month = 1,
-            day = 1,
-            hour = 0,
-            min = 0,
-            sec = 0
-        })
-        local diff_days_next_year = math.floor((new_year_time - now) / (24 * 3600))
-
-        -- 遍历前三个节日并返回节日名称、日期、倒计时天数
+        -- 遍历前三个节日
         local upcoming_holidays = get_upcoming_holidays() or {}
         local holiday_data = {}
-        local zero_holiday = nil -- 独立存储 holiday[3] == 0 的节日名称
+        local zero_holiday = nil 
 
         local filtered_holidays = {}
         local zero_found = false
@@ -3079,7 +3067,7 @@ local function translator(input, seg, env)
             local holiday = upcoming_holidays[i]
 
             if holiday[3] == 0 then
-                zero_holiday = holiday[1] -- 记录这个节日名称
+                zero_holiday = holiday[1] 
                 zero_found = true
             else
                 table.insert(filtered_holidays, holiday)
@@ -3087,91 +3075,79 @@ local function translator(input, seg, env)
         end
 
         if zero_found then
-            -- 只存储后两个节日
             for i = math.max(1, #filtered_holidays - 1), #filtered_holidays do
                 local holiday = filtered_holidays[i]
-                local year, month, day = holiday[2]:match("^(%d+)年(%d+)月(%d+)日")
-
-                if year and month and day then
-                    local formatted_date = string.format("%04d-%02d-%02d", tonumber(year), tonumber(month),
-                        tonumber(day))
+                local hy, hm, hd = holiday[2]:match("^(%d+)年(%d+)月(%d+)日")
+                if hy then
+                    local formatted_date = string.format("%04d-%02d-%02d", tonumber(hy), tonumber(hm), tonumber(hd))
                     table.insert(holiday_data, { holiday[1], formatted_date, holiday[3] })
                 end
             end
         else
-            -- 存储前两个节日
             for i = 1, math.min(2, #filtered_holidays) do
                 local holiday = filtered_holidays[i]
-                local year, month, day = holiday[2]:match("^(%d+)年(%d+)月(%d+)日")
-
-                if year and month and day then
-                    local formatted_date = string.format("%04d-%02d-%02d", tonumber(year), tonumber(month),
-                        tonumber(day))
+                local hy, hm, hd = holiday[2]:match("^(%d+)年(%d+)月(%d+)日")
+                if hy then
+                    local formatted_date = string.format("%04d-%02d-%02d", tonumber(hy), tonumber(hm), tonumber(hd))
                     table.insert(holiday_data, { holiday[1], formatted_date, holiday[3] })
                 end
             end
         end
+
         -- 获取三伏天
         local sanfu = get_sanfu_info(os.date("%Y%m%d", now)) or ""
-        -- 生成问候语函数
+        
+        -- 生成问候语
         local function get_greeting()
             local current_hour = tonumber(os.date("%H"))
-            local greeting = ""
-
-            if current_hour >= 0 and current_hour < 6 then
-                greeting = "晚安!"
-            elseif current_hour >= 6 and current_hour < 12 then
-                greeting = "早上好!"
-            elseif current_hour >= 12 and current_hour < 14 then
-                greeting = "午安!"
-            elseif current_hour >= 14 and current_hour < 18 then
-                greeting = "下午好!"
-            else
-                greeting = "晚上好!"
-            end
-
-            return greeting
+            if current_hour >= 0 and current_hour < 6 then return "晚安!"
+            elseif current_hour >= 6 and current_hour < 12 then return "早上好!"
+            elseif current_hour >= 12 and current_hour < 14 then return "午安!"
+            elseif current_hour >= 14 and current_hour < 18 then return "下午好!"
+            else return "晚上好!" end
         end
+        local greeting = get_greeting() 
 
-        local greeting = get_greeting() -- 获取问候语
-        -- 进度条格式化
+        -- 进度条
         local function generate_progress_bar(percentage)
-            percentage = math.min(100, math.max(0, percentage))                       -- 限制百分比在0-100
+            percentage = math.min(100, math.max(0, percentage))
             local total_blocks = 10
-            local filled_blocks = math.floor((percentage / 100) * total_blocks + 0.5) -- 四舍五入计算块数
+            local filled_blocks = math.floor((percentage / 100) * total_blocks + 0.5)
             local empty_blocks = total_blocks - filled_blocks
-
-            return string.rep("▓", filled_blocks) .. string.rep("▒", empty_blocks) ..
-                string.format(" %.1f%%", percentage)
+            return string.rep("▓", filled_blocks) .. string.rep("▒", empty_blocks) .. string.format(" %.1f%%", percentage)
         end
         local progress_bar = generate_progress_bar(year_progress)
-        -- 生成自定义长度的符号线
-        local function generate_line(length)
-            return string.rep("—", length)
+        
+        -- 分割线
+        local function generate_line(length) return string.rep("—", length) end
+        local line = generate_line(14)
+
+        -- 处理周数显示的逻辑 (防止年底显示第1周造成的困惑)
+        local week_info_str = ""
+        if week_of_year == 1 and month == 12 then
+            -- 如果是12月显示的第1周，说明是明年的ISO周
+            week_info_str = string.format("◈ 下年第01周，本月第[ %d ]周", week_of_month)
+        else
+            week_info_str = string.format("◈ 本年第[ %d ]周，本月第[ %d ]周", week_of_year, week_of_month)
         end
 
-        -- 你可以根据需要调整长度
-        local line = generate_line(14) -- 控制符号线的宽度为 50
         -- 生成最终信息字符串
         local summary = string.format("※嗨，我是万象小助手，%s\n", greeting) .. line .. "\n" ..
             string.format("☉ 今天是：%s%s%s\n", zero_holiday or "", zero_jieqi or "", sanfu) ..
             string.format("☉ %d年%d月%d日 %s\n", year, month, day, week_day_str) ..
             string.format("☉ 农历：%s\n", lunar_info_str) .. line .. "\n" ..
-            string.format("◉ %d进度：\n", year) .. string.format("◈%s\n", progress_bar) ..
-            string.format("◈ 本年第[ %d ]周，本月第[ %d ]周\n", week_of_year, week_of_month) ..
-            string.format("◈ 距 %d 年： [ %d ]天\n", next_year, diff_days_next_year) ..
-            string.format("◈ 今年已过[ %d ]天\n", day_of_year - 1) ..
-            string.format("◈ 今天是第[ %d ]天\n", day_of_year) .. line .. "\n" ..
+            string.format("◉ %d进度：\n", year) .. 
+            string.format("◈%s\n", progress_bar) ..
+            string.format("%s\n", week_info_str) ..
+            string.format("◈ 今岁第[ %d ]天 (余 %d 天)\n", day_of_year, days_in_year - day_of_year) .. 
+            line .. "\n" ..
             string.format("◉ 倒数日：\n") ..
-            string.format("◈ %s %s < [ %d ]天\n", holiday_data[1][1], holiday_data[1][2],
-                holiday_data[1][3]) ..
-            string.format("◈ %s %s < [ %d ]天\n", holiday_data[2][1], holiday_data[2][2],
-                holiday_data[2][3]) .. string.format("◈ %s < [ %d ]天\n", upcoming_jqs[1], jieqi_days[1]) ..
+            string.format("◈ %s %s < [ %d ]天\n", holiday_data[1][1], holiday_data[1][2], holiday_data[1][3]) ..
+            string.format("◈ %s %s < [ %d ]天\n", holiday_data[2][1], holiday_data[2][2], holiday_data[2][3]) ..
+            string.format("◈ %s < [ %d ]天\n", upcoming_jqs[1], jieqi_days[1]) ..
             string.format("◈ %s < [ %d ]天", upcoming_jqs[2], jieqi_days[2])
-        -- 使用 generate_candidates 函数生成候选项
-        local candidates = { { summary, "" } -- 空注释
-        }
-        -- 调用 generate_candidates 来提交候选项
+
+        local candidates = { { summary, "" } }
         generate_candidates("day_summary", seg, candidates)
         return
     end

@@ -97,8 +97,8 @@ engine:
     - reverse_lookup_filter@radical_reverse_lookup  #部件拆字滤镜，放在super_comment前面，进一步被超级注释处理以获得拼音编码的提示
     - lua_filter@*auto_phrase                       #comment前，无感造词，关闭调频的时候将汉字写入次翻译器，当没有英文候选的时候追加\上屏可完成英文造词
     - lua_filter@*super_lookup                      #comment前，字词输入中反查辅助筛选
+    - lua_filter@*super_filter                      #comment前，功能太多详见Lua文件
     - lua_filter@*super_comment_preedit             #OpenCC前，超级注释模块、超级preedit，支持错词提示、辅助码显示，部件组字读音注释，有声调、无声调全拼编码的转换，支持个性化配置和关闭相应的功能，详情搜索super_comment_preedit进行详细配置
-    - lua_filter@*super_filter                      #功能太多详见Lua文件
     - simplifier@emoji                              #Emoji滤镜
     - simplifier@s2t                                #简繁切换通繁
     - simplifier@s2tw                               #简繁切换台繁
@@ -109,12 +109,12 @@ engine:
 
 grammar:
   language: wanxiang-lts-zh-hans
-  collocation_max_length: 8         #命中的最长词组
-  collocation_min_length: 2         #命中的最短词组，搭配词频健全的词库时候应当最小值设为3避开2字高频词
-  collocation_penalty: -10          #默认-12 对常见搭配词组施加的惩罚值。较高的负值会降低这些搭配被选中的概率，防止过于频繁地出现某些固定搭配。
-  non_collocation_penalty: -17      #默认-12 对非搭配词组施加的惩罚值。较高的负值会降低非搭配词组被选中的概率，避免不合逻辑或不常见的词组组合。
-  weak_collocation_penalty: -24      #默认-24 对弱搭配词组施加的惩罚值。保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合。
-  rear_penalty: -18                 #默认-18 对词组中后续词语的位置施加的惩罚值。较高的负值会降低某些词语在句子后部出现的概率，防止句子结构不自然。
+  collocation_max_length: 6
+  collocation_min_length: 3
+  collocation_penalty: -10
+  non_collocation_penalty: -20
+  weak_collocation_penalty: -45
+  rear_penalty: -12
 
 super_comment:                  # 超级注释模块，子项配置 true 开启，false 关闭
   candidate_length: 2           # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
@@ -130,6 +130,11 @@ tips:
 #在8105基础上你可以通过黑白名单微调你自己的字符集过滤清单，主数据库位于lua/charset.bin不可编辑
 charsetlist: []
 charsetblacklist: []
+
+#英文自动加空格，除关闭外共有3种模式可供选择
+#off: 关闭; before: 总是前加; after: 总是后加; 
+#smart: 智能模式连续输入英文时第二个单词前开始加空格，非输入状态的回车与空格都能打断加空格状态
+english_spacing: smart
 
 #shijian:仅仅作为提示使用，编码已经写死，引导键可以在key_binder下修改前缀
 #时间：osj 或者 /sj
@@ -351,7 +356,6 @@ translator:
 #  user_dict: zrm.userdb       # 用户词典的文件名称
 #  db_class: tabledb           #开启后就不会产生wanxiang.userdb这样的文件夹，会直接输出文本wanxiang.txt同时无法使用同步能力，可设 tabledb〔文本〕或 userdb〔二进制〕
   enable_user_dict: true       # 是否开启自动调频，即开启用户词典
-#  enable_encoder: true         #是否开启自动造词
 #  enable_sentence: false       #是否开启自动造句
 #  enable_correction: false     #是否开启自动纠错
 #  encode_commit_history: true  # 预留历史上屏自动编码成词
@@ -391,11 +395,8 @@ wanxiang_mixedcode:
   dictionary: wanxiang_mixedcode
   user_dict: en
   enable_completion: true
-  enable_sentence: false
+  enable_sentence: true
   initial_quality: 2
-  comment_format:
-    - xform/^.+$//
-
 
 # Emoji
 emoji:
@@ -574,9 +575,8 @@ key_binder:
 #通过快捷键Control+g开启字符集过滤
     - { when: has_menu, accept: "Control+g", toggle: charset_filter }
     - { when: composing, accept: "Control+g", toggle: charset_filter }
-#通过快捷键Control+q切换中文、英文、混合模式
-    - { when: has_menu, accept: "Control+q", toggle: zh_only }
-    - { when: composing, accept: "Control+q", toggle: zh_only }
+#通过快捷键Shift+space开启输入模式切换
+    - { when: always, accept: "Shift+space", toggle: zh_only }
 # 使用 tab 在不同音节之间跳转
     - { when: has_menu, accept: "Tab", send: "Control+Right" }
     - { when: composing, accept: "Tab", send: "Control+Right" }

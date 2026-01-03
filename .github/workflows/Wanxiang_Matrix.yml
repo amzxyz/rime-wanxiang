@@ -49,92 +49,66 @@ jobs:
           # 垃圾文件过滤
           DELETE_LIST: ".git .github .gitignore *.md plum weasel.yaml version.txt wanxiang_t9.schema.yaml LICENSE *.png *.jpg unused_folder update_log.txt"
         run: |
-          # === 0. 准备工作 ===
           sudo apt-get update && sudo apt-get install -y opencc
-          
+          REPO_ROOT="$GITHUB_WORKSPACE/wanxiang_root"
           RIME_DEST="$GITHUB_WORKSPACE/trime_src/app/src/main/assets/rime"
           SHARED_DEST="$GITHUB_WORKSPACE/trime_src/app/src/main/assets/shared"
           SCRIPT_PATH="$GITHUB_WORKSPACE/wanxiang_root/.github/workflows/scripts/openccset.py"
           DM_PATH="$GITHUB_WORKSPACE/trime_src/app/src/main/java/com/osfans/trime/data/base/DataManager.kt"
           
-          # === 1. 清理目录 ===
+          # 清理目录
           rm -rf "$RIME_DEST" "$SHARED_DEST"
           mkdir -p "$RIME_DEST" "$SHARED_DEST"
           
-          # === 2. 拉取方案 ===
+          # 拉取方案
           git clone -b ${{ matrix.branch }} --single-branch --depth 1 https://github.com/${{ github.repository }}.git temp_scheme
           
-          # === 3. OpenCC 预处理 ===
+          # OpenCC 预处理
           if [ -d "temp_scheme/opencc" ]; then
             python3 "$SCRIPT_PATH" "$GITHUB_WORKSPACE/temp_scheme/opencc"
           fi
-          
-          # === 4. 清理垃圾 ===
+          # 从主仓库(wanxiang_root)的 custom 目录拿 zip，解压到 temp_scheme
+          if [ -f "$REPO_ROOT/custom/简纯.zip" ]; then
+              echo ">>> 📦 发现主题包，正在解压到 temp_scheme..."
+              unzip -o "$REPO_ROOT/custom/简纯.zip" -d temp_scheme/
+          fi
           cd temp_scheme
+          if [ -f "简纯+.trime.yaml" ]; then
+              echo ">>> 🎨 重命名 简纯+.trime.yaml -> trime.yaml"
+              mv -f "简纯+.trime.yaml" "trime.yaml"
+          fi
           for pattern in ${{ env.DELETE_LIST }}; do rm -rf $pattern || true; done
           cd ..
-          
-          # === 5. 资源分配 ===
           # 5.1 方案配置 -> Shared
-          cp -rf temp_scheme/* "$SHARED_DEST"/
+          cp -rf temp_scheme/. "$SHARED_DEST"/
           rm -rf temp_scheme
-          
-          # 5.2 物理复制素材 -> Shared
-          if [ -d "wanxiang_root/fonts" ]; then cp -rf "wanxiang_root/fonts" "$SHARED_DEST/"; fi
-          if [ -d "wanxiang_root/backgrounds" ]; then cp -rf "wanxiang_root/backgrounds" "$SHARED_DEST/"; fi
 
-          # 5.3 Gram 模型
-          cp -f "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram" "$SHARED_DEST/wanxiang-lts-zh-hans.gram"
-          
-          # 5.4 锁定默认主题
-          cd "$SHARED_DEST"
-          THEME_FILE=$(find . -maxdepth 1 -name "*简纯*.yaml" | head -n 1)
-          if [ -n "$THEME_FILE" ]; then
-             echo "🎨 锁定默认主题: $THEME_FILE"
-             mv -f "$THEME_FILE" "trime.yaml"
+          # Gram 模型
+          if [ -f "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram" ]; then
+              cp -f "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram" "$SHARED_DEST/wanxiang-lts-zh-hans.gram"
           fi
-          
-          # 5.5 深度清理
-          if [ -d "custom" ]; then rm -rf custom/*.jpg custom/*.png custom/*.md 2>/dev/null || true; fi
-          if [ -d "opencc" ]; then rm -rf opencc/*.txt 2>/dev/null || true; fi
-          if [ -d "dicts" ]; then rm -rf dicts/wuzhong.dict.yaml 2>/dev/null || true; fi
-          
-          # =======================================================
-          # === [核心逻辑] DataManager.kt 源码注入 ===
-          # =======================================================
+          echo ">>> 🧹 执行深度清理..."
+          # 清理 opencc 里的 txt 源文件 (只留 ocd2)
+          find "$SHARED_DEST/opencc" -name "*.txt" -delete 2>/dev/null || true
+          # 清理不需要的词库
+          rm -f "$SHARED_DEST/dicts/wuzhong.dict.yaml" 2>/dev/null || true
+          # 清理多余的图片 (如果你想清理根目录的)
+          rm -f "$SHARED_DEST/"*.jpg "$SHARED_DEST/"*.png 2>/dev/null || true
+          # DataManager.kt 源码注入
           echo ">>> [Source] 正在修改 DataManager.kt ..."
           if [ -f "$DM_PATH" ]; then
             
             # (1) 修改默认目录名为 wanxiang
             sed -i 's/File(Environment.getExternalStorageDirectory(), "rime")/File(Environment.getExternalStorageDirectory(), "wanxiang")/g' "$DM_PATH"
-
-            # -----------------------------------------------------------
-            # (2) 注入 Schema List (使用块替换，彻底解决"还是两个"的问题)
-            # -----------------------------------------------------------
+            # (2) 注入 Schema List
             if [[ "${{ matrix.branch }}" == "wanxiang-base" ]]; then
               export TARGET_SCHEMA="wanxiang"
             else
               export TARGET_SCHEMA="wanxiang_pro"
             fi
-            
             echo ">>> [Source] 替换 Schema 列表 (Target: $TARGET_SCHEMA)..."
-            
-            # 解释：
-            # (\n\s+)  -> 捕获第一行前面的换行符和缩进空格 (存入 $1)
-            # - schema: luna_pinyin -> 匹配第一行内容
-            # \n\s+    -> 匹配中间的换行和缩进
-            # - schema: luna_pinyin_simp -> 匹配第二行内容
-            # 
-            # 替换结果：$1 (原来的换行和缩进) + "- schema: " + 目标方案
-            # 效果：两行变一行，且缩进完美继承，不用担心格式乱掉。
-            
             perl -i -0777 -pe 's/(\n\s+)- schema: luna_pinyin\n\s+- schema: luna_pinyin_simp/$1- schema: $ENV{TARGET_SCHEMA}/g' "$DM_PATH"
 
-            # -----------------------------------------------------------
-            # (3) 【强力注入】注入防闪退同步代码
-            # -----------------------------------------------------------
-            echo ">>> [Source] 注入防闪退同步代码..."
-            
             # 顺序：Fonts -> Backgrounds -> trime.yaml
             export INJECT_CODE='
             try {
@@ -146,6 +120,8 @@ jobs:
                 
                 // 2. Backgrounds
                 val bd = java.io.File(userDataDir, "backgrounds").apply { mkdirs() }
+                val nomedia = java.io.File(bd, ".nomedia")
+                if (!nomedia.exists()) { nomedia.createNewFile() }
                 am.list("shared/backgrounds")?.forEach { try { ResourceUtils.copyFile("shared/backgrounds/$it", java.io.File(bd, it).absolutePath) } catch(e:Exception){} }
             } catch(e: Exception) { Timber.e(e, "Assets inject error") }
             Timber.d("Synced!")'

@@ -459,7 +459,7 @@ datetime_formats:
 
 <img src="https://storage.deepin.org/thread/202509260130219621_首选成对符号1.jpg" height="80"> <img  src="https://storage.deepin.org/thread/202509260130208277_首选成对符号2.jpg" height="80"> <img  src="https://storage.deepin.org/thread/202509260130199763_首选成对符号3.jpg" height="80">
 
-**英文候选格式化Lua：** 输入hello则得到hello，输入首字母大写Hello则得到Hello和一众首字母大写的联想词，输入前两码大写HEllo则得到全为大写的HELLO和一众大写英文。
+**英文候选格式化Lua：** ①输入hello则得到hello，输入首字母大写Hello则得到Hello和一众首字母大写的联想词，输入前两码大写HEllo则得到全为大写的HELLO和一众大写英文。还有一个项目。②英文自动加空格，off: 关闭; before: 总是前加; after: 总是后加，smart: 智能模式连续输入英文时第二个单词前开始加空格，非输入状态的回车与空格都能打断加空格状态，也就是说你自己按了空格/回车再输入英文就不会加空格，可以想象一下回车后从头输入出现了空格的尴尬。
 
 <img src="https://storage.deepin.org/thread/202509260133175234_首字母大写.jpg" height="80">
 <img src="https://storage.deepin.org/thread/202509260133175362_双字母大写.jpg" height="80">

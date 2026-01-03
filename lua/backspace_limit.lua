@@ -20,6 +20,14 @@ end
 function M.func(key, env)
     local ctx = env.engine.context
     local kc = key.keycode
+    -- 这里嵌入一段记录按键的逻辑，给英文空格使用
+    if not key:release() and ctx.composition:empty() then
+        -- 检测：回车 (0xff0d, 0xff8d) 或 空格 (0x20)
+        if kc == 0xff0d or kc == 0xff8d or kc == 0x20 then
+            -- 发送信号：刚才发生了空闲换行或空格，打断英文连贯性
+            ctx:set_property("english_spacing", "true")
+        end
+    end  --嵌入结束
     -- 非 Backspace 键或按键释放事件：重置状态
     if kc ~= 0xFF08 or key:release() then
         env.bs_sequence = false

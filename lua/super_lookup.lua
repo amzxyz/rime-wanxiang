@@ -58,26 +58,35 @@ end
 local function expand_code_variant(main_projection, xlit_projection, part)
     local out, seen = {}, {}
     local function add(s) if s and #s > 0 and not seen[s] then seen[s] = true out[#out + 1] = s end end
-    add(part)
-    if main_projection then local p = main_projection:apply(part, true) if p and #p > 0 then add(p) end end
-    local base = {}
-    for i = 1, #out do local elem = out[i] if elem:match('^%l+$') then base[#base + 1] = elem end end
-    
-    -- 提取 1,3 位生成构造码
-    for _, s in ipairs(base) do 
-        -- 安全检查：确保长度足够
-        if #s >= 3 and #s <= 4 and s:match('^%l+$') then 
-            add(s:sub(1,1) .. s:sub(3,3)) 
-        end 
-    end
 
-    if part:match('^%u+$') and xlit_projection then 
-        local xlit_result = xlit_projection:apply(part, true) 
-        if xlit_result and #xlit_result > 0 then add(xlit_result) end 
+    -- 1. 定义“种子”列表，首先放入原始编码 part
+    local seeds = { part }
+
+    -- 2. 提取只有一个单引号编码，若成功则将其作为第二个“种子”加入列表
+    --    例如：part="ce'shi"，提取出 "cs" 加入 seeds
+    local _, quote_count = part:gsub("'", "")
+    if quote_count == 1 then
+        local s1, s2 = part:match("^([^']*)'([^']*)$")
+        if s1 and s2 and #s1 > 0 and #s2 > 0 then
+            local derived_code = s1:sub(1,1) .. s2:sub(1,1)
+            table.insert(seeds, derived_code)
+        end
+    end
+    -- 3. 遍历所有种子（原始编码 + 缩写编码），统一进行规则投影
+    for _, code in ipairs(seeds) do
+        -- 应用 main_projection (非大写)
+        if main_projection then
+            local p = main_projection:apply(code, true)
+            if p and #p > 0 then add(p) end
+        end
+        -- 应用 xlit_projection (大写笔画，不参与前面重复计算)
+        if code:match('^%u+$') and xlit_projection then
+            local xlit_result = xlit_projection:apply(code, true)
+            if xlit_result and #xlit_result > 0 then add(xlit_result) end
+        end
     end
     return out
 end
-
 -- 【DB】查表
 local function build_reverse_group(main_projection, xlit_projection, db_table, text)
     local group, seen = {}, {}

@@ -41,6 +41,8 @@ switcher:
     - tone_hint
     - full_pinyin
     - chinese_english
+    - zh_only
+    - en_only
     - search_single_char
   fold_options: true            # 呼出时是否折叠，多方案时建议折叠 true ，一个方案建议展开 false
   abbreviate_options: true      # 折叠时是否缩写选项
@@ -75,12 +77,6 @@ ascii_composer:
 # 此处配置较为通用的选项，各方案中另增加了和方案功能绑定的 patterns。
 recognizer:
   patterns:
-    email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"                            # email @ 之后不上屏
-    url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"  # URL
-    underscore: "^[A-Za-z]+_.*"  # 下划线不上屏
-    # url_2: "^[A-Za-z]+[.].*"   # 句号不上屏，支持 google.com abc.txt 等网址或文件名，使用句号翻页时需要注释掉
-    # colon: "^[A-Za-z]+:.*"     # 冒号不上屏
-
 
 # 快捷键
 key_binder:
