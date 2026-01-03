@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.0...v14.0.1) (2026-01-03)
+
+
+### 🐛 Bug 修复
+
+* 超级注释放开末尾~，他代表单词未完全输入完成的尾部视觉提示 ([cec8cc5](https://github.com/amzxyz/rime_wanxiang/commit/cec8cc518c6aaf41bb31a07bcf157be1f9550715))
+
 ## [14.0.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.12.1...v14.0.0) (2026-01-03)
 
 
