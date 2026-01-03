@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.0.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.12.1...v14.0.0) (2026-01-03)
+
+
+### 💅 重构
+
+* **english:** 全新的英文方案与配套整句体验 ([d59a373](https://github.com/amzxyz/rime_wanxiang/commit/d59a373b3cb675297016cc167de32d9ee1f808b8))
+
+
+### 🏡 杂项
+
+* release 14.0.0 ([c9a47d7](https://github.com/amzxyz/rime_wanxiang/commit/c9a47d71cf4e0fa7993ef236c6f8d2184d2c325b))
+
 ## [13.12.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.12.0...v13.12.1) (2026-01-02)
 
 
