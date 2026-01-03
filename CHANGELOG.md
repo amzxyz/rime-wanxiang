@@ -1,5 +1,24 @@
 # Changelog
 
+## [14.0.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.2...v14.0.3) (2026-01-03)
+
+
+### 📚 词库更新
+
+* 词库调整 ([3026476](https://github.com/amzxyz/rime_wanxiang/commit/302647626f5ab6761d8e5b640720fc8b956ecd1a))
+
+
+### 🐛 Bug 修复
+
+* 英文自动空格支持延时销毁加空格的状态 ([dbe140b](https://github.com/amzxyz/rime_wanxiang/commit/dbe140bfec48ae678023fa3b655e9c3328e2e3cf))
+* 重新排序英文 ([04bcd39](https://github.com/amzxyz/rime_wanxiang/commit/04bcd39a28779766775f575c05b4e2f5207cd0dc))
+* 重新排序英文 ([e41d99a](https://github.com/amzxyz/rime_wanxiang/commit/e41d99a5f3c036ab29683b17214e34d1ac47e774))
+
+
+### 🏡 杂项
+
+* 调整说明 ([26e87cd](https://github.com/amzxyz/rime_wanxiang/commit/26e87cd11a2bb061866717c02ad546e7f834bbe4))
+
 ## [14.0.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.1...v14.0.2) (2026-01-03)
 
 
