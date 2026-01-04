@@ -1,5 +1,15 @@
 # Changelog
 
+## [14.0.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.5...v14.0.6) (2026-01-04)
+
+
+### 🐛 Bug 修复
+
+* 删除多余传参 ([4ae30b9](https://github.com/amzxyz/rime_wanxiang/commit/4ae30b9f6595ceeb7c28d1d404274a643d3829e9))
+* 句中反查修复了两个bug ([76c3099](https://github.com/amzxyz/rime_wanxiang/commit/76c3099675342eaab94fe8bc25e05a7e68b8e5f3))
+* 当按下修饰键的时候数字处理器交还给系统 ([31fb8aa](https://github.com/amzxyz/rime_wanxiang/commit/31fb8aa37c59e16b746960df07c965dec2be0fcd))
+* 指令设置英文custom ([4b599a0](https://github.com/amzxyz/rime_wanxiang/commit/4b599a04be741a213a1dd2d5f9a249cc932d7c3b))
+
 ## [14.0.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.4...v14.0.5) (2026-01-04)
 
 
