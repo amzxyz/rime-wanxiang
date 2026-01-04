@@ -1,5 +1,19 @@
 # Changelog
 
+## [14.0.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.4...v14.0.5) (2026-01-04)
+
+
+### 📚 词库更新
+
+* 词库调整 ([f39f29f](https://github.com/amzxyz/rime_wanxiang/commit/f39f29f77a5310f09e0aa6683d38f9c00560b6c4))
+* 词库调整 ([269a0d3](https://github.com/amzxyz/rime_wanxiang/commit/269a0d38754954c637a7a754ccc8cce20355f2a5))
+
+
+### 🐛 Bug 修复
+
+* 修复句中反查对双拼编码的提取策略 ([2e12667](https://github.com/amzxyz/rime_wanxiang/commit/2e12667ef86b72a173aa05e9afa3cff851a64e6f))
+* 修复句中反查时英文派生策略导致的提交内容异常包含了英文的问题，修复英文造词问题 ([12c5f6c](https://github.com/amzxyz/rime_wanxiang/commit/12c5f6ca7c1fb5699cd49898ca65fd327f19d96c))
+
 ## [14.0.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.3...v14.0.4) (2026-01-03)
 
 
