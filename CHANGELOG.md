@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.1.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.6...v14.1.0) (2026-01-05)
+
+
+### ✨ 新特性
+
+* 新增yaml正则转义lua正则模块，数字键处理逻辑将直接读取状态 ([67f40b6](https://github.com/amzxyz/rime_wanxiang/commit/67f40b64d8843664fbb05bc04313221ca4dfe398))
+
+
+### 🐛 Bug 修复
+
+* 简化配置层级 ([0b6a880](https://github.com/amzxyz/rime_wanxiang/commit/0b6a880f205833c948a8fe3cc20ef10f3ffca382))
+* 英文lua派生单字母按照输入什么什么优先，且不干扰置顶的单词，置顶优先 ([00ca0f3](https://github.com/amzxyz/rime_wanxiang/commit/00ca0f323fe91313b5c7c2d2c790ffdc7cfb1a12))
+
 ## [14.0.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.5...v14.0.6) (2026-01-04)
 
 
