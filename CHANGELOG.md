@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.1.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.0...v14.1.1) (2026-01-05)
+
+
+### 📚 词库更新
+
+* 词库调整 ([14bdf2f](https://github.com/amzxyz/rime_wanxiang/commit/14bdf2fa35ce1a5a9a2abdcefc1d3c93b2b0422f))
+
+
+### 🐛 Bug 修复
+
+* 修改基础版紫光转写 ([12370f1](https://github.com/amzxyz/rime_wanxiang/commit/12370f1bf7f394fe6cc8b7ac2c4c52f100f9bda0))
+* 输入中持续保持英文加空格的记录状态，哪怕你输入的慢点 ([e5b1d37](https://github.com/amzxyz/rime_wanxiang/commit/e5b1d37fedd803a5f8e4b163fea49f5619813bdf))
+
 ## [14.1.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.6...v14.1.0) (2026-01-05)
 
 
