@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.1.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.1...v14.1.2) (2026-01-06)
+
+
+### 📚 词库更新
+
+* 词库调整 ([c604c63](https://github.com/amzxyz/rime_wanxiang/commit/c604c632e490562c70e8377ef42a6be617aeb30f))
+
+
+### 🐛 Bug 修复
+
+* 修复智能ABC+汉心转写中的bug ([fa60a9c](https://github.com/amzxyz/rime_wanxiang/commit/fa60a9c925c837842b1823aa8c96d11778546e05))
+
 ## [14.1.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.0...v14.1.1) (2026-01-05)
 
 
