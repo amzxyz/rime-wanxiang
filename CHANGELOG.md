@@ -1,5 +1,23 @@
 # Changelog
 
+## [14.1.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.3...v14.1.4) (2026-01-07)
+
+
+### 📚 词库更新
+
+* 词库调整 ([4bb0db4](https://github.com/amzxyz/rime_wanxiang/commit/4bb0db4873c70b2646ce46a01fc15809850e59e7))
+
+
+### 🐛 Bug 修复
+
+* /命令模式不派生候选 ([797994f](https://github.com/amzxyz/rime_wanxiang/commit/797994fa72fb68d65fb4c79a731b5651914c3621))
+* 微调英文自动加空格策略 ([800ccb5](https://github.com/amzxyz/rime_wanxiang/commit/800ccb581a1be43807ee5b1ed1419866a6bb016a))
+
+
+### 🏡 杂项
+
+* 调整说明 ([1a299ff](https://github.com/amzxyz/rime_wanxiang/commit/1a299ff7c439759e55d9c381bbe2a0fa5d14ce2a))
+
 ## [14.1.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.2...v14.1.3) (2026-01-06)
 
 
