@@ -1,5 +1,22 @@
 # Changelog
 
+## [14.1.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.4...v14.1.5) (2026-01-10)
+
+
+### 📚 词库更新
+
+* 补充英文词库 ([ebc42be](https://github.com/amzxyz/rime_wanxiang/commit/ebc42be99c82448c296d084888ce70a20c4fdb74))
+* 词库调整 ([cc15b24](https://github.com/amzxyz/rime_wanxiang/commit/cc15b24b3b1e3757f03307f99d1b07fa73152a4c))
+* 词库调整 ([5bcf2d9](https://github.com/amzxyz/rime_wanxiang/commit/5bcf2d9307da7f727bc5de1b163bf4f18a76b249))
+* 词库调整 ([9445c8b](https://github.com/amzxyz/rime_wanxiang/commit/9445c8b64105e69dce95525b9b4dbefa67c6506a))
+
+
+### 🐛 Bug 修复
+
+* 修改说明 ([762de75](https://github.com/amzxyz/rime_wanxiang/commit/762de758a923c50a95941dd198adf8c158b948fd))
+* 当'作为分隔符又与it's重合，不在插入空格导致其分开 ([ad842c7](https://github.com/amzxyz/rime_wanxiang/commit/ad842c7b975ebae437ba07330e126bce63b9f717))
+* 自动造词的非确定性优化 ([de074ae](https://github.com/amzxyz/rime_wanxiang/commit/de074aef6e23dab0012dfc5a2097194d2e1951a2))
+
 ## [14.1.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.3...v14.1.4) (2026-01-07)
 
 
