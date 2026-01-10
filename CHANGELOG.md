@@ -1,5 +1,13 @@
 # Changelog
 
+## [14.1.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.5...v14.1.6) (2026-01-10)
+
+
+### 🐛 Bug 修复
+
+* 移除多余声明 ([e1744fb](https://github.com/amzxyz/rime_wanxiang/commit/e1744fba02f7079d046a9efe44d2ae3b82c63287))
+* 适配元书的九宫格处理器 ([da82c9e](https://github.com/amzxyz/rime_wanxiang/commit/da82c9eb254d45b45d44fb29ece0f582b3282e72))
+
 ## [14.1.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.4...v14.1.5) (2026-01-10)
 
 
