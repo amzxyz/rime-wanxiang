@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.1.7](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.6...v14.1.7) (2026-01-11)
+
+
+### 📚 词库更新
+
+* 词库调整 ([dc8a54d](https://github.com/amzxyz/rime_wanxiang/commit/dc8a54d2d2f8fb171a8504a06d40886f35b3d943))
+
+
+### 🐛 Bug 修复
+
+* 全拼状态下将bun拼音下置顶一个“不能，避免生僻字兺干扰喜欢派生输入的习惯” ([7aac6a4](https://github.com/amzxyz/rime_wanxiang/commit/7aac6a489a39380483ffe698217d62cfde25e727))
+
 ## [14.1.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.5...v14.1.6) (2026-01-10)
 
 
