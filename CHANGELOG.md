@@ -1,5 +1,26 @@
 # Changelog
 
+## [14.1.8](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.7...v14.1.8) (2026-01-12)
+
+
+### 📚 词库更新
+
+* 词库调整 ([b9b5e02](https://github.com/amzxyz/rime_wanxiang/commit/b9b5e029fa73c03d30858e5b30681c236649ba1f))
+* 词库调整 ([3d7f1ea](https://github.com/amzxyz/rime_wanxiang/commit/3d7f1ea72dbf6e544cfa128ba1329ccc8cb516b2))
+
+
+### 🐛 Bug 修复
+
+* **super_lookup:** 反查现已支持声调，与字母任意位置输入即可，词组根据输入的个数来从第一个汉字依次来匹配，输入位置也是随意的 ([e20e114](https://github.com/amzxyz/rime_wanxiang/commit/e20e114d0646e5e0498c6bf394593e307dd1bf1f))
+* 删除无效代码 ([8b11674](https://github.com/amzxyz/rime_wanxiang/commit/8b11674a84678291a4ce14ced16c69c3567eb5b4))
+* 简纯主题数字行高度对齐每夜版本 ([3d2a1f8](https://github.com/amzxyz/rime_wanxiang/commit/3d2a1f88d3d35e570c970336d7e5534f89b9a9c6))
+* 首选格式化支持连续字符的简写 ([ff10425](https://github.com/amzxyz/rime_wanxiang/commit/ff104253407cbc6e89229814e1aecdd0799f37f0))
+
+
+### 🏡 杂项
+
+* 修改说明 ([ed54f97](https://github.com/amzxyz/rime_wanxiang/commit/ed54f97b8dfd1f29dc686caa56b5a2e07277223f))
+
 ## [14.1.7](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.6...v14.1.7) (2026-01-11)
 
 
