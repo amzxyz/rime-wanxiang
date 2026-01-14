@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.2.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.1...v14.2.2) (2026-01-14)
+
+
+### 🐛 Bug 修复
+
+* 挽救一次失誤 ([f21e42f](https://github.com/amzxyz/rime_wanxiang/commit/f21e42f700f4aa61b2c8349a16b4acd5109c2846))
+
+
+### 🏡 杂项
+
+* 修改说明 ([e550639](https://github.com/amzxyz/rime_wanxiang/commit/e550639decf4ba2d107b7cb94fe0f84e3cb14f00))
+
 ## [14.2.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.0...v14.2.1) (2026-01-14)
 
 
