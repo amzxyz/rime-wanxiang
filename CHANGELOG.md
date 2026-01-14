@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.2.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.8...v14.2.0) (2026-01-14)
+
+
+### ✨ 新特性
+
+* 全面移除OpenCC组件的引用，使用lua重构，现在将拥有更为灵活的转换策略，使用数据库常态化工作，自定义码表更简单，不用担心键值对的重复空格的敏感等问题 ([ff8be68](https://github.com/amzxyz/rime_wanxiang/commit/ff8be6866994c831628afb7d638917566484ea16))
+
+
+### 📚 词库更新
+
+* 词库调整 ([091851b](https://github.com/amzxyz/rime_wanxiang/commit/091851b9b3fa0a4f19bc959864e91e8bdc842c03))
+* 词库调整 ([c53bccf](https://github.com/amzxyz/rime_wanxiang/commit/c53bccf626e8bc2bc064369b23483b592e48d0ad))
+
 ## [14.1.8](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.7...v14.1.8) (2026-01-12)
 
 
