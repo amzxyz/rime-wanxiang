@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.2.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.0...v14.2.1) (2026-01-14)
+
+
+### 🐛 Bug 修复
+
+* 集中修复三个lua bug，为替换器增加FMM分词算法补齐句子转换功能 ([1e9bbe3](https://github.com/amzxyz/rime_wanxiang/commit/1e9bbe392082144126fa8aaa9c77843917b5c05a))
+
 ## [14.2.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.8...v14.2.0) (2026-01-14)
 
 
