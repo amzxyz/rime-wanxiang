@@ -1,5 +1,19 @@
 # Changelog
 
+## [14.2.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.2...v14.2.3) (2026-01-16)
+
+
+### 📚 词库更新
+
+* 词库调整 ([89602f5](https://github.com/amzxyz/rime_wanxiang/commit/89602f519617de22533b74cecfc57405ed8eea25))
+* 词库调整 ([5e7a4e0](https://github.com/amzxyz/rime_wanxiang/commit/5e7a4e0d64e7fb3c23eb5971bd1883f79f1a3cea))
+* 词库调整 ([cb3595c](https://github.com/amzxyz/rime_wanxiang/commit/cb3595cef84306e7e16c22ff89803ab0866d01c8))
+
+
+### 🐛 Bug 修复
+
+* 修复替换处理器直接写true被认为是字符串的问题 ([7a88f92](https://github.com/amzxyz/rime_wanxiang/commit/7a88f9246bd3e2b1c9a4635db6d7bfd84e9b26e2))
+
 ## [14.2.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.1...v14.2.2) (2026-01-14)
 
 
