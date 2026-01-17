@@ -120,7 +120,7 @@ function P.func(key, env)
                 if context.push_input then context:push_input(ch)
                 else context.input = (context.input or "") .. ch end
             else
-                env.engine:commit_text(ch)
+                return wanxiang.RIME_PROCESS_RESULTS.kNoop
             end
         else -- compose
             if context.push_input then context:push_input(ch)
