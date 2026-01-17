@@ -1,5 +1,19 @@
 # Changelog
 
+## [14.2.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.5...v14.2.6) (2026-01-17)
+
+
+### 📚 词库更新
+
+* 词库调整 ([1f96a5d](https://github.com/amzxyz/rime_wanxiang/commit/1f96a5d22502acfa59b1834967ea3e4b32dc837f))
+* 词库调整 ([5f9a0ad](https://github.com/amzxyz/rime_wanxiang/commit/5f9a0ad770f527a6ec4a1a8dd8e2dda3e6b78fed))
+* 词库调整 ([48d49ab](https://github.com/amzxyz/rime_wanxiang/commit/48d49abc7a44e103db3fb0e43fa1143393caf717))
+
+
+### 🐛 Bug 修复
+
+* **lua:** 修复小键盘数字在commit_text时导致PSReadLine的bug ([2b04a6a](https://github.com/amzxyz/rime_wanxiang/commit/2b04a6abcd8ac9cd1502e72ef44157e66102cbc1))
+
 ## [14.2.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.4...v14.2.5) (2026-01-16)
 
 
