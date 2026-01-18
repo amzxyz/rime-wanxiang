@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.3.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.0...v14.3.1) (2026-01-18)
+
+
+### 🐛 Bug 修复
+
+* 补齐忘记修改的部分 ([5feeb4c](https://github.com/amzxyz/rime_wanxiang/commit/5feeb4c919a0bd5cfdfe2101e1fef05140db171f))
+
 ## [14.3.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.6...v14.3.0) (2026-01-18)
 
 
