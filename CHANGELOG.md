@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.3.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.6...v14.3.0) (2026-01-18)
+
+
+### ✨ 新特性
+
+* 字符集过滤现已全面升级，具体阅读方案中配置段落的说明，现在可以兼容字符集过滤与简繁转换的冲突问题 ([8b391f7](https://github.com/amzxyz/rime_wanxiang/commit/8b391f7278d344cb0ba9b5e26152677aa7b7d5ba))
+
+
+### 🐛 Bug 修复
+
+* 超级注释添加CJK区域显示 ([98e9077](https://github.com/amzxyz/rime_wanxiang/commit/98e90775c297f71a72681ffe60e0765c04826210))
+
 ## [14.2.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.5...v14.2.6) (2026-01-17)
 
 
