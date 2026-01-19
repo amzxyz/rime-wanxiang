@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.3.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.2...v14.3.3) (2026-01-19)
+
+
+### 🐛 Bug 修复
+
+* 移除标志符号注释提示 ([6ef5360](https://github.com/amzxyz/rime_wanxiang/commit/6ef5360f6cdb05919e77d569322de1279b51c8bd))
+
 ## [14.3.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.1...v14.3.2) (2026-01-19)
 
 
