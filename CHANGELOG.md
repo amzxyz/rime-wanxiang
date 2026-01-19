@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.3.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.1...v14.3.2) (2026-01-19)
+
+
+### 📚 词库更新
+
+* 词库调整 ([4a85c14](https://github.com/amzxyz/rime_wanxiang/commit/4a85c14e262037945059b9da0c3dec8c71f5511d))
+
+
+### 🐛 Bug 修复
+
+* 修复英文派生单字母干扰置顶词的问题，同时提升性能 ([e4288ff](https://github.com/amzxyz/rime_wanxiang/commit/e4288ffe9733472155a23926e7037283940e3e5a))
+* 由于性能问题，由滤镜构建的中英文切换现在去掉，改为通过切换方案来实现中英文切换，快捷键还是shift+space,但不再有仅中文的模式，有需求的用户可以通过patch去掉英文表的挂载 ([70c86c6](https://github.com/amzxyz/rime_wanxiang/commit/70c86c67bd65e905b62d03410cfc9b1ee2804f84))
+
 ## [14.3.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.0...v14.3.1) (2026-01-18)
 
 
