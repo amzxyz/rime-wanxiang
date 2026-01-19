@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.3.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.3...v14.3.4) (2026-01-19)
+
+
+### 🐛 Bug 修复
+
+* 再次调整英文处理器 ([7b89edb](https://github.com/amzxyz/rime_wanxiang/commit/7b89edb4f614618d8f3544f74964924219712555))
+
+
+### 🏡 杂项
+
+* 修改说明 ([7599b4a](https://github.com/amzxyz/rime_wanxiang/commit/7599b4a03dcd6b66cced5529b2e5c3896b8de78d))
+
 ## [14.3.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.2...v14.3.3) (2026-01-19)
 
 
