@@ -1,13 +1,13 @@
-name: Build Wanxiang Matrix APK
+name: Build fcitx5 ARM64-v8a APK
 
 on:
   workflow_dispatch:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
-  build_apks:
+  build:
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
@@ -23,256 +23,120 @@ jobs:
           - wanxiang-base
 
     steps:
-      - name: Checkout Wanxiang Repo
-        uses: actions/checkout@v4
+      - name: Fetch Wanxiang Schema source code
+        uses: actions/checkout@v5
         with:
-          path: wanxiang_root
+          ref: ${{ matrix.branch }}
+          path: rime-${{ matrix.branch }}
 
-      - name: Checkout Trime Source
-        uses: actions/checkout@v4
+      - name: Fetch Fcitx5 source code
+        uses: actions/checkout@v5
         with:
-          repository: osfans/trime
-          submodules: recursive
+          repository: amzxyz/fcitx5-android-wanxiang
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-          path: trime_src
+          submodules: recursive
+          path: fcitx5-rime
+          ref: wanxiang
 
       - name: Download Shared Gram Model
         run: |
-          mkdir -p "$GITHUB_WORKSPACE/common_assets"
           curl -L "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram" \
-               -o "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram"
-
-
-      # 2. 注入方案 (终极版：块级替换Schema + 防闪退 + 稳健注入)
-      - name: Inject Scheme & Smart Sync
-        env:
-          # 垃圾文件过滤
-          DELETE_LIST: ".git .github .gitignore *.md plum weasel.yaml version.txt wanxiang_t9.schema.yaml LICENSE *.png *.jpg unused_folder update_log.txt"
-        run: |
-          sudo apt-get update && sudo apt-get install -y opencc
-          REPO_ROOT="$GITHUB_WORKSPACE/wanxiang_root"
-          RIME_DEST="$GITHUB_WORKSPACE/trime_src/app/src/main/assets/rime"
-          SHARED_DEST="$GITHUB_WORKSPACE/trime_src/app/src/main/assets/shared"
-          SCRIPT_PATH="$GITHUB_WORKSPACE/wanxiang_root/.github/workflows/scripts/openccset.py"
-          DM_PATH="$GITHUB_WORKSPACE/trime_src/app/src/main/java/com/osfans/trime/data/base/DataManager.kt"
-          
-          # 清理目录
-          rm -rf "$RIME_DEST" "$SHARED_DEST"
-          mkdir -p "$RIME_DEST" "$SHARED_DEST"
-          
-          # 拉取方案
-          git clone -b ${{ matrix.branch }} --single-branch --depth 1 https://github.com/${{ github.repository }}.git temp_scheme
-          
-          # OpenCC 预处理
-          if [ -d "temp_scheme/opencc" ]; then
-            python3 "$SCRIPT_PATH" "$GITHUB_WORKSPACE/temp_scheme/opencc"
-          fi
-          # 从主仓库(wanxiang_root)的 custom 目录拿 zip，解压到 temp_scheme
-          if [ -f "$REPO_ROOT/custom/简纯.zip" ]; then
-              echo ">>> 📦 发现主题包，正在解压到 temp_scheme..."
-              unzip -o "$REPO_ROOT/custom/简纯.zip" -d temp_scheme/
-          fi
-          cd temp_scheme
-          if [ -f "简纯+.trime.yaml" ]; then
-              echo ">>> 🎨 重命名 简纯+.trime.yaml -> trime.yaml"
-              mv -f "简纯+.trime.yaml" "trime.yaml"
-          fi
-          for pattern in ${{ env.DELETE_LIST }}; do rm -rf $pattern || true; done
-          cd ..
-          # 5.1 方案配置 -> Shared
-          cp -rf temp_scheme/. "$SHARED_DEST"/
-          rm -rf temp_scheme
-
-          # Gram 模型
-          if [ -f "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram" ]; then
-              cp -f "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram" "$SHARED_DEST/wanxiang-lts-zh-hans.gram"
-          fi
-          echo ">>> 🧹 执行深度清理..."
-          # 清理 opencc 里的 txt 源文件 (只留 ocd2)
-          find "$SHARED_DEST/opencc" -name "*.txt" -delete 2>/dev/null || true
-          # 清理不需要的词库
-          rm -f "$SHARED_DEST/dicts/wuzhong.dict.yaml" 2>/dev/null || true
-          # 清理多余的图片 (如果你想清理根目录的)
-          rm -f "$SHARED_DEST/"*.jpg "$SHARED_DEST/"*.png 2>/dev/null || true
-          # DataManager.kt 源码注入
-          echo ">>> [Source] 正在修改 DataManager.kt ..."
-          if [ -f "$DM_PATH" ]; then
-            
-            # (1) 修改默认目录名为 wanxiang
-            sed -i 's/File(Environment.getExternalStorageDirectory(), "rime")/File(Environment.getExternalStorageDirectory(), "wanxiang")/g' "$DM_PATH"
-            # (2) 注入 Schema List
-            if [[ "${{ matrix.branch }}" == "wanxiang-base" ]]; then
-              export TARGET_SCHEMA="wanxiang"
-            else
-              export TARGET_SCHEMA="wanxiang_pro"
-            fi
-            echo ">>> [Source] 替换 Schema 列表 (Target: $TARGET_SCHEMA)..."
-            perl -i -0777 -pe 's/(\n\s+)- schema: luna_pinyin\n\s+- schema: luna_pinyin_simp/$1- schema: $ENV{TARGET_SCHEMA}/g' "$DM_PATH"
-
-            # 顺序：Fonts -> Backgrounds -> trime.yaml
-            export INJECT_CODE='
-            try {
-                val am = appContext.assets
-                
-                // 1. Fonts
-                val fd = java.io.File(userDataDir, "fonts").apply { mkdirs() }
-                am.list("shared/fonts")?.forEach { try { ResourceUtils.copyFile("shared/fonts/$it", java.io.File(fd, it).absolutePath) } catch(e:Exception){} }
-                
-                // 2. Backgrounds
-                val bd = java.io.File(userDataDir, "backgrounds").apply { mkdirs() }
-                val nomedia = java.io.File(bd, ".nomedia")
-                if (!nomedia.exists()) { nomedia.createNewFile() }
-                am.list("shared/backgrounds")?.forEach { try { ResourceUtils.copyFile("shared/backgrounds/$it", java.io.File(bd, it).absolutePath) } catch(e:Exception){} }
-            } catch(e: Exception) { Timber.e(e, "Assets inject error") }
-            Timber.d("Synced!")'
-
-            # 注入
-            perl -i -pe 's/Timber.d\("Synced!"\)/$ENV{INJECT_CODE}/' "$DM_PATH"
-            
-            echo "✅ DataManager.kt 源码 Patch 完成"
-          fi
-          
-          echo ">>> [Check] 最终状态检查:"
-          ls -1 "$SHARED_DEST"
-      # 编译环境准备 (删除 NDK 28)
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: "temurin"
-          java-version: 17
-          cache: 'gradle'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install NDK 25 and Remove NDK 28
-        run: |
-          echo ">>> 1. 安装 NDK 25.2.9519653 ..."
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "ndk;25.2.9519653" "cmake;3.22.1"
-          
-          echo ">>> 2. 【核弹操作】物理删除系统预装的 NDK 28 ..."
-          if [ -d "$ANDROID_HOME/ndk/28.0.13004108" ]; then
-            sudo rm -rf $ANDROID_HOME/ndk/28.0.13004108
-            echo "✅ 已删除 NDK 28"
-          else
-            echo "ℹ️ 未发现 NDK 28，跳过"
-          fi
-          
-          echo ">>> 3. 验证当前 NDK 版本 ..."
-          ls -l $ANDROID_HOME/ndk/
+               -o "$GITHUB_WORKSPACE/wanxiang-lts-zh-hans.gram"
 
       - name: Setup Keystore
-        working-directory: trime_src
+        working-directory: fcitx5-rime
         run: |
-          echo "${{ secrets.SIGNING_KEY }}" | base64 -d > trime.jks
-          cat << EOF > keystore.properties
-          storeFile=$(pwd)/trime.jks
-          storePassword=${{ secrets.KEY_STORE_PASSWORD }}
-          keyAlias=${{ secrets.ALIAS }}
-          keyPassword=${{ secrets.KEY_PASSWORD }}
-          EOF
+          echo "${{ secrets.SIGNING_KEY }}" | base64 -d >release-key.jks
 
-      # 7. 编译打包 (修改包名 + 锁定NDK + 注入版本)
-      - name: Build Release APK
-        working-directory: trime_src
-        run: |
-
-          echo ">>> 2. 准备 NDK 环境..."
-          NDK_PATH=$(find $ANDROID_HOME/ndk -maxdepth 1 -name "25*" | head -n 1)
-          if [ -z "$NDK_PATH" ]; then
-             echo "❌ 错误：未找到 NDK 25"
-          else
-             echo "ndk.dir=$NDK_PATH" >> local.properties
-          fi
-
-          echo ">>> 3. 修改 Gradle 脚本..."
-          
-          # --- 【核心修改】修改包名 (Application ID) ---
-          echo ">>> 正在修改包名为 amzxyz.wanxiang.trime ..."
-          sed -i 's/applicationId = "com.osfans.trime"/applicationId = "amzxyz.wanxiang.trime"/g' app/build.gradle.kts
-          
-          # 锁定 NDK 版本
-          sed -i '/ndkVersion/d' app/build.gradle.kts
-          sed -i 's/android {/android { \n    ndkVersion = "25.2.9519653"/' app/build.gradle.kts
-
-          echo ">>> 4. 注入版本号信息..."
-          TRIME_VERSION=$(grep -oE "[0-9]+\.[0-9]+\.[0-9]+" CHANGELOG.md | head -n 1)
-          if [ -z "$TRIME_VERSION" ]; then TRIME_VERSION="3.3.x"; fi
-          COMMIT_ID=$(git rev-parse --short HEAD || echo "custom")
-          
-          # 替换 BuildConfig 变量
-          sed -i 's/buildConfigField("String", "BUILDER", .*)/buildConfigField("String", "BUILDER", "\\"GitHub Actions\\"")/g' app/build.gradle.kts
-          sed -i 's/buildConfigField("long", "BUILD_TIMESTAMP", .*)/buildConfigField("long", "BUILD_TIMESTAMP", "0L")/g' app/build.gradle.kts
-          sed -i 's/buildConfigField("String", "BUILD_COMMIT_HASH", .*)/buildConfigField("String", "BUILD_COMMIT_HASH", "\\"'${COMMIT_ID}'\\"")/g' app/build.gradle.kts
-          sed -i 's/buildConfigField("String", "BUILD_GIT_REPO", .*)/buildConfigField("String", "BUILD_GIT_REPO", "\\"Wanxiang\\"")/g' app/build.gradle.kts
-          sed -i 's/buildConfigField("String", "BUILD_VERSION_NAME", .*)/buildConfigField("String", "BUILD_VERSION_NAME", "\\"v'${TRIME_VERSION}-${COMMIT_ID}'\\"")/g' app/build.gradle.kts
-
-          # 配置 Git 安全目录
-          git config --global --add safe.directory "*"
-
-          echo ">>> 5. 开始编译..."
-          chmod +x gradlew
-          ./gradlew :app:assembleRelease --stacktrace
-
-      # 8. 重命名逻辑
-      - name: Rename APK
-        working-directory: trime_src/app/build/outputs/apk/release/
-        run: |
-          ORIGINAL_APK=$(ls *arm64-v8a*release*.apk | head -n 1)
-          NEW_NAME="trime-${{ matrix.branch }}-armv8a.apk"
-          echo ">>> 重命名操作: 将 $ORIGINAL_APK 改为 $NEW_NAME"
-          mv "$ORIGINAL_APK" "$NEW_NAME"
-
-      # 9. 上传路径指向新名字
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+      - name: Setup Java
+        uses: actions/setup-java@v5
         with:
-          name: APK-${{ matrix.branch }}
-          path: trime_src/app/build/outputs/apk/release/trime-${{ matrix.branch }}-armv8a.apk
+          distribution: "temurin"
+          java-version: "17"
 
-  release_all:
-      needs: build_apks
-      runs-on: ubuntu-latest
-      if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
-      permissions:
-        contents: write
-      steps:
-        - name: Get current date
-          id: date
-          run: echo "date=$(date +'%Y-%m-%d %H:%M')" >> $GITHUB_OUTPUT
+      - name: Setup Android environment
+        uses: android-actions/setup-android@v3
 
-        - name: Download All Artifacts
-          uses: actions/download-artifact@v4
-          with:
-            path: all_apks
-            merge-multiple: true
+      - name: Install Android NDK and CMake
+        run: |
+          sdkmanager --install "cmake;3.31.6"
 
-        - name: Delete 'apk' tag and release
-          uses: dev-drprasad/delete-tag-and-release@v1.1
-          if: github.event_name == 'workflow_dispatch'
-          with:
-            delete_release: true
-            tag_name: apk
-            github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install system dependencies
+        run: |
+          sudo apt update
+          sudo apt install extra-cmake-modules gettext
 
-        - name: Create GitHub Release
-          uses: softprops/action-gh-release@v2
-          with:
-            files: all_apks/*.apk
-            name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '同文万象安卓版本APP下载' }}
-            tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || 'apk' }}
-            body: |
-              ### 🛠️ 构建信息
-              - **构建时间**: ${{ steps.date.outputs.date }}
-              - **包名**: `amzxyz.wanxiang.trime`
-              - **主题**: 默认集成简纯主题
-              - **用户目录**: `wanxiang`
-              ## 📢 版权与归属声明
-            
-              - **软件内核**：基于 [Trime (同文)](https://github.com/osfans/trime) 编译，归原作者所有。
-              - **输入方案**：归 [万象拼音](https://github.com/${{ github.repository }}) 所有。
-              - **作品性质**：再打包集成版。
-              ---
-              *由 GitHub Actions 自动构建生成。*
-            draft: false
-            prerelease: true
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Build arm64-v8a Release APK
+        env:
+          STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_FILE: ${{ github.workspace }}/fcitx5-rime/release-key.jks
+        run: |
+          # 构建分包
+          SCHEMA=(
+            "wanxiang-hanxin-fuzhu"
+            "wanxiang-wubi-fuzhu"
+            "wanxiang-flypy-fuzhu"
+            "wanxiang-moqi-fuzhu"
+            "wanxiang-tiger-fuzhu"
+            "wanxiang-zrm-fuzhu"
+            "wanxiang-shouyou-fuzhu"
+            "wanxiang-base"
+          )
+          DELETELIST=(
+            ".git"
+            "plum"
+            "README.md"
+            "custom_phrase.txt"
+            "version.txt"
+            "weasel.yaml"
+          )
+          for schema in ${SCHEMA[@]}; do
+            echo "====== Build $schema ======"
+            cd "$GITHUB_WORKSPACE/fcitx5-rime/plugin/rime/src/main/cpp"
+            [[ ! -f "defaults.yaml" ]] || rm -rf defaults.yaml
+            [[ ! -d "rime-wanxiang" ]] || rm -rf rime-wanxiang
+            cp -r "$GITHUB_WORKSPACE/rime-${{ matrix.branch }}" "$GITHUB_WORKSPACE/fcitx5-rime/plugin/rime/src/main/cpp/rime-wanxiang"
+            cp -r rime-wanxiang/default.yaml .
+            for file in ${DELETELIST[@]}; do
+              [[ ! -e "rime-wanxiang/$file" ]] || rm -rf "rime-wanxiang/$file"
+            done
+            [[ ! -d "../assets" ]] || rm -rf "../assets"
+            cp "$GITHUB_WORKSPACE/wanxiang-lts-zh-hans.gram" "rime-wanxiang"
+            cd "$GITHUB_WORKSPACE/fcitx5-rime"
+            ./gradlew :app:assembleRelease
+            ./gradlew :assembleReleasePlugins
+            filename=$(ls "$GITHUB_WORKSPACE/fcitx5-rime/plugin/rime/build/outputs/apk/release" | grep "org.fcitx.fcitx5.android.plugin.rime")
+            [[ -d "$GITHUB_WORKSPACE/out-apks" ]] || mkdir "$GITHUB_WORKSPACE/out-apks"
+            mv -v "$GITHUB_WORKSPACE/fcitx5-rime/plugin/rime/build/outputs/apk/release/$filename" "$GITHUB_WORKSPACE/out-apks/fcitx5-rime-$schema-arm64-v8a-release.apk"
+            echo "==========================="
+          done
+
+      - name: Sign all App
+        uses: kevin-david/zipalign-sign-android-release@v2.0.1
+        id: sign_apk
+        with:
+          releaseDirectory: out-apks
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          alias: ${{ secrets.ALIAS }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+          zipAlign: true
+        env:
+          BUILD_TOOLS_VERSION: "36.1.0"
+
+      - name: Create Nightly release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: nightly
+          prerelease: true
+          title: "Nightly Build"
+          files: |
+            fcitx5-rime/app/build/outputs/apk/release/*-release.apk
+            out-apks/*-signed.apk
