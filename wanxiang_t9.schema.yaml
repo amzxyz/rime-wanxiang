@@ -48,10 +48,7 @@ engine:
   processors:
     - t9_processor                              #元书T9处理器
     - lua_processor@*super_tips                 #超级提示模块：表情、简码、翻译、化学式、等等靠你想象
-    - lua_processor@*partial_commit             #通过ctrl+1~0局部提交10个字以内的句子的前几个字（一般为正确的前几个）使用时要遵循合理的分词结构能促进后续编码打出正确的词汇
     - lua_processor@*super_sequence*P           #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+l 移除位移  ctrl+p 置顶
-    - lua_processor@*limit_repeated             #用于限制最大候选长度以及最大重复输入声母编码长度，避免性能异常
-    - lua_processor@*backspace_limit            #防止连续 Backspace 在编码为空时删除已上屏内容
     - ascii_composer                            #处理英文模式及中英文切换
     - recognizer                                #与 matcher 搭配，处理符合特定规则的输入码，如网址、反查等 tags
     - key_binder                                #在特定条件下将按键绑定到其他按键，如重定义逗号、句号为候选翻页、开关快捷键等

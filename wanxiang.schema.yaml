@@ -49,16 +49,10 @@ switches:
 # 输入引擎
 engine:
   processors:
-    - lua_processor@*select_character           #以词定字，默认左中括号上屏一个词的前一个字，右中括号上屏一个词的后一个字
+    - lua_processor@*super_processor            #KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
     - lua_processor@*partial_commit             #通过ctrl+1~0局部提交10个字以内的句子的前几个字（一般为正确的前几个）使用时要遵循合理的分词结构能促进后续编码打出正确的词汇
-    - lua_processor@*letter_selector            #在N模式R模式下输入数字被视为编码，那么如何上屏呢，现在除了方向键还提供qwertyuio对照1-9来选词
-    - lua_processor@*quick_symbol_text          #快符引导以及重复上屏，配合quick_symbol_text顶层配置清单定义扩展按键
     - lua_processor@*super_tips                 #超级提示模块：表情、简码、翻译、化学式、等等靠你想象
-    - lua_processor@*tone_fallback              #声调辅助回退，当你输入声调数字错误时，继续输入正确的而不用回退删除
     - lua_processor@*super_sequence*P           #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+l 移除位移  ctrl+p 置顶
-    - lua_processor@*limit_repeated             #用于限制最大候选长度以及最大重复输入声母编码长度，避免性能异常
-    - lua_processor@*backspace_limit            #防止连续 Backspace 在编码为空时删除已上屏内容
-    - lua_processor@*kp_number_processor        #管理小键盘的处理逻辑，有输入中数字不上屏和数字一直不上屏设置可选
     - ascii_composer                            #处理英文模式及中英文切换
     - recognizer                                #与 matcher 搭配，处理符合特定规则的输入码，如网址、反查等 tags
     - key_binder                                #在特定条件下将按键绑定到其他按键，如重定义逗号、句号为候选翻页、开关快捷键等
@@ -100,7 +94,7 @@ engine:
     - lua_filter@*super_filter                      #comment前,相关功能见Lua文件
     - lua_filter@*super_english                     #comment前,负责英文方案及中英混输中英文单词格式化，语句流，自动加空格等策略
     - lua_filter@*super_comment_preedit             #OpenCC前，超级注释模块、超级preedit，支持错词提示、辅助码显示，部件组字读音注释，有声调、无声调全拼编码的转换，支持个性化配置和关闭相应的功能，详情搜索super_comment_preedit进行详细配置
-    - lua_filter@*super_replacer                    #用来替代OpenCC的处理器
+    - lua_filter@*super_replacer                    #OpenCC替代器，更灵活的处理方式，更自由的自定义方式
     - lua_filter@*super_sequence*F                  #手动排序，对高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
     - uniquifier                                    # 去重
 
