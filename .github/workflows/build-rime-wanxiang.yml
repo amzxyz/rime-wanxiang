@@ -1,0 +1,131 @@
+name: Build fcitx5 ARM64-v8a APK
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Fetch Wanxiang Schema source code
+        uses: actions/checkout@v5
+        with:
+          path: wanxiang-root
+
+      - name: Fetch Fcitx5 source code
+        uses: actions/checkout@v5
+        with:
+          repository: amzxyz/fcitx5-android-wanxiang
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          submodules: recursive
+          path: fcitx5-rime
+          ref: wanxiang
+
+      - name: Download Shared Gram Model
+        run: |
+          curl -L "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram" \
+               -o "$GITHUB_WORKSPACE/wanxiang-lts-zh-hans.gram"
+
+      - name: Setup Keystore
+        working-directory: fcitx5-rime
+        run: |
+          echo "${{ secrets.SIGNING_KEY }}" | base64 -d >release-key.jks
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Setup Android environment
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android NDK and CMake
+        run: |
+          sdkmanager --install "cmake;3.31.6"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt update
+          sudo apt install extra-cmake-modules gettext
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Build arm64-v8a Release APK
+        env:
+          STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_FILE: ${{ github.workspace }}/fcitx5-rime/release-key.jks
+        run: |
+          # 构建分包
+          SCHEMA=(
+            "wanxiang-hanxin-fuzhu"
+            "wanxiang-wubi-fuzhu"
+            "wanxiang-flypy-fuzhu"
+            "wanxiang-moqi-fuzhu"
+            "wanxiang-tiger-fuzhu"
+            "wanxiang-zrm-fuzhu"
+            "wanxiang-shouyou-fuzhu"
+            "wanxiang-base"
+          )
+          DELETELIST=(
+            ".git"
+            "plum"
+            "README.md"
+            "custom_phrase.txt"
+            "version.txt"
+            "weasel.yaml"
+          )
+          for schema in ${SCHEMA[@]}; do
+            echo "====== Build $schema ======"
+            cd "$GITHUB_WORKSPACE/fcitx5-rime/plugin/rime/src/main/cpp"
+            [[ ! -f "defaults.yaml" ]] || rm -rf defaults.yaml
+            [[ ! -d "rime-wanxiang" ]] || rm -rf rime-wanxiang
+            pushd "$GITHUB_WORKSPACE"
+              git clone --branch "$schema" --depth 1 "file://wanxiang-root" "rime-wanxiang-$schema"
+              cp -r "rime-wanxiang-$schema" "$GITHUB_WORKSPACE/fcitx5-rime/plugin/rime/src/main/cpp/rime-wanxiang"
+            popd
+            cp -r rime-wanxiang/default.yaml .
+            for file in ${DELETELIST[@]}; do
+              [[ ! -e "rime-wanxiang/$file" ]] || rm -rf "rime-wanxiang/$file"
+            done
+            [[ ! -d "../assets" ]] || rm -rf "../assets"
+            cp "$GITHUB_WORKSPACE/wanxiang-lts-zh-hans.gram" "rime-wanxiang"
+            cd "$GITHUB_WORKSPACE/fcitx5-rime"
+            ./gradlew :app:assembleRelease
+            ./gradlew :assembleReleasePlugins
+            filename=$(ls "$GITHUB_WORKSPACE/fcitx5-rime/plugin/rime/build/outputs/apk/release" | grep "org.fcitx.fcitx5.android.plugin.rime")
+            [[ -d "$GITHUB_WORKSPACE/out-apks" ]] || mkdir "$GITHUB_WORKSPACE/out-apks"
+            mv -v "$GITHUB_WORKSPACE/fcitx5-rime/plugin/rime/build/outputs/apk/release/$filename" "$GITHUB_WORKSPACE/out-apks/fcitx5-rime-$schema-arm64-v8a-release.apk"
+            echo "==========================="
+          done
+
+      - name: Sign all App
+        uses: kevin-david/zipalign-sign-android-release@v2.0.1
+        id: sign_apk
+        with:
+          releaseDirectory: out-apks
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          alias: ${{ secrets.ALIAS }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+          zipAlign: true
+        env:
+          BUILD_TOOLS_VERSION: "36.1.0"
+
+      - name: Create Nightly release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: nightly
+          prerelease: true
+          title: "Nightly Build"
+          files: |
+            fcitx5-rime/app/build/outputs/apk/release/*-release.apk
+            out-apks/*-signed.apk
