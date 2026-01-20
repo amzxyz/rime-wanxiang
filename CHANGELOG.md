@@ -1,5 +1,22 @@
 # Changelog
 
+## [14.4.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.4...v14.4.0) (2026-01-20)
+
+
+### ✨ 新特性
+
+* 合并8个按键处理器lua为一个，KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字 ([f8cab70](https://github.com/amzxyz/rime_wanxiang/commit/f8cab704341e7cf8860e2947c75bd32b552a7bd6))
+
+
+### 📚 词库更新
+
+* 词库调整 ([f9daf75](https://github.com/amzxyz/rime_wanxiang/commit/f9daf75b48f47f8b8292e7a81567d88bb9fa4d44))
+
+
+### 🐛 Bug 修复
+
+* 修补若干bug ([ba961f1](https://github.com/amzxyz/rime_wanxiang/commit/ba961f1b3a8f39aeb112a0418aa9e82da4f783fd))
+
 ## [14.3.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.3...v14.3.4) (2026-01-19)
 
 
