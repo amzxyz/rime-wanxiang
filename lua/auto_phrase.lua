@@ -66,7 +66,7 @@ function AP.init(env)
     end
 
     -- 英文：enuser（不受 add_* 开关影响，始终尝试启用）
-    env.en_memory = Memory(env.engine, env.engine.schema, "wanxiang_mixedcode")
+    env.en_memory = Memory(env.engine, env.engine.schema, "wanxiang_english")
 
     -- 只要有一边需要，就挂上 commit/delete 通知
     if env.en_memory or env.memory then
@@ -102,16 +102,16 @@ function AP.fini(env)
     end
 end
 
-function AP.save_comment_cache(cand)
-    local comment      = cand.comment
-    local comment_text = cand.text
+function AP.save_comment_cache(cand, genuine)
+    local text = cand.text
+    local comment = genuine.comment
 
-    if comment_text and comment_text ~= "" and comment and comment ~= "" then
-        comment_cache[comment_text] = comment
+    if text and text ~= "" and comment and comment ~= "" then
+        comment_cache[text] = comment
     end
 end
 
--- 入口（lua_filter）
+-- 入口
 function AP.func(input, env)
     local config  = env.engine.schema.config
     local context = env.engine.context
@@ -124,14 +124,14 @@ function AP.func(input, env)
         local initial_comment = genuine_cand.comment
 
         if use_comment_cache then
-            AP.save_comment_cache(cand)
+            AP.save_comment_cache(cand, genuine_cand)
         end
 
         yield(cand)
     end
 end
 
--- 造词（原逻辑 + 新增 '\' 英文造词 + 大小写双重存入）
+-- 造词
 function AP.commit_handler(ctx, env)
     if not ctx or not ctx.composition then
         comment_cache = {}
@@ -168,12 +168,10 @@ function AP.commit_handler(ctx, env)
             if lower_code ~= code_body then
                 save_entry(lower_code)
             end
-            
-            -- log.info(string.format("[auto_phrase] EN 造词：[%s], 原码=[%s], 小写码=[%s]", commit_text, code_body, lower_code))
         end
 
         comment_cache = {}
-        return
+        return  -- 英文造词后直接退出，杜绝干扰中文
     end
 
     ---------------------------------------------------
@@ -206,18 +204,24 @@ function AP.commit_handler(ctx, env)
         local seg  = segments[i]
         local cand = seg:get_selected_candidate()
 
-        if cand then
-            local cand_text = cand.text
-            local preedit   = comment_cache[cand_text]
+        -- 防止单字片段造词
+        -- 如果取不到 cand，或者 cand.text 在缓存里没有编码，说明数据缺失，直接放弃
+        if not cand or not comment_cache[cand.text] then
+            comment_cache = {}
+            return
+        end
 
-            if preedit and preedit ~= "" then
-                for part in preedit:gmatch("[^" .. escaped_delimiter .. "]+") do
-                    table.insert(preedits_table, part)
-                end
+        local cand_text = cand.text
+        local preedit   = comment_cache[cand_text]
+
+        if preedit and preedit ~= "" then
+            for part in preedit:gmatch("[^" .. escaped_delimiter .. "]+") do
+                table.insert(preedits_table, part)
             end
         end
     end
 
+    -- 二次检查：如果解析出来的编码段数不对，也不存
     if #preedits_table == 0 then
         comment_cache = {}
         return

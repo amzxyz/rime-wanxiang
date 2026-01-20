@@ -5,7 +5,7 @@ local wanxiang = {}
 
 -- x-release-please-start-version
 
-wanxiang.version = "v13.12.1"
+wanxiang.version = "v14.3.4"
 
 -- x-release-please-end
 
@@ -142,19 +142,40 @@ end
 ---按照优先顺序获取文件：用户目录 > 系统目录
 ---@param filename string 相对路径
 ---@retur string | nil
-function wanxiang.get_filename_with_fallback(filename)
-    local _path = filename:gsub("^/+", "") -- 去掉开头的斜杠
+-- 辅助函数：检测路径是否为绝对路径（以 / 或盘符开头）
+local function is_absolute_path(path)
+    if not path then return false end
+    if path:sub(1, 1) == "/" or path:sub(1, 1) == "\\" then
+        return true
+    end
+    if path:match("^[a-zA-Z]:[\\/]") then
+        return true 
+    end
+    return false
+end
 
-    local user_path = rime_api.get_user_data_dir() .. '/' .. _path
+function wanxiang.get_filename_with_fallback(filename)
+    local _path = filename:gsub("^[\\/]+", "")
+    local user_dir = rime_api.get_user_data_dir()
+    
+    if not is_absolute_path(user_dir) then
+        return filename
+    end
+
+    local user_path = user_dir .. "/" .. _path
     if wanxiang.file_exists(user_path) then
         return user_path
     end
 
-    local shared_path = rime_api.get_shared_data_dir() .. '/' .. _path
+    local shared_dir = rime_api.get_shared_data_dir()
+    
+    if not is_absolute_path(shared_dir) then
+        return filename
+    end
+    local shared_path = shared_dir .. "/" .. _path
     if wanxiang.file_exists(shared_path) then
         return shared_path
     end
-
     return nil
 end
 
@@ -281,4 +302,237 @@ function wanxiang.get_input_method_type(env)
     end
 end
 
+-- Wanxiang Regex > lua --不支持断言够用了
+local RegexParser = {}
+
+function RegexParser.normalize(regex)
+    local p = regex
+    p = p:gsub("%(%?%:", "%(") -- 清理 (?:
+    -- 基础转义
+    p = p:gsub("\\d", "%%d"); p = p:gsub("\\D", "%%D")
+    p = p:gsub("\\w", "%%w"); p = p:gsub("\\W", "%%W")
+    p = p:gsub("\\s", "%%s"); p = p:gsub("\\S", "%%S")
+    -- 符号转义 (注意：\? -> %?，保留字面量问号)
+    p = p:gsub("\\%.", "%%."); p = p:gsub("\\%^", "%%^")
+    p = p:gsub("\\%$", "%%$"); p = p:gsub("\\%*", "%%*")
+    p = p:gsub("\\%+", "%%+"); p = p:gsub("\\%-", "%%-")
+    p = p:gsub("\\%?", "%%?")
+    p = p:gsub("\\%(", "%%("); p = p:gsub("\\%)", "%%)")
+    p = p:gsub("\\%[", "%%["); p = p:gsub("\\%]", "%%]")
+    
+    return p
+end
+
+-- 递归展开 ? 量词
+-- 输入: "N[0-9]?A"
+-- 输出: { "N[0-9]A", "NA" }
+local function expand_optional(pattern_list)
+    local result = {}
+    local has_expansion = false
+
+    for _, pat in ipairs(pattern_list) do
+        -- 寻找第一个未转义的 ? (Regex量词)
+        -- 我们需要找到 ? 的位置，并判断它修饰的前一个原子是什么
+        local q_idx = nil
+        local atom_start = nil
+        local atom_end = nil
+
+        local i = 1
+        local len = #pat
+        while i <= len do
+            local char = string.sub(pat, i, i)
+            
+            if char == "%" then
+                -- 转义符，跳过下一个
+                i = i + 2
+            elseif char == "[" then
+                -- 集合 [...]
+                local j = i + 1
+                while j <= len do
+                    if string.sub(pat, j, j) == "]" and string.sub(pat, j-1, j-1) ~= "%" then
+                        break
+                    end
+                    j = j + 1
+                end
+                -- 检查后面是不是 ?
+                if j < len and string.sub(pat, j+1, j+1) == "?" then
+                    atom_start = i
+                    atom_end = j
+                    q_idx = j + 1
+                    break -- 找到目标
+                end
+                i = j + 1
+            elseif char == "?" then
+                -- 找到一个 ?，修饰前面一个字符
+                -- 注意：如果前面没有字符（比如开头），则是非法正则，忽略
+                if i > 1 then
+                    q_idx = i
+                    atom_end = i - 1
+                    -- 判断前一个字符是否是转义结果 (如 %d)
+                    if atom_end > 1 and string.sub(pat, atom_end-1, atom_end-1) == "%" then
+                        atom_start = atom_end - 1
+                    else
+                        atom_start = atom_end
+                    end
+                    break
+                end
+                i = i + 1
+            else
+                i = i + 1
+            end
+        end
+
+        if q_idx then
+            has_expansion = true
+            -- 1. 保留原子 (去掉 ?)
+            local p1 = string.sub(pat, 1, atom_end) .. string.sub(pat, q_idx + 1)
+            -- 2. 删除原子 (去掉 原子+?)
+            local p2 = string.sub(pat, 1, atom_start - 1) .. string.sub(pat, q_idx + 1)
+            
+            table.insert(result, p1)
+            table.insert(result, p2)
+        else
+            table.insert(result, pat)
+        end
+    end
+
+    if has_expansion then
+        if #result > 100 then return result end
+        return expand_optional(result)
+    end
+    
+    return result
+end
+
+function RegexParser.smart_split(str, sep)
+    local results = {}
+    local current = ""
+    local paren_depth = 0
+    local brack_depth = 0
+    for i = 1, #str do
+        local char = string.sub(str, i, i)
+        local prev = (i > 1) and string.sub(str, i-1, i-1) or ""
+        if prev == "%" then
+            current = current .. char
+        else
+            if char == '(' then paren_depth = paren_depth + 1 end
+            if char == ')' then paren_depth = paren_depth - 1 end
+            if char == '[' then brack_depth = brack_depth + 1 end
+            if char == ']' then brack_depth = brack_depth - 1 end
+            if char == sep and paren_depth == 0 and brack_depth == 0 then
+                table.insert(results, current); current = ""
+            else
+                current = current .. char
+            end
+        end
+    end
+    table.insert(results, current)
+    return results
+end
+
+function RegexParser.expand_groups(str_list)
+    local expanded = {}
+    for _, str in ipairs(str_list) do
+        local s_idx, e_idx = nil, nil
+        local depth = 0
+        for i = 1, #str do
+            local char = string.sub(str, i, i)
+            local prev = (i > 1) and string.sub(str, i-1, i-1) or ""
+            if prev ~= "%" then
+                if char == "(" then
+                    if depth == 0 then s_idx = i end
+                    depth = depth + 1
+                elseif char == ")" then
+                    depth = depth - 1
+                    if depth == 0 and s_idx then e_idx = i; break end
+                end
+            end
+        end
+        if s_idx and e_idx then
+            local prefix = string.sub(str, 1, s_idx - 1)
+            local content = string.sub(str, s_idx + 1, e_idx - 1)
+            local suffix = string.sub(str, e_idx + 1)
+            local parts = RegexParser.smart_split(content, "|")
+            for _, part in ipairs(parts) do
+                table.insert(expanded, prefix .. part .. suffix)
+            end
+        else
+            table.insert(expanded, str)
+        end
+    end
+    return expanded
+end
+
+local function ensure_anchor(p)
+    if not p or p == "" then return p end
+    -- 补 $
+    local last = string.sub(p, -1)
+    local prev = string.sub(p, -2, -2)
+    if last ~= "$" or (last == "$" and prev == "%") then p = p .. "$" end
+    -- 补 ^
+    local first = string.sub(p, 1, 1)
+    if first ~= "^" then p = "^" .. p end
+    return p
+end
+
+function RegexParser.convert(regex_str)
+    if not regex_str or regex_str == "" then return {} end
+    local norm = RegexParser.normalize(regex_str)
+    -- 1. 拆分 |
+    local list = RegexParser.smart_split(norm, "|")
+    -- 2. 展开 () 分组
+    local loop = 0
+    local changed = true
+    while changed and loop < 5 do
+        local new_list = RegexParser.expand_groups(list)
+        if #new_list > #list then list = new_list else changed = false end
+        loop = loop + 1
+    end
+    -- 3. 展开 ? 量词
+    -- 这会将带 ? 的正则裂变成多个确定的正则
+    list = expand_optional(list)
+    -- 4. 补全锚点
+    for i, p in ipairs(list) do list[i] = ensure_anchor(p) end
+    return list
+end
+
+--- 调用加载函数
+function wanxiang.load_regex_patterns(config, path)
+    local patterns = {}
+    local map = config:get_map(path)
+    if not map then return patterns end
+    local keys = map:keys()
+    if not keys then return patterns end
+    
+    local count = 0
+    local is_ud = (type(keys) == "userdata")
+    if is_ud then
+        if keys.size then count = keys.size 
+        else pcall(function() count = keys:size() end) end
+    else
+        count = #keys
+    end
+
+    for i = 0, count - 1 do
+        local k_str
+        if is_ud then
+            local it = keys:get_value_at(i)
+            if it then k_str = it.value end
+            if not k_str then pcall(function() k_str = keys[i] end) end
+        else
+            k_str = keys[i+1]
+        end
+
+        if k_str then
+            local val = map:get_value(k_str)
+            if val and val.value and val.value ~= "" then
+                local lua_pats = RegexParser.convert(val.value)
+                for _, p in ipairs(lua_pats) do
+                    table.insert(patterns, p)
+                end
+            end
+        end
+    end
+    return patterns
+end
 return wanxiang

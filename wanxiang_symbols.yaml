@@ -319,8 +319,8 @@ symbol_table:
     '/jz': [「, 」, 『, 』, “, ”, ‘, ’, （, ）, 《, 》, 〈, 〉, 【, 】, 〖, 〗, 〔, 〕, ［, ］, ｛, ｝, «, », ‹, ›, ⟨, ⟩]
     '/hj': [＿, ﹏, ●, •]
     '/yd': [·, ・, •, ●]
-    '/ch': [✕, ✖, ☒]
-    '/dh': [✓, ✔, ☑]
+    '/ch': [✕, ✖, ☒, ❎, ❌]
+    '/dh': [✓, ✔, ☑, ✅]
     # Unicode General Punctuation https://www.unicode.org/charts/PDF/U2000.pdf
     # 将 Unicdoe 中的非 ASCII 英文标点列在此处，而实际上对应的中文标点与其共享码位
     # 中英标点

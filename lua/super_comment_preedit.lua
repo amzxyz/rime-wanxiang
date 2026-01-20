@@ -116,45 +116,82 @@ end
 -- ----------------------
 -- 部件组字返回的注释
 -- ----------------------
----@return string
-local function get_az_comment(_, env, initial_comment)
-    if not initial_comment or initial_comment == "" then return "〔无〕" end
-    local final_comment = nil
-    local auto_delimiter = env.settings.auto_delimiter or " "
-    -- 拆分初始评论为多个段落
-    local segments = {}
-    for segment in initial_comment:gmatch("[^%s]+") do
-        table.insert(segments, segment)
-    end
-    local semicolon_count = select(2, segments[1]:gsub(";", "")) -- 使用第一个段来判断分号的数量
-    local pinyins = {}
-    local fuzhu = nil
-    for _, segment in ipairs(segments) do
-        local pinyin = segment:match("^[^;~]+")
-        local fz = nil
+local function get_charset_label(text)
+    if not text or text == "" then return nil end
+    local cp = utf8.codepoint(text)
+    if not cp then return nil end
 
-        if semicolon_count == 1 then
-            -- 一个分号：取后段
-            fz = segment:match(";(.+)$")
-        else
-            -- 无分号不取辅助码
-            fz = nil
+    -- 按照 Unicode 区块频率排序
+    if cp >= 0x4E00   and cp <= 0x9FFF  then return "基本" end
+    if cp >= 0x3400   and cp <= 0x4DBF  then return "扩A" end
+    if cp >= 0x20000  and cp <= 0x2A6DF then return "扩B" end
+    if cp >= 0x2A700  and cp <= 0x2B73F then return "扩C" end
+    if cp >= 0x2B740  and cp <= 0x2B81F then return "扩D" end
+    if cp >= 0x2B820  and cp <= 0x2CEAF then return "扩E" end
+    if cp >= 0x2CEB0  and cp <= 0x2EBEF then return "扩F" end
+    if cp >= 0x2EBF0  and cp <= 0x2EE5F then return "扩I" end
+    if cp >= 0x30000  and cp <= 0x3134F then return "扩G" end
+    if cp >= 0x31350  and cp <= 0x323AF then return "扩H" end
+    
+    -- 兼容区
+    if cp >= 0xF900   and cp <= 0xFAFF  then return "兼容" end
+    if cp >= 0x2F800  and cp <= 0x2FA1F then return "兼容" end
+
+    return nil
+end
+
+local function get_az_comment(cand, env, initial_comment)
+    local inner_parts = {}
+    
+    -- 音形注释拆解逻辑
+    if initial_comment and initial_comment ~= "" then
+        local segments = {}
+        for segment in string.gmatch(initial_comment, "[^%s]+") do
+            table.insert(segments, segment)
         end
+        
+        if #segments > 0 then
+            local semicolon_count = select(2, string.gsub(segments[1], ";", ""))
+            local pinyins = {}
+            local fuzhu = nil
+            
+            for _, segment in ipairs(segments) do
+                local pinyin = string.match(segment, "^[^;~]+")
+                local fz = nil
 
-        if pinyin then table.insert(pinyins, pinyin) end
-        if not fuzhu and fz and fz ~= "" then fuzhu = fz end
-    end
+                if semicolon_count == 1 then
+                    fz = string.match(segment, ";(.+)$")
+                end
 
-    -- 拼接结果
-    if #pinyins > 0 then
-        local pinyin_str = table.concat(pinyins, ",")
-        if fuzhu then
-            final_comment = string.format("〔音%s 辅%s〕", pinyin_str, fuzhu)
-        else
-            final_comment = string.format("〔音%s〕", pinyin_str)
+                if pinyin then 
+                    table.insert(pinyins, pinyin) 
+                end
+                if not fuzhu and fz and fz ~= "" then fuzhu = fz end
+            end
+
+            if #pinyins > 0 then
+                local pinyin_str = table.concat(pinyins, ",")
+                table.insert(inner_parts, string.format("音%s", pinyin_str))
+                
+                if fuzhu then
+                    table.insert(inner_parts, string.format("辅%s", fuzhu))
+                end
+            end
         end
     end
-    return final_comment or "〔无〕"
+
+    if cand and cand.text then
+        local label = get_charset_label(cand.text)
+        if label then
+            table.insert(inner_parts, label)
+        end
+    end
+
+    if #inner_parts == 0 then
+        return "〔无〕"
+    end
+    -- 使用间隔号连接
+    return "〔" .. table.concat(inner_parts, "・") .. "〕"
 end
 -- ----------------------
 -- # 辅助码提示或带调全拼注释模块 (Fuzhu)
@@ -478,11 +515,11 @@ function ZH.func(input, env)
             genuine_cand.preedit = table.concat(input_parts)
         end
         ::after_preedit::
-        apply_tone_preedit(env, genuine_cand)
         if should_skip_candidate_comment then
             yield(genuine_cand)
             goto continue
         end
+        apply_tone_preedit(env, genuine_cand)
         -- 进入注释处理阶段
         -- ① 辅助码注释或者声调注释
         if is_comment_hint then
@@ -496,7 +533,11 @@ function ZH.func(input, env)
                 final_comment = fz_comment
             end
         else
-            final_comment = ""
+            if initial_comment and string.find(initial_comment, "~") then --保留尾部临时英文标记
+                final_comment = initial_comment
+            else
+                final_comment = ""
+            end
         end
 
         -- ② 拆分注释

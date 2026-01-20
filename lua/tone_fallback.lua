@@ -34,7 +34,8 @@ local P = {}
 
 function P.init(env)
     env.tone_state = "idle"
-
+    local config = env.engine.schema.config
+    env.lookup_key = config:get_string('wanxiang_lookup/key') or '`'
     local ctx = env.engine and env.engine.context
     if not ctx or not ctx.update_notifier then return end
 
@@ -105,6 +106,17 @@ function P.func(key, env)
     -- 主键盘数字 0–9：标记为 compress
     local r = key:repr() or ""
     if r:match("^[0-9]$") then
+        local input = ctx.input or ""
+        local caret = (ctx.caret_pos ~= nil) and ctx.caret_pos or #input
+        if caret < 0 then caret = 0 end
+        if caret > #input then caret = #input end
+        local left = (caret > 0) and input:sub(1, caret) or ""
+
+        if left:find(env.lookup_key, 1, true) then
+            env.tone_state = "idle"
+            return wanxiang.RIME_PROCESS_RESULTS.kNoop
+        end
+
         env.tone_state = "compress"
 
         -- 这里用“预测压缩是否会发生”来决定要不要告诉 Rime “我处理了这个按键”

@@ -28,6 +28,9 @@ switches:
     states: [表情关, 表情开]
   - name: chinese_english               #候选进入翻译模式滤镜，会显示在相应的候选后面，万象侧重于tips提示，避免候选被占用，归属opencc 翻译滤镜
     states: [ 翻译关, 翻译开 ]
+  - name: charset_filter               #字符集过滤，默认开启8105通规显示，即小字集，可通过开关实时开启全字集，快捷键配套ctrl+g,归属：super_filter.lua
+    states: [ 大字集, 小字集 ]
+    reset: 0
   - options: [ raw_input, tone_display, full_pinyin ]   #开启后在输入编码的位置实时转换为带声调全拼或者不带声调全拼，不开启则采用系统配置原始编码，影响的是preedit_format,归属：super_preedit.lua
     states: [ 原编码, 有声调, 无声调 ]
 #    reset: 2     #对于开关组从0开始数，第几个就reset几可设为默认
@@ -43,6 +46,7 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - t9_processor                              #元书T9处理器
     - lua_processor@*super_tips                 #超级提示模块：表情、简码、翻译、化学式、等等靠你想象
     - lua_processor@*partial_commit             #通过ctrl+1~0局部提交10个字以内的句子的前几个字（一般为正确的前几个）使用时要遵循合理的分词结构能促进后续编码打出正确的词汇
     - lua_processor@*super_sequence*P           #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+l 移除位移  ctrl+p 置顶
@@ -77,22 +81,51 @@ engine:
     - table_translator@wanxiang_mixedcode  #中英等混合词汇表导入
     - table_translator@wanxiang_reverse    #挂接部件组字和笔画反查
   filters:
-    - reverse_lookup_filter@radical_reverse_lookup  #部件拆字滤镜，放在super_comment前面，进一步被超级注释处理以获得拼音编码的提示
+    - reverse_lookup_filter@reverse_lookup  #部件拆字滤镜，放在super_comment前面，进一步被超级注释处理以获得拼音编码的提示
     - lua_filter@*super_lookup                      #字词输入中反查辅助筛选
     - lua_filter@*super_filter                      #功能太多详见Lua文件
-    - lua_filter@*super_comment_preedit             #超级注释模块、超级preedit，支持错词提示、辅助码显示，部件组字读音注释，有声调、无声调全拼编码的转换，支持个性化配置和关闭相应的功能，详情搜索super_comment_preedit进行详细配置
-    - simplifier@emoji                              #Emoji滤镜
-    - simplifier@s2t                                #简繁切换通繁
-    - simplifier@s2tw                               #简繁切换台繁
-    - simplifier@s2hk                               #简繁切换港繁
-    - simplifier@chinese_english                    #中英翻译滤镜
+    - lua_filter@*super_replacer                    #用来替代OpenCC的处理器
     - lua_filter@*super_sequence*F                  #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
     - uniquifier                                    # 去重
 
-super_comment:                  # 超级注释模块，子项配置 true 开启，false 关闭
-  candidate_length: 1           # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
-  corrector_type: "〔comment〕"  # 错音措字，随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
-  chaifen: "〔chaifen〕"         # 拆分显示，随意更换左右括号，比如"〔chaifen〕" 不加括号为无括号，chaifen占位不能动
+t9:
+  isDisplayOriginalPreedit: false
+
+# 字符集过滤lua
+# a,通用规范汉字表
+# b,GB2312,
+# g,GBK,
+# T,Big5,(台港澳常用)
+# j,简体,OpenCC (t2s)
+# f,通用繁体,OpenCC (s2t)
+# h,香港繁体, OpenCC (s2hk)
+# t,台湾繁体, OpenCC (s2tw)
+# u,基本区,U+4E00 - U+9FFF
+# A-I,扩展 A-I 区,U+3400 及各扩展区 (支持到 Ext-I)
+# c,兼容区汉字
+# 你可以通过黑白名单微调你自己每个开关下面的字符集过滤清单，主数据库位于lua/charset.reverse.bin不可编辑
+# 你可以按上面提到的规则代号在base处填写上基础集，还可以在每一个开关的开白名单设置微调数据，就像默认添加的字符集过滤在8105基础上新增了一些
+# 你可以定义多个开关，多个开启状态的开关求并集，比如charset_filter开着，s2hk也开着，那么就会显示这两个集合的所有汉字
+# 优雅的地方在于s2hk开着，charset_filter关着 我们照样能使用 港繁能用到的所有字，是真正的本体，无关字会被过滤，而当都开着则是享受简体转换成繁体的后的结果
+# 这个设计真正的兼容了简繁转换与字符集过滤的矛盾，还能满足用户多种自定义需求，你可以在开关增加类别，并在charset下面新增option类去选择按照字区去过滤，等多种组合方式
+charset:
+  - option: charset_filter
+    base: a  #可以填入多个类别如aj
+    addlist:
+      - "诶濛硷氽尛躝〇冇吔咗囧屌鲶芶咲畑垅𰻝𰻞"
+    blacklist: []
+  - option: s2t
+    base: f
+    addlist: []
+    blacklist: []
+  - option: s2hk
+    base: h
+    addlist: []
+    blacklist: []
+  - option: s2tw
+    base: t
+    addlist: []
+    blacklist: []
 
 # Tips 配置项
 tips:
@@ -189,8 +222,9 @@ translator:
   initial_quality: 3           #初始质量拼音的权重应该比英文大
   spelling_hints: 30           #将注释以词典code字符串形式完全暴露，通过super_comment.lua完全接管，灵活配置。
   always_show_comments: true   # Rime 默认在 preedit 等于 comment 时取消显示 comment，这里强制一直显示，供super_comment.lua做判断用。
-  comment_format: {comment}    #将注释以词典字符串形式完全暴露，通过super_preedit.lua完全接管，灵活配置。
-
+  comment_format:
+    - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜüńňǹḿm̀/aaaaooooeeeeiiiiuuuuvvvvvnnnmmm/
+    - xform/^(.*);.*$/$1/
   #disable_user_dict_for_patterns:  #如果你开启调频，需要一并考虑这个配置是否需要，基本的6码3字不调频，你可以自定义，目前的逻辑是依然记录用户词但满足规则的不输出不被使用
   #  - "^[a-z]{1,6}"
 
@@ -221,38 +255,67 @@ wanxiang_mixedcode:
   enable_sentence: false
   initial_quality: 2
   comment_format:
-    - xform/^.+$//
+    - xform/.*//
 
-# Emoji
-emoji:
-  option_name: emoji
-  opencc_config: emoji.json
-  inherit_comment: false  # 在反查中，emoji 返回空注释
-
-
-#中文转英文
-chinese_english:
-  option_name: chinese_english
-  opencc_config: chinese_english.json
-  tips: char
-  inherit_comment: false
-
-# 简繁切换
-s2t:
-  option_name: s2t
-  opencc_config: s2t.json  # s2t.json | s2hk.json | s2tw.json | s2twp.json
-  tips: none               # 转换提示: all 都显示 | char 仅单字显示 | none 不显示。
-  tags: [ abc ]            # 限制在对应 tag，不对其他如反查的内容做简繁转换
-
-s2hk:
-  opencc_config: s2hk.json
-  option_name: s2hk
-  tags: [abc]
-
-s2tw:
-  opencc_config: s2tw.json
-  option_name: s2tw
-  tags: [abc]
+super_replacer:
+    db_name: lua/replacer
+    delimiter: "|"
+    comment_format: "〔%s〕"
+    chain: true   #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
+    types:
+      # 场景1：输入 '哈哈' -> 变成 '1.哈哈 2.😄'
+      - option: emoji           # 开关名称与上面开关名称保持一致
+        mode: append            # 新增候选append 替换原候选replace 替换注释comment
+        comment_mode: none      # 注释模式: "append"(原候选注释继承), "text"(原候选文本放在注释), "none"(空，默认)
+        tags: [abc]             # 生效的tag
+        prefix: "_em_"          # 前缀用于区分同一个数据库的不同用途数据
+        files:
+          - lua/data/emoji.txt
+      # 场景2：输入 'hello' -> 显示 'hello 〔你好 | 哈喽〕'
+      - option: chinese_english
+        mode: append        # <--- 添加注释模式
+        comment_mode: none
+        tags: [abc]
+        prefix: "_en_"
+        files:
+          - lua/data/english_chinese.txt
+          - lua/data/chinese_english.txt
+      # 场景3：用于常驻的直接替换 option: true
+      - option: true
+        mode: append         # <--- 新增候选模式
+        comment_mode: none
+        tags: [abc]
+        prefix: "_ot_"
+        files:
+          - lua/data/others.txt
+      # 场景4：用于简繁转换的直接替换
+      - option: [ s2t, s2hk, s2tw ]   #后面依赖这条流水线有一个开关为true这条流水线就能工作
+        mode: replace         # <--- 替换原候选模式
+        comment_mode: append
+        sentence: true        # <--- 句子级别替换
+        tags: [abc]
+        prefix: "_s2t_"
+        files:
+          - lua/data/STCharacters.txt
+          - lua/data/STPhrases.txt
+      - option: s2hk
+        mode: replace         # <--- 替换原候选模式
+        comment_mode: append
+        sentence: true        # <--- 句子级别替换
+        tags: [abc]
+        prefix: "_s2hk_"
+        files:
+          - lua/data/HKVariants.txt
+          - lua/data/HKVariantsRevPhrases.txt
+      - option: s2tw
+        mode: replace         # <--- 替换原候选模式
+        comment_mode: append
+        sentence: true        # <--- 句子级别替换
+        tags: [abc]
+        prefix: "_s2tw_"
+        files:
+          - lua/data/TWVariants.txt
+          - lua/data/TWVariantsRevPhrases.txt
 
 # 部件拆字反查
 wanxiang_reverse:
@@ -264,7 +327,7 @@ wanxiang_reverse:
   tips: "〔反查：部件|笔画〕"
 
 # 部件拆字滤镜
-radical_reverse_lookup:
+reverse_lookup:
   tags: [ wanxiang_reverse ]  #起作用tag范围
   overwrite_comment: true   #是否覆盖其他提示
   dictionary: wanxiang      #带音调的词典
@@ -334,18 +397,19 @@ speller:
 #  auto_select: true
 #  auto_select_pattern: ^[a-z]+/|^[a-df-zA-DF-Z]\w{3}|^e\w{4}
   # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射，alphabet就是将字符纳入输入编码的范畴
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA987654321`/\
-  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA987654321
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA9876543210`/\
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA9876543210
   delimiter: " '"        # 系统配置，第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
   visual_delimiter: " "  # super_preedit.lua配置：是否让分隔符号跟着一起转换，例如nǐ'hǎo 在实际使用中表现出视觉拥挤，我们可以让delimiter平时是'转换为拼音的时候使用空格nǐ hǎo，更符合实际。
   tone_isolate: true     # super_preedit.lua配置：是否将数字声调从转换后拼音中隔离出来（true=隔离， false 直接参与转换）例如：nǐ3
   algebra:
-    - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜüńňǹḿm̀/aaaaooooeeeeiiiiuuuuvvvvvnnnmmm/
     - xform/^(.*);.*$/$1/
+    - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜüńňǹḿm̀/aaaaooooeeeeiiiiuuuuvvvvvnnnmmm/
     - derive/^ng$/eng/
     - xform/^n$/en/
     - xform/^m$/me/
-    - abbrev/^([a-z]).+$/$1/
+    - derive/^(.*)$/\U$1/
+    - abbrev/^([A-Z]).+$/$1/
     - abbrev/^([zcs]h).+$/$1/
     - derive/^([nl])ve$/$1ue/
     - derive/^([jqxy])u/$1v/
@@ -357,20 +421,21 @@ speller:
     - derive/ong$/on/
     - derive/ao$/oa/
     - derive/([iu])a(o|ng?)$/a$1$2/
-    - derive/[abc]/2/
-    - derive/[def]/3/
-    - derive/[hgi]/4/
-    - derive/[jkl]/5/
-    - derive/[omn]/6/
-    - derive/[pqrs]/7/
-    - derive/[tuv]/8/
-    - derive/[wxyz]/9/
+    - derive/[ABC]/2/
+    - derive/[DEF]/3/
+    - derive/[GHI]/4/
+    - derive/[JKL]/5/
+    - derive/[MNO]/6/
+    - derive/[PQRS]/7/
+    - derive/[TUV]/8/
+    - derive/[WXYZ]/9/
+
 
 grammar:
   language: wanxiang-lts-zh-hans
-  collocation_max_length: 6
-  collocation_min_length: 3
+  collocation_max_length: 7
+  collocation_min_length: 2
   collocation_penalty: -10
   non_collocation_penalty: -20
-  weak_collocation_penalty: -45
+  weak_collocation_penalty: -35
   rear_penalty: -12

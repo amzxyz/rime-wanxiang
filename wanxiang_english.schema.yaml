@@ -1,0 +1,75 @@
+# Rime schema
+# encoding: utf-8
+schema:
+  schema_id: wanxiang_english
+  name: 万象英文
+  version: "lts"
+  author: amzxyz
+  description: |
+    支持整句输入英文的语句流方案，拥有更加智能的词组上屏加空格策略，支持单词组、语句任意词组中首字母大写或者全大写格式化。
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [整句, 字母]
+
+engine:
+  processors:
+    - lua_processor@*backspace_limit
+    - ascii_composer
+    - key_binder
+    - speller
+    - recognizer
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - matcher
+    - ascii_segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - table_translator
+    - table_translator@wanxiang_english    #英文词汇表导入
+    - punct_translator
+  filters:
+    - lua_filter@*auto_phrase
+    - lua_filter@*super_english
+    - uniquifier
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA\
+  delimiter: " '"
+  algebra:
+    __include: wanxiang_algebra:/english/通用规则
+    __patch: wanxiang_algebra:/english/全拼   #可选的选项有（全拼, 自然码, 小鹤双拼, 微软双拼, 搜狗双拼, 智能ABC, 紫光双拼, 拼音加加）
+translator:
+  dictionary: wanxiang_english
+  enable_user_dict: false
+  initial_quality: 2
+  comment_format:
+    - xform/^~.+$//
+key_binder:
+  import_preset: default
+  bindings:
+    #- { when: always, accept: Shift+space, select: wanxiang }  #直接跳转指定方案
+    #- { when: always, accept: Shift+space, select: wanxiang_pro }  #直接跳转指定方案
+    - { when: always, accept: Shift+space, select: .next }  #下一个方案
+recognizer:
+  import_preset: default
+
+wanxiang_english:
+  dictionary: wanxiang_english
+  user_dict: en
+  enable_completion: true
+  enable_sentence: true
+  initial_quality: 3
+  comment_format:  #这里很重要如果残留带声调字母，剩余编码提示计算出错引发程序崩溃
+    - xform/^~.+$//
+  #英文自动加空格，除关闭外共有3种模式可供选择
+  #off: 关闭; before: 总是前加; after: 总是后加; 
+  #smart: 智能模式连续输入英文时第二个单词前开始加空格，非输入状态的回车与空格都能打断加空格状态
+  #支持设置延时销毁加空格状态，单位秒,0不超时，大于0为超时时间，极大的保证了连续输入的体验。
+  english_spacing: smart
+  spacing_timeout: 5

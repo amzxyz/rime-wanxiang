@@ -50,7 +50,7 @@ global_ascii: false                        # 切换为 ascii 模式时，是否�
 # 字体；候选项、候选窗口的行为、布局及样式
 style:
   color_scheme: win11_light      # 默认配色方案
-
+  color_scheme_dark: win11_dark
   # 全局字体
   # 格式：字体1:起始码位:结束码位:字重:字形,字体2……，字体会依次 fallback
   # 详细设定请参考 <https://github.com/rime/weasel/wiki/字體設定>

@@ -1,15 +1,11 @@
 -- @amzxyz  https://github.com/amzxyz/rime_wanxiang
 -- 功能 A：候选文本中的转义序列格式化（始终开启）
 --         \n \t \r \\ \s(空格) \d(-)
--- 功能 B：英文自动大写（始终开启）
---         - 首字母大写：输入首字母大写 → 候选首字母大写（Hello）
---         - 全部大写：输入前 2+ 个大写 → 候选全大写（HEllo → HELLO）
---         - 仅对 ASCII 单词生效；若候选含空格、-、@、#、· 等也认为是英文
--- 功能 C：候选重排（仅编码长度 2..6 时）
+-- 功能 B：候选重排（仅编码长度 2..6 时）
 --         - 第一候选不动
 --         - 其余按组输出：①不含字母(table/user_table) → ②其他
 --         - 若第二候选为 table/user_table，则不排序，直接透传
--- 功能 D：成对符号包裹（触发：最后分段完整消耗且出现 prefix\suffix；suffix 命中映射时吞掉 \suffix）
+-- 功能 C：成对符号包裹（触发：最后分段完整消耗且出现 prefix\suffix；suffix 命中映射时吞掉 \suffix）
 -- 缓存/锁定：
 --   - 未锁定时记录第一候选为缓存
 --   - 出现 prefix\suffix 且 prefix 非空 ⇒ 锁定
@@ -18,22 +14,20 @@
 -- 镜像：
 --   - schema: paired_symbols/mirror (bool，默认 true)
 --   - 包裹后可抑制"包裹前文本/包裹后文本"再次出现在后续候选里
--- 功能 E：三态语言模式（通过 options 控制，仅在输出层过滤，不改变内部逻辑）
---   - ctx:get_option("en_only") == true → 仅英文：只保留英文候选
---   - ctx:get_option("zh_only") == true → 仅中文：丢弃英文候选
---   - 两者都 false → 混合模式：中英都输出
--- 功能F 字符集过滤，默认8105+𰻝𰻝，可以在方案中定义黑白名单来实现用户自己的范围微调charsetlist: []和charsetblacklist: [𰻝, 𰻞]
--- 功能G 由于在混输场景中输入comment commit等等之类的英文时候，由于直接辅助码的派生能力，会将三个好不想干的单字组合在一起，这会造成不好的体验
+-- 功能D 字符集过滤，默认8105+𰻝𰻝，可以在方案中定义黑白名单来实现用户自己的范围微调addlist: []和blacklist: [𰻝, 𰻞]
+-- 功能E 由于在混输场景中输入comment commit等等之类的英文时候，由于直接辅助码的派生能力，会将三个好不想干的单字组合在一起，这会造成不好的体验
 --      因此在首选已经是英文的时候，且type=completion且大于等于4个字符，这个时候后面如果有type=sentence的派生词则直接干掉，这个还要依赖，表翻译器
 --      权重设置与主翻译器不可相差太大
--- 功能H：英文自动空格（english_spacing）
---      支持模式：off(默认), before(前), after(后), smart(连续英文时在前加空格)
+
 local wanxiang = require("wanxiang")
 local M = {}
 
+-- 性能优化：本地化字符串函数
 local byte, find, gsub, upper, sub = string.byte, string.find, string.gsub, string.upper, string.sub
+local utf8_codes = utf8.codes -- 本地化 utf8 迭代器
 
--- ========= 工具 =========
+-- ================= 工具函数 =================
+
 local function fast_type(c)
     local t = c.type
     if t then return t end
@@ -51,194 +45,71 @@ local function has_english_token_fast(s)
     for i = 1, len do
         local b = byte(s, i)
         if b < 0x80 then
-            -- A-Z
-            if b >= 0x41 and b <= 0x5A then
+            -- A-Z (0x41-0x5A) or a-z (0x61-0x7A)
+            if (b >= 0x41 and b <= 0x5A) or (b >= 0x61 and b <= 0x7A) then
                 return true
             end
-            -- a-z
-            if b >= 0x61 and b <= 0x7A then
-                return true
-            end
-            -- 你自己想认的几个 ASCII 符号：
-            -- 空格、#、-、@、'
-            if b == 0x20   -- space
-               or b == 0x23  -- '#'
-               or b == 0x2D  -- '-'
-               or b == 0x40  -- '@'
-               or b == 0x27  -- '\''
-            then
-                return true
-            end
-            -- 如果想再加别的 ASCII 标点，也在这里列
-        else
-            -- b >= 0x80: UTF-8 非 ASCII 字节，直接跳过
         end
     end
     return false
 end
-
-local function is_ascii_word_fast(s)
-    if s == "" then return false end
-    for i = 1, #s do
-        local b = byte(s, i)
-        if not ((b >= 65 and b <= 90) or (b >= 97 and b <= 122)) then return false end
-    end
-    return true
-end
-local function is_ascii_phrase_fast(s)
-    if s == "" then return false end
-    local has_alpha = false
-    for i = 1, #s do
-        local b = byte(s, i)
-        if b > 127 then
-            return false -- 出现非 ASCII，直接不是英文短语
-        end
-        if (b >= 65 and b <= 90) or (b >= 97 and b <= 122) then
-            has_alpha = true -- 有至少一个字母
-        end
-    end
-    return has_alpha
-end
-local function ascii_equal_ignore_case_to_pure(text, pure_code_lc)
-    -- 提取 text 里的所有字母，转成小写
-    local buf = {}
-    for i = 1, #text do
-        local b = byte(text, i)
-        if b >= 65 and b <= 90 then b = b + 32 end -- 大写转小写
-        if b >= 97 and b <= 122 then
-            buf[#buf+1] = string.char(b)
-        elseif b > 127 then
-            -- 出现非 ASCII，直接视为不匹配，防止中文乱入
-            return false
-        end
-    end
-    local letters = table.concat(buf)
-    if #letters ~= #pure_code_lc then
-        return false
-    end
-    return letters == pure_code_lc and (false == false and true or false) or false
-end
-
--- ========= 英文候选判定 =========
--- 使用现有的 has_english_token_fast 叠加 is_table_type：
---   - 若不属于 table/user_table/fixed：只要含英文 token 即视为英文候选
---   - 若属于 table/user_table/fixed：要求“只含 ASCII”（没有中文），且含英文 token
+-- 纯ASCII判定
 local function is_english_candidate(cand)
-    if not cand or not cand.text or cand.text == "" then return false end
-    local txt = cand.text
-
+    local txt = cand and cand.text
+    if not txt or txt == "" then return false end
     if not has_english_token_fast(txt) then
         return false
     end
-
-    if is_table_type(cand) then
-        -- 表内候选如果混有非 ASCII（大概率是中文），就不当英文处理
-        for i = 1, #txt do
-            local b = byte(txt, i)
-            if b > 127 then
-                return false
-            end
-        end
+    -- 使用局部变量 find，而非 string.find
+    if find(txt, "[\128-\255]") then
+        return false
     end
-
     return true
 end
 
--- ========= 空白规范化 ==========
-local NBSP = string.char(0xC2, 0xA0)       -- U+00A0 不换行空格
-local FWSP = string.char(0xE3, 0x80, 0x80) -- U+3000 全角空格
-local ZWSP = string.char(0xE2, 0x80, 0x8B) -- U+200B 零宽空格
-local BOM  = string.char(0xEF, 0xBB, 0xBF) -- U+FEFF BOM
-local ZWNJ = string.char(0xE2, 0x80, 0x8C) -- U+200C 零宽不连字
-local ZWJ  = string.char(0xE2, 0x80, 0x8D) -- U+200D 零宽连字
-
-local function normalize_spaces(s)
-    if not s or s == "" then return s end
-    -- opencc 中译英转换英文间隔空格为正常空格
-    s = s:gsub(NBSP, " ")
-    -- :gsub(FWSP, " ")
-    return s
-end
-
--- ========= 文本格式化（转义 + 自动大写）=========
 local escape_map = {
-    ["\\n"] = "\n", ["\\t"] = "\t", ["\\r"] = "\r",
-    ["\\\\"] = "\\", ["\\s"] = " ", ["\\d"] = "-",
+    ["\\n"] = "\n",            -- 换行
+    ["\\r"] = "\r",            -- 回车
+    ["\\t"] = "\t",            -- 制表符
+    ["\\s"] = " ",             -- 空格
+    ["\\z"] = "\226\128\139",  -- 零宽空格
 }
-local esc_pattern = "\\[ntrsd\\\\]"
+
+local utf8_char_pattern = "[%z\1-\127\194-\244][\128-\191]*"
 
 local function apply_escape_fast(text)
-    if not text or find(text, "\\", 1, true) == nil then return text, false end
-    local new_text = gsub(text, esc_pattern, function(esc) return escape_map[esc] or esc end)
+    if not text or (not find(text, "\\", 1, true) and not find(text, "{", 1, true)) then
+        return text, false
+    end
+
+    local new_text = text
+    if find(new_text, "\\{", 1, true) then
+        new_text = gsub(new_text, "\\{", "\1")
+    end
+    if find(new_text, "\\", 1, true) then
+        new_text = gsub(new_text, "\\[ntrsz]", escape_map)
+    end
+    if find(new_text, "{", 1, true) then
+        new_text = gsub(new_text, "(" .. utf8_char_pattern .. ")%{(%d+)}", function(char, count)
+            local n = tonumber(count)
+            if n and n > 0 and n < 200 then
+                return string.rep(char, n)
+            end
+            return char .. "{" .. count .. "}"
+        end)
+    end
+    if find(new_text, "\1", 1, true) then
+        new_text = gsub(new_text, "\1", "{")
+    end
     return new_text, new_text ~= text
 end
 
-local function format_and_autocap(cand, code_ctx)
+local function format_and_autocap(cand)
     local text = cand.text
     if not text or text == "" then return cand end
-    
-    local changed = false
-    -- 空白规范化
-    local norm = normalize_spaces(text)
-    if norm ~= text then
-        text = norm
-        changed = true
-    end
-    -- 转义替换 (\n, \t, \s 等)
-    -- 必须先处理转义，因为转义可能会改变字符串开头 (如 \sApple -> Apple)
-    if find(text, "\\", 1, true) then
-        local t2, ch = apply_escape_fast(text)
-        if ch then 
-            text = t2
-            changed = true
-        end
-    end
-    -- 状态检测：转义完成后，检测当前文本是否为 ASCII 短语
-    local b1 = byte(text, 1)
-    local is_ascii_phrase = (b1 and b1 <= 127 and is_ascii_phrase_fast(text))
-    -- 英文自动大写
-    if code_ctx.enable_cap and is_ascii_phrase then
-        local pure_word = is_ascii_word_fast(text)
-
-        if cand.type == "completion" or ascii_equal_ignore_case_to_pure(text, code_ctx.pure_code_lc) then
-            local new_text = nil
-            
-            if code_ctx.all_upper and pure_word then
-                -- 全大写逻辑 (HELLO)
-                new_text = upper(text)
-            else
-                -- 首字母大写逻辑 (Hello)
-                new_text = text:gsub("^%a", string.upper)
-            end
-
-            if new_text and new_text ~= text then
-                text = new_text
-                changed = true
-            end
-        end
-    end
-    -- 英文自动空格
-    if is_ascii_phrase and code_ctx.spacing_mode and code_ctx.spacing_mode ~= "off" then
-        local mode = code_ctx.spacing_mode
-        
-        -- smart模式: 若“上次上屏是英文”且“当前也是英文”，则在前面补空格
-        if mode == "smart" then
-            if code_ctx.prev_is_eng then
-                text = " " .. text
-                changed = true
-            end
-        elseif mode == "before" then
-            text = " " .. text
-            changed = true
-        elseif mode == "after" then
-            text = text .. " "
-            changed = true
-        end
-    end
-    -- 输出结果
+    local t2, changed = apply_escape_fast(text)
     if not changed then return cand end
-    
-    local nc = Candidate(cand.type, cand.start, cand._end, text, cand.comment)
+    local nc = Candidate(cand.type, cand.start, cand._end, t2, cand.comment)
     nc.preedit = cand.preedit
     return nc
 end
@@ -248,8 +119,7 @@ local function clone_candidate(c)
     nc.preedit = c.preedit
     return nc
 end
-
--- ========= 包裹映射 =========
+--  包裹映射
 local default_wrap_map = {
     -- 单字母：常用成对括号/引号（每项恰好两个字符）
     a = "[]",        -- 方括号
@@ -279,14 +149,14 @@ local default_wrap_map = {
     y = "⟪⟫",       -- 双角括号
     z = "{}",        -- 花括号
 
-    -- ===== 扩展括号族 / 引号 =====
+    --  扩展括号族 / 引号
     dy = "''",       -- 英文单引号
     sy = "\"\"",     -- 英文双引号
     zs = "“”",       -- 中文弯双引号
     zd = "‘’",       -- 中文弯单引号
     fy = "``",       -- 反引号
 
-    -- ===== 双字母括号族 =====
+    --  双字母括号族
     aa = "〚〛",      -- 双中括号
     bb = "〘〙",      -- 双中括号（小）
     cc = "〚〛",      -- 双中括号（重复，可用于 Lua 匹配）
@@ -313,7 +183,7 @@ local default_wrap_map = {
     yy = "⌠⌡",      -- 数学 / 程序符号
     zz = "⟅⟆",      -- 数学 / 装饰括号
 
-    -- ===== Markdown / 标记 =====
+    --  Markdown / 标记
     md = "**|**",      -- Markdown 粗体
     jc = "**|**",      -- 加粗
     it = "__|__",      -- 斜体
@@ -334,7 +204,7 @@ local default_wrap_map = {
     br = "|  ",        -- 换行
     cm = "<!--|-->",   -- 注释
 
-    -- ===== 运算与标记符 =====
+    --  运算与标记符
     pl = "++",
     mi = "--",
     sl = "//",
@@ -367,15 +237,7 @@ local function load_mapping_from_config(config)
     return symbol_map
 end
 
-local function utf8_chars(s)
-    local chars = {}
-    for ch in s:gmatch("[%z\1-\127\194-\244][\128-\191]*") do
-        table.insert(chars, ch)
-    end
-    return chars
-end
-
--- wrap_map 预编译为左右两部分
+-- 优化：删除 utf8_chars 函数，直接在预编译中使用 utf8_codes
 local function precompile_wrap_parts(wrap_map, delimiter)
     delimiter = delimiter or "|"
     local parts = {}
@@ -383,258 +245,215 @@ local function precompile_wrap_parts(wrap_map, delimiter)
         if not wrap_str or wrap_str == "" then
             parts[k] = { l = "", r = "" }
         else
-            local pos = string.find(wrap_str, delimiter, 1, true)
+            local pos = find(wrap_str, delimiter, 1, true)
             if pos then
-                local left = string.sub(wrap_str, 1, pos - 1) or ""
-                local right = string.sub(wrap_str, pos + 1) or ""
+                local left = sub(wrap_str, 1, pos - 1) or ""
+                local right = sub(wrap_str, pos + 1) or ""
                 parts[k] = { l = left, r = right }
             else
-                local chars = utf8_chars(wrap_str)
-                if #chars == 0 then
+                -- 优化：使用 utf8_codes 避免创建 table
+                local first, last
+                local count = 0
+                for _, cp in utf8_codes(wrap_str) do
+                    local char = utf8.char(cp)
+                    if count == 0 then first = char end
+                    last = char
+                    count = count + 1
+                end
+               
+                if count == 0 then
                     parts[k] = { l = "", r = "" }
-                elseif #chars == 1 then
-                    parts[k] = { l = chars[1], r = "" }
-                elseif #chars == 2 then
-                    parts[k] = { l = chars[1], r = chars[2] }
+                elseif count == 1 then
+                    parts[k] = { l = first, r = "" }
+                elseif count == 2 then
+                    parts[k] = { l = first, r = last } -- 修正：双字时左右各一
                 else
-                    parts[k] = { l = chars[1], r = chars[#chars] }
+                    parts[k] = { l = first, r = last } -- 多字时首尾各一
                 end
             end
         end
     end
     return parts
 end
--- ========= 字符集过滤工具 =========
--- 单个码点是否在 charset 里（带缓存，考虑白名单 + 黑名单）
-local function codepoint_in_charset(env, codepoint)
-    if not env then
-        return true
-    end
 
-    local memo = env.charset_memo
-    if memo and memo[codepoint] ~= nil then
-        return memo[codepoint]
-    end
-
-    -- 黑名单：优先级最高，命中就直接 false
-    if env.charset_block and env.charset_block[codepoint] then
-        if memo then memo[codepoint] = false end
-        return false
-    end
-
-    -- 白名单：命中就直接 true
-    if env.charset_extra and env.charset_extra[codepoint] then
-        if memo then memo[codepoint] = true end
-        return true
-    end
-
-    -- 没有主表（没配 wanxiang_charset），那就只靠黑白名单
-    if not env.charset then
-        local ok = true   -- 不在黑名单就算通过；白名单已经在上面处理过了
-        if memo then memo[codepoint] = ok end
-        return ok
-    end
-
-    -- 正常情况：用表滤镜查一遍
-    local ch = utf8.char(codepoint)
-    local ok = env.charset:lookup(ch) ~= ""
-
-    if memo then memo[codepoint] = ok end
-    return ok
-end
-
---[[ 整个 text 是否通过“字符集过滤”
--- 规则：只检查「汉字」，非汉字（英文/符号）直接视为通过；
---      只要出现一个不在 charset 的汉字，就整条候选丢弃。
-local function in_charset(env, text)
-    if not env or not env.charset or not text or text == "" then
-        return true
-    end
-    for _, cp in utf8.codes(text) do
-        local ch = utf8.char(cp)
-        if wanxiang.IsChineseCharacter(ch) then
-            if not codepoint_in_charset(env, cp) then
-                return false
-            end
+-- 检查交集
+local function check_intersection(db_attr, config_base_set)
+    if not db_attr or db_attr == "" then return false end
+    for i = 1, #db_attr do
+        -- 优化：使用局部变量 sub
+        local c = sub(db_attr, i, i)
+        if config_base_set[c] then
+            return true
         end
     end
-    return true
-end]]--
--- 整个 text 是否通过“字符集过滤”
--- 现在只对【单个汉字】做过滤，多字词/非汉字候选都直接通过
-local function in_charset(env, text)
-    if not env or not env.charset or not text or text == "" then
-        return true
-    end
-    -- 统计码点数，只要不是恰好 1 个码点，就不做过滤
-    local cp, count = nil, 0
-    for _, c in utf8.codes(text) do
-        cp = c
-        count = count + 1
-        if count > 1 then
-            return true    -- 多字词：直接通过
-        end
-    end
-    if count ~= 1 or not cp then
-        return true
-    end
-    local ch = utf8.char(cp)
-    if not wanxiang.IsChineseCharacter(ch) then
-        return true       -- 单个但不是汉字：直接通过
-    end
-    -- 单个汉字：按 charset + 黑白名单过滤
-    return codepoint_in_charset(env, cp)
+    return false
 end
--- 当前 composition 的最后一个 seg 是否属于「反查/造词/标点」之类
-local function is_reverse_lookup_segment(env)
-    if not env or not env.engine or not env.engine.context then
-        return false
-    end
-    local comp = env.engine.context.composition
-    if not comp then
-        return false
-    end
-    local seg = comp:back()
-    if not seg then
-        return false
-    end
-    return seg:has_tag("wanxiang_reverse")
-        or seg:has_tag("add_user_dict")
-        or seg:has_tag("punct")
-end
--- ========= 字符集过滤初始化 =========
--- 从 schema 里读取 charsetlist / charsetblacklist
+
+-- 初始化字符集过滤配置
 local function init_charset_filter(env, cfg)
-    -- 主字符集（表滤镜）
+    -- 1. 加载数据库文件
     local dist = (rime_api.get_distribution_code_name() or ""):lower()
-
     local charsetFile
     if dist == "weasel" then
-        -- 小狼毫：直接用相对路径，避免 Win 上绝对路径 + ReverseDb 的兼容问题
-        charsetFile = "lua/charset.bin"
+        charsetFile = "lua/data/charset.reverse.bin"
     else
-        -- 其他前端：正常用 fallback 找到 user/shared 目录里的绝对路径
-        charsetFile = wanxiang.get_filename_with_fallback("lua/charset.bin") or "lua/charset.bin"
+        charsetFile = wanxiang.get_filename_with_fallback("lua/data/charset.reverse.bin") or "lua/data/charset.reverse.bin"
     end
-
-    env.charset       = ReverseDb(charsetFile)
-    env.charset_memo  = {}
-    env.charset_extra = {}  -- 白名单
-    env.charset_block = {}  -- 黑名单
-
-    if not cfg then
-        return
+   
+    env.charset_db = nil
+    if ReverseDb then
+        local ok, db = pcall(function() return ReverseDb(charsetFile) end)
+        if ok and db then env.charset_db = db end
     end
+    env.db_memo = {}
+    env.filters = {}
 
-    -- 通用读取函数：把一个 list 里所有码点放入 target 表
-    local function load_charset_list(key, target_table)
-        local ok_list, list = pcall(function()
-            return cfg:get_list(key)
-        end)
-        if not ok_list or not list or list.size <= 0 then
-            return
-        end
+    if not cfg then return end
+   
+    local root_path = "charset"
+    local list = cfg:get_list(root_path)
+    if not list then return end
 
-        for i = 0, list.size - 1 do
-            local item = list:get_value_at(i)
-            if item then
-                local v = item:get_string()
-                if v and #v > 0 then
-                    for _, cp in utf8.codes(v) do
-                        target_table[cp] = true
-                    end
+    local list_size = list.size
+    for i = 0, list_size - 1 do
+        local entry_path = root_path .. "/@" .. i
+       
+        -- 解析开关
+        local triggers = {}
+        local opts_keys = {"option", "options"}
+        for _, key in ipairs(opts_keys) do
+            local key_path = entry_path .. "/" .. key
+            local sub_list = cfg:get_list(key_path)
+            if sub_list then
+                for k = 0, sub_list.size - 1 do
+                    local val = cfg:get_string(key_path .. "/@" .. k)
+                    if val and val ~= "" then table.insert(triggers, val) end
                 end
-            end
-        end
-    end
-    -- charsetlist: 白名单
-    load_charset_list("charsetlist", env.charset_extra)
-    -- charsetblacklist: 黑名单
-    load_charset_list("charsetblacklist", env.charset_block)
-end
--- =======================================================
--- 基于英文模式Preedit的智能分段空格
--- =======================================================
-local function restore_sentence_spacing(cand)
-    local guide = cand.preedit or ""
-    -- 如果 Preedit 没空格，说明没分段，直接返回
-    if not string.find(guide, " ") then return cand end
-
-    local text = cand.text
-    local text_len = #text
-    local parts = {}
-    local p = 1 -- 全局扫描指针
-    -- 辅助：取纯字母小写指纹
-    local function pure(s) return string.gsub(s, "[^a-zA-Z]", ""):lower() end
-    local function find_target_in_text(start_pos, target_fp)
-        -- 剪枝：如果剩下的长度比 target 还短，肯定没了
-        if (text_len - start_pos + 1) < #target_fp then return nil, nil end
-        -- 从 start_pos 开始，向后逐字尝试
-        for i = start_pos, text_len do
-            -- 首字母必须匹配，才值得进去做全词扫描
-            -- 比如 target="apple"，只有遇到 'a'/'A' 才进去看
-            local char_i = string.sub(text, i, i)
-            local first_char_fp = string.lower(char_i)
-            if first_char_fp == string.sub(target_fp, 1, 1) then
-                -- 潜入匹配：尝试从位置 i 开始凑齐 target
-                local scan_p = i
-                local letters_acc = ""
-                while scan_p <= text_len do
-                    local char = string.sub(text, scan_p, scan_p)
-                    -- 只收集字母
-                    if string.find(char, "[a-zA-Z]") then
-                        letters_acc = letters_acc .. string.lower(char)
-                    end
-                    if letters_acc == target_fp then
-                        -- 找到了！返回 (起点, 终点)
-                        return i, scan_p 
-                    end
-                    -- 剪枝：如果凑出来的字母已经比目标不一样或更长，说明不是这个
-                    -- 比如 target="app", 凑出了 "apx" -> 失败，跳出 while，继续外层 for
-                    if #letters_acc > #target_fp then break end
-                    if string.sub(letters_acc, 1, #letters_acc) ~= string.sub(target_fp, 1, #letters_acc) then break end
-                    scan_p = scan_p + 1
-                end
-            end
-        end
-        return nil, nil
-    end
-    -- 遍历 Preedit 的每一段
-    for seg in string.gmatch(guide, "%S+") do
-        local target = pure(seg)
-        if #target > 0 then
-            -- 在当前指针 p 往后无限寻找
-            local match_start, match_end = find_target_in_text(p, target)
-            if match_start then
-                -- 隔离病灶（中间跳过不匹配的）
-                if match_start > p then
-                    local lesion = string.sub(text, p, match_start - 1)
-                    table.insert(parts, lesion)
-                end
-                -- 存入正确单词
-                local valid_word = string.sub(text, match_start, match_end)
-                table.insert(parts, valid_word)
-                -- 更新指针
-                p = match_end + 1
             else
-                -- 没找到：说明这个 preedit 词完全消失了（比如 preedit 有 5 个词，candidate 只有 4 个）
-                -- 策略：忽略这个 guide，继续用下一个 guide 找
+                if cfg:get_bool(key_path) == true then
+                    table.insert(triggers, "true")
+                else
+                    local val = cfg:get_string(key_path)
+                    if val and val ~= "" and val ~= "true" then
+                        table.insert(triggers, val)
+                    end
+                end
+            end
+        end
+
+        if #triggers > 0 then
+            -- 物理隔离变量
+            local rule_base_set = {}
+            local rule_add = {}
+            local rule_ban = {}
+
+            -- 解析 Base
+            local base_str = cfg:get_string(entry_path .. "/base")
+            if base_str and #base_str > 0 then
+                for j = 1, #base_str do
+                    rule_base_set[sub(base_str, j, j)] = true
+                end
+            end
+
+            -- 解析 Addlist (内联处理，避免闭包开销)
+            local function load_list_to_map(list_name, map)
+                local lp = entry_path .. "/" .. list_name
+                local sl = cfg:get_list(lp)
+                if sl then
+                    for k = 0, sl.size - 1 do
+                        local val = cfg:get_string(lp .. "/@" .. k)
+                        if val and val ~= "" then
+                            for _, cp in utf8_codes(val) do map[cp] = true end
+                        end
+                    end
+                end
+            end
+
+            load_list_to_map("addlist", rule_add)
+            load_list_to_map("blacklist", rule_ban)
+
+            table.insert(env.filters, {
+                options  = triggers,
+                base_set = rule_base_set,
+                add      = rule_add,
+                ban      = rule_ban
+            })
+        end
+    end
+end
+
+-- 核心判定逻辑
+local function codepoint_in_charset(env, ctx, codepoint, text)
+    if not env.charset_db then return true end
+
+    local filters = env.filters
+    if not filters or #filters == 0 then return true end
+
+    local active_options_count = 0
+
+    for _, rule in ipairs(filters) do
+        -- 检查开关
+        local is_rule_active = false
+        for _, opt_name in ipairs(rule.options) do
+            if opt_name == "true" or ctx:get_option(opt_name) then
+                is_rule_active = true
+                break
+            end
+        end
+
+        if is_rule_active then
+            active_options_count = active_options_count + 1
+           
+            -- 1. 黑名单 (最高优先级)
+            if rule.ban[codepoint] then
+            -- 2. 白名单 (次高优先级)
+            elseif rule.add[codepoint] then
+                return true -- 显式白名单，直接放行 (Short-circuit)
+           
+            -- 3. Base 属性检查
+            else
+                local attr = env.db_memo[text]
+                if attr == nil then
+                    attr = env.charset_db:lookup(text)
+                    env.db_memo[text] = attr
+                end
+               
+                if check_intersection(attr, rule.base_set) then
+                    return true -- 属性符合，直接放行 (Short-circuit)
+                end
             end
         end
     end
-    -- 尾部处理
-    if p <= text_len then
-        local tail = string.sub(text, p)
-        if #parts > 0 then table.insert(parts, tail)
-        else table.insert(parts, tail) end
+
+    -- 如果没有开启任何规则 -> 显示所有
+    if active_options_count == 0 then
+        return true
     end
-    -- 重组
-    local new_text = table.concat(parts, " ")
-    local nc = Candidate(cand.type, cand.start, cand._end, new_text, cand.comment)
-    nc.preedit = cand.preedit
-    return nc
+
+    -- 开启了规则，但没有任何一个规则返回 true -> 隐藏
+    return false
 end
--- ========= 生命周期 =========
+
+local function in_charset(env, ctx, text)
+    if not text or text == "" then return true end
+   
+    local cp_count = 0
+    local target_cp = nil
+    for _, cp in utf8_codes(text) do
+        cp_count = cp_count + 1
+        if cp_count > 1 then return true end
+        target_cp = cp
+    end
+   
+    if cp_count == 0 or not target_cp then return true end
+    local char = utf8.char(target_cp)
+
+    if not wanxiang.IsChineseCharacter(char) then return true end
+
+    return codepoint_in_charset(env, ctx, target_cp, char)
+end
+
+--  生命周期
 function M.init(env)
     local cfg = env.engine and env.engine.schema and env.engine.schema.config or nil
     env.wrap_map   = cfg and load_mapping_from_config(cfg) or default_wrap_map
@@ -666,38 +485,7 @@ function M.init(env)
         local okb, bv = pcall(function() return cfg:get_bool("paired_symbols/mirror") end)
         if okb and bv ~= nil then env.suppress_mirror = bv end
     end
-    -- 英文自动空格配置
-    -- off: 关闭; before: 前加; after: 后加; smart: 连续英文时前加
-    env.english_spacing_mode = "off"
-    if cfg then
-        local oks, sv = pcall(function() return cfg:get_string("english_spacing") end)
-        if oks and sv and (sv == "before" or sv == "after" or sv == "smart") then
-            env.english_spacing_mode = sv
-        end
-    end
-    -- 上一次上屏是否为英文（用于 smart 模式）
-    env.prev_commit_is_eng = false
-    -- 注册 commit 通知器来追踪上屏历史
-    if env.engine and env.engine.context then
-        env.commit_notifier = env.engine.context.commit_notifier:connect(function(ctx)
-            local commit_text = ctx:get_commit_text()
-            -- 判断是不是常规的英文单词
-            local is_eng = is_ascii_phrase_fast(commit_text)
-            -- 如果不是单词，再检查是不是单独的英文标点
-            if not is_eng then
-                -- 去掉末尾可能的空格，防止影响判断
-                local clean = commit_text:gsub("%s+$", "") 
-                -- 如果是 逗号、句号、感叹号、问号，也强行算作英文
-                if clean == "," or clean == "." or clean == "!" or clean == "?" then
-                    is_eng = true
-                end
-            end
-            -- 更新状态
-            env.prev_commit_is_eng = is_eng
-            -- 屏后，立即清除打断信号
-            ctx:set_property("english_spacing", "") 
-        end)
-    end
+
     env.cache  = nil   -- 首候选缓存（已格式化）
     env.locked = false -- 是否进入锁定态（检测到 prefix\suffix）
 
@@ -707,89 +495,75 @@ function M.init(env)
         local ok_win, win = pcall(function() return cfg:get_string("paired_symbols/sort_window") end)
         if ok_win and tonumber(win) then env.settings.sort_window = tonumber(win) end
     end
-        -- 字符集过滤 
+        -- 字符集过滤
     init_charset_filter(env, cfg)
+    local schema_id = env.engine.schema.schema_id
+    env.enable_taichi_filter = (schema_id == "wanxiang" or schema_id == "wanxiang_pro")
 end
 
-function M.fini(env) 
-    if env.commit_notifier then
-        env.commit_notifier:disconnect()
-        env.commit_notifier = nil
-    end
+function M.fini(env)
+    env.charset_db = nil
+    env.db_memo = nil
+    env.filters = nil
+    env.wrap_map = nil
+    env.wrap_parts = nil
 end
--- ========= 统一产出通道 =========
+--  统一产出通道
 -- ctxs:
 --   charset          : 字符集过滤
---   suppress_set     : { [text] = true } 阻止镜像文本
+--   suppress_set     : { [text] = true } 阻止镜像文本 
 --   suppress_mirror  : bool
 --   code_ctx         : 编码上下文
 --   unify_tail_span  : 尾部 span 对齐函数
---   en_only / zh_only: 三态语言模式
---   is_english       : 函数(cand) → bool
 local function emit_with_pipeline(cand, ctxs)
     if not cand then return end
-
     local env = ctxs.env
 
-    -- 1. 字符集过滤：只有在 charset_strict = true 时才启用
-    if ctxs.charset_strict and cand.text and cand.text ~= "" then
-        if not in_charset(env, cand.text) then
+    -- ① 字符集过滤：只有在 charset_strict = true 时才启用
+    if ctxs.charset_active and cand.text and cand.text ~= "" then
+        if not in_charset(env, ctxs.ctx, cand.text) then
             return
         end
     end
-    -- 2. 准备变量
-    local is_en = ctxs.is_english and ctxs.is_english(cand) or false
-    local BAGUA_SYMBOL = "\226\152\175"
-    local is_bagua_sentence = (fast_type(cand) == "sentence") and (cand.comment and string.find(cand.comment, BAGUA_SYMBOL))
-
-    -- 3. 三态语言过滤
-    if ctxs.zh_only and is_en then return end
-    if ctxs.en_only and (not is_en) then return end
-
-    -- 4. 八卦图处理
-    if ctxs.en_only then
-        -- 英文模式：如果是八卦图，用 Preedit 还原空格
-        if is_bagua_sentence then
-            cand = restore_sentence_spacing(cand)
+    -- 如果是英文句子，且注释包含 ☯ (\226\152\175)，则丢弃
+    if ctxs.enable_taichi_filter then
+        -- 只有在 wanxiang 或 wanxiang_pro 方案下才执行此过滤
+        if cand.text and has_english_token_fast(cand.text) then
+            if cand.comment and find(cand.comment, "\226\152\175") then
+                return 
+            end
         end
-    elseif (not ctxs.zh_only) then
-        -- 混合模式：隐藏
-        if is_bagua_sentence then return end
+    end
+    -- ② 若需抑制句子候选：删掉所有 type 为 sentence 的候选（除了首候选本身不会被标记）**
+    if ctxs.drop_sentence_after_completion then
+        if fast_type(cand) == "sentence" then
+            return
+        end
     end
 
-    -- 5. 抑制句子
-    if (not ctxs.en_only) and ctxs.drop_sentence_after_completion then
-        if fast_type(cand) == "sentence" then return end
-    end
-
-    -- 6 镜像抑制
+    -- ③ 镜像抑制
     if ctxs.suppress_mirror and ctxs.suppress_set and ctxs.suppress_set[cand.text] then
         return
     end
 
-    -- 7 格式化 + 大写 + span 对齐
-    cand = format_and_autocap(cand, ctxs.code_ctx)
+    -- ④ 格式化 + 大写 + span 对齐
+    cand = format_and_autocap(cand)
     cand = ctxs.unify_tail_span(cand)
     yield(cand)
 end
--- ========= 主流程 =========
+--  主流程
 function M.func(input, env)
     local ctx  = env and env.engine and env.engine.context or nil
     local code = ctx and (ctx.input or "") or ""
     local comp = ctx and ctx.composition or nil
-    local option_extended = false
-    if ctx then
-        option_extended = ctx:get_option("charset_filter") or false
+
+    local is_functional = false
+    if ctx and wanxiang and wanxiang.is_function_mode_active then
+        is_functional = wanxiang.is_function_mode_active(ctx)
     end
 
-    -- 当前是否在反查/自造词/标点段
-    local in_reverse_seg = is_reverse_lookup_segment(env)
-
-    -- 本次是否启用 charset 过滤
-    local charset_strict = (env.charset ~= nil)
-                           and (not option_extended)
-                           and (not in_reverse_seg)
-
+    local charset_active = (env.filters and #env.filters > 0) 
+                           and (not is_functional)
     -- 状态清理
     if not code or code == "" then
         env.cache, env.locked = nil, false
@@ -799,39 +573,8 @@ function M.func(input, env)
     end
 
     local symbol = env.symbol
-
-    -- 强制英文检测 (仅针对双击符号 \\)
-    local force_english_text = nil
-    local delimiter = nil
-    
-    -- 只有定义了符号，且输入长度足够才检测
-    if symbol and #symbol == 1 then
-        delimiter = symbol .. symbol -- 定义触发符为两个符号
-        if code and #code >= 3 then
-            local c_len = #code
-            -- 严格检测：末尾最后两个字符必须等于 "符号+符号"
-            if string.sub(code, c_len - 1, c_len) == delimiter then
-                -- 提取基础文本 (去掉末尾的 \\)
-                local base = string.sub(code, 1, c_len - 2)
-                if base and #base > 0 then
-                    -- 纯 ASCII 检查 (防止误把中文截断)
-                    local ascii_only = true
-                    for i = 1, #base do
-                        if string.byte(base, i) > 127 then 
-                            ascii_only = false; break 
-                        end
-                    end
-                    if ascii_only then
-                        force_english_text = base
-                    end
-                end
-            end
-        end
-    end
-    -- =======================================================
-
     local code_has_symbol = symbol and #symbol == 1 and (find(code, symbol, 1, true) ~= nil)
-    
+   
     -- segmentation：用于保持原有的包裹/分段逻辑
     local last_seg, last_text, fully_consumed = nil, nil, false
     if code_has_symbol then
@@ -873,31 +616,11 @@ function M.func(input, env)
     local sort_window    = tonumber(env.settings.sort_window) or 30
     local pure_code      = gsub(code, "[%s%p]", "")
     local pure_code_lc   = pure_code:lower()
-    local all_upper      = code:find("^%u%u") ~= nil
-    local first_upper    = (not all_upper) and (code:find("^%u") ~= nil)
-    local enable_cap     = (code_len > 1 and not code:find("^[%l%p]"))
-    local break_signal = (ctx:get_property("english_spacing") == "true")  --接受空状态下的空格或者回车信号
-    -- 计算最终的 prev_is_eng (上文是否为英文)
-    local effective_prev_is_eng = env.prev_commit_is_eng
-    if break_signal then
-        -- 收到打断信号，强制认为上文不是英文（从而不自动加空格）
-        effective_prev_is_eng = false
-    end
+
     local code_ctx = {
         pure_code     = pure_code,
         pure_code_lc  = pure_code_lc,
-        all_upper     = all_upper,
-        first_upper   = first_upper,
-        enable_cap    = enable_cap,
-        spacing_mode  = env.english_spacing_mode, -- 传递空格模式配置
-        prev_is_eng   = effective_prev_is_eng,     -- 传递上一次上屏是否英文
     }
-
-    local en_only, zh_only = false, false
-    if ctx then
-        en_only = ctx:get_option("en_only") or false
-        zh_only = ctx:get_option("zh_only") or false
-    end
 
     local function unify_tail_span(c)
         if fully_consumed and wrap_key and last_seg and c and c._end ~= last_seg._end then
@@ -910,21 +633,21 @@ function M.func(input, env)
 
     local emit_ctx = {
         env             = env,
+        ctx             = ctx,
         suppress_set    = nil,
         suppress_mirror = env.suppress_mirror,
         code_ctx        = code_ctx,
         unify_tail_span = unify_tail_span,
-        en_only         = en_only,
-        zh_only         = zh_only,
+        charset_active  = charset_active,
         is_english      = is_english_candidate,
-        charset_strict  = charset_strict,
+        enable_taichi_filter = env.enable_taichi_filter,
         drop_sentence_after_completion = false,
     }
 
     local function wrap_from_base(base_cand, key)
         if not base_cand or not key then return nil end
         local pair = env.wrap_map[key]; if not pair then return nil end
-        local formatted = format_and_autocap(base_cand, code_ctx)
+        local formatted = format_and_autocap(base_cand)
         local pr = env.wrap_parts[key] or { l = "", r = "" }
         local wrapped = (pr.l or "") .. (formatted.text or "") .. (pr.r or "")
         local start_pos = (last_seg and last_seg.start) or formatted.start or 0
@@ -933,22 +656,9 @@ function M.func(input, env)
         nc.preedit = formatted.preedit
         return nc, (formatted.text or ""), wrapped
     end
-    -- 兜底逻辑 (处理无候选词的情况，如 scx\\)
+    -- 兜底逻辑
     local function improved_fallback_emit()
-        -- 优先处理强制英文：只要触发符匹配，即使无其他候选也必须输出
-        if force_english_text then
-            local start_pos = (last_seg and last_seg.start) or 0
-            -- 关键点：end_pos 设为 #code，确保上屏时覆盖掉 "scx\\"
-            local end_pos   = #code 
-            local eng = Candidate("completion", start_pos, end_pos, force_english_text, "")
-            eng.preedit = force_english_text
-            
-            -- 这里不设 pipeline，直接输出，保证它一定是第一个
-            yield(eng) 
-            return true
-        end
-
-        -- 以下是原有的 Wrap/Completion 兜底逻辑
+        -- Wrap/Completion 兜底逻辑
         if not code_has_symbol or not tail_text then return false end
         local pos = tail_text:find(symbol, 1, true)
         if not (pos and pos > 1) then return false end
@@ -958,7 +668,7 @@ function M.func(input, env)
 
         local start_pos    = (last_seg and last_seg.start) or 0
         local end_pos_full = (last_seg and last_seg._end)  or #code
-        local base_text    = left 
+        local base_text    = left
 
         local key = (right or ""):lower()
         if key ~= "" and env.wrap_map[key] then
@@ -989,40 +699,30 @@ function M.func(input, env)
         return true
     end
 
-    -- ===== 非分组路径 =====
+    --  非分组路径
     if not do_group then
         local idx = 0
         for cand in input:iter() do
             idx = idx + 1
             if idx == 1 and (not env.locked) then
-                env.cache = clone_candidate(format_and_autocap(cand, code_ctx))
+                env.cache = clone_candidate(format_and_autocap(cand))
             end
 
             if idx == 1 then
-                -- 有候选词时，优先插入英文
-                if force_english_text then
-                    local start_pos = 0 
-                    local end_pos   = #code -- 覆盖全长，消除 \\
-                    local eng = Candidate("completion", start_pos, end_pos, force_english_text, cand.comment)
-                    eng.preedit = force_english_text 
-                    emit_ctx.drop_sentence_after_completion = true
-                    emit_with_pipeline(eng, emit_ctx)
-                end
-                
                 if not emit_ctx.drop_sentence_after_completion then
                     local txt = cand.text or ""
                     if is_table_type(cand) and #txt >= 4 and has_english_token_fast(txt) then
                         emit_ctx.drop_sentence_after_completion = true
                     end
                 end
-                
-                if (not force_english_text) and env.locked and (not wrap_key) and env.cache then
+               
+                if env.locked and (not wrap_key) and env.cache then
                     local start_pos = (last_seg and last_seg.start) or 0
                     local end_pos   = (last_seg and last_seg._end) or #code
                     if keep_tail_len and keep_tail_len > 0 then
                         end_pos = math.max(start_pos, end_pos - keep_tail_len)
                     end
-                    local base = format_and_autocap(env.cache, code_ctx)
+                    local base = format_and_autocap(env.cache)
                     local nc = Candidate(base.type, start_pos, end_pos, base.text or "", base.comment)
                     nc.preedit = base.preedit
                     emit_with_pipeline(nc, emit_ctx)
@@ -1053,7 +753,7 @@ function M.func(input, env)
         return
     end
 
-    -- ===== 分组路径（2..6 码）=====
+    --  分组路径（2..6 码）
     local idx2, mode, grouped_cnt = 0, "unknown", 0
     local window_closed = false
     local group2_others = {}
@@ -1068,21 +768,10 @@ function M.func(input, env)
     for cand in input:iter() do
         idx2 = idx2 + 1
         if idx2 == 1 and (not env.locked) then
-            env.cache = clone_candidate(format_and_autocap(cand, code_ctx))
+            env.cache = clone_candidate(format_and_autocap(cand))
         end
 
         if idx2 == 1 then
-            -- 分组模式下同样插入英文
-            if force_english_text then
-                local start_pos = 0
-                local end_pos   = #code -- 覆盖全长
-                local eng = Candidate("completion", start_pos, end_pos, force_english_text, cand.comment)
-                eng.preedit = force_english_text 
-
-                emit_ctx.drop_sentence_after_completion = true
-                emit_with_pipeline(eng, emit_ctx)
-            end
-
             if not emit_ctx.drop_sentence_after_completion then
                 local t = fast_type(cand)
                 local txt = cand.text or ""
@@ -1092,13 +781,13 @@ function M.func(input, env)
             end
 
             local emitted = false
-            if (not force_english_text) and env.locked and (not wrap_key) and env.cache then
+            if env.locked and (not wrap_key) and env.cache then
                 local start_pos = (last_seg and last_seg.start) or 0
                 local end_pos   = (last_seg and last_seg._end) or #code
                 if keep_tail_len and keep_tail_len > 0 then
                     end_pos = math.max(start_pos, end_pos - keep_tail_len)
                 end
-                local base = format_and_autocap(env.cache, code_ctx)
+                local base = format_and_autocap(env.cache)
                 local nc = Candidate(base.type, start_pos, end_pos, base.text or "", base.comment)
                 nc.preedit = base.preedit
                 emit_with_pipeline(nc, emit_ctx)

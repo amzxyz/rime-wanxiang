@@ -42,6 +42,8 @@ local function replace_schema(file_path, target_schema)
         content = content:gsub("([%s]*__include:%s*wanxiang_algebra:/reverse/)%S+", "%1" .. target_schema)
     elseif file_path:find("wanxiang_mixedcode") then
         content = content:gsub("([%s]*__patch:%s*wanxiang_algebra:/mixed/)%S+", "%1" .. target_schema)
+    elseif file_path:find("wanxiang_english") then
+        content = content:gsub("([%s]*__patch:%s*wanxiang_algebra:/english/)%S+", "%1" .. target_schema)
     elseif file_path:find("wanxiang%.custom") or file_path:find("wanxiang_pro%.custom") then
         content = content:gsub("([%s%-]*wanxiang_algebra:/pro/)%S+",  "%1" .. target_schema, 1)
         content = content:gsub("([%s%-]*wanxiang_algebra:/base/)%S+", "%1" .. target_schema, 1)
@@ -124,7 +126,8 @@ local function translator(input, seg, env)
 
         local files = {
             "wanxiang_mixedcode.custom.yaml",
-            "wanxiang_reverse.custom.yaml"
+            "wanxiang_reverse.custom.yaml",
+            "wanxiang_english.custom.yaml"
         }
 
         -- 判断是否为专业版

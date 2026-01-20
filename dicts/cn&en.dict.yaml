@@ -15,6 +15,13 @@ sort: original  #字典初始排序，可選original或by_weight
 4H	4H
 4X	4X
 7z	7z
+浏览器UA	liú'lǎn'qì'UA
+统信UOS	tǒng'xìn'UOS
+UOM平台	UOM'píng'tái
+CAAC执照	CAAC'zhí'zhào
++86	jiā'86
+WiFi伴侣	wifi'bàn'lǚ
+AA制	AA'zhì
 A班	A'bān
 A杯	A'bēi
 A档	A'dàng
@@ -42,7 +49,6 @@ A组	A'zǔ
 A座	A'zuò
 A+	A+
 A4	A4
-AD	AD
 B班	B'bān
 B杯	B'bēi
 B超	B'chāo
@@ -83,7 +89,6 @@ C罩	C'zhào
 C柱	C'zhù
 C组	C'zǔ
 C座	C'zuò
-CE	CE
 D班	D'bān
 D杯	D'bēi
 D档	D'dàng
@@ -137,12 +142,10 @@ G点	G'diǎn
 G盘	G'pán
 G胖	G'pàng
 G罩	G'zhào
-GB	Gfi
 H版	H'bǎn
 H杯	H'bēi
 H股	H'gǔ
 H罩	H'zhào
-HB	HB
 i8	I'bā
 i9	I'jiǔ
 i6	I'liù
@@ -154,8 +157,6 @@ K粉	K'fěn
 K歌	K'gē
 K记	K'jì
 K线	K'xiàn
-kW	KW
-KB	Kfi
 L8	L'bā
 L9	L'jiǔ
 L6	L'liù
@@ -164,7 +165,6 @@ L7	L'qī
 M档	M'dàng
 M记	M'jì
 M码	M'mǎ
-MB	Mfi
 N遍	N'biàn
 N次	N'cì
 N档	N'dàng
@@ -178,9 +178,6 @@ P棉	P'mián
 P社	P'shè
 P图	P'tú
 P站	P'zhàn
-PE	PE
-PP	PP
-PV	PV
 Q版	Q'bǎn
 Q币	Q'bì
 Q弹	Q'tán
@@ -198,7 +195,6 @@ S形	S'xíng
 S3	S3
 T台	T'tái
 T恤	T'xù
-ts	TS
 U盾	U'dùn
 U盘	U'pán
 U形	U'xíng
@@ -255,6 +251,20 @@ Z轴	Z'zhóu
 鄂S	è'S
 二B	èr'B
 dB	fēn'bèi
+mA	háo'ān
+mL	háo'shēng
+Hz	hè'zī
+GB	jí'zì'jié
+Ci	jū'lǐ
+Pa	pà
+kN	qiān'niú
+kW	qiān'wǎ
+KB	qiān'zì'jié
+MB	zhào'zì'jié
+MPa	zhào'pà
+Byte	bǐ'tè
+a11y	a11y
+accessibility	a11y
 甘A	gān'A
 赣A	gàn'A
 甘B	gān'B
@@ -305,9 +315,6 @@ dB	fēn'bèi
 桂N	guì'N
 桂P	guì'P
 桂R	guì'R
-mA	háo'ān
-mL	háo'shēng
-Hz	hè'zī
 黑A	hēi'A
 黑B	hēi'B
 黑C	hēi'C
@@ -345,7 +352,6 @@ Hz	hè'zī
 冀R	jì'R
 冀S	jì'S
 冀T	jì'T
-GB	jí'zì'jié
 加Q	jiā'Q
 晋A	jìn'A
 晋B	jìn'B
@@ -358,7 +364,6 @@ GB	jí'zì'jié
 晋K	jìn'K
 晋L	jìn'L
 晋M	jìn'M
-Ci	jū'lǐ
 老K	lǎo'K
 辽A	liáo'A
 辽B	liáo'B
@@ -422,11 +427,7 @@ Ci	jū'lǐ
 宁D	níng'D
 宁E	níng'E
 牛B	niú'B
-Pa	pà
 平A	píng'A
-kN	qiān'niú
-kW	qiān'wǎ
-KB	qiān'zì'jié
 青A	qīng'A
 青B	qīng'B
 青C	qīng'C
@@ -593,7 +594,6 @@ KB	qiān'zì'jié
 藏G	zàng'G
 藏H	zàng'H
 藏J	zàng'J
-MB	zhào'zì'jié
 浙A	zhè'A
 浙B	zhè'B
 浙C	zhè'C
@@ -616,12 +616,9 @@ A型血	A'xíng'xuè
 A血型	A'xuè'xíng
 A罩杯	A'zhào'bēi
 AA吧	AA'ba
-AA制	AA'zhì
 AB型	AB'xíng
 AC号	AC'hào
 AD钙	AD'gài
-AGF	AGF
-AHK	AHK
 AV号	AV'hào
 AV1	AV1
 α粒子	Alpha'lì'zǐ
@@ -642,15 +639,11 @@ C型号	C'xíng'hào
 C语言	C'yǔ'yán
 C罩杯	C'zhào'bēi
 CD机	CD'jī
-CNC	CNC
-cnb	Cnb
 D出口	D'chū'kǒu
 D型号	D'xíng'hào
 D罩杯	D'zhào'bēi
 D之国	D'zhī'guó
-DHL	DHL
 DJ版	DJ'bǎn
-Dra	Dra
 E出口	E'chū'kǒu
 e签宝	E'qiān'bǎo
 E型号	E'xíng'hào
@@ -661,9 +654,6 @@ F罩杯	F'zhào'bēi
 F10	F10
 F11	F11
 F12	F12
-FBA	FBA
-FBM	FBM
-flv	Flv
 Fn键	Fn'jiàn
 G罩杯	G'zhào'bēi
 Go程	Go'chéng
@@ -683,11 +673,8 @@ K线图	K'xiàn'tú
 K-8	K-8
 K12	K12
 L系列	L'xì'liè
-LED	LED
 M系列	M'xì'liè
 m4a	M4a
-mkv	MKV
-mov	Mov
 mp3	Mp3
 mp4	Mp4
 n次方	N'cì'fāng
@@ -713,17 +700,13 @@ PE管	PE'guǎn
 PK赛	PK'sài
 PN结	PN'jié
 PP袋	PP'dài
-PPR	PPR
 QQ号	QQ'hào
 QQ群	QQ'qún
 QQ堂	QQ'táng
 QQ秀	QQ'xiù
 QR码	QR'mǎ
-rar	RAR
 S曲线	S'qū'xiàn
 SD卡	SD'kǎ
-SKU	SKU
-srt	SRT
 T细胞	T'xì'bāo
 T型台	T'xíng'tái
 T恤衫	T'xù'shān
@@ -735,12 +718,9 @@ TV版	TV'bǎn
 U形管	U'xíng'guǎn
 U型锁	U'xíng'suǒ
 UP主	UP'zhǔ
-UPC	UPC
 V怪客	V'guài'kè
 V字领	V'zì'lǐng
 V字形	V'zì'xíng
-Veo	Veo
-WAN	WAN
 X档案	X'dàng'àn
 X光片	X'guāng'piàn
 X和Y	X'hé'Y
@@ -760,7 +740,6 @@ Z-9	Z-9
 查IP	chá'IP
 炒CP	chǎo'CP
 充Q币	chōng'Q'bì
-csv	csv
 第N次	dì'N'cì
 e招贷	e'zhāo'dài
 2K屏	èr'K'píng
@@ -790,17 +769,14 @@ e招贷	e'zhāo'dài
 教-9	jiào-9
 就OK	jiù'OK
 嗑CP	kē'CP
-kyc	kyc
 梅花A	méi'huā'A
 梅花J	méi'huā'J
 梅花K	méi'huā'K
 梅花Q	méi'huā'Q
 谜拟Q	mí'nǐ'Q
-MPa	mpa
 n次方	n'cì'fāng
 pH值	pH'zhí
 拍CT	pāi'CT
-psd	psd
 日K线	rì'K'xiàn
 θ粒子	sāi'ta'lì'zǐ
 三K党	sān'K'dǎng
@@ -817,7 +793,6 @@ psd	psd
 运-9	yùn-9
 z变换	z'biàn'huàn
 再BB	zài'BB
-MPa	zhào'pà
 直-8	zhí-8
 直-9	zhí-9
 周K线	zhōu'K'xiàn
@@ -871,7 +846,6 @@ Del键	Del'jiàn
 End键	End'jiàn
 Esc键	Esc'jiàn
 Fe元素	Fe'yuán'sù
-flac	Flac
 GJ-2	GJ-2
 Go圣经	Go'shèng'jīng
 Go语言	Go'yǔ'yán
@@ -890,7 +864,6 @@ HY-6	HY-6
 ID验证	ID'yàn'zhèng
 IP地址	IP'dì'zhǐ
 IP电话	IP'diàn'huà
-iPad	IPad
 IT行业	IT'háng'yè
 IT之家	IT'zhī'jiā
 J-10	J-10
@@ -915,7 +888,6 @@ LED屏	LED'píng
 LY-1	LY-1
 Low帧	Low'zhēn
 M3U8	M3U8
-MSKU	MSKU
 Mac版	Mac'bǎn
 Mac端	Mac'duān
 Mi手环	Mi'shǒu'huán
@@ -923,10 +895,8 @@ Mi手环	Mi'shǒu'huán
 O不OK	O'bù'OK
 OK了吗	OK'le'ma
 OK手势	OK'shǒu'shì
-OLED	OLED
 Opt键	Opt'jiàn
 PC版本	PC'bǎn'běn
-PCDN	PCDN
 PIN码	PIN'mǎ
 POS机	POS'jī
 PP法兰	PP'fǎ'lán
@@ -961,8 +931,6 @@ QQ游戏	QQ'yóu'xì
 QQ邮箱	QQ'yóu'xiāng
 QQ语音	QQ'yǔ'yīn
 QQ注册	QQ'zhù'cè
-QQNT	QQNT
-rmvb	Rmvb
 SDK包	SDK'bāo
 SIM卡	SIM'kǎ
 Si材料	Si'cái'liào
@@ -973,10 +941,8 @@ U盘存储	U'pán'cún'chǔ
 UC小编	UC'xiǎo'biān
 UI设计	UI'shè'jì
 UIM卡	UIM'kǎ
-UPVC	UPVC
 USB口	USB'kǒu
 USB线	USB'xiàn
-USPS	USPS
 UV吸收	UV'xī'shōu
 UX体验	UX'tǐ'yàn
 V8引擎	V'bā'yǐn'qíng
@@ -986,14 +952,12 @@ VT-2	VT-2
 VT-4	VT-4
 VT-5	VT-5
 WAN口	WAN'kǒu
-WEEE	WEEE
 WL-2	WL-2
 WL-3	WL-3
 WZ-7	WZ-7
 WZ-8	WZ-8
 Web版	Web'bǎn
 Web端	Web'duān
-Wget	Wget
 Win版	Win'bǎn
 Win端	Win'duān
 X染色体	X'rǎn'sè'tǐ
@@ -1052,8 +1016,6 @@ Z-20	Z-20
 奔驰E级	bēn'chí'E'jí
 奔驰S级	bēn'chí'S'jí
 奔驰V级	bēn'chí'V'jí
-Byte	bǐ'tè
-cURL	cURL
 彩虹-4	cǎi'hóng-4
 彩虹-5	cǎi'hóng-5
 查bug	chá'bug
@@ -1262,7 +1224,6 @@ EV电动车	EV'diàn'dòng'chē
 Emby服	Emby'fú
 FEA分析	FEA'fēn'xī
 FFT变换	FFT'biàn'huàn
-FNSKU	FNSKU
 GDP增速	GDP'zēng'sù
 GDP增长	GDP'zēng'zhǎng
 GJ-11	GJ-11
@@ -1505,7 +1466,6 @@ DDoS攻击	DDoS'gōng'jī
 DF-21D	DF-21D
 DF-26D	DF-26D
 DJI无人机	DJI'wú'rén'jī
-Downie	Downie
 ECG心电图	ECG'xīn'diàn'tú
 ENSO循环	ENSO'xún'huán
 Echo音箱	Echo'yīn'xiāng
@@ -1518,8 +1478,6 @@ HQ-16C	HQ-16C
 HR人力资源	HR'rén'lì'zī'yuán
 HTML代码	HTML'dài'mǎ
 HTTP请求	HTTP'qǐng'qiú
-iPadOS	IPadOS
-iPhone	IPhone
 IoT物联网	IoT'wù'lián'wǎng
 J·K·罗琳	JK'luó'lín
 JPEG图片	JPEG'tú'piàn
@@ -1553,7 +1511,6 @@ PHEV车型	PHEV'chē'xíng
 POS机刷卡	POS'jī'shuā'kǎ
 PPT幻灯片	PPT'huàn'dēng'piàn
 PVC止回阀	PVC'zhǐ'huí'fá
-PikPak	PikPak
 QQ安全中心	QQ'ān'quán'zhōng'xīn
 QQ同步助手	QQ'tóng'bù'zhù'shǒu
 QQ消息提醒	QQ'xiāo'xī'tí'xǐng
@@ -1655,7 +1612,6 @@ GoPro相机	GoPro'xiàng'jī
 HTTPS安全	HTTPS'ān'quán
 IELTS口语	IELTS'kǒu'yǔ
 KJ-2000	KJ-2000
-KeePass	KeePass
 Linux系统	Linux'xì'tǒng
 MacOS系统	MacOS'xì'tǒng
 Model S	Model'S
@@ -1682,7 +1638,6 @@ Type-80	Type'80
 Type-88	Type'88
 Type-96	Type'96
 Type-99	Type'99
-VLOOKUP	VLOOKUP
 Wi-Fi密码	Wi'jiǎn'Fi'mì'mǎ
 XPeng小鹏	XPeng'xiǎo'péng
 ZTS-63A	ZTS-63A
@@ -1739,7 +1694,6 @@ Docker镜像	Docker'jìng'xiàng
 Eul的神圣法杖	Eul'de'shén'shèng'fǎ'zhàng
 FTC-2000	FTC-2000
 Galaxy系列	Galaxy'xì'liè
-Genspark	Genspark
 Github仓库	Github'cāng'kù
 Google搜索	Google'sōu'suǒ
 iPad Air	IPadAir
@@ -1777,7 +1731,6 @@ Windows端	Windows'duān
 奥迪e-tron	ào'dí'e-tron
 保时捷Macan	bǎo'shí'jié'Macan
 fail2ban	fail2ban
-giffgaff	giffgaff
 捷豹E-PACE	jié'bào'E'PACE
 捷豹F-PACE	jié'bào'F'PACE
 捷豹I-PACE	jié'bào'I'PACE
@@ -1820,16 +1773,12 @@ iPhone SE	IPhoneSE
 iPhone XR	IPhoneXR
 iPhone XS	IPhoneXS
 J·R·R·托尔金	JRR'tuō'ěr'jīn
-KeePassXC	KeePassXC
 Kindle阅读器	Kindle'yuè'dú'qì
-LoongArch	LoongArch
 MacBook电脑	MacBook'diàn'nǎo
 Notepad++	Notepad++
 Notepad++	Npp
 OnePlus手机	OnePlus'shǒu'jī
-README.md	Readme
 Surface平板	Surface'píng'bǎn
-Teamspace	Teamspace
 Telegram群	Telegram'qún
 Windows版本	Windows'bǎn'běn
 Windows更新	Windows'gēng'xīn
@@ -1853,7 +1802,6 @@ Gemini 3.0	Gemini'3.0
 .gitignore	Gitignore
 iPhone 3GS	IPhone3GS
 iPhone Air	IPhoneAir
-KeePassium	KeePassium
 LY-1舰载激光武器	LY-1'jiàn'zài'jī'guāng'wǔ'qì
 ThinkPad键盘	ThinkPad'jiàn'pán
 USB Type-A	USBType-A
@@ -1875,7 +1823,6 @@ Bluetooth设备	Bluetooth'shè'bèi
 LoongArch架构	LoongArch'jià'gòu
 PizzaHut必胜客	PizzaHut'bì'shèng'kè
 ThinkPad笔记本	ThinkPad'bǐ'jì'běn
-tripadvisor	Tripadvisor
 Windows操作系统	Windows'cāo'zuò'xì'tǒng
 奥迪e-tron GT	ào'dí'e-tronGT
 保时捷Panamera	bǎo'shí'jié'Panamera
@@ -1884,7 +1831,6 @@ Windows操作系统	Windows'cāo'zuò'xì'tǒng
 Apple MPEG-4	AppleMPEG-4
 GPT-5.1 High	GPT5.1High
 JavaScript编程	JavaScript'biān'chéng
-Shadowrocket	Shadowrocket
 Claude 3 Opus	Claude'3'Opus
 Claude Opus 4	Claude'Opus'4
 iPhone 17 Pro	IPhone

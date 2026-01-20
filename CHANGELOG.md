@@ -1,5 +1,333 @@
 # Changelog
 
+## [14.3.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.3...v14.3.4) (2026-01-19)
+
+
+### 🐛 Bug 修复
+
+* 再次调整英文处理器 ([7b89edb](https://github.com/amzxyz/rime_wanxiang/commit/7b89edb4f614618d8f3544f74964924219712555))
+
+
+### 🏡 杂项
+
+* 修改说明 ([7599b4a](https://github.com/amzxyz/rime_wanxiang/commit/7599b4a03dcd6b66cced5529b2e5c3896b8de78d))
+
+## [14.3.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.2...v14.3.3) (2026-01-19)
+
+
+### 🐛 Bug 修复
+
+* 移除标志符号注释提示 ([6ef5360](https://github.com/amzxyz/rime_wanxiang/commit/6ef5360f6cdb05919e77d569322de1279b51c8bd))
+
+## [14.3.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.1...v14.3.2) (2026-01-19)
+
+
+### 📚 词库更新
+
+* 词库调整 ([4a85c14](https://github.com/amzxyz/rime_wanxiang/commit/4a85c14e262037945059b9da0c3dec8c71f5511d))
+
+
+### 🐛 Bug 修复
+
+* 修复英文派生单字母干扰置顶词的问题，同时提升性能 ([e4288ff](https://github.com/amzxyz/rime_wanxiang/commit/e4288ffe9733472155a23926e7037283940e3e5a))
+* 由于性能问题，由滤镜构建的中英文切换现在去掉，改为通过切换方案来实现中英文切换，快捷键还是shift+space,但不再有仅中文的模式，有需求的用户可以通过patch去掉英文表的挂载 ([70c86c6](https://github.com/amzxyz/rime_wanxiang/commit/70c86c67bd65e905b62d03410cfc9b1ee2804f84))
+
+## [14.3.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.0...v14.3.1) (2026-01-18)
+
+
+### 🐛 Bug 修复
+
+* 补齐忘记修改的部分 ([5feeb4c](https://github.com/amzxyz/rime_wanxiang/commit/5feeb4c919a0bd5cfdfe2101e1fef05140db171f))
+
+## [14.3.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.6...v14.3.0) (2026-01-18)
+
+
+### ✨ 新特性
+
+* 字符集过滤现已全面升级，具体阅读方案中配置段落的说明，现在可以兼容字符集过滤与简繁转换的冲突问题 ([8b391f7](https://github.com/amzxyz/rime_wanxiang/commit/8b391f7278d344cb0ba9b5e26152677aa7b7d5ba))
+
+
+### 🐛 Bug 修复
+
+* 超级注释添加CJK区域显示 ([98e9077](https://github.com/amzxyz/rime_wanxiang/commit/98e90775c297f71a72681ffe60e0765c04826210))
+
+## [14.2.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.5...v14.2.6) (2026-01-17)
+
+
+### 📚 词库更新
+
+* 词库调整 ([1f96a5d](https://github.com/amzxyz/rime_wanxiang/commit/1f96a5d22502acfa59b1834967ea3e4b32dc837f))
+* 词库调整 ([5f9a0ad](https://github.com/amzxyz/rime_wanxiang/commit/5f9a0ad770f527a6ec4a1a8dd8e2dda3e6b78fed))
+* 词库调整 ([48d49ab](https://github.com/amzxyz/rime_wanxiang/commit/48d49abc7a44e103db3fb0e43fa1143393caf717))
+
+
+### 🐛 Bug 修复
+
+* **lua:** 修复小键盘数字在commit_text时导致PSReadLine的bug ([2b04a6a](https://github.com/amzxyz/rime_wanxiang/commit/2b04a6abcd8ac9cd1502e72ef44157e66102cbc1))
+
+## [14.2.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.4...v14.2.5) (2026-01-16)
+
+
+### 📚 词库更新
+
+* 词库调整 ([a4f96ec](https://github.com/amzxyz/rime_wanxiang/commit/a4f96ec92061838adb98a713bb7105235459fcfe))
+
+## [14.2.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.3...v14.2.4) (2026-01-16)
+
+
+### 📚 词库更新
+
+* 词库调整 ([7472d78](https://github.com/amzxyz/rime_wanxiang/commit/7472d78fcb31ccad3f540c3ce9bfa06e355947ea))
+
+
+### 🐛 Bug 修复
+
+* 调整英文方案 ([04edb36](https://github.com/amzxyz/rime_wanxiang/commit/04edb3684a14ccffa3f30897d593cb595be2b2ca))
+
+## [14.2.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.2...v14.2.3) (2026-01-16)
+
+
+### 📚 词库更新
+
+* 词库调整 ([89602f5](https://github.com/amzxyz/rime_wanxiang/commit/89602f519617de22533b74cecfc57405ed8eea25))
+* 词库调整 ([5e7a4e0](https://github.com/amzxyz/rime_wanxiang/commit/5e7a4e0d64e7fb3c23eb5971bd1883f79f1a3cea))
+* 词库调整 ([cb3595c](https://github.com/amzxyz/rime_wanxiang/commit/cb3595cef84306e7e16c22ff89803ab0866d01c8))
+
+
+### 🐛 Bug 修复
+
+* 修复替换处理器直接写true被认为是字符串的问题 ([7a88f92](https://github.com/amzxyz/rime_wanxiang/commit/7a88f9246bd3e2b1c9a4635db6d7bfd84e9b26e2))
+
+## [14.2.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.1...v14.2.2) (2026-01-14)
+
+
+### 🐛 Bug 修复
+
+* 挽救一次失誤 ([f21e42f](https://github.com/amzxyz/rime_wanxiang/commit/f21e42f700f4aa61b2c8349a16b4acd5109c2846))
+
+
+### 🏡 杂项
+
+* 修改说明 ([e550639](https://github.com/amzxyz/rime_wanxiang/commit/e550639decf4ba2d107b7cb94fe0f84e3cb14f00))
+
+## [14.2.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.2.0...v14.2.1) (2026-01-14)
+
+
+### 🐛 Bug 修复
+
+* 集中修复三个lua bug，为替换器增加FMM分词算法补齐句子转换功能 ([1e9bbe3](https://github.com/amzxyz/rime_wanxiang/commit/1e9bbe392082144126fa8aaa9c77843917b5c05a))
+
+## [14.2.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.8...v14.2.0) (2026-01-14)
+
+
+### ✨ 新特性
+
+* 全面移除OpenCC组件的引用，使用lua重构，现在将拥有更为灵活的转换策略，使用数据库常态化工作，自定义码表更简单，不用担心键值对的重复空格的敏感等问题 ([ff8be68](https://github.com/amzxyz/rime_wanxiang/commit/ff8be6866994c831628afb7d638917566484ea16))
+
+
+### 📚 词库更新
+
+* 词库调整 ([091851b](https://github.com/amzxyz/rime_wanxiang/commit/091851b9b3fa0a4f19bc959864e91e8bdc842c03))
+* 词库调整 ([c53bccf](https://github.com/amzxyz/rime_wanxiang/commit/c53bccf626e8bc2bc064369b23483b592e48d0ad))
+
+## [14.1.8](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.7...v14.1.8) (2026-01-12)
+
+
+### 📚 词库更新
+
+* 词库调整 ([b9b5e02](https://github.com/amzxyz/rime_wanxiang/commit/b9b5e029fa73c03d30858e5b30681c236649ba1f))
+* 词库调整 ([3d7f1ea](https://github.com/amzxyz/rime_wanxiang/commit/3d7f1ea72dbf6e544cfa128ba1329ccc8cb516b2))
+
+
+### 🐛 Bug 修复
+
+* **super_lookup:** 反查现已支持声调，与字母任意位置输入即可，词组根据输入的个数来从第一个汉字依次来匹配，输入位置也是随意的 ([e20e114](https://github.com/amzxyz/rime_wanxiang/commit/e20e114d0646e5e0498c6bf394593e307dd1bf1f))
+* 删除无效代码 ([8b11674](https://github.com/amzxyz/rime_wanxiang/commit/8b11674a84678291a4ce14ced16c69c3567eb5b4))
+* 简纯主题数字行高度对齐每夜版本 ([3d2a1f8](https://github.com/amzxyz/rime_wanxiang/commit/3d2a1f88d3d35e570c970336d7e5534f89b9a9c6))
+* 首选格式化支持连续字符的简写 ([ff10425](https://github.com/amzxyz/rime_wanxiang/commit/ff104253407cbc6e89229814e1aecdd0799f37f0))
+
+
+### 🏡 杂项
+
+* 修改说明 ([ed54f97](https://github.com/amzxyz/rime_wanxiang/commit/ed54f97b8dfd1f29dc686caa56b5a2e07277223f))
+
+## [14.1.7](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.6...v14.1.7) (2026-01-11)
+
+
+### 📚 词库更新
+
+* 词库调整 ([dc8a54d](https://github.com/amzxyz/rime_wanxiang/commit/dc8a54d2d2f8fb171a8504a06d40886f35b3d943))
+
+
+### 🐛 Bug 修复
+
+* 全拼状态下将bun拼音下置顶一个“不能，避免生僻字兺干扰喜欢派生输入的习惯” ([7aac6a4](https://github.com/amzxyz/rime_wanxiang/commit/7aac6a489a39380483ffe698217d62cfde25e727))
+
+## [14.1.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.5...v14.1.6) (2026-01-10)
+
+
+### 🐛 Bug 修复
+
+* 移除多余声明 ([e1744fb](https://github.com/amzxyz/rime_wanxiang/commit/e1744fba02f7079d046a9efe44d2ae3b82c63287))
+* 适配元书的九宫格处理器 ([da82c9e](https://github.com/amzxyz/rime_wanxiang/commit/da82c9eb254d45b45d44fb29ece0f582b3282e72))
+
+## [14.1.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.4...v14.1.5) (2026-01-10)
+
+
+### 📚 词库更新
+
+* 补充英文词库 ([ebc42be](https://github.com/amzxyz/rime_wanxiang/commit/ebc42be99c82448c296d084888ce70a20c4fdb74))
+* 词库调整 ([cc15b24](https://github.com/amzxyz/rime_wanxiang/commit/cc15b24b3b1e3757f03307f99d1b07fa73152a4c))
+* 词库调整 ([5bcf2d9](https://github.com/amzxyz/rime_wanxiang/commit/5bcf2d9307da7f727bc5de1b163bf4f18a76b249))
+* 词库调整 ([9445c8b](https://github.com/amzxyz/rime_wanxiang/commit/9445c8b64105e69dce95525b9b4dbefa67c6506a))
+
+
+### 🐛 Bug 修复
+
+* 修改说明 ([762de75](https://github.com/amzxyz/rime_wanxiang/commit/762de758a923c50a95941dd198adf8c158b948fd))
+* 当'作为分隔符又与it's重合，不在插入空格导致其分开 ([ad842c7](https://github.com/amzxyz/rime_wanxiang/commit/ad842c7b975ebae437ba07330e126bce63b9f717))
+* 自动造词的非确定性优化 ([de074ae](https://github.com/amzxyz/rime_wanxiang/commit/de074aef6e23dab0012dfc5a2097194d2e1951a2))
+
+## [14.1.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.3...v14.1.4) (2026-01-07)
+
+
+### 📚 词库更新
+
+* 词库调整 ([4bb0db4](https://github.com/amzxyz/rime_wanxiang/commit/4bb0db4873c70b2646ce46a01fc15809850e59e7))
+
+
+### 🐛 Bug 修复
+
+* /命令模式不派生候选 ([797994f](https://github.com/amzxyz/rime_wanxiang/commit/797994fa72fb68d65fb4c79a731b5651914c3621))
+* 微调英文自动加空格策略 ([800ccb5](https://github.com/amzxyz/rime_wanxiang/commit/800ccb581a1be43807ee5b1ed1419866a6bb016a))
+
+
+### 🏡 杂项
+
+* 调整说明 ([1a299ff](https://github.com/amzxyz/rime_wanxiang/commit/1a299ff7c439759e55d9c381bbe2a0fa5d14ce2a))
+
+## [14.1.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.2...v14.1.3) (2026-01-06)
+
+
+### 🐛 Bug 修复
+
+* 优化在空候选的时候中文候选的派生逻辑，如果上一个字是汉字，且三码为空码的时候自动派生上一个字加~注释如：ckl可以派生 操~ 而ctrl+g开启大字集就会恢复原本的输出 䎭，这在视觉上弥补了空码带来的顿挫感，以及派生出英文的不合理性 ([0a514b2](https://github.com/amzxyz/rime_wanxiang/commit/0a514b214961d276bf8300806adfd5dd237f461d))
+* 调整路径获取 ([325817c](https://github.com/amzxyz/rime_wanxiang/commit/325817cfc910b3033d6fdfff734fb3d48cb9552b))
+
+## [14.1.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.1...v14.1.2) (2026-01-06)
+
+
+### 📚 词库更新
+
+* 词库调整 ([c604c63](https://github.com/amzxyz/rime_wanxiang/commit/c604c632e490562c70e8377ef42a6be617aeb30f))
+
+
+### 🐛 Bug 修复
+
+* 修复智能ABC+汉心转写中的bug ([fa60a9c](https://github.com/amzxyz/rime_wanxiang/commit/fa60a9c925c837842b1823aa8c96d11778546e05))
+
+## [14.1.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.1.0...v14.1.1) (2026-01-05)
+
+
+### 📚 词库更新
+
+* 词库调整 ([14bdf2f](https://github.com/amzxyz/rime_wanxiang/commit/14bdf2fa35ce1a5a9a2abdcefc1d3c93b2b0422f))
+
+
+### 🐛 Bug 修复
+
+* 修改基础版紫光转写 ([12370f1](https://github.com/amzxyz/rime_wanxiang/commit/12370f1bf7f394fe6cc8b7ac2c4c52f100f9bda0))
+* 输入中持续保持英文加空格的记录状态，哪怕你输入的慢点 ([e5b1d37](https://github.com/amzxyz/rime_wanxiang/commit/e5b1d37fedd803a5f8e4b163fea49f5619813bdf))
+
+## [14.1.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.6...v14.1.0) (2026-01-05)
+
+
+### ✨ 新特性
+
+* 新增yaml正则转义lua正则模块，数字键处理逻辑将直接读取状态 ([67f40b6](https://github.com/amzxyz/rime_wanxiang/commit/67f40b64d8843664fbb05bc04313221ca4dfe398))
+
+
+### 🐛 Bug 修复
+
+* 简化配置层级 ([0b6a880](https://github.com/amzxyz/rime_wanxiang/commit/0b6a880f205833c948a8fe3cc20ef10f3ffca382))
+* 英文lua派生单字母按照输入什么什么优先，且不干扰置顶的单词，置顶优先 ([00ca0f3](https://github.com/amzxyz/rime_wanxiang/commit/00ca0f323fe91313b5c7c2d2c790ffdc7cfb1a12))
+
+## [14.0.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.5...v14.0.6) (2026-01-04)
+
+
+### 🐛 Bug 修复
+
+* 删除多余传参 ([4ae30b9](https://github.com/amzxyz/rime_wanxiang/commit/4ae30b9f6595ceeb7c28d1d404274a643d3829e9))
+* 句中反查修复了两个bug ([76c3099](https://github.com/amzxyz/rime_wanxiang/commit/76c3099675342eaab94fe8bc25e05a7e68b8e5f3))
+* 当按下修饰键的时候数字处理器交还给系统 ([31fb8aa](https://github.com/amzxyz/rime_wanxiang/commit/31fb8aa37c59e16b746960df07c965dec2be0fcd))
+* 指令设置英文custom ([4b599a0](https://github.com/amzxyz/rime_wanxiang/commit/4b599a04be741a213a1dd2d5f9a249cc932d7c3b))
+
+## [14.0.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.4...v14.0.5) (2026-01-04)
+
+
+### 📚 词库更新
+
+* 词库调整 ([f39f29f](https://github.com/amzxyz/rime_wanxiang/commit/f39f29f77a5310f09e0aa6683d38f9c00560b6c4))
+* 词库调整 ([269a0d3](https://github.com/amzxyz/rime_wanxiang/commit/269a0d38754954c637a7a754ccc8cce20355f2a5))
+
+
+### 🐛 Bug 修复
+
+* 修复句中反查对双拼编码的提取策略 ([2e12667](https://github.com/amzxyz/rime_wanxiang/commit/2e12667ef86b72a173aa05e9afa3cff851a64e6f))
+* 修复句中反查时英文派生策略导致的提交内容异常包含了英文的问题，修复英文造词问题 ([12c5f6c](https://github.com/amzxyz/rime_wanxiang/commit/12c5f6ca7c1fb5699cd49898ca65fd327f19d96c))
+
+## [14.0.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.3...v14.0.4) (2026-01-03)
+
+
+### 📚 词库更新
+
+* 词库调整 ([5a99fd0](https://github.com/amzxyz/rime_wanxiang/commit/5a99fd0da8da002318035efb13dc5f292685286a))
+
+## [14.0.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.2...v14.0.3) (2026-01-03)
+
+
+### 📚 词库更新
+
+* 词库调整 ([3026476](https://github.com/amzxyz/rime_wanxiang/commit/302647626f5ab6761d8e5b640720fc8b956ecd1a))
+
+
+### 🐛 Bug 修复
+
+* 英文自动空格支持延时销毁加空格的状态 ([dbe140b](https://github.com/amzxyz/rime_wanxiang/commit/dbe140bfec48ae678023fa3b655e9c3328e2e3cf))
+* 重新排序英文 ([04bcd39](https://github.com/amzxyz/rime_wanxiang/commit/04bcd39a28779766775f575c05b4e2f5207cd0dc))
+* 重新排序英文 ([e41d99a](https://github.com/amzxyz/rime_wanxiang/commit/e41d99a5f3c036ab29683b17214e34d1ac47e774))
+
+
+### 🏡 杂项
+
+* 调整说明 ([26e87cd](https://github.com/amzxyz/rime_wanxiang/commit/26e87cd11a2bb061866717c02ad546e7f834bbe4))
+
+## [14.0.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.1...v14.0.2) (2026-01-03)
+
+
+### 🐛 Bug 修复
+
+* 混合编码为固定码表 ([a76be86](https://github.com/amzxyz/rime_wanxiang/commit/a76be862c90bf0c57bff399731536aa89fcd7360))
+
+## [14.0.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.0.0...v14.0.1) (2026-01-03)
+
+
+### 🐛 Bug 修复
+
+* 超级注释放开末尾~，他代表单词未完全输入完成的尾部视觉提示 ([cec8cc5](https://github.com/amzxyz/rime_wanxiang/commit/cec8cc518c6aaf41bb31a07bcf157be1f9550715))
+
+## [14.0.0](https://github.com/amzxyz/rime_wanxiang/compare/v13.12.1...v14.0.0) (2026-01-03)
+
+
+### 💅 重构
+
+* **english:** 全新的英文方案与配套整句体验 ([d59a373](https://github.com/amzxyz/rime_wanxiang/commit/d59a373b3cb675297016cc167de32d9ee1f808b8))
+
+
+### 🏡 杂项
+
+* release 14.0.0 ([c9a47d7](https://github.com/amzxyz/rime_wanxiang/commit/c9a47d71cf4e0fa7993ef236c6f8d2184d2c325b))
+
 ## [13.12.1](https://github.com/amzxyz/rime_wanxiang/compare/v13.12.0...v13.12.1) (2026-01-02)
 
 

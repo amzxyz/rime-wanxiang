@@ -40,11 +40,11 @@ base:
       - derive/^ng(\d)$/eng$1/
       - xform/^n(\d)/en$1/
       - xform/^m(\d)(;.*)/me$1$2/
+      - abbrev/^([zcs]h).+$/$1/                        #zh ch sh作为整体
+      - abbrev/^([zcs]h).+(\d)$/$1$2/                  #zh ch sh作为整体
       - derive/([nl])ve(\d)/$1ue$2/                            #让üè兼容ue
       - derive/^([jqxy])v(\d)$/$1u$2/
       - derive/^([jqxy])u(\d)$/$1v$2/
-      - abbrev/^([zcs]h).+$/$1/                        #zh ch sh作为整体
-      - abbrev/^([zcs]h).+(\d)$/$1$2/                  #zh ch sh作为整体
       - abbrev/^([qwrtypsdfghjklzxcbnm]).+$/$1/        #不携带元音的声母派生出首字母简码来
       - abbrev/^([qwrtypsdfghjklzxcbnm]).+(\d)$/$1$2/  #不携带元音的声母派生出首字母简码来+数字声调
       - abbrev/^([aoe])([ioun])(\d)$/$1/               #携带两个字符的元音首字母派生出简码来
@@ -115,6 +115,7 @@ base:
       - derive/([tl])eng$/$1en/ # ten → teng
 
 
+
   自然码: 
     __append:
       - xform/Ⅱ//  #用于Lua判断输入类型的标记
@@ -160,7 +161,8 @@ base:
       - xform/[iu]a(\d)$/Ⓦ$1/
       - xform/[uv]an(\d)$/Ⓡ$1/
       - xform/[uv]e(\d)$/Ⓣ$1/
-      - xform/ing|uai(\d)$/Ⓨ$1/
+      - xform/ing(\d)$/Ⓨ$1/
+      - xform/uai(\d)$/Ⓨ$1/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
@@ -375,7 +377,8 @@ base:
       - xform/uo(\d)$/Ⓞ$1/
       - xform/ie(\d)$/Ⓟ$1/
       - xform/(.)i?ong(\d)$/$1Ⓢ$2/
-      - xform/ing|uai(\d)$/Ⓚ$1/
+      - xform/ing(\d)$/Ⓚ$1/
+      - xform/uai(\d)$/Ⓚ$1/
       - xform/(.)ai(\d)$/$1Ⓓ$2/
       - xform/(.)eng(\d)$/$1Ⓖ$2/
       - xform/(.)en(\d)$/$1Ⓕ$2/
@@ -437,9 +440,11 @@ base:
       - xform/^([ae])(.*)(\d)$/$1$1$2$3/
       - xform/iu(\d)$/Ⓠ$1/
       - xform/[iu]a(\d)$/Ⓦ$1/
-      - xform/er|[uv]an(\d)$/Ⓡ$1/
+      - xform/er(\d)$/Ⓡ$1/
+      - xform/[uv]an(\d)$/Ⓡ$1/
       - xform/[uv]e(\d)$/Ⓣ$1/
-      - xform/v|uai(\d)$/Ⓨ$1/
+      - xform/v(\d)$/Ⓨ$1/
+      - xform/uai(\d)$/Ⓨ$1/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
@@ -508,9 +513,11 @@ base:
       - xform/^([ae])(.*)(\d)$/$1$1$2$3/
       - xform/iu(\d)$/Ⓠ$1/
       - xform/[iu]a(\d)$/Ⓦ$1/
-      - xform/er|[uv]an(\d)$/Ⓡ$1/
+      - xform/er(\d)$/Ⓡ$1/
+      - xform/[uv]an(\d)$/Ⓡ$1/
       - xform/[uv]e(\d)$/Ⓣ$1/
-      - xform/v|uai(\d)$/Ⓨ$1/
+      - xform/v(\d)$/Ⓨ$1/
+      - xform/uai(\d)$/Ⓨ$1/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
@@ -581,7 +588,8 @@ base:
       - xform/^([aoe].*)(\d)$/Ⓞ$1$2/
       - xform/ei(\d)$/Ⓠ$1/
       - xform/ian(\d)$/Ⓦ$1/
-      - xform/er|iu(\d)$/Ⓡ$1/
+      - xform/er(\d)$/Ⓡ$1/
+      - xform/iu(\d)$/Ⓡ$1/
       - xform/[iu]ang(\d)$/Ⓣ$1/
       - xform/ing(\d)$/Ⓨ$1/
       - xform/uo(\d)$/Ⓞ$1/
@@ -594,12 +602,14 @@ base:
       - xform/an(\d)$/Ⓙ$1/
       - xform/iao(\d)$/Ⓩ$1/
       - xform/ao(\d)$/Ⓚ$1/
-      - xform/in|uai(\d)$/Ⓒ$1/
+      - xform/in(\d)$/Ⓒ$1/
+      - xform/uai(\d)$/Ⓒ$1/
       - xform/ai(\d)$/Ⓛ$1/
       - xform/ie(\d)$/Ⓧ$1/
       - xform/ou(\d)$/Ⓑ$1/
       - xform/un(\d)$/Ⓝ$1/
-      - xform/[uv]e|ui(\d)$/Ⓜ$1/
+      - xform/[uv]e(\d)$/Ⓜ$1/
+      - xform/ui(\d)$/Ⓜ$1/
       - xlit/ⓆⓌⒺⓇⓉⓎⓄⓅⒶⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwertyopasdfghjklzxcvbnm/
       - derive/^(..)(\d)$/$1/
       - derive/^(.).+(\d)$/$1$2/
@@ -646,7 +656,8 @@ base:
       - xform/^([aoe].*)(\d)$/Ⓞ$1$2/
       - xform/en(\d)$/Ⓦ$1/
       - xform/eng(\d)$/Ⓣ$1/
-      - xform/in|uai(\d)$/Ⓨ$1/
+      - xform/in(\d)$/Ⓨ$1/
+      - xform/uai(\d)$/Ⓨ$1/
       - xform/^zh/Ⓤ/
       - xform/^sh/Ⓘ/
       - xform/uo(\d)$/Ⓞ$1/
@@ -657,14 +668,17 @@ base:
       - xform/ie(\d)$/Ⓓ$1/
       - xform/ian(\d)$/Ⓕ$1/
       - xform/(.)i?ong(\d)$/$1Ⓗ$2/
-      - xform/er|iu$/Ⓙ$1/
+      - xform/er(\d)$/Ⓙ$1/
+      - xform/iu(\d)$/Ⓙ$1/
       - xform/ei(\d)$/Ⓚ$1/
       - xform/uan(\d)$/Ⓛ$1/
       - xform/ing(\d)$/;$1/
       - xform/ou(\d)$/Ⓩ$1/
       - xform/[iu]a(\d)$/Ⓧ$1/
       - xform/iao(\d)$/Ⓑ$1/
-      - xform/ue|ui|ve(\d)$/Ⓝ$1/
+      - xform/ue(\d)$/Ⓝ$1/
+      - xform/ui(\d)$/Ⓝ$1/
+      - xform/ve(\d)$/Ⓝ$1/
       - xform/un(\d)$/Ⓜ$1/
       - xform/ao(\d)$/Ⓠ$1/
       - xform/an(\d)$/Ⓡ$1/
@@ -719,7 +733,8 @@ base:
       - xform/er$/Ⓠ/
       - xform/ing$/Ⓠ/
       - xform/[uv]an$/Ⓒ/
-      - xform/[uv]e$|uai$/Ⓧ/
+      - xform/[uv]e$/Ⓧ/
+      - xform/uai$/Ⓧ/
       - xform/^sh/Ⓘ/
       - xform/^ch/Ⓤ/
       - xform/^zh/Ⓥ/
@@ -788,7 +803,8 @@ base:
       - xform/[vu]e(\d)$/Ⓧ$1/
       - xform/[iu]a(\d)$/Ⓠ$1/
       - xform/[vu]an(\d)$/Ⓦ$1/
-      - xform/iu|uai(\d)$/Ⓨ$1/
+      - xform/iu(\d)$/Ⓨ$1/
+      - xform/uai(\d)$/Ⓨ$1/
       - xform/^(.)i?ong(\d)$/$1Ⓢ$2/
       - xform/ui(\d)$/Ⓥ$1/
       - xform/^zh/Ⓥ/
@@ -866,7 +882,8 @@ base:
       - xform/uo(\d)$/Ⓞ$1/
       - xform/[iu]ang(\d)$/Ⓓ$1/
       - xform/ang(\d)$/Ⓢ$1/
-      - xform/ing|uai(\d)$/Ⓖ$1/
+      - xform/ing(\d)$/Ⓖ$1/
+      - xform/uai(\d)$/Ⓖ$1/
       - xform/[iu]a(\d)$/Ⓧ$1/
       - xform/ui(\d)$/Ⓥ$1/
       - xform/in(\d)$/Ⓑ$1/
@@ -1084,8 +1101,8 @@ pro:
       - xform/^(.*)ḿ(.*)(;.*)$/$1m$2②$3/
       - xform/^(.*)m̀(.*)(;.*)$/$1m$2④$3/
       - xlit/①②③④/7890
-      - derive/^ng(\d)$/eng$1/
-      - xform/^n(\d)/en$1/
+      - derive/^ng(\d)(;.*)$/eng$1$2/
+      - xform/^n(\d)(;.*)/en$1$2/
       - xform/^m(\d)(;.*)/me$1$2/
       - derive/^([jqxy])u(\d)(;.*)$/$1v$2$3/
       - derive/^([aoe])([ioun])(\d)(;.*)$/$1$1$2$3$4/ # 注释释放非原本自然码规则
@@ -1289,8 +1306,8 @@ pro:
       - xform/^(.*)ḿ(.*)(;.*)$/$1m$2②$3/
       - xform/^(.*)m̀(.*)(;.*)$/$1m$2④$3/
       - xlit/①②③④/7890
-      - derive/^ng(\d)$/eng$1/
-      - xform/^n(\d)/en$1/
+      - derive/^ng(\d)(;.*)$/eng$1$2/
+      - xform/^n(\d)(;.*)/en$1$2/
       - xform/^m(\d)(;.*)/me$1$2/
       - derive/^([jqxy])u(\d)(;.*)$/$1v$2$3/
       - derive/^([aoe])([ioun])(\d)(;.*)$/$1$1$2$3$4/
@@ -1357,8 +1374,8 @@ pro:
       - xform/^(.*)ḿ(.*)(;.*)$/$1m$2②$3/
       - xform/^(.*)m̀(.*)(;.*)$/$1m$2④$3/
       - xlit/①②③④/7890
-      - derive/^ng(\d)$/eng$1/
-      - xform/^n(\d)/en$1/
+      - derive/^ng(\d)(;.*)$/eng$1$2/
+      - xform/^n(\d)(;.*)/en$1$2/
       - xform/^m(\d)(;.*)/me$1$2/
       - derive/^([jqxy])u(\d)(;.*)$/$1v$2$3/
       - derive/^([aoe].*)(\d)(;.*)$/o$1$2$3/
@@ -1428,8 +1445,8 @@ pro:
       - xform/^(.*)ḿ(.*)(;.*)$/$1m$2②$3/
       - xform/^(.*)m̀(.*)(;.*)$/$1m$2④$3/
       - xlit/①②③④/7890
-      - derive/^ng(\d)$/eng$1/
-      - xform/^n(\d)/en$1/
+      - derive/^ng(\d)(;.*)$/eng$1$2/
+      - xform/^n(\d)(;.*)/en$1$2/
       - xform/^m(\d)(;.*)/me$1$2/
       - derive/^([jqxy])u(\d)(;.*)$/$1v$2$3/
       - derive/^([aoe].*)(\d)(;.*)$/o$1$2$3/
@@ -1499,8 +1516,8 @@ pro:
       - xform/^(.*)ḿ(.*)(;.*)$/$1m$2②$3/
       - xform/^(.*)m̀(.*)(;.*)$/$1m$2④$3/
       - xlit/①②③④/7890
-      - derive/^ng(\d)$/eng$1/
-      - xform/^n(\d)/en$1/
+      - derive/^ng(\d)(;.*)$/eng$1$2/
+      - xform/^n(\d)(;.*)/en$1$2/
       - xform/^m(\d)(;.*)/me$1$2/
       - derive/^([jqxy])u(\d)(;.*)$/$1v$2$3/
       - xform/^([aoe].*)(\d)(;.*)$/o$1$2$3/
@@ -1569,8 +1586,8 @@ pro:
       - xform/^(.*)ḿ(.*)(;.*)$/$1m$2②$3/
       - xform/^(.*)m̀(.*)(;.*)$/$1m$2④$3/
       - xlit/①②③④/7890
-      - derive/^ng(\d)$/eng$1/
-      - xform/^n(\d)/en$1/
+      - derive/^ng(\d)(;.*)$/eng$1$2/
+      - xform/^n(\d)(;.*)$/en$1$2/
       - xform/^m(\d)(;.*)/me$1$2/
       - xform/^([aoe].*)(\d)(;.*)$/Ⓞ$1$2$3/
       - xform/ei(\d)(;.*)$/Ⓠ$1$2/
@@ -1584,7 +1601,7 @@ pro:
       - xform/i?ong(\d)(;.*)$/Ⓢ$1$2/
       - xform/[iu]a(\d)(;.*)$/Ⓓ$1$2/
       - xform/en(\d)(;.*)$/Ⓕ$1$2/
-      - xform/eng(\d)(;.*)$/Ⓖ$$1$2/
+      - xform/eng(\d)(;.*)$/Ⓖ$1$2/
       - xform/ang(\d)(;.*)$/Ⓗ$1$2/
       - xform/an(\d)(;.*)$/Ⓙ$1$2/
       - xform/iao(\d)(;.*)$/Ⓩ$1$2/
@@ -1636,8 +1653,8 @@ pro:
       - xform/^(.*)ḿ(.*)(;.*)$/$1m$2②$3/
       - xform/^(.*)m̀(.*)(;.*)$/$1m$2④$3/
       - xlit/①②③④/7890
-      - derive/^ng(\d)$/eng$1/
-      - xform/^n(\d)/en$1/
+      - derive/^ng(\d)(;.*)$/eng$1$2/
+      - xform/^n(\d)(;.*)/en$1$2/
       - xform/^m(\d)(;.*)/me$1$2/
       - derive/^([jqxy])u(\d)(;.*)$/$1v$2$3/
       - derive/^([aoe].*)(\d)(;.*)$/o$1$2$3/
@@ -1705,8 +1722,8 @@ pro:
       - xform/^(.*)ḿ(.*)(;.*)$/$1m$2②$3/
       - xform/^(.*)m̀(.*)(;.*)$/$1m$2④$3/
       - xlit/①②③④/7890
-      - derive/^ng(\d)$/eng$1/
-      - xform/^n(\d)/en$1/
+      - derive/^ng(\d)(;.*)$/eng$1$2/
+      - xform/^n(\d)(;.*)/en$1$2/
       - xform/^m(\d)(;.*)/me$1$2/
       - derive/^([jqxy])u(\d)(;.*)$/$1v$2$3/
       - derive/^([aoe])([ioun])(\d)(;.*)$/$1$1$2$3$4/
@@ -2789,7 +2806,259 @@ mixed:
       - derive/^([A-Z]{1})/\L$1/
       - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
+english:
+  # 通用的派生规则
+  通用规则:
+    - derive|^(.{1,3})$|$1/|
+    # 数字派生
+    - derive/1([4-7|9])/$1teen/
+    - derive/11/eleven/
+    - derive/12/twelve/
+    - derive/13/thirteen/
+    - derive/15/fifteen/
+    - derive/18/eighteen/
+    - derive/0/o/
+    - derive/0/O/
+    - derive/0/zero/
+    - derive/1/one/
+    - derive/10/ten/
+    - derive/2/to/
+    - derive/2/two/
+    - derive/3/three/
+    - derive/4/for/
+    - derive/4/four/
+    - derive/5/five/
+    - derive/6/six/
+    - derive/7/seven/
+    - derive/8/eight/
+    - derive/9/nine/
+    # 符号派生
+    - derive/\+/plus/
+    - derive/\./dot/
+    - derive/@/at/
+    - derive/-/hyphen/
+    - derive/#/hash/
+    - derive/#/number/
+    - derive/#/sharp/
+    - derive/♯/sharp/
+    - derive / slash
+    - derive/&/and/
+    - derive/%/percent/
+    # 派生无单个特殊字符的拼写
+    - derive/[.]//
+    - derive/[+]//
+    - derive/[@]//
+    - derive/[-]//
+    - derive/[_]//
+    # 派生无任何非字母数字字符的拼写
+    - derive/[^a-zA-Z0-9]//
+    # 禁用非英文、数字开头的编码
+    - erase/^[^a-zA-Z0-9].+$/
+    # 全小写
+    - derive/^.+$/\L$0/
+    # 全大写
+    - derive/^.+$/\U$0/
+    # 首字母大写
+    - derive/^./\U$0/
+    # 前 2~10 个字母大写
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/
 
+  全拼:
+    __append:
+      - derive/(?<!\d)1([1-9])(?!\d)/shi$1/
+      - derive/([1-9])0000(?!0)/$1wan/
+      - derive/([1-9])000(?!0)/$1qian/
+      - derive/([1-9])00(?!0)/$1bai/
+      - derive/([2-9])0(?!0)/$1shi/
+      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1shi$2/
+      - derive/\./dian/
+      - derive/10/shi/
+      - derive/0/ling/
+      - derive/1/yi/
+      - derive/2/er/
+      - derive/2/liang/
+      - derive/3/san/
+      - derive/4/si/
+      - derive/5/wu/
+      - derive/6/liu/
+      - derive/7/qi/
+      - derive/8/ba/
+      - derive/9/jiu/
+      - derive/\+/jia/
+      - derive/#/jing/
+  自然码:
+    __append:
+      - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
+      - derive/([1-9])0000(?!0)/$1wj/
+      - derive/([1-9])000(?!0)/$1qm/
+      - derive/([1-9])00(?!0)/$1bl/
+      - derive/([2-9])0(?!0)/$1ui/
+      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
+      - derive/\./dm/
+      - derive/10/ui/
+      - derive/0/ly/
+      - derive/1/yi/
+      - derive/2/er/
+      - derive/2/ld/
+      - derive/3/sj/
+      - derive/4/si/
+      - derive/5/wu/
+      - derive/6/lq/
+      - derive/7/qi/
+      - derive/8/ba/
+      - derive/9/jq/
+      - derive/\+/jw/
+      - derive/#/jy/
+  小鹤双拼:
+    __append:
+      - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
+      - derive/([1-9])0000(?!0)/$1wj/
+      - derive/([1-9])000(?!0)/$1qm/
+      - derive/([1-9])00(?!0)/$1bd/
+      - derive/([2-9])0(?!0)/$1ui/
+      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
+      - derive/\./dm/
+      - derive/10/ui/
+      - derive/0/lk/
+      - derive/1/yi/
+      - derive/2/er/
+      - derive/2/ll/
+      - derive/3/sj/
+      - derive/4/si/
+      - derive/5/wu/
+      - derive/6/lq/
+      - derive/7/qi/
+      - derive/8/ba/
+      - derive/9/jq/
+      - derive/\+/jx/
+      - derive/#/jk/
+  微软双拼:
+    __append:
+      - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
+      - derive/([1-9])0000(?!0)/$1wj/
+      - derive/([1-9])000(?!0)/$1qm/
+      - derive/([1-9])00(?!0)/$1bl/
+      - derive/([2-9])0(?!0)/$1ui/
+      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
+      - derive/\./dm/
+      - derive/10/ui/
+      - derive/0/l;/
+      - derive/1/yi/
+      - derive/2/er/
+      - derive/2/or/
+      - derive/2/ld/
+      - derive/3/sj/
+      - derive/4/si/
+      - derive/5/wu/
+      - derive/6/lq/
+      - derive/7/qi/
+      - derive/8/ba/
+      - derive/9/jq/
+      - derive/\+/jw/
+      - derive/#/j;/
+  搜狗双拼:
+    __append:
+      - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
+      - derive/([1-9])0000(?!0)/$1wj/
+      - derive/([1-9])000(?!0)/$1qm/
+      - derive/([1-9])00(?!0)/$1bl/
+      - derive/([2-9])0(?!0)/$1ui/
+      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
+      - derive/\./dm/
+      - derive/10/ui/
+      - derive/0/l;/
+      - derive/1/yi/
+      - derive/2/er/
+      - derive/2/or/
+      - derive/2/ld/
+      - derive/3/sj/
+      - derive/4/si/
+      - derive/5/wu/
+      - derive/6/lq/
+      - derive/7/qi/
+      - derive/8/ba/
+      - derive/9/jq/
+      - derive/\+/jw/
+      - derive/#/jy/
+  智能ABC:
+    __append:
+      - derive/(?<!\d)1([1-9])(?!\d)/vi$1/
+      - derive/([1-9])0000(?!0)/$1wj/
+      - derive/([1-9])000(?!0)/$1qw/
+      - derive/([1-9])00(?!0)/$1bl/
+      - derive/([2-9])0(?!0)/$1vi/
+      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1vi$2/
+      - derive/\./dw/
+      - derive/10/vi/
+      - derive/0/ly/
+      - derive/1/yi/
+      - derive/2/er/
+      - derive/2/or/
+      - derive/2/lt/
+      - derive/3/sj/
+      - derive/4/si/
+      - derive/5/wu/
+      - derive/6/lr/
+      - derive/7/qi/
+      - derive/8/ba/
+      - derive/9/jr/
+      - derive/\+/jd/
+      - derive/#/jy/
+  紫光双拼:
+    __append:
+      - derive/(?<!\d)1([1-9])(?!\d)/ii$1/
+      - derive/([1-9])0000(?!0)/$1wr/
+      - derive/([1-9])000(?!0)/$1qf/
+      - derive/([1-9])00(?!0)/$1bp/
+      - derive/([2-9])0(?!0)/$1ii/
+      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ii$2/
+      - derive/\./df/
+      - derive/10/ii/
+      - derive/0/l;/
+      - derive/1/yi/
+      - derive/2/er/
+      - derive/2/oj/
+      - derive/2/lg/
+      - derive/3/sr/
+      - derive/4/si/
+      - derive/5/wu/
+      - derive/6/lj/
+      - derive/7/qi/
+      - derive/8/ba/
+      - derive/9/jj/
+      - derive/\+/jx/
+      - derive/#/j;/
+  拼音加加:
+    __append:
+      - derive/(?<!\d)1([1-9])(?!\d)/ii$1/
+      - derive/([1-9])0000(?!0)/$1wf/
+      - derive/([1-9])000(?!0)/$1qj/
+      - derive/([1-9])00(?!0)/$1bs/
+      - derive/([2-9])0(?!0)/$1ii/Add commentMore actions
+      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ii$2/
+      - derive/\./dj/
+      - derive/10/ii/
+      - derive/0/lq/
+      - derive/1/yi/
+      - derive/2/eq/
+      - derive/2/lh/
+      - derive/3/sf/
+      - derive/4/si/
+      - derive/5/wu/
+      - derive/6/ln/
+      - derive/7/qi/
+      - derive/8/ba/
+      - derive/9/jn/
+      - derive/\+/jb/
+      - derive/#/jq/
 
 模糊音: 
   __append:
@@ -2832,5 +3101,5 @@ mixed:
 #特殊优化：部分音节字极少，几乎不参与构词，则提升对应四码字的优先级，仅对自然码有效，其他双拼方案需作对应修改）
 自然码提权:
   __append:
-    - derive/^(.*?)(\d?);(jb|wq|aq|av|dn|xh|bv|jz|hm|sn|cd|iw|xl|ak|zy|fy|uz|yx|wb|wr|yw|dz|qz|ms|at|xf|gi|gn|or|ux|ww|nw|fs|qk|rl|cq|sw|jv|cy|sq|dd|fp|ae|ix|td|ep|ar|wm|pd|et|yz|eh|ct|os|hx|zq|ew|fm|ab|kc|tf|fx|we|sz|wx|bq|ic|ez|bs|ej|oh|ps|pw|fr|pq|au|wc|wp|dt|qf|zc|vx|im|br|mw|un|qb|fi|zm|vn|oz|kt|rq|ay|fn|yc|um|eq|eu|cz|yq|tq|oi|ek|az|fv|zx|ut|vz|ry|ac|ws|af|qv|ea|qj|al|ol|on|sx|ap|df|eg|rz|ey|em|ag|hi|iz|ki|xz|xj|ad|ft|pt|op|vt|oj|kn|pr|hq|eb|ev|cx|zd|am|ov|oq|ym|ef|ot|mr|rd|sy|oc|rc|oe|fq|cn|ok|rn|bp|yv|uc|wk|oy|bt|je|ow|xg|jj|rw|pp|ja|wt|lf|xe|wy|kx|sm|qe|fw|gc|xa|cw|zn|tn|cc|jo|md|sd|ql|kq|it|bd|sc|wv|fc|dw|ob|vm|ed|jl|xo|fl|gq|gt|of|pv|wd|qa|xk|yd|fe|og|iq|oa|uq|om|xv|mv|as|ox|km|zt|od|ht|el|hn|st|wn|mt|wi|tz|aj|yg|bw|jf|jg|kz|es|xb|ax|rt|gx|bb|qo|yf|ex|rx|tt|us|qg|pe|zw|mp|qh|rm|hc|np|jh|cm|yl|eo|ra|vc|aw|tw|fk|gm|ec|be|vq|fd|jk|in)$/$1$3/
-    - derive/^(.*?)(\d?);.*?,(jb|wq|aq|av|dn|xh|bv|jz|hm|sn|cd|iw|xl|ak|zy|fy|uz|yx|wb|wr|yw|dz|qz|ms|at|xf|gi|gn|or|ux|ww|nw|fs|qk|rl|cq|sw|jv|cy|sq|dd|fp|ae|ix|td|ep|ar|wm|pd|et|yz|eh|ct|os|hx|zq|ew|fm|ab|kc|tf|fx|we|sz|wx|bq|ic|ez|bs|ej|oh|ps|pw|fr|pq|au|wc|wp|dt|qf|zc|vx|im|br|mw|un|qb|fi|zm|vn|oz|kt|rq|ay|fn|yc|um|eq|eu|cz|yq|tq|oi|ek|az|fv|zx|ut|vz|ry|ac|ws|af|qv|ea|qj|al|ol|on|sx|ap|df|eg|rz|ey|em|ag|hi|iz|ki|xz|xj|ad|ft|pt|op|vt|oj|kn|pr|hq|eb|ev|cx|zd|am|ov|oq|ym|ef|ot|mr|rd|sy|oc|rc|oe|fq|cn|ok|rn|bp|yv|uc|wk|oy|bt|je|ow|xg|jj|rw|pp|ja|wt|lf|xe|wy|kx|sm|qe|fw|gc|xa|cw|zn|tn|cc|jo|md|sd|ql|kq|it|bd|sc|wv|fc|dw|ob|vm|ed|jl|xo|fl|gq|gt|of|pv|wd|qa|xk|yd|fe|og|iq|oa|uq|om|xv|mv|as|ox|km|zt|od|ht|el|hn|st|wn|mt|wi|tz|aj|yg|bw|jf|jg|kz|es|xb|ax|rt|gx|bb|qo|yf|ex|rx|tt|us|qg|pe|zw|mp|qh|rm|hc|np|jh|cm|yl|eo|ra|vc|aw|tw|fk|gm|ec|be|vq|fd|jk|in)$/$1$3/
+    - derive/^(.*?)(\d?);(jb|wq|aq|av|dn|xh|bv|jz|hm|sn|cd|iw|xl|ak|zy|fy|uz|yx|wb|wr|yw|qz|ms|at|xf|gi|gn|or|ux|ww|nw|fs|qk|rl|cq|sw|jv|cy|sq|dd|fp|ae|ix|td|ep|ar|wm|pd|et|yz|eh|ct|os|hx|zq|ew|fm|ab|kc|tf|fx|we|sz|wx|bq|ic|ez|bs|ej|oh|ps|pw|fr|pq|au|wc|wp|dt|qf|zc|vx|im|br|mw|un|qb|fi|zm|vn|oz|kt|rq|ay|fn|yc|um|eq|eu|cz|yq|tq|oi|ek|az|fv|zx|ut|vz|ry|ac|ws|af|qv|ea|qj|al|ol|on|sx|ap|df|eg|rz|ey|em|ag|hi|iz|ki|xz|xj|ad|ft|pt|op|vt|oj|kn|pr|hq|eb|ev|cx|zd|am|ov|oq|ym|ef|ot|mr|rd|sy|oc|rc|oe|fq|cn|ok|rn|bp|yv|uc|wk|oy|bt|je|ow|xg|jj|rw|pp|ja|wt|lf|xe|wy|kx|sm|qe|fw|gc|xa|cw|zn|tn|cc|jo|md|sd|ql|kq|it|bd|sc|wv|fc|dw|ob|vm|ed|jl|xo|fl|gq|gt|of|pv|wd|qa|xk|yd|fe|og|iq|oa|uq|om|xv|mv|as|ox|km|zt|od|ht|el|hn|st|wn|mt|wi|tz|aj|yg|bw|jf|jg|kz|es|xb|ax|rt|gx|bb|qo|yf|ex|rx|tt|us|qg|pe|zw|mp|qh|rm|hc|np|jh|cm|yl|eo|ra|vc|aw|tw|fk|gm|ec|be|vq|fd|jk|in)$/$1$3/
+    - derive/^(.*?)(\d?);.*?,(jb|wq|aq|av|dn|xh|bv|jz|hm|sn|cd|iw|xl|ak|zy|fy|uz|yx|wb|wr|yw|qz|ms|at|xf|gi|gn|or|ux|ww|nw|fs|qk|rl|cq|sw|jv|cy|sq|dd|fp|ae|ix|td|ep|ar|wm|pd|et|yz|eh|ct|os|hx|zq|ew|fm|ab|kc|tf|fx|we|sz|wx|bq|ic|ez|bs|ej|oh|ps|pw|fr|pq|au|wc|wp|dt|qf|zc|vx|im|br|mw|un|qb|fi|zm|vn|oz|kt|rq|ay|fn|yc|um|eq|eu|cz|yq|tq|oi|ek|az|fv|zx|ut|vz|ry|ac|ws|af|qv|ea|qj|al|ol|on|sx|ap|df|eg|rz|ey|em|ag|hi|iz|ki|xz|xj|ad|ft|pt|op|vt|oj|kn|pr|hq|eb|ev|cx|zd|am|ov|oq|ym|ef|ot|mr|rd|sy|oc|rc|oe|fq|cn|ok|rn|bp|yv|uc|wk|oy|bt|je|ow|xg|jj|rw|pp|ja|wt|lf|xe|wy|kx|sm|qe|fw|gc|xa|cw|zn|tn|cc|jo|md|sd|ql|kq|it|bd|sc|wv|fc|dw|ob|vm|ed|jl|xo|fl|gq|gt|of|pv|wd|qa|xk|yd|fe|og|iq|oa|uq|om|xv|mv|as|ox|km|zt|od|ht|el|hn|st|wn|mt|wi|tz|aj|yg|bw|jf|jg|kz|es|xb|ax|rt|gx|bb|qo|yf|ex|rx|tt|us|qg|pe|zw|mp|qh|rm|hc|np|jh|cm|yl|eo|ra|vc|aw|tw|fk|gm|ec|be|vq|fd|jk|in)$/$1$3/

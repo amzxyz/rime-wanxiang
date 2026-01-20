@@ -263,7 +263,7 @@ jobs:
             "lua/*.*"
             "lua/lib/*.*"
             "lua/tips/*.*"
-            "#default.yaml"
+            "default.yaml"
             "weasel.yaml"
             "wanxiang*.*yaml"
             "README.md"
