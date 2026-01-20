@@ -88,7 +88,7 @@ jobs:
             [[ ! -f "defaults.yaml" ]] || rm -rf defaults.yaml
             [[ ! -d "rime-wanxiang" ]] || rm -rf rime-wanxiang
             pushd "$GITHUB_WORKSPACE"
-              git clone --branch "$schema" --depth 1 "file://wanxiang-root" "rime-wanxiang-$schema"
+              git clone --branch "$schema" --depth 1 "$GITHUB_WORKSPACE/wanxiang-root" "rime-wanxiang-$schema"
               cp -r "rime-wanxiang-$schema" "$GITHUB_WORKSPACE/fcitx5-rime/plugin/rime/src/main/cpp/rime-wanxiang"
             popd
             cp -r rime-wanxiang/default.yaml .
