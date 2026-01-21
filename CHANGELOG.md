@@ -1,5 +1,21 @@
 # Changelog
 
+## [14.4.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.4.0...v14.4.1) (2026-01-21)
+
+
+### 📚 词库更新
+
+* 词库调整 ([83d54a1](https://github.com/amzxyz/rime_wanxiang/commit/83d54a129e2a012a13ca7a42c1c88938b736991b))
+* 词库调整 ([e76e28f](https://github.com/amzxyz/rime_wanxiang/commit/e76e28f1a531e35e07ed2bd495f1521449973084))
+* 词库调整 ([c5a90d3](https://github.com/amzxyz/rime_wanxiang/commit/c5a90d39824ae1f49d95a9549579bba4bce0d43a))
+* 词库调整 ([7e49d42](https://github.com/amzxyz/rime_wanxiang/commit/7e49d42f523e26f1a3c89685019ea28ed2155f62))
+
+
+### 🐛 Bug 修复
+
+* 反查模式不派生 ([e35351b](https://github.com/amzxyz/rime_wanxiang/commit/e35351b7919c909f55d94378d8142117817fa296))
+* 调整反查接入方式 ([fc43f67](https://github.com/amzxyz/rime_wanxiang/commit/fc43f67c6922a01894c1b5d748e275dd71803fb8))
+
 ## [14.4.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.3.4...v14.4.0) (2026-01-20)
 
 
