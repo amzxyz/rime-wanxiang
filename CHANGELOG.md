@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.4.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.4.1...v14.4.2) (2026-01-21)
+
+
+### 🐛 Bug 修复
+
+* 首选英文不回退声调 ([e38a0ad](https://github.com/amzxyz/rime_wanxiang/commit/e38a0ad48ccacbceb7b6143354f379bc205ab9f7))
+
 ## [14.4.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.4.0...v14.4.1) (2026-01-21)
 
 
