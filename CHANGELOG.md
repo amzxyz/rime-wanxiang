@@ -1,5 +1,41 @@
 # Changelog
 
+## [14.5.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.4.3...v14.5.0) (2026-01-28)
+
+
+### ✨ 新特性
+
+* 新增前两页可以被符号包裹 ([e939f81](https://github.com/amzxyz/rime_wanxiang/commit/e939f81a20302642f8f02e6ed8bb8f888702f157))
+
+
+### 📚 词库更新
+
+* **sym:** 符号表新增元素周期表、希腊粗体等多种字符表 ([c6f9986](https://github.com/amzxyz/rime_wanxiang/commit/c6f9986f1fb4721331b191db266f5d6d2ba29315))
+* 词库调整 ([d484bb3](https://github.com/amzxyz/rime_wanxiang/commit/d484bb3fa946e5d8ba6fb863a2fba85cfde4d31e))
+* 词库调整 ([36acd0a](https://github.com/amzxyz/rime_wanxiang/commit/36acd0a9cf077c4c1d8b5c4af3627db74244863d))
+* 词库调整 ([0198fce](https://github.com/amzxyz/rime_wanxiang/commit/0198fcec278612b2f2bc21c11be50aa5d8a399b7))
+* 词库调整 ([d8245d8](https://github.com/amzxyz/rime_wanxiang/commit/d8245d8e17b5f7a09675c24d86dfa7acb5694b78))
+* 词库调整 ([ddbc746](https://github.com/amzxyz/rime_wanxiang/commit/ddbc74692140ebcefdc0df3b23960ccb99439f00))
+* 词库调整 ([8fef555](https://github.com/amzxyz/rime_wanxiang/commit/8fef55521dbabb938b401b530e4f22a3cd6d5db1))
+* 词库调整 ([1b14ee9](https://github.com/amzxyz/rime_wanxiang/commit/1b14ee9c81a5c4e0847d6b1882ffbfc4df78a93c))
+* 词库调整 ([069d01d](https://github.com/amzxyz/rime_wanxiang/commit/069d01dbfd6cf60a14ab4bacb1c6f47394537fe1))
+* 词库调整 ([7a03017](https://github.com/amzxyz/rime_wanxiang/commit/7a030177a72d61c6a65d669fd06267a780d2f920))
+* 词库调整 ([5336095](https://github.com/amzxyz/rime_wanxiang/commit/53360958dbd084eb9e57b8dc0f9889477518631d))
+* 调整他她它 ([8337bdb](https://github.com/amzxyz/rime_wanxiang/commit/8337bdb8588ee3301f4277df42df0dcc6d82520d))
+
+
+### 🐛 Bug 修复
+
+* **lua:** 快符匹配时不转换大小写 ([1a78e90](https://github.com/amzxyz/rime_wanxiang/commit/1a78e90f83d9f61313fef6b21e7ac92f43a4652c))
+* 更新tips ([1027db6](https://github.com/amzxyz/rime_wanxiang/commit/1027db652e35e678312e382943778f5faa33a6f4))
+* 更新符号表 ([22527f4](https://github.com/amzxyz/rime_wanxiang/commit/22527f46f4bb3af960e3ebd92d123695fa92e1c0))
+
+
+### 🏡 杂项
+
+* 变更说明 ([2f9efa6](https://github.com/amzxyz/rime_wanxiang/commit/2f9efa6a826df2c1622149bccec61d7bc901bd32))
+* 变更说明 ([1fa9d9a](https://github.com/amzxyz/rime_wanxiang/commit/1fa9d9afc63a45e76abca6682f8ddf25bea36743))
+
 ## [14.4.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.4.1...v14.4.3) (2026-01-23)
 
 ### 🐛 Bug 修复
