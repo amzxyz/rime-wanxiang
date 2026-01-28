@@ -59,6 +59,7 @@ local function process_platform_info(name, ver)
     if name == "hamster" then name = "仓输入法" end
     if name == "squirrel" then name = "鼠须管" end
     if name == "fcitx" then name = "小企鹅" end
+    if name == "fcitx-rime" then name = "小企鹅㞢" end
     return name, ver
 end
 
