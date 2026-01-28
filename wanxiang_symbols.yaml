@@ -535,7 +535,7 @@ symbol_table:
     # /hx+元素符号（小写）=元素信息快速输入
     # [元素符号, 元素中文名, 原子序数, 相对原子质量, 价层电子排布, 元素英文名]
     # 氢
-    '/hxh': [H, 氢, 1, 1.008, 1s¹, Hydrogen]
+    '/hxh': [H, 氢, 1, 1.0080, 1s¹, Hydrogen]
     # 氦
     '/hxhe': [He, 氦, 2, 4.0026, 1s², Helium]
     # 锂
@@ -595,17 +595,17 @@ symbol_table:
     # 锌
     '/hxzn': [Zn, 锌, 30, 65.38, 3d¹⁰4s², Zinc]
     # 镓
-    '/hxga': [Ga, 镓, 31, 69.723, 3d¹⁰4s²4p¹, Gallium]
+    '/hxga': [Ga, 镓, 31, 69.723, 4s²4p¹, Gallium]
     # 锗
-    '/hxge': [Ge, 锗, 32, 72.630, 3d¹⁰4s²4p², Germanium]
+    '/hxge': [Ge, 锗, 32, 72.630, 4s²4p², Germanium]
     # 砷
-    '/hxas': [As, 砷, 33, 74.922, 3d¹⁰4s²4p³, Arsenic]
+    '/hxas': [As, 砷, 33, 74.922, 4s²4p³, Arsenic]
     # 硒
-    '/hxse': [Se, 硒, 34, 78.971, 3d¹⁰4s²4p⁴, Selenium]
+    '/hxse': [Se, 硒, 34, 78.971, 4s²4p⁴, Selenium]
     # 溴
-    '/hxbr': [Br, 溴, 35, 79.904, 3d¹⁰4s²4p⁵, Bromine]
+    '/hxbr': [Br, 溴, 35, 79.904, 4s²4p⁵, Bromine]
     # 氪
-    '/hxkr': [Kr, 氪, 36, 83.798, 3d¹⁰4s²4p⁶, Krypton]
+    '/hxkr': [Kr, 氪, 36, 83.798, 4s²4p⁶, Krypton]
     # 铷
     '/hxrb': [Rb, 铷, 37, 85.468, 5s¹, Rubidium]
     # 锶
@@ -619,7 +619,7 @@ symbol_table:
     # 钼
     '/hxmo': [Mo, 钼, 42, 95.95, 4d⁵5s¹, Molybdenum]
     # 锝
-    '/hxtc': [Tc, 锝, 43, 98, 4d⁵5s², Technetium]
+    '/hxtc': [Tc, 锝, 43, '[97]', 4d⁵5s², Technetium]
     # 钌
     '/hxru': [Ru, 钌, 44, 101.07, 4d⁷5s¹, Ruthenium]
     # 铑
@@ -631,17 +631,17 @@ symbol_table:
     # 镉
     '/hxcd': [Cd, 镉, 48, 112.41, 4d¹⁰5s², Cadmium]
     # 铟
-    '/hxin': [In, 铟, 49, 114.82, 4d¹⁰5s²5p¹, Indium]
+    '/hxin': [In, 铟, 49, 114.82, 5s²5p¹, Indium]
     # 锡
-    '/hxsn': [Sn, 锡, 50, 118.71, 4d¹⁰5s²5p², Tin]
+    '/hxsn': [Sn, 锡, 50, 118.71, 5s²5p², Tin]
     # 锑
-    '/hxsb': [Sb, 锑, 51, 121.76, 4d¹⁰5s²5p³, Antimony]
+    '/hxsb': [Sb, 锑, 51, 121.76, 5s²5p³, Antimony]
     # 碲
-    '/hxte': [Te, 碲, 52, 127.60, 4d¹⁰5s²5p⁴, Tellurium]
+    '/hxte': [Te, 碲, 52, 127.60, 5s²5p⁴, Tellurium]
     # 碘
-    '/hxi': [I, 碘, 53, 126.90, 4d¹⁰5s²5p⁵, Iodine]
+    '/hxi': [I, 碘, 53, 126.90, 5s²5p⁵, Iodine]
     # 氙
-    '/hxxe': [Xe, 氙, 54, 131.29, 4d¹⁰5s²5p⁶, Xenon]
+    '/hxxe': [Xe, 氙, 54, 131.29, 5s²5p⁶, Xenon]
     # 铯
     '/hxcs': [Cs, 铯, 55, 132.91, 6s¹, Cesium]
     # 钡
@@ -655,7 +655,7 @@ symbol_table:
     # 钕
     '/hxnd': [Nd, 钕, 60, 144.24, 4f⁴6s², Neodymium]
     # 钷
-    '/hxpm': [Pm, 钷, 61, 145, 4f⁵6s², Promethium]
+    '/hxpm': [Pm, 钷, 61, '[145]', 4f⁵6s², Promethium]
     # 钐
     '/hxsm': [Sm, 钐, 62, 150.36, 4f⁶6s², Samarium]
     # 铕
@@ -677,41 +677,41 @@ symbol_table:
     # 镥
     '/hxlu': [Lu, 镥, 71, 174.97, 4f¹⁴5d¹6s², Lutetium]
     # 铪
-    '/hxhf': [Hf, 铪, 72, 178.49, 4f¹⁴5d²6s², Hafnium]
+    '/hxhf': [Hf, 铪, 72, 178.49, 5d²6s², Hafnium]
     # 钽
-    '/hxta': [Ta, 钽, 73, 180.95, 4f¹⁴5d³6s², Tantalum]
+    '/hxta': [Ta, 钽, 73, 180.95, 5d³6s², Tantalum]
     # 钨
-    '/hxw': [W, 钨, 74, 183.84, 4f¹⁴5d⁴6s², Tungsten]
+    '/hxw': [W, 钨, 74, 183.84, 5d⁴6s², Tungsten]
     # 铼
-    '/hxre': [Re, 铼, 75, 186.21, 4f¹⁴5d⁵6s², Rhenium]
-    # 铼
-    '/hxos': [Os, 锇, 76, 190.23, 4f¹⁴5d⁶6s², Osmium]
+    '/hxre': [Re, 铼, 75, 186.21, 5d⁵6s², Rhenium]
+    # 锇
+    '/hxos': [Os, 锇, 76, 190.23, 5d⁶6s², Osmium]
     # 铱
-    '/hxir': [Ir, 铱, 77, 192.22, 4f¹⁴5d⁷6s², Iridium]
+    '/hxir': [Ir, 铱, 77, 192.22, 5d⁷6s², Iridium]
     # 铂
-    '/hxpt': [Pt, 铂, 78, 195.08, 4f¹⁴5d⁹6s¹, Platinum]
+    '/hxpt': [Pt, 铂, 78, 195.08, 5d⁹6s¹, Platinum]
     # 金
-    '/hxau': [Au, 金, 79, 196.97, 4f¹⁴5d¹⁰6s¹, Gold]
+    '/hxau': [Au, 金, 79, 196.97, 5d¹⁰6s¹, Gold]
     # 汞
-    '/hxhg': [Hg, 汞, 80, 200.59,  4f¹⁴5d¹⁰6s², Mercury]
+    '/hxhg': [Hg, 汞, 80, 200.59,  5d¹⁰6s², Mercury]
     # 铊
-    '/hxtl': [Tl, 铊, 81, 204.38, 4f¹⁴5d¹⁰6s²6p¹, Thallium]
+    '/hxtl': [Tl, 铊, 81, 204.38, 6s²6p¹, Thallium]
     # 铅
-    '/hxpb': [Pb, 铅, 82, 207.2, 4f¹⁴5d¹⁰6s²6p², Lead]
+    '/hxpb': [Pb, 铅, 82, 207.2, 6s²6p², Lead]
     # 铋
-    '/hxbi': [Bi, 铋, 83, 208.98,  4f¹⁴5d¹⁰6s²6p³, Bismuth]
+    '/hxbi': [Bi, 铋, 83, 208.98, 6s²6p³, Bismuth]
     # 钋
-    '/hxpo': [Po, 钋, 84, 209, 4f¹⁴5d¹⁰6s²6p⁴, Polonium]
+    '/hxpo': [Po, 钋, 84, '[209]', 6s²6p⁴, Polonium]
     # 砹
-    '/hxat': [At, 砹, 85, 210, 4f¹⁴5d¹⁰6s²6p⁵, Astatine]
+    '/hxat': [At, 砹, 85, '[210]', 6s²6p⁵, Astatine]
     # 氡
-    '/hxrn': [Rn, 氡, 86, 222, 4f¹⁴5d¹⁰6s²6p⁶, Radon]
+    '/hxrn': [Rn, 氡, 86, '[222]', 6s²6p⁶, Radon]
     # 钫
-    '/hxfr': [Fr, 钫, 87, 223, 7s¹, Francium]
+    '/hxfr': [Fr, 钫, 87, '[223]', 7s¹, Francium]
     # 镭
-    '/hxra': [Ra, 镭, 88, 226, 7s², Radium]
+    '/hxra': [Ra, 镭, 88, '[226]', 7s², Radium]
     # 锕
-    '/hxac': [Ac, 锕, 89, 227, 6d¹7s², Actinium]
+    '/hxac': [Ac, 锕, 89, '[227]', 6d¹7s², Actinium]
     # 钍
     '/hxth': [Th, 钍, 90, 232.04, 6d²7s², Thorium]
     # 镤
@@ -719,54 +719,54 @@ symbol_table:
     # 铀
     '/hxu': [U, 铀, 92, 238.03, 5f³6d¹7s², Uranium]
     # 镎
-    '/hxnp': [Np, 镎, 93, 237, 5f⁴6d¹7s², Neptunium]
+    '/hxnp': [Np, 镎, 93, '[237]', 5f⁴6d¹7s², Neptunium]
     # 钚
-    '/hxpu': [Pu, 钚, 94, 244, 5f⁶7s², Plutonium]
+    '/hxpu': [Pu, 钚, 94, '[244]', 5f⁶7s², Plutonium]
     # 镅
-    '/hxam': [Am, 镅, 95, 243, 5f⁷7s², Americium]
+    '/hxam': [Am, 镅, 95, '[243]', 5f⁷7s², Americium]
     # 锔
-    '/hxcm': [Cm, 锔, 96, 247, 5f⁷6d¹7s², Curium]
+    '/hxcm': [Cm, 锔, 96, '[247]', 5f⁷6d¹7s², Curium]
     # 锫
-    '/hxbk': [Bk, 锫, 97, 247, 5f⁹7s², Berkelium]
+    '/hxbk': [Bk, 锫, 97, '[247]', 5f⁹7s², Berkelium]
     # 锎
-    '/hxcf': [Cf, 锎, 98, 251, 5f¹⁰7s², Californium]
+    '/hxcf': [Cf, 锎, 98, '[251]', 5f¹⁰7s², Californium]
     # 锿
-    '/hxes': [Es, 锿, 99, 252, 5f¹¹7s², Einsteinium]
+    '/hxes': [Es, 锿, 99, '[252]', 5f¹¹7s², Einsteinium]
     # 镄
-    '/hxfm': [Fm, 镄, 100, 257, 5f¹²7s², Fermium]
+    '/hxfm': [Fm, 镄, 100, '[257]', 5f¹²7s², Fermium]
     # 钔
-    '/hxmd': [Md, 钔, 101, 258, 5f¹³7s², Mendelevium]
+    '/hxmd': [Md, 钔, 101, '[258]', (5f¹³7s²), Mendelevium]
     # 锘
-    '/hxno': [No, 锘, 102, 259, 5f¹⁴7s², Nobelium]
+    '/hxno': [No, 锘, 102, '[259]', (5f¹⁴7s²), Nobelium]
     # 铹
-    '/hxlr': [Lr, 铹, 103, 266, 5f¹⁴6d¹7s², Lawrencium]
+    '/hxlr': [Lr, 铹, 103, '[262]', (5f¹⁴6d¹7s²), Lawrencium]
     # 𬬻
-    '/hxrf': [Rf, 𬬻, 104, 267, 5f¹⁴6d²7s², Rutherfordium]
+    '/hxrf': [Rf, 𬬻, 104, '[267]', (6d²7s²), Rutherfordium]
     # 𬭊
-    '/hxdb': [Db, 𬭊, 105, 268, 5f¹⁴6d³7s², Dubnium]
+    '/hxdb': [Db, 𬭊, 105, '[268]', (6d³7s²), Dubnium]
     # 𬭳
-    '/hxsg': [Sg, 𬭳, 106, 269, 5f¹⁴6d⁴7s², Seaborgium]
+    '/hxsg': [Sg, 𬭳, 106, '[269]', (6d⁴7s²), Seaborgium]
     # 𬭛
-    '/hxbh': [Bh, 𬭛, 107, 270, 5f¹⁴6d⁵7s², Bohrium]
+    '/hxbh': [Bh, 𬭛, 107, '[270]', (6d⁵7s²), Bohrium]
     # 𬭶
-    '/hxhs': [Hs, 𬭶, 108, 277, 5f¹⁴6d⁶7s², Hassium]
+    '/hxhs': [Hs, 𬭶, 108, '[269]', (6d⁶7s²), Hassium]
     # 鿏
-    '/hxmt': [Mt, 鿏, 109, 278, 5f¹⁴6d⁷7s², Meitnerium]
+    '/hxmt': [Mt, 鿏, 109, '[277]', (6d⁷7s²), Meitnerium]
     # 𫟼
-    '/hxds': [Ds, 𫟼, 110, 281, 5f¹⁴6d⁸7s², Darmstadtium]
+    '/hxds': [Ds, 𫟼, 110, '[281]', (6d⁸7s²), Darmstadtium]
     # 𬬭
-    '/hxrg': [Rg, 𬬭, 111, 282, 5f¹⁴6d⁹7s², Roentgenium]
+    '/hxrg': [Rg, 𬬭, 111, '[282]', (6d⁹7s²), Roentgenium]
     # 鿔
-    '/hxcn': [Cn, 鿔, 112, 285, 5f¹⁴6d¹⁰7s², Copernicium]
+    '/hxcn': [Cn, 鿔, 112, '[285]', (6d¹⁰7s²), Copernicium]
     # 鿭
-    '/hxnh': [Nh, 鿭, 113, 286, 5f¹⁴6d¹⁰7s²7p¹, Nihonium]
+    '/hxnh': [Nh, 鿭, 113, '[286]', (7s²7p¹), Nihonium]
     # 𫓧
-    '/hxfl': [Fl, 𫓧, 114, 289, 5f¹⁴6d¹⁰7s²7p², Flerovium]
+    '/hxfl': [Fl, 𫓧, 114, '[290]', (7s²7p²), Flerovium]
     # 镆
-    '/hxmc': [Mc, 镆, 115, 290, 5f¹⁴6d¹⁰7s²7p³, Moscovium]
+    '/hxmc': [Mc, 镆, 115, '[290]', (7s²7p³), Moscovium]
     # 𫟷
-    '/hxlv': [Lv, 𫟷, 116, 293, 5f¹⁴6d¹⁰7s²7p⁴, Livermorium]
+    '/hxlv': [Lv, 𫟷, 116, '[293]', (7s²7p⁴), Livermorium]
     # 鿬
-    '/hxts': [Ts, 鿬, 117, 294, 5f¹⁴6d¹⁰7s²7p⁵, Tennessine]
+    '/hxts': [Ts, 鿬, 117, '[294]', (7s²7p⁵), Tennessine]
     # 鿫
-    '/hxog': [Og, 鿫, 118, 294, 5f¹⁴6d¹⁰7s²7p⁶, Oganesson]
+    '/hxog': [Og, 鿫, 118, '[294]', (7s²7p⁶), Oganesson]
