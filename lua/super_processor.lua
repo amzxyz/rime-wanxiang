@@ -208,7 +208,7 @@ function M.init(env)
         if ok_keys and keys then
             for _, key in ipairs(keys) do
                 local v = config:get_string("quick_symbol_text/symkey/" .. key)
-                if v then env.qs_mapping[string.lower(tostring(key))] = v end
+                if v then env.qs_mapping[tostring(key)] = v end
             end
         end
     end
@@ -273,7 +273,6 @@ function M.init(env)
         -- E. [QuickSymbol] 自动上屏逻辑
         local qkey = string.match(input, env.qs_trigger)
         if qkey then
-            qkey = string.lower(qkey)
             local symbol = env.qs_mapping[qkey]
             if symbol and symbol ~= "" then
                 if type(symbol)=="string" and symbol:lower()=="repeat" then
@@ -308,7 +307,7 @@ local function handle_quick_symbol_intercept(key, env, ctx)
     local input = ctx.input or ""
     local matched = string.match(input, env.qs_trigger)
     if matched then
-        local k = string.lower(matched)
+        local k = matched
         if env.qs_mapping[k] and env.qs_mapping[k] ~= "" then
             return true -- Accepted
         end
