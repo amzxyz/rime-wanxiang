@@ -16,6 +16,9 @@ local raw_software_name = rime_api.get_distribution_code_name()
 local device_id = ""
 local sync_dir = "sync_stats"
 local potential_peers = {}
+-- 定义一个唯一的哨兵对象，用于代替 "all" 字符串
+-- 由于这是一个表(table)，它永远不可能等于任何用户输入的字符串(string)，防止用户使用 "all"来作为设备名
+local ALL_DEVICES_SENTINEL = {}
 
 -- -----------------------------------------------------------------------------
 -- 辅助工具：路径与配置
@@ -265,7 +268,8 @@ local function sync_import_all()
             end
         end
     end
-    return string.format("发现%d文件, 更新%d条", files_found, total_updates)
+    local total_files_found = files_found + 1
+    return string.format("发现%d文件, 更新%d条", total_files_found, total_updates)
 end
 
 -- -----------------------------------------------------------------------------
@@ -304,7 +308,7 @@ local function get_stat_value(key_name, target_id)
     local is_speed = string.find(key_name, "_spd$")
     
     -- 本机数据 (无前缀)
-    if target_id == "all" or target_id == device_id then
+    if target_id == ALL_DEVICES_SENTINEL or target_id == device_id then
         local loc_val = db_get(key_name)
         if is_speed then
             if loc_val > val then val = loc_val end
@@ -316,7 +320,7 @@ local function get_stat_value(key_name, target_id)
     -- 远程数据 (rem_ID_前缀)
     local peers = get_known_peers()
     for pid, _ in pairs(peers) do
-        if target_id == "all" or target_id == pid then
+        if target_id == ALL_DEVICES_SENTINEL or target_id == pid then
             local rem_key = string.format("rem_%s_%s", pid, key_name)
             local rem_val = db_get(rem_key)
             if is_speed then
@@ -410,7 +414,7 @@ local function format_summary(title, data, target_id)
     
     -- 获取平台信息 (支持多端显示)
     local sys_name, sys_ver = "", ""
-    if target_id == "all" then
+    if target_id == ALL_DEVICES_SENTINEL then
         sys_name, sys_ver = "多端聚合", "Cluster"
     elseif target_id == device_id then
         sys_name = db_get_str("_sys_platform") or raw_software_name
@@ -423,7 +427,7 @@ local function format_summary(title, data, target_id)
     
     -- 组装标题
     local device_label = ""
-    if target_id == "all" then
+    if target_id == ALL_DEVICES_SENTINEL then
         local count = 1 -- 默认为本机 1 台
         for _ in pairs(get_known_peers()) do count = count + 1 end
         device_label = string.format("☁️ 全网(%d机)", count)
@@ -595,8 +599,8 @@ local function translator(input, seg, env)
 
     if title then
         -- 1. 全网汇总
-        local all_data = aggregate_stats(days, "all")
-        yield(Candidate("stat", seg.start, seg._end, format_summary(title, all_data, "all"), "☁️"))
+        local all_data = aggregate_stats(days, ALL_DEVICES_SENTINEL)
+        yield(Candidate("stat", seg.start, seg._end, format_summary(title, all_data, ALL_DEVICES_SENTINEL), "☁️"))
         
         -- 2. 本机数据
         local loc_data = aggregate_stats(days, device_id)
