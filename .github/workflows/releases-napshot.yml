@@ -203,7 +203,6 @@ jobs:
           # 每个方案公共文件清单（在分支根目录使用）
           COMMON_FILES=(
             "dicts/*.*"
-            "opencc/*.*"
             "custom/*.*"
             "lua/*.*"
             "lua/lib/*.*"
