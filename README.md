@@ -580,7 +580,7 @@ datetime_formats:
 <img src="https://storage.deepin.org/thread/202509260126173818_符号大于.jpg" height="80">
 <img src="https://storage.deepin.org/thread/202509260126167252_符号圆点.jpg" height="80">
 
-**输入统计Lua：** 触发方式：/rtj日统计，/ztj周统计，/ytj月统计，/ntj年统计，/tj生涯。
+**输入统计Lua：** 触发方式：/rtj日统计，/ztj周统计，/ytj月统计，/ntj年统计，/tj生涯; 支持多端同步，详见wanxiang.custom.yaml中的# 统计插件的详细配置 `input_statistics`:。
 
 **计算器：**  通过输入大写V引导继续输入如：V3+5  候选框就会有8和3+5=8，基础功能 `+ - * / % ^` 还支持 `sin(x) cos(x)` 等众多运算方式，打开super_calculator.lua阅读相关用法。
 
