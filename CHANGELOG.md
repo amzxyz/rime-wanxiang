@@ -1,5 +1,28 @@
 # Changelog
 
+## [14.6.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.5.0...v14.6.0) (2026-01-29)
+
+
+### ✨ 新特性
+
+* **lua:** 万能滤镜在原来简繁转换表情派生的情况下，另新增了简码模块，该模块同样可以基于配置进行模块化配置来取消和新增这样的模块，这个简码有三种模式，关闭、为空时填充、总是填充，这样的设计可以适用于任何拼音编码方案，默认的为空时填充巧妙的利用了候选为空或者英文时，我们更有意愿被简码填充，不会干扰已有的输入能力，对于体验是极大的提升，未来用户可以灵活的定义自己的数据库，实现自己想要的置顶数据简码，且数据是活的可受开关控制的，这是第一个版本，我们将在后续的数据维护中逐步完善体验。需要说明的是这个属于公共简码部分即他不包含辅助码，如果你定义了复杂的编码形态还是要基于根目录的txt来实现，但本次是对pro没简码，t9简码卡顿的一个战略性优化，使其拥有更好的体验 ([8bb1b17](https://github.com/amzxyz/rime_wanxiang/commit/8bb1b170a2ceccca07491aafc3ac7d78ebaf8c42))
+
+
+### 📚 词库更新
+
+* 词库调整 ([abe58a1](https://github.com/amzxyz/rime_wanxiang/commit/abe58a1d7cb25b779f89fef85fc1d180c1c34222))
+
+
+### 🐛 Bug 修复
+
+* [符号表]重新核对元素周期表数据并更正 ([1dc6ef3](https://github.com/amzxyz/rime_wanxiang/commit/1dc6ef362d43d634b3fd61d7076c783e2c6a77e6))
+* ng输入“嗯”时以缩写形式提供，这样可与ng下面派生简拼词汇一起出现 ([d660eb1](https://github.com/amzxyz/rime_wanxiang/commit/d660eb161f6bdf16b4aad848df3c919833bb537d))
+
+
+### 🏡 杂项
+
+* 修改说明 ([39aee7e](https://github.com/amzxyz/rime_wanxiang/commit/39aee7e5f0f680d57fe87749d360dcc8a4b0c22e))
+
 ## [14.5.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.4.3...v14.5.0) (2026-01-28)
 
 
