@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.6.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.1...v14.6.2) (2026-01-30)
+
+
+### 🐛 Bug 修复
+
+* 补齐九键遗漏的开关 ([e52a7a3](https://github.com/amzxyz/rime_wanxiang/commit/e52a7a359f4a7bb0e7ed385d65ff800032841f29))
+
 ## [14.6.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.0...v14.6.1) (2026-01-30)
 
 
