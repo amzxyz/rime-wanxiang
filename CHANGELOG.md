@@ -1,5 +1,24 @@
 # Changelog
 
+## [14.6.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.0...v14.6.1) (2026-01-30)
+
+
+### 📚 词库更新
+
+* 词库调整 ([c200321](https://github.com/amzxyz/rime_wanxiang/commit/c200321cf4afc95d7f3ffe610e37b98a31d223bd))
+* 词库调整 ([82dd994](https://github.com/amzxyz/rime_wanxiang/commit/82dd9947e3fe2761a8614eea9cc18eaf8240d80e))
+* 词库调整 ([e4b2c19](https://github.com/amzxyz/rime_wanxiang/commit/e4b2c1953079c41b0ac74e3e131c57a47ab5dcc7))
+
+
+### 🐛 Bug 修复
+
+* 混合编码候选下-空出简状态下，也能出现简码 ([48798e2](https://github.com/amzxyz/rime_wanxiang/commit/48798e2b86588b3f3af89b17f8438e93c15def8d))
+
+
+### 🏡 杂项
+
+* 修改说明 ([a13dda4](https://github.com/amzxyz/rime_wanxiang/commit/a13dda464ea95df1854df2924ad3641be746e70b))
+
 ## [14.6.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.5.0...v14.6.0) (2026-01-29)
 
 
