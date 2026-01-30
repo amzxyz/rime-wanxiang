@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.6.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.3...v14.6.4) (2026-01-30)
+
+
+### 📚 词库更新
+
+* 词库调整 ([937e7bb](https://github.com/amzxyz/rime_wanxiang/commit/937e7bbf617328c8916ca8cb585f9b6f6f957c4e))
+
+
+### 🐛 Bug 修复
+
+* 修复当根目录的置顶包含英文的时候导致replacer简码也会出现的问题 ([530d82c](https://github.com/amzxyz/rime_wanxiang/commit/530d82cd68d0c57cb7ac13b794da79aa4da6f00a))
+* 修复空码回溯功能 ([d971547](https://github.com/amzxyz/rime_wanxiang/commit/d971547cf9339f29d50d977c69ec9d74797cab75))
+
 ## [14.6.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.2...v14.6.3) (2026-01-30)
 
 
