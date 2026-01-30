@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.6.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.2...v14.6.3) (2026-01-30)
+
+
+### 🐛 Bug 修复
+
+* 恢复缩进 ([b9f071d](https://github.com/amzxyz/rime_wanxiang/commit/b9f071d62edfab1613146a299d31707545b8fd34))
+
 ## [14.6.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.1...v14.6.2) (2026-01-30)
 
 
