@@ -1,5 +1,19 @@
 # Changelog
 
+## [14.6.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.4...v14.6.5) (2026-02-01)
+
+
+### 📚 词库更新
+
+* 词库调整 ([9632fb1](https://github.com/amzxyz/rime_wanxiang/commit/9632fb1e18315fc81d742a35978b3640ea5b05dd))
+
+
+### 🐛 Bug 修复
+
+* **replacer:** 置顶词出现在根目录user_table置顶词后面 ([7dc7b95](https://github.com/amzxyz/rime_wanxiang/commit/7dc7b951a7ee47ccc7cc4b8df2f8c53773a42bcf))
+* 修改英文转写 ([f51f76c](https://github.com/amzxyz/rime_wanxiang/commit/f51f76cfd33b94a157365283440dc223e538ab96))
+* 打包时间改成中国时区 ([81fcc40](https://github.com/amzxyz/rime_wanxiang/commit/81fcc405e3bb448bdf455302fe70c32364cbab08))
+
 ## [14.6.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.3...v14.6.4) (2026-01-30)
 
 
