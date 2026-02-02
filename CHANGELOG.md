@@ -1,5 +1,20 @@
 # Changelog
 
+## [14.6.7](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.6...v14.6.7) (2026-02-02)
+
+
+### 📚 词库更新
+
+* 九键新增成语简码 ([ede14bb](https://github.com/amzxyz/rime_wanxiang/commit/ede14bb2f74edd59615e92503c5858d37df02491))
+* 词库调整 ([7be4781](https://github.com/amzxyz/rime_wanxiang/commit/7be47813512ae4994bd14623f5adf942d56c5de2))
+
+
+### 🐛 Bug 修复
+
+* 人名物种不打包到zip中 ([ff710b3](https://github.com/amzxyz/rime_wanxiang/commit/ff710b3186d311f61840ece12c2b377ab4fc9f2b))
+* 候选格式化新增更多时间相关占位符，任何能产生候选的表都可以写入占位符，试着输入：此时此刻 ([c63a855](https://github.com/amzxyz/rime_wanxiang/commit/c63a8554a17aac6c7f0f9f33ba0afe859ab3ab75))
+* 成语简码默认设为0即不前置，有需要的朋友请自行重新patch前置位置，在自定义路上又前进一步 ([0b0adc7](https://github.com/amzxyz/rime_wanxiang/commit/0b0adc7d3e3e86d53c3e0ce75417d6d7fbf5bf4e))
+
 ## [14.6.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.5...v14.6.6) (2026-02-02)
 
 
