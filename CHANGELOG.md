@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.6.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.5...v14.6.6) (2026-02-02)
+
+
+### 🐛 Bug 修复
+
+* **replacer:** 发现新问题，通过权重构建扎实地根目录指定优先、程序补充简码滞后等恰当的逻辑 ([d378948](https://github.com/amzxyz/rime_wanxiang/commit/d378948cb3fd287cf353474cd37dcfc279992bfa))
+
 ## [14.6.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.4...v14.6.5) (2026-02-01)
 
 
