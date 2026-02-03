@@ -1,13 +1,5 @@
 # Changelog
 
-## [14.6.9](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.8...v14.6.9) (2026-02-03)
-
-
-### 🐛 Bug 修复
-
-* 更新首右拆分 ([135da73](https://github.com/amzxyz/rime_wanxiang/commit/135da737a3e457b5e08279fca00a5e2308b5d2d8))
-* 更新首右辅助码 ([57b940c](https://github.com/amzxyz/rime_wanxiang/commit/57b940cc0e4c01458596854afd62ba43f68601bf))
-
 ## [14.6.8](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.7...v14.6.8) (2026-02-03)
 
 
