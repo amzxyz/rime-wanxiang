@@ -1,5 +1,21 @@
 # Changelog
 
+## [14.6.8](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.7...v14.6.8) (2026-02-03)
+
+
+### 📚 词库更新
+
+* update dicts ([3dc45a2](https://github.com/amzxyz/rime_wanxiang/commit/3dc45a27041fcc2b81aac7d7c016230f4fc710f1))
+* 词库调整 ([314c5d6](https://github.com/amzxyz/rime_wanxiang/commit/314c5d6c13d1771f2ccc6e70e2efa0540a1df470))
+* 词库调整 ([81f8a8a](https://github.com/amzxyz/rime_wanxiang/commit/81f8a8aa5e658292768877c5ce08fd49c72c4910))
+
+
+### 🐛 Bug 修复
+
+* 修复一个时间lua中上午下午变量的逻辑问题 ([8951eca](https://github.com/amzxyz/rime_wanxiang/commit/8951eca4d260a0fe5565792b50d59442b0b04051))
+* 修复拼音加加基础版转写 ([adfaccf](https://github.com/amzxyz/rime_wanxiang/commit/adfaccff743ce429b496adcdd4efac57d6c5f6c1))
+* 解决候选格式化换行与月冲突的问题，并新增星期的占位符 ([344f3b4](https://github.com/amzxyz/rime_wanxiang/commit/344f3b452b9a85611a1bff808c77d2b720c4adbb))
+
 ## [14.6.7](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.6...v14.6.7) (2026-02-02)
 
 
