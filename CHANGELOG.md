@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.6.12](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.11...v14.6.12) (2026-02-11)
+
+
+### 🐛 Bug 修复
+
+* 反查模式不过滤 ([e92cb86](https://github.com/amzxyz/rime_wanxiang/commit/e92cb86563abc71fb279c6fc636bc4601343d270))
+
 ## [14.6.11](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.10...v14.6.11) (2026-02-11)
 
 
