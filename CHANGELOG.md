@@ -1,5 +1,22 @@
 # Changelog
 
+## [14.6.11](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.10...v14.6.11) (2026-02-11)
+
+
+### 📚 词库更新
+
+* update dicts ([e01c7e1](https://github.com/amzxyz/rime_wanxiang/commit/e01c7e1c23482326a37e654da6c8175e294d9141))
+* 词库调整 ([f1cacfc](https://github.com/amzxyz/rime_wanxiang/commit/f1cacfcfa83592cc3b65b94379d9d64d0dca3297))
+
+
+### 🐛 Bug 修复
+
+* [Unicode模式]添加屏蔽代理区字符的逻辑以阻止输入法崩溃 ([1647bc1](https://github.com/amzxyz/rime_wanxiang/commit/1647bc17854980bcb82d9937f04b890c38e1c0aa))
+* 反查模式也纳入命令模式 ([9cff3cb](https://github.com/amzxyz/rime_wanxiang/commit/9cff3cb99804b1a69ac36bd5f1d06e287cbab87b))
+* 恢复按下左右移动编码字符为默认，先前librime将跳转音节设为了默认 ([69e84aa](https://github.com/amzxyz/rime_wanxiang/commit/69e84aa1d21fe3753adfbf31c6a5223fc6bc51cf))
+* 文本格式化新增\A转义代表上午下午晚上等 ([56db8b1](https://github.com/amzxyz/rime_wanxiang/commit/56db8b1b92a92d3163d0dd6edbb141cfd1afeda8))
+* 超集替换改为重新初始化不关闭数据库 ([543ff6b](https://github.com/amzxyz/rime_wanxiang/commit/543ff6bcdc0379c2a1b14c238e9bd25f71652b94))
+
 ## [14.6.10](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.9...v14.6.10) (2026-02-04)
 
 
