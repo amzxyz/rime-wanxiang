@@ -1,5 +1,23 @@
 # Changelog
 
+## [14.7.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.12...v14.7.0) (2026-02-12)
+
+
+### ✨ 新特性
+
+* **super_replace:** 新增自定义置顶编码转换逻辑，适用于九键拼音维护用字母，加载到数据库变成数字的场景，简化手动维护难度，更利于数据迁移 ([ad82f95](https://github.com/amzxyz/rime_wanxiang/commit/ad82f95ecff4f5fb6db0a55d37d960d026d46df6))
+
+
+### 📚 词库更新
+
+* 词库更新 ([417e5cb](https://github.com/amzxyz/rime_wanxiang/commit/417e5cb53ec3c45e5f0daad2078a5f118d4c1e92))
+* 词库调整 ([eeeb5f7](https://github.com/amzxyz/rime_wanxiang/commit/eeeb5f71fa3661e0a6cb47a05a050340b77d5bea))
+
+
+### 🐛 Bug 修复
+
+* 拓宽模型生效范围 ([efaaf93](https://github.com/amzxyz/rime_wanxiang/commit/efaaf9343d4345842a46aa6adab6cd5932a7f126))
+
 ## [14.6.12](https://github.com/amzxyz/rime_wanxiang/compare/v14.6.11...v14.6.12) (2026-02-11)
 
 
