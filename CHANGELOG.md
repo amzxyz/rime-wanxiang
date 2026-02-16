@@ -1,5 +1,13 @@
 # Changelog
 
+## [14.7.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.1...v14.7.2) (2026-02-16)
+
+
+### 🐛 Bug 修复
+
+* input长度为5最后一个字符是/开启临时大字集 ([948f15b](https://github.com/amzxyz/rime_wanxiang/commit/948f15bd1f5dce738a9be7d5f25446146e457b14))
+* 辅助码处理的位置也要增加一个豁免不清空太极注释，这样开启辅助的时候也能干掉英文句子 ([ac7e81f](https://github.com/amzxyz/rime_wanxiang/commit/ac7e81ffcc1555e745519d306c1169ba8ab2a9c2))
+
 ## [14.7.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.0...v14.7.1) (2026-02-16)
 
 
