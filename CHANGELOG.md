@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.7.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.3...v14.7.4) (2026-02-20)
+
+
+### 🐛 Bug 修复
+
+* 九键恢复lua脚本处理，增加无声调注释，这样适应元书同时可适应其他前端 ([ba864a0](https://github.com/amzxyz/rime_wanxiang/commit/ba864a06a7765c2f677f49b264d6e917b40ef223))
+
 ## [14.7.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.2...v14.7.3) (2026-02-20)
 
 
