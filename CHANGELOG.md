@@ -1,5 +1,32 @@
 # Changelog
 
+## [14.7.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.2...v14.7.3) (2026-02-20)
+
+
+### 📚 词库更新
+
+* 词库调整 ([ee9f7bc](https://github.com/amzxyz/rime_wanxiang/commit/ee9f7bcd012f604320aa2525bf6d1ad1652dc9fa))
+* 词库调整 ([663026a](https://github.com/amzxyz/rime_wanxiang/commit/663026a879eda746cf9c61c342554755a003be7b))
+* 词库调整 ([c2e668d](https://github.com/amzxyz/rime_wanxiang/commit/c2e668d4ea1cd9cd618fe661055603c9d361a311))
+* 词库调整 ([7f5afed](https://github.com/amzxyz/rime_wanxiang/commit/7f5afed1cd855ac39759ac0529e7a494193aa595))
+* 词库调整 ([159a98d](https://github.com/amzxyz/rime_wanxiang/commit/159a98dce23d5c0d9f69db44598460a5d2bc9b85))
+* 词库调整 ([3ff8406](https://github.com/amzxyz/rime_wanxiang/commit/3ff84068a61dd96dc657097133026365aa389bcd))
+* 词库调整 ([efe19c5](https://github.com/amzxyz/rime_wanxiang/commit/efe19c56cfff839818caad81c6d88ba0bbc26868))
+
+
+### 🐛 Bug 修复
+
+* **super_lookup:** 现已支持``造词模式进行lookup反查筛选 ([17753dd](https://github.com/amzxyz/rime_wanxiang/commit/17753dd070457ec1a1facd6d1d0cde1a20675aba))
+* **super_replacer:** 优化算法，减少数据库访问，优化数据重新加载逻辑 ([c36cf2c](https://github.com/amzxyz/rime_wanxiang/commit/c36cf2c1077163f1b06cd006dea9df23e994113a))
+* **super_tips:** 优化数据重新加载逻辑 ([0d16059](https://github.com/amzxyz/rime_wanxiang/commit/0d160597bdf8839d466907bcf1cf4bd06b616067))
+* 删除多余代码 ([1a4f960](https://github.com/amzxyz/rime_wanxiang/commit/1a4f960261b959ef40e2d0e299ab36b60cec3adb))
+* 小狼毫字体默认修改为13 ([ecc6fab](https://github.com/amzxyz/rime_wanxiang/commit/ecc6fabc56043d34e14f7be3f71c5e4ffd30bc96))
+
+
+### 🏡 杂项
+
+* 修改说明 ([a2532a0](https://github.com/amzxyz/rime_wanxiang/commit/a2532a0233acf4f0876e7fcbc9ba0e5a6c9285e8))
+
 ## [14.7.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.1...v14.7.2) (2026-02-16)
 
 
