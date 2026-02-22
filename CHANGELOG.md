@@ -1,5 +1,19 @@
 # Changelog
 
+## [14.7.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.4...v14.7.5) (2026-02-22)
+
+
+### 📚 词库更新
+
+* 词库调整 ([f487b51](https://github.com/amzxyz/rime_wanxiang/commit/f487b519f54d9d2c670c7d6ca8c5e70fc9a0e17f))
+
+
+### 🐛 Bug 修复
+
+* fmm数据库匹配缓存机制，在输入框生命周期内减少数据库的查询 ([0a4084c](https://github.com/amzxyz/rime_wanxiang/commit/0a4084c3852e60e14d444e9fd41e281b999f9a86))
+* 修正转写正则错误 ([285b044](https://github.com/amzxyz/rime_wanxiang/commit/285b044e4da2ccb332fec079b46be408b2b86733))
+* 移除不需要的文件 ([ca11775](https://github.com/amzxyz/rime_wanxiang/commit/ca1177580b17bf2026e71b640a0b85353bcdbf55))
+
 ## [14.7.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.3...v14.7.4) (2026-02-20)
 
 
