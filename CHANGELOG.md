@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.7.7](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.6...v14.7.7) (2026-02-25)
+
+
+### 📚 词库更新
+
+* 词库调整 ([65936a2](https://github.com/amzxyz/rime_wanxiang/commit/65936a27b3766ceb56580fde809781c7365c33cb))
+
+
+### 🐛 Bug 修复
+
+* symbol表兼容uiv双拼用法 ([1e3109a](https://github.com/amzxyz/rime_wanxiang/commit/1e3109a260c9d036cd690e1faf46a140c22eff96))
+* 修复bug ([f912676](https://github.com/amzxyz/rime_wanxiang/commit/f9126766cf1fdd06387b006d85451411411932c6))
+
 ## [14.7.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.5...v14.7.6) (2026-02-25)
 
 
