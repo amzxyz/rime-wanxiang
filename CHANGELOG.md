@@ -1,5 +1,20 @@
 # Changelog
 
+## [14.7.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.5...v14.7.6) (2026-02-25)
+
+
+### 📚 词库更新
+
+* 词库调整 ([4606f8a](https://github.com/amzxyz/rime_wanxiang/commit/4606f8a67d1b4138715f0a3cbde3508ae84a0ad4))
+* 词库调整 ([9fd5e9f](https://github.com/amzxyz/rime_wanxiang/commit/9fd5e9f73a960729ac725aa1878a4f642ce3e3e2))
+
+
+### 🐛 Bug 修复
+
+* **super_lookup:** 移除词组中残留的笔画编码([#821](https://github.com/amzxyz/rime_wanxiang/issues/821)) ([95cfc9e](https://github.com/amzxyz/rime_wanxiang/commit/95cfc9e3b6bbe230f787ae00176738cd33f5f55e))
+* 现在手动排序的内容也能被符号包裹了 ([e28a687](https://github.com/amzxyz/rime_wanxiang/commit/e28a687a1b19f2190429b8f607b166b0c92e7595))
+* 符号包裹现在可以包裹前置的成语简码 ([b5c7ad8](https://github.com/amzxyz/rime_wanxiang/commit/b5c7ad8d9766a777c1c61d8c5413fe5a9c002e8d))
+
 ## [14.7.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.4...v14.7.5) (2026-02-22)
 
 
