@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.8.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.0...v14.8.1) (2026-02-26)
+
+
+### 🐛 Bug 修复
+
+* 利用自动补全N-1双大写辅助码的方法固定前面明确的语句，循环按句号能在N-1个字最早的候选(不加任何辅助码时的状态)和N字候选当前进行循环，类似写文档想起来点下保存，不好理解在输入句子后点点句号感受一下，其次再次向使用句号逗号翻页的宝宝们说一声麻烦自己改一下按键，因为真的手机上一个逗号一个句号分配至tips、这个固定候选的功能非常好用，电脑上也一样 ([74b5015](https://github.com/amzxyz/rime_wanxiang/commit/74b5015c6403b3be9ee0b2969f58433e14ec4e6e))
+
 ## [14.8.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.7...v14.8.0) (2026-02-26)
 
 
