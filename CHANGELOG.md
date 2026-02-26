@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.8.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.7...v14.8.0) (2026-02-26)
+
+
+### ✨ 新特性
+
+* 新增一个利用自动补全N-1双大写辅助码的方法固定前面明确的语句，类似写文档想起来点下保存 ([6e847d3](https://github.com/amzxyz/rime_wanxiang/commit/6e847d3a5b408e672f8108b9b18614ca74f430fa))
+
 ## [14.7.7](https://github.com/amzxyz/rime_wanxiang/compare/v14.7.6...v14.7.7) (2026-02-25)
 
 
