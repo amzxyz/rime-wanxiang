@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.8.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.1...v14.8.2) (2026-02-26)
+
+
+### 🐛 Bug 修复
+
+* 新增cand.type类型外显设置能力，可以在super_comment参数进行设置([#824](https://github.com/amzxyz/rime_wanxiang/issues/824)) ([9599fef](https://github.com/amzxyz/rime_wanxiang/commit/9599fef3a060499859084bbc1c1a9018d498efe5))
+
 ## [14.8.1](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.0...v14.8.1) (2026-02-26)
 
 
