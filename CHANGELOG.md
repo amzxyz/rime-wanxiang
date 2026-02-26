@@ -1,5 +1,14 @@
 # Changelog
 
+## [14.8.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.2...v14.8.3) (2026-02-26)
+
+
+### 🐛 Bug 修复
+
+* **force_upper_aux:** 智能选择反查数据库 ([756d168](https://github.com/amzxyz/rime_wanxiang/commit/756d168458f7956b6d3d894b18215c7d73f384e5))
+* 交换lua顺序以被超级注释接管 ([b43e4ca](https://github.com/amzxyz/rime_wanxiang/commit/b43e4ca7a2d15561871cdba6af23b096ab7e895d))
+* 符号下面有一些生僻康熙部首不应该被字符集过滤 ([daef812](https://github.com/amzxyz/rime_wanxiang/commit/daef812d4de36ea4dc5c712225bb057ccdb1f2ce))
+
 ## [14.8.2](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.1...v14.8.2) (2026-02-26)
 
 
