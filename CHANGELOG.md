@@ -1,5 +1,15 @@
 # Changelog
 
+## [14.8.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.5...v14.8.6) (2026-02-27)
+
+
+### 🐛 Bug 修复
+
+* 修改反查滤镜名称获取方式 ([10d631b](https://github.com/amzxyz/rime_wanxiang/commit/10d631b61efd50b671741f103b2eff333f0c4aae))
+* 移除无关代码 ([e82e598](https://github.com/amzxyz/rime_wanxiang/commit/e82e598e332fa43140aa03c73fd045efb70b42ee))
+* 英文派生大写后单词可参与替换，因此英文lua放在超级替换前面 ([5d8c7c4](https://github.com/amzxyz/rime_wanxiang/commit/5d8c7c4f672b7b326fcdfb80bfe862bb9d5bbb65))
+* 过滤器交换顺序后英文lua不能在中文方案中删除太极符号了，这会导致后面的滤镜无法删除中文方案中的无效的英文句子 ([8f286a7](https://github.com/amzxyz/rime_wanxiang/commit/8f286a7c1bd81dca32950f8a9564392dea45ce88))
+
 ## [14.8.5](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.4...v14.8.5) (2026-02-27)
 
 

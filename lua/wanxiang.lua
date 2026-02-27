@@ -5,7 +5,7 @@ local wanxiang = {}
 
 -- x-release-please-start-version
 
-wanxiang.version = "v14.8.5"
+wanxiang.version = "v14.8.6"
 
 -- x-release-please-end
 
