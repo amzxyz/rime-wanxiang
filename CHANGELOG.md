@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.8.4](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.3...v14.8.4) (2026-02-27)
+
+
+### 📚 词库更新
+
+* 词库调整 ([c539605](https://github.com/amzxyz/rime_wanxiang/commit/c539605c58a966c84ebf0cba403d8640916070e9))
+
+
+### 🐛 Bug 修复
+
+* 多种tag模式下不启用按键锁定 ([62050ea](https://github.com/amzxyz/rime_wanxiang/commit/62050ea7f514e1814412abeeee5e2bd752a22b2a))
+
 ## [14.8.3](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.2...v14.8.3) (2026-02-26)
 
 
