@@ -1,5 +1,14 @@
 # Changelog
 
+## [14.8.7](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.6...v14.8.7) (2026-03-01)
+
+
+### 🐛 Bug 修复
+
+* 优化几个脚本细节 ([c0d3a24](https://github.com/amzxyz/rime_wanxiang/commit/c0d3a248c76827460a4e79052d8b7450b9f3d35f))
+* 改进刷辅助码脚本 ([49783f9](https://github.com/amzxyz/rime_wanxiang/commit/49783f90d8d1837a168d946809037defdb4b439f))
+* 滤镜几个组件功能上出现了顺序冲突做了一下深度调整 ([de8619d](https://github.com/amzxyz/rime_wanxiang/commit/de8619d5a0f26220b26cfa0651587aeb36e84e4e))
+
 ## [14.8.6](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.5...v14.8.6) (2026-02-27)
 
 
