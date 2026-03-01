@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.8.8](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.7...v14.8.8) (2026-03-01)
+
+
+### 🐛 Bug 修复
+
+* 恢复无候选的fallback ([725bfee](https://github.com/amzxyz/rime_wanxiang/commit/725bfeee2fd4ced1c9d30a1682d872ec93fd3883))
+
 ## [14.8.7](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.6...v14.8.7) (2026-03-01)
 
 
