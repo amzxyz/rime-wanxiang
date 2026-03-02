@@ -1,5 +1,27 @@
 # Changelog
 
+## [14.9.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.8...v14.9.0) (2026-03-02)
+
+
+### ✨ 新特性
+
+* 新增独立的字符集过滤，重构lua文件放在wanxiang文件夹下，兼容多方案共存 ([1123f4f](https://github.com/amzxyz/rime_wanxiang/commit/1123f4fdab367cbcbd59cc3675adb83d3ed16d48))
+
+
+### 📚 词库更新
+
+* AI甄选移除3字词条片段3万,词库精炼持续进行中... ([8deb95a](https://github.com/amzxyz/rime_wanxiang/commit/8deb95af530b543085686a49399430d8aad00f9d))
+* AI精炼移除13000词条 ([373fe90](https://github.com/amzxyz/rime_wanxiang/commit/373fe90936ff5ceb4da91dd53e74d1e6baf126f0))
+* AI精炼移除3000词条 ([4d47ef9](https://github.com/amzxyz/rime_wanxiang/commit/4d47ef9cf878498e5799a383278eabd6e1d1bc82))
+* AI精炼移除6000词条 ([6cd7cb1](https://github.com/amzxyz/rime_wanxiang/commit/6cd7cb1c1488a42a592b0466dcf1dd717de80991))
+* AI精炼移除8000词条 ([6360af1](https://github.com/amzxyz/rime_wanxiang/commit/6360af17e8fef1c8410bf374f090decf54819994))
+* 词库调整 ([6b5aa0b](https://github.com/amzxyz/rime_wanxiang/commit/6b5aa0b4641ae1fcff11ae49540ad51a322feddb))
+
+
+### 🐛 Bug 修复
+
+* 修改自动化 ([6b0d9bb](https://github.com/amzxyz/rime_wanxiang/commit/6b0d9bb395ad3dd22c3e8cd4218670d80891f7eb))
+
 ## [14.8.8](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.7...v14.8.8) (2026-03-01)
 
 
