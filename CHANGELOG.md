@@ -1,5 +1,17 @@
 # Changelog
 
+## [15.0.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.0.0...v15.0.1) (2026-03-03)
+
+
+### 🐛 Bug 修复
+
+* **super_replacer:** 修复了一个大量积累用户词导致的空出简异常([#843](https://github.com/amzxyz/rime_wanxiang/issues/843)) ([3760876](https://github.com/amzxyz/rime_wanxiang/commit/376087671b19967ed4d629813feae5477b63b7a4))
+
+
+### 🏡 杂项
+
+* 修改说明 ([45d95a7](https://github.com/amzxyz/rime_wanxiang/commit/45d95a7a010580bcfa870523db7744943e621bfa))
+
 ## [15.0.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.9.0...v15.0.0) (2026-03-03)
 
 
