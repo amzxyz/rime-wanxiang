@@ -1,5 +1,17 @@
 # Changelog
 
+## [15.0.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.9.0...v15.0.0) (2026-03-03)
+
+
+### 💅 重构
+
+* 新增独立的字符集过滤，重构lua文件放在wanxiang文件夹下，兼容多方案共存,新增英文候选限制 ([f2bbb39](https://github.com/amzxyz/rime_wanxiang/commit/f2bbb39916982b6c5b63e9a275a62220566fa733))
+
+
+### 🏡 杂项
+
+* release 15.0.0 ([a99f006](https://github.com/amzxyz/rime_wanxiang/commit/a99f006e0ed3a77dfadf5daa15a2c67f945c475b))
+
 ## [14.9.0](https://github.com/amzxyz/rime_wanxiang/compare/v14.8.8...v14.9.0) (2026-03-02)
 
 
