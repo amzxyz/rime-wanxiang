@@ -1,5 +1,14 @@
 # Changelog
 
+## [15.0.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.0.1...v15.0.2) (2026-03-04)
+
+
+### 🐛 Bug 修复
+
+* **super_english:** 限制候选数时用户词不占用数量配额有多少显示多少 ([ea36231](https://github.com/amzxyz/rime_wanxiang/commit/ea36231aaa9a9a0b928a70f8b24f327d95008057))
+* **super_replacer:** 修复总出简应该出现在根目录置顶词之后 ([57323cd](https://github.com/amzxyz/rime_wanxiang/commit/57323cd34cfb04cd37e1e04d99026f197efb7c45))
+* **super_replacer:** 简码拆分为两个文件,空出简码和总出简码分别提供不同的数据库 ([582f41e](https://github.com/amzxyz/rime_wanxiang/commit/582f41e050e5a4be2e6d922e8f44efe935ed3d64))
+
 ## [15.0.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.0.0...v15.0.1) (2026-03-03)
 
 
