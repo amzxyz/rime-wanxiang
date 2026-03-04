@@ -1,5 +1,18 @@
 # Changelog
 
+## [15.0.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.0.2...v15.0.3) (2026-03-04)
+
+
+### 📚 词库更新
+
+* 词库调整 ([6ac0b25](https://github.com/amzxyz/rime_wanxiang/commit/6ac0b2528aca84965fda9698c6062c7764c80209))
+* 调整词频 ([32c9c5a](https://github.com/amzxyz/rime_wanxiang/commit/32c9c5afb1d5b8d2c6578fcfa7bcad4ce19ef28f))
+
+
+### 🐛 Bug 修复
+
+* 移除元叔内置文件 ([ac460a5](https://github.com/amzxyz/rime_wanxiang/commit/ac460a5b7b369107efa48e058a8b318ef8a85968))
+
 ## [15.0.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.0.1...v15.0.2) (2026-03-04)
 
 
