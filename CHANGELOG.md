@@ -1,5 +1,31 @@
 # Changelog
 
+## [15.1.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.0.3...v15.1.0) (2026-03-06)
+
+
+### ✨ 新特性
+
+* 出简这个配置重构了一下,数据维护层回归到abbrev.txt一个文件,同时开关也只留一个简码开关,逻辑层我们可以定义置顶几个词、置顶到什么位置,同时将空出简变成了一个常态化兜底动作。同时这个特性让九键也能合理使用简码,有系统词可以置顶适当位置补充1-2个简码，没有多显示几个简码，逻辑非常自洽⚠️本次更新后用户请自行修改custom文件和预设文件super_plcaer相关段落一样否则出简码功能将会异常,请知悉 ([3fe782e](https://github.com/amzxyz/rime_wanxiang/commit/3fe782e1c769fe6a5e57b3dc0393becb99ba2a61))
+* 新增总出简码支持设置置顶位置了,次选三选随便写,同时这个特性让九键也能合理使用简码,⚠️本次更新后用户请自行修改custom文件和预设文件super_plcaer相关段落一样否则总出简码功能等于没有,请知悉 ([93f4670](https://github.com/amzxyz/rime_wanxiang/commit/93f467074244b35877105c20d78c020117c2956d))
+
+
+### 📚 词库更新
+
+* AI精炼移除无用词条 ([aa03b91](https://github.com/amzxyz/rime_wanxiang/commit/aa03b91b774b2a29b2b863dac33ece9cdd795804))
+* AI精炼移除无用词条/调整词频 ([54e913e](https://github.com/amzxyz/rime_wanxiang/commit/54e913ef3868fb26d5f936c4d72c06ceb2399271))
+
+
+### 🐛 Bug 修复
+
+* 优化英文脚本与超级滤镜在使用\时的一些逻辑细节，从而不干扰用户造词 ([52c14be](https://github.com/amzxyz/rime_wanxiang/commit/52c14beb5425e6416a47bb12160dd74c232de9ac))
+* 成语一同移动到简码db数据库跟随简码前置的位置一起处理 ([335b230](https://github.com/amzxyz/rime_wanxiang/commit/335b2300d7d72ed4678ad53a0047778ae1635dfd))
+* 成语也一并并入了简码库，复杂滤镜这一层不再负责简码前置的相关逻辑了，交还给replacer直接处理简码数据与逻辑，更加集中，因此精简这个滤镜的复杂代码提升性能 ([f357cfc](https://github.com/amzxyz/rime_wanxiang/commit/f357cfc2d5891be4c9c40d716abbbeb34c7470f9))
+
+
+### 🏡 杂项
+
+* 添加说明 ([065c7bd](https://github.com/amzxyz/rime_wanxiang/commit/065c7bdfa6c1bbe84dca9c6e70da64c30ba851f2))
+
 ## [15.0.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.0.2...v15.0.3) (2026-03-04)
 
 
