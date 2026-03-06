@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.1.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.0...v15.1.1) (2026-03-06)
+
+
+### 🐛 Bug 修复
+
+* 遗漏了开关名称 ([629954d](https://github.com/amzxyz/rime_wanxiang/commit/629954d86757dd46bdd1be570b1b1460e647421d))
+
 ## [15.1.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.0.3...v15.1.0) (2026-03-06)
 
 
