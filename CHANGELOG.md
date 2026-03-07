@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.1.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.4...v15.1.5) (2026-03-07)
+
+
+### 🐛 Bug 修复
+
+* 恢复几个脚本 ([60a8dd1](https://github.com/amzxyz/rime_wanxiang/commit/60a8dd17135d2863d2b1cc6e24bc00d4f47b9684))
+
 ## [15.1.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.3...v15.1.4) (2026-03-07)
 
 
