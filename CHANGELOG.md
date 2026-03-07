@@ -1,5 +1,15 @@
 # Changelog
 
+## [15.1.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.1...v15.1.2) (2026-03-07)
+
+
+### 🐛 Bug 修复
+
+* 兜底行为统一type=fallback ([c14b965](https://github.com/amzxyz/rime_wanxiang/commit/c14b965f4d97c5411b77b80b2f459ec259d3c28f))
+* 定义为万象状态面板 ([6c739f1](https://github.com/amzxyz/rime_wanxiang/commit/6c739f15a8459673ac9064e0e9bc3be50bed1e6f))
+* 部分混合编码迁移到固定词库参与组句 ([bf31afb](https://github.com/amzxyz/rime_wanxiang/commit/bf31afb6d51f3f3d9ba3c37c449bec6c6ea0bf4b))
+* 针对字符切分整体lua做uft-8优化 ([c72a36c](https://github.com/amzxyz/rime_wanxiang/commit/c72a36c983a82909ca1723dd34f1ad4084e473b2))
+
 ## [15.1.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.0...v15.1.1) (2026-03-06)
 
 
