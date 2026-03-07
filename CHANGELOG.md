@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.1.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.2...v15.1.3) (2026-03-07)
+
+
+### 🐛 Bug 修复
+
+* 修复一处转写 ([5421cb8](https://github.com/amzxyz/rime_wanxiang/commit/5421cb8fced15e0dbf0630561ff3d7cefd259e12))
+* 修复一处遗漏 ([466a253](https://github.com/amzxyz/rime_wanxiang/commit/466a253c9d4bd3229f6967ba27bc74f48983435d))
+
 ## [15.1.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.1...v15.1.2) (2026-03-07)
 
 
