@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.1.8](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.7...v15.1.8) (2026-03-09)
+
+
+### 🐛 Bug 修复
+
+* 一直以来有人问我繁体字转换出问题，没有人描述清楚，今天我终于洞察到他们发生了什么，首先是开启大字集这个动作的本质上是关闭了过滤，其实这个线条就不工作了，s2t开启，则他只过滤显示繁体字，简体字就没了，这就是为啥东西没了的缘故，原本我希望正常使用通规范围，到了s2t求个并集，通规字参与过滤又会转换回来繁体字从而得到留存，现在我为你s2t 等也加上了a的范围，这样s2t开启后就是fa的范围，在后续被超级替换刷过以后就变成了全繁体 ([f2b88e0](https://github.com/amzxyz/rime_wanxiang/commit/f2b88e06e1e1b27f7104ae2ce7f957e4fe15b8c4))
+
 ## [15.1.7](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.6...v15.1.7) (2026-03-09)
 
 
