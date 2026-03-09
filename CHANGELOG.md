@@ -1,5 +1,21 @@
 # Changelog
 
+## [15.1.6](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.5...v15.1.6) (2026-03-09)
+
+
+### 📚 词库更新
+
+* 词库调整 ([a8c8c40](https://github.com/amzxyz/rime_wanxiang/commit/a8c8c409f8d8f3a83293e28fdc8972a881b27039))
+* 调整3字词频 ([65663d6](https://github.com/amzxyz/rime_wanxiang/commit/65663d69bf315031b02c3be94ce620061722bd5a))
+
+
+### 🐛 Bug 修复
+
+* 1、取消英文在非句子中的无候选兜底，干扰中文是否唯一的判定2、超级替换支持剩余编码匹配简码3、超级注释的部分逻辑调整 ([5349353](https://github.com/amzxyz/rime_wanxiang/commit/534935331931a8f8e97fcd229deba282f11819a5))
+* 九键设置简化了，不在暴露外部转换参数，而是用一个t9优化替代，他能将维护的字母编码存入数据库时候变成数字，并把原编码储存起来用于修改preedit ([59a0910](https://github.com/amzxyz/rime_wanxiang/commit/59a091082652be07742760cb9c9593a03403f9bf))
+* 九键输入数字编码打时间现在可以看到正确的编码了 ([ddb3c2c](https://github.com/amzxyz/rime_wanxiang/commit/ddb3c2ca084538efe67f3bfb623f06a77456147f))
+* 规范化shijian.lua的cand.type参数 ([098aa64](https://github.com/amzxyz/rime_wanxiang/commit/098aa646a8af8f1267c1c8b2a9d1e6029395909e))
+
 ## [15.1.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.4...v15.1.5) (2026-03-07)
 
 
