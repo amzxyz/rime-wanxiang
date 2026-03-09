@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.1.7](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.6...v15.1.7) (2026-03-09)
+
+
+### 🐛 Bug 修复
+
+* 混合编码还是恢复到单独的方案，能用但会干扰正常单字母派生，这可能是rime底层逻辑的一些限制没办法 ([8015ccc](https://github.com/amzxyz/rime_wanxiang/commit/8015ccc29fd251033579908e93762eb8f1dca575))
+
 ## [15.1.6](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.5...v15.1.6) (2026-03-09)
 
 
