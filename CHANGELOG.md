@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.1.10](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.9...v15.1.10) (2026-03-10)
+
+
+### 🐛 Bug 修复
+
+* 句号在特殊情况下不应被占用 ([4712c5e](https://github.com/amzxyz/rime_wanxiang/commit/4712c5e396e067c1ce2d39838c51602c8484f139))
+* 英文lua加上user_table这个类型后可以都显示不受英文词组数量过滤逻辑干扰 ([27f9f6b](https://github.com/amzxyz/rime_wanxiang/commit/27f9f6b728763c1bbff209a049e671b9ef5d0e4a))
+
 ## [15.1.9](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.8...v15.1.9) (2026-03-10)
 
 
