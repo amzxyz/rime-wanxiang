@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.1.9](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.8...v15.1.9) (2026-03-10)
+
+
+### 🐛 Bug 修复
+
+* 修复时辰计算的若干bug，按键处理器全方位暴露出设置项功能启用开关，以词定字等功能配置也归并到一起 ([f6e21e7](https://github.com/amzxyz/rime_wanxiang/commit/f6e21e7a37fcb1b4d7396b800d30c33ee7470b15))
+* 增加了简码的tag配置，反查出现简码的加上[abc] ([c516436](https://github.com/amzxyz/rime_wanxiang/commit/c5164366c9a2a4b33690846f48a4ea3c83ee9acc))
+
 ## [15.1.8](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.7...v15.1.8) (2026-03-09)
 
 
