@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.1.11](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.10...v15.1.11) (2026-03-10)
+
+
+### 🐛 Bug 修复
+
+* release页面预测数据库下载指引 ([858b490](https://github.com/amzxyz/rime_wanxiang/commit/858b490c0c88173492ad6af0404d805482c822de))
+* 修复若干bug ([d3c880a](https://github.com/amzxyz/rime_wanxiang/commit/d3c880a310bba8ee05e1afb5668ecfa04ebab283))
+
 ## [15.1.10](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.9...v15.1.10) (2026-03-10)
 
 
