@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.2.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.11...v15.2.0) (2026-03-11)
+
+
+### ✨ 新特性
+
+* 新增联想输入时空格打断联想并上屏空格对齐大厂，默认开启 ([e585912](https://github.com/amzxyz/rime_wanxiang/commit/e58591228df015f80dde2988b4590926ecc05c40))
+
 ## [15.1.11](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.10...v15.1.11) (2026-03-10)
 
 
