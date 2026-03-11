@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.2.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.2.0...v15.2.1) (2026-03-11)
+
+
+### 🐛 Bug 修复
+
+* 修复了句子锁定脚本引发的数字后符号不能上屏问题，以及新增了按下回退键直接释放锁定 ([2594ba8](https://github.com/amzxyz/rime_wanxiang/commit/2594ba82ae31c371425dedf6a0e73febd509f9d9))
+* 修复了配合九键拼音的一些问题，以及平板安卓使用时数字无法成为选字键的问题 ([61b1fed](https://github.com/amzxyz/rime_wanxiang/commit/61b1fed60567261ec56fce2246d245bbe8c0e496))
+
 ## [15.2.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.1.11...v15.2.0) (2026-03-11)
 
 
