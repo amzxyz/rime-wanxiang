@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.2.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.2.1...v15.2.2) (2026-03-12)
+
+
+### 🐛 Bug 修复
+
+* 开启了预测后tips还在匹配无input的候选，体验不好予以规避 ([05204fa](https://github.com/amzxyz/rime_wanxiang/commit/05204fa7306708b369c2dec807522e97e562308e))
+* 调了一个模型参数测试一下 ([f58c49f](https://github.com/amzxyz/rime_wanxiang/commit/f58c49ff46691f39cc463ab7ca2b5dc723a09320))
+
 ## [15.2.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.2.0...v15.2.1) (2026-03-11)
 
 
