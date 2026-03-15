@@ -1,5 +1,21 @@
 # Changelog
 
+## [15.2.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.2.2...v15.2.3) (2026-03-15)
+
+
+### 📚 词库更新
+
+* 词库调整 ([d90a834](https://github.com/amzxyz/rime_wanxiang/commit/d90a8347a50592bc9490d34fc591cf0fdbcc19df))
+
+
+### 🐛 Bug 修复
+
+* input统计配置项目合并，可定义数据库位置，可设置触发按键，支持等级 ([9c77770](https://github.com/amzxyz/rime_wanxiang/commit/9c777705cf567ac51dd35f42c58324a663215a2d))
+* tips配置项目合并，可定义数据库位置 ([7828908](https://github.com/amzxyz/rime_wanxiang/commit/782890843b741e7e5a9d27c796cce6918d15b937))
+* 变更同文主题集成 ([b13372f](https://github.com/amzxyz/rime_wanxiang/commit/b13372f3be5c76510b0dfd3f35172e95cb2b336c))
+* 排序配置整理集中，数据库名称可配置 ([75c2306](https://github.com/amzxyz/rime_wanxiang/commit/75c2306b45cfa2c2f7b197b054eefd1c4903fc8b))
+* 新增自动预览版发布 ([99c18bd](https://github.com/amzxyz/rime_wanxiang/commit/99c18bd377aae9d422c3e6b0f9485a9529c293ff))
+
 ## [15.2.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.2.1...v15.2.2) (2026-03-12)
 
 
