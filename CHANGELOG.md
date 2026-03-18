@@ -1,5 +1,27 @@
 # Changelog
 
+## [15.2.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.2.3...v15.2.4) (2026-03-18)
+
+
+### 📚 词库更新
+
+* 词库调整 ([1c1a1b9](https://github.com/amzxyz/rime_wanxiang/commit/1c1a1b926b33f10d649d5401258c715d71b6c416))
+* 词库调整 ([86363aa](https://github.com/amzxyz/rime_wanxiang/commit/86363aaab6222d3fe33a1b944c50a6125feee95f))
+* 词库调整 ([bbac19f](https://github.com/amzxyz/rime_wanxiang/commit/bbac19f3d3a1a72a53d6928d7c8dabae3863d4ec))
+
+
+### 🐛 Bug 修复
+
+* 变更自动化脚本 ([7090640](https://github.com/amzxyz/rime_wanxiang/commit/7090640c1f97fe09cbb72775c255a1e78eb1aa27))
+* 同文变动较多后续对齐正式版 ([c0a514b](https://github.com/amzxyz/rime_wanxiang/commit/c0a514ba9d814cf0f912ed463b6286c60182ae1f))
+* 智能ABC补齐ju-jv兼容 ([94997dc](https://github.com/amzxyz/rime_wanxiang/commit/94997dc6da443fcf3ff8fff8b9cedd564acd937b))
+* 更新简纯主题 ([b32f6e9](https://github.com/amzxyz/rime_wanxiang/commit/b32f6e969ed07846716b3dd2eaf190c9777889b2))
+* 更新简纯主题 ([40fbd62](https://github.com/amzxyz/rime_wanxiang/commit/40fbd626f2e747fc7b0cd3bda665c1bd4c5c82d8))
+* 消除一点误会，避免被旁人学习 ([d767d64](https://github.com/amzxyz/rime_wanxiang/commit/d767d64026a6aae506e9496aee758e0d542bda7f))
+* 添加一处正则，让/htj指令可以用主键盘数字而不上屏 ([71891c9](https://github.com/amzxyz/rime_wanxiang/commit/71891c92b76060e8163fa33e5d8bef984fc06742))
+* 添加测试的APK打包修复 ([93195cc](https://github.com/amzxyz/rime_wanxiang/commit/93195ccd29ee0a30eb2deea0eb8eadd25b158dcb))
+* 配合UI工具新增一些转写，英语方案默认不开启 ([ad06dff](https://github.com/amzxyz/rime_wanxiang/commit/ad06dff04bd8d0e2996d5f4e527b2f0a24d8c2ea))
+
 ## [15.2.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.2.2...v15.2.3) (2026-03-15)
 
 
