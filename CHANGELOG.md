@@ -1,5 +1,27 @@
 # Changelog
 
+## [15.3.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.2.4...v15.3.0) (2026-03-21)
+
+
+### ✨ 新特性
+
+* 推出一个纯lua构建的联想预测处理器 ([e448d0e](https://github.com/amzxyz/rime_wanxiang/commit/e448d0e12675e983f728558832ecec3348b9fa8e))
+
+
+### 🔥 性能优化
+
+* **lua:** super_tips支持自定义文件路径 ([ff9cb74](https://github.com/amzxyz/rime_wanxiang/commit/ff9cb747acd9739cdf67d2c339eeffa3e4e1a5ce))
+
+
+### 🐛 Bug 修复
+
+* shijian又一次越界 ([4be7586](https://github.com/amzxyz/rime_wanxiang/commit/4be758682fc4fca856240d54dfd76a8d539e418a))
+* tips可自定义文件位置 ([856ec5b](https://github.com/amzxyz/rime_wanxiang/commit/856ec5ba411b1561a9b928110fd40781483fb61f))
+* 修复今天不能同时让显示春风龙抬头引发的bug ([77ed1ca](https://github.com/amzxyz/rime_wanxiang/commit/77ed1ca3cc50af0740d308d9e80d718fd9520561))
+* 完善预测lua代码 ([caf178a](https://github.com/amzxyz/rime_wanxiang/commit/caf178a118504df1c38e2c95b0a7689695cb0c9a))
+* 测试期过恢复模型参数 ([75ba637](https://github.com/amzxyz/rime_wanxiang/commit/75ba63714cd9cf0ca9a803b25a74054dc6eff82a))
+* 预测发布前的一些细节调整 ([7d3fb67](https://github.com/amzxyz/rime_wanxiang/commit/7d3fb67a4bc8db75aa4dfe13b1a2d8737f02089d))
+
 ## [15.2.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.2.3...v15.2.4) (2026-03-18)
 
 
