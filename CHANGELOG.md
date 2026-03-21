@@ -1,5 +1,20 @@
 # Changelog
 
+## [15.3.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.0...v15.3.1) (2026-03-21)
+
+
+### 🐛 Bug 修复
+
+* 为九键引入lookup筛选 ([e23e420](https://github.com/amzxyz/rime_wanxiang/commit/e23e4206dcc924822e0624c9a33ce21d250feefe))
+* 优化一些转写 ([0819b2d](https://github.com/amzxyz/rime_wanxiang/commit/0819b2d5fe969af1f4505df62ad9d5cbcbd07d34))
+* 优化一些转写 ([b5e8ba8](https://github.com/amzxyz/rime_wanxiang/commit/b5e8ba82b22b5bc160a1ea95d62ab90c741f01dd))
+* 预测lua优化 ([ad51c47](https://github.com/amzxyz/rime_wanxiang/commit/ad51c47c2f85a67bf270f89135f4600b2de1fa02))
+
+
+### 🏡 杂项
+
+* 修改说明 ([0c64351](https://github.com/amzxyz/rime_wanxiang/commit/0c643517855a00d8070181325229283ac7163439))
+
 ## [15.3.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.2.4...v15.3.0) (2026-03-21)
 
 
