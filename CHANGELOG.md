@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.3.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.3...v15.3.4) (2026-03-22)
+
+
+### 🐛 Bug 修复
+
+* 放行太极被后面滤镜删除英文句子 ([6da61c6](https://github.com/amzxyz/rime_wanxiang/commit/6da61c6dd79a8c4899ce92834c705d37a226ab22))
+
 ## [15.3.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.2...v15.3.3) (2026-03-22)
 
 
