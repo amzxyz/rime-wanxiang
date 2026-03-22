@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.3.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.4...v15.3.5) (2026-03-22)
+
+
+### 🐛 Bug 修复
+
+* 预测新增双模式双规运行，即1、预测会以新的预测候选弹出、2、在输入编码后如匹配则调频置顶，两个模式可以在配置中进行单独或共同启用，但总开关还是option位置控制，以及其他更多细节的调整 ([e143354](https://github.com/amzxyz/rime_wanxiang/commit/e143354dad38c6c9eb6e9b6bee27e3d9630365c3))
+
 ## [15.3.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.3...v15.3.4) (2026-03-22)
 
 
