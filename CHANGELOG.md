@@ -1,5 +1,14 @@
 # Changelog
 
+## [15.3.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.2...v15.3.3) (2026-03-22)
+
+
+### 🐛 Bug 修复
+
+* 修复新建候选引发的边界不稳 ([1851300](https://github.com/amzxyz/rime_wanxiang/commit/1851300d87077b644403d5a0196a1696fe27edc3))
+* 只记忆候选长度变化的第一个 ([b30e981](https://github.com/amzxyz/rime_wanxiang/commit/b30e9816190d0c926f684beb18431811361ded49))
+* 回复两个拦截逻辑 ([b52e3c8](https://github.com/amzxyz/rime_wanxiang/commit/b52e3c8b69567fa0a101664ddd80bd57664423b9))
+
 ## [15.3.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.1...v15.3.2) (2026-03-22)
 
 
