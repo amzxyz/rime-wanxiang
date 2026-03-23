@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.3.7](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.6...v15.3.7) (2026-03-23)
+
+
+### 🐛 Bug 修复
+
+* 修复一个lua版本弃用的函数保证小企鹅可用 ([c3fd834](https://github.com/amzxyz/rime_wanxiang/commit/c3fd834c59326043881667f7d99743bcdb026ec7))
+
 ## [15.3.6](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.5...v15.3.6) (2026-03-23)
 
 
