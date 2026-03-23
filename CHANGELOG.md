@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.3.6](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.5...v15.3.6) (2026-03-23)
+
+
+### 🐛 Bug 修复
+
+* 修复一个预测lua的空格问题 ([bcd4e0d](https://github.com/amzxyz/rime_wanxiang/commit/bcd4e0da28428c0583e386735f846cdb283b9b7e))
+
 ## [15.3.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.4...v15.3.5) (2026-03-22)
 
 
