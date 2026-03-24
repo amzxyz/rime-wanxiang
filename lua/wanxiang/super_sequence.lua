@@ -100,8 +100,8 @@ local function _read_installation_yaml()
     local f = io.open(path, "r"); if not f then return nil, nil end
     local installation_id, sync_dir
     for line in f:lines() do
-        line = line:gsub("%s+#.*$", "")
-        local key, val = line:match("^%s*([%w_]+)%s*:%s*(.+)$")
+        local cleaned = line:gsub("%s+#.*$", "")
+        local key, val = cleaned:match("^%s*([%w_]+)%s*:%s*(.+)$")
         if key and val then
             val = val:gsub('^%s*"(.*)"%s*$', "%1"):gsub("^%s*'(.*)'%s*$", "%1")
             val = val:gsub("^%s+", ""):gsub("%s+$", "")

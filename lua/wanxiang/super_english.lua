@@ -163,6 +163,7 @@ local function apply_segment_formatting(text, input_code)
     local parts = {}
     local p_code = 1 
     for word in string.gmatch(text, "%S+") do
+        local out_word = word
         local clean_word = pure(word)
         local w_len = #clean_word
         if w_len > 0 then
@@ -179,15 +180,15 @@ local function apply_segment_formatting(text, input_code)
                     local segment = sub(input_code, p_code, p_code + check_len - 1)
                     local is_pure_alpha = not find(word, "[^a-zA-Z]")
                     if find(segment, "^%u%u") and is_pure_alpha then
-                        word = upper(word)
+                        out_word = upper(word)
                     elseif find(segment, "^%u") then
-                        word = gsub(word, "^%a", upper)
+                        out_word = gsub(word, "^%a", upper)
                     end
                     p_code = p_code + check_len
                 end
             end
         end
-        table.insert(parts, word)
+        table.insert(parts, out_word)
     end
     return table.concat(parts, " ")
 end
