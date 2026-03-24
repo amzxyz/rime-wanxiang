@@ -1,5 +1,18 @@
 # Changelog
 
+## [15.3.10](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.9...v15.3.10) (2026-03-24)
+
+
+### 🐛 Bug 修复
+
+* 优化脚本代码 ([938d30d](https://github.com/amzxyz/rime_wanxiang/commit/938d30df5246168e05ef501377c4d74f6bd7ac5e))
+* 兼容 Lua 5.5 只读局部变量语义 ([2037a38](https://github.com/amzxyz/rime_wanxiang/commit/2037a38b6c6879f466f683d281bd126cb6f75f17))
+
+
+### 🏡 杂项
+
+* 修改说明 ([af0d5dc](https://github.com/amzxyz/rime_wanxiang/commit/af0d5dc22ec87ab6fb0a14ac2743930f81d721f8))
+
 ## [15.3.9](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.9...v15.3.9) (2026-03-24)
 
 
