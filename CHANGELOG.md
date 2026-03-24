@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.3.9](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.8...v15.3.9) (2026-03-24)
+
+
+### 🐛 Bug 修复
+
+* 预测状态拦截7890的声调回退并能打断直接上屏 ([60d2fbb](https://github.com/amzxyz/rime_wanxiang/commit/60d2fbb37c275880dcc65e2ece01c13d12de61d9))
+
 ## [15.3.8](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.7...v15.3.8) (2026-03-23)
 
 
