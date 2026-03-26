@@ -1,5 +1,24 @@
 # Changelog
 
+## [15.3.11](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.10...v15.3.11) (2026-03-26)
+
+
+### 📚 词库更新
+
+* 词库调整 ([8270653](https://github.com/amzxyz/rime_wanxiang/commit/827065398d752894b78f44996263c7bf391b3573))
+* 词库调整 ([9004514](https://github.com/amzxyz/rime_wanxiang/commit/90045147d651173d3a35f455e0a2c62bcefca3ab))
+
+
+### 🐛 Bug 修复
+
+* 优化细节 ([f916d13](https://github.com/amzxyz/rime_wanxiang/commit/f916d13e59a044d5e4dd003c2738f3a758f5e6d4))
+* 修复super replacer正则加载数据的漏洞导致的翻译错位 ([01f8354](https://github.com/amzxyz/rime_wanxiang/commit/01f8354eb201002163b3ab569fb6454deb63e791))
+* 取消预设的预测注释提示符 ([9e45e0b](https://github.com/amzxyz/rime_wanxiang/commit/9e45e0b15017173f06bc93fcf3340eacc389d838))
+* 新增全新的汉译英简约数据 ([2b009ae](https://github.com/amzxyz/rime_wanxiang/commit/2b009aeb532f37f87fe457e2460e3b7f5475d0a3))
+* 新增全新的英译汉简约数据 ([4ce516a](https://github.com/amzxyz/rime_wanxiang/commit/4ce516a8433fefef5b9c359c9c90a4aaa2715299))
+* 预测lua在非输入中的回车空格将视为打断信号，避免两句一样的话在换行时被收尾连续 ([0773def](https://github.com/amzxyz/rime_wanxiang/commit/0773defe3e475ee78ddb8bf998f83feee6b37495))
+* 预测窗口按照候选数量来决定上屏行为，之后超出部分打断直接上屏 ([3df9691](https://github.com/amzxyz/rime_wanxiang/commit/3df96915488e146b5a41c63e57b5068fce5f6b74))
+
 ## [15.3.10](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.9...v15.3.10) (2026-03-24)
 
 
