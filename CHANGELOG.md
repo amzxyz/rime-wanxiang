@@ -1,5 +1,28 @@
 # Changelog
 
+## [15.4.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.11...v15.4.0) (2026-03-28)
+
+
+### 📚 词库更新
+
+* 增加一些词组 ([73be4a2](https://github.com/amzxyz/rime_wanxiang/commit/73be4a2bb4cd4b108e50d1d4ef8e5942b4ac76c5))
+
+
+### 🔥 性能优化
+
+* 改进转写正则的应用避免.*消耗算力的语法，采用更为精简的局部匹配法，去掉无效捕获，Linux上能快4秒，在手机上能快20s ([4c8d776](https://github.com/amzxyz/rime_wanxiang/commit/4c8d77669a2baaeb1f50d65945be766c62d14e56))
+
+
+### 🐛 Bug 修复
+
+* 改进上下文调频的策略，只匹配首词字数相等的候选，避免单字等跃迁到前面 ([503a257](https://github.com/amzxyz/rime_wanxiang/commit/503a257861527e1b23bc171267b2d0e2dcb96057))
+* 添加若干tips数据 ([8534b05](https://github.com/amzxyz/rime_wanxiang/commit/8534b054a5fa7e41c3a2762fd29918f92a91e7e7))
+
+
+### 🏡 杂项
+
+* release 15.4.0 ([d74e2a6](https://github.com/amzxyz/rime_wanxiang/commit/d74e2a6ffe159fbd7600e9a203e97209ac62b872))
+
 ## [15.3.11](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.10...v15.3.11) (2026-03-26)
 
 
