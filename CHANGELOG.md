@@ -1,5 +1,18 @@
 # Changelog
 
+## [15.4.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.4.0...v15.4.1) (2026-03-28)
+
+
+### 📚 词库更新
+
+* 词库调整 ([7e1cf73](https://github.com/amzxyz/rime_wanxiang/commit/7e1cf73f7b07fa22c602d6acbe4434f8e49bd1ca))
+* 词库调整 ([b71a743](https://github.com/amzxyz/rime_wanxiang/commit/b71a743e720dd3794476ce1a095404d9b648e9ff))
+
+
+### 🐛 Bug 修复
+
+* 继续改进转写正则 ([afe4cfc](https://github.com/amzxyz/rime_wanxiang/commit/afe4cfc7d3180e5129f04e387aff861106386ca7))
+
 ## [15.4.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.3.11...v15.4.0) (2026-03-28)
 
 
