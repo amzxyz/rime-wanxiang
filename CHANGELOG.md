@@ -1,5 +1,17 @@
 # Changelog
 
+## [15.4.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.4.1...v15.4.2) (2026-03-29)
+
+
+### 🐛 Bug 修复
+
+* 移除统计防抖 ([a0f4585](https://github.com/amzxyz/rime_wanxiang/commit/a0f45856f62b49924ceded1c2b1d1805783a487f))
+
+
+### 🤖 持续集成
+
+* 变更plum文件集合 ([6ad4ecc](https://github.com/amzxyz/rime_wanxiang/commit/6ad4ecca8c9cb42e2bdcdff525bcbf7316e79636))
+
 ## [15.4.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.4.0...v15.4.1) (2026-03-28)
 
 
