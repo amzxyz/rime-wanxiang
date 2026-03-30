@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.4.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.4.3...v15.4.4) (2026-03-30)
+
+
+### 🐛 Bug 修复
+
+* 补全微软搜狗转写问题 ([a4adaf4](https://github.com/amzxyz/rime_wanxiang/commit/a4adaf4469bc34905c0389eb24617f9926279450))
+* 调整转写 ([c9f3525](https://github.com/amzxyz/rime_wanxiang/commit/c9f35251430292b095f88af4d8b47018d63829b7))
+
 ## [15.4.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.4.2...v15.4.3) (2026-03-30)
 
 
