@@ -1,5 +1,19 @@
 # Changelog
 
+## [15.4.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.4.2...v15.4.3) (2026-03-30)
+
+
+### 📚 词库更新
+
+* 将2+2+2/3+2/2+3且都在基础中为首选的五字、六字移动到了模型中，加速检索 ([19693f2](https://github.com/amzxyz/rime_wanxiang/commit/19693f20413813d4b6a277b895097387f9e07895))
+* 词库调整 ([eb42027](https://github.com/amzxyz/rime_wanxiang/commit/eb42027cb23b23c0a2df2751edde85b42ba24068))
+* 词库调整 ([770bff3](https://github.com/amzxyz/rime_wanxiang/commit/770bff39c5d85fce1c7e199e9bf68daa68758412))
+
+
+### 🐛 Bug 修复
+
+* 国标双拼转写优化 ([06dbad2](https://github.com/amzxyz/rime_wanxiang/commit/06dbad25db7c46260a83f9cad8786906efd64d96))
+
 ## [15.4.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.4.1...v15.4.2) (2026-03-29)
 
 
