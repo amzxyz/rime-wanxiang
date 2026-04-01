@@ -1,5 +1,19 @@
 # Changelog
 
+## [15.4.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.4.4...v15.4.5) (2026-04-01)
+
+
+### 📚 词库更新
+
+* 词库调整 ([b9ea7ee](https://github.com/amzxyz/rime_wanxiang/commit/b9ea7ee5998c154861d1ee0bb2942b7a9b4737bd))
+
+
+### 🐛 Bug 修复
+
+* 变更首右辅助码对齐上游 ([964b6a9](https://github.com/amzxyz/rime_wanxiang/commit/964b6a9c41f164cbcc5af0d8ae8523168f26382e))
+* 增加首右plus辅助码 ([4f232a2](https://github.com/amzxyz/rime_wanxiang/commit/4f232a27432f519ef4ff86140986554152dadc2b))
+* 补齐lua版本预测状态下不匹配tips的逻辑 ([e20a27b](https://github.com/amzxyz/rime_wanxiang/commit/e20a27bf03bc014ce9d146cd139aec086760bee1))
+
 ## [15.4.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.4.3...v15.4.4) (2026-03-30)
 
 
