@@ -1,5 +1,26 @@
 # Changelog
 
+## [15.5.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.4.5...v15.5.0) (2026-04-02)
+
+
+### ✨ 新特性
+
+* 开始研究万象辅助码 ([ff42689](https://github.com/amzxyz/rime_wanxiang/commit/ff42689b26d02b2580c0e2af1f8cc3bd6931f019))
+
+
+### 📚 词库更新
+
+* 词库调整 ([3e76443](https://github.com/amzxyz/rime_wanxiang/commit/3e764433593da847af291e7aae5d90e867c40633))
+* 词库调整 ([f73a98c](https://github.com/amzxyz/rime_wanxiang/commit/f73a98c1cfec23340a97c5798e872840e1fdfee2))
+* 词库调整 ([86d742e](https://github.com/amzxyz/rime_wanxiang/commit/86d742ed40307a3c216bf5da51f25a4f1fc7fb20))
+* 词库调整 ([8d5f355](https://github.com/amzxyz/rime_wanxiang/commit/8d5f35537832aef414eabcd20d7de7c1903354d5))
+
+
+### 🐛 Bug 修复
+
+* 调整模型参数 ([f8dfc90](https://github.com/amzxyz/rime_wanxiang/commit/f8dfc90b6af5e2089b0264b485f2a6620349ea22))
+* 辅助码传错了 ([2cac9bb](https://github.com/amzxyz/rime_wanxiang/commit/2cac9bb3988a64358eb3c470a46e3cebd9d03c67))
+
 ## [15.4.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.4.4...v15.4.5) (2026-04-01)
 
 
