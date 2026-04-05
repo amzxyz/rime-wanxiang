@@ -1,5 +1,18 @@
 # Changelog
 
+## [15.6.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.5.2...v15.6.0) (2026-04-05)
+
+
+### ✨ 新特性
+
+* 重构拆分逻辑从超级注释拿出来，单独以超级替换模块引入 ([f8be4e7](https://github.com/amzxyz/rime_wanxiang/commit/f8be4e77ce69e663dfdae0c270ed2ea75505b693))
+
+
+### 📚 词库更新
+
+* 词库调整 ([c4426a2](https://github.com/amzxyz/rime_wanxiang/commit/c4426a22ad117862d1e61b43acb683f9149afe01))
+* 词库调整 ([63264dd](https://github.com/amzxyz/rime_wanxiang/commit/63264dd992a995a297766c6f92a56268cd1514fa))
+
 ## [15.5.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.5.1...v15.5.2) (2026-04-04)
 
 
