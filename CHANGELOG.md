@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.6.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.0...v15.6.1) (2026-04-05)
+
+
+### 🐛 Bug 修复
+
+* 注释模式改成直接替换 ([8f83f1e](https://github.com/amzxyz/rime_wanxiang/commit/8f83f1edd121448f983c92487899d65c71be650f))
+
 ## [15.6.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.5.2...v15.6.0) (2026-04-05)
 
 
