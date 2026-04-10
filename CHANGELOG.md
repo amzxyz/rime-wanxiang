@@ -1,5 +1,28 @@
 # Changelog
 
+## [15.6.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.2...v15.6.3) (2026-04-10)
+
+
+### 📚 词库更新
+
+* 修正若干读音 ([dcc2599](https://github.com/amzxyz/rime_wanxiang/commit/dcc259931f839b985ebe947dda8c03de850a5acd))
+* 词库调整 ([07e5995](https://github.com/amzxyz/rime_wanxiang/commit/07e5995b6974037f28f2ab62e96bf94e0b3b512b))
+* 词库调整 ([6f45ffc](https://github.com/amzxyz/rime_wanxiang/commit/6f45ffc11d5a2f1ab119c626bdc0e5c0397a1c3f))
+* 词库调整 ([247dd4f](https://github.com/amzxyz/rime_wanxiang/commit/247dd4f9648ce17d39474ce964f7e0f008c7464f))
+
+
+### 🐛 Bug 修复
+
+* 优化万象双拼位置 ([38713f8](https://github.com/amzxyz/rime_wanxiang/commit/38713f84995dff0237a95c0fe9b1d4d1754a90aa))
+* 有大数据算法支撑得万象双拼 ([cb8cec8](https://github.com/amzxyz/rime_wanxiang/commit/cb8cec8fe1c72952a30382b96cd4160abe8f0625))
+
+
+### 🏡 杂项
+
+* ci ([e9f5b55](https://github.com/amzxyz/rime_wanxiang/commit/e9f5b555ba7f7dd5294d857f20432cf33cc46699))
+* 修改说明 ([242c0d1](https://github.com/amzxyz/rime_wanxiang/commit/242c0d1b741b8565998bfe4fccf4ce26309a4859))
+* 综合修改万象双拼 ([d037ef9](https://github.com/amzxyz/rime_wanxiang/commit/d037ef98ef36d9931d9bb97bd3edd0cd3eda895e))
+
 ## [15.6.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.1...v15.6.2) (2026-04-07)
 
 
