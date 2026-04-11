@@ -1,5 +1,17 @@
 # Changelog
 
+## [15.6.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.3...v15.6.4) (2026-04-11)
+
+
+### 📚 词库更新
+
+* 词库调整 ([f82c77e](https://github.com/amzxyz/rime_wanxiang/commit/f82c77e3d8f982466fe0601329429cbeb80c30e6))
+
+
+### 🐛 Bug 修复
+
+* 修复小键盘数字上屏后digit_separators策略失效得问题 ([23b16fb](https://github.com/amzxyz/rime_wanxiang/commit/23b16fb6d0dc7ee1f64967972368c054fdff80f1))
+
 ## [15.6.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.2...v15.6.3) (2026-04-10)
 
 
