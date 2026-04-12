@@ -1,5 +1,17 @@
 # Changelog
 
+## [15.6.6](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.5...v15.6.6) (2026-04-12)
+
+
+### 🐛 Bug 修复
+
+* 采用倒序修改句子的方法，增强句子修改能力补齐忘记写的声调 ([2a54baa](https://github.com/amzxyz/rime_wanxiang/commit/2a54baaf51b4efcb1c2c646134df706f3e7fc7b0))
+
+
+### 🏡 杂项
+
+* 修改说明 ([9fe66ba](https://github.com/amzxyz/rime_wanxiang/commit/9fe66ba076cde9149f4e6493475817408cf0910a))
+
 ## [15.6.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.4...v15.6.5) (2026-04-12)
 
 
