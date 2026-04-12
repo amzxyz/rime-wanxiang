@@ -1,5 +1,21 @@
 # Changelog
 
+## [15.6.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.4...v15.6.5) (2026-04-12)
+
+
+### 📚 词库更新
+
+* 词库调整 ([043081c](https://github.com/amzxyz/rime_wanxiang/commit/043081cc54b16203d46ddaca757090129e7ab579))
+* 词库调整 ([caaecda](https://github.com/amzxyz/rime_wanxiang/commit/caaecdafeca289e6594c223e36f4c61280036132))
+
+
+### 🐛 Bug 修复
+
+* **test:** lookup应截取切分分段的前两码与后辅助码组合 ([1eabfae](https://github.com/amzxyz/rime_wanxiang/commit/1eabfae36bbd5acbe7abe64d32fb1375cc24caad))
+* **test:** 推出lookup整句辅助码改正策略 ([4efbf46](https://github.com/amzxyz/rime_wanxiang/commit/4efbf46f38556dfdcf6bbe8b9afdd0ff68bd599f))
+* 优化上下文调频中潜在的bug ([4e052b8](https://github.com/amzxyz/rime_wanxiang/commit/4e052b8fd38a5791efd7c0376cb4325a7e6fac69))
+* 优化统计为持续打开的单例池子，避免输入数据丢失 ([8990914](https://github.com/amzxyz/rime_wanxiang/commit/89909145aa78590e43164b8cb6219680480ae826))
+
 ## [15.6.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.3...v15.6.4) (2026-04-11)
 
 
