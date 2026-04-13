@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.7.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.7.0...v15.7.1) (2026-04-13)
+
+
+### 🐛 Bug 修复
+
+* 增强lookup首句词组级修改能力 ([598ed4f](https://github.com/amzxyz/rime_wanxiang/commit/598ed4fa938e881d1852f8f6c445eea66ccfac8e))
+* 小键盘处理s模式交还给系统处理 ([a9c8a22](https://github.com/amzxyz/rime_wanxiang/commit/a9c8a225f86ee98e1f6dd6d940bb75380608efff))
+
 ## [15.7.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.6...v15.7.0) (2026-04-13)
 
 
