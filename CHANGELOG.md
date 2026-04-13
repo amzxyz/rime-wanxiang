@@ -1,5 +1,18 @@
 # Changelog
 
+## [15.7.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.6...v15.7.0) (2026-04-13)
+
+
+### ✨ 新特性
+
+* **lookup:** 输入后辅筛新增，对首选为句子的情形下支持双辅助码，或者双辅助+声调，来修改句中的字，可以连续输入多组修改，限制修改首选句子的类型为真实的组句，固定词组由辅筛来工作 ([39b6718](https://github.com/amzxyz/rime_wanxiang/commit/39b6718e32986360e4cce2e9b0da2620c3e20419))
+
+
+### 🐛 Bug 修复
+
+* **lookup:** 使用权重比较策略，让修改点找到最佳落点，多建议的用法是输入输入完整辅助码+声调以提高唯一性 ([0b3b15b](https://github.com/amzxyz/rime_wanxiang/commit/0b3b15bc49e8e8f17155f51e76dd4dd47355ee74))
+* 一些方案细节调整 ([8f9b7e9](https://github.com/amzxyz/rime_wanxiang/commit/8f9b7e96cb77c3fba2165a174e2103c7abb1f3e0))
+
 ## [15.6.6](https://github.com/amzxyz/rime_wanxiang/compare/v15.6.5...v15.6.6) (2026-04-12)
 
 
