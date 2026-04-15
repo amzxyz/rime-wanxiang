@@ -1,5 +1,29 @@
 # Changelog
 
+## [15.7.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.7.1...v15.7.2) (2026-04-15)
+
+
+### 📚 词库更新
+
+* 词库调整 ([7afb574](https://github.com/amzxyz/rime_wanxiang/commit/7afb5741ae2fa7385d1a2a3ba20a1bd5828254dd))
+* 词库调整 ([10ba122](https://github.com/amzxyz/rime_wanxiang/commit/10ba122a6ac75da3813535a39c27e3ff85de2b17))
+* 词库调整 ([d5569e4](https://github.com/amzxyz/rime_wanxiang/commit/d5569e4581ae21353112ba4830b7c5ba89904d84))
+
+
+### 🐛 Bug 修复
+
+* **lookup:** 优化辅助码修改首句的能力 ([2d668bc](https://github.com/amzxyz/rime_wanxiang/commit/2d668bc0261a8b72078c1d8352790eb3ab9f57a3))
+* **lookup:** 在候选中出现相同辅助且相邻的时候，程序能智能判断组词的情况来判断我们到底想要修改哪个字，例如 天上星星-天上行星，我们只需输入行的辅助码就能完成 ([b1db1ad](https://github.com/amzxyz/rime_wanxiang/commit/b1db1ad301d7452e0380a36b1c46bd1d97560067))
+* 修复若干bug ([e946a7b](https://github.com/amzxyz/rime_wanxiang/commit/e946a7ba140490b38f50736a7812e4f35a000c0d))
+* 锁定句子默认设置为F1,解放句号，且为低频场景 ([0db82ab](https://github.com/amzxyz/rime_wanxiang/commit/0db82ab249a84ff895f11c8da54f590f50d2f99d))
+
+
+### 🏡 杂项
+
+* 修改说明 ([d226e9d](https://github.com/amzxyz/rime_wanxiang/commit/d226e9d9dac717f53324a399c4dbd35fb46f2812))
+* 修改说明 ([93770e4](https://github.com/amzxyz/rime_wanxiang/commit/93770e4374e35909420cb7ff6a551968b37d8285))
+* 词库调整 ([98044df](https://github.com/amzxyz/rime_wanxiang/commit/98044df89661b7147e01959fd5b4469a5362ca37))
+
 ## [15.7.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.7.0...v15.7.1) (2026-04-13)
 
 
