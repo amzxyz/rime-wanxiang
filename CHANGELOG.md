@@ -1,5 +1,20 @@
 # Changelog
 
+## [15.8.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.7.2...v15.8.0) (2026-04-16)
+
+
+### ✨ 新特性
+
+* 新增单字量词在输入数字后获得调频机会前置 ([37baeec](https://github.com/amzxyz/rime_wanxiang/commit/37baeec7d7263b145b4aaf98bee57327d2979042))
+
+
+### 📚 词库更新
+
+* 词库调整 ([6b99701](https://github.com/amzxyz/rime_wanxiang/commit/6b997011d7422cac5380201a8c4568ff6dcbaad6))
+* 词库调整 ([124afc0](https://github.com/amzxyz/rime_wanxiang/commit/124afc08feda9af8e4498850d7d29b9065711041))
+* 词库调整 ([05fc6c0](https://github.com/amzxyz/rime_wanxiang/commit/05fc6c0b81c4e0b92f05d4a27ef61d86770ee032))
+* 词库调整 ([4fee915](https://github.com/amzxyz/rime_wanxiang/commit/4fee9153575a55abfe04f0337cb8983210c5ebef))
+
 ## [15.7.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.7.1...v15.7.2) (2026-04-15)
 
 
