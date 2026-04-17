@@ -1,5 +1,18 @@
 # Changelog
 
+## [15.8.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.8.0...v15.8.1) (2026-04-17)
+
+
+### 📚 词库更新
+
+* 词库调整 ([d4031ef](https://github.com/amzxyz/rime_wanxiang/commit/d4031ef56340315b28d639ecd0d824cbf0d75115))
+* 词库调整 ([9faf3b6](https://github.com/amzxyz/rime_wanxiang/commit/9faf3b68911a669e25e06dc72e906350087f26ee))
+
+
+### 🐛 Bug 修复
+
+* 增加数量单位 ([2a03a31](https://github.com/amzxyz/rime_wanxiang/commit/2a03a3111fa4fef9f3fbd0efd0f1ae3828fecec9))
+
 ## [15.8.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.7.2...v15.8.0) (2026-04-16)
 
 
