@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.8.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.8.2...v15.8.3) (2026-04-19)
+
+
+### 🐛 Bug 修复
+
+* 优化万象双拼 ([29263a0](https://github.com/amzxyz/rime_wanxiang/commit/29263a00dacbcb9c4483059ad6b72c89f0971eaf))
+* 优化万象双拼飞键 ([82ea892](https://github.com/amzxyz/rime_wanxiang/commit/82ea892d0162ca1bc5de5a3878782a4fda17fdd6))
+
 ## [15.8.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.8.1...v15.8.2) (2026-04-19)
 
 
