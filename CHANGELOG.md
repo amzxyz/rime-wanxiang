@@ -1,5 +1,27 @@
 # Changelog
 
+## [15.8.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.8.3...v15.8.4) (2026-04-21)
+
+
+### 📚 词库更新
+
+* 词库调整 ([9534962](https://github.com/amzxyz/rime_wanxiang/commit/9534962d27e6c971207fb88cbe789e7aadb1134b))
+* 词库调整 ([8aca89b](https://github.com/amzxyz/rime_wanxiang/commit/8aca89b2906c34c790b9d087dd2f82ad19189a21))
+* 词库调整 ([1ab2fb4](https://github.com/amzxyz/rime_wanxiang/commit/1ab2fb4ecfd9ad02c880afbcd3846769be4e61d0))
+* 词库调整 ([5f39b4a](https://github.com/amzxyz/rime_wanxiang/commit/5f39b4a62172fe18418cd9b021bafff920855c2c))
+
+
+### 🐛 Bug 修复
+
+* 修复上下文调频由于之前增加门槛导致的输入家族不能调频族长的问题，同时修复提前返回导致靠后一点的量词遇到两个字的简码发生提前退出从而无法调频的问题：如1斤 ([1145d3c](https://github.com/amzxyz/rime_wanxiang/commit/1145d3cd5227747ba322a1c5b6b2b8ff923c8abf))
+* 在英文lua中使用全局变量传递布尔状态 ([f19e0d9](https://github.com/amzxyz/rime_wanxiang/commit/f19e0d9bf0a828c6f368b8b11b67aae91eb2be62))
+
+
+### 🏡 杂项
+
+* 完善文档 ([d459834](https://github.com/amzxyz/rime_wanxiang/commit/d4598343202b88731e93d5d22cc209c16f05283f))
+* 完善文档 ([853d883](https://github.com/amzxyz/rime_wanxiang/commit/853d883e91ac5f4cb5f5c771f9cdec013329667b))
+
 ## [15.8.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.8.2...v15.8.3) (2026-04-19)
 
 
