@@ -1,5 +1,20 @@
 # Changelog
 
+## [15.8.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.8.4...v15.8.5) (2026-04-23)
+
+
+### 🐛 Bug 修复
+
+* 修复因lookup插件初始化翻译器实例，引发的删除用户词的时候发生连续用户词丢失问题,先移动到func ([5dbca3e](https://github.com/amzxyz/rime_wanxiang/commit/5dbca3e720d7bb593d2de563dc61319b34908f1d))
+
+
+### 🏡 杂项
+
+* 文档迁移到专有页面 ([05920b4](https://github.com/amzxyz/rime_wanxiang/commit/05920b4ef54e3771908765d5a2c7d7406fe1620f))
+* 文档迁移到专有页面 ([b2587e6](https://github.com/amzxyz/rime_wanxiang/commit/b2587e6ddc88db4a16c5a7ea0846a836ab4c38ba))
+* 更新文档地址 ([f1da46b](https://github.com/amzxyz/rime_wanxiang/commit/f1da46b9e0f2b6d345dc283b243c6b29017afd23))
+* 添加文档 ([acf1227](https://github.com/amzxyz/rime_wanxiang/commit/acf12273ab7ec3d94f598a1ba78bcb67201841df))
+
 ## [15.8.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.8.3...v15.8.4) (2026-04-21)
 
 
