@@ -1,5 +1,25 @@
 # Changelog
 
+## [15.9.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.8.5...v15.9.0) (2026-04-24)
+
+
+### ✨ 新特性
+
+* 新增同码回删再输首次交换顺序 ([046128e](https://github.com/amzxyz/rime_wanxiang/commit/046128e070812910a71ceaf6ae4bf38144d58c64))
+
+
+### 📚 词库更新
+
+* 词库调整 ([8783937](https://github.com/amzxyz/rime_wanxiang/commit/8783937ea69db223f330c22150ed48de7b52810a))
+
+
+### 🐛 Bug 修复
+
+* 优化上下文调频性能 ([e3563ce](https://github.com/amzxyz/rime_wanxiang/commit/e3563ce5f08f449a5e6da7666bf777f9263db0bb))
+* 优化性能 ([5d68e8b](https://github.com/amzxyz/rime_wanxiang/commit/5d68e8bb2ef5d0ba885898592bedef4f93acfd0b))
+* 加入小步gc ([f8106a7](https://github.com/amzxyz/rime_wanxiang/commit/f8106a721d9a3f1480c4e719c006b9504eaf213b))
+* 更新简纯共键写法 ([f9dd639](https://github.com/amzxyz/rime_wanxiang/commit/f9dd6394fb845342029c33d8304c925eb01efa02))
+
 ## [15.8.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.8.4...v15.8.5) (2026-04-23)
 
 
