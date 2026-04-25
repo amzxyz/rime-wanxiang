@@ -1,5 +1,24 @@
 # Changelog
 
+## [15.9.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.0...v15.9.1) (2026-04-25)
+
+
+### 📚 词库更新
+
+* 恢复四个字的对权重1000内 ([be6b589](https://github.com/amzxyz/rime_wanxiang/commit/be6b58982f9d100c4b69b4489ddad0c1fc39b92f))
+* 移除一些词条 ([cdcec13](https://github.com/amzxyz/rime_wanxiang/commit/cdcec13b9c90b5238abb02b558ab24451239940e))
+
+
+### 🐛 Bug 修复
+
+* 移除万象双拼 ([6c06d1e](https://github.com/amzxyz/rime_wanxiang/commit/6c06d1e13eed2ce1f061e57bb03df0588b353558))
+* 紧急修复模型参数 ([8582639](https://github.com/amzxyz/rime_wanxiang/commit/858263921c21e7529fd80aaca9c6ce16ed5c68bc))
+
+
+### 🏡 杂项
+
+* 增加排除 ([1b5c42c](https://github.com/amzxyz/rime_wanxiang/commit/1b5c42c1e42330269c69ce8e14b32c61b11f8bf2))
+
 ## [15.9.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.8.5...v15.9.0) (2026-04-24)
 
 
