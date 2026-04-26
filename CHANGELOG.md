@@ -1,5 +1,18 @@
 # Changelog
 
+## [15.9.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.1...v15.9.2) (2026-04-26)
+
+
+### 📚 词库更新
+
+* 词库调整 ([870804d](https://github.com/amzxyz/rime_wanxiang/commit/870804dda0b6706e2f9673552b1958ac70fde2dc))
+* 近期由白霜发起了基准测试，原本万象是词库词频平滑，交给模型去最终管理词频，因为图书馆里的藏书，无非就是把藏书放在了前面，这是不是符合大数据我不清楚，但我更愿意让仓鼠放在前面，不管哪个在前面都会导致另一种非连续性组句出现问题，所以万象选择了模型处理。但没想到有一个比较标准是不用模型的效果，那我肯定要迎战的，因此加回来未平滑之前的词频，从基准测试来看调教好能比平滑词库稍稍好0.5%，万象词库维护的词库宽度、广度，所带来的边界效应不是小范围弯弯绕的句子能够评测明白的 ([36201a8](https://github.com/amzxyz/rime_wanxiang/commit/36201a8673018f2d34e7229bd5c67b496664cc46))
+
+
+### 🐛 Bug 修复
+
+* 移除default中快捷键引入主方案 ([cecef5d](https://github.com/amzxyz/rime_wanxiang/commit/cecef5dfc93ea3e9e0fee48cf840e87305ea538d))
+
 ## [15.9.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.0...v15.9.1) (2026-04-25)
 
 
