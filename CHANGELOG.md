@@ -1,5 +1,17 @@
 # Changelog
 
+## [15.9.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.2...v15.9.3) (2026-04-26)
+
+
+### 📚 词库更新
+
+* 词库调整 ([893fc8f](https://github.com/amzxyz/rime_wanxiang/commit/893fc8f4854383578a7eb042be6dac4ca059787d))
+
+
+### 🐛 Bug 修复
+
+* 调低末尾惩罚 ([10d3f4b](https://github.com/amzxyz/rime_wanxiang/commit/10d3f4b04f4d817d001f050428c16f85ebe954e9))
+
 ## [15.9.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.1...v15.9.2) (2026-04-26)
 
 
