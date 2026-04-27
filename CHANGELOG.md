@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.9.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.3...v15.9.4) (2026-04-27)
+
+
+### 🐛 Bug 修复
+
+* 调整模型参数 ([51eda49](https://github.com/amzxyz/rime_wanxiang/commit/51eda49eef443f82581269bf66500f18cf4e867d))
+
 ## [15.9.3](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.2...v15.9.3) (2026-04-26)
 
 
