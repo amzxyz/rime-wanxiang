@@ -1,5 +1,24 @@
 # Changelog
 
+## [15.9.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.4...v15.9.5) (2026-04-30)
+
+
+### 📚 词库更新
+
+* 新的归一化词频 ([43e4865](https://github.com/amzxyz/rime_wanxiang/commit/43e486551fe8955c517ca4d35fb9d0acd83cddaa))
+* 词库调整 ([e69fd63](https://github.com/amzxyz/rime_wanxiang/commit/e69fd6318a10e75d4c6fe0872634616e092d9529))
+* 词库调整 ([9e32a68](https://github.com/amzxyz/rime_wanxiang/commit/9e32a68af7a57b61b1f0addfe4ebc7cd8eab10b3))
+
+
+### 🐛 Bug 修复
+
+* 优化配置读取 ([89f2daa](https://github.com/amzxyz/rime_wanxiang/commit/89f2daa58f8b10afa1d25ff86ddeb283231afa70))
+
+
+### 🏡 杂项
+
+* 修改说明 ([d942492](https://github.com/amzxyz/rime_wanxiang/commit/d942492053a8df35dcb57387740d5f5b8953ff1f))
+
 ## [15.9.4](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.3...v15.9.4) (2026-04-27)
 
 
