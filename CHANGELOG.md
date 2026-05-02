@@ -1,5 +1,17 @@
 # Changelog
 
+## [15.9.6](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.5...v15.9.6) (2026-05-02)
+
+
+### 📚 词库更新
+
+* 词库多音字词频 ([583b6fc](https://github.com/amzxyz/rime_wanxiang/commit/583b6fcee95f5af3023239ec2dfb653367d4a3cc))
+
+
+### 🐛 Bug 修复
+
+* 修复R0.3型写法的解析错误 ([abbba02](https://github.com/amzxyz/rime_wanxiang/commit/abbba023f6a502751ed56fa40f4146e0fbb873ed))
+
 ## [15.9.5](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.4...v15.9.5) (2026-04-30)
 
 
