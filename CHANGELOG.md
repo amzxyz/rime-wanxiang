@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.9.8](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.7...v15.9.8) (2026-05-04)
+
+
+### 🐛 Bug 修复
+
+* 因模型300M进行了策略性的严密数据，发生四个无关两字连续成四个字的问题显著降低，因此模型参数改为2,提升模型利用率 ([7dbd5f4](https://github.com/amzxyz/rime_wanxiang/commit/7dbd5f462bc2e8ad7635f5f65427448277fb63a0))
+* 简纯皮肤适配同文3.3.10 ([e408a44](https://github.com/amzxyz/rime_wanxiang/commit/e408a443b5cc932e685d22b6f85e5e14de376d5a))
+
 ## [15.9.7](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.6...v15.9.7) (2026-05-04)
 
 
