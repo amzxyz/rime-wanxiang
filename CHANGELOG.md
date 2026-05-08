@@ -1,5 +1,22 @@
 # Changelog
 
+## [15.9.11](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.10...v15.9.11) (2026-05-08)
+
+
+### 📚 词库更新
+
+* update ([67b741d](https://github.com/amzxyz/rime_wanxiang/commit/67b741dcdc80da2eac556a09c51e95e0210511e6))
+* 词库调整 ([1cc005a](https://github.com/amzxyz/rime_wanxiang/commit/1cc005a6a6e3a47e8a13caa9b5b08d756d24db28))
+* 词库调整 ([bfa24e6](https://github.com/amzxyz/rime_wanxiang/commit/bfa24e6d6b0162151351876d17a38ed37ecdd19b))
+* 词库调整 ([e97985b](https://github.com/amzxyz/rime_wanxiang/commit/e97985b7e02a3c123a043f7d263a69049d17ec61))
+
+
+### 🐛 Bug 修复
+
+* /day、/tj两处格式化内容下新增零宽空格避免在electron框架开发的软件中出现格式异常 ([b6a7c0c](https://github.com/amzxyz/rime_wanxiang/commit/b6a7c0c329d06d852405c79e041a82e0d294e4a9))
+* t9新增按键策略输入中按下回车发送preedit编码 ([7ad1889](https://github.com/amzxyz/rime_wanxiang/commit/7ad1889bd158cdbd50fd04b9ec8d484d76977ab9))
+* 同步首右plus辅助码新版 ([21207d6](https://github.com/amzxyz/rime_wanxiang/commit/21207d6394470ea652e63275ec2b39b31437aa05))
+
 ## [15.9.10](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.9...v15.9.10) (2026-05-05)
 
 
