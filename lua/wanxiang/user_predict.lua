@@ -707,10 +707,24 @@ function P.func(key, env)
         if CONFIG.ENABLE_PREDICT_SPACE then
             -- enable_predict_space: true
             if key.keycode == 0x20 then
-                ctx:clear()
-                reset_memory_chain(env, "空格打断联想并上屏")
-                env.engine:commit_text(" ")
-                return 1
+                -- ============== 修改：仅当输入完全是预测占位符时才拦截空格 ==============
+                local current_input = ctx.input or ""
+                local is_predict_placeholder = (current_input ~= "") and s_find(current_input, "^" .. PH_CHAR .. "+$")
+
+                if is_predicting and is_predict_placeholder then
+                    -- 原有逻辑：预测状态下，空格上屏空格
+                    ctx:clear()
+                    reset_memory_chain(env, "空格打断联想并上屏")
+                    env.engine:commit_text(" ")
+                    return 1
+                else
+                    -- ============== 新增：否则重置状态，放行空格 ==============
+                    is_predicting = false
+                    predict_count = 0
+                    pending_cands = nil
+                    return 2 -- 放行空格，让原生处理
+                end
+                -- ==========修改结束=======
             elseif is_alt_key then
                 ctx:clear()
                 reset_memory_chain(env, "替身键打断联想")
