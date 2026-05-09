@@ -1,5 +1,19 @@
 # Changelog
 
+## [15.9.12](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.11...v15.9.12) (2026-05-09)
+
+
+### 📚 词库更新
+
+* update ([276c0de](https://github.com/amzxyz/rime_wanxiang/commit/276c0de13dfe3ab2b05ce2142c7f4cf52b50553e))
+* 词库调整 ([264f742](https://github.com/amzxyz/rime_wanxiang/commit/264f742ef91b531b8d2fa22d42c396250ba5e81d))
+* 词库调整 ([ae779a1](https://github.com/amzxyz/rime_wanxiang/commit/ae779a1130cd1c6b80008a1f8dd26c08c4e62dfe))
+
+
+### 🐛 Bug 修复
+
+* **lookup:** 修复在前面有已经确认的部分候选时，开始引导输入辅助码修改句子造成的候选字位置索引偏移问题 ([fd2b734](https://github.com/amzxyz/rime_wanxiang/commit/fd2b73451a9e4c583a43347d4465afd76c962aef))
+
 ## [15.9.11](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.10...v15.9.11) (2026-05-08)
 
 
