@@ -1,5 +1,17 @@
 # Changelog
 
+## [15.9.13](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.12...v15.9.13) (2026-05-11)
+
+
+### 📚 词库更新
+
+* 词库调整 ([e1c164a](https://github.com/amzxyz/rime_wanxiang/commit/e1c164a0b20bb0ad6da6fcd507ccafae7538bac6))
+
+
+### 🐛 Bug 修复
+
+* user_predict修复启用空格上屏时的状态管理 ([0572e84](https://github.com/amzxyz/rime_wanxiang/commit/0572e8408343cdd6191489eaa94c8892fd927cbc))
+
 ## [15.9.12](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.11...v15.9.12) (2026-05-09)
 
 
