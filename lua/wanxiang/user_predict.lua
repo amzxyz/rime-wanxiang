@@ -757,8 +757,8 @@ function P.func(key, env)
         
         if repr == "Return" then
             ctx:clear()
-            reset_memory_chain(env, "打断键清除预测") 
-            return 1
+            reset_memory_chain(env, "回车键打断预测并输入回车") 
+            return 2
         end
     end
 
