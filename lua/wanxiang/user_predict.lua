@@ -738,10 +738,7 @@ function P.func(key, env)
                     env.engine:commit_text(" ")
                     return 1
                 else
-                    is_predicting = false
-                    predict_count = 0
-                    pending_cands = nil
-                    return 2 -- 放行空格，让原生处理
+                    return 2
                 end
             elseif is_alt_key then
                 ctx:clear()
