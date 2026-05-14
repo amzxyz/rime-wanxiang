@@ -1,5 +1,30 @@
 # Changelog
 
+## [15.10.0](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.13...v15.10.0) (2026-05-14)
+
+
+### ✨ 新特性
+
+* 更新词库 ([1589ec1](https://github.com/amzxyz/rime_wanxiang/commit/1589ec1d6d258ccc1ccc70daa55166e3cf07519d))
+
+
+### 📚 词库更新
+
+* 词库调整 ([1acb1ae](https://github.com/amzxyz/rime_wanxiang/commit/1acb1ae43496b198a59b977b106a3a8c625f9907))
+* 词库调整 ([2996bf6](https://github.com/amzxyz/rime_wanxiang/commit/2996bf6cc005a29aac4ad2cacf5a5cc764046d4a))
+* 词库调整 ([8aa6729](https://github.com/amzxyz/rime_wanxiang/commit/8aa6729580ab45c774b92b23763696af725c8abf))
+* 词库调整 ([1114ff4](https://github.com/amzxyz/rime_wanxiang/commit/1114ff4430542c67ad72eb3107bd89879a4d44f2))
+
+
+### 🐛 Bug 修复
+
+* **lookup:** 新增当辅助码只有数字且数量等于首选未确认的数量时，执行整体带调查库，并优化一些细节 ([b157fe7](https://github.com/amzxyz/rime_wanxiang/commit/b157fe7b4b7948b6c9c22442c40b31359dc17234))
+* **user_predict:** 修复预测空格开关失效的问题 ([4e6c972](https://github.com/amzxyz/rime_wanxiang/commit/4e6c9726ceb9c4ddd8799899a5c30e88e7cdcfd9))
+* **user_predict:** 让回退掉头行为与其他调频行为互斥，能避免诸多异常 ([72e72e5](https://github.com/amzxyz/rime_wanxiang/commit/72e72e5f2fdefb9a2e5cb620ba33bcef4dab6f43))
+* **user_predict:** 调整预测过程中回车键的行为 ([351ea3e](https://github.com/amzxyz/rime_wanxiang/commit/351ea3e80c63cf1e707aa45ca3097678a60d635a))
+* 放开预测记录取消7天及2次的限制，改用更为智能的清理逻辑来对冲错误的上屏，其次如果错了及时回退也能避免录入 ([9511aee](https://github.com/amzxyz/rime_wanxiang/commit/9511aee9237a0d3b435425930d352411a257a1f8))
+* 调整尾部惩罚值 ([e0eb8c3](https://github.com/amzxyz/rime_wanxiang/commit/e0eb8c329dc3d9c0cf19b31ca62f3cf0345ad418))
+
 ## [15.9.13](https://github.com/amzxyz/rime_wanxiang/compare/v15.9.12...v15.9.13) (2026-05-11)
 
 
