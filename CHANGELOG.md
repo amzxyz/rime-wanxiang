@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.10.2](https://github.com/amzxyz/rime_wanxiang/compare/v15.10.1...v15.10.2) (2026-05-14)
+
+
+### 🐛 Bug 修复
+
+* 更新词库 ([7ee0c2c](https://github.com/amzxyz/rime_wanxiang/commit/7ee0c2c5592202a28331907f53985a260087bf19))
+* 调整嗯词频 ([b8a80b4](https://github.com/amzxyz/rime_wanxiang/commit/b8a80b43b8b58ba68e5f191abc200564a2fe44fe))
+
 ## [15.10.1](https://github.com/amzxyz/rime_wanxiang/compare/v15.10.0...v15.10.1) (2026-05-14)
 
 
