@@ -1,5 +1,25 @@
 # Changelog
 
+## [15.10.4](https://github.com/amzxyz/rime-wanxiang/compare/v15.10.3...v15.10.4) (2026-05-15)
+
+
+### 📚 词库更新
+
+* 词库调整 ([e3a9a8d](https://github.com/amzxyz/rime-wanxiang/commit/e3a9a8d3fc99a3ecb43469938490b22989973629))
+
+
+### 🐛 Bug 修复
+
+* drop execution bit on wanxiang_english.{dict,schema}.yaml ([614e1dc](https://github.com/amzxyz/rime-wanxiang/commit/614e1dc5faa65bf6ae9bfc9e8104b5d83a3c80e5))
+* 处理一些声明细节 ([97da72a](https://github.com/amzxyz/rime-wanxiang/commit/97da72a433e6f2c4ce525848a553a56eee077048))
+* 添加deepin pr自动化 ([19cd8a5](https://github.com/amzxyz/rime-wanxiang/commit/19cd8a5606605aa48de8d0b953f40ea040327c8d))
+* 调整参数 ([38a2586](https://github.com/amzxyz/rime-wanxiang/commit/38a25862bcff4db9208dcc80e753788b7d60bcd3))
+
+
+### 🏡 杂项
+
+* 遵循 deepin 《品牌专有名词指导方针》 ([75efbec](https://github.com/amzxyz/rime-wanxiang/commit/75efbec6774138464cec26d73f95d9fe8674bb8b))
+
 ## [15.10.3](https://github.com/amzxyz/rime-wanxiang/compare/v15.10.2...v15.10.3) (2026-05-15)
 
 
