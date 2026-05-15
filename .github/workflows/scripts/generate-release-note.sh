@@ -76,7 +76,7 @@ CHANGES=$(
   echo "6. Arch Linux 用户 [启用 Arch Linux CN 仓库](https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/) 后安装。"
   echo "   - 基础版包名：\`rime-wanxiang-[拼写方案名]\`，如：自然码方案：\`rime-wanxiang-zrm\`"
   echo "   - 双拼辅助码增强版包名：\`rime-wanxiang-pro-[拼写方案名]\`，如：自然码方案：\`rime-wanxiang-pro-zrm\`"
-  echo "7. Deepin Linux v25 用户亦可以通过仓库进行安装。"
+  echo "7. deepin 25 用户亦可以通过仓库进行安装。"
   echo "### 4. 周边推荐"
   echo " - [高度适配万象拼音的仓输入法皮肤](https://github.com/BlackCCCat/ResourceforHamster/tree/main/Skin_Keyboard/)"
   echo ""
