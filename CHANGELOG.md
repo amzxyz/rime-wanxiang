@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.10.3](https://github.com/amzxyz/rime-wanxiang/compare/v15.10.2...v15.10.3) (2026-05-15)
+
+
+### 🐛 Bug 修复
+
+* 变更链接 ([47de4a4](https://github.com/amzxyz/rime-wanxiang/commit/47de4a45b007496f4af0808f3afeab0703481daa))
+
 ## [15.10.2](https://github.com/amzxyz/rime-wanxiang/compare/v15.10.1...v15.10.2) (2026-05-14)
 
 
