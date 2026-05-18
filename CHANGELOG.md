@@ -1,5 +1,26 @@
 # Changelog
 
+## [15.10.5](https://github.com/amzxyz/rime-wanxiang/compare/v15.10.4...v15.10.5) (2026-05-18)
+
+
+### 📚 词库更新
+
+* 优化多音字 ([186f716](https://github.com/amzxyz/rime-wanxiang/commit/186f7161ba55ff191a2e204dce3088252a14dc92))
+* 词库调整 ([8c86492](https://github.com/amzxyz/rime-wanxiang/commit/8c86492c74862736e437ee508fa4cb7401fec0f4))
+* 词库调整 ([33e2c7e](https://github.com/amzxyz/rime-wanxiang/commit/33e2c7eb5bfea31f86b0e9fe32cd08370e8f9403))
+* 词库调整 ([e401a65](https://github.com/amzxyz/rime-wanxiang/commit/e401a65a94c3e1a940ff4a59682ef7dff84603b3))
+* 词库调整 ([006f57f](https://github.com/amzxyz/rime-wanxiang/commit/006f57fa48cc81a04968f06d9f3213c8a838f21f))
+* 词库调整 ([6e46107](https://github.com/amzxyz/rime-wanxiang/commit/6e461075e165a322204ecd17dd09400dba232b01))
+* 词库调整 ([6b5f20d](https://github.com/amzxyz/rime-wanxiang/commit/6b5f20d1fc34ad2139031a1282800f79c588d826))
+* 词库调整 ([7453e5f](https://github.com/amzxyz/rime-wanxiang/commit/7453e5fc5efff37bac828fe2857c131ab370817a))
+* 词库调整 ([9d54179](https://github.com/amzxyz/rime-wanxiang/commit/9d5417917d7f322b70f598703a9999a3cdbc666d))
+
+
+### 🐛 Bug 修复
+
+* 优化双方案的指令切换逻辑 ([e0c8ec3](https://github.com/amzxyz/rime-wanxiang/commit/e0c8ec353948d1722d271e925ccac122cef5c10e))
+* 完善部分声明 ([e163aa2](https://github.com/amzxyz/rime-wanxiang/commit/e163aa242a2b3cb88bda77198062570c894f0fd9))
+
 ## [15.10.4](https://github.com/amzxyz/rime-wanxiang/compare/v15.10.3...v15.10.4) (2026-05-15)
 
 
