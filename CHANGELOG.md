@@ -1,5 +1,23 @@
 # Changelog
 
+## [15.11.0](https://github.com/amzxyz/rime-wanxiang/compare/v15.10.7...v15.11.0) (2026-05-19)
+
+
+### ✨ 新特性
+
+* **user_predict:** 新增手机捕获前端发送的 delete_notifier，实现点击/手势删词同步清除数据库，克服了手机不易操作shift+del的难点 ([7df2f4e](https://github.com/amzxyz/rime-wanxiang/commit/7df2f4ea84d03e85049a929158f4eda767afd7ca))
+
+
+### 📚 词库更新
+
+* 词库调整 ([714f3e4](https://github.com/amzxyz/rime-wanxiang/commit/714f3e4e310eec41ac977e42466f5ca676e8e866))
+* 词库调整 ([5688406](https://github.com/amzxyz/rime-wanxiang/commit/56884062500ddc5ccd82d89f94049fd6218355ba))
+
+
+### 🐛 Bug 修复
+
+* 格式化权限与换行 ([b0d7163](https://github.com/amzxyz/rime-wanxiang/commit/b0d71637ebf4a609aab3a3f54ff41204ae78390e))
+
 ## [15.10.7](https://github.com/amzxyz/rime-wanxiang/compare/v15.10.6...v15.10.7) (2026-05-19)
 
 
