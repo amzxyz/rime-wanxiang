@@ -1,5 +1,14 @@
 # Changelog
 
+## [15.11.1](https://github.com/amzxyz/rime-wanxiang/compare/v15.11.0...v15.11.1) (2026-05-20)
+
+
+### 📚 词库更新
+
+* 优质词补全 ([b255821](https://github.com/amzxyz/rime-wanxiang/commit/b255821d072e43e9264b52eb6bbb3438e661ba79))
+* 补齐优质词条 ([66ea423](https://github.com/amzxyz/rime-wanxiang/commit/66ea423f5dbb3db3c13e07084c4de2a019acff51))
+* 词库更新 ([2602873](https://github.com/amzxyz/rime-wanxiang/commit/26028730aa21963d114bb2284db03ede9922f5d3))
+
 ## [15.11.0](https://github.com/amzxyz/rime-wanxiang/compare/v15.10.7...v15.11.0) (2026-05-19)
 
 
