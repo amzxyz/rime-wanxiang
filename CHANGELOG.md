@@ -1,5 +1,41 @@
 # Changelog
 
+## [15.12.0](https://github.com/amzxyz/rime-wanxiang/compare/v15.11.2...v15.12.0) (2026-06-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **lookup:** tab按键将用来同时触发反引号按键用来作为lookup触发按键,同时ctrl+tab用来切换音节，取消了边上屏边切换音节的设计，因为其实大部分情况ctrl+数字的应用可以在不加辅助的情形下完成上屏
+
+### ✨ 新特性
+
+* 新增蓝天双拼支持，但不支持指令后续支持 ([48f1f49](https://github.com/amzxyz/rime-wanxiang/commit/48f1f495a9e73b962bba99a3017a55213548943c))
+* 新增部分英文提权策略，使用super_replacer实现 ([7a18133](https://github.com/amzxyz/rime-wanxiang/commit/7a18133d1b1a1a6dcde6db5aa95182d06d547bbd))
+
+
+### 📚 词库更新
+
+* 词库调整 ([8914ca9](https://github.com/amzxyz/rime-wanxiang/commit/8914ca9d9a505d8407b57159d5035e48f3927a31))
+* 词库调整 ([d913ff3](https://github.com/amzxyz/rime-wanxiang/commit/d913ff327bb3ea0cfdcdd5707d8a39dcaa994201))
+* 词库调整 ([b966dbd](https://github.com/amzxyz/rime-wanxiang/commit/b966dbd9d16640e74871902a31c2e5eac63d34b8))
+* 词库调整 ([c888c5c](https://github.com/amzxyz/rime-wanxiang/commit/c888c5cfea79c55ab8b6b46ef0e610b43921e109))
+* 词库调整 ([cbb8521](https://github.com/amzxyz/rime-wanxiang/commit/cbb85212a5236b7defd942f6f57f5bc2689aacf8))
+* 词库调整 ([1f17503](https://github.com/amzxyz/rime-wanxiang/commit/1f17503119e608035617baa55bd308b73ae75056))
+* 词库调整 ([08b99ea](https://github.com/amzxyz/rime-wanxiang/commit/08b99ea26ede7b5df1f2cc167f6e461cfee72227))
+
+
+### 🐛 Bug 修复
+
+* **lookup:** tab按键将用来同时触发反引号按键用来作为lookup触发按键,同时ctrl+tab用来切换音节，取消了边上屏边切换音节的设计，因为其实大部分情况ctrl+数字的应用可以在不加辅助的情形下完成上屏 ([f06e167](https://github.com/amzxyz/rime-wanxiang/commit/f06e167ee6481d80aec9794e367ebfd2c0b438a0))
+* **user_predict:** 外部状态打断状态未更新导致的回退键清空了下一次输入状态 ([15fdb69](https://github.com/amzxyz/rime-wanxiang/commit/15fdb69f622b3604b737867cb12f12a94c930813))
+* 优化模糊音 ([c9d439f](https://github.com/amzxyz/rime-wanxiang/commit/c9d439ff5bedb1d75a8e45211d17a07628b49761))
+* 变更参数 ([9ad34f7](https://github.com/amzxyz/rime-wanxiang/commit/9ad34f7add8c887bf810e39928fbd3404c6c3f6e))
+
+
+### 🏡 杂项
+
+* release 15.12.0 ([7e1acb0](https://github.com/amzxyz/rime-wanxiang/commit/7e1acb05332fffed000e4c388bc3a8fe00835943))
+
 ## [15.11.2](https://github.com/amzxyz/rime-wanxiang/compare/v15.11.1...v15.11.2) (2026-05-26)
 
 
