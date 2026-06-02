@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.12.1](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.0...v15.12.1) (2026-06-02)
+
+
+### 🐛 Bug 修复
+
+* 从abbrev分离单码单字，新建了chars，使用前置5个单字的逻辑进行配置 ([2f7a693](https://github.com/amzxyz/rime-wanxiang/commit/2f7a6937c46cce6c4cc50730d5412354948faa1b))
+* 修复简码前置因系统差异导致的排序异常 ([1b47cfd](https://github.com/amzxyz/rime-wanxiang/commit/1b47cfd86dc7aef9fb9acfae35a1cf4b82a13ec9))
+
 ## [15.12.0](https://github.com/amzxyz/rime-wanxiang/compare/v15.11.2...v15.12.0) (2026-06-01)
 
 
