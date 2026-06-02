@@ -1,5 +1,21 @@
 # Changelog
 
+## [15.12.2](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.1...v15.12.2) (2026-06-02)
+
+
+### 📚 词库更新
+
+* 词库调整 ([84956d9](https://github.com/amzxyz/rime-wanxiang/commit/84956d9eaff82ad75719035a32373d0c2d612cee))
+* 词库调整 ([c4386ea](https://github.com/amzxyz/rime-wanxiang/commit/c4386ea1ab95b71a37d0923b3b94f345cd6e9eb1))
+
+
+### 🐛 Bug 修复
+
+* 修改部分墨奇辅助码 ([f0322bf](https://github.com/amzxyz/rime-wanxiang/commit/f0322bf2392cce34f14cc9fc7246d8ce519f7dd6))
+* 微调单字简码 ([56d858e](https://github.com/amzxyz/rime-wanxiang/commit/56d858e1472f1169c746a54def5caec7f93204fe))
+* 根目录置顶词优先于abbrev置顶词 ([cbdd552](https://github.com/amzxyz/rime-wanxiang/commit/cbdd552b902f8f3f7630921afc8f849119b04acb))
+* 移除计算器引导的多余配置 ([833c7e6](https://github.com/amzxyz/rime-wanxiang/commit/833c7e676110df24438d1cc4e9e58999fdb6b618))
+
 ## [15.12.1](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.0...v15.12.1) (2026-06-02)
 
 
