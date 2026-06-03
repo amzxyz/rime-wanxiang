@@ -1,5 +1,24 @@
 # Changelog
 
+## [15.12.3](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.2...v15.12.3) (2026-06-03)
+
+
+### 🔥 性能优化
+
+* 移除英文造词功能，此功能在挂接状态下缺乏相应的转写流程，致使只能写入小写字母，写入大写字母无法打出来，终究也是个半成品，其次在table调频的时候与简码派生状态竞争权重干扰中文输入，再三思考还是决定将英文造词去掉，在rime在这种情况下不如自己维护一个词库表来的有意义 ([914611b](https://github.com/amzxyz/rime-wanxiang/commit/914611b4ea4487fafd4e97b860ecc641878e3081))
+
+
+### 🐛 Bug 修复
+
+* 修复简码与用户词碰撞以及英文加空格导致的text无法去重的问题 ([540c628](https://github.com/amzxyz/rime-wanxiang/commit/540c6287cb323c3cb50eb7181d5ef8abea47491e))
+* 同步移除英文造词逻辑 ([a13985a](https://github.com/amzxyz/rime-wanxiang/commit/a13985a24fc046e4a360a07a48314b916419edcd))
+* 移除单字固定还是由用户自定义吧 ([f89defd](https://github.com/amzxyz/rime-wanxiang/commit/f89defd74207a2fa0812442d9641c1747565d8a9))
+
+
+### 🏡 杂项
+
+* 变更版本 ([bad6a9a](https://github.com/amzxyz/rime-wanxiang/commit/bad6a9a49dfb33155a9cfc71df8c72c6401892d0))
+
 ## [15.12.2](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.1...v15.12.2) (2026-06-02)
 
 
