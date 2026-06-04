@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.12.5](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.4...v15.12.5) (2026-06-04)
+
+
+### 📚 词库更新
+
+* 词库调整 ([77c7b54](https://github.com/amzxyz/rime-wanxiang/commit/77c7b54b07cdb8b89898091c2fde4e46ac612676))
+
 ## [15.12.4](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.3...v15.12.4) (2026-06-04)
 
 
