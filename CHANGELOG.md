@@ -1,5 +1,17 @@
 # Changelog
 
+## [15.12.4](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.3...v15.12.4) (2026-06-04)
+
+
+### 📚 词库更新
+
+* 词库调整 ([7448f1d](https://github.com/amzxyz/rime-wanxiang/commit/7448f1d4e57af844c00591c5e31a035e109bd92b))
+
+
+### 🔥 性能优化
+
+* 优化超级替换时间复杂度，并写死分隔符为制表符，未来直接使用制表符组织多个选项，自定义用户需手动替换为制表符重新部署 ([0e22026](https://github.com/amzxyz/rime-wanxiang/commit/0e220265b7e652a538a53e6f01b007562d0fb5f4))
+
 ## [15.12.3](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.2...v15.12.3) (2026-06-03)
 
 
