@@ -28,6 +28,7 @@ local tonumber = tonumber
 local math_max = math.max
 local math_min = math.min
 local os_time  = os.time
+local wanxiang = require("wanxiang/wanxiang")
 local shared_reverted_code = ""
 local shared_is_backspacing = false
 -- 内部运行参数默认值 (会被外部 YAML 配置覆盖)
@@ -337,6 +338,10 @@ end
 local P = {}
 function P.init(env)
     load_config(env) 
+    env.is_t9 = false
+    if wanxiang.get_input_method_type then
+        env.is_t9 = (wanxiang.get_input_method_type(env) == "t9")
+    end
     local db = get_db(env)
     local now = os_time()
     local CLEAN_INTERVAL = 259200  --3天
@@ -739,6 +744,14 @@ function P.func(key, env)
 
         -- 根据选词范围分流数字键
         if s_match(repr, "^[0-9]$") or s_match(repr, "^KP_[0-9]$") then
+            -- 九宫格(T9): 数字键是音节编码, 续写时放行给 speller 起新音节。
+            if env.is_t9 then
+                env.engine.context:clear()
+                if reset_memory_chain then
+                    reset_memory_chain(env, "T9数字放行起音节")
+                end
+                return 2
+            end
             local digit = s_match(repr, "%d")
             local d = tonumber(digit)
             if d == 0 then d = 10 end
