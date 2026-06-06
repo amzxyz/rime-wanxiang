@@ -1,5 +1,34 @@
 # Changelog
 
+## [15.13.0](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.5...v15.13.0) (2026-06-06)
+
+
+### ✨ 新特性
+
+* 新增一个句子派生示例 ([914f90e](https://github.com/amzxyz/rime-wanxiang/commit/914f90ef0eddee72f2e076202126517f8494e8b3))
+
+
+### 📚 词库更新
+
+* 词库调整 ([44ccb61](https://github.com/amzxyz/rime-wanxiang/commit/44ccb61608de37467284ba679fbbd323cd955430))
+
+
+### 🐛 Bug 修复
+
+* 九宫格续写时数字键不再漏字面数字 ([dfa891b](https://github.com/amzxyz/rime-wanxiang/commit/dfa891beecac5d2bb16a5d9817b89eb71588c55d))
+
+
+### 🏡 杂项
+
+* 简纯使用编译后文件 ([a934f87](https://github.com/amzxyz/rime-wanxiang/commit/a934f8705687f587066556ef0295bc057592553c))
+
+
+### 🤖 持续集成
+
+* del ([f4b263a](https://github.com/amzxyz/rime-wanxiang/commit/f4b263a28c32290f339fbcb1d09b016b0147d1b6))
+* update ([dd0c171](https://github.com/amzxyz/rime-wanxiang/commit/dd0c171dfc436d49a8318c579338a45041b77d8c))
+* 主题文件直接释放到build ([6cd2d15](https://github.com/amzxyz/rime-wanxiang/commit/6cd2d15845c07bd8aa08400764f63ac29673a9d4))
+
 ## [15.12.5](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.4...v15.12.5) (2026-06-04)
 
 
