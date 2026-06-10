@@ -1,5 +1,18 @@
 # Changelog
 
+## [15.14.1](https://github.com/amzxyz/rime-wanxiang/compare/v15.14.0...v15.14.1) (2026-06-10)
+
+
+### 🐛 Bug 修复
+
+* 以词定字在特殊输入模式下不占用按键 ([8756409](https://github.com/amzxyz/rime-wanxiang/commit/87564092e09dbf330db81f57cdab1bafdd2b9789))
+* 紧急修复pure版本词库引用 ([37d64a1](https://github.com/amzxyz/rime-wanxiang/commit/37d64a1aeba82d2056e4a6b303434aa2aa89c1a8))
+
+
+### 🏡 杂项
+
+* fix ([2a2cb59](https://github.com/amzxyz/rime-wanxiang/commit/2a2cb592c3620e44e7eb955146a383648e763d2e))
+
 ## [15.14.0](https://github.com/amzxyz/rime-wanxiang/compare/v15.13.0...v15.14.0) (2026-06-10)
 
 
