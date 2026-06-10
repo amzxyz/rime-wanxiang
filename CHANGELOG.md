@@ -1,5 +1,26 @@
 # Changelog
 
+## [15.14.0](https://github.com/amzxyz/rime-wanxiang/compare/v15.13.0...v15.14.0) (2026-06-10)
+
+
+### ✨ 新特性
+
+* 添加pure版本自动化打包 ([f0bb82d](https://github.com/amzxyz/rime-wanxiang/commit/f0bb82d04fd3cbeaca76d0214b6d464a218a4f02))
+* 添加pure版本自动化打包 ([e195428](https://github.com/amzxyz/rime-wanxiang/commit/e195428a54d2ad58bf364963e82100f2745c8274))
+
+
+### 📚 词库更新
+
+* 词库调整 ([3d1173e](https://github.com/amzxyz/rime-wanxiang/commit/3d1173edc7b4be3efa6d5cdcf5493230eccde93e))
+* 词库调整 ([5182f92](https://github.com/amzxyz/rime-wanxiang/commit/5182f92a4118c7bd5c523ccc6012fcb0c2fe0eaf))
+* 词库调整 ([5bda5d3](https://github.com/amzxyz/rime-wanxiang/commit/5bda5d37b0694f586f84a40484115577113f2672))
+* 词库调整 ([81b9e08](https://github.com/amzxyz/rime-wanxiang/commit/81b9e08f84564f77d40d29ffb1e16686524b3ab7))
+
+
+### 🐛 Bug 修复
+
+* 格式化yaml ([262218c](https://github.com/amzxyz/rime-wanxiang/commit/262218c65810da9bb7c9c9ebb2fdbd9bd7b54e65))
+
 ## [15.13.0](https://github.com/amzxyz/rime-wanxiang/compare/v15.12.5...v15.13.0) (2026-06-06)
 
 
