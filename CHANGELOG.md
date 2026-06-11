@@ -1,5 +1,21 @@
 # Changelog
 
+## [15.14.2](https://github.com/amzxyz/rime-wanxiang/compare/v15.14.1...v15.14.2) (2026-06-11)
+
+
+### 📚 词库更新
+
+* update ([b7063d0](https://github.com/amzxyz/rime-wanxiang/commit/b7063d02f30a2a4b54e3321c3d5e42bb6ca0f9f8))
+* update ([210e058](https://github.com/amzxyz/rime-wanxiang/commit/210e058e44dcda2d7283f12731de578dcdbb4f0d))
+
+
+### 🐛 Bug 修复
+
+* 全面恢复小狼毫皮肤配色 ([e2c62b8](https://github.com/amzxyz/rime-wanxiang/commit/e2c62b803c2f6193a3e8ab6096675e67437fd842))
+* 调整一些示例细节 ([cb81c21](https://github.com/amzxyz/rime-wanxiang/commit/cb81c211b3e7b657d1da5c6c52afbe57fc84c077))
+* 调整后重新上线英文造词 ([4c76171](https://github.com/amzxyz/rime-wanxiang/commit/4c761716b65a21f182a7024522040178a9d7a4f9))
+* 调整转写规则 ([175c1cd](https://github.com/amzxyz/rime-wanxiang/commit/175c1cd7c8164a0e994df5b1cf89d68c84c0588d))
+
 ## [15.14.1](https://github.com/amzxyz/rime-wanxiang/compare/v15.14.0...v15.14.1) (2026-06-10)
 
 
