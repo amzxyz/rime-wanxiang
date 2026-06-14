@@ -1,5 +1,36 @@
 # Changelog
 
+## [15.14.3](https://github.com/amzxyz/rime-wanxiang/compare/v15.14.2...v15.14.3) (2026-06-14)
+
+
+### 📚 词库更新
+
+* update ([38c43ce](https://github.com/amzxyz/rime-wanxiang/commit/38c43ce8d9779e850e540419500a96ca2aca2b8e))
+* 丰富lua键值匹配数据 ([4616851](https://github.com/amzxyz/rime-wanxiang/commit/461685122005598bdb9d6ce93b2c8df76258ad03))
+* 变更词典名称 ([83ac39a](https://github.com/amzxyz/rime-wanxiang/commit/83ac39acb4e3fc2073ba1fc60deb844a9c637e5c))
+* 更新emoji ([6a32fd5](https://github.com/amzxyz/rime-wanxiang/commit/6a32fd571c08928a7fd891738248100726461c44))
+* 添加明星词库 ([1a50621](https://github.com/amzxyz/rime-wanxiang/commit/1a506211d37a23e99624791104b6917fba60aef9))
+* 添加明星词库 ([9106d70](https://github.com/amzxyz/rime-wanxiang/commit/9106d703faa3087918d0287aa0a70c224367c44e))
+* 词库调整 ([74410d0](https://github.com/amzxyz/rime-wanxiang/commit/74410d0251b15439cb7f1ec9d1d29550976478f9))
+* 词库调整 ([8df5620](https://github.com/amzxyz/rime-wanxiang/commit/8df56205b5d9c76b561333252f3680d6d164e5ef))
+* 词库调整 ([ba0c387](https://github.com/amzxyz/rime-wanxiang/commit/ba0c3872b02303e278e762a18328e30d0ba3e9f6))
+* 词库调整 ([7f684ae](https://github.com/amzxyz/rime-wanxiang/commit/7f684ae48398c02a6d57b66bac6ab2cdd67195e9))
+* 词库调整 ([14d1c6b](https://github.com/amzxyz/rime-wanxiang/commit/14d1c6b1adb0950893e0d47429ed328ba9c978e2))
+* 词库调整 ([8f98296](https://github.com/amzxyz/rime-wanxiang/commit/8f98296bf7522469a584293aa83e27a841a55613))
+* 词库调整 ([855261d](https://github.com/amzxyz/rime-wanxiang/commit/855261dccb1e5fcc5cd6e5141f66c623e775b8b8))
+* 词库调整 ([2593d09](https://github.com/amzxyz/rime-wanxiang/commit/2593d09281c754c206b8fe4cde14ebdee1b16da8))
+* 词库调整 ([4942ea5](https://github.com/amzxyz/rime-wanxiang/commit/4942ea56fd73c909186d6d50db5128f84773d431))
+* 词库调整 ([132d2b3](https://github.com/amzxyz/rime-wanxiang/commit/132d2b339ce0804cdb97b88df09cfbaaf4f6a7ed))
+* 词库调整 ([90b90bd](https://github.com/amzxyz/rime-wanxiang/commit/90b90bd357e25b9544a2940fdbd38d0a6001a460))
+* 词库调整 ([f25470f](https://github.com/amzxyz/rime-wanxiang/commit/f25470f0367cff8170b2defea3944f5016ae71d2))
+* 词库调整 ([6c1c7da](https://github.com/amzxyz/rime-wanxiang/commit/6c1c7da0ac7a9fed1957d013c2cc1c7b0f5ce458))
+* 词库调整 ([931a1e6](https://github.com/amzxyz/rime-wanxiang/commit/931a1e6a71dd1a75676d8bd2cac35d3c64709aba))
+
+
+### 🤖 持续集成
+
+* auxcode采用黑名单形式，便于添加额外的词库 ([f195ce0](https://github.com/amzxyz/rime-wanxiang/commit/f195ce02039fb338ccd9254aa06a90ce5720799f))
+
 ## [15.14.2](https://github.com/amzxyz/rime-wanxiang/compare/v15.14.1...v15.14.2) (2026-06-11)
 
 
