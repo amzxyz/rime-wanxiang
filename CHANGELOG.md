@@ -1,5 +1,34 @@
 # Changelog
 
+## [15.14.4](https://github.com/amzxyz/rime-wanxiang/compare/v15.14.3...v15.14.4) (2026-06-18)
+
+
+### 📚 词库更新
+
+* update ([29ae6d1](https://github.com/amzxyz/rime-wanxiang/commit/29ae6d17c700c53243ba83ba8a9ce7a61a8df92a))
+* 分离王姓人名 ([77d68dd](https://github.com/amzxyz/rime-wanxiang/commit/77d68dd90b35dee74c44c8a2b7a041208c0fdb00))
+* 剥离由首选2+2组成的四字词条为单独top词库，且这些词条在词库中没有读音重合，在模型的作用下即使是打四个字也是直出的，保留top也只是短期内的留存共剥离17万 ([10fbb2e](https://github.com/amzxyz/rime-wanxiang/commit/10fbb2eb8534cebe182f9461cdbcbcf28a332416))
+* 简化人名词库 ([06717fe](https://github.com/amzxyz/rime-wanxiang/commit/06717febaa20b4b737018b0c33104258d8dd687f))
+* 词库调整 ([8712dca](https://github.com/amzxyz/rime-wanxiang/commit/8712dcacbe3b5e7eccbd591328119cca7e589d2b))
+* 词库调整 ([20fcbfd](https://github.com/amzxyz/rime-wanxiang/commit/20fcbfd9dd1fd62f96cca4f5a0527e9dd159b63e))
+* 词库调整 ([cc001d2](https://github.com/amzxyz/rime-wanxiang/commit/cc001d2ae7ec4bdf77212a9bd6a21e9245e0f34a))
+* 词库调整 ([371dc24](https://github.com/amzxyz/rime-wanxiang/commit/371dc240a75d2ce305804126446eae4ed1e5e02a))
+* 词库调整 ([8731da3](https://github.com/amzxyz/rime-wanxiang/commit/8731da3dbfeff644dc6ab76551979aeb23fbcd72))
+* 词库调整 ([9f6efae](https://github.com/amzxyz/rime-wanxiang/commit/9f6efae5b307a96b8e01e9262bbf20f67080e7c8))
+* 词库调整 ([7bc5f13](https://github.com/amzxyz/rime-wanxiang/commit/7bc5f133ada2cef4bc32c836393a3c4c9602efed))
+* 词库调整 ([886e651](https://github.com/amzxyz/rime-wanxiang/commit/886e6518586e47039a9363248a841143c03d9754))
+* 词库调整 ([9ce504a](https://github.com/amzxyz/rime-wanxiang/commit/9ce504a8d066b5f794a4d5d40389489d20308f81))
+* 词库调整 ([b46dcbc](https://github.com/amzxyz/rime-wanxiang/commit/b46dcbcd8786abfa2b74cf818469cf2f6aa5f26f))
+* 词库调整 ([475fb6f](https://github.com/amzxyz/rime-wanxiang/commit/475fb6f950db6ed887f80bcb0fc9f9f2cff341bd))
+* 迁移人名 ([098002f](https://github.com/amzxyz/rime-wanxiang/commit/098002fb8f111a2a844759e396628f304c29932b))
+* 进一步归类名称词库 ([907d413](https://github.com/amzxyz/rime-wanxiang/commit/907d41363fb3e6778f5cc9a7fa7d968367077b9e))
+
+
+### 🐛 Bug 修复
+
+* 修正蓝天双拼转写 ([5f9618e](https://github.com/amzxyz/rime-wanxiang/commit/5f9618eec981560a86dc912a82c3948c7641da95))
+* 反查允许使用;作为编码 ([1b5237a](https://github.com/amzxyz/rime-wanxiang/commit/1b5237ae17f3a791d4ba45b77769d5e796da8f8e))
+
 ## [15.14.3](https://github.com/amzxyz/rime-wanxiang/compare/v15.14.2...v15.14.3) (2026-06-14)
 
 
