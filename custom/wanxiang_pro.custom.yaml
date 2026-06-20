@@ -1,0 +1,17 @@
+patch:
+  speller/algebra:
+    __patch:
+      #- wanxiang_algebra:/模糊音_z_zh  # 这里取消注释启用，wanxiang_algebra.yaml文件末尾有具体条目，不含的custom自定义即可
+      - wanxiang_algebra:/pro/自然码
+      # 可选输入方案名称：自然码, 自然龙, 小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 国标双拼
+      - wanxiang_algebra:/pro/直接辅助
+      #辅助码升级为：直接辅助和间接辅助两种类型，都是句中任意，不同点在于直接辅助是nire=你  而间接则需要/引导  ni/re=你 ，在这个基础上直接辅助支持拼音后任意位置数字声调参与，间接辅助声调在/引导前参与
+      #- wanxiang_algebra:/自然码提权             #自然码提权、小鹤双拼提权 可选
+  ##########################以上格式受指令初始化控制，最好保持格式不变，如果发生变更请不要使用指令修改相关数据#####################################
+  #这里改成什么就需要手动创建同名的 custom_phrasexx.txt 文件在用户目录，这个文件主要用于置顶，编码为自定义编码的词汇
+  #custom_phrase/user_dict: custom_phrasexx
+  #导入根目录下名称为userxx.dict.yaml的自定义固定词典，编码要与固定词库一致，编码权重都不要少，形如姓名、专有名词公司名称等等
+  #translator/packs/+:
+  #  - userxx
+  #下面是候选数量
+  menu/page_size: 6
