@@ -1,0 +1,11 @@
+lua/*.userdb/
+lua/*.userdb/
+dist
+pro-*-fuzhu-dicts
+release_notes.md
+build/
+sync/
+*.userdb/
+installation.yaml
+user.yaml
+*.custom.yaml

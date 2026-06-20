@@ -1,0 +1,10 @@
+doublestar: true
+exclude:
+  - "dicts/**"
+  - "**/*.dict.yaml"
+  - "*.dict.yaml"
+formatter:
+  type: basic
+  retain_line_breaks_single: true
+  pad_line_comments: 2
+  trim_trailing_whitespace: true

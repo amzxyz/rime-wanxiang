@@ -1,0 +1,249 @@
+
+name: Build release branch snapshot8
+
+on:
+  workflow_dispatch: # 手动触发
+  push:
+    branches:
+      - wanxiang
+
+concurrency:
+  group: release-branch
+  cancel-in-progress: true
+
+jobs:
+  build-release:
+    runs-on: ubuntu-22.04
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 20
+          
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Release build
+        run: bash .github/workflows/scripts/release-build.sh
+
+      # 1. 用 dist/ 里的产物拼出 snapshot 目录 (用于后面的分支推送)
+      - name: Prepare snapshot tree from dist
+        run: |
+          set -euo pipefail
+
+          rm -rf snapshot
+          mkdir -p snapshot
+
+          if ls dist/rime-wanxiang-* 1> /dev/null 2>&1; then
+            for d in dist/rime-wanxiang-*; do
+              [ -d "$d" ] || continue
+              name="$(basename "$d")"
+              echo "Copying directory $d -> snapshot/$name"
+              mkdir -p "snapshot/$name"
+              cp -a "$d"/. "snapshot/$name"/
+            done
+          else
+            echo "Error: no dist/rime-wanxiang-* directories found."
+            exit 1
+          fi
+
+      # 2. 每次强制打包最新词库 zip (耗时极短，直接与方案一起打包)
+      - name: Pack nightly dict zips
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+
+          pack_dict() {
+            local src="$1"
+            local zip_name="$2"
+            if [[ -d "$src" ]]; then
+              echo "Packing $src -> dist/${zip_name}"
+              (cd "$src" && zip -r -q "../../${zip_name}" . -x "renming.dict.yaml" "wuzhong.dict.yaml")
+            else
+              echo "Warning: $src does not exist, skipped."
+            fi
+          }
+          pack_dict "dist/rime-wanxiang-wx-fuzhu/dicts"    "pro-wx-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-moqi-fuzhu/dicts"    "pro-moqi-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-flypy-fuzhu/dicts"   "pro-flypy-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-zrm-fuzhu/dicts"     "pro-zrm-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-tiger-fuzhu/dicts"   "pro-tiger-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-wubi-fuzhu/dicts"    "pro-wubi-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-hanxin-fuzhu/dicts"  "pro-hanxin-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-shouyou-fuzhu/dicts" "pro-shouyou-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-shyplus-fuzhu/dicts" "pro-shyplus-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-base/dicts"          "base-dicts.zip"
+          pack_dict "dist/rime-wanxiang-pure/dicts"          "pure-dicts.zip"
+
+      # 3. 删除旧的 Nightly/Preview Release 和 Tag
+      - name: Delete existing Nightly Release and Tag
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const tag = "dict-nightly"; // 统一使用这个原有的标签
+            try {
+              const releases = await github.rest.repos.listReleases({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+              const existingRelease = releases.data.find(r => r.tag_name === tag);
+              if (existingRelease) {
+                console.log(`Deleting existing Release with ID: ${existingRelease.id}`);
+                await github.rest.repos.deleteRelease({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  release_id: existingRelease.id
+                });
+              }
+
+              console.log(`Deleting tag: ${tag}`);
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `tags/${tag}`
+              });
+            } catch (error) {
+              console.log(`Error deleting Release or Tag: ${error.message}`);
+            }
+
+      - name: Wait for cleanup
+        run: sleep 5
+
+      # 4. 生成最近 10 条 Changelog
+      - name: Generate Changelog
+        id: changelog
+        run: |
+          LOGS=$(git log -10 --pretty=format:"- %s (%h)")
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "COMMIT_LOGS<<$EOF" >> $GITHUB_ENV
+          echo "$LOGS" >> $GITHUB_ENV
+          echo "$EOF" >> $GITHUB_ENV
+
+      # 5. 创建统一的 Nightly 预览版 Release，上传所有方案与词库产物
+      - name: Create Unified Nightly Release
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: dict-nightly
+          name: "🚀 实时全量预览版 (Rolling Preview)"
+          body: |
+            ⚠️ **注意：这是由 CI 自动构建的最新开发预览版（Rolling Preview）。**
+            
+            包含了仓库最新的代码、方案和词库变动。此 Release 会在每次推送后**被自动覆盖更新**。
+            如果您追求稳定，请前往下载 [🌟 最新正式版](../../releases/latest)。
+            
+            ---
+            
+            ### 📦 产物说明 (Assets)
+            
+            #### 1️⃣ 完整方案包 (包含配置、Lua 脚本、词库等)
+            - `rime-wanxiang-base.zip`: 标准版完整方案
+            - `rime-wanxiang-pure.zip`: 精简版完整方案
+            - `rime-wanxiang-pro-*-fuzhu.zip`: 携带各款辅助码的 Pro 版完整方案
+            
+            #### 2️⃣ 独立词库包 (仅含 dicts 目录下的文件，供单独覆盖升级)
+            - `base-dicts.zip`: 标准版独立词库
+            - `pure-dicts.zip`: 精简版独立词库
+            - `pro-*-fuzhu-dicts.zip`: 携带各款辅助码的独立词库
+            - **[wanxiang-lts-zh-hans.gram](https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram)**：与词库同步更新的语法模型
+            
+            ---
+            
+            ### 🔄 最近 10 次代码变动
+            ${{ env.COMMIT_LOGS }}
+            
+            ---
+            **触发用户**：@${{ github.actor }} | **构建分支**：`${{ github.ref_name }}`
+          files: dist/*.zip
+          draft: false
+          prerelease: true
+      # 6. 为每个方案生成独立分支：wanxiang-base / wanxiang-moqi-fuzhu / ...
+      - name: Commit and force push per-scheme snapshots
+        env:
+          GIT_AUTHOR_NAME: ci-bot
+          GIT_AUTHOR_EMAIL: ci@example.com
+          GIT_COMMITTER_NAME: ci-bot
+          GIT_COMMITTER_EMAIL: ci@example.com
+        run: |
+          set -euo pipefail
+          ORIG_BRANCH="$(git rev-parse --abbrev-ref HEAD || echo 'wanxiang')"
+          schemes=("base" "pure" "wx-fuzhu" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu" "shyplus-fuzhu")
+
+          COMMON_FILES=(
+            "dicts/*.*"
+            "custom/*.*"
+            "lua/*.*"
+            "lua/data/*.*"
+            "lua/wanxiang/*.*"
+            "default.yaml"
+            "weasel.yaml"
+            "wanxiang*.*yaml"
+            "README.md"
+            "custom_phrase.txt"
+          )
+
+          TAG_NAME="${{ github.event_name == 'release' && github.event.release.tag_name || 'manual-build' }}"
+
+          for scheme in "${schemes[@]}"; do
+            branch="wanxiang-${scheme}"
+            src_dir="snapshot/rime-wanxiang-${scheme}"
+
+            if [ ! -d "${src_dir}" ]; then
+              continue
+            fi
+
+            if git show-ref --verify --quiet "refs/heads/${branch}"; then
+              git checkout "${branch}"
+            else
+              git checkout --orphan "${branch}"
+            fi
+
+            find . -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "snapshot" -exec rm -rf {} +
+            cp -a "${src_dir}"/. .
+            mkdir -p plum
+
+            {
+              echo "# encoding: utf-8"
+              echo "---"
+              echo "recipe:"
+              echo "  Rx: plum/full"
+              echo "  args:"
+              echo "  description: >-"
+              echo "    万象拼音 ${scheme} 版（整个方案目录）- 分支 ${branch}"
+              echo "install_files: >-"
+              for path in "${COMMON_FILES[@]}"; do
+                echo "  ${path}"
+              done
+            } > "plum/full.recipe.yaml"
+
+            {
+              echo "# encoding: utf-8"
+              echo "---"
+              echo "recipe:"
+              echo "  Rx: plum/dicts"
+              echo "  args:"
+              echo "  description: >-"
+              echo "    万象拼音 ${scheme} 版，仅词库（dicts-only）- 分支 ${branch}"
+              echo "install_files: >-"
+              echo "  dicts/*.*"
+            } > "plum/dicts.recipe.yaml"
+
+            git add .
+            git reset snapshot || true
+            git rm -r --cached snapshot 2>/dev/null || true
+
+            git commit -m "chore(${branch}): snapshot for ${TAG_NAME}" \
+              || echo "Nothing to commit for ${branch}."
+
+            git push -f origin "${branch}"
+          done
+
+          git checkout "${ORIG_BRANCH}" || true
+          rm -rf snapshot

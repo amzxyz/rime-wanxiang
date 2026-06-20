@@ -1,0 +1,14 @@
+# Rime dictionary
+# encoding: utf-8
+# 
+# rime配置的部署位置：
+# ~/.local/share/fcitx5/rime 或者 ~/.config/ibus/rime  (Linux)
+# ~/Library/Rime  (Mac OS)
+# %APPDATA%\Rime  (Windows)
+---
+name: wanxiang_mixedcode
+version: "lts"
+sort: by_weight
+import_tables:
+  - dicts/cn&en     #混合编码词库
+...

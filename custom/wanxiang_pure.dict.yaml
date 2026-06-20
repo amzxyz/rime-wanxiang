@@ -1,0 +1,24 @@
+# Rime dictionary
+# encoding: utf-8
+# 
+# rime配置的部署位置：
+# ~/.local/share/fcitx5/rime 或者 ~/.config/ibus/rime  (Linux)
+# ~/Library/Rime  (Mac OS)
+# %APPDATA%\Rime  (Windows)
+# 
+#
+
+---
+name: wanxiang_pure
+version: "LTS"
+sort: by_weight
+use_preset_vocabulary: false
+import_tables:
+  - dicts/zi            #字表，包含了所有带拼音的汉字
+  - dicts/jichu         #基础词库，2-4字词汇
+  - dicts/lianxiang     #联想词库，5字以上词汇，多用于输入前半段第二候选可以出来整段
+  - dicts/cuoyin        #错音错字，支持错音和错字输入的兼容，同时供超级注释lua使用会在输入错误音节打出的时候给予提示
+  - dicts/duoyin        #兼容词库，是基础词库的扩充，收录了多场景多种读音的词组
+  - dicts/shici         #诗词
+  - dicts/diming        #地名
+...
