@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.15.1](https://github.com/amzxyz/rime-wanxiang/compare/v15.15.0...v15.15.1) (2026-06-24)
+
+
+### 🐛 Bug 修复
+
+* 恢复误删除函数 ([05cc3bd](https://github.com/amzxyz/rime-wanxiang/commit/05cc3bd69be5b11d5984a91f6e83c3375e3698c2))
+
 ## [15.15.0](https://github.com/amzxyz/rime-wanxiang/compare/v15.14.4...v15.15.0) (2026-06-24)
 
 
