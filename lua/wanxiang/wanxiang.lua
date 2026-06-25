@@ -5,7 +5,7 @@ local wanxiang = {}
 
 -- x-release-please-start-version
 
-wanxiang.version = "v15.14.4"
+wanxiang.version = "v15.15.1"
 
 -- x-release-please-end
 
@@ -259,6 +259,7 @@ wanxiang.INPUT_METHOD_MARKERS = {
     ["Ⅻ"] = "hxlong", --汉心龙
     ["Ⅿ"] = "ltsp", --蓝天双拼
     ["Ⅼ"] = "lxsq", --乱序17
+    ["ⅩⅢ"] = "sdpy", --首道双拼
     ["ⅲ"] = "ⅲ", -- 间接辅助标记：命中则额外返回 md="ⅲ"
     ["ⅱ"] = "t9", -- 拼音九键
 }

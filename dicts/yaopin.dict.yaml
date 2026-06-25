@@ -43,11 +43,15 @@ sort: by_weight
 金胆片	jīn dǎn piàn	100
 金红片	jīn hóng piàn	100
 颈痛片	jǐng tòng piàn	100
+喹硫平	kuí liú píng	273
+奎尼丁	kuí ní dīng	31
+喹诺酮	kuí nuò tóng	22
 利鼻片	lì bí piàn	100
 利肺片	lì fèi piàn	100
 利肝片	lì gān piàn	100
 理中片	lǐ zhōng piàn	100
 癃清片	lóng qīng piàn	100
+吗啉胍	mǎ lín guā	30
 脉平片	mài píng piàn	100
 迈之灵	mài zhī líng	100
 脑安片	nǎo ān piàn	100
@@ -122,6 +126,7 @@ sort: by_weight
 奋乃静片	fèn nǎi jìng piàn	100
 复肝宁片	fù gān níng piàn	100
 妇康宁片	fù kāng níng piàn	100
+氟康唑片	fú kāng zuò piàn	100
 复肾宁片	fù shèn níng piàn	100
 复胃散片	fù wèi sàn piàn	100
 妇炎康片	fù yán kāng piàn	100
@@ -171,6 +176,7 @@ sort: by_weight
 癃闭舒片	lóng bì shū piàn	100
 龙凤宝片	lóng fèng bǎo piàn	100
 卵磷脂片	luǎn lín zhī piàn	100
+吗啉胍片	mǎ lín guā piàn	212
 脉络通片	mài luò tōng piàn	100
 米氮平片	mǐ dàn píng piàn	100
 脑得生片	nǎo dé shēng piàn	100
@@ -6687,8 +6693,8 @@ sort: by_weight
 麻黄素滴鼻液	má huáng sù dī bí yè	100
 麻黄素注射液	má huáng sù zhù shè yè	100
 马兰感寒胶囊	mǎ lán gǎn hán jiāo náng	100
-吗啉胍滴眼液	ma lín guā dī yǎn yè	100
-吗啉胍注射液	ma lín guā zhù shè yè	100
+吗啉胍滴眼液	mǎ lín guā dī yǎn yè	100
+吗啉胍注射液	mǎ lín guā zhù shè yè	100
 马蔺子素胶囊	mǎ lìn zǐ sù jiāo náng	100
 吗氯贝胺胶囊	ma lǜ bèi àn jiāo náng	100
 麻芩消咳颗粒	má qín xiāo ké kē lì	100
@@ -8041,7 +8047,7 @@ sort: by_weight
 盐酸氯丙嗪片	yán suān lǜ bǐng qín piàn	100
 盐酸氯哌丁片	yán suān lǜ pài dīng piàn	100
 盐酸麻黄碱片	yán suān má huáng jiǎn piàn	100
-盐酸吗啉胍片	yán suān ma lín guā piàn	100
+盐酸吗啉胍片	yán suān mǎ lín guā piàn	100
 盐酸美沙酮片	yán suān měi shā tóng piàn	100
 盐酸美司坦片	yán suān měi sī tǎn piàn	100
 盐酸美西律片	yán suān měi xī lǜ piàn	100
@@ -9322,6 +9328,7 @@ sort: by_weight
 妇科白凤口服液	fù kē bái fèng kǒu fú yè	100
 妇科分清丸水丸	fù kē fēn qīng wán shuǐ wán	100
 妇科养荣浓缩丸	fù kē yǎng róng nóng suō wán	100
+氟喹诺酮类药物	fú kuí nuò tóng lèi yào wù	100
 茯苓杏仁甘草汤	fú líng xìng rén gān cǎo tāng	100
 氟罗沙星分散片	fú luó shā xīng fēn sǎn piàn	100
 氟罗沙星注射液	fú luó shā xīng zhù shè yè	100
@@ -11057,6 +11064,7 @@ sort: by_weight
 吡嘧司特钾滴眼液	bǐ mì sī tè jiǎ dī yǎn yè	100
 丹参川芎嗪注射液	dān shēn chuān xiōng qín zhù shè yè	100
 复方氨酚那敏颗粒	fù fāng ān fēn nà mǐn kē lì	100
+复方氨酚烷胺颗粒	fù fāng ān fēn wán àn kē lì	100
 复方柴胡安神颗粒	fù fāng chái hú ān shén kē lì	100
 复方木尼孜其颗粒	fù fāng mù ní zī qí kē lì	100
 复方妥布霉素眼膏	fù fāng tuǒ bù méi sù yǎn gāo	100
@@ -11066,6 +11074,7 @@ sort: by_weight
 强酸型离子交换剂	qiáng suān xíng lí zǐ jiāo huàn jì	100
 双氯芬酸缓释胶囊	shuāng lǜ fēn suān huǎn shì jiāo náng	100
 小儿氨酚那敏颗粒	xiǎo ér ān fēn nà mǐn kē lì	100
+小儿氨酚烷胺颗粒	xiǎo ér ān fēn wán àn kē lì	100
 小儿化痰止咳颗粒	xiǎo ér huà tán zhǐ ké kē lì	100
 小儿四维葡钙颗粒	xiǎo ér sì wéi pú gài kē lì	100
 元素的集中和分散	yuán sù de jí zhōng hé fēn sǎn	100
@@ -11078,6 +11087,7 @@ sort: by_weight
 黄芪芍药桂枝苦酒汤	huáng qí sháo yào guì zhī kǔ jiǔ tāng	100
 盐酸特比萘芬喷雾剂	yán suān tè bǐ nài fēn pēn wù jì	100
 桂枝去桂加茯苓白术汤	guì zhī qù guì jiā fú líng bái zhú tāng	100
+小儿硫酸庆大霉素颗粒	xiǎo ér liú suān qìng dà méi sù kē lì	100
 小儿双磺甲氧苄啶颗粒	xiǎo ér shuāng huáng jiǎ yǎng biàn dìng kē lì	100
 木防己去石膏加茯苓芒硝汤	mù fáng jǐ qù shí gāo jiā fú líng máng xiāo tāng	100
 桂枝去芍药加蜀漆牡蛎龙骨救逆汤	guì zhī qù sháo yào jiā shǔ qī mǔ lì lóng gǔ jiù nì tāng	100

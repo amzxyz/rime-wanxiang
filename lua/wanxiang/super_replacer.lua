@@ -1,76 +1,7 @@
---[[
-super_replacer.lua 一个rime OpenCC替代品，更灵活地配置能力
-https://github.com/amzxyz/rime-wanxiang
-by amzxyz
-路径检测：UserDir > SharedDir
-支持 option: true (常驻启用)
-super_replacer:
-    db_name: lua/replacer
-    delimiter: "|"
-    comment_format: "〔%s〕"
-    chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
-    rules:
-      # 场景1：输入 '哈哈' -> 变成 '1.哈哈 2.😄'
-      - option: emoji          # 开关名称与上面开关名称保持一致
-        mode: append            # 新增候选append 替换原候选replace 替换注释comment
-        comment_mode: none      # 注释模式: "append"(原候选注释继承), "text"(原候选文本放在注释), "none"(空，默认)
-        tags: [abc]            # 生效的tag
-        prefix: "_em_"          # 前缀用于区分同一个数据库的不同用途数据
-        files:
-          - lua/data/emoji.txt
-      # 场景2：输入 'hello' -> 显示 'hello 〔你好 | 哈喽〕'
-      - option: chinese_english
-        mode: append        # <--- 添加注释模式
-        comment_mode: none
-        tags: [abc]
-        prefix: "_en_"
-        files:
-          - lua/data/english_chinese.txt
-          - lua/data/chinese_english.txt
-      # 场景3：用于常驻的直接替换 option: true
-      - option: true
-        mode: append        # <--- 新增候选模式
-        comment_mode: none
-        tags: [abc]
-        prefix: "_ot_"
-        files:
-          - lua/data/others.txt
-      # 场景4：用于简繁转换的直接替换
-      - option: [ s2t, s2hk, s2tw ]  #后面依赖这条流水线有一个开关为true这条流水线就能工作
-        mode: replace        # <--- 替换原候选模式
-        comment_mode: append
-        sentence: true        # <--- 句子级别替换
-        tags: [abc]
-        prefix: "_s2t_"
-        files:
-          - lua/data/STCharacters.txt
-          - lua/data/STPhrases.txt
-      - option: s2hk
-        mode: replace        # <--- 替换原候选模式
-        comment_mode: append
-        sentence: true        # <--- 句子级别替换
-        tags: [abc]
-        prefix: "_s2hk_"
-        files:
-          - lua/data/HKVariants.txt
-          - lua/data/HKVariantsRevPhrases.txt
-      - option: s2tw
-        mode: replace        # <--- 替换原候选模式
-        comment_mode: append
-        sentence: true        # <--- 句子级别替换
-        tags: [abc]
-        prefix: "_s2tw_"
-        files:
-          - lua/data/TWVariants.txt
-          - lua/data/TWVariantsRevPhrases.txt
-      - option: [ abbrev_lazy, abbrev_always ]
-        mode: abbrev          # <--- 新增的简码模式
-        tags: [abc]
-        prefix: "_abbr_"
-        files:
-          - lua/data/abbrev.txt # 格式：zm\t怎么|在吗
-        #t9_optimization: true  #t9优化,从txt里编码转换为实际打字需要的编码，例如九键维护用字母加载数据库变数字,源编码携带上用于preedit
-]]
+-- super_replacer.lua 一个rime 更灵活地滤镜转换器
+-- https://github.com/amzxyz/rime-wanxiang
+-- @amzxyz
+
 local M = {}
 
 -- 性能优化：本地化常用库函数
@@ -367,7 +298,25 @@ function M.init(env)
             local rule_item = rule_list:get_at(i)
             local rule = rule_item and rule_item:get_map()
             if not rule then goto continue_rule end
-          
+
+            local function check_type_list(key)
+                local item = rule:get(key)
+                if not item then return nil end
+                local list = item.type == "kList" and item:get_list()
+                if not list then return nil end
+                for k = 0, list.size - 1 do
+                    local val = list:get_value_at(k)
+                    if val and val:get_string() == env.input_type then return true end
+                end
+                return false
+            end
+
+            local is_only = check_type_list("only_types")
+            if is_only == false then goto continue_rule end
+
+            local is_excluded = check_type_list("exclude_types")
+            if is_excluded == true then goto continue_rule end
+
             -- 解析 triggers
             local triggers = {}
             local opts_keys = {"option", "options"}
@@ -683,6 +632,7 @@ function M.func(input, env)
     local global_yielded = {}
     local always_cands = {}
     local lazy_cands = {}
+    local group_fronted = {}
 
     for _, t in ipairs(rules) do
         if t.mode == "abbrev" then
@@ -709,6 +659,7 @@ function M.func(input, env)
 
                 if val then
                     local count = 0
+                    local group_key = t.prefix
                     for p in s_gmatch(val, split_pat) do
                         local item_text, item_preedit = parse_item(p, t.preedit_delim)
                         if not seen_texts[item_text] then
@@ -720,10 +671,10 @@ function M.func(input, env)
                             count = count + 1
                             if count <= t.always_qty then
                                 abbrev_cand.quality = 999
-                                insert(always_cands, { cand = abbrev_cand, index = t.always_idx + (count - 1) })
+                                insert(always_cands, { cand = abbrev_cand, index = t.always_idx + (count - 1), group_key = group_key, yielded = false })
                             else
                                 abbrev_cand.quality = 98
-                                insert(lazy_cands, abbrev_cand)
+                                insert(lazy_cands, { cand = abbrev_cand, group_key = group_key, yielded = false })
                             end
                         end
                     end
@@ -744,9 +695,9 @@ function M.func(input, env)
         local key = trim_space(item.cand.text)
         abbrev_lookup[key] = { type = "always", ref = item }
     end
-    for _, cand in ipairs(lazy_cands) do
-        local key = trim_space(cand.text)
-        abbrev_lookup[key] = { type = "lazy", ref = cand }
+    for _, item in ipairs(lazy_cands) do
+        local key = trim_space(item.cand.text)
+        abbrev_lookup[key] = { type = "lazy", ref = item }
     end
 
     local function dump_all_abbrevs()
@@ -764,16 +715,21 @@ function M.func(input, env)
             end
         end
         
-        for _, cand in ipairs(lazy_cands) do
-            if not cand.yielded then
-                cand.yielded = true
-                local processed = process_rules(cand)
-                for _, pc in ipairs(processed) do
-                    local dedup_key = trim_space(pc.text)
-                    if not global_yielded[dedup_key] then
-                        global_yielded[dedup_key] = true
-                        yield(pc); yield_count = yield_count + 1
+        -- 如果没被前置消耗掉，才释放它的兜底词
+        for _, item in ipairs(lazy_cands) do
+            if not item.yielded then
+                if not group_fronted[item.group_key] then
+                    item.yielded = true
+                    local processed = process_rules(item.cand)
+                    for _, pc in ipairs(processed) do
+                        local dedup_key = trim_space(pc.text)
+                        if not global_yielded[dedup_key] then
+                            global_yielded[dedup_key] = true
+                            yield(pc); yield_count = yield_count + 1
+                        end
                     end
+                else
+                    item.yielded = true
                 end
             end
         end
@@ -831,6 +787,9 @@ function M.func(input, env)
                 if is_user then
                     if is_reserved then 
                         match_info.ref.yielded = true
+                        if match_info.type == "always" then
+                            group_fronted[match_info.ref.group_key] = true 
+                        end
                     end
                     global_yielded[dedup_key] = true
                     yield(pc)
@@ -841,6 +800,7 @@ function M.func(input, env)
                         local item = always_cands[next_always_ptr]
                         if not item.yielded and (yield_count + 1) >= item.index then
                             item.yielded = true
+                            group_fronted[item.group_key] = true
                             local ac_processed = process_rules(item.cand)
                             for _, apc in ipairs(ac_processed) do
                                 local apc_key = trim_space(apc.text)
@@ -861,6 +821,11 @@ function M.func(input, env)
                         global_yielded[dedup_key] = true
                         yield(pc)
                         yield_count = yield_count + 1
+                    else
+                        match_info.ref.yielded = true
+                        if match_info.type == "always" then
+                            group_fronted[match_info.ref.group_key] = true 
+                        end
                     end
                     
                 else
@@ -870,13 +835,14 @@ function M.func(input, env)
                         global_yielded[dedup_key] = true
                         yield(pc)
                         yield_count = yield_count + 1
+                    else
+                        match_info.ref.yielded = true
                     end
                 end
             end
         end
         cand = get_next_cand()
     end
-    
     dump_all_abbrevs()
 end
 return M

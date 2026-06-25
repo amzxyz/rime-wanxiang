@@ -199,6 +199,8 @@ super_tips:
 # t9_optimization:  (true/false) T9九宫格优化，自动将词库里的字母键转换为数字键，携带预编辑码
 # abbrev_rule:      (仅 abbrev 模式生效) 格式为 "数量,位置"。(如 "1,6" 表示将词库前 1 个词插队到第 6 候选位，其余全部放在最后面兜底)
 # files:            要读取的 txt 词库文件列表 (支持多文件合并，UserDir 优先于 SharedDir)
+# exclude_types: [pinyin]  # 让当前节点排除特定类型的输入类型例如：全拼，这样他就能在非全拼的输入类型下自动生效
+# only_types: [pinyin]  # 仅对特定类型的候选词生效，其他类型候选词不受影响
 
 super_replacer:
   db_name: lua/replacer
@@ -257,6 +259,7 @@ super_replacer:
       files:
         - lua/data/TWVariants.txt
     - option: abbrev  # 常规简码
+      exclude_types: [pinyin]   # 该节点排除全拼使用
       mode: abbrev
       tags: [abc]
       prefix: "_abbr_"
@@ -625,6 +628,7 @@ wanxiang_lookup:  #设置归属于super_lookup.lua
   lookup: [wanxiang_reverse]  #反查滤镜数据库，万象都合并为一个了
   data_source: [db]  #对于pro版本能从注释中加载词库辅助码，详情见Pro版本，base这里无需修改。
   enable_tone: true  #启用声调反查
+  enable_direct: false  #启用无引导的直接辅助查询，能够充分理解其类似手心的直接辅助功能，仅针对两个字的词组，支持两个字任意单、双辅助，双辅助也支持两个字的首辅助组合
 
 # 处理符合特定规则的输入码，如网址、反查
 recognizer:

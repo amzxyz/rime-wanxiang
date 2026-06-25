@@ -48,11 +48,11 @@ jobs:
           fetch-depth: 0
           path: trime_src
 
-      - name: Download Shared Gram Model
-        run: |
-          mkdir -p "$GITHUB_WORKSPACE/common_assets"
-          curl -L "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram" \
-               -o "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram"
+      # - name: Download Shared Gram Model
+      #   run: |
+      #     mkdir -p "$GITHUB_WORKSPACE/common_assets"
+      #     curl -L "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram" \
+      #          -o "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram"
 
       # 2. 注入方案 (你的完美脚本，原封不动)
       - name: Inject Scheme & Smart Sync
@@ -89,9 +89,9 @@ jobs:
           cp -rf temp_scheme/. "$SHARED_DEST"/
           rm -rf temp_scheme
 
-          if [ -f "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram" ]; then
-              cp -f "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram" "$SHARED_DEST/wanxiang-lts-zh-hans.gram"
-          fi
+          # if [ -f "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram" ]; then
+          #     cp -f "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram" "$SHARED_DEST/wanxiang-lts-zh-hans.gram"
+          # fi
           echo ">>> 🧹 执行深度清理..."
           find "$SHARED_DEST/opencc" -name "*.txt" -delete 2>/dev/null || true
           rm -f "$SHARED_DEST/dicts/wuzhong.dict.yaml" 2>/dev/null || true
@@ -260,6 +260,7 @@ jobs:
               - **包名**: `amzxyz.wanxiang.trime`
               - **主题**: 默认集成色彩简纯
               - **用户目录**: `wanxiang`
+              - **语法模型**: 需单独下载放入`wanxiang`目录
               - 更新内容参照同文及万象的commit
               ## 📢 版权与归属声明
             
