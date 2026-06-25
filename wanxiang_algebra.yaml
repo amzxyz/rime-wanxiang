@@ -1062,9 +1062,9 @@ base:
       - xform/[iu]ang(\d)$/Ⓧ$1/               # X
       - xform/(.)en(\d)$/$1Ⓚ$2/               # K (en 移到 K)
       - xform/(.)eng(\d)$/$1Ⓕ$2/              # F
-      - xform/(.)ang(\d)$/$1Ⓙ$2/              # J
+      - xform/(.)ang(\d)$/$1Ⓨ$2/              # Y
       - xform/ian(\d)$/Ⓝ$1/                   # N
-      - xform/(.)an(\d)$/$1Ⓨ$2/               # Y (an 移到 Y)
+      - xform/(.)an(\d)$/$1Ⓙ$2/               # J (an 移到 J)
       - xform/iao(\d)$/Ⓟ$1/                   # P
       - xform/(.)ao(\d)$/$1Ⓓ$2/               # D
       - xform/(.)ai(\d)$/$1Ⓛ$2/               # L (ai 与 ue 共用 L)
@@ -1078,7 +1078,8 @@ base:
       - xlit/ⓆⓌⓇⓉⓎⓊⒺⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyueiopsdfghmjcklzxvbn/
       
       # 清除无效组合（沿用首文双拼原规则，可按需调整）
-      - xform/^(al|ak|ef|ey|aj|os)(\d?)$//
+      - xform/^(al|ak|ef|ey|ay|os)(\d?)$//
+
       
       # 输出派生（与首文双拼完全一致，不关闭简拼）
       - derive/^(..)(\d)$/$1/
@@ -1932,7 +1933,7 @@ pro:
       - xform/^ou(\d)(;.*)$/ou$1$2/       # ou → ou
       - xform/^an(\d)(;.*)$/an$1$2/       # an → an
       - xform/^en(\d)(;.*)$/en$1$2/       # en → en
-      - xform/^ang(\d)(;.*)$/aj$1$2/      # ang → aj
+      - xform/^ang(\d)(;.*)$/ay$1$2/      # ang → ay
       - xform/^eng(\d)(;.*)$/ⓊⒻ$1$2/      # eng → uf
       - xform/^ao(\d)(;.*)$/ao$1$2/       # ao → ao
       - xform/^er(\d)(;.*)$/er$1$2/       # er → er
@@ -1945,7 +1946,7 @@ pro:
       - xform/^ou(;.*)$/ou$1/       # ou → ou
       - xform/^an(;.*)$/an$1/       # an → an
       - xform/^en(;.*)$/en$1/       # en → en
-      - xform/^ang(;.*)$/aj$1/      # ang → aj
+      - xform/^ang(;.*)$/ay$1/      # ang → ay
       - xform/^eng(;.*)$/ⓊⒻ$1/      # eng → uf
       - xform/^ao(;.*)$/ao$1/       # ao → ao
       - xform/^er(;.*)$/er$1/       # er → er
@@ -1958,7 +1959,7 @@ pro:
       - xform/^ou$/ou/       # ou → ou
       - xform/^an$/an/       # an → an
       - xform/^en$/en/       # en → en
-      - xform/^ang$/aj/      # ang → aj
+      - xform/^ang$/ay/      # ang → ay
       - xform/^eng$/ⓊⒻ/      # eng → uf
       - xform/^ao$/ao/       # ao → ao
       - xform/^er$/er/       # er → er
@@ -1988,7 +1989,7 @@ pro:
       - xform/un(\d)(;.*)$/Ⓩ$1$2/
       - xform/van(\d)(;.*)$/Ⓣ$1$2/
       - xform/uan(\d)(;.*)$/Ⓣ$1$2/
-      - xform/ang(\d)(;.*)$/Ⓙ$1$2/
+      - xform/ang(\d)(;.*)$/Ⓨ$1$2/
       - xform/eng(\d)(;.*)$/Ⓕ$1$2/
       - xform/ia(\d)(;.*)$/Ⓚ$1$2/         # ia→K
       - xform/in(\d)(;.*)$/Ⓒ$1$2/
@@ -1997,7 +1998,7 @@ pro:
       - xform/^(.+)ai(\d)(;.*)$/$1Ⓛ$2$3/
       - xform/^(.+)ei(\d)(;.*)$/$1Ⓜ$2$3/  # ei 仍在 M
       - xform/^(.+)ou(\d)(;.*)$/$1Ⓢ$2$3/
-      - xform/^(.+)an(\d)(;.*)$/$1Ⓨ$2$3/  # an→Y
+      - xform/^(.+)an(\d)(;.*)$/$1Ⓙ$2$3/  # an→j
       # 6. 声母特殊映射
       - xform/^sh/Ⓔ/
       - xform/^ch/Ⓘ/
@@ -2418,9 +2419,9 @@ reverse:
     - xform/([a-z>])en(?=^|$|')/$1<k>/
     - xform/([a-z>])eng(?=^|$|')/$1<f>/
     - xform/[iu]ang(?=^|$|')/<x>/
-    - xform/([a-z>])ang(?=^|$|')/$1<j>/
+    - xform/([a-z>])ang(?=^|$|')/$1<y>/
     - xform/ian(?=^|$|')/<n>/
-    - xform/([a-z>])an(?=^|$|')/$1<y>/
+    - xform/([a-z>])an(?=^|$|')/$1<j>/
     - xform/([a-z>])ou(?=^|$|')/$1<s>/
     - xform/ua(?=^|$|')/<w>/
     - xform/ia(?=^|$|')/<k>/
@@ -2928,9 +2929,9 @@ mixed:
       - xform/('|^)((?:<v>|<i>|<u>|[aoeqghjkxbnl]))[iu]ang(?=^|$|')/$1$2<x>/
       - xform/('|^)((?:<v>|<i>|<u>|[wrtpsdfghkzcbnm]))en(?=^|$|')/$1$2<k>/
       - xform/('|^)((?:<v>|<i>|<u>|[wrtpsdfghklzcbnm]))eng(?=^|$|')/$1$2<f>/
-      - xform/('|^)((?:<v>|<i>|<u>|[wrtypsdfghklzcbnm]))ang(?=^|$|')/$1$2<j>/
+      - xform/('|^)((?:<v>|<i>|<u>|[wrtypsdfghklzcbnm]))ang(?=^|$|')/$1$2<y>/
       - xform/('|^)([qtpdjlxbnm])ian(?=^|$|')/$1$2<n>/
-      - xform/('|^)((?:<v>|<i>|<u>|[wrtypsdfghklzcbnm]))an(?=^|$|')/$1$2<y>/
+      - xform/('|^)((?:<v>|<i>|<u>|[wrtypsdfghklzcbnm]))an(?=^|$|')/$1$2<j>/
       - xform/('|^)([qtpdjlxbnm])iao(?=^|$|')/$1$2<p>/
       - xform/('|^)((?:<v>|<i>|<u>|[rtypsdghklzcbnm]))ao(?=^|$|')/$1$2<d>/
       - xform/('|^)((?:<i>|<u>|[aoewtpsdghklzcbnm]))ai(?=^|$|')/$1$2<l>/
@@ -3371,7 +3372,7 @@ english:
       - derive/1/yi/
       - derive/2/er/
       - derive/2/lx/
-      - derive/3/sy/
+      - derive/3/sj/
       - derive/4/si/
       - derive/5/wu/
       - derive/6/lq/
