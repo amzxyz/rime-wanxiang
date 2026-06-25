@@ -1,5 +1,25 @@
 # Changelog
 
+## [15.15.2](https://github.com/amzxyz/rime-wanxiang/compare/v15.15.1...v15.15.2) (2026-06-25)
+
+
+### 📚 词库更新
+
+* 词库调整 ([ec42183](https://github.com/amzxyz/rime-wanxiang/commit/ec42183f5a55e7f7e516dbc07e000467567c0798))
+* 词库调整 ([d65d1d0](https://github.com/amzxyz/rime-wanxiang/commit/d65d1d0e6c8f29ebe736018bff870c6995a63583))
+* 词库调整 ([0d64c32](https://github.com/amzxyz/rime-wanxiang/commit/0d64c3288d70302b31cfb31cace33d83c4586ad1))
+* 词库调整 ([2260df9](https://github.com/amzxyz/rime-wanxiang/commit/2260df9014228882a2d7d0a20ca0f03080c0908f))
+* 词库调整 ([9572bdb](https://github.com/amzxyz/rime-wanxiang/commit/9572bdbbecd156df331a10523a58d19089afa42c))
+* 词库调整 ([6321002](https://github.com/amzxyz/rime-wanxiang/commit/6321002890d647108df0eb2cbfdae18a4e13cdb5))
+
+
+### 🐛 Bug 修复
+
+* 优化字符集过滤 ([94b0059](https://github.com/amzxyz/rime-wanxiang/commit/94b0059501cd7d3f4194bbbcca85fc662d3250a9))
+* 修复replacer若干bug ([ed92349](https://github.com/amzxyz/rime-wanxiang/commit/ed923499fab643c9c791757238e05bdc525912c0))
+* 移除an纠错转写 ([d35658c](https://github.com/amzxyz/rime-wanxiang/commit/d35658c5e7511cf8dfacfa781a54176043bdaa0a))
+* 移除三码两字类型简码 ([3994a56](https://github.com/amzxyz/rime-wanxiang/commit/3994a5639eb902c105482f63aa4f0fbc71a4ed02))
+
 ## [15.15.1](https://github.com/amzxyz/rime-wanxiang/compare/v15.15.0...v15.15.1) (2026-06-24)
 
 
