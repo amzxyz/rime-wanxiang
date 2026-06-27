@@ -1,5 +1,22 @@
 # Changelog
 
+## [15.15.3](https://github.com/amzxyz/rime-wanxiang/compare/v15.15.2...v15.15.3) (2026-06-27)
+
+
+### 📚 词库更新
+
+* 词库调整 ([fa43128](https://github.com/amzxyz/rime-wanxiang/commit/fa431281aa5ee76dc38cc9267d1e942c7d6f4d71))
+* 词库调整 ([260e32a](https://github.com/amzxyz/rime-wanxiang/commit/260e32a61290141237896185564c21d937b3106e))
+* 词库调整 ([8bbfebb](https://github.com/amzxyz/rime-wanxiang/commit/8bbfebb3f5abfd3c6e2d5fcafed2517ffb7032c7))
+* 词库调整 ([ab6a982](https://github.com/amzxyz/rime-wanxiang/commit/ab6a98288ecb24ee14892c45d539e6e51cfa3126))
+
+
+### 🐛 Bug 修复
+
+* 优化预测S级导入的保护策略 ([a28c698](https://github.com/amzxyz/rime-wanxiang/commit/a28c6986982f1814c3841ca0d7a6c1949a307022))
+* 优化预测的时候允许逗号句号顿号等直接上屏不带上预测候选 ([fc89f6f](https://github.com/amzxyz/rime-wanxiang/commit/fc89f6f98f722cd287c3c9920a0c799e818e3f8e))
+* 调整模型参数 ([f0ab68f](https://github.com/amzxyz/rime-wanxiang/commit/f0ab68f0094a87df5bfb61b19dc7487799f1b923))
+
 ## [15.15.2](https://github.com/amzxyz/rime-wanxiang/compare/v15.15.1...v15.15.2) (2026-06-25)
 
 
