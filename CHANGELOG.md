@@ -1,5 +1,14 @@
 # Changelog
 
+## [15.15.4](https://github.com/amzxyz/rime-wanxiang/compare/v15.15.3...v15.15.4) (2026-06-27)
+
+
+### 🐛 Bug 修复
+
+* 优化回车以拦截并输出换行 ([bfb8325](https://github.com/amzxyz/rime-wanxiang/commit/bfb8325a062104808510fee2161efac2cf6efa41))
+* 回车以拦截并输出换行来尝试 ([395ac0e](https://github.com/amzxyz/rime-wanxiang/commit/395ac0e77b97e4ee3d5e1bbda4f237fc70ddc3d8))
+* 紧急变更预测方案去掉了lua关于符号的拦截，改为通过key_binder处理 ([d9defd0](https://github.com/amzxyz/rime-wanxiang/commit/d9defd08d3fd47003b8c4cc081ee6530915809f0))
+
 ## [15.15.3](https://github.com/amzxyz/rime-wanxiang/compare/v15.15.2...v15.15.3) (2026-06-27)
 
 
