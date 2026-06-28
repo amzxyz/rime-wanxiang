@@ -1,5 +1,23 @@
 # Changelog
 
+## [15.16.0](https://github.com/amzxyz/rime-wanxiang/compare/v15.15.4...v15.16.0) (2026-06-28)
+
+
+### ✨ 新特性
+
+* 万象英文新增replacer，可以使用emoji和翻译为中文的配置 ([3058da5](https://github.com/amzxyz/rime-wanxiang/commit/3058da53dc77f01ecfaf2807e12fc1fdc501b5db))
+
+
+### 📚 词库更新
+
+* 词库调整 ([785638c](https://github.com/amzxyz/rime-wanxiang/commit/785638ce3722a78c69ab4b1c9e31dfd7bf2d574b))
+* 词库调整 ([f0c2803](https://github.com/amzxyz/rime-wanxiang/commit/f0c2803bac1d2fd1b7182889b3840f988d64dbb1))
+
+
+### 🐛 Bug 修复
+
+* 优化字符集过滤兜底性能 ([0910f4a](https://github.com/amzxyz/rime-wanxiang/commit/0910f4a7beeb49b386d5e9c5bde23ea535f4ac01))
+
 ## [15.15.4](https://github.com/amzxyz/rime-wanxiang/compare/v15.15.3...v15.15.4) (2026-06-27)
 
 
