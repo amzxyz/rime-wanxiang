@@ -1,5 +1,18 @@
 # Changelog
 
+## [16.0.1](https://github.com/amzxyz/rime-wanxiang/compare/v16.0.0...v16.0.1) (2026-07-03)
+
+
+### 📚 词库更新
+
+* 词库调整 ([36fa4f0](https://github.com/amzxyz/rime-wanxiang/commit/36fa4f02acd700d7b38ce707e2fcdb18d5d92b54))
+* 词库调整 ([ad0753f](https://github.com/amzxyz/rime-wanxiang/commit/ad0753ff594bda4ae13346a1277310246aa41276))
+
+
+### 🐛 Bug 修复
+
+* **lua:** 原生位运算符仅在 Lua 5.3+ 中可用 ([00805dd](https://github.com/amzxyz/rime-wanxiang/commit/00805dd487a3cbd3f872f658d41dbc1801f32b44))
+
 ## [16.0.0](https://github.com/amzxyz/rime-wanxiang/compare/v15.16.0...v16.0.0) (2026-07-02)
 
 
