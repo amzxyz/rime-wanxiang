@@ -18,12 +18,13 @@ local pairs = pairs
 local pcall = pcall
 local insert = table.insert
 local type = type
+local bit = require("wanxiang/bit")
 
 local function str_to_mask(s)
     if not s or s == "" then return 0 end
     local m = 0
     for i = 1, #s do
-        m = m | (1 << (byte(s, i) & 0x3F))
+        m = bit.bor(m, bit.lshift(1, bit.band(byte(s, i), 0x3F)))
     end
     return m
 end
@@ -64,7 +65,7 @@ local function char_is_valid(env, codepoint, char, active_rules, cache)
                 allowed = true
             else
                 local m = get_char_mask(env, char)
-                if m ~= 0 and (m & rule.base) ~= 0 then
+                if m ~= 0 and bit.band(m, rule.base) ~= 0 then
                     allowed = true
                 end
             end
