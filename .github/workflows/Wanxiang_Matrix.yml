@@ -94,7 +94,7 @@ jobs:
           # fi
           echo ">>> 🧹 执行深度清理..."
           find "$SHARED_DEST/opencc" -name "*.txt" -delete 2>/dev/null || true
-          rm -f "$SHARED_DEST/dicts/wuzhong.dict.yaml" 2>/dev/null || true
+          #rm -f "$SHARED_DEST/dicts/wuzhong.dict.yaml" 2>/dev/null || true
           rm -f "$SHARED_DEST/"*.jpg "$SHARED_DEST/"*.png 2>/dev/null || true
           
           echo ">>> [Source] 正在修改 DataManager.kt ..."
