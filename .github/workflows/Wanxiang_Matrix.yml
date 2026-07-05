@@ -23,7 +23,7 @@ jobs:
           - wanxiang-shouyou-fuzhu
           - wanxiang-shyplus-fuzhu
           - wanxiang-base
-          - wanxiang-pure
+          #- wanxiang-pure
 
     steps:
       - name: Checkout Wanxiang Repo
