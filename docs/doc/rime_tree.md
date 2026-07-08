@@ -11,7 +11,7 @@
 * 📄 **custom_phrase.txt** —— `自定义快捷短语源文件（置顶）`
 * ⚙️ **default.yaml** —— `Rime 全局默认行为与快捷键配置`
 * 📚 **dicts/** —— `万象词库集群`
-    * 📄 **cn&en.dict.yaml** —— `中英混合词汇库`
+    * 📄 **mixed.dict.yaml** —— `中英混合词汇库`
     * 📄 **cuoyin.dict.yaml** —— `常见错音容错词库`
     * 📄 **diming.dict.yaml** —— `全国地名专名词库`
     * 📄 **duoyin.dict.yaml** —— `多音字校对词库`

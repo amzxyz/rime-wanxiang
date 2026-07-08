@@ -243,7 +243,7 @@ if __name__ == '__main__':
 
     # 这里的文件只会被“原样复制”到对应目录，不进行字典打码运算
     BLACKLIST_FILES = {
-        "cn&en.dict.yaml",
+        "mixed.dict.yaml",
         "en.dict.yaml",
     }
 

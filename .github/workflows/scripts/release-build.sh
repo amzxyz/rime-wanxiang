@@ -65,7 +65,7 @@ package_schema_pro() {
     mv "$ROOT_DIR/pro-$SCHEMA_NAME-fuzhu-dicts" "$OUT_DIR/dicts"
   fi
   # 1.1) 补充必要的附加文件
-  for f in en.dict.yaml "cn&en.dict.yaml"; do
+  for f in en.dict.yaml "mixed.dict.yaml"; do
     if [[ -f "$ROOT_DIR/dicts/$f" ]]; then
       cp "$ROOT_DIR/dicts/$f" "$OUT_DIR/dicts/"
     fi
