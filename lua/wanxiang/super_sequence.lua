@@ -288,6 +288,7 @@ local function save_adjustment(input, item, adjustment, no_export)
     local o = tonumber(adjustment.offset) or 0
     local t = adjustment.updated_at
     local mp = get_input_adjustments(input) or {}
+    item = item:match("^%s*(.-)%s*$") or item
     mp[item] = { fixed_position = p > 0 and p or 0, offset = o, updated_at = t }
 
     local arr = {}
@@ -671,7 +672,7 @@ function F.func(input, env)
 
     local pos = 0
     for candidate in input:iter() do
-        local phrase = candidate.text
+        local phrase = candidate.text:match("^%s*(.-)%s*$") or candidate.text
         if not seen[phrase] then
             seen[phrase] = true; pos = pos + 1; table.insert(cands, candidate)
             local curr_key = is_fun_mode and tostring(pos - 1) or phrase
