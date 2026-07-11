@@ -23,7 +23,21 @@ DOWNLOAD_URL=${REPO_URL}/releases/download/${TAG_VERSION}
 
 # 获取 changelog
 CHANGES=$(
-  gh release view --json body -t "{{.body}}" "${TAG_VERSION}" | sed '1d; /./,$!d'
+  gh release view --json body -t "{{.body}}" "${TAG_VERSION}" | \
+  sed '1d; /./,$!d' | \
+  awk '
+    /^\* 词库调整 / { count++; next }
+    {
+      if (count > 0) {
+        print "* 词库调整（共" count "次）"
+        count = 0
+      }
+      print
+    }
+    END {
+      if (count > 0) print "* 词库调整（共" count "次）"
+    }
+  '
 )
 
 {
