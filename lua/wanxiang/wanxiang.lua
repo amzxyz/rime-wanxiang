@@ -38,7 +38,6 @@ function wanxiang.is_mobile_device()
             lower_dist == "default" or --超越
             lower_dist == "xime" or --曦码
             lower_dist == "lyraime" or  --灵韵
-            lower_dist == "squirrel" then --特殊情况
             return true
         end
 
@@ -47,16 +46,10 @@ function wanxiang.is_mobile_device()
             lower_path:find("/mobile/") or
             lower_path:find("/sdcard/") or
             lower_path:find("/data/storage/") or
-            lower_path:find("/storage/emulated/") or
-            lower_path:find("applications") or
-            lower_path:find("library") then
+            lower_path:find("/storage/emulated/") then
             return true
         end
-        -- 补充判断：路径中包含移动设备特征，很可以mac的运行逻辑和手机一球样
-        if sys_lower_path:find("applications") or
-            sys_lower_path:find("library") then
-            return true
-        end
+
         -- 特定平台判断（Android/Linux）
         if jit and jit.os then
             local os_name = jit.os:lower()
