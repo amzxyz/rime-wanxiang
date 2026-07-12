@@ -1,5 +1,58 @@
 # Changelog
 
+## [16.1.0](https://github.com/amzxyz/rime-wanxiang/compare/v16.0.1...v16.1.0) (2026-07-12)
+
+
+### ✨ 新特性
+
+* 通过仅有的算法资源精准扩展小鹤拆分显示增加1万+ ([b368ee5](https://github.com/amzxyz/rime-wanxiang/commit/b368ee524b6b1959658f0d14de845d5fa38d70c7))
+
+
+### 📚 词库更新
+
+* mixed dict update ([25e5568](https://github.com/amzxyz/rime-wanxiang/commit/25e556801806130add4edab3fc3f6893ae9663c6))
+* 增加姓x的词条 ([855d5df](https://github.com/amzxyz/rime-wanxiang/commit/855d5df024735b971a1fc210ebb8f841d962cacc))
+* 新增独立台风词库 ([f9887d6](https://github.com/amzxyz/rime-wanxiang/commit/f9887d6ef818e7781497080cf5a73d0f9f33088e))
+* 词库调整 ([7105d0d](https://github.com/amzxyz/rime-wanxiang/commit/7105d0d102188ae26a8379e60f6b1cb706ecb177))
+* 词库调整 ([73be560](https://github.com/amzxyz/rime-wanxiang/commit/73be5606aa22c3f55adf62f67747df702318e2f8))
+* 词库调整 ([7d3f067](https://github.com/amzxyz/rime-wanxiang/commit/7d3f067f105558a673f18419ad40ea1af0583d94))
+* 词库调整 ([015e269](https://github.com/amzxyz/rime-wanxiang/commit/015e269902c8f811508ea7d073de609223d6d6a2))
+* 词库调整 ([8e7d879](https://github.com/amzxyz/rime-wanxiang/commit/8e7d879d248765a423844a9822a2d5f27dc954fe))
+* 词库调整 ([b619314](https://github.com/amzxyz/rime-wanxiang/commit/b619314f41014d23cbf938150c675e575c31cbb8))
+* 词库调整 ([3c61be6](https://github.com/amzxyz/rime-wanxiang/commit/3c61be66817e3c4da1a906acdc1a9a85e0148e70))
+* 词库调整 ([e1cf1c3](https://github.com/amzxyz/rime-wanxiang/commit/e1cf1c3fcad91188b27794eca526e4bb4b28d95f))
+* 词库调整 ([9e3ebe2](https://github.com/amzxyz/rime-wanxiang/commit/9e3ebe2186065e319b6c8e4c47852f5df31f2f87))
+* 词库调整 ([9827be6](https://github.com/amzxyz/rime-wanxiang/commit/9827be6792ab0786e395c3a108349d50fba3beda))
+* 词库调整 ([fbcbde9](https://github.com/amzxyz/rime-wanxiang/commit/fbcbde968dd836c9f2872b196e14a2147688d39e))
+* 词库调整 ([1fbfacf](https://github.com/amzxyz/rime-wanxiang/commit/1fbfacf8a2a78f315e8f03ba01fe7be06c81659f))
+* 词库调整 ([df32287](https://github.com/amzxyz/rime-wanxiang/commit/df32287f34a2e4f795979dff1bbb8477e8de23ec))
+* 词库调整 ([ba02123](https://github.com/amzxyz/rime-wanxiang/commit/ba02123280452bb7572e8861752944e6d49714eb))
+* 词库调整 ([7520610](https://github.com/amzxyz/rime-wanxiang/commit/75206103880484a08b74706ff252495b33e5ab4e))
+* 词库调整 ([2f48df2](https://github.com/amzxyz/rime-wanxiang/commit/2f48df2782d5bc22bf361d7140186e334540e12f))
+* 词库调整 ([f5559f4](https://github.com/amzxyz/rime-wanxiang/commit/f5559f4690f19f157e84b477ebd0d77c203bb36c))
+* 词库调整 ([371ca31](https://github.com/amzxyz/rime-wanxiang/commit/371ca31cb0cdd4370b74ee49d0b1b5d6105d0070))
+* 词库调整 ([7f54aed](https://github.com/amzxyz/rime-wanxiang/commit/7f54aed14218f72f795edf9786a6c9e2e171fb4f))
+* 词库调整 ([9615398](https://github.com/amzxyz/rime-wanxiang/commit/96153983bf26d866fdcf5785e3e5473777c4578d))
+* 词库调整 ([5ccb2e2](https://github.com/amzxyz/rime-wanxiang/commit/5ccb2e2e57116aa755ebb9e314c2fb40d5e1cae8))
+* 词库调整 ([c2813c6](https://github.com/amzxyz/rime-wanxiang/commit/c2813c64a18324c3e0960101c76514d7ecfee384))
+
+
+### 🐛 Bug 修复
+
+* fix ([a9ef6a8](https://github.com/amzxyz/rime-wanxiang/commit/a9ef6a87a6e269bea9b9f3c9802297e781843d07))
+* 变更计算插件type ([661a4ca](https://github.com/amzxyz/rime-wanxiang/commit/661a4ca8b0b01895bb74fb00c6d071cecb7d40ea))
+* 手动调序对英文加空格做了一些兼容，写入时去掉前后空格 ([2a07c75](https://github.com/amzxyz/rime-wanxiang/commit/2a07c757bee6f19f51357c5a8dd4700d29f9231f))
+* 更新文档 ([8ac0f2c](https://github.com/amzxyz/rime-wanxiang/commit/8ac0f2c10a628b2a1151eb60e5fde6412791f946))
+* 用户词预测组件，如果是弹出，依旧限制上文宽度大于2,如果是上下文则放宽到1 ([12ba992](https://github.com/amzxyz/rime-wanxiang/commit/12ba99298fd97e3aa4d79fb54314d812320fde1e))
+* 移除之前将鼠须管强制认定为移动端的代码，鼠须管用户还是需要观察有问题反馈 ([edc1e44](https://github.com/amzxyz/rime-wanxiang/commit/edc1e44c6b62d87e469c64149a9abe95c96f85ca))
+
+
+### 🤖 持续集成
+
+* 合并词库提交 ([e3e7513](https://github.com/amzxyz/rime-wanxiang/commit/e3e7513b951e67c878e70a444d880b81a49fa176))
+* 移除排除项 ([b7c2605](https://github.com/amzxyz/rime-wanxiang/commit/b7c2605ad7f8d23da8597476cae20777c9acfd56))
+* 移除排除项 ([214ce95](https://github.com/amzxyz/rime-wanxiang/commit/214ce95650e6303b0524e8b1a5153bfef7806d2d))
+
 ## [16.0.1](https://github.com/amzxyz/rime-wanxiang/compare/v16.0.0...v16.0.1) (2026-07-03)
 
 
