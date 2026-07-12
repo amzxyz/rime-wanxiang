@@ -3231,13 +3231,13 @@ local function execute_normal_calculation(input, seg, express, env)
             else
                 display_value = tostring(result)
             end
-            yield(Candidate(input, seg.start, seg._end, display_value, ""))
-            yield(Candidate(input, seg.start, seg._end, express .. "=" .. display_value, ""))
+            yield(Candidate("calc", seg.start, seg._end, display_value, ""))
+            yield(Candidate("calc", seg.start, seg._end, express .. "=" .. display_value, ""))
         else
-            yield(Candidate(input, seg.start, seg._end, express, "执行错误"))
+            yield(Candidate("calc", seg.start, seg._end, express, "执行错误"))
         end
     else
-        yield(Candidate(input, seg.start, seg._end, express, "解析失败"))
+        yield(Candidate("calc", seg.start, seg._end, express, "解析失败"))
     end
 end
 
@@ -3245,7 +3245,7 @@ end
 local function execute_function_call(input, seg, func_name, params, env)
     -- 检查函数是否存在
     if not calc_methods[func_name] then
-        yield(Candidate(input, seg.start, seg._end, "错误: 函数 " .. func_name .. " 不存在", ""))
+        yield(Candidate("calc", seg.start, seg._end, "错误: 函数 " .. func_name .. " 不存在", ""))
         return
     end
     local func = calc_methods[func_name]
@@ -3271,7 +3271,7 @@ local function execute_function_call(input, seg, func_name, params, env)
     -- 如果有明确的参数数量要求，进行验证
     if expected_param_count and expected_param_count > 0 then
         if #params ~= expected_param_count then
-            yield(Candidate(input, seg.start, seg._end, 
+            yield(Candidate("calc", seg.start, seg._end, 
                 "错误: 函数 " .. func_name .. " 需要 " .. expected_param_count .. " 个参数，但提供了 " .. #params .. " 个", ""))
             return
         end
@@ -3339,7 +3339,7 @@ local function execute_function_call(input, seg, func_name, params, env)
             -- 如果结果是函数，说明需要执行它
             success, result = pcall(result)
             if not success then
-                yield(Candidate(input, seg.start, seg._end, "错误: 函数执行失败: " .. tostring(result), ""))
+                yield(Candidate("calc", seg.start, seg._end, "错误: 函数执行失败: " .. tostring(result), ""))
                 return
             end
         end
@@ -3350,14 +3350,14 @@ local function execute_function_call(input, seg, func_name, params, env)
             display_value = tostring(result)
         end
         -- 显示当前结果
-        yield(Candidate(input, seg.start, seg._end, display_value, ""))
+        yield(Candidate("calc", seg.start, seg._end, display_value, ""))
         -- 显示完整调用
         local param_display = #params > 0 and table.concat(params, ", ") or ""
         local call_display = func_name .. "(" .. param_display .. ")"
-        yield(Candidate(input, seg.start, seg._end, call_display .. " = " .. display_value, ""))
+        yield(Candidate("calc", seg.start, seg._end, call_display .. " = " .. display_value, ""))
     else
         -- 显示错误信息
-        yield(Candidate(input, seg.start, seg._end, "错误: " .. tostring(result), ""))
+        yield(Candidate("calc", seg.start, seg._end, "错误: " .. tostring(result), ""))
     end
 end
 
@@ -3374,7 +3374,7 @@ function T.func(input, seg, env)
         local code = replaceToFactorial(express)
         local loaded_func, load_error = load("return " .. code, "calculate", "t", calc_methods)
         if loaded_func and (type(methods_desc[code]) == "string") then
-            yield(Candidate(input, seg.start, seg._end, express .. ":" .. methods_desc[code], ""))
+            yield(Candidate("calc", seg.start, seg._end, express .. ":" .. methods_desc[code], ""))
         end
 
         -- 检查是否是单个全局变量（不包含运算符的纯标识符）
