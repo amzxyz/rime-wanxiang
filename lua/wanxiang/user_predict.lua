@@ -897,14 +897,17 @@ function F.func(input, env)
         
         local is_context_valid = false
         local u1_len = utf8_len(last_commit) or 0
+        local is_reorder = (CONFIG.PREDICT_STYLE == "reorder")
         
         if #history >= 2 then
             local u0_len = utf8_len(history[#history - 1]) or 0
-            if (u0_len + u1_len) >= 3 then
+            if is_reorder or (u0_len + u1_len) >= 3 then
                 is_context_valid = true
             end
         else
-            if u1_len >= 2 then
+            if is_reorder then
+                is_context_valid = true
+            elseif u1_len >= 2 then
                 is_context_valid = true
             end
         end
