@@ -37,7 +37,7 @@ function wanxiang.is_mobile_device()
             lower_dist == "hamster3" or
             lower_dist == "default" or --超越
             lower_dist == "xime" or --曦码
-            lower_dist == "lyraime" or  --灵韵
+            lower_dist == "lyraime" then  --灵韵
             return true
         end
 
