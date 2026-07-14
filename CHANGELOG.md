@@ -1,5 +1,20 @@
 # Changelog
 
+## [16.1.1](https://github.com/amzxyz/rime-wanxiang/compare/v16.1.0...v16.1.1) (2026-07-14)
+
+
+### 📚 词库更新
+
+* 词库调整 ([1642559](https://github.com/amzxyz/rime-wanxiang/commit/1642559f8273c3aa91cade322a3efb8f7f4bc6c0))
+* 词库调整 ([dc51894](https://github.com/amzxyz/rime-wanxiang/commit/dc51894666b09a008fee29fc577e7a18ec032553))
+* 词库调整 ([fb069f1](https://github.com/amzxyz/rime-wanxiang/commit/fb069f13a84e675502b0288b5f14186c4b626ee2))
+* 词库调整 ([5c6c5d1](https://github.com/amzxyz/rime-wanxiang/commit/5c6c5d1377af4e28b8e93216220e0b693e56ad6e))
+
+
+### 🐛 Bug 修复
+
+* backspace防误删除单独排除鼠须管 ([f87124a](https://github.com/amzxyz/rime-wanxiang/commit/f87124ac9c7aa0e5a5d33e45c12e12a8c4e95990))
+
 ## [16.1.0](https://github.com/amzxyz/rime-wanxiang/compare/v16.0.1...v16.1.0) (2026-07-12)
 
 
