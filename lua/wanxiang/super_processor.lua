@@ -512,7 +512,6 @@ local function handle_segmentation(key, env, ctx)
     end
 end
 
--- [Backspace Limit] 退格限制
 local function handle_backspace(key, env, ctx)
     if not env.enable_backspace_limit then return false end
 
@@ -525,9 +524,11 @@ local function handle_backspace(key, env, ctx)
 
     local cur_len = ctx.input and #ctx.input or 0
     if env.bs_sequence then
-        if not wanxiang.is_mobile_device() then
+        local dist = rime_api.get_distribution_code_name() or ""
+        local lower_dist = dist:lower()
+        if not wanxiang.is_mobile_device() and lower_dist ~= "squirrel" then
             if env.bs_prev_len == 1 and cur_len == 0 then
-                return true 
+                return true
             end
         end
         env.bs_prev_len = cur_len
@@ -537,7 +538,6 @@ local function handle_backspace(key, env, ctx)
     env.bs_prev_len = cur_len
     return false
 end
-
 -- [Limit Repeated] 重复输入限制
 local function handle_limit_repeat(key, env, ctx)
     if not env.enable_limit_repeated then return false end
@@ -744,7 +744,7 @@ local function handle_number_logic(key, env, ctx)
 end
 -- 5. 主入口函数 (Main Logic Flow)
 function M.func(key, env)
-    collectgarbage("step", 2)
+    collectgarbage("step", 20)
     local ctx = env.engine.context
     
     -- 1. 优先处理按键释放
