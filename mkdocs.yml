@@ -108,7 +108,8 @@ nav:
       - 🔢 按键事件: doc/super_processor.md
       - 🔣 字符过滤: doc/charset.md
       - ⚔️ 候选切割: doc/candidate_slicer.md
-      - 🔣 NRU模式: doc/NRU.md
+      - 🧩 NRU模式: doc/NRU.md
+      - 📊 性能评测: doc/profile-analysis.md
       
   - 🛠️ 进阶配置:
       - ⚙️ rime工作机制: doc/Rime设计逻辑与配置哲学.md
