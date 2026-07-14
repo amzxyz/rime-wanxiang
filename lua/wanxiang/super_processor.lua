@@ -511,7 +511,7 @@ local function handle_segmentation(key, env, ctx)
         return true
     end
 end
-
+-- [Backspace Limit] 退格限制
 local function handle_backspace(key, env, ctx)
     if not env.enable_backspace_limit then return false end
 
