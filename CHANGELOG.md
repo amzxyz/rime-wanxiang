@@ -1,5 +1,21 @@
 # Changelog
 
+## [16.1.2](https://github.com/amzxyz/rime-wanxiang/compare/v16.1.1...v16.1.2) (2026-07-15)
+
+
+### 📚 词库更新
+
+* 扩展地名变种 ([42f7c7d](https://github.com/amzxyz/rime-wanxiang/commit/42f7c7d2ca61ffca3a8b52001b37af47461252b7))
+* 词库调整 ([775b2df](https://github.com/amzxyz/rime-wanxiang/commit/775b2dfee94a041e4d8f8abfee7acb20961f1983))
+* 词库调整 ([70e295a](https://github.com/amzxyz/rime-wanxiang/commit/70e295a3aaa180bccf45fddc1b9e15aee5bcbd84))
+* 词库调整 ([0b11311](https://github.com/amzxyz/rime-wanxiang/commit/0b1131101bb6c944ccd3213727bb9516cb37a447))
+* 词库调整 ([3c3b850](https://github.com/amzxyz/rime-wanxiang/commit/3c3b85016096a5a785cb1178073cc3f50f9efb8a))
+
+
+### 🐛 Bug 修复
+
+* 排除回退键在mac上面的限制 ([9062626](https://github.com/amzxyz/rime-wanxiang/commit/9062626b494ff13862b29e36935d3f5112c2e37e))
+
 ## [16.1.1](https://github.com/amzxyz/rime-wanxiang/compare/v16.1.0...v16.1.1) (2026-07-14)
 
 
