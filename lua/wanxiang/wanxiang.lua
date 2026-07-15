@@ -68,6 +68,28 @@ function wanxiang.is_mobile_device()
     return is_mobile_device
 end
 
+local is_special_desktop = nil
+
+--- 判断是否为需要特殊处理的桌面环境（squirrel 或 fcitx5-rime+library）
+---@return boolean
+function wanxiang.is_special_desktop()
+    if is_special_desktop == nil then
+        local dist = rime_api.get_distribution_code_name() or ""
+        local sys_dir = rime_api.get_shared_data_dir() or ""
+        local lower_dist = dist:lower()
+        local lower_sys = sys_dir:lower()
+
+        local exclude = false
+        if lower_dist == "squirrel" then
+            exclude = true
+        elseif lower_dist == "fcitx5-rime" and lower_sys:find("library") then
+            exclude = true
+        end
+        is_special_desktop = exclude
+    end
+    return is_special_desktop
+end
+
 --- 检测是否为万象专业版
 ---@param env Env
 ---@return boolean

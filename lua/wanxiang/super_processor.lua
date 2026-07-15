@@ -524,9 +524,8 @@ local function handle_backspace(key, env, ctx)
 
     local cur_len = ctx.input and #ctx.input or 0
     if env.bs_sequence then
-        local dist = rime_api.get_distribution_code_name() or ""
-        local lower_dist = dist:lower()
-        if not wanxiang.is_mobile_device() and lower_dist ~= "squirrel" then
+        -- 不是移动设备，并且不属于特殊桌面环境
+        if not wanxiang.is_mobile_device() and not wanxiang.is_special_desktop() then
             if env.bs_prev_len == 1 and cur_len == 0 then
                 return true
             end
