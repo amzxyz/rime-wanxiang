@@ -104,9 +104,7 @@
          <strong>如果觉得项目好用，欢迎在 GitHub 为我们点亮 Star！</strong>
     </p>
     <p style="margin-top: 0.5rem; color: #555;">
-        <strong>☕ 感谢您的赞赏与支持</strong>
-    </p>
     <p style="margin-top: 0.5rem; opacity: 0.8;">
-        <i>用更现代的数据，接管你的候选词。</i>
+        <i>用更优质的数据，接管你的候选词。</i>
     </p>
 </div>
