@@ -232,9 +232,9 @@ local function process_datetime_internal(s, dt)
 end
 
 -- 3. 转义处理
-local function apply_escape_fast(text, dt)
+local function apply_escape_fast(text)
     if not text or not string.find(text, "\\", 1, true) then
-        return text, false
+        return text, false, false
     end
 
     local blocks = {}
@@ -252,33 +252,36 @@ local function apply_escape_fast(text, dt)
         end
         return char .. "\\" .. count
     end)
-
-    s = process_datetime_internal(s, dt)
-
+    local need_time = string.find(s, time_tokens_pattern) ~= nil
     s = s:gsub("\0BLK(%d+)\0", function(i)
         return blocks[tonumber(i)] or ""
     end)
-
-    return s, s ~= text
+    return s, s ~= text, need_time
 end
 
-local function format_and_autocap(cand, env, dt)
+local function format_and_autocap(cand, env)
     local text = cand.text
     if not text or text == "" then 
         return cand 
     end
     
-    -- 1. 处理转义字符
-    local t2, text_changed = apply_escape_fast(text, dt)
+    local t2, text_changed, need_time = apply_escape_fast(text)
+    if need_time then
+        local dt = os.date("*t")
+        local time_replaced = process_datetime_internal(t2, dt)
+        if time_replaced ~= t2 then
+            t2 = time_replaced
+            text_changed = true   -- 时间替换也算文本变化
+        end
+    end
     
-    -- 2. 处理尾巴符号追加
+    -- 以下不变：处理候选类型符号追加 ...
     local genuine = cand:get_genuine()
     local current_comment = genuine.comment or ""
     local symbol = env.cand_type_symbols[fast_type(cand)]
     local comment_changed = false
     
     if symbol and symbol ~= "" and current_comment ~= "~" then
-        -- 防重判断，避免因为各种原因重复追加
         local escaped_symbol = symbol:gsub("[%-%^%$%(%)%%%.%[%]%*%+%?]", "%%%1")
         if not current_comment:match(escaped_symbol .. "$") then
             current_comment = current_comment .. symbol
@@ -286,7 +289,7 @@ local function format_and_autocap(cand, env, dt)
         end
     end
     
-    -- 分流处理！保住 spans 物理边界
+    -- 分流处理
     if text_changed then
         local nc = Candidate(cand.type, cand.start, cand._end, t2, current_comment)
         nc.preedit = cand.preedit
@@ -295,8 +298,7 @@ local function format_and_autocap(cand, env, dt)
         genuine.comment = current_comment
         return cand
     else
-        -- 如果文本和注释都没变，直接放行原候选词，节省性能
-        return cand 
+        return cand
     end
 end
 
@@ -535,7 +537,6 @@ function M.func(input, env)
     local ctx  = env and env.engine and env.engine.context or nil
     local code = ctx and (ctx.input or "") or ""
     local comp = ctx and ctx.composition or nil
-    local current_dt = os.date("*t")
     -- 1. 空环境清理
     if not code or code == "" or (comp and comp:empty()) then
         env.last_2code_char = nil 
@@ -691,7 +692,7 @@ function M.func(input, env)
         if not should_skip then
             suppress_set[text] = true
             
-            local formatted_cand = format_and_autocap(cand, env, current_dt)
+            local formatted_cand = format_and_autocap(cand, env)
             if not code_has_symbol and #env.page_cache < wrap_limit then
                 table.insert(env.page_cache, clone_candidate(formatted_cand))
             end
@@ -726,7 +727,7 @@ function M.func(input, env)
 
         if not should_skip then
             suppress_set[text] = true
-            yield(format_and_autocap(cand, env, current_dt))
+            yield(format_and_autocap(cand, env))
         end
     end
     -- PHASE 3: 三码空候选兜底
