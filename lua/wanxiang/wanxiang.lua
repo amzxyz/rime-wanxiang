@@ -70,7 +70,7 @@ end
 
 local is_special_desktop = nil
 
---- 判断是否为需要特殊处理的桌面环境（squirrel 或 fcitx5-rime+library）
+--- 判断是否为需要特殊处理的桌面环境（squirrel、Cobra 或 fcitx-rime+library）
 ---@return boolean
 function wanxiang.is_special_desktop()
     if is_special_desktop == nil then
@@ -80,7 +80,7 @@ function wanxiang.is_special_desktop()
         local lower_sys = sys_dir:lower()
 
         local exclude = false
-        if lower_dist == "squirrel" then
+        if lower_dist == "squirrel" or lower_dist == "cobra" then
             exclude = true
         elseif lower_dist == "fcitx-rime" and lower_sys:find("library") then
             exclude = true
