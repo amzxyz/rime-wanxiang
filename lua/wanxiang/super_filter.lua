@@ -275,7 +275,6 @@ local function format_and_autocap(cand, env)
         end
     end
     
-    -- 以下不变：处理候选类型符号追加 ...
     local genuine = cand:get_genuine()
     local current_comment = genuine.comment or ""
     local symbol = env.cand_type_symbols[fast_type(cand)]
