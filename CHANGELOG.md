@@ -1,5 +1,18 @@
 # Changelog
 
+## [16.1.3](https://github.com/amzxyz/rime-wanxiang/compare/v16.1.2...v16.1.3) (2026-07-16)
+
+
+### 📚 词库更新
+
+* 词库调整 ([475e3cc](https://github.com/amzxyz/rime-wanxiang/commit/475e3ccd7fe20c868211510acd2dc0dbbcc76c4d))
+
+
+### 🐛 Bug 修复
+
+* mac判断修改错误的声明名称 ([3b65f27](https://github.com/amzxyz/rime-wanxiang/commit/3b65f271ad831fa6225247ff412c9cd169faa227))
+* 优化时间调用 ([750dfc6](https://github.com/amzxyz/rime-wanxiang/commit/750dfc6229a8ef631ebee0916f08fda2b9e9d30b))
+
 ## [16.1.2](https://github.com/amzxyz/rime-wanxiang/compare/v16.1.1...v16.1.2) (2026-07-15)
 
 
