@@ -646,13 +646,13 @@ sort: by_weight
 参七散结丸	cān qī sàn jié wán	10
 参芪益肺丸	cān qí yì fèi wán	10
 参芩白术散	cān qín bái zhú sǎn	10
-参芎注射液	cān qiōng zhù shè yè	10
 参麝活络丸	cān shè huó luò wán	10
 参术健脾丸	cān shù jiàn pí wán	10
 参苏感昌片	cān sū gǎn chāng piàn	10
 参苏感冒片	cān sū gǎn mào piàn	10
 参苏宣肺丸	cān sū xuān fèi wán	10
 参威口服液	cān wēi kǒu fú yè	10
+参芎注射液	cān xiōng zhù shè yè	10
 参竹精颗粒	cān zhú jīng kē lì	10
 参子口服液	cān zǐ kǒu fú yè	10
 苍鹅鼻炎片	cāng é bí yán piàn	10
@@ -774,7 +774,7 @@ sort: by_weight
 痤疮平颗粒	cuó chuāng píng kē lì	10
 大败毒胶囊	dà bài dú jiāo náng	10
 大补元煎丸	dà bǔ yuán jiān wán	10
-大川芎颗粒	dà chuān qiōng kē lì	10
+大川芎颗粒	dà chuān xiōng kē lì	10
 大豆磷脂散	dà dòu lín zhī sàn	10
 打虎壮元丸	dǎ hǔ zhuàng yuán wán	10
 大黄错虫丸	dà huáng cuò chóng wán	10
@@ -814,7 +814,6 @@ sort: by_weight
 胆木注射液	dǎn mù zhù shè yè	10
 丹芪和血片	dān qí hé xuè piàn	10
 丹七软胶囊	dān qī ruǎn jiāo náng	10
-丹芎跌打膏	dān qiōng diē dǎ gāo	10
 丹参滴注液	dān shēn dī zhù yè	10
 丹参口服液	dān shēn kǒu fú yè	10
 丹参注射液	dān shēn zhù shè yè	10
@@ -827,6 +826,7 @@ sort: by_weight
 胆胃康胶囊	dǎn wèi kāng jiāo náng	10
 胆胃宁胶囊	dǎn wèi níng jiāo náng	10
 胆香鼻炎片	dǎn xiāng bí yán piàn	10
+丹芎跌打膏	dān xiōng diē dǎ gāo	10
 胆炎康胶囊	dǎn yán kāng jiāo náng	10
 丹叶大黄素	dān yè dà huáng sù	10
 丹郁骨康丸	dān yù gǔ kāng wán	10
@@ -1576,7 +1576,7 @@ sort: by_weight
 虎杖叶胶囊	hǔ zhàng yè jiāo náng	10
 华法林钠片	huá fǎ lín nà piàn	10
 化积口服液	huà jī kǒu fú yè	10
-花芪芎颗粒	huā qí qiōng kē lì	10
+花芪芎颗粒	huā qí xiōng kē lì	10
 华容口服液	huá róng kǒu fú yè	10
 华沙利胆丸	huá shā lì dǎn wán	10
 华山参滴丸	huá shān shēn dī wán	10
@@ -2832,7 +2832,7 @@ sort: by_weight
 清热灵颗粒	qīng rè líng kē lì	10
 清热祛毒丸	qīng rè qū dú wán	10
 清热散结片	qīng rè sàn jié piàn	10
-清热神芎丸	qīng rè shén qiōng wán	10
+清热神芎丸	qīng rè shén xiōng wán	10
 清热通淋片	qīng rè tōng lín piàn	10
 清热消肿丸	qīng rè xiāo zhǒng wán	10
 清热养阴丸	qīng rè yǎng yīn wán	10
@@ -2868,9 +2868,6 @@ sort: by_weight
 清咽润喉丸	qīng yàn rùn hóu wán	10
 清咽抑火丸	qīng yàn yì huǒ wán	10
 清浊祛毒丸	qīng zhuó qū dú wán	10
-芎菊上清片	qiōng jú shàng qīng piàn	10
-芎菊上清丸	qiōng jú shàng qīng wán	10
-芎香通脉丸	qiōng xiāng tōng mài wán	10
 求偶素软膏	qiú ǒu sù ruǎn gāo	10
 秋水仙碱片	qiū shuǐ xiān jiǎn piàn	10
 曲安西龙片	qǔ ān xī lóng piàn	10
@@ -4155,6 +4152,9 @@ sort: by_weight
 熊胆排石片	xióng dǎn pái shí piàn	10
 熊胆丸胶囊	xióng dǎn wán jiāo náng	10
 熊胆痔灵膏	xióng dǎn zhì líng gāo	10
+芎菊上清片	xiōng jú shàng qīng piàn	10
+芎菊上清丸	xiōng jú shàng qīng wán	10
+芎香通脉丸	xiōng xiāng tōng mài wán	10
 溴噻乙啶片	xiù sāi yǐ dìng piàn	10
 宣肺定喘丸	xuān fèi dìng chuǎn wán	10
 悬浮颗粒物	xuán fú kē lì wù	10
@@ -5162,7 +5162,7 @@ sort: by_weight
 醋酸泼尼松片	cù suān pō ní sōng piàn	10
 醋硝香豆素片	cù xiāo xiāng dòu sù piàn	10
 达必佳注射液	dá bì jiā zhù shè yè	10
-大川芎口服液	dà chuān qiōng kǒu fú yè	10
+大川芎口服液	dà chuān xiōng kǒu fú yè	10
 达芬霖喷雾剂	dá fēn lín pēn wù jì	10
 大黄附子汤方	dà huáng fù zǐ tāng fāng	10
 大黄甘草汤方	dà huáng gān cǎo tāng fāng	10
@@ -5199,7 +5199,6 @@ sort: by_weight
 丹芪偏瘫胶囊	dān qí piān tān jiāo náng	10
 丹芪舒心胶囊	dān qí shū xīn jiāo náng	10
 丹芪养血颗粒	dān qí yǎng xuè kē lì	10
-丹芎通脉颗粒	dān qiōng tōng mài kē lì	10
 丹曲林钠胶囊	dān qǔ lín nà jiāo náng	10
 丹参舒心胶囊	dān shēn shū xīn jiāo náng	10
 丹参酮注射液	dān shēn tóng zhù shè yè	10
@@ -5207,6 +5206,7 @@ sort: by_weight
 胆石通利胶囊	dǎn shí tōng lì jiāo náng	10
 丹葶肺心颗粒	dān tíng fèi xīn kē lì	10
 丹香清脂颗粒	dān xiāng qīng zhī kē lì	10
+丹芎通脉颗粒	dān xiōng tōng mài kē lì	10
 丹珍头痛胶囊	dān zhēn tóu tòng jiāo náng	10
 丹栀逍遥胶囊	dān zhī xiāo yáo jiāo náng	10
 丹中止咳糖浆	dān zhōng zhǐ ké táng jiāng	10
@@ -7149,8 +7149,6 @@ sort: by_weight
 清障明目胶囊	qīng zhàng míng mù jiāo náng	10
 清脂果酯胶囊	qīng zhī guǒ zhǐ jiāo náng	10
 清浊益肾胶囊	qīng zhuó yì shèn jiāo náng	10
-芎菊上清颗粒	qiōng jú shàng qīng kē lì	10
-芎芷止痛颗粒	qiōng zhǐ zhǐ tòng kē lì	10
 秋泻灵口服液	qiū xiè líng kǒu fú yè	10
 去氨加压素片	qù ān jiā yā sù piàn	10
 曲安奈德乳膏	qǔ ān nài dé rǔ gāo	10
@@ -8031,9 +8029,11 @@ sort: by_weight
 熊胆粉滴眼液	xióng dǎn fěn dī yǎn yè	10
 熊胆救心丹丸	xióng dǎn jiù xīn dān wán	10
 雄根增长胶囊	xióng gēn zēng zhǎng jiāo náng	10
+芎菊上清颗粒	xiōng jú shàng qīng kē lì	10
 熊去氧胆酸片	xióng qù yǎng dǎn suān piàn	10
 胸腺肽肠溶片	xiōng xiàn tài cháng róng piàn	10
 胸腺肽注射液	xiōng xiàn tài zhù shè yè	10
+芎芷止痛颗粒	xiōng zhǐ zhǐ tòng kē lì	10
 溴吡斯的明片	xiù bǐ sī de míng piàn	10
 溴苄铵注射液	xiù biàn ǎn zhù shè yè	10
 溴丙胺太林片	xiù bǐng àn tài lín piàn	10
@@ -9520,7 +9520,7 @@ sort: by_weight
 龟鹿二仙口服液	guī lù èr xiān kǒu fú yè	10
 归芪补血口服液	guī qí bǔ xuè kǒu fú yè	10
 归芪三七口服液	guī qí sān qī kǒu fú yè	10
-归芎花粉口服液	guī qiōng huā fěn kǒu fú yè	10
+归芎花粉口服液	guī xiōng huā fěn kǒu fú yè	10
 桂枝芍药知母汤	guì zhī sháo yào zhī mǔ tāng	10
 果糖二磷酸钙片	guǒ táng èr lín suān gài piàn	10
 果糖二磷酸钠片	guǒ táng èr lín suān nà piàn	10
@@ -10234,7 +10234,6 @@ sort: by_weight
 氢溴酸樟柳碱片	qīng xiù suān zhāng liǔ jiǎn piàn	10
 青叶胆提取物片	qīng yè dǎn tí qǔ wù piàn	10
 清燥润肺口服液	qīng zào rùn fèi kǒu fú yè	10
-芎香通脉丸滴丸	qiōng xiāng tōng mài wán dī wán	10
 曲安奈德注射液	qǔ ān nài dé zhù shè yè	10
 曲安缩松注射液	qǔ ān suō sōng zhù shè yè	10
 驱毒养颜口服液	qū dú yǎng yán kǒu fú yè	10
@@ -10744,6 +10743,7 @@ sort: by_weight
 胸腺蛋白口服液	xiōng xiàn dàn bái kǒu fú yè	10
 胸腺肽肠溶胶囊	xiōng xiàn tài cháng róng jiāo náng	10
 胸腺五肽注射液	xiōng xiàn wǔ tài zhù shè yè	10
+芎香通脉丸滴丸	xiōng xiāng tōng mài wán dī wán	10
 溴甲贝那替嗪片	xiù jiǎ bèi nà tì qín piàn	10
 溴甲贝那替秦片	xiù jiǎ bèi nà tì qín piàn	10
 溴甲东莨菪碱片	xiù jiǎ dōng làng dàng jiǎn piàn	10
