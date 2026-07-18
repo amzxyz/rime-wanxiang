@@ -1901,6 +1901,7 @@ pro:
       - xform/^(.*)ḿ(.*)(;.*)$/$1m$2②$3/
       - xform/^(.*)m̀(.*)(;.*)$/$1m$2④$3/
       - xlit/①②③④/7890
+      - derive/^ng(\d)(;.*)$/eng$1$2/
       - xform/^a(\d)(;.*)$/aa$1$2/
       - xform/^e(\d)(;.*)$/ⓊⒺ$1$2/
       - xform/^o(\d)(;.*)$/oo$1$2/
@@ -1937,7 +1938,6 @@ pro:
       - xform/^eng$/ⓊⒻ/
       - xform/^ao$/ao/
       - xform/^er$/er/
-      - derive/^ng(\d)(;.*)$/eng$1$2/
       - xform/^n(\d)(;.*)/en$1$2/
       - xform/^m(\d)(;.*)/me$1$2/
       - derive/^([jqxy])u(\d)(;.*)$/$1v$2$3/
