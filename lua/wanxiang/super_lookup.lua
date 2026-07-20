@@ -59,11 +59,16 @@ end
 
 -- 提取一段 UTF8 字符片段
 local function get_utf8_string_range(text, start_idx, end_idx)
-    local res = ""
-    for k = start_idx, end_idx do
-        res = res .. get_utf8_char_at(text, k)
+    local chars = {}
+    local i = 1
+    for _, code in utf8.codes(text) do
+        if i > end_idx then break end
+        if i >= start_idx then
+            chars[#chars + 1] = utf8.char(code)
+        end
+        i = i + 1
     end
-    return res
+    return table.concat(chars)
 end
 
 -- 将 UTF8 字符串转为字符数组
@@ -215,7 +220,7 @@ local function parse_comment_codes(comment, pattern, target_len, enable_tone)
     return result
 end
 
-local function get_script_text_parts(ctx, search_key_str)
+local function get_script_text_parts(ctx, reverse_key)
     local parts = {}
     if not ctx or not ctx.composition or ctx.composition:empty() then
         return parts
@@ -243,8 +248,8 @@ local function get_script_text_parts(ctx, search_key_str)
         local raw_syl = raw_in:sub(start_byte, end_byte)
 
         if raw_syl and raw_syl ~= "" then
-            if search_key_str and search_key_str ~= "" then
-                local split_pos = raw_syl:find(search_key_str, 1, true)
+            if reverse_key and reverse_key ~= "" then
+                local split_pos = raw_syl:find(reverse_key, 1, true)
                 if split_pos then
                     raw_syl = raw_syl:sub(1, split_pos - 1)
                 end
@@ -546,8 +551,8 @@ end
 -- 5. 候选项数据构建核心
 local function build_candidate_raw_data(cand, cand_len, env)
     local raw_data = {}
-    local db_cache = env._global_db_cache
-    local comment_cache = env._global_comment_cache
+    local db_cache = env._db_cache
+    local comment_cache = env._comment_cache
     local cand_text = cand.text
 
     if env.has_comment then
@@ -1099,7 +1104,7 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
             table.insert(syllables, v)
         end
     else
-        syllables = get_script_text_parts(ctx, env.search_key_str)
+        syllables = get_script_text_parts(ctx, env.reverse_key)
     end
 
     -- 读取预热缓存，避免重复查 db 和代数展开
@@ -1363,8 +1368,8 @@ function f.init(env)
         env.comment_split_ptrn = "[^" .. alt_lua_punc(delimiter) .. "]+"
     end
 
-    env.search_key_str = config:get_string('wanxiang_lookup/key') or '`'
-    env.search_key_alt = alt_lua_punc(env.search_key_str)
+    env.reverse_key = config:get_string('wanxiang_lookup/key') or '`'
+    env.reverse_key_alt = alt_lua_punc(env.reverse_key)
     env.bypass_prefix = config:get_string('add_user_dict/prefix')
 
     local tag = config:get_list('wanxiang_lookup/tags')
@@ -1379,7 +1384,7 @@ function f.init(env)
 
     env.notifier = env.engine.context.select_notifier:connect(function(ctx)
         local input = ctx.input
-        local code, fuma = split_lookup_input(input, env.search_key_str, env.bypass_prefix)
+        local code, fuma = split_lookup_input(input, env.reverse_key, env.bypass_prefix)
         if not code or #code == 0 then
             return
         end
@@ -1392,26 +1397,23 @@ function f.init(env)
             preedit_text = preedit.text
         end
 
-        local edit = select(1, split_lookup_input(preedit_text, env.search_key_str, env.bypass_prefix))
+        local edit = select(1, split_lookup_input(preedit_text, env.reverse_key, env.bypass_prefix))
         if edit and edit:match('[%w/]') then
-            ctx.input = no_search_string .. env.search_key_str
+            ctx.input = no_search_string .. env.reverse_key
         else
             ctx.input = no_search_string
-            env.commit_code = no_search_string
             ctx:commit()
         end
     end)
 
-    env._global_db_cache = {}
-    env._global_comment_cache = {}
+    env._db_cache = {}
+    env._comment_cache = {}
     env._cand_raw_cache = {}
     env.cache_size = 0
 
     -- 双轨缓存系统
     env.history_parts = {}
     env.history_input = ""
-    env.history_parts_cache = {}
-
      -- 专为引导模式(Explicit)的监听器，用于在敲击反查引导符前，保留完美的拼音切分案底
     env.update_conn = env.engine.context.update_notifier:connect(function(ctx)
         if not ctx:is_composing() then
@@ -1422,11 +1424,11 @@ function f.init(env)
         local raw_in = ctx.input or ""
         if raw_in == "" then return end
 
-        if env.search_key_str and raw_in:find(env.search_key_str, 1, true) then
+        if env.reverse_key and raw_in:find(env.reverse_key, 1, true) then
             return
         end
 
-        local parts = get_script_text_parts(ctx, env.search_key_str)
+        local parts = get_script_text_parts(ctx, env.reverse_key)
         if parts and #parts > 0 then
             env.history_parts = parts
             env.history_input = raw_in
@@ -1455,13 +1457,13 @@ function f.func(input, env)
     end
 
     if env.cache_size > 2000 then
-        env._global_db_cache = {}
-        env._global_comment_cache = {}
+        env._db_cache = {}
+        env._comment_cache = {}
         env.cache_size = 0
     end
 
     local ctx_input = context.input
-    local pure_code, explicitly_fuma, s_start, s_end = split_lookup_input(ctx_input, env.search_key_str, env.bypass_prefix)
+    local pure_code, explicitly_fuma, s_start, s_end = split_lookup_input(ctx_input, env.reverse_key, env.bypass_prefix)
 
     if s_start then
         if not explicitly_fuma or #explicitly_fuma == 0 then
@@ -1506,11 +1508,10 @@ function f.fini(env)
     end
 
     env.db_table = nil
-    env._global_db_cache = nil
-    env._global_comment_cache = nil
+    env._db_cache = nil
+    env._comment_cache = nil
     env._cand_raw_cache = nil
     env.history_parts = nil
-    env.history_parts_cache = nil
 
     collectgarbage('collect')
 end
