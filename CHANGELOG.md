@@ -1,5 +1,31 @@
 # Changelog
 
+## [16.1.4](https://github.com/amzxyz/rime-wanxiang/compare/v16.1.3...v16.1.4) (2026-07-20)
+
+
+### 📚 词库更新
+
+* 词库调整 ([4cebe48](https://github.com/amzxyz/rime-wanxiang/commit/4cebe4835ca6db0ab16a88bcaf274a8c7c3bf14f))
+* 词库调整 ([da90335](https://github.com/amzxyz/rime-wanxiang/commit/da90335a69351df90bb1002142755e0affb2a41d))
+* 词库调整 ([4fac09b](https://github.com/amzxyz/rime-wanxiang/commit/4fac09b9b56514427fb92bf67210c4811bbd032f))
+* 词库调整 ([d9cc946](https://github.com/amzxyz/rime-wanxiang/commit/d9cc9464d1b20594e61af93e7064943556183db6))
+* 词库调整 ([c6da94e](https://github.com/amzxyz/rime-wanxiang/commit/c6da94e0c8de2d0a9825692452838f5502dc8869))
+* 词库调整 ([4d4a5eb](https://github.com/amzxyz/rime-wanxiang/commit/4d4a5eb6a83fdb27eb722b0e1781a3aa7baaa0fc))
+* 词库调整 ([ef9b78c](https://github.com/amzxyz/rime-wanxiang/commit/ef9b78ccf2ac6ebe802c8d16a145a57d46714a5d))
+* 词库调整 ([affbb11](https://github.com/amzxyz/rime-wanxiang/commit/affbb115becc8f3aac8873c4e0238afe2dfc1bf4))
+* 词库调整 ([2ca821d](https://github.com/amzxyz/rime-wanxiang/commit/2ca821d5174a985bcf2ed4aeab55f2f0a1868a25))
+* 词库调整 ([09ee15c](https://github.com/amzxyz/rime-wanxiang/commit/09ee15cf34ff8ec6c1e0d71b0847f1fe5bdc5671))
+
+
+### 🐛 Bug 修复
+
+* **lookup:** 优化代码 ([f0b7094](https://github.com/amzxyz/rime-wanxiang/commit/f0b7094148772c910339b3b2aeda6013598735d7))
+* the issue of the delete function not working in Input Cobra Method. ([5988f47](https://github.com/amzxyz/rime-wanxiang/commit/5988f47223886abbaca6af8e678136012a509866))
+* 优化英文智能加空格逻辑 ([85ceceb](https://github.com/amzxyz/rime-wanxiang/commit/85cecebea6346552b2265c43b73b1818b9cdb859))
+* 优化辅助码及拆分储存方式 ([5fc8b5b](https://github.com/amzxyz/rime-wanxiang/commit/5fc8b5bbd25fba4b11dc21d91d49193435ba98cb))
+* 添加元书pc信息 ([11c2f5e](https://github.com/amzxyz/rime-wanxiang/commit/11c2f5ef6a43e6285aa71c93f210c74aeb8c0ae3))
+* 转写规则同步首道变更 ([5526229](https://github.com/amzxyz/rime-wanxiang/commit/552622954c2059d64d01ac869da692446db04b18))
+
 ## [16.1.3](https://github.com/amzxyz/rime-wanxiang/compare/v16.1.2...v16.1.3) (2026-07-16)
 
 
