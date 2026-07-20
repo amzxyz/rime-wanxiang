@@ -759,15 +759,6 @@ function M.func(key, env)
         if handle_predict_space(key, env, ctx) then return K_ACCEPT end
     end
 
-    if ctx.composition:empty() then
-        if kc == 0xff0d or kc == 0xff8d or kc == 0x20 then
-            _G.english_spacing_break = true
-        end
-        if kc == 0x5c or kc == 0x2f then
-            _G.force_sticky_code = true
-        end
-    end
-
     -- 2. QuickSymbol 拦截 (a-z + /)
     if handle_quick_symbol_intercept(key, env, ctx) then
         return K_ACCEPT

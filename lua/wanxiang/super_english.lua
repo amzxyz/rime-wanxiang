@@ -11,8 +11,6 @@
 -- 5. [Order] 单字母(a/A) 智能插队排序,补齐单字母候选
 -- 6. [Limit & Perf] 纯英文数量限制，并增加极速防卡顿熔断机制
 
-local F = {}
-
 local byte = string.byte
 local find = string.find
 local gsub = string.gsub
@@ -20,20 +18,6 @@ local upper = string.upper
 local lower = string.lower
 local sub = string.sub
 local match = string.match
-local format = string.format
-local STICKY_BUFFER_SIZE = 2
-
-local function fast_type(c)
-    local t = c.type
-    if t then return t end
-    local g = c.get_genuine and c:get_genuine() or nil
-    return (g and g.type) or ""
-end
-
-local function is_table_type(c)
-    local t = fast_type(c)
-    return t == "user_table" or t == "fixed"
-end
 
 local function get_now()
     if rime_api and rime_api.get_time_ms then
@@ -222,7 +206,63 @@ local function apply_formatting(cand, code_ctx)
     nc.preedit = cand.preedit
     return nc
 end
+local P = {}
+function P.init(env)
+    local ctx = env.engine.context
+    env.last_ascii_mode = ctx:get_option("ascii_mode") or false
+    env.typed_in_ascii = false
 
+    if ctx.option_update_notifier then
+        env.option_conn = ctx.option_update_notifier:connect(function(ctx, option_name)
+            if option_name == "ascii_mode" then
+                local current_ascii = ctx:get_option("ascii_mode")
+                if env.last_ascii_mode and not current_ascii then
+                    if env.typed_in_ascii then
+                        _G.english_spacing_break = true
+                    end
+                    env.typed_in_ascii = false
+                elseif not env.last_ascii_mode and current_ascii then
+                    env.typed_in_ascii = false
+                end
+                env.last_ascii_mode = current_ascii
+            end
+        end)
+    end
+end
+
+function P.fini(env)
+    if env.option_conn then
+        env.option_conn:disconnect()
+        env.option_conn = nil
+    end
+end
+
+function P.func(key, env)
+    if key:release() then return 2 end
+
+    local ctx = env.engine.context
+    local ascii_mode = ctx:get_option("ascii_mode")
+    local kc = key.keycode
+
+    -- 符号和回车打断检测（composition 为空时）
+    if ctx.composition:empty() then
+        local is_letter = (kc >= 0x41 and kc <= 0x5a) or (kc >= 0x61 and kc <= 0x7a)
+        local is_digit = (kc >= 0x30 and kc <= 0x39)
+        local is_symbol = (kc >= 0x20 and kc <= 0x7e) and not is_letter and not is_digit
+        local is_enter = (kc == 0xff0d or kc == 0xff8d)
+        if is_symbol or is_enter then
+            _G.english_spacing_break = true
+        end
+    end
+
+    -- 英文模式下记录字符输入
+    if ascii_mode then
+        env.typed_in_ascii = true
+    end
+
+    return 2
+end
+local F = {}
 function F.init(env)
     local cfg = env.engine.schema.config
     env.memory = {}
@@ -255,8 +295,7 @@ function F.init(env)
     env.last_commit_time = 0
     env.comp_start_time = nil
     env.spacing_active = false  
-    env.decision_locked = false 
-    env.sticky_countdown = 0
+    env.decision_locked = false
     if env.engine.context then
         env.update_notifier = env.engine.context.update_notifier:connect(function(ctx)
             local curr_input = ctx.input
@@ -265,6 +304,7 @@ function F.init(env)
             else
                 env.block_derivation = false
             end
+
             if curr_input == "" then
                 env.comp_start_time = nil
                 env.memory = {}
@@ -278,17 +318,7 @@ function F.init(env)
             local text_no_space = gsub(commit_text, "%s", "")
             local is_eng = is_ascii_phrase_fast(text_no_space)
             
-            if find(text_no_space, "[/\\\\]$") then
-                env.sticky_countdown = STICKY_BUFFER_SIZE
-                is_eng = false 
-            elseif env.sticky_countdown > 0 then
-                if is_eng then
-                    env.sticky_countdown = env.sticky_countdown - 1
-                    is_eng = false 
-                else
-                    env.sticky_countdown = 0
-                end
-            elseif is_eng then
+            if is_eng then
                 local clean = gsub(commit_text, "%s+$", ""):lower()
                 if no_spacing_words[clean] then
                     is_eng = false
@@ -316,11 +346,10 @@ end
 function F.func(input, env)
     local ctx = env.engine.context
 
-    if _G.force_sticky_code == true then
-        env.sticky_countdown = STICKY_BUFFER_SIZE
+    if _G.english_spacing_break == true then
         env.prev_commit_is_eng = false
-        _G.force_sticky_code = false 
     end
+
 
     local curr_input = ctx.input
     local symbol = env.pair_symbol
@@ -330,7 +359,7 @@ function F.func(input, env)
         end
         return 
     end
-    -- ===
+
     local has_valid_candidate = false
     local best_candidate_saved = false
     local code_len = #curr_input
@@ -512,50 +541,32 @@ function F.func(input, env)
             end
             
             if anchor and diff ~= "" then
-                local is_code_mode = find(curr_input, "[/\\]") or (env.sticky_countdown > 0)
-                
-                if is_code_mode then
-                    local clean_diff = diff
-                    if sub(clean_diff, -1) == symbol then
-                        clean_diff = sub(clean_diff, 1, -2)
-                    end
-                    local output_text = anchor.text .. clean_diff
-                    local output_preedit = (anchor.preedit or anchor.text) .. diff
-                    output_text = apply_segment_formatting(output_text, curr_input)
-                    
-                    local cand = Candidate("fallback", 0, #curr_input, output_text, "~")
-                    cand.preedit = output_preedit
-                    cand.quality = 999
-                    yield(cand)
-                    yielded_derived = true 
-                    
-                elseif is_ascii_phrase_fast(anchor.text) then
-                    local has_spacing = find(anchor.text, " ")
-                    local last_word = match(anchor.text, "(%S+)%s*$") or ""
-                    local last_len = #last_word
-                    local spacer = " "
-                    if sub(anchor.text, -1) == " " then spacer = "" end
+                local has_spacing = find(anchor.text, " ")
+                local last_word = match(anchor.text, "(%S+)%s*$") or ""
+                local last_len = #last_word
+                local spacer = " "
+                if sub(anchor.text, -1) == " " then spacer = "" end
 
-                    local output_text = ""
-                    local output_preedit = ""
+                local output_text = ""
+                local output_preedit = ""
 
-                    if has_spacing or last_len > 3 then
-                        output_text = anchor.text .. spacer .. diff
-                        output_preedit = anchor.text .. spacer .. diff
-                    else
-                        output_text = curr_input
-                        output_preedit = curr_input
-                    end
-                    
-                    output_text = apply_segment_formatting(output_text, curr_input)
-                    local cand = Candidate("fallback", 0, #curr_input, output_text, "~")
-                    cand.preedit = output_text 
-                    cand.quality = 999
-                    yield(cand)
-                    yielded_derived = true
+                if has_spacing or last_len > 3 then
+                    output_text = anchor.text .. spacer .. diff
+                    output_preedit = anchor.text .. spacer .. diff
+                else
+                    output_text = curr_input
+                    output_preedit = curr_input
                 end
+
+                output_text = apply_segment_formatting(output_text, curr_input)
+                local cand = Candidate("fallback", 0, #curr_input, output_text, "~")
+                cand.preedit = output_text
+                cand.quality = 999
+                yield(cand)
+                yielded_derived = true
             end
         end
     end
 end
-return F
+
+return { F = F, P = P }

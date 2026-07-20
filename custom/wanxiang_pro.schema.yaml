@@ -58,6 +58,7 @@ engine:
     - lua_processor@*wanxiang.force_upper_aux  #自动将N-1首选数量的汉字大写辅助码施加到音节后面起到固定语句分词的作用
     - lua_processor@*wanxiang.user_predict*P  #靠自己养的专属预测联想处理器，不再依赖前端插件以及固定数据
     - lua_processor@*wanxiang.super_processor  #KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
+    - lua_processor@*wanxiang.super_english*P  #英文只能加空格捕获按键操作
     - lua_processor@*wanxiang.partial_commit  #通过ctrl+1~0局部提交10个字以内的句子的前几个字（一般为正确的前几个）使用时要遵循合理的分词结构能促进后续编码打出正确的词汇
     - lua_processor@*wanxiang.super_sequence*P  #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+l 移除位移  ctrl+p 置顶
     - lua_processor@*wanxiang.super_tips  #超级提示模块：表情、简码、翻译、化学式、等等靠你想象
@@ -98,7 +99,7 @@ engine:
   filters:
     - lua_filter@*wanxiang.auto_phrase  #无感造词,英文造词
     - lua_filter@*wanxiang.super_lookup  #字词输入中反查辅助筛选
-    - lua_filter@*wanxiang.super_english  #放replacer前面,单词变大写后应该能在替换中命中数据,负责英文方案及中英混输中英文单词格式化，语句流，自动加空格等策略
+    - lua_filter@*wanxiang.super_english*F  #放replacer前面,单词变大写后应该能在替换中命中数据,负责英文方案及中英混输中英文单词格式化，语句流，自动加空格等策略
     - lua_filter@*wanxiang.charset_filter  #放replacer前面,全方位自定义的字符集过滤器，支持繁体字符集开放
     - lua_filter@*wanxiang.super_comment_preedit  #放其他需要注释处理器后面,会有清空注释的操作,超级注释模块，支持错词提示、辅助码显示，部件组字读音注释，支持个性化配置和关闭相应的功能，详情搜索super_comment进行详细配置
     - lua_filter@*wanxiang.super_replacer  #OpenCC替代器，更灵活的处理方式，更自由的自定义方式，支持简繁转换、简码模式、支持候选替换、注释替换、候选派生等等

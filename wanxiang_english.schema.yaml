@@ -19,6 +19,7 @@ switches:
 
 engine:
   processors:
+    - lua_processor@*wanxiang.super_english*P
     - ascii_composer
     - key_binder
     - speller
@@ -37,8 +38,8 @@ engine:
     - table_translator@wanxiang_english  #英文词汇表导入
     - punct_translator
   filters:
+    - lua_filter@*wanxiang.super_english*F
     - lua_filter@*wanxiang.auto_phrase
-    - lua_filter@*wanxiang.super_english
     - lua_filter@*wanxiang.super_replacer
     - uniquifier
 
