@@ -4,9 +4,6 @@
 -- /sym.<name>[.<mod>...]              精确匹配
 -- /sym?<keyword> 或 /sym/<keyword>   模糊搜索
 -- /emoji.* 同理
---
--- 优化：数据/触发器只初始化一次；条目不重复复制；名称预存小写；
--- 长模糊词使用内存 n-gram 倒排索引，短词使用递进结果缓存。
 
 local M = {}
 local STATE = {
@@ -26,7 +23,6 @@ local function starts_with(text, prefix)
     return #text >= #prefix and sub(text, 1, #prefix) == prefix
 end
 
--- 按点拆分；末尾点保留为空组件。
 local function split_dot(text)
     local parts = {}
     local start = 1
@@ -56,8 +52,6 @@ local function dedup_list(list)
     return result
 end
 
--- 每个 store 只保留三组核心数据：
--- entries：模糊搜索；root_map：精确根查询；root_list：根前缀查询。
 local function new_store(cand_type)
     return {
         entries = {},
@@ -67,7 +61,6 @@ local function new_store(cand_type)
     }
 end
 
--- 读取文件时一次完成解析和索引，不再先建 entries、再复制到第二套索引对象。
 local function read_store(path, cand_type)
     local store = new_store(cand_type)
     local file = path and io.open(path, "r") or nil
@@ -104,7 +97,6 @@ local function read_store(path, cand_type)
 
                     local entry = {
                         name = name,
-                        -- Typst 名称通常本来就是小写；只有出现大写时才额外保存小写副本。
                         search_name = find(name, "%u") and lower(name) or nil,
                         char = char,
                         mods_list = mods_list,
@@ -211,7 +203,6 @@ local function build_defs(config, prefix_sym, prefix_emoji)
     }
 end
 
--- 触发器和提示在 init 中构建一次，不再每次按键重新读取配置和创建临时表。
 local function build_runtime(config)
     local prefix_sym = config:get_string("super_symbols/prefix_sym") or "/sym"
     local prefix_emoji = config:get_string("super_symbols/prefix_emoji") or "/emoji"
@@ -354,7 +345,6 @@ end
 
 local function fuzzy_components(keyword)
     local components = dedup_list(split_dot(lower(keyword)))
-    -- 所有组件都必须命中；先检查长组件，只减少 find 次数，不改变结果。
     sort(components, function(a, b) return #a > #b end)
     return components
 end
@@ -423,6 +413,7 @@ end
 
 function M.init(env)
     env.super_symbols_runtime = build_runtime(env.engine.schema.config)
+    load_data(env)
 end
 
 function M.fini(env)
@@ -435,7 +426,6 @@ function M.func(input, seg, env)
     local runtime = get_runtime(env)
     local mode_tip = runtime.tips[input]
     if mode_tip then
-        -- 保持原版行为：所有模式提示均使用 super_sym 类型。
         yield(Candidate("super_sym", seg.start, seg._end, mode_tip, ""))
         return
     end
