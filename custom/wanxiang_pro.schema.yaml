@@ -427,9 +427,8 @@ super_tips:
 # 模式提示：仅输入 /sym /sym. /sym? /sym/ /emoji 等前缀时，候选区显示引导提示
 super_symbols:
   prefix_sym:    "/sym"
-  search_sym:    "/sym?"
   prefix_emoji:  "/emoji"
-  search_emoji:  "/emoji?"
+  # 模糊搜索前缀由上面前缀 + 标记派生：? 与 / 平级，如 /sym?arrow 与 /sym/arrow 等价
   max_candidates: 30
   data_sym:      "lua/data/codex_sym.txt"
   data_emoji:    "lua/data/codex_emoji.txt"

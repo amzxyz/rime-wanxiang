@@ -4,6 +4,11 @@
 
 源自 Typst 排版系统的底层符号表，覆盖数学运算符、希腊字母、箭头、集合论、几何、天文、货币、控制字符图形等十余大类，以及一千余个 emoji 表情。
 
+具体符号库可参考Typst官方文档：
+
+- `sym`(符号): [点击这里](https://typst.app/docs/reference/symbols/sym/)
+- `emoji`(表情): [点击这里](https://typst.app/docs/reference/symbols/emoji/)
+
 ---
 
 ## 一、触发方式
@@ -11,7 +16,7 @@
 | 输入 | 含义 | 示例 |
 |------|------|------|
 | `/sym.<name>` | 精确查找某个符号（含变体） | `/sym.alpha` → α |
-| `/sym.<name>.<mod1>.<mod2>...` | 用修饰符组合查变体，**支持模糊匹配**（修饰符可省略、顺序无关） | `/sym.arrow.r.double` → ⇒ |
+| `/sym.<name>.<mod1>.<mod2>...` | 用修饰符组合查变体，精确匹配（修饰符可省略、顺序无关） | `/sym.arrow.r.double` → ⇒ |
 | `/sym?<keyword>` 或 `/sym/<keyword>` | 模糊搜索符号名 / 字符 | `/sym?arrow` 或 `/sym/arrow` 都列出所有含 "arrow" 的符号 |
 | `/emoji.<name>[.<mod>...]` | 同上，针对 emoji 模块 | `/emoji.apple.red` → 🍎 |
 | `/emoji?<keyword>` 或 `/emoji/<keyword>` | emoji 模糊搜索 | `/emoji?heart` 或 `/emoji/heart` |
@@ -25,7 +30,7 @@
     `/sym.arrow.double` 也能得到 ⇒ —— 即使省略了方向 `r`，`best_match` 算法会自动挑选最匹配的变体。修饰符顺序也无关：`/sym.arrow.double.r` 与 `/sym.arrow.r.double` 等价。
 
 !!! info "候选注释强制显示完整 Typst 代码"
-    每个候选的注释区会显示**完整的 Typst 代码**（即用户书写顺序），方便直接复制到 Typst 数学模式中使用。例如输入 `/sym.arrow.double` 时：
+    每个候选的注释区会显示**完整的 Typst 代码**（即用户书写顺序），方便Typst用户输入。例如输入 `/sym.arrow.double` 时：
     ```
     1 ⇒  arrow.r.double
     2 ⤇  arrow.r.double.bar
@@ -213,12 +218,12 @@ codex 使用「**符号 + 修饰符**」的层级命名，符号之间用 `.` �
 
 | 文件 | 用途 | 行数 |
 |------|------|------|
-| `lua/data/codex_sym.txt` | 符号数据（`typst_name<TAB>char`） | ~1211 条 |
-| `lua/data/codex_emoji.txt` | emoji 数据（同上） | ~1386 条 |
-| `lua/data/codex_tips_sym.txt` | 符号中文 tips（手动翻译） | ~1090 条 |
-| `lua/data/codex_tips_emoji.txt` | emoji 中文 tips（手动翻译） | ~341 条 |
-| `lua/data/tips_show.txt` | 已合并中文 tips（末尾追加） | +1431 条 |
-| `lua/wanxiang/super_symbols.lua` | 翻译器主逻辑 | ~340 行 |
+| `lua/data/codex_sym.txt` | 符号数据（`typst_name<TAB>char`） | 1214 条 |
+| `lua/data/codex_emoji.txt` | emoji 数据（同上） | 1389 条 |
+| `lua/data/tips_show.txt` | 已合并中文 tips（含 codex 符号/emoji 翻译，末尾追加） | +1431 条 |
+| `lua/wanxiang/super_symbols.lua` | 翻译器主逻辑 | 410 行 |
+
+中文 tips 已合并进 `tips_show.txt`，原 `codex_tips_sym.txt` / `codex_tips_emoji.txt` 不再单独存在。
 
 **数据格式**：
 ```
@@ -244,14 +249,24 @@ emptyset.zero	∅︀
 
 ```yaml
 super_symbols:
-  prefix_sym:    "/sym"      # 可改为其他前缀，如 "//"
-  search_sym:    "/sym?"
-  prefix_emoji:  "/emoji"
-  search_emoji:  "/emoji?"
+  prefix_sym:    "/sym"      # 仅当未配置 triggers 时作为回退精确前缀
+  prefix_emoji:  "/emoji"    # 仅当未配置 triggers 时作为回退精确前缀
   max_candidates: 30         # 模糊搜索最大候选数
   data_sym:      "lua/data/codex_sym.txt"
   data_emoji:    "lua/data/codex_emoji.txt"
 ```
+
+精确与模糊两种模式的触发符号均由可 patch 的 `triggers` 列表驱动；未配置时回退到上面的 `prefix_sym` / `prefix_emoji`。每条含 `kind`（类型键，对应数据表 `sym` / `emoji`，也用于 `super_<kind>` 候选 tag）、`exact`（精确前缀，后接 `.` 直输）、`label`（模式提示语）、`marks`（模糊搜索标记，默认 `["?", "/"]`）：
+
+```yaml
+super_symbols:
+  triggers:
+    - { kind: sym,    exact: /sym,   label: 超级符号 }   # /sym.arrow.r 直输；/sym?arrow 与 /sym/arrow 模糊
+    - { kind: emoji,  exact: /emoji, label: 超级表情 }
+    - { kind: kaomoji, exact: /kk,   label: 颜文字, marks: ["?"] }  # 自定义类型，仅 ? 触发模糊
+```
+
+模糊搜索前缀由精确前缀 + 标记派生：`?` 与 `/` 平级，例如 `/sym?arrow` 与 `/sym/arrow` 等价。新增类型只需在 `triggers` 中追加一项，并在 `data_sym`/`data_emoji` 之外自行提供数据表（或复用现有表）。
 
 修改前缀后，需同步更新 `recognizer/patterns/super_sym` 与 `super_emoji` 的正则。
 
@@ -264,7 +279,8 @@ super_symbols:
   1. 候选必须是查询的**超集**（候选修饰符 ⊇ 查询修饰符）
   2. 优先：与查询共同修饰符更多的候选
   3. 其次：总修饰符更少的候选（更精确）
-- **前缀索引**：加载时构建 `by_prefix` 表，把所有 `typst_name` 按可能的 symbol 前缀分组（如 `arrow` → 所有 `arrow.*` 记录），用于 best_match
+- **前缀索引**：加载时单次遍历构建 `by_prefix`（按 symbol 前缀分组，如 `arrow` → 所有 `arrow.*` 记录）与 `by_valid`（每个前缀下合法修饰符的并集），均用于 best_match 与查询解析，无二次扫描
+- **修饰符顺序无关**：解析查询时从最短前缀起尝试，其后的组件一律视为修饰符、顺序无关，因此 `arrow.r.double` 与 `arrow.double.r` 等价；优先最短前缀可避免把修饰符误并入符号前缀
 - **精确匹配优先**：用户输入的 `typst_name` 若完全存在则直接返回，否则才做 best_match
 - **强制注释**：candidate type 设为 `super_sym` / `super_emoji`，`super_comment_preedit.lua` 识别此类型后跳过清空逻辑，确保 Typst 代码始终可见
 - **模式提示**：仅输入前缀（如 `/sym.`）时显示引导文案，输入实际字符后自动进入查询模式
