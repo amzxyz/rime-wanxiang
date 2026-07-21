@@ -55,7 +55,7 @@
     <td width="50%" valign="top">
       <div style="border: 1px solid #546e7a4d; border-radius: 12px; padding: 20px;">
         <h3>🪄 Lua 魔法扩展</h3>
-        <p>计算器、超级注释、符号包裹、动态时间戳... 探索让 Rime 拥有“超能力”的数十种微创新脚本。</p>
+        <p>计算器、超级注释、符号包裹、动态时间戳、超级符号库（按名输入数千 Unicode 符号）... 探索让 Rime 拥有“超能力”的数十种微创新脚本。</p>
         <a href="https://amzxyz.github.io/rime-wanxiang/doc/shijian"><strong>➡️ 探索魔法</strong></a>
       </div>
     </td>

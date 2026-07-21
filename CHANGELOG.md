@@ -1,5 +1,28 @@
 # Changelog
 
+## [Unreleased]
+
+
+### ✨ 新特性
+
+* **超级符号库 super_symbols**：基于 [typst/codex](https://github.com/typst/codex) 引入数千个 Unicode 符号的「按名输入」能力
+  - 触发方式：`/sym.<name>[.<mod>...]` 精确查找、`/sym?<keyword>` 或 `/sym/<keyword>` 模糊搜索（两种语法等价）；`/emoji.*` 同理
+  - 支持 codex 的 best_match 模糊匹配算法（修饰符可省略、顺序无关）
+  - 嵌套模块支持：`/sym.chess.king.white` → ♔，`/sym.gender.male` → ♂
+  - **简化数据格式**：标识符为 Typst 写法全文（如 `arrow.r.double`），只有一个字段 `typst_name<TAB>char`
+  - 候选注释显示完整 Typst 代码（即 typst_name 本身），**强制显示**（不受"注释关"开关影响）
+  - **修复 `\vs{1}` 等 Variation Selector 数字形式**的解析（支持 `\vs{1}`~`\vs{16}` 全部 16 种）
+  - **tips 全部纯中文**，手动翻译，不含 Typst 代码
+  - **模式提示**：仅输入 `/sym` `/sym.` `/sym?` `/sym/` `/emoji` 等前缀时，候选区显示引导文案（如「超级符号：直输」「超级表情：搜索」）
+  - **模块命名 super_symbols**：翻译器文件 `lua/wanxiang/super_symbols.lua`，配置块 `super_symbols:`，candidate type `super_sym`/`super_emoji`
+  - 新增 `lua/wanxiang/super_symbols.lua` 翻译器（~340 行）
+  - 新增 `lua/data/codex_sym.txt`（1211 条）和 `lua/data/codex_emoji.txt`（1386 条）
+  - 新增 `lua/data/codex_tips_sym.txt`（1090 条手动翻译）和 `lua/data/codex_tips_emoji.txt`（341 条手动翻译）
+  - 中文 tips 合并到 `lua/data/tips_show.txt`（新增 1431 条，已去重）
+  - 修改 `lua/wanxiang/super_comment_preedit.lua`：识别 `super_sym`/`super_emoji` 类型并跳过注释清空
+  - 新增 `docs/doc/super_symbols.md` 用户文档
+  - 同步更新标准版与 Pro 版 schema
+
 ## [16.1.4](https://github.com/amzxyz/rime-wanxiang/compare/v16.1.3...v16.1.4) (2026-07-20)
 
 
