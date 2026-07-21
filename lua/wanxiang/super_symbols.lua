@@ -550,21 +550,20 @@ local function translator(input, seg, env)
     end
 end
 
--- 暴露内部纯函数，便于独立单元测试（不影响运行期行为）
--- 用可调用表包装 translator：RIME 仍以 translator(input, seg, env) 方式调用，
--- 单测可通过 _internals 访问纯函数。
-local export = setmetatable({}, {
-    __call = function(_, input, seg, env)
-        return translator(input, seg, env)
-    end,
-})
-export._internals = {
-    split_dot = split_dot,
-    dedup_list = dedup_list,
-    build_index = build_index,
-    read_data_file = read_data_file,
-    do_exact = do_exact,
-    do_fuzzy = do_fuzzy,
+-- 暴露内部纯函数，便于独立单元测试（不影响运行期行为）。
+-- RIME 的 lua_translator 加载器对“表”类型要求存在 func 字段（见 input_statistics.lua
+-- 返回 { init=.., func=.., fini=.. }）；故用 { func = translator, _internals = .. } 形式，
+-- RIME 调用 func(input, seg, env)，单测通过 _internals 访问纯函数。
+local export = {
+    func = translator,
+    _internals = {
+        split_dot = split_dot,
+        dedup_list = dedup_list,
+        build_index = build_index,
+        read_data_file = read_data_file,
+        do_exact = do_exact,
+        do_fuzzy = do_fuzzy,
+    },
 }
 
 return export
