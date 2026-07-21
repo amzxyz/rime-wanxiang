@@ -642,14 +642,27 @@ local function yield_passthrough(input)
     end
 end
 
-local function try_yield_forced_english(ctx, curr_input, symbol)
+local function try_yield_forced_english(ctx, curr_input, env)
+    local symbol = env.pair_symbol
     local code_len = #curr_input
-    if code_len <= 2 or sub(curr_input, -2) ~= symbol .. symbol then
+
+    if code_len <= 2
+       or sub(curr_input, -2) ~= symbol .. symbol then
         return false
     end
 
     local raw_text = sub(curr_input, 1, code_len - 2)
-    if not is_ascii_phrase_fast(raw_text) then
+
+    local output_text = gsub(
+        raw_text,
+        env.delim_check_pattern,
+        " "
+    )
+    output_text = gsub(output_text, "%s+", " ")
+    output_text = gsub(output_text, "^%s+", "")
+    output_text = gsub(output_text, "%s+$", "")
+
+    if not is_ascii_phrase_fast(output_text) then
         return false
     end
 
@@ -657,8 +670,10 @@ local function try_yield_forced_english(ctx, curr_input, symbol)
         ctx.composition:back().prompt = "〔英文造词〕"
     end
 
-    local cand = Candidate("english", 0, code_len, raw_text, "")
-    cand.preedit = raw_text
+    local cand = Candidate(
+        "english", 0, code_len, output_text, ""
+    )
+    cand.preedit = output_text
     yield(cand)
     return true
 end
@@ -1230,7 +1245,7 @@ function F.func(input, env)
         return
     end
 
-    if try_yield_forced_english(ctx, curr_input, env.pair_symbol) then
+    if try_yield_forced_english(ctx, curr_input, env) then
         return
     end
 
