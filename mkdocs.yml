@@ -85,6 +85,7 @@ nav:
       
   - ⌨️ 基础功能体系:
       - 📂 万象目录架构: doc/rime_tree.md
+      - 📚 中英词库说明: doc/dicts.md
       - ⌨️ 快捷键说明: doc/shortcut.md
       - ⌨️ 辅助码系统全解: doc/aux_code.md
       - 🧩 生僻字反查系统: doc/reverse_lookup.md
@@ -115,7 +116,7 @@ nav:
       - ⚙️ rime工作机制: doc/Rime设计逻辑与配置哲学.md
       - 🛠️ patch方法论: doc/patch方法论.md
       - 🎛️ 自定义万象方案: doc/schema_custom.md
-      - 📚 词库管理与同步: doc/dicts.md
+      - 📚 词库管理与同步: doc/dicts_sync.md
       - 📖 RIME配置手册: doc/RIME配置手册.md
       - 🧭 RIME配置指南: doc/RIME配置指南.md
       - 🧭 按键映射列表: doc/key.md
