@@ -1,5 +1,35 @@
 # Changelog
 
+## [16.2.0](https://github.com/amzxyz/rime-wanxiang/compare/v16.1.4...v16.2.0) (2026-07-21)
+
+
+### ✨ 新特性
+
+* **lua:** add super symbols module based on typst/codex ([7dab289](https://github.com/amzxyz/rime-wanxiang/commit/7dab2890d493e709c1c545c16e2bbd36f970ff70))
+* 英文词库加了词频前面忘记说了，现在英文lua也能帮助在中文状态下输入英文句子了，能正确解构好中文句子和英文句子的删除和留存问题 ([ba44a97](https://github.com/amzxyz/rime-wanxiang/commit/ba44a97838cc40fb72728a917ea49b06d70b9e35))
+
+
+### 📚 词库更新
+
+* 词库调整 ([1da3b32](https://github.com/amzxyz/rime-wanxiang/commit/1da3b32ab386894f89a8bc9b52f6ec168e06d5c0))
+
+
+### 🐛 Bug 修复
+
+* use func field for RIME translator export ([7cf08ef](https://github.com/amzxyz/rime-wanxiang/commit/7cf08eff2dce607074932e5c1b1a2fbedb440690))
+* 修复英文句子的分隔符兜底问题 ([2e66d86](https://github.com/amzxyz/rime-wanxiang/commit/2e66d867201f5930ef75e4d8dcd68cd52fb2e4e5))
+* 修复虎码问题 ([d28375a](https://github.com/amzxyz/rime-wanxiang/commit/d28375a1fc21dfed189719d82cc750e5980f9bf6))
+* 恢复快符制表符 ([3ea80ef](https://github.com/amzxyz/rime-wanxiang/commit/3ea80efc173c2cfa8faa4bd8eb1d3dd10423e7d4))
+* 英文造句时包含分隔符的处理逻辑 ([d861539](https://github.com/amzxyz/rime-wanxiang/commit/d861539df1ae75a8ebcbd677a463921966636829))
+
+
+### 💅 重构
+
+* **super_symbols:** add configurable triggers and fix modifier parsing ([06e136b](https://github.com/amzxyz/rime-wanxiang/commit/06e136bb161251f3021e8d4226bc578e8007378d))
+* **super_symbols:** optimize data loading and matching logic ([0fc7d0f](https://github.com/amzxyz/rime-wanxiang/commit/0fc7d0f3a270fc8b45f7863a2a5158871da4990b))
+* **super_symbols:** remove comments and load data in init ([a9582c4](https://github.com/amzxyz/rime-wanxiang/commit/a9582c4e2b50d1758eba9c463da09ade4c51d9ba))
+* **super_symbols:** rewrite matching with dot-chained order-independent logic ([4873781](https://github.com/amzxyz/rime-wanxiang/commit/4873781636d11b8063695d7d7c909547eff30b73))
+
 ## [Unreleased]
 
 
