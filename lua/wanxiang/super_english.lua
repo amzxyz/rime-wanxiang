@@ -753,14 +753,26 @@ local function new_filter_state(env, curr_input, code_ctx)
     }
 end
 
-local function remember_first_candidate(state, text, ignore_block_derivation)
-    if state.best_candidate_saved then return end
-    if state.env.block_derivation and not ignore_block_derivation then return end
+local function remember_english_anchor(state, text, words,
+        ignore_block_derivation)
+    local env = state.env
+    if env.block_derivation and not ignore_block_derivation then return end
     if not is_ascii_phrase_fast(text) then return end
 
-    state.env.memory[state.curr_input] = {
-        text = text
-    }
+    local new_words = words or word_count_fast(text)
+    local old = env.memory[state.curr_input]
+    local old_words = old and (old.words or word_count_fast(old.text)) or -1
+    local new_length = #pure(text)
+    local old_length = old and #pure(old.text) or -1
+
+    if not old
+       or new_words > old_words
+       or (new_words == old_words and new_length > old_length) then
+        env.memory[state.curr_input] = {
+            text = text,
+            words = new_words
+        }
+    end
     state.best_candidate_saved = true
 end
 
@@ -782,7 +794,7 @@ local function refresh_locked_anchor(state, text, words, comment)
         return
     end
 
-    env.memory[state.curr_input] = { text = text }
+    remember_english_anchor(state, text, words)
     env.lock_prefix = state.curr_input
     env.lock_length = state.code_len
     state.best_candidate_saved = true
@@ -793,7 +805,7 @@ local function emit_single_char_candidates(state)
     if not state.has_single_chars or state.single_char_injected then return end
 
     if not state.best_candidate_saved then
-        remember_first_candidate(state, state.single_chars[1].text, true)
+        remember_english_anchor(state, state.single_chars[1].text, 1, true)
     end
     for i = 1, #state.single_chars do
         yield(state.single_chars[i])
@@ -908,6 +920,10 @@ local function process_candidate(state, cand, prepared, c_type, text, is_ascii, 
         end
     end
 
+    if final_is_ascii and formatted.comment ~= "~" then
+        remember_english_anchor(state, formatted.text, words)
+    end
+
     state.has_valid_candidate = true
     if words > 1 then
         state.has_retained_sentence = true
@@ -923,17 +939,11 @@ local function process_candidate(state, cand, prepared, c_type, text, is_ascii, 
     local treat_as_vip = is_vip_type or not is_ascii
 
     if treat_as_vip then
-        if formatted.comment ~= "~" then
-            remember_first_candidate(state, formatted.text)
-        end
         yield(formatted)
         return
     end
 
     emit_single_char_candidates(state)
-    if formatted.comment ~= "~" then
-        remember_first_candidate(state, formatted.text)
-    end
     yield(formatted)
 end
 
@@ -980,6 +990,10 @@ local function analyze_buffer_survivors(state)
         end
 
         if survives then
+            if item.is_ascii then
+                remember_english_anchor(state, item.text, item.words)
+            end
+
             if not first_survivor_seen then
                 first_survivor_seen = true
                 state.first_survivor_is_sentence = item.is_ascii
@@ -1019,7 +1033,8 @@ local function apply_pending_lock(state)
     local anchor_text = state.first_survivor_text
 
     if anchor_text and is_ascii_phrase_fast(anchor_text) then
-        env.memory[state.curr_input] = { text = anchor_text }
+        remember_english_anchor(state, anchor_text,
+            word_count_fast(anchor_text))
         state.best_candidate_saved = true
     end
 
