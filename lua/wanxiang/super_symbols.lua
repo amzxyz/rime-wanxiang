@@ -1,14 +1,15 @@
 -- 万象家族 lua / 超级符号（super_symbols）
--- 来源：https://github.com/typst/codex  (符号命名 + 修饰符体系 + best_match 模糊匹配)
+-- 来源：https://github.com/typst/codex  (符号命名 + 修饰符体系)
 --
 -- 数据格式：
 --   lua/data/codex_sym.txt    每行: typst_name<TAB>char
 --   lua/data/codex_emoji.txt  同上
---   typst_name 是完整的 Typst 写法（如 arrow.r.double、chess.king.white），只有一个标识符字段。
+--   typst_name 是完整的 Typst 写法（如 arrow.r.double、chess.king.white），只有一个标识符字段，
+--   不含 sym./emoji. 前缀；前缀由本模块在注释中按需补回。
 --
 -- 触发方式：
---   /sym.<name>[.<mod>...]   精确匹配 + best_match 模糊匹配（修饰符可省略、顺序无关）
---   /sym?<keyword> 或 /sym/<keyword>   模糊搜索
+--   /sym.<name>[.<mod>...]   精确匹配（点分链式任意顺序匹配）
+--   /sym?<keyword> 或 /sym/<keyword>   模糊搜索（点分链式任意顺序模糊匹配）
 --   /emoji.* 同理
 --
 -- 模式提示：仅输入 /sym /sym. /sym? /sym/ /emoji 等前缀时，候选区显示引导提示：
@@ -21,9 +22,28 @@
 --   /emoji?  → 超级表情：搜索
 --   /emoji/  → 超级表情：搜索
 --
--- 候选注释显示完整 Typst 代码（即 typst_name 本身），并强制显示：
+-- 精确匹配规则（点分链式）：
+--   1) 查询按 "." 拆成 v1.v2...vn（末尾悬垂点视为最后一个值空串 ""）。
+--   2) 首值 v1 必须匹配字典首值（根/分类）：
+--        - 一旦 v1 被 "." 结束（即 n>=2，链式继续），v1 改用 EXACT match 匹配根；
+--        - 若 v1 是整串唯一值（n==1，无末尾点），v1 用子串（prefix）match 匹配根。
+--   3) 中间值 v2..v(n-1) 与尾值 vn 在字典中“任意乱序”匹配非首值内容（修饰符）：
+--        - 中间值：EXACT match 某个修饰符；
+--        - 尾值 vn：永远 PREFIX match 某个修饰符（空串=""匹配全部）；
+--        - 重复修饰符自动合并成一个。
+--   4) 首值单值（n==1）只投“根字符”进候选；若根无裸字符则投占位符（字符分类）<根>。
+--   5) 候选按匹配度排序（修饰符更少者更贴合），注释永远为标准 Typst 表示法
+--      （含 sym./emoji. 前缀，顺序依字典，提供完整版）。
+--
+-- 模糊匹配规则（点分链式任意顺序模糊匹配）：
+--   关键字按 "." 拆成若干组件，每个组件必须是某条目标名字的子串（任意顺序、可乱序）；
+--   无 "." 时退化为旧式子串匹配（名字含关键字 或 字符精确相等）。
+--
+-- 候选注释显示完整 Typst 代码（sym./emoji. + 字典原序名），并强制显示：
 --   super_comment_preedit.lua 识别 candidate.type == "super_sym" 或 "super_emoji" 时跳过清空逻辑。
-local wanxiang = require("wanxiang/wanxiang")
+-- pcall 保护：本模块并不依赖 wanxiang 命名空间，仅在 RIME 运行时由环境提供；
+-- 单测环境下缺失也不影响加载（见文件末尾暴露的 _internals）。
+local ok_w, wanxiang = pcall(require, "wanxiang/wanxiang")
 
 local M = {}
 
@@ -32,8 +52,12 @@ M.name_to_char_sym = nil
 M.name_to_char_emoji = nil
 M.entries_sym = nil
 M.entries_emoji = nil
-M.by_prefix_sym = nil
-M.by_prefix_emoji = nil
+M.by_root_sym = nil
+M.by_root_emoji = nil
+M.roots_sym = nil
+M.roots_emoji = nil
+M.bare_root_sym = nil
+M.bare_root_emoji = nil
 M.loaded = false
 M.load_lock = false
 
@@ -46,53 +70,6 @@ local function parse_modset(s)
         end
     end
     return set
-end
-
-local function is_subset(a, b)
-    for k, _ in pairs(a) do
-        if not b[k] then
-            return false
-        end
-    end
-    return true
-end
-
-local function common_count(a, b)
-    local n = 0
-    for k, _ in pairs(a) do
-        if b[k] then
-            n = n + 1
-        end
-    end
-    return n
-end
-
-local function set_size(s)
-    local n = 0
-    for _ in pairs(s) do
-        n = n + 1
-    end
-    return n
-end
-
----best_match：在候选中选最佳匹配
----规则：候选必须是查询的超集（query ⊆ candidate）；优先共同修饰符多，其次总修饰符少
-local function best_match(query_set, candidates)
-    local best = nil
-    local best_common = -1
-    local best_total = 1e9
-    for _, c in ipairs(candidates) do
-        if is_subset(query_set, c.mods_set) then
-            local common = common_count(query_set, c.mods_set)
-            local total = set_size(c.mods_set)
-            if common > best_common or (common == best_common and total < best_total) then
-                best = c
-                best_common = common
-                best_total = total
-            end
-        end
-    end
-    return best
 end
 
 ---读取数据文件
@@ -119,46 +96,49 @@ local function read_data_file(path)
     return entries
 end
 
----构建索引：name_to_char + by_prefix + by_valid
----by_prefix[prefix] = 该前缀下所有变体的列表（mods_set 为相对前缀的修饰符集合）
----by_valid[prefix]  = 该前缀下所有合法修饰符的并集（供 parse_query 直接查表，免去每次重算）
----边遍历条目边按前缀分组并累计 valid 并集，单次 O(条目数 × 平均点分段数)，无二次扫描
+---构建索引：name_to_char + by_root + roots + bare_root
+---by_root[root] = 该根下所有条目（mods_list 为有序修饰符数组，mods_set 为修饰符集合）
+---roots        = 所有“根/分类”（条目的首个点分组件）去重列表（用于首值 prefix match）
+---bare_root[root] = 存在裸条目（name 恰为 root）时的字符，否则 nil
+---单次遍历，无二次扫描
 local function build_index(entries)
     local name_to_char = {}
-    local by_prefix = {}
-    local by_valid = {}
+    local by_root = {}
+    local roots = {}
+    local root_set = {}
+    local bare_root = {}
     for _, e in ipairs(entries) do
         name_to_char[e.name] = e.char
         local parts = {}
         for p in e.name:gmatch("[^.]+") do
             parts[#parts + 1] = p
         end
-        local acc = {}
-        for i = 1, #parts - 1 do
-            acc[i] = parts[i]
-            local prefix = table.concat(acc, ".")
-            local list = by_prefix[prefix]
-            if not list then
-                list = {}
-                by_prefix[prefix] = list
-            end
-            local ms = parse_modset(e.name:sub(#prefix + 2))
-            list[#list + 1] = {
-                name = e.name,
-                char = e.char,
-                mods_set = ms
-            }
-            local valid = by_valid[prefix]
-            if not valid then
-                valid = {}
-                by_valid[prefix] = valid
-            end
-            for m, _ in pairs(ms) do
-                valid[m] = true
-            end
+        local r = parts[1]
+        if not root_set[r] then
+            root_set[r] = true
+            roots[#roots + 1] = r
         end
+        if #parts == 1 then
+            bare_root[r] = e.char
+        end
+        local mods_list = {}
+        for i = 2, #parts do
+            mods_list[#mods_list + 1] = parts[i]
+        end
+        local mods_set = parse_modset(e.name:sub(#r + 2))
+        local list = by_root[r]
+        if not list then
+            list = {}
+            by_root[r] = list
+        end
+        list[#list + 1] = {
+            name = e.name,
+            char = e.char,
+            mods_list = mods_list,
+            mods_set = mods_set
+        }
     end
-    return name_to_char, by_prefix, by_valid
+    return name_to_char, by_root, roots, bare_root
 end
 
 ---加载所有数据
@@ -194,80 +174,193 @@ function M.load(env)
 
     M.entries_sym = sym_entries
     M.entries_emoji = emoji_entries
-    M.name_to_char_sym, M.by_prefix_sym, M.by_valid_sym = build_index(sym_entries)
-    M.name_to_char_emoji, M.by_prefix_emoji, M.by_valid_emoji = build_index(emoji_entries)
+    M.name_to_char_sym, M.by_root_sym, M.roots_sym, M.bare_root_sym = build_index(sym_entries)
+    M.name_to_char_emoji, M.by_root_emoji, M.roots_emoji, M.bare_root_emoji = build_index(emoji_entries)
     M.loaded = true
     M.load_lock = false
     rime.log.info("[super_symbols] loaded sym=" .. #sym_entries .. " emoji=" .. #emoji_entries)
 end
 
----模糊搜索
-local function fuzzy_search(keyword, entries, max_n)
-    if not keyword or keyword == "" then
-        return {}
-    end
-    local kw_lower = keyword:lower()
-    local results = {}
-    for _, e in ipairs(entries) do
-        local hit = false
-        if e.name and e.name:lower():find(kw_lower, 1, true) then
-            hit = true
-        elseif e.char == keyword then
-            hit = true
-        end
-        if hit then
-            table.insert(results, e)
-            if #results >= max_n then
-                break
-            end
+---按 "." 拆分字符串；末尾悬垂点视为最后一个值空串 ""
+local function split_dot(s)
+    local parts = {}
+    local start = 1
+    while true do
+        local dot = s:find(".", start, true)
+        if dot then
+            parts[#parts + 1] = s:sub(start, dot - 1)
+            start = dot + 1
+        else
+            parts[#parts + 1] = s:sub(start)
+            break
         end
     end
-    return results
+    return parts
 end
 
----解析用户查询为 (symbol_prefix, modset)
----符号前缀取首个点分组件（必为 by_prefix key），其后的所有组件均视为修饰符，顺序无关。
----这样 /sym.arrow.double.r 与 /sym.arrow.r.double 等价，乱序也能正确匹配变体：
----旧实现从最长前缀贪心匹配，会把修饰符（如 r）误并入符号前缀（arrow.r 因 arrow.r.double 成为合法 key），
----导致后续修饰符（如 l）被丢弃，乱序匹配失效。
----valid_mods 直接在 build_index 阶段预计算为 by_valid，此处仅查表，避免每次重算修饰符并集。
-local function parse_query(query_str, by_prefix, by_valid)
-    if query_str == "" then
-        return nil, {}
+---去重并保持顺序
+local function dedup_list(lst)
+    local seen = {}
+    local out = {}
+    for _, v in ipairs(lst) do
+        if not seen[v] then
+            seen[v] = true
+            out[#out + 1] = v
+        end
     end
-    local parts = {}
-    for p in query_str:gmatch("[^.]+") do
-        parts[#parts + 1] = p
-    end
-    if #parts == 0 then
-        return nil, {}
-    end
+    return out
+end
 
-    -- 从最短前缀起尝试：符号前缀应使其余组件均为合法修饰符。
-    -- 优先最短，避免把修饰符误并入符号前缀；若最短前缀无法解释全部组件，则尝试更长的符号前缀。
-    -- 前缀增量拼接，避免反复 table.concat。
-    local prefix = parts[1]
-    for k = 1, #parts do
-        local list = by_prefix[prefix]
-        if list then
-            local vmods = by_valid[prefix]
+---精确匹配（点分链式任意顺序匹配）
+---返回 { kind = "list", items = {...} } / { kind = "placeholder", code = ... } / { kind = "nomatch" }
+---item: { text = 候选文本, comment = 完整 Typst 注释 }
+local function do_exact(query, store, kind_prefix)
+    local parts = split_dot(query)
+    if #parts == 0 then
+        return { kind = "nomatch" }
+    end
+    local v1 = parts[1]
+    local has_dot = (#parts >= 2)
+
+    if has_dot then
+        -- 首值被 "." 结束 → EXACT match 根
+        if not store.by_root[v1] then
+            -- 非精确根：若 v1 是某根前缀（分类存在）给出占位符；否则无匹配
+            local exists = false
+            for _, r in ipairs(store.roots) do
+                if r:sub(1, #v1) == v1 then
+                    exists = true
+                    break
+                end
+            end
+            if exists then
+                return { kind = "placeholder", code = v1 }
+            end
+            return { kind = "nomatch" }
+        end
+        -- n>=2：中间值 EXACT、尾值 PREFIX、任意乱序匹配修饰符
+        local middles = {}
+        for i = 2, #parts - 1 do
+            middles[#middles + 1] = parts[i]
+        end
+        middles = dedup_list(middles)
+        local last = parts[#parts] -- 尾值永远 prefix match（"" 匹配全部）
+
+        local items = {}
+        local seen = {}
+        for _, e in ipairs(store.by_root[v1]) do
             local ok = true
-            local mods = {}
-            for j = k + 1, #parts do
-                mods[parts[j]] = true
-                if not vmods[parts[j]] then
+            for _, m in ipairs(middles) do
+                if not e.mods_set[m] then
+                    ok = false
+                    break
+                end
+            end
+            if ok and last ~= "" then
+                local lm = false
+                for _, em in ipairs(e.mods_list) do
+                    if em:sub(1, #last) == last then
+                        lm = true
+                        break
+                    end
+                end
+                if not lm then
                     ok = false
                 end
             end
             if ok then
-                return prefix, mods
+                local comment = kind_prefix .. e.name
+                local key = e.char .. "\t" .. comment
+                if not seen[key] then
+                    seen[key] = true
+                    items[#items + 1] = { text = e.char, comment = comment, entry = e }
+                end
             end
         end
-        if k < #parts then
-            prefix = prefix .. "." .. parts[k + 1]
+        -- 排序：修饰符更少者更贴合（匹配度优先），再按字典序
+        table.sort(items, function(a, b)
+            local na = #a.entry.mods_list
+            local nb = #b.entry.mods_list
+            if na ~= nb then
+                return na < nb
+            end
+            return a.entry.name < b.entry.name
+        end)
+        return { kind = "list", items = items }
+    end
+
+    -- n==1（首值无末尾点）：子串 match 根，仅投根字符 / 分类占位
+    local items = {}
+    local seen = {}
+    for _, r in ipairs(store.roots) do
+        if r:sub(1, #v1) == v1 then
+            local char = store.bare_root[r]
+            local text = char or ("（字符分类）" .. r)
+            local comment = kind_prefix .. r
+            local key = text .. "\t" .. comment
+            if not seen[key] then
+                seen[key] = true
+                items[#items + 1] = { text = text, comment = comment }
+            end
         end
     end
-    return nil, {}
+    if #items == 0 then
+        return { kind = "nomatch" }
+    end
+    return { kind = "list", items = items }
+end
+
+---模糊搜索（点分链式任意顺序模糊匹配）
+---返回 { kind = "list", items = {...} } / { kind = "need_keyword" }
+local function do_fuzzy(keyword, store, kind_prefix)
+    if not keyword or keyword == "" then
+        return { kind = "need_keyword", items = {} }
+    end
+    if keyword:find(".", 1, true) then
+        -- 点分链式：每个组件是名字的子串（任意顺序）
+        local comps = dedup_list(split_dot(keyword))
+        local items = {}
+        local seen = {}
+        for _, e in ipairs(store.entries) do
+            local name_l = e.name:lower()
+            local all = true
+            for _, c in ipairs(comps) do
+                if not name_l:find(c:lower(), 1, true) then
+                    all = false
+                    break
+                end
+            end
+            if all then
+                local comment = kind_prefix .. e.name
+                local key = e.char .. "\t" .. comment
+                if not seen[key] then
+                    seen[key] = true
+                    items[#items + 1] = { text = e.char, comment = comment, entry = e }
+                end
+            end
+        end
+        table.sort(items, function(a, b)
+            return a.entry.name < b.entry.name
+        end)
+        return { kind = "list", items = items }
+    end
+
+    -- 无 "."：旧式子串匹配 + 字符精确匹配
+    local kw = keyword:lower()
+    local items = {}
+    local seen = {}
+    for _, e in ipairs(store.entries) do
+        local hit = e.name:lower():find(kw, 1, true) or e.char == keyword
+        if hit then
+            local comment = kind_prefix .. e.name
+            local key = e.char .. "\t" .. comment
+            if not seen[key] then
+                seen[key] = true
+                items[#items + 1] = { text = e.char, comment = comment, entry = e }
+            end
+        end
+    end
+    return { kind = "list", items = items }
 end
 
 -- ===== 触发定义（可 patch）=====
@@ -328,7 +421,7 @@ local function match_prefix(input, prefix, sep)
 end
 
 ---主翻译函数
-return function(input, seg, env)
+local function translator(input, seg, env)
     M.load(env)
 
     local config = env.engine.schema.config
@@ -400,88 +493,78 @@ return function(input, seg, env)
     -- 按类型取出对应存储；未知类型回退到空存储（patch 的新类型若无数据则不报错）
     -- candidate type 用 super_<kind>，super_comment_preedit.lua 据此强制保留注释（显示完整 Typst 代码）
     local STORES = {
-        sym = { name_to_char = M.name_to_char_sym, by_prefix = M.by_prefix_sym, by_valid = M.by_valid_sym, entries = M.entries_sym, type = "super_sym" },
-        emoji = { name_to_char = M.name_to_char_emoji, by_prefix = M.by_prefix_emoji, by_valid = M.by_valid_emoji, entries = M.entries_emoji, type = "super_emoji" },
+        sym = { by_root = M.by_root_sym, roots = M.roots_sym, bare_root = M.bare_root_sym, entries = M.entries_sym, type = "super_sym" },
+        emoji = { by_root = M.by_root_emoji, roots = M.roots_emoji, bare_root = M.bare_root_emoji, entries = M.entries_emoji, type = "super_emoji" },
     }
-    local store = STORES[kind] or { name_to_char = {}, by_prefix = {}, by_valid = {}, entries = {}, type = "super_" .. kind }
-    local name_to_char, by_prefix, by_valid, entries, type_label = store.name_to_char, store.by_prefix, store.by_valid,
+    local store = STORES[kind] or { by_root = {}, roots = {}, bare_root = {}, entries = {}, type = "super_" .. kind }
+    local by_root, roots, bare_root, entries, type_label = store.by_root, store.roots, store.bare_root,
         store.entries, store.type
-
-    -- 注释 = typst_name 本身（完整 Typst 代码）
-    local function make_comment(e)
-        return e.name
-    end
+    local kind_prefix = kind .. "."
 
     if mode == "exact" then
-        -- 1. 精确匹配
-        if name_to_char[query] then
-            yield(Candidate(type_label, seg.start, seg._end, name_to_char[query], query))
-            return
-        end
-
-        -- 2. best_match
-        local symbol, modset = parse_query(query, by_prefix, by_valid)
-        if not symbol then
+        local res = do_exact(query, store, kind_prefix)
+        if res.kind == "nomatch" then
             yield(Candidate(type_label, seg.start, seg._end, "（无匹配）",
                 "尝试 /" .. kind .. "?" .. query .. " 或 /" .. kind .. "/" .. query))
             return
         end
-
-        local candidates = by_prefix[symbol]
-        if not candidates or #candidates == 0 then
+        if res.kind == "placeholder" then
+            yield(Candidate(type_label, seg.start, seg._end, "（字符分类）" .. res.code, kind_prefix .. res.code))
+            return
+        end
+        if #res.items == 0 then
             yield(Candidate(type_label, seg.start, seg._end, "（无匹配）", ""))
             return
         end
+        local count = 0
+        for _, it in ipairs(res.items) do
+            if count >= max_cands then
+                break
+            end
+            yield(Candidate(type_label, seg.start, seg._end, it.text, it.comment))
+            count = count + 1
+        end
+        return
+    end
 
-        -- 无修饰符：返回该前缀下所有变体
-        if next(modset) == nil then
-            for i, e in ipairs(candidates) do
-                if i > max_cands then
-                    break
-                end
-                yield(Candidate(type_label, seg.start, seg._end, e.char, make_comment(e)))
-            end
-            return
+    -- search 模式
+    if query == "" then
+        -- /sym? 或 /sym/ 后无关键字：显示提示
+        local kind_label = label_by_kind[kind] or kind
+        yield(Candidate(type_label, seg.start, seg._end, kind_label .. "：请输入关键字",
+            "如 /" .. kind .. "?arrow  或  /" .. kind .. "/arrow"))
+        return
+    end
+    local res = do_fuzzy(query, store, kind_prefix)
+    if #res.items == 0 then
+        yield(Candidate(type_label, seg.start, seg._end, "（无匹配）", ""))
+        return
+    end
+    local count = 0
+    for _, it in ipairs(res.items) do
+        if count >= max_cands then
+            break
         end
-
-        -- best_match
-        local best = best_match(modset, candidates)
-        if best then
-            yield(Candidate(type_label, seg.start, seg._end, best.char, make_comment(best)))
-            local count = 0
-            for _, e in ipairs(candidates) do
-                if e ~= best and is_subset(modset, e.mods_set) then
-                    yield(Candidate(type_label, seg.start, seg._end, e.char, make_comment(e)))
-                    count = count + 1
-                    if count >= 5 then
-                        break
-                    end
-                end
-            end
-        else
-            for i, e in ipairs(candidates) do
-                if i > max_cands then
-                    break
-                end
-                yield(Candidate(type_label, seg.start, seg._end, e.char, make_comment(e)))
-            end
-        end
-    else
-        -- search 模式
-        if query == "" then
-            -- /sym? 或 /sym/ 后无关键字：显示提示
-            local kind_label = label_by_kind[kind] or kind
-            yield(Candidate(type_label, seg.start, seg._end, kind_label .. "：请输入关键字",
-                "如 /" .. kind .. "?arrow  或  /" .. kind .. "/arrow"))
-            return
-        end
-        local results = fuzzy_search(query, entries, max_cands)
-        if #results == 0 then
-            yield(Candidate(type_label, seg.start, seg._end, "（无匹配）", ""))
-            return
-        end
-        for _, e in ipairs(results) do
-            yield(Candidate(type_label, seg.start, seg._end, e.char, make_comment(e)))
-        end
+        yield(Candidate(type_label, seg.start, seg._end, it.text, it.comment))
+        count = count + 1
     end
 end
+
+-- 暴露内部纯函数，便于独立单元测试（不影响运行期行为）
+-- 用可调用表包装 translator：RIME 仍以 translator(input, seg, env) 方式调用，
+-- 单测可通过 _internals 访问纯函数。
+local export = setmetatable({}, {
+    __call = function(_, input, seg, env)
+        return translator(input, seg, env)
+    end,
+})
+export._internals = {
+    split_dot = split_dot,
+    dedup_list = dedup_list,
+    build_index = build_index,
+    read_data_file = read_data_file,
+    do_exact = do_exact,
+    do_fuzzy = do_fuzzy,
+}
+
+return export
