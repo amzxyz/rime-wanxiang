@@ -85,6 +85,7 @@ engine:
     - lua_translator@*wanxiang.number_translator  #数字、金额大写，通过输入大写R1234获得候选输出
     - lua_translator@*wanxiang.super_calculator  #超级计算器，Lua内查看高级用法
     - lua_translator@*wanxiang.input_statistics  #一个输入统计的脚本，以日、周、月、年等维度的统计
+    - lua_translator@*wanxiang.super_symbols  #超级符号库：/sym.arrow.r.double→⇒  /sym?arrow 或 /sym/arrow 模糊搜索  /emoji.xxx 同理
     - table_translator@custom_phrase  #自定义短语 custom_phrase.txt，用于置顶自定义编码候选词
     - table_translator@wanxiang_english  #英文词汇表导入
     - table_translator@wanxiang_mixedcode  #混合编码词汇表导入
@@ -180,7 +181,7 @@ wanxiang_english:
     - xform/^~.+$//
   #以下是lua相关配置，与原生处理器无关
   #英文自动加空格，除关闭外共有3种模式可供选择
-  #off: 关闭; before: 总是前加; after: 总是后加; 
+  #off: 关闭; before: 总是前加; after: 总是后加;
   #smart: 智能模式连续输入英文时第二个单词前开始加空格，非输入状态的回车与空格都能打断加空格状态
   #支持设置延时销毁加空格状态，单位秒,0不超时，大于0为超时时间，极大的保证了连续输入的体验。
   english_spacing: smart
@@ -219,7 +220,7 @@ speller:
   #  auto_select: true
   #  auto_select_pattern: ^[a-z]+/|^[a-df-zA-DF-Z]\w{3}|^e\w{4}
   # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射，alphabet就是将字符纳入输入编码的范畴
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA1234567890`;/\›
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA1234567890`;/\›.?
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/›
   delimiter: " '"  # 系统配置，第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
@@ -234,7 +235,12 @@ speller:
 recognizer:
   import_preset: default  # 从 default.yaml 继承通用的
   patterns:  # 再增加方案专有的：
+    # 排除 /sym /emoji 开头（含单独 /sym /emoji），交给 super_sym / super_emoji tag 处理
     punct: "^/([0-9]|10|[A-Za-z]+)$"  # 响应 symbols.yaml 的 symbols
+    super_sym: "^/sym[.?/][A-Za-z.]*$"  # /sym.arrow.r.double 精确  /sym?keyword 或 /sym/keyword 模糊
+    super_emoji: "^/emoji[.?/][A-Za-z.]*$"  # /emoji.apple.red  /emoji?keyword  /emoji/keyword
+    super_sym_pre: "^/sym[.?/]?$"  # 仅 /sym /sym. /sym? /sym/ 模式提示
+    super_emoji_pre: "^/emoji[.?/]?$"  # 仅 /emoji /emoji. /emoji? /emoji/ 模式提示
     wanxiang_reverse: "^`[A-Za-z;]*$"  # 响应部件拆字与笔画的反查，与 wanxiang_reverse/prefix 匹配
     unicode: "^U[a-f0-9]+"  # U 作为触发前缀，响应 lua_translator@unicode，输出 Unicode 字符
     number: "^R[0-9]+[.]?[0-9]*"  # R 作为触发前缀, 响应 lua_translator@number_translator，数字金额大写
@@ -405,6 +411,19 @@ super_tips:
     - "禁用类型B"
     # 禁用的 tips 类型，初始化 tips 数据库的时候会直接忽略相关规则，修改部署后生效
     # 可选项为：偏旁，符号，化学式，时间，符号，组字，翻译，表情，货币，车牌, 单位
+
+# 超级符号库 super_symbols（基于 typst/codex），输入 /sym.name[.mod...] 或 /sym?keyword 查找
+# 数据来源：lua/data/codex_sym.txt 和 codex_emoji.txt
+# 中文 tips 已合并到 lua/data/tips_show.txt 末尾，开启 super_tips 后即可在输入时看到
+# 模式提示：仅输入 /sym /sym. /sym? /sym/ /emoji 等前缀时，候选区显示引导提示
+super_symbols:
+  prefix_sym:    "/sym"      # 精确前缀，配合 . 触发，如 /sym.arrow.r.double
+  search_sym:    "/sym?"     # 模糊搜索前缀，如 /sym?arrow
+  prefix_emoji:  "/emoji"    # emoji 精确前缀
+  search_emoji:  "/emoji?"   # emoji 模糊搜索前缀
+  max_candidates: 30         # 模糊搜索 / 无修饰符时最大候选数
+  data_sym:      "lua/data/codex_sym.txt"
+  data_emoji:    "lua/data/codex_emoji.txt"
 
 # super_replacer处理插件 - 配置说明书
 
@@ -669,7 +688,7 @@ quick_symbol_text:
     w: "？"
     e: "（"
     r: "）"
-    t: "	"
+    t: "        "
     y: "·"
     u: "『"
     i: "』"

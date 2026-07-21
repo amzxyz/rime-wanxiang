@@ -30,12 +30,12 @@ local cached_dict_path = nil  -- 记录当前缓存的词典路径
 function CR.init(env)
     -- 动态获取样式，因为配置可能在运行时被修改，所以这个不放进缓存拦截里
     CR.style = env.settings.corrector_type or '{comment}'
-    
+
     local auto_delimiter = env.settings.auto_delimiter
     local is_pro = wanxiang.is_pro_scheme(env)
     -- 根据方案选择加载路径
     local path = (is_pro and "dicts/cuoyin.pro.dict.yaml") or "dicts/cuoyin.dict.yaml"
-    
+
     -- 如果缓存已经存在，并且文件路径没变，直接返回，不再读盘
     if corrections_cache and cached_dict_path == path then
         return
@@ -46,7 +46,7 @@ function CR.init(env)
         log.error(string.format("[super_comment]: 加载失败 %s，错误: %s", path, err))
         return
     end
-    
+
     corrections_cache = {}
     for line in file:lines() do
         if not line:match("^#") then
@@ -62,7 +62,7 @@ function CR.init(env)
         end
     end
     close_file()
-    
+
     -- 记录本次成功加载的文件路径
     cached_dict_path = path
 end
@@ -101,7 +101,7 @@ local function get_charset_label(text)
     if cp >= 0x2EBF0  and cp <= 0x2EE5F then return "扩I" end
     if cp >= 0x30000  and cp <= 0x3134F then return "扩G" end
     if cp >= 0x31350  and cp <= 0x323AF then return "扩H" end
-    
+
     -- 兼容区
     if cp >= 0xF900   and cp <= 0xFAFF  then return "兼容" end
     if cp >= 0x2F800  and cp <= 0x2FA1F then return "兼容" end
@@ -111,19 +111,19 @@ end
 
 local function get_az_comment(cand, env, initial_comment)
     local inner_parts = {}
-    
+
     -- 音形注释拆解逻辑
     if initial_comment and initial_comment ~= "" then
         local segments = {}
         for segment in string.gmatch(initial_comment, "[^%s]+") do
             table.insert(segments, segment)
         end
-        
+
         if #segments > 0 then
             local semicolon_count = select(2, string.gsub(segments[1], ";", ""))
             local pinyins = {}
             local fuzhu = nil
-            
+
             for _, segment in ipairs(segments) do
                 local pinyin = string.match(segment, "^[^;~]+")
                 local fz = nil
@@ -132,8 +132,8 @@ local function get_az_comment(cand, env, initial_comment)
                     fz = string.match(segment, ";(.+)$")
                 end
 
-                if pinyin then 
-                    table.insert(pinyins, pinyin) 
+                if pinyin then
+                    table.insert(pinyins, pinyin)
                 end
                 if not fuzhu and fz and fz ~= "" then fuzhu = fz end
             end
@@ -141,7 +141,7 @@ local function get_az_comment(cand, env, initial_comment)
             if #pinyins > 0 then
                 local pinyin_str = table.concat(pinyins, ",")
                 table.insert(inner_parts, string.format("音%s", pinyin_str))
-                
+
                 if fuzhu then
                     table.insert(inner_parts, string.format("辅%s", fuzhu))
                 end
@@ -240,7 +240,7 @@ local function apply_tone_preedit(env, cand)
     -- 加载配置
     local cfg = engine and engine.schema and engine.schema.config
     local aux_symbol = cfg and cfg:get_string("force_upper_aux/symbol")
-    
+
     -- 如果没配置 symbol，直接跳过大写转换逻辑
     if not aux_symbol or aux_symbol == "" then
         goto tone_only
@@ -286,7 +286,7 @@ local function apply_tone_preedit(env, cand)
         end)
         return body .. mapped
     end)
-    
+
     cand.preedit = final_pre
 end
 
@@ -414,13 +414,13 @@ function ZH.func(input, env)
                                     end
                                 end
                             else
-                                input_parts[i] = py 
+                                input_parts[i] = py
                                 pinyin_index = pinyin_index + 1
                             end
 
                         else
                             -- 场景 B：常规 26键 字母输入逻辑
-                            local body, tone = part:match("([%a]+)([^%a]+)") 
+                            local body, tone = part:match("([%a]+)([^%a]+)")
 
                             if is_wanxiang_pro then
                                 input_parts[i] = py
@@ -468,21 +468,21 @@ function ZH.func(input, env)
         -- ① 辅助码注释或者声调注释
         if initial_comment and (string.find(initial_comment, "~") or string.find(initial_comment, "\226\152\175") or cand.type == "shijian" or cand.type == "cnen") then
             final_comment = initial_comment
-            
+
         -- 2. 常规的辅助码提示模式
         elseif is_comment_hint then
             local fz_comment = get_fz_comment(cand, env, initial_comment)
             if fz_comment then
                 final_comment = fz_comment
             end
-            
+
         -- 3. 常规的带调拼音模式
         elseif is_tone_comment then
             local fz_comment = get_fz_comment(cand, env, initial_comment)
             if fz_comment then
                 final_comment = fz_comment
             end
-            
+
         -- 4. 常规的无调拼音模式
         elseif is_toneless_comment then
             local fz_comment = get_fz_comment(cand, env, initial_comment)
@@ -490,8 +490,12 @@ function ZH.func(input, env)
                 -- 获取到带调拼音后，调用 remove_pinyin_tone 去掉声调
                 final_comment = remove_pinyin_tone(fz_comment)
             end
-            
-        -- 5. 其他情况一律清空注释
+
+        -- 5. 超级符号模式，显示对应的Typst代码
+        elseif genuine_cand.type == "super_sym" or genuine_cand.type == "super_emoji" then
+            final_comment = initial_comment
+
+        -- 6. 其他情况一律清空注释
         else
             final_comment = ""
         end
