@@ -1,5 +1,16 @@
 # Changelog
 
+## [16.2.2](https://github.com/amzxyz/rime-wanxiang/compare/v16.2.1...v16.2.2) (2026-07-22)
+
+
+### 🐛 Bug 修复
+
+* 优化lookup直接辅助的性能细节 ([ed4025f](https://github.com/amzxyz/rime-wanxiang/commit/ed4025f03e9d917517746b339aeed34e3f1ae849))
+* 优化lookup表的创建和复用 ([b017fd4](https://github.com/amzxyz/rime-wanxiang/commit/b017fd4f1e0e7793ef0d78ce48783e3f376367c4))
+* 优化英文句子的一些问题 ([281ccad](https://github.com/amzxyz/rime-wanxiang/commit/281ccad98e20931d9928e3fb4a4b448f7d5dc5d2))
+* 回退英文造句在中文中的使用，还是有很多问题存在，不能做到100%完美 ([86b6225](https://github.com/amzxyz/rime-wanxiang/commit/86b6225227c7efad8494903a81963184a215a623))
+* 移除太极相关代码 ([adf0fb0](https://github.com/amzxyz/rime-wanxiang/commit/adf0fb0e129f088a7da43f86b9fa6a257fb76a75))
+
 ## [16.2.1](https://github.com/amzxyz/rime-wanxiang/compare/v16.2.0...v16.2.1) (2026-07-22)
 
 
