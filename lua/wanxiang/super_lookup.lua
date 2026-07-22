@@ -196,47 +196,49 @@ local function parse_fuma_rules(fuma)
     return clean_fuma, tone_filter_seq, fuma_chunks
 end
 
+local function parse_comment_part(part, enable_tone)
+    local p1, p2 = part:find(";")
+    local pinyin_part = p1 and part:sub(1, p1 - 1) or part
+    local codes_part = p1 and part:sub(p2 + 1) or ""
+    local codes_list = {}
+
+    if #codes_part > 0 then
+        for c in codes_part:gmatch("[^,]+") do
+            local trimmed = c:gsub("^%s+", ""):gsub("%s+$", "")
+            if #trimmed > 0 then
+                codes_list[#codes_list + 1] = trimmed
+            end
+        end
+    end
+
+    if enable_tone then
+        local tone = get_tone_from_pinyin(pinyin_part)
+        if tone then
+            codes_list[#codes_list + 1] = tone
+        end
+    end
+
+    return codes_list
+end
+
 local function parse_comment_codes(comment, pattern, target_len, enable_tone)
     if not comment or comment == "" then
         return nil
     end
 
-    local parts = {}
     if target_len == 1 then
-        parts = { comment }
-    else
-        for seg in comment:gmatch(pattern) do
-            table.insert(parts, seg)
-        end
-        if #parts ~= target_len then
-            return nil
-        end
+        return { parse_comment_part(comment, enable_tone) }
     end
 
     local result = {}
-    for i, part in ipairs(parts) do
-        local p1, p2 = part:find(";")
-        local pinyin_part = p1 and part:sub(1, p1 - 1) or part
-        local codes_part = p1 and part:sub(p2 + 1) or ""
-        local codes_list = {}
+    local count = 0
+    for part in comment:gmatch(pattern) do
+        count = count + 1
+        result[count] = parse_comment_part(part, enable_tone)
+    end
 
-        if #codes_part > 0 then
-            for c in codes_part:gmatch("[^,]+") do
-                local trimmed = c:gsub("^%s+", ""):gsub("%s+$", "")
-                if #trimmed > 0 then
-                    table.insert(codes_list, trimmed)
-                end
-            end
-        end
-
-        if enable_tone then
-            local tone = get_tone_from_pinyin(pinyin_part)
-            if tone then
-                table.insert(codes_list, tone)
-            end
-        end
-
-        result[i] = codes_list
+    if count ~= target_len then
+        return nil
     end
 
     return result
@@ -341,113 +343,112 @@ local function get_schema_rules(env)
     return main_rules or {}, xlit_rules or {}
 end
 
-local function expand_code_variant(main_projection, xlit_projection, part)
-    local out = {}
-    local seen = {}
-    local out_xlit = {}
-    local seen_xlit = {}
-
-    local function add(s)
-        if s and #s > 0 and not seen[s] then
-            seen[s] = true
-            table.insert(out, s)
-        end
+local function add_unique(list, seen, value)
+    if value and #value > 0 and not seen[value] then
+        seen[value] = true
+        list[#list + 1] = value
     end
+end
 
-    local function add_xlit(s)
-        if s and #s > 0 and not seen_xlit[s] then
-            seen_xlit[s] = true
-            table.insert(out_xlit, s)
-        end
-    end
-
-    local function extract_odd_positions(s)
-        if not s or not s:match("^%l+$") or #s % 2 ~= 0 then
-            return nil
-        end
-        local res = ""
-        for i = 1, #s, 2 do
-            res = res .. s:sub(i, i)
-        end
-        return res
-    end
-
-    local function get_v_variant(s)
-        if not s or not s:match("^%l+$") or #s % 2 ~= 0 then
-            return nil
-        end
-        local res = ""
-        local has_change = false
-        for i = 1, #s, 2 do
-            local odd = s:sub(i, i)
-            local even = s:sub(i + 1, i + 1)
-            if (odd == "j" or odd == "q" or odd == "x" or odd == "y") and even == "v" then
-                res = res .. odd .. "u"
-                has_change = true
-            else
-                res = res .. odd .. even
-            end
-        end
-        if has_change then
-            return res
-        end
+local function extract_odd_positions(s)
+    if not s or not s:match("^%l+$") or #s % 2 ~= 0 then
         return nil
     end
 
-    local _, quote_count = part:gsub("'", "")
-    if quote_count == 1 then
-        local s1, s2 = part:match("^([^']*)'([^']*)$")
-        if s1 and s2 and #s1 > 0 and #s2 > 0 then
-            add(s1:sub(1, 1) .. s2:sub(1, 1))
+    local result = ""
+    for i = 1, #s, 2 do
+        result = result .. s:sub(i, i)
+    end
+    return result
+end
+
+local function get_v_variant(s)
+    if not s or not s:match("^%l+$") or #s % 2 ~= 0 then
+        return nil
+    end
+
+    local result = ""
+    local has_change = false
+    for i = 1, #s, 2 do
+        local odd = s:sub(i, i)
+        local even = s:sub(i + 1, i + 1)
+        if (odd == "j" or odd == "q" or odd == "x" or odd == "y") and even == "v" then
+            result = result .. odd .. "u"
+            has_change = true
+        else
+            result = result .. odd .. even
         end
     end
 
-    if part:match("^%l+$") then
-        add(part)
+    if has_change then
+        return result
     end
+    return nil
+end
 
-    add(extract_odd_positions(part))
+local function expand_code_variant(main_projection, xlit_projection, part, need_main, need_xlit)
+    local out = need_main and {} or nil
+    local seen = need_main and {} or nil
+    local out_xlit = need_xlit and {} or nil
+    local seen_xlit = need_xlit and {} or nil
 
-    if main_projection and not part:match("^%u+$") then
-        local p = main_projection:apply(part, true)
-        if p and #p > 0 then
-            add(p)
-            add(get_v_variant(p))
-            add(extract_odd_positions(p))
+    if need_main then
+        local _, quote_count = part:gsub("'", "")
+        if quote_count == 1 then
+            local s1, s2 = part:match("^([^']*)'([^']*)$")
+            if s1 and s2 and #s1 > 0 and #s2 > 0 then
+                add_unique(out, seen, s1:sub(1, 1) .. s2:sub(1, 1))
+            end
+        end
+
+        if part:match("^%l+$") then
+            add_unique(out, seen, part)
+        end
+
+        add_unique(out, seen, extract_odd_positions(part))
+
+        if main_projection and not part:match("^%u+$") then
+            local projected = main_projection:apply(part, true)
+            if projected and #projected > 0 then
+                add_unique(out, seen, projected)
+                add_unique(out, seen, get_v_variant(projected))
+                add_unique(out, seen, extract_odd_positions(projected))
+            end
         end
     end
 
-    if part:match("^%u+$") and xlit_projection then
+    if need_xlit and part:match("^%u+$") and xlit_projection then
         local xlit_result = xlit_projection:apply(part, true)
         if xlit_result and #xlit_result > 0 then
-            add_xlit(xlit_result)
+            add_unique(out_xlit, seen_xlit, xlit_result)
         end
     end
 
     return out, out_xlit
 end
 
-local function build_reverse_group(main_projection, xlit_projection, db_table, text)
-    local group_main = {}
-    local seen_main = {}
-    local group_xlit = {}
-    local seen_xlit = {}
+local function build_reverse_group(main_projection, xlit_projection, db_table, text, need_main, need_xlit)
+    local group_main = need_main and {} or nil
+    local seen_main = need_main and {} or nil
+    local group_xlit = need_xlit and {} or nil
+    local seen_xlit = need_xlit and {} or nil
 
     for _, db in ipairs(db_table) do
         local code = db:lookup(text)
         if code and #code > 0 then
             for part in code:gmatch("%S+") do
-                local main_variants, xlit_variants = expand_code_variant(main_projection, xlit_projection, part)
-                for _, v in ipairs(main_variants) do
-                    if not seen_main[v] then
-                        seen_main[v] = true
-                        table.insert(group_main, v)
+                local main_variants, xlit_variants =
+                    expand_code_variant(main_projection, xlit_projection, part, need_main, need_xlit)
+
+                if need_main then
+                    for _, value in ipairs(main_variants) do
+                        add_unique(group_main, seen_main, value)
                     end
                 end
-                for _, v in ipairs(xlit_variants) do
-                    if not seen_xlit[v] then
-                        seen_xlit[v] = true
-                        table.insert(group_xlit, v)
+
+                if need_xlit then
+                    for _, value in ipairs(xlit_variants) do
+                        add_unique(group_xlit, seen_xlit, value)
                     end
                 end
             end
@@ -571,9 +572,57 @@ local function match_fuzzy_recursive(codes_sequence, idx, input_str, input_idx, 
 end
 
 -- 5. 候选项数据构建核心
+local function ensure_db_cache_entry(env, char_str, need_xlit)
+    local db_cache = env._db_cache
+    local entry = db_cache[char_str]
+
+    if not entry then
+        local main_codes, xlit_codes = build_reverse_group(
+            env.main_projection,
+            env.xlit_projection,
+            env.db_table,
+            char_str,
+            true,
+            need_xlit
+        )
+        entry = {
+            main = main_codes or {},
+            xlit = need_xlit and (xlit_codes or {}) or nil,
+            combined = nil,
+        }
+        db_cache[char_str] = entry
+        env.cache_size = env.cache_size + 1
+    elseif need_xlit and entry.xlit == nil then
+        local _, xlit_codes = build_reverse_group(
+            env.main_projection,
+            env.xlit_projection,
+            env.db_table,
+            char_str,
+            false,
+            true
+        )
+        entry.xlit = xlit_codes or {}
+    end
+
+    if need_xlit and entry.combined == nil then
+        local combined = {}
+        local count = 0
+        for _, value in ipairs(entry.main) do
+            count = count + 1
+            combined[count] = value
+        end
+        for _, value in ipairs(entry.xlit or {}) do
+            count = count + 1
+            combined[count] = value
+        end
+        entry.combined = combined
+    end
+
+    return entry
+end
+
 local function build_candidate_raw_data(cand, cand_len, env)
     local raw_data = {}
-    local db_cache = env._db_cache
     local comment_cache = env._comment_cache
     local cand_text = cand.text
 
@@ -586,18 +635,20 @@ local function build_candidate_raw_data(cand, cand_len, env)
 
         if comment_text ~= "" then
             local cache_key = cand_text .. "_" .. comment_text
-            if not comment_cache[cache_key] then
-                comment_cache[cache_key] = parse_comment_codes(
+            local parsed_comment = comment_cache[cache_key]
+            if parsed_comment == nil then
+                parsed_comment = parse_comment_codes(
                     comment_text,
                     env.comment_split_ptrn,
                     cand_len,
                     env.enable_tone
                 ) or false
+                comment_cache[cache_key] = parsed_comment
                 env.cache_size = env.cache_size + 1
             end
-            if comment_cache[cache_key] then
-                raw_data.aux = comment_cache[cache_key]
-                raw_data._comment_internal = comment_cache[cache_key]
+            if parsed_comment then
+                raw_data.aux = parsed_comment
+                raw_data._comment_internal = parsed_comment
             end
         end
     end
@@ -605,38 +656,18 @@ local function build_candidate_raw_data(cand, cand_len, env)
     if env.has_db then
         raw_data.db = {}
         local i = 0
+        local need_xlit = cand_len == 1
+
         for _, code_point in utf8.codes(cand_text) do
             i = i + 1
             local char_str = utf8.char(code_point)
+            local entry = ensure_db_cache_entry(env, char_str, need_xlit)
+            local codes = need_xlit and entry.combined or entry.main
 
-            if not db_cache[char_str] then
-                local main_codes, xlit_codes =
-                    build_reverse_group(env.main_projection, env.xlit_projection, env.db_table, char_str)
-                db_cache[char_str] = { main = main_codes or {}, xlit = xlit_codes or {} }
-                env.cache_size = env.cache_size + 1
-            end
-
-            if cand_len == 1 then
-                local combined = {}
-                for _, v in ipairs(db_cache[char_str].main) do
-                    table.insert(combined, v)
-                end
-                for _, v in ipairs(db_cache[char_str].xlit) do
-                    table.insert(combined, v)
-                end
-
-                if #combined > 0 then
-                    raw_data.db[i] = combined
-                else
-                    raw_data.db[i] = nil
-                end
+            if codes and #codes > 0 then
+                raw_data.db[i] = codes
             else
-                local main_data = db_cache[char_str].main
-                if main_data and #main_data > 0 then
-                    raw_data.db[i] = main_data
-                else
-                    raw_data.db[i] = nil
-                end
+                raw_data.db[i] = nil
             end
         end
     end
@@ -981,34 +1012,16 @@ local function attempt_phrase_correction(cand, cand_len, env, syllables, fuma_ch
     return nil
 end
 
--- 提取内嵌注释的被借用声调
-local function extract_borrowed_tones(raw_data)
-    local borrowed = {}
-    if raw_data._comment_internal then
-        for k, codes in ipairs(raw_data._comment_internal) do
-            borrowed[k] = {}
-            for _, c in ipairs(codes) do
-                if c:match("^%d+$") then
-                    borrowed[k][c] = true
-                end
-            end
-        end
-    end
-    return borrowed
-end
-
--- 判断声调是否匹配通过
-local function check_explicit_tone_match(codes_seq, tone_filter_seq, borrowed_tones, source_type)
+-- 判断声调是否匹配通过；数据库声调不足时直接借用注释码，不再创建嵌套声调表。
+local function check_explicit_tone_match(codes_seq, tone_filter_seq, comment_internal, source_type)
     if #tone_filter_seq > #codes_seq then
         return false
     end
 
     for k, tone_input in ipairs(tone_filter_seq) do
         local has_tone = list_contains(codes_seq[k], tone_input)
-        if not has_tone and source_type == "db" then
-            if borrowed_tones[k] and borrowed_tones[k][tone_input] then
-                has_tone = true
-            end
+        if not has_tone and source_type == "db" and comment_internal then
+            has_tone = list_contains(comment_internal[k], tone_input)
         end
         if not has_tone then
             return false
@@ -1019,17 +1032,12 @@ end
 
 -- 综合匹配判断引擎 (引导模式使用)
 local function check_explicit_match(raw_data, cand_len, clean_fuma, tone_filter_seq, apply_tone_filter, env)
-    local borrowed_tones = {}
-    if apply_tone_filter then
-        borrowed_tones = extract_borrowed_tones(raw_data)
-    end
-
     for _, source_type in ipairs(env.data_sources) do
         local codes_seq = raw_data[source_type]
         if codes_seq then
             local tone_match_pass = true
             if apply_tone_filter then
-                tone_match_pass = check_explicit_tone_match(codes_seq, tone_filter_seq, borrowed_tones, source_type)
+                tone_match_pass = check_explicit_tone_match(codes_seq, tone_filter_seq, raw_data._comment_internal, source_type)
             end
 
             if tone_match_pass then
@@ -1142,23 +1150,15 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
     local has_any_match = false
     local is_first_cand = true
 
-    -- 获取输入音节片段
-    local syllables = {}
+    -- 获取输入音节片段；历史切分只读不改，直接复用原表。
+    local syllables
     if pure_code == env.history_input and env.history_parts and #env.history_parts > 0 then
-        for _, v in ipairs(env.history_parts) do
-            table.insert(syllables, v)
-        end
+        syllables = env.history_parts
     else
         syllables = get_script_text_parts(ctx, env.reverse_key)
     end
 
-    -- 读取预热缓存，避免重复查 db 和代数展开
-    local raw_cache = env._cand_raw_cache
-    local cached = raw_cache and raw_cache[pure_code]
-    local cand_idx = 0
-
     for cand in input:iter() do
-        cand_idx = cand_idx + 1
         local cand_len = get_utf8_len(cand.text)
 
         -- 首个候选修正：纯声调翻译与多字纠错
@@ -1196,10 +1196,7 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
             goto skip
         end
 
-        local raw_data = cached and cached[cand.text]
-        if not raw_data then
-            raw_data = build_candidate_raw_data(cand, cand_len, env)
-        end
+        local raw_data = build_candidate_raw_data(cand, cand_len, env)
 
         if
             raw_data and check_explicit_match(raw_data, cand_len, clean_fuma, tone_filter_seq, apply_tone_filter, env)
@@ -1562,7 +1559,6 @@ function f.init(env)
 
     env._db_cache = {}
     env._comment_cache = {}
-    env._cand_raw_cache = {}
     env.cache_size = 0
     env.direct_cache = nil
     -- 双轨缓存系统
@@ -1624,26 +1620,9 @@ function f.func(input, env)
 
     if s_start then
         if not explicitly_fuma or #explicitly_fuma == 0 then
-            -- 预热缓存 + 透传：敲了引导符但还没输辅码时，提前查 db 和代数展开
-            local raw_cache = env._cand_raw_cache
-            local need_warm = raw_cache and not raw_cache[pure_code]
-            local warm = need_warm and {} or nil
+            -- 只输入反查引导符时原样透传，不创建整候选 raw_data 预热表。
             for cand in input:iter() do
                 yield(cand)
-                if warm then
-                    local cand_len = get_utf8_len(cand.text)
-                    if
-                        cand.type ~= "sentence"
-                        and cand_len
-                        and cand_len > 0
-                        and not (string.byte(cand.text, 1) and string.byte(cand.text, 1) < 128)
-                    then
-                        warm[cand.text] = build_candidate_raw_data(cand, cand_len, env)
-                    end
-                end
-            end
-            if warm then
-                raw_cache[pure_code] = warm
             end
             return
         end
@@ -1674,7 +1653,6 @@ function f.fini(env)
     env.db_table = nil
     env._db_cache = nil
     env._comment_cache = nil
-    env._cand_raw_cache = nil
     env.history_parts = nil
     env.direct_cache = nil
 
