@@ -22,6 +22,10 @@ local lower = string.lower
 local sub = string.sub
 local match = string.match
 
+local MIXED_DECISION_MARGIN = 1
+local MIXED_SCAN_LIMIT = 6
+local MIXED_LOCK_MIN_LENGTH = 6
+
 local function get_now()
     if rime_api and rime_api.get_time_ms then
         return rime_api.get_time_ms() / 1000
@@ -233,59 +237,32 @@ local function collect_cached_words(env, curr_input, sentence_text)
         end
     end
 
-    table.sort(result, function(a, b)
-        if a.length ~= b.length then return a.length > b.length end
-        return a.text < b.text
-    end)
     return result
 end
 
-local function segment_chinese_sentence(sentence_text, cached_words)
+local function count_chinese_segments(sentence_text, cached_words)
     local chars = utf8_chars(sentence_text)
     local n = #chars
-    if n == 0 then return nil, {} end
+    if n == 0 then return nil end
 
     local dp = {}
-    local choice = {}
     dp[n + 1] = 0
 
     for i = n, 1, -1 do
-        dp[i] = 1 + dp[i + 1]
-        choice[i] = {
-            length = 1,
-            text = chars[i],
-            cached = false
-        }
-
+        local best = 1 + dp[i + 1]
         for j = 1, #cached_words do
             local word = cached_words[j]
-            local next_index = i + word.length
             if chars_match_at(chars, i, word.chars) then
-                local cost = 1 + dp[next_index]
-                if cost < dp[i]
-                   or (cost == dp[i] and word.length > choice[i].length) then
-                    dp[i] = cost
-                    choice[i] = {
-                        length = word.length,
-                        text = word.text,
-                        cached = true
-                    }
+                local cost = 1 + dp[i + word.length]
+                if cost < best then
+                    best = cost
                 end
             end
         end
+        dp[i] = best
     end
 
-    local parts = {}
-    local i = 1
-    while i <= n do
-        local selected = choice[i]
-        parts[#parts + 1] = selected.cached
-            and ("[词:" .. selected.text .. "]")
-            or ("[单:" .. selected.text .. "]")
-        i = i + selected.length
-    end
-
-    return dp[1], parts
+    return dp[1]
 end
 
 local function reset_mixed_locks(env)
@@ -549,9 +526,6 @@ function F.init(env)
     env.lookup_key = "`"
     env.max_eng_cands = 0
     env.pair_symbol = "\\"
-    env.span_clean_threshold = 1
-    env.mixed_lock_min_length = 6
-    env.span_scan_limit = 6
     env.last_input = ""
     env.mixed_word_cache = {}
     local delimiter_str = " '" 
@@ -564,27 +538,16 @@ function F.init(env)
         if key and key ~= "" then env.lookup_key = key end
         local max_cands = cfg:get_int("wanxiang_english/max_candidates")
         if max_cands then env.max_eng_cands = max_cands end
-        local clean_threshold = cfg:get_int("wanxiang_english/span_clean_threshold")
-        if clean_threshold then env.span_clean_threshold = clean_threshold end
-        local lock_min_length = cfg:get_int("wanxiang_english/mixed_lock_min_length")
-        if lock_min_length then env.mixed_lock_min_length = lock_min_length end
-        local scan_limit = cfg:get_int("wanxiang_english/span_scan_limit")
-        if scan_limit and scan_limit > 0 then
-            env.span_scan_limit = scan_limit > 6 and 6 or scan_limit
-        end
         local sym = cfg:get_string("wanxiang_english/trigger")
         if sym and #sym > 0 then env.pair_symbol = sub(sym, 1, 1) end
         delimiter_str = cfg:get_string('speller/delimiter') or delimiter_str
     end
-    env.lookup_key_esc = gsub(env.lookup_key, "([%%%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1")
-    env.delimiter_char = sub(delimiter_str, 1, 1)
     local escaped_delims = gsub(delimiter_str, "([%%%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1")
     env.split_pattern = "[^" .. escaped_delims .. "]+"     
     env.delim_check_pattern = "[" .. escaped_delims .. "]" 
     env.prev_commit_is_eng = false
     env.last_commit_time = 0
     env.comp_start_time = nil
-    env.spacing_active = false
     reset_mixed_locks(env)
     if env.engine.context then
         env.update_notifier = env.engine.context.update_notifier:connect(function(ctx)
@@ -753,7 +716,6 @@ local function new_filter_state(env, curr_input, code_ctx)
     local single_chars, has_single_chars, single_char_injected =
         build_single_char_candidates(curr_input)
     local initial_eng_count = has_single_chars and 2 or 0
-
     return {
         env = env,
         curr_input = curr_input,
@@ -765,10 +727,8 @@ local function new_filter_state(env, curr_input, code_ctx)
         single_char_injected = single_char_injected,
 
         safe_max_cands = env.max_eng_cands or 0,
-        clean_threshold = env.span_clean_threshold or 1,
-        scan_limit = env.span_scan_limit or 6,
-        lock_min_length = env.mixed_lock_min_length or 6,
-        has_explicit_delimiter = find(curr_input, env.delim_check_pattern) ~= nil,
+        input_fingerprint = pure(curr_input),
+        exact_english_index = nil,
 
         has_valid_candidate = false,
         has_retained_sentence = false,
@@ -780,7 +740,6 @@ local function new_filter_state(env, curr_input, code_ctx)
         stop_after_buffer = false,
 
         retained_sentence_in_buffer = false,
-        deleted_fake_cn_in_buffer = false,
         first_survivor_is_sentence = false,
         first_survivor_text = nil,
         decision_ready = false,
@@ -793,12 +752,8 @@ local function new_filter_state(env, curr_input, code_ctx)
         buffered = {},
         scanned = 0,
         english_sentence_index = nil,
-        english_sentence_words = 0,
         chinese_sentence_index = nil,
-        chinese_segments = nil,
-        chinese_parts = nil,
-        mixed_delete_candidates = {},
-        scan_prospective_eng_count = initial_eng_count
+        mixed_delete_candidates = {}
     }
 end
 
@@ -813,10 +768,16 @@ local function remember_english_anchor(state, text, words,
     local old_words = old and (old.words or word_count_fast(old.text)) or -1
     local new_length = #pure(text)
     local old_length = old and #pure(old.text) or -1
+    local new_exact_single = new_words == 1
+        and pure(text) == pure(state.curr_input)
+    local old_exact_single = old and old_words == 1
+        and pure(old.text) == pure(state.curr_input) or false
 
     if not old
-       or new_words > old_words
-       or (new_words == old_words and new_length > old_length) then
+       or (new_exact_single and not old_exact_single)
+       or (new_exact_single == old_exact_single and new_words > old_words)
+       or (new_exact_single == old_exact_single
+           and new_words == old_words and new_length > old_length) then
         env.memory[state.curr_input] = {
             text = text,
             words = new_words
@@ -904,12 +865,15 @@ local function process_candidate(state, cand, prepared, c_type, text, is_ascii, 
         return
     end
 
+    if state.exact_english_index and not is_ascii then
+        return
+    end
+
     local is_chinese_phrase = is_chinese_phrase_candidate(c_type, is_ascii)
     if is_chinese_phrase then
         state.chinese_phrase_seen = true
     end
 
-    -- 英文锁存在时，普通中文仍按原规则过滤；中文 phrase 作为保护证据保留。
     if env.decision_locked and not is_ascii and not is_chinese_phrase then
         return
     end
@@ -981,8 +945,6 @@ local function process_candidate(state, cand, prepared, c_type, text, is_ascii, 
     local is_table_multiword = is_table_multiword_candidate(
         final_type, final_is_ascii, words)
 
-    -- 候选顺序中已有中文 phrase 时，后续英文句子直接过滤。
-    -- table 多词候选本来就不属于句子，因此不受此规则影响。
     if state.chinese_phrase_seen and is_sentence then
         return
     end
@@ -1087,7 +1049,7 @@ local function activate_lock_if_needed(state)
        or state.pending_chinese_lock
        or env.block_derivation
        or not state.first_survivor_is_sentence
-       or state.code_len < state.lock_min_length then
+       or state.code_len < MIXED_LOCK_MIN_LENGTH then
         return
     end
     state.pending_lock = true
@@ -1127,25 +1089,63 @@ local function apply_pending_chinese_lock(state)
     env.chinese_lock_length = state.code_len
 end
 
-local function emit_locked_fallback_if_needed(state)
-    if not state.env.decision_locked or state.retained_sentence_in_buffer then
-        return
-    end
-
+local function yield_fallback(state)
     local fallback = build_fallback_candidate(state.env, state.curr_input)
-    if not fallback then return end
+    if not fallback then return false end
 
     yield(fallback)
     state.has_valid_candidate = true
     state.has_retained_sentence = word_count_fast(fallback.text) > 1
-    state.stop_after_buffer = state.has_retained_sentence
+    return state.has_retained_sentence
+end
+
+local function emit_locked_fallback_if_needed(state)
+    if state.exact_english_index
+       or not state.env.decision_locked
+       or state.retained_sentence_in_buffer then
+        return
+    end
+
+    state.stop_after_buffer = yield_fallback(state)
+end
+
+local function prepare_exact_english_winner(state)
+    local index = state.exact_english_index
+    if not index then return nil end
+
+    state.pending_chinese_lock = false
+
+    local env = state.env
+    env.chinese_decision_locked = false
+    env.chinese_lock_prefix = nil
+    env.chinese_lock_length = 0
+    env.decision_locked = true
+    env.lock_prefix = state.curr_input
+    env.lock_length = state.code_len
+
+    local item = state.buffered[index]
+    state.mixed_delete_candidates[item.cand] = nil
+    remember_english_anchor(state, item.text, item.words, true)
+
+    state.stop_after_buffer = true
+
+    return item
 end
 
 local function flush_buffer(state)
+    local exact_item = prepare_exact_english_winner(state)
+    if exact_item then
+        process_candidate(state, exact_item.cand, exact_item.prepared,
+            exact_item.c_type, exact_item.text, exact_item.is_ascii,
+            exact_item.words)
+    end
+
     for i = 1, state.scanned do
         local item = state.buffered[i]
-        process_candidate(state, item.cand, item.prepared, item.c_type,
-            item.text, item.is_ascii, item.words)
+        if not exact_item or item.cand ~= exact_item.cand then
+            process_candidate(state, item.cand, item.prepared, item.c_type,
+                item.text, item.is_ascii, item.words)
+        end
         state.buffered[i] = nil
         if state.stop_processing then break end
     end
@@ -1188,7 +1188,6 @@ local function finalize_mixed_decision(state)
     if state.decision_ready then return end
 
     state.retained_sentence_in_buffer = false
-    state.deleted_fake_cn_in_buffer = false
     state.first_survivor_is_sentence = false
 
     if state.deleted_sentence_after_phrase and state.env.decision_locked then
@@ -1223,23 +1222,18 @@ local function finalize_mixed_decision(state)
        and state.code_len >= 4 and state.code_len <= 6 then
         local cached_words = collect_cached_words(state.env, state.curr_input,
             chinese_item.text)
-        local cn_segments, cn_parts = segment_chinese_sentence(
+        local cn_segments = count_chinese_segments(
             chinese_item.text, cached_words)
         local en_segments = english_item.words
 
-        state.chinese_segments = cn_segments
-        state.chinese_parts = cn_parts
-        state.english_sentence_words = en_segments
-
         if cn_segments and en_segments > cn_segments
-           and (en_segments - cn_segments) >= state.clean_threshold then
+           and (en_segments - cn_segments) >= MIXED_DECISION_MARGIN then
             state.mixed_delete_candidates[english_item.cand] = true
-            if state.code_len >= state.lock_min_length then
+            if state.code_len >= MIXED_LOCK_MIN_LENGTH then
                 state.pending_chinese_lock = true
             end
         elseif cn_segments and cn_segments > en_segments
-           and (cn_segments - en_segments) >= state.clean_threshold then
-            local deleted_any = false
+           and (cn_segments - en_segments) >= MIXED_DECISION_MARGIN then
             for i = 1, state.scanned do
                 local item = state.buffered[i]
                 if item
@@ -1247,10 +1241,8 @@ local function finalize_mixed_decision(state)
                    and item.c_type ~= "raw"
                    and not has_cached_phrase_support(state, item) then
                     state.mixed_delete_candidates[item.cand] = true
-                    deleted_any = true
                 end
             end
-            state.deleted_fake_cn_in_buffer = deleted_any
         end
     end
     analyze_buffer_survivors(state)
@@ -1266,6 +1258,17 @@ local function buffer_for_decision(state, cand)
     state.scanned = state.scanned + 1
     local item = prepare_buffer_item(cand, state.env)
     state.buffered[state.scanned] = item
+
+    if not state.buffer_chinese_phrase_seen
+       and item.is_ascii
+       and item.words > 1
+       and pure(item.text) == state.input_fingerprint then
+        local old_index = state.exact_english_index
+        local old = old_index and state.buffered[old_index] or nil
+        if not old or item.words > old.words then
+            state.exact_english_index = state.scanned
+        end
+    end
 
     if is_chinese_phrase_candidate(item.c_type, item.is_ascii) then
         state.buffer_chinese_phrase_seen = true
@@ -1287,7 +1290,6 @@ local function buffer_for_decision(state, cand)
 
     if is_sentence and not state.english_sentence_index then
         state.english_sentence_index = state.scanned
-        state.english_sentence_words = item.words
     end
 
     if state.env.decision_locked
@@ -1296,7 +1298,7 @@ local function buffer_for_decision(state, cand)
         return true
     end
 
-    return state.scanned >= state.scan_limit
+    return state.scanned >= MIXED_SCAN_LIMIT
 end
 
 local function run_candidate_stream(input, state)
@@ -1318,12 +1320,11 @@ local function run_candidate_stream(input, state)
         finalize_mixed_decision(state)
     end
 
-    apply_pending_chinese_lock(state)
-    apply_pending_lock(state)
 end
 
 local function emit_terminal_fallback(state)
 
+    if state.exact_english_index then return end
     if state.env.chinese_decision_locked then return end
 
     local need_fallback =
@@ -1331,12 +1332,7 @@ local function emit_terminal_fallback(state)
         or (state.env.decision_locked and not state.has_retained_sentence)
     if not need_fallback then return end
 
-    local fallback = build_fallback_candidate(state.env, state.curr_input)
-    if fallback then
-        yield(fallback)
-        state.has_valid_candidate = true
-        state.has_retained_sentence = word_count_fast(fallback.text) > 1
-    end
+    yield_fallback(state)
 end
 
 function F.func(input, env)
