@@ -507,6 +507,9 @@ function M.init(env)
 
     env.page_size = (cfg and cfg:get_int("menu/page_size")) or 5
     
+    local schema_id = env.engine.schema.schema_id
+    env.enable_taichi_filter = (schema_id == "wanxiang" or schema_id == "wanxiang_pro")
+    
     -- 状态初始化
     env.page_cache = {}
     env.last_2code_char = nil 
@@ -546,6 +549,7 @@ function M.func(input, env)
     local last_seg = comp and comp:back()
     local code_len = #code
     local seg_len = last_seg and (last_seg._end - last_seg.start) or code_len
+    local enable_taichi = env.enable_taichi_filter
 
     -- 及时清理兜数据
     if seg_len < 2 then
@@ -676,6 +680,10 @@ function M.func(input, env)
             should_skip = true 
         end
         
+        if not should_skip and enable_taichi and has_eng and cand.comment and find(cand.comment, "\226\152\175") then 
+            should_skip = true 
+        end
+        
         if not should_skip and suppress_set[text] then 
             should_skip = true 
         end
@@ -700,9 +708,15 @@ function M.func(input, env)
     for cand in input:iter() do
         idx = idx + 1
         local text = cand.text
+        local has_eng = has_english_token_fast(text)
+        
         local should_skip = false
-
+        
         if drop_sentence and cand.type == "sentence" then 
+            should_skip = true 
+        end
+        
+        if not should_skip and enable_taichi and has_eng and cand.comment and find(cand.comment, "\226\152\175") then 
             should_skip = true 
         end
         

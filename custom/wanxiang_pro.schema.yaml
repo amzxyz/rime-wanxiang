@@ -179,6 +179,7 @@ wanxiang_english:
   dictionary: wanxiang_english
   user_dict: en
   enable_completion: true
+  enable_sentence: false
   initial_quality: 2.1
   comment_format:  #这里很重要如果残留带声调字母，剩余编码提示计算出错引发程序崩溃
     - xform/^~.+$//
