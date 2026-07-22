@@ -466,7 +466,7 @@ function ZH.func(input, env)
         apply_tone_preedit(env, genuine_cand)
         -- 进入注释处理阶段
         -- ① 辅助码注释或者声调注释
-        if initial_comment and (string.find(initial_comment, "~") or string.find(initial_comment, "\226\152\175") or cand.type == "shijian") then
+        if initial_comment and (string.find(initial_comment, "~") or cand.type == "shijian") then
             final_comment = initial_comment
 
         -- 2. 常规的辅助码提示模式
