@@ -1,29 +1,47 @@
 --@amzxyz https://github.com/amzxyz/rime-wanxiang
 --wanxiang_lookup: #设置归属于super_lookup.lua
-  --tags: [ abc ]  # 检索当前tag的候选
-  --key: "`"       # 输入中反查引导符
-  --lookup: [ wanxiang_reverse ] #反查滤镜数据库
-  --data_source: [ aux, db ] # 优先级：写在前面优先。即使只写db，只要开启enable_tone也能从注释获取声调。
-  --enable_tone: true  #启用声调反查
-  --enable_direct: true  #启用无引导的直接辅助码反查
+--tags: [ abc ]  # 检索当前tag的候选
+--key: "`"       # 输入中反查引导符
+--lookup: [ wanxiang_reverse ] #反查滤镜数据库
+--data_source: [ aux, db ] # 优先级：写在前面优先。即使只写db，只要开启enable_tone也能从注释获取声调。
+--enable_tone: true  #启用声调反查
+--enable_direct: true  #启用无引导的直接辅助码反查
 
 local wanxiang = require("wanxiang/wanxiang")
 
 -- 1. 基础工具函数 (UTF8处理 / 字符串 / 声调)
 local function alt_lua_punc(s)
     if not s then
-        return ''
+        return ""
     end
-    return s:gsub('([%.%+%-%*%?%[%]%^%$%(%)%%])', '%%%1')
+    return s:gsub("([%.%+%-%*%?%[%]%^%$%(%)%%])", "%%%1")
 end
 
 local tones_map = {
-    ["ā"]="7", ["á"]="8", ["ǎ"]="9", ["à"]="0",
-    ["ō"]="7", ["ó"]="8", ["ǒ"]="9", ["ò"]="0",
-    ["ē"]="7", ["é"]="8", ["ě"]="9", ["è"]="0",
-    ["ī"]="7", ["í"]="8", ["ǐ"]="9", ["ì"]="0",
-    ["ū"]="7", ["ú"]="8", ["ǔ"]="9", ["ù"]="0",
-    ["ǖ"]="7", ["ǘ"]="8", ["ǚ"]="9", ["ǜ"]="0"
+    ["ā"] = "7",
+    ["á"] = "8",
+    ["ǎ"] = "9",
+    ["à"] = "0",
+    ["ō"] = "7",
+    ["ó"] = "8",
+    ["ǒ"] = "9",
+    ["ò"] = "0",
+    ["ē"] = "7",
+    ["é"] = "8",
+    ["ě"] = "9",
+    ["è"] = "0",
+    ["ī"] = "7",
+    ["í"] = "8",
+    ["ǐ"] = "9",
+    ["ì"] = "0",
+    ["ū"] = "7",
+    ["ú"] = "8",
+    ["ǔ"] = "9",
+    ["ù"] = "0",
+    ["ǖ"] = "7",
+    ["ǘ"] = "8",
+    ["ǚ"] = "9",
+    ["ǜ"] = "0",
 }
 
 local function get_utf8_len(s)
@@ -62,7 +80,9 @@ local function get_utf8_string_range(text, start_idx, end_idx)
     local chars = {}
     local i = 1
     for _, code in utf8.codes(text) do
-        if i > end_idx then break end
+        if i > end_idx then
+            break
+        end
         if i >= start_idx then
             chars[#chars + 1] = utf8.char(code)
         end
@@ -73,7 +93,9 @@ end
 
 -- 将 UTF8 字符串转为字符数组
 local function text_to_chars(text)
-    if not text or text == "" then return {} end
+    if not text or text == "" then
+        return {}
+    end
     local chars = {}
     for _, cp in utf8.codes(text) do
         table.insert(chars, utf8.char(cp))
@@ -275,7 +297,7 @@ local function parse_and_separate_rules(schema_id)
         return nil, nil
     end
 
-    local algebra_list = schema.config and schema.config:get_list('speller/algebra')
+    local algebra_list = schema.config and schema.config:get_list("speller/algebra")
     if not algebra_list or algebra_list.size == 0 then
         return nil, nil
     end
@@ -358,9 +380,9 @@ local function expand_code_variant(main_projection, xlit_projection, part)
         local has_change = false
         for i = 1, #s, 2 do
             local odd = s:sub(i, i)
-            local even = s:sub(i+1, i+1)
-            if (odd == 'j' or odd == 'q' or odd == 'x' or odd == 'y') and even == 'v' then
-                res = res .. odd .. 'u'
+            local even = s:sub(i + 1, i + 1)
+            if (odd == "j" or odd == "q" or odd == "x" or odd == "y") and even == "v" then
+                res = res .. odd .. "u"
                 has_change = true
             else
                 res = res .. odd .. even
@@ -376,7 +398,7 @@ local function expand_code_variant(main_projection, xlit_projection, part)
     if quote_count == 1 then
         local s1, s2 = part:match("^([^']*)'([^']*)$")
         if s1 and s2 and #s1 > 0 and #s2 > 0 then
-            add(s1:sub(1,1) .. s2:sub(1,1))
+            add(s1:sub(1, 1) .. s2:sub(1, 1))
         end
     end
 
@@ -386,7 +408,7 @@ local function expand_code_variant(main_projection, xlit_projection, part)
 
     add(extract_odd_positions(part))
 
-    if main_projection and not part:match('^%u+$') then
+    if main_projection and not part:match("^%u+$") then
         local p = main_projection:apply(part, true)
         if p and #p > 0 then
             add(p)
@@ -395,7 +417,7 @@ local function expand_code_variant(main_projection, xlit_projection, part)
         end
     end
 
-    if part:match('^%u+$') and xlit_projection then
+    if part:match("^%u+$") and xlit_projection then
         local xlit_result = xlit_projection:apply(part, true)
         if xlit_result and #xlit_result > 0 then
             add_xlit(xlit_result)
@@ -414,7 +436,7 @@ local function build_reverse_group(main_projection, xlit_projection, db_table, t
     for _, db in ipairs(db_table) do
         local code = db:lookup(text)
         if code and #code > 0 then
-            for part in code:gmatch('%S+') do
+            for part in code:gmatch("%S+") do
                 local main_variants, xlit_variants = expand_code_variant(main_projection, xlit_projection, part)
                 for _, v in ipairs(main_variants) do
                     if not seen_main[v] then
@@ -565,7 +587,12 @@ local function build_candidate_raw_data(cand, cand_len, env)
         if comment_text ~= "" then
             local cache_key = cand_text .. "_" .. comment_text
             if not comment_cache[cache_key] then
-                comment_cache[cache_key] = parse_comment_codes(comment_text, env.comment_split_ptrn, cand_len, env.enable_tone) or false
+                comment_cache[cache_key] = parse_comment_codes(
+                    comment_text,
+                    env.comment_split_ptrn,
+                    cand_len,
+                    env.enable_tone
+                ) or false
                 env.cache_size = env.cache_size + 1
             end
             if comment_cache[cache_key] then
@@ -583,7 +610,8 @@ local function build_candidate_raw_data(cand, cand_len, env)
             local char_str = utf8.char(code_point)
 
             if not db_cache[char_str] then
-                local main_codes, xlit_codes = build_reverse_group(env.main_projection, env.xlit_projection, env.db_table, char_str)
+                local main_codes, xlit_codes =
+                    build_reverse_group(env.main_projection, env.xlit_projection, env.db_table, char_str)
                 db_cache[char_str] = { main = main_codes or {}, xlit = xlit_codes or {} }
                 env.cache_size = env.cache_size + 1
             end
@@ -658,7 +686,7 @@ local function attempt_pure_tone_translation(cand, env, syllables, tone_filter_s
     if #pure_pinyin_parts == tone_len then
         local query_str = table.concat(pure_pinyin_parts, "")
         local seg_trans = Segment(0, #query_str)
-        seg_trans.tags = Set({"abc"})
+        seg_trans.tags = Set({ "abc" })
 
         local ok, translation = pcall(function()
             return env.main_translator:query(query_str, seg_trans)
@@ -704,7 +732,7 @@ local function try_match_long_phrase(current_text, cand_len, env, syllables, fum
         if valid_window then
             local query_str = table.concat(pure_pinyin_parts, "")
             local seg_trans = Segment(0, #query_str)
-            seg_trans.tags = Set({"abc"})
+            seg_trans.tags = Set({ "abc" })
 
             local translation = env.main_translator:query(query_str, seg_trans)
             local orig_phrase_text = get_utf8_string_range(current_text, w_start, w_end)
@@ -718,7 +746,9 @@ local function try_match_long_phrase(current_text, cand_len, env, syllables, fum
 
                         for _, code_pt in utf8.codes(phrase_text) do
                             local char = utf8.char(code_pt)
-                            if not check_char_fuma_match(env, pure_pinyin_parts[char_idx], fuma_chunks[char_idx], char) then
+                            if
+                                not check_char_fuma_match(env, pure_pinyin_parts[char_idx], fuma_chunks[char_idx], char)
+                            then
                                 match_all = false
                                 break
                             end
@@ -764,7 +794,7 @@ local function try_match_two_char_phrase(current_text, search_end_idx, env, syll
         if valid_window then
             local query_str = pure_pinyin_parts[1] .. pure_pinyin_parts[2]
             local seg_trans = Segment(0, #query_str)
-            seg_trans.tags = Set({"abc"})
+            seg_trans.tags = Set({ "abc" })
 
             local ok, translation = pcall(function()
                 return env.main_translator:query(query_str, seg_trans)
@@ -803,7 +833,15 @@ local function try_match_two_char_phrase(current_text, search_end_idx, env, syll
 end
 
 -- [词组纠错] 3. 尝试单字逐个回溯替换
-local function try_match_single_chars(current_text, search_end_idx, env, syllables, fuma_chunks, syl_offset, match_count)
+local function try_match_single_chars(
+    current_text,
+    search_end_idx,
+    env,
+    syllables,
+    fuma_chunks,
+    syl_offset,
+    match_count
+)
     local chars = text_to_chars(current_text)
     local current_end = search_end_idx
     local m_count = match_count
@@ -907,14 +945,16 @@ local function attempt_phrase_correction(cand, cand_len, env, syllables, fuma_ch
     local match_count = 0
     local search_end_idx = cand_len
 
-    local new_text, count, next_end = try_match_long_phrase(current_text, cand_len, env, syllables, fuma_chunks, syl_offset)
+    local new_text, count, next_end =
+        try_match_long_phrase(current_text, cand_len, env, syllables, fuma_chunks, syl_offset)
 
     if new_text then
         current_text = new_text
         match_count = count
         search_end_idx = next_end
     elseif #fuma_chunks == 1 then
-        new_text, count, next_end = try_match_two_char_phrase(current_text, search_end_idx, env, syllables, fuma_chunks[1], syl_offset)
+        new_text, count, next_end =
+            try_match_two_char_phrase(current_text, search_end_idx, env, syllables, fuma_chunks[1], syl_offset)
         if new_text then
             current_text = new_text
             match_count = count
@@ -923,7 +963,8 @@ local function attempt_phrase_correction(cand, cand_len, env, syllables, fuma_ch
     end
 
     if match_count == 0 then
-        current_text, match_count = try_match_single_chars(current_text, search_end_idx, env, syllables, fuma_chunks, syl_offset, match_count)
+        current_text, match_count =
+            try_match_single_chars(current_text, search_end_idx, env, syllables, fuma_chunks, syl_offset, match_count)
     end
 
     if match_count == #fuma_chunks then
@@ -964,7 +1005,7 @@ local function check_explicit_tone_match(codes_seq, tone_filter_seq, borrowed_to
 
     for k, tone_input in ipairs(tone_filter_seq) do
         local has_tone = list_contains(codes_seq[k], tone_input)
-        if not has_tone and source_type == 'db' then
+        if not has_tone and source_type == "db" then
             if borrowed_tones[k] and borrowed_tones[k][tone_input] then
                 has_tone = true
             end
@@ -992,14 +1033,14 @@ local function check_explicit_match(raw_data, cand_len, clean_fuma, tone_filter_
             end
 
             if tone_match_pass then
-                if source_type == 'aux' or source_type == 'db' then
+                if source_type == "aux" or source_type == "db" then
                     if cand_len == 1 then
                         if group_match(codes_seq[1], clean_fuma) then
                             return true
                         end
                     else
                         local memo = {}
-                        if match_fuzzy_recursive(codes_seq, 1, clean_fuma, 1, memo, source_type == 'db') then
+                        if match_fuzzy_recursive(codes_seq, 1, clean_fuma, 1, memo, source_type == "db") then
                             return true
                         end
                     end
@@ -1021,21 +1062,26 @@ local function check_direct_match(raw_data, cand_len, clean_fuma, data_sources)
                 end
             elseif cand_len == 2 then
                 local is_db = false
-                if source_type == 'db' then
+                if source_type == "db" then
                     is_db = true
                 end
 
                 local fl = #clean_fuma
                 if fl == 1 then
-                    if match_direct_word(codes_seq, 1, clean_fuma, is_db) or
-                       match_direct_word(codes_seq, 2, clean_fuma, is_db) then
+                    if
+                        match_direct_word(codes_seq, 1, clean_fuma, is_db)
+                        or match_direct_word(codes_seq, 2, clean_fuma, is_db)
+                    then
                         return true
                     end
                 elseif fl == 2 then
                     local case1 = match_direct_word(codes_seq, 1, clean_fuma, is_db)
                     local case2 = match_direct_word(codes_seq, 2, clean_fuma, is_db)
                     local case3 = false
-                    if match_direct_word(codes_seq, 1, clean_fuma:sub(1,1), is_db) and match_direct_word(codes_seq, 2, clean_fuma:sub(2,2), is_db) then
+                    if
+                        match_direct_word(codes_seq, 1, clean_fuma:sub(1, 1), is_db)
+                        and match_direct_word(codes_seq, 2, clean_fuma:sub(2, 2), is_db)
+                    then
                         case3 = true
                     end
 
@@ -1045,7 +1091,7 @@ local function check_direct_match(raw_data, cand_len, clean_fuma, data_sources)
                 end
             else
                 local memo = {}
-                if match_fuzzy_recursive(codes_seq, 1, clean_fuma, 1, memo, source_type == 'db') then
+                if match_fuzzy_recursive(codes_seq, 1, clean_fuma, 1, memo, source_type == "db") then
                     return true
                 end
             end
@@ -1068,7 +1114,6 @@ local function create_direct_candidate(cand, ctx_input, pure_code, fuma)
     return ext_cand
 end
 
-
 -- 8. 模式分发调度控制器 (主干函数)
 
 -- A. 引导模式 (Explicit Mode) 控制器
@@ -1090,7 +1135,7 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
         apply_tone_filter = true
     end
 
-    local if_single_char_first = ctx:get_option('char_priority')
+    local if_single_char_first = ctx:get_option("char_priority")
     local buckets = {}
     local long_word_cands = {}
     local max_len = 0
@@ -1123,14 +1168,18 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
 
             if apply_tone_filter and clean_fuma == "" then
                 local current_syl_count = #syllables - syl_offset
-                local tone_cand = attempt_pure_tone_translation(cand, env, syllables, tone_filter_seq, current_syl_count, syl_offset)
+                local tone_cand =
+                    attempt_pure_tone_translation(cand, env, syllables, tone_filter_seq, current_syl_count, syl_offset)
                 if tone_cand then
                     yield(tone_cand)
                     goto skip
                 end
             end
 
-            if ((cand.type == 'sentence' and cand_len > 1) or (cand.type == 'phrase' and cand_len > 3)) and #syllables >= (cand_len + syl_offset) then
+            if
+                ((cand.type == "sentence" and cand_len > 1) or (cand.type == "phrase" and cand_len > 3))
+                and #syllables >= (cand_len + syl_offset)
+            then
                 local corr_cand = attempt_phrase_correction(cand, cand_len, env, syllables, fuma_chunks, syl_offset)
                 if corr_cand then
                     yield(corr_cand)
@@ -1140,7 +1189,7 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
         end
 
         -- 数据校验与匹配判定
-        if cand.type == 'sentence' or not cand_len or cand_len == 0 then
+        if cand.type == "sentence" or not cand_len or cand_len == 0 then
             goto skip
         end
         if string.byte(cand.text, 1) and string.byte(cand.text, 1) < 128 then
@@ -1152,7 +1201,9 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
             raw_data = build_candidate_raw_data(cand, cand_len, env)
         end
 
-        if raw_data and check_explicit_match(raw_data, cand_len, clean_fuma, tone_filter_seq, apply_tone_filter, env) then
+        if
+            raw_data and check_explicit_match(raw_data, cand_len, clean_fuma, tone_filter_seq, apply_tone_filter, env)
+        then
             has_any_match = true
             if if_single_char_first and cand_len > 1 then
                 table.insert(long_word_cands, cand)
@@ -1214,75 +1265,178 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
 end
 
 -- B. 动态直辅模式 (direct Mode) 控制器
+local function snapshot_direct_candidate(cand)
+    return {
+        type = cand.type,
+        start = cand.start,
+        _end = cand._end,
+        text = cand.text,
+        comment = cand.comment or "",
+        quality = cand.quality,
+        preedit = cand.preedit,
+    }
+end
+
+local function restore_direct_candidate(saved)
+    local cand = Candidate(saved.type, saved.start, saved._end, saved.text, saved.comment or "")
+    if saved.quality ~= nil then
+        cand.quality = saved.quality
+    end
+    if saved.preedit and saved.preedit ~= "" then
+        cand.preedit = saved.preedit
+    end
+    return cand
+end
+
 local function handle_direct_mode(input, env, ctx_input)
-    local all_cands = {}
-    local is_perfect_two_syl = false
+    local direct_cache = env.direct_cache
+    local base_input = direct_cache and direct_cache.input or ""
+    local follows_base = base_input ~= ""
+        and #ctx_input > #base_input
+        and #ctx_input <= #base_input + 2
+        and ctx_input:sub(1, #base_input) == base_input
+    local extra_len = follows_base and (#ctx_input - #base_input) or 0
+
+    local first_seen = false
+    local mode = nil
+    local cache_candidates = nil
+    local cache_open = false
+
+    local matched_cands = nil
+    local matched_text_count = nil
+    local clean_fuma = ""
+    local fuma = ""
+    local matches_yielded = false
+
+    local function clear_direct_cache()
+        env.direct_cache = nil
+        direct_cache = nil
+    end
+
+    local function build_matches()
+        matched_cands = {}
+        matched_text_count = {}
+        fuma = ctx_input:sub(#base_input + 1):gsub("['%s]", "")
+        clean_fuma = fuma:gsub("[7890]", "")
+
+        if #clean_fuma ~= 1 and #clean_fuma ~= 2 then
+            return
+        end
+
+        for _, saved in ipairs(direct_cache.candidates or {}) do
+            local cached_cand = restore_direct_candidate(saved)
+            local raw_data = build_candidate_raw_data(cached_cand, 2, env)
+            if raw_data and check_direct_match(raw_data, 2, clean_fuma, env.data_sources) then
+                local ext_cand = create_direct_candidate(cached_cand, ctx_input, base_input, fuma)
+                matched_cands[#matched_cands + 1] = ext_cand
+                matched_text_count[saved.text] = (matched_text_count[saved.text] or 0) + 1
+            end
+        end
+    end
+
+    local function should_skip_current(cand)
+        if not matched_text_count then
+            return false
+        end
+        local count = matched_text_count[cand.text]
+        if count and count > 0 then
+            matched_text_count[cand.text] = count - 1
+            return true
+        end
+        return false
+    end
+
+    local function yield_matches()
+        if matches_yielded or not matched_cands then
+            return
+        end
+        for _, cand in ipairs(matched_cands) do
+            yield(cand)
+        end
+        matches_yielded = true
+    end
 
     for cand in input:iter() do
-        table.insert(all_cands, cand)
-        
-        if get_utf8_len(cand.text) == 2 and cand._end == #ctx_input then
-            is_perfect_two_syl = true
-            break
-        end
-    end
-
-    if is_perfect_two_syl then
-        for _, cand in ipairs(all_cands) do yield(cand) end
-        for cand in input:iter() do yield(cand) end
-        return
-    end
-
-    local buckets = {}
-    local normal_cands = {}
-    local has_direct_match = false
-    local matched_f_len = 0
-
-    for _, cand in ipairs(all_cands) do
         local cand_len = get_utf8_len(cand.text)
-        if cand.type == 'sentence' or string.byte(cand.text, 1) < 128 or cand_len ~= 2 then
-            table.insert(normal_cands, cand)
-            goto skip
+
+        if not first_seen then
+            first_seen = true
+
+            -- 第一位辅码只有在当前首选由两字变成三字时才启动。
+            if follows_base and extra_len == 1 and direct_cache and not direct_cache.active and cand_len == 3 then
+                direct_cache.active = true
+                mode = "lookup"
+                build_matches()
+
+            -- 已经启动后，允许继续输入第二位辅码；保持原双码功能。
+            elseif follows_base and extra_len >= 1 and extra_len <= 2 and direct_cache and direct_cache.active then
+                mode = "lookup"
+                build_matches()
+
+            -- 首选两字且完整吃码：建立下一轮直辅缓存。
+            elseif cand_len == 2 and cand._end == #ctx_input then
+                mode = "cache"
+                cache_candidates = {}
+                cache_open = true
+                env.direct_cache = {
+                    input = ctx_input,
+                    candidates = cache_candidates,
+                    active = false,
+                }
+            else
+                mode = "passthrough"
+                if direct_cache then
+                    clear_direct_cache()
+                end
+            end
         end
 
-        local tail_len = #ctx_input - cand._end
-
-        if tail_len > 0 and tail_len <= 2 then
-            local fuma = ctx_input:sub(cand._end + 1):gsub("['%s]", "")
-            local pure_code = ctx_input:sub(1, cand._end)
-            local clean_fuma = fuma:gsub("[7890]", "")
-
-            local raw_data = build_candidate_raw_data(cand, cand_len, env)
-            local matched = check_direct_match(raw_data, cand_len, clean_fuma, env.data_sources)
-            
-            if matched then
-                has_direct_match = true
-                matched_f_len = #clean_fuma
-                local ext_cand = create_direct_candidate(cand, ctx_input, pure_code, fuma)
-                if not buckets[2] then buckets[2] = {} end
-                table.insert(buckets[2], ext_cand)
+        if mode == "cache" then
+            if cache_open and cand_len == 2 then
+                local first_byte = string.byte(cand.text, 1)
+                if cand.type ~= "sentence" and (not first_byte or first_byte >= 128) and cand._end == #ctx_input then
+                    cache_candidates[#cache_candidates + 1] = snapshot_direct_candidate(cand)
+                end
             else
-                table.insert(normal_cands, cand)
+                cache_open = false
+            end
+            yield(cand)
+        elseif mode == "lookup" and matched_cands and #matched_cands > 0 then
+            if #clean_fuma == 1 then
+                yield_matches()
+                if not should_skip_current(cand) then
+                    yield(cand)
+                end
+            else
+                if not matches_yielded and cand_len >= 3 then
+                    if not should_skip_current(cand) then
+                        yield(cand)
+                    end
+                else
+                    yield_matches()
+                    if not should_skip_current(cand) then
+                        yield(cand)
+                    end
+                end
             end
         else
-            table.insert(normal_cands, cand)
-        end
-
-        ::skip::
-    end
-
-    if has_direct_match then
-        if matched_f_len == 1 then
-            if buckets[2] then for _, c in ipairs(buckets[2]) do yield(c) end; buckets[2] = nil end
-        elseif matched_f_len == 2 then
-            while #normal_cands > 0 do
-                if get_utf8_len(normal_cands[1].text) >= 3 then yield(table.remove(normal_cands, 1)) else break end
-            end
-            if buckets[2] then for _, c in ipairs(buckets[2]) do yield(c) end; buckets[2] = nil end
+            yield(cand)
         end
     end
 
-    for _, c in ipairs(normal_cands) do yield(c) end
+    if mode == "cache" then
+        if cache_candidates and #cache_candidates > 0 then
+            env.direct_cache = {
+                input = ctx_input,
+                candidates = cache_candidates,
+                active = false,
+            }
+        else
+            env.direct_cache = nil
+        end
+    elseif mode == "lookup" and matched_cands and #matched_cands > 0 and #clean_fuma == 2 and not matches_yielded then
+        yield_matches()
+    end
 end
 
 -- 9. Rime 暴露接口 (Init / Func / Fini)
@@ -1291,17 +1445,17 @@ local f = {}
 function f.init(env)
     local config = env.engine.schema.config
 
-    env.enable_tone = config:get_bool('wanxiang_lookup/enable_tone')
+    env.enable_tone = config:get_bool("wanxiang_lookup/enable_tone")
     if env.enable_tone == nil then
         env.enable_tone = true
     end
 
-    env.enable_direct = config:get_bool('wanxiang_lookup/enable_direct')
+    env.enable_direct = config:get_bool("wanxiang_lookup/enable_direct")
     if env.enable_direct == nil then
         env.enable_direct = false
     end
 
-    local sources_list = config:get_list('wanxiang_lookup/data_source')
+    local sources_list = config:get_list("wanxiang_lookup/data_source")
     env.data_sources = {}
     local config_has_aux_source = false
     env.has_db = false
@@ -1310,15 +1464,15 @@ function f.init(env)
         for i = 0, sources_list.size - 1 do
             local s = sources_list:get_value_at(i).value
             table.insert(env.data_sources, s)
-            if s == 'aux' then
+            if s == "aux" then
                 config_has_aux_source = true
             end
-            if s == 'db' then
+            if s == "db" then
                 env.has_db = true
             end
         end
     else
-        env.data_sources = { 'aux', 'db' }
+        env.data_sources = { "aux", "db" }
         config_has_aux_source = true
         env.has_db = true
     end
@@ -1341,7 +1495,7 @@ function f.init(env)
             local main_rules, xlit_rules = get_schema_rules(env)
 
             env.main_projection = nil
-            if type(main_rules) == 'table' and #main_rules > 0 then
+            if type(main_rules) == "table" and #main_rules > 0 then
                 env.main_projection = Projection()
             end
             if env.main_projection then
@@ -1349,7 +1503,7 @@ function f.init(env)
             end
 
             env.xlit_projection = nil
-            if type(xlit_rules) == 'table' and #xlit_rules > 0 then
+            if type(xlit_rules) == "table" and #xlit_rules > 0 then
                 env.xlit_projection = Projection()
             end
             if env.xlit_projection then
@@ -1361,25 +1515,25 @@ function f.init(env)
     end
 
     if env.has_comment then
-        local delimiter = config:get_string('speller/delimiter') or " '"
+        local delimiter = config:get_string("speller/delimiter") or " '"
         if delimiter == "" then
             delimiter = " "
         end
         env.comment_split_ptrn = "[^" .. alt_lua_punc(delimiter) .. "]+"
     end
 
-    env.reverse_key = config:get_string('wanxiang_lookup/key') or '`'
+    env.reverse_key = config:get_string("wanxiang_lookup/key") or "`"
     env.reverse_key_alt = alt_lua_punc(env.reverse_key)
-    env.bypass_prefix = config:get_string('add_user_dict/prefix')
+    env.bypass_prefix = config:get_string("add_user_dict/prefix")
 
-    local tag = config:get_list('wanxiang_lookup/tags')
+    local tag = config:get_list("wanxiang_lookup/tags")
     if tag and tag.size > 0 then
         env.tag = {}
         for i = 0, tag.size - 1 do
             table.insert(env.tag, tag:get_value_at(i).value)
         end
     else
-        env.tag = { 'abc' }
+        env.tag = { "abc" }
     end
 
     env.notifier = env.engine.context.select_notifier:connect(function(ctx)
@@ -1398,7 +1552,7 @@ function f.init(env)
         end
 
         local edit = select(1, split_lookup_input(preedit_text, env.reverse_key, env.bypass_prefix))
-        if edit and edit:match('[%w/]') then
+        if edit and edit:match("[%w/]") then
             ctx.input = no_search_string .. env.reverse_key
         else
             ctx.input = no_search_string
@@ -1410,19 +1564,22 @@ function f.init(env)
     env._comment_cache = {}
     env._cand_raw_cache = {}
     env.cache_size = 0
-
+    env.direct_cache = nil
     -- 双轨缓存系统
     env.history_parts = {}
     env.history_input = ""
-     -- 专为引导模式(Explicit)的监听器，用于在敲击反查引导符前，保留完美的拼音切分案底
+    -- 专为引导模式(Explicit)的监听器，用于在敲击反查引导符前，保留完美的拼音切分案底
     env.update_conn = env.engine.context.update_notifier:connect(function(ctx)
         if not ctx:is_composing() then
             env.history_parts = {}
             env.history_input = ""
+            env.direct_cache = nil
             return
         end
         local raw_in = ctx.input or ""
-        if raw_in == "" then return end
+        if raw_in == "" then
+            return
+        end
 
         if env.reverse_key and raw_in:find(env.reverse_key, 1, true) then
             return
@@ -1475,18 +1632,25 @@ function f.func(input, env)
                 yield(cand)
                 if warm then
                     local cand_len = get_utf8_len(cand.text)
-                    if cand.type ~= 'sentence' and cand_len and cand_len > 0
-                        and not (string.byte(cand.text, 1) and string.byte(cand.text, 1) < 128) then
+                    if
+                        cand.type ~= "sentence"
+                        and cand_len
+                        and cand_len > 0
+                        and not (string.byte(cand.text, 1) and string.byte(cand.text, 1) < 128)
+                    then
                         warm[cand.text] = build_candidate_raw_data(cand, cand_len, env)
                     end
                 end
             end
-            if warm then raw_cache[pure_code] = warm end
+            if warm then
+                raw_cache[pure_code] = warm
+            end
             return
         end
         return handle_explicit_mode(input, env, ctx_input, pure_code, explicitly_fuma, s_end)
     else
         if not env.enable_direct or wanxiang.is_pro_scheme(env) then
+            env.direct_cache = nil
             for cand in input:iter() do
                 yield(cand)
             end
@@ -1512,8 +1676,8 @@ function f.fini(env)
     env._comment_cache = nil
     env._cand_raw_cache = nil
     env.history_parts = nil
+    env.direct_cache = nil
 
-    collectgarbage('collect')
+    collectgarbage("collect")
 end
-
 return f
