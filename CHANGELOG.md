@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.2.1](https://github.com/amzxyz/rime-wanxiang/compare/v16.2.0...v16.2.1) (2026-07-22)
+
+
+### 🐛 Bug 修复
+
+* 先修复一个版本英文在中文中句子问题，其他问题后续再修复 ([c7c748d](https://github.com/amzxyz/rime-wanxiang/commit/c7c748d0bf981a3130d2a5af6b4b9c8baa57621a))
+
 ## [16.2.0](https://github.com/amzxyz/rime-wanxiang/compare/v16.1.4...v16.2.0) (2026-07-21)
 
 
