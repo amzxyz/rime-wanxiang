@@ -73,6 +73,22 @@ local function has_letters(s)
     return find(s, "[a-zA-Z]")
 end
 
+local function is_table_candidate(cand_type)
+    return cand_type == "table"
+end
+
+local function is_english_sentence_candidate(cand_type, is_ascii, words)
+    return is_ascii and words > 1 and not is_table_candidate(cand_type)
+end
+
+local function is_table_multiword_candidate(cand_type, is_ascii, words)
+    return is_ascii and words > 1 and is_table_candidate(cand_type)
+end
+
+local function is_chinese_phrase_candidate(cand_type, is_ascii)
+    return cand_type == "phrase" and not is_ascii
+end
+
 local apply_segment_formatting
 
 local function word_count_fast(s)
@@ -114,7 +130,24 @@ local function utf8_chars(s)
 end
 
 local function utf8_length(s)
-    return #utf8_chars(s or "")
+    if not s or s == "" then return 0 end
+    local count = 0
+    local i = 1
+    local len = #s
+    while i <= len do
+        local b = byte(s, i)
+        if b < 0x80 then
+            i = i + 1
+        elseif b < 0xE0 then
+            i = i + 2
+        elseif b < 0xF0 then
+            i = i + 3
+        else
+            i = i + 4
+        end
+        count = count + 1
+    end
+    return count
 end
 
 local function chars_match_at(sentence_chars, start_index, word_chars)
@@ -137,11 +170,9 @@ local function cache_context_words(ctx, env, curr_input)
 
     local words = {}
     local seen = {}
-    for index = 0, 2 do
-        local ok, cand = pcall(function()
-            return seg:get_candidate_at(index)
-        end)
-        if not ok or not cand then break end
+    for index = 0, 5 do
+        local cand = seg:get_candidate_at(index)
+        if not cand then break end
 
         local candidate_text = cand.text or ""
         if cand.type == "phrase"
@@ -520,7 +551,7 @@ function F.init(env)
     env.pair_symbol = "\\"
     env.span_clean_threshold = 1
     env.mixed_lock_min_length = 6
-    env.span_scan_limit = 3
+    env.span_scan_limit = 6
     env.last_input = ""
     env.mixed_word_cache = {}
     local delimiter_str = " '" 
@@ -539,7 +570,7 @@ function F.init(env)
         if lock_min_length then env.mixed_lock_min_length = lock_min_length end
         local scan_limit = cfg:get_int("wanxiang_english/span_scan_limit")
         if scan_limit and scan_limit > 0 then
-            env.span_scan_limit = scan_limit > 3 and 3 or scan_limit
+            env.span_scan_limit = scan_limit > 6 and 6 or scan_limit
         end
         local sym = cfg:get_string("wanxiang_english/trigger")
         if sym and #sym > 0 then env.pair_symbol = sub(sym, 1, 1) end
@@ -735,7 +766,7 @@ local function new_filter_state(env, curr_input, code_ctx)
 
         safe_max_cands = env.max_eng_cands or 0,
         clean_threshold = env.span_clean_threshold or 1,
-        scan_limit = 3,
+        scan_limit = env.span_scan_limit or 6,
         lock_min_length = env.mixed_lock_min_length or 6,
         has_explicit_delimiter = find(curr_input, env.delim_check_pattern) ~= nil,
 
@@ -755,6 +786,9 @@ local function new_filter_state(env, curr_input, code_ctx)
         decision_ready = false,
         pending_lock = false,
         pending_chinese_lock = false,
+        chinese_phrase_seen = false,
+        buffer_chinese_phrase_seen = false,
+        deleted_sentence_after_phrase = false,
 
         buffered = {},
         scanned = 0,
@@ -870,7 +904,13 @@ local function process_candidate(state, cand, prepared, c_type, text, is_ascii, 
         return
     end
 
-    if env.decision_locked and not is_ascii then
+    local is_chinese_phrase = is_chinese_phrase_candidate(c_type, is_ascii)
+    if is_chinese_phrase then
+        state.chinese_phrase_seen = true
+    end
+
+    -- 英文锁存在时，普通中文仍按原规则过滤；中文 phrase 作为保护证据保留。
+    if env.decision_locked and not is_ascii and not is_chinese_phrase then
         return
     end
 
@@ -883,7 +923,7 @@ local function process_candidate(state, cand, prepared, c_type, text, is_ascii, 
             probe_words = word_count_fast(probe_text)
         end
 
-        if probe_words > 1 then
+        if is_english_sentence_candidate(c_type, true, probe_words) then
             return
         end
 
@@ -935,19 +975,30 @@ local function process_candidate(state, cand, prepared, c_type, text, is_ascii, 
         end
     end
 
-    if final_is_ascii and formatted.comment ~= "~" then
+    local final_type = formatted.type
+    local is_sentence = is_english_sentence_candidate(
+        final_type, final_is_ascii, words)
+    local is_table_multiword = is_table_multiword_candidate(
+        final_type, final_is_ascii, words)
+
+    -- 候选顺序中已有中文 phrase 时，后续英文句子直接过滤。
+    -- table 多词候选本来就不属于句子，因此不受此规则影响。
+    if state.chinese_phrase_seen and is_sentence then
+        return
+    end
+
+    if final_is_ascii
+       and formatted.comment ~= "~"
+       and not is_table_multiword then
         remember_english_anchor(state, formatted.text, words)
     end
 
     state.has_valid_candidate = true
-    if words > 1 then
+    if is_sentence then
         state.has_retained_sentence = true
-        if final_is_ascii then
-            refresh_locked_anchor(state, formatted.text, words, formatted.comment)
-        end
+        refresh_locked_anchor(state, formatted.text, words, formatted.comment)
     end
 
-    local final_type = formatted.type
     local is_vip_type = final_type == "user_table"
         or final_type == "fixed"
         or final_type == "phrase"
@@ -970,7 +1021,8 @@ local function buffer_item_survives_mixed(state, item)
     end
 
     if state.env.chinese_decision_locked then
-        return not (item.is_ascii and item.words > 1)
+        return not is_english_sentence_candidate(
+            item.c_type, item.is_ascii, item.words)
     end
 
     return not state.mixed_delete_candidates[item.cand]
@@ -1005,19 +1057,23 @@ local function analyze_buffer_survivors(state)
         end
 
         if survives then
-            if item.is_ascii then
+            local is_sentence = is_english_sentence_candidate(
+                item.c_type, item.is_ascii, item.words)
+            local is_table_multiword = is_table_multiword_candidate(
+                item.c_type, item.is_ascii, item.words)
+
+            if item.is_ascii and not is_table_multiword then
                 remember_english_anchor(state, item.text, item.words)
             end
 
             if not first_survivor_seen then
                 first_survivor_seen = true
-                state.first_survivor_is_sentence = item.is_ascii
-                    and item.words > 1
-                if state.first_survivor_is_sentence then
+                state.first_survivor_is_sentence = is_sentence
+                if is_sentence then
                     state.first_survivor_text = item.text
                 end
             end
-            if item.is_ascii and item.words > 1 then
+            if is_sentence then
                 state.retained_sentence_in_buffer = true
             end
         end
@@ -1097,12 +1153,47 @@ local function flush_buffer(state)
     state.buffered = nil
 end
 
+local function has_cached_phrase_support(state, item)
+    if not item
+       or item.is_ascii
+       or item.c_type ~= "phrase" then
+        return false
+    end
+
+    local env = state.env
+    local curr_input = state.curr_input
+    local sentence_text = item.text
+    local target_len = utf8_length(sentence_text)
+    local max_prefix_len = #curr_input - 1
+    if max_prefix_len > 6 then max_prefix_len = 6 end
+
+    for code_len = 4, max_prefix_len do
+        local cached = env.mixed_word_cache[sub(curr_input, 1, code_len)]
+        if cached then
+            for i = 1, #cached do
+                local word = cached[i]
+                local word_len = utf8_length(word)
+                if word_len >= 2
+                   and word_len < target_len
+                   and find(sentence_text, word, 1, true) then
+                    return true
+                end
+            end
+        end
+    end
+    return false
+end
+
 local function finalize_mixed_decision(state)
     if state.decision_ready then return end
 
     state.retained_sentence_in_buffer = false
     state.deleted_fake_cn_in_buffer = false
     state.first_survivor_is_sentence = false
+
+    if state.deleted_sentence_after_phrase and state.env.decision_locked then
+        reset_mixed_locks(state.env)
+    end
 
     if state.env.chinese_decision_locked then
         state.decision_ready = true
@@ -1120,6 +1211,11 @@ local function finalize_mixed_decision(state)
 
     local endpoint = state.english_sentence_index
     local english_item = endpoint and state.buffered[endpoint] or nil
+    if english_item and state.mixed_delete_candidates[english_item.cand] then
+        endpoint = nil
+        english_item = nil
+    end
+
     local chinese_item = state.chinese_sentence_index
         and state.buffered[state.chinese_sentence_index] or nil
 
@@ -1143,13 +1239,18 @@ local function finalize_mixed_decision(state)
             end
         elseif cn_segments and cn_segments > en_segments
            and (cn_segments - en_segments) >= state.clean_threshold then
+            local deleted_any = false
             for i = 1, state.scanned do
                 local item = state.buffered[i]
-                if item and not item.is_ascii and item.c_type ~= "raw" then
+                if item
+                   and not item.is_ascii
+                   and item.c_type ~= "raw"
+                   and not has_cached_phrase_support(state, item) then
                     state.mixed_delete_candidates[item.cand] = true
+                    deleted_any = true
                 end
             end
-            state.deleted_fake_cn_in_buffer = true
+            state.deleted_fake_cn_in_buffer = deleted_any
         end
     end
     analyze_buffer_survivors(state)
@@ -1166,23 +1267,32 @@ local function buffer_for_decision(state, cand)
     local item = prepare_buffer_item(cand, state.env)
     state.buffered[state.scanned] = item
 
+    if is_chinese_phrase_candidate(item.c_type, item.is_ascii) then
+        state.buffer_chinese_phrase_seen = true
+    elseif state.buffer_chinese_phrase_seen
+       and is_english_sentence_candidate(
+           item.c_type, item.is_ascii, item.words) then
+        state.mixed_delete_candidates[item.cand] = true
+        state.deleted_sentence_after_phrase = true
+    end
+
     if not item.is_ascii
        and item.c_type ~= "raw"
        and not state.chinese_sentence_index then
         state.chinese_sentence_index = state.scanned
     end
 
-    if item.is_ascii
-       and item.words > 1
-       and not state.english_sentence_index then
+    local is_sentence = is_english_sentence_candidate(
+        item.c_type, item.is_ascii, item.words)
+
+    if is_sentence and not state.english_sentence_index then
         state.english_sentence_index = state.scanned
         state.english_sentence_words = item.words
     end
 
     if state.env.decision_locked
        and item.c_type ~= "raw"
-       and item.is_ascii
-       and item.words > 1 then
+       and is_sentence then
         return true
     end
 
