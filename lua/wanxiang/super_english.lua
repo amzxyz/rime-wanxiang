@@ -324,9 +324,8 @@ end
 local EnglishPrefixCleanup = {}
 
 local CLEANUP_KEEP = 0
-local CLEANUP_SKIP = 1
-local CLEANUP_STOP = 2
-local CLEANUP_KEEP_AND_STOP = 3
+local CLEANUP_STOP = 1
+local CLEANUP_KEEP_AND_STOP = 2
 
 local CLEANUP_MIN_CODE_LENGTH = 4
 local CLEANUP_MIN_ENGLISH_PREFIX = 3
@@ -398,10 +397,6 @@ function EnglishPrefixCleanup.check(state, cand)
     end
 
     local cand_type = get_candidate_type(cand)
-
-    if cand_type == "completion" then
-        return CLEANUP_SKIP
-    end
 
     if is_exact_table_type(cand_type) then
         return CLEANUP_KEEP_AND_STOP
@@ -854,39 +849,37 @@ function F.func(input, env)
             return
         end
 
-        if cleanup_action ~= CLEANUP_SKIP then
-            local good_cand = restore_sentence_spacing(cand, env.split_pattern, env.delim_check_pattern)
+        local good_cand = restore_sentence_spacing(cand, env.split_pattern, env.delim_check_pattern)
 
-            local preserve_single_letter_case = single_letter_input
-                and is_single_ascii_letter(good_cand.text)
-                and lower(good_cand.text) == input_lower
+        local preserve_single_letter_case = single_letter_input
+            and is_single_ascii_letter(good_cand.text)
+            and lower(good_cand.text) == input_lower
 
-            local fmt_cand = apply_formatting(good_cand, code_ctx, preserve_single_letter_case)
+        local fmt_cand = apply_formatting(good_cand, code_ctx, preserve_single_letter_case)
 
-            if env.schema_id == "wanxiang_english" and fmt_cand.comment and find(fmt_cand.comment, "\226\152\175") then
-                local original_quality = fmt_cand.quality
-                local nc = Candidate(fmt_cand.type, fmt_cand.start, fmt_cand._end, fmt_cand.text, "")
+        if env.schema_id == "wanxiang_english" and fmt_cand.comment and find(fmt_cand.comment, "\226\152\175") then
+            local original_quality = fmt_cand.quality
+            local nc = Candidate(fmt_cand.type, fmt_cand.start, fmt_cand._end, fmt_cand.text, "")
 
-                nc.preedit = fmt_cand.preedit
-                nc.quality = original_quality
-                fmt_cand = nc
-            end
+            nc.preedit = fmt_cand.preedit
+            nc.quality = original_quality
+            fmt_cand = nc
+        end
 
-            has_valid_candidate = true
+        has_valid_candidate = true
 
-            if not best_candidate_saved and fmt_cand.comment ~= "~" and not env.block_derivation then
-                env.memory[curr_input] = {
-                    text = fmt_cand.text,
-                }
+        if not best_candidate_saved and fmt_cand.comment ~= "~" and not env.block_derivation then
+            env.memory[curr_input] = {
+                text = fmt_cand.text,
+            }
 
-                best_candidate_saved = true
-            end
+            best_candidate_saved = true
+        end
 
-            yield(fmt_cand)
+        yield(fmt_cand)
 
-            if cleanup_action == CLEANUP_KEEP_AND_STOP then
-                return
-            end
+        if cleanup_action == CLEANUP_KEEP_AND_STOP then
+            return
         end
     end
 
