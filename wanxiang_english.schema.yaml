@@ -35,7 +35,7 @@ engine:
     - fallback_segmentor
   translators:
     - table_translator
-    - table_translator@wanxiang_english  #英文词汇表导入
+    - lua_translator@*wanxiang.super_english*T
     - punct_translator
   filters:
     - lua_filter@*wanxiang.super_english*F

@@ -1,23 +1,255 @@
--- lua/super_english.lua
--- https://github.com/amzxyz/rime-wanxiang
--- @description: 英文全能处理器 (Filter Only: 锚点切分 + 动态分隔符 + 超时销毁 + 性能极速优化)
--- @author: amzxyz
+--[[
 
--- 核心功能清单:
--- 1. [Format] 语句级英文大写格式化,逐词大小写对应 (look HELLO -> look HELLO)
--- 2. [Spacing] 智能语句空格切分，智能单词上屏加空格 (Smart Spacing) 与无损分词还原
--- 3. [Memory] 全量历史缓存，完美解决回删乱码问题
--- 4. [Construct] 原生优先构造策略 (短词无分词则重置为原生输入)
--- 5. [Order] 单字母(a/A) 智能插队排序,补齐单字母候选
--- 6. [Limit & Perf] 纯英文数量限制，并增加极速防卡顿熔断机制
+万象英文辅助模块
+作者：amzxyz
+项目：https://github.com/amzxyz/rime-wanxiang
+功能说明：
+
+T（Translator）
+调用 wanxiang_english 词典，负责英文候选输出、候选数量限制，
+以及单字母当前大小写和相反大小写候选的派生。
+
+F（Filter）
+负责英文候选格式化，包括大小写转换、句内空格恢复、连续英文
+自动空格、英文造词、输入记忆和历史回溯。
+
+P（Processor）
+负责监听 ASCII 模式、符号和回车输入，并维护连续英文自动空格
+所需的打断状态。
+
+]]
 
 local byte = string.byte
 local find = string.find
 local gsub = string.gsub
-local upper = string.upper
 local lower = string.lower
+local upper = string.upper
 local sub = string.sub
 local match = string.match
+local gmatch = string.gmatch
+local tonumber = tonumber
+local floor = math.floor
+local concat = table.concat
+
+local DEFAULT_MAX_CANDIDATES = 0
+
+local function is_single_ascii_letter(input)
+    if not input or #input ~= 1 then
+        return false
+    end
+
+    local code = byte(input, 1)
+
+    return (code >= 65 and code <= 90) or (code >= 97 and code <= 122)
+end
+
+local function make_single_candidate(text, input, seg, quality)
+    local start_pos = seg and seg.start or 0
+    local end_pos = seg and seg._end or #input
+
+    local cand = Candidate("completion", start_pos, end_pos, text, "")
+
+    cand.preedit = input
+    cand.quality = quality
+
+    return cand
+end
+
+local function build_single_candidates(input, seg)
+    if not is_single_ascii_letter(input) then
+        return nil, nil
+    end
+
+    local code = byte(input, 1)
+    local input_is_upper = code >= 65 and code <= 90
+
+    local current_case = input
+    local opposite_case = input_is_upper and lower(input) or upper(input)
+
+    local current_candidate = make_single_candidate(current_case, input, seg, 1.602)
+    local opposite_candidate = make_single_candidate(opposite_case, input, seg, 1.601)
+
+    return current_candidate, opposite_candidate
+end
+
+local function update_single_candidate_quality(current_candidate, opposite_candidate, anchor_quality)
+    local base_quality = tonumber(anchor_quality) or 1.6
+
+    if current_candidate then
+        current_candidate.quality = base_quality + 0.002
+    end
+
+    if opposite_candidate then
+        opposite_candidate.quality = base_quality + 0.001
+    end
+end
+
+local function normalized_limit(value)
+    local limit = floor(tonumber(value) or 0)
+
+    if limit < 0 then
+        return 0
+    end
+
+    return limit
+end
+
+local T = {}
+
+function T.init(env)
+    env.max_candidates = DEFAULT_MAX_CANDIDATES
+    env.eng_translator = nil
+
+    local config = env.engine and env.engine.schema and env.engine.schema.config
+
+    if config then
+        local configured_limit = config:get_int("wanxiang_english/max_candidates")
+
+        if configured_limit ~= nil then
+            env.max_candidates = normalized_limit(configured_limit)
+        end
+    end
+
+    if not Component or type(Component.TableTranslator) ~= "function" then
+        return
+    end
+
+    env.eng_translator = Component.TableTranslator(env.engine, "wanxiang_english", "table_translator")
+end
+
+function T.func(input, seg, env)
+    input = input or ""
+
+    if input == "" or not env.eng_translator then
+        return
+    end
+
+    local total_limit = env.max_candidates
+    local limited = total_limit > 0
+    local single_letter = is_single_ascii_letter(input)
+
+    local current_candidate = nil
+    local opposite_candidate = nil
+    local injected_count = 0
+
+    if single_letter then
+        current_candidate, opposite_candidate = build_single_candidates(input, seg)
+
+        if current_candidate then
+            injected_count = injected_count + 1
+        end
+
+        if opposite_candidate then
+            injected_count = injected_count + 1
+        end
+
+        if limited and total_limit < injected_count then
+            total_limit = injected_count
+        end
+    end
+
+    local native_limit = total_limit
+
+    if limited and single_letter then
+        native_limit = total_limit - injected_count
+    end
+
+    local translation = env.eng_translator:query(input, seg)
+
+    if not translation then
+        if current_candidate then
+            yield(current_candidate)
+        end
+
+        if opposite_candidate then
+            yield(opposite_candidate)
+        end
+
+        return
+    end
+
+    if single_letter then
+        local input_lower = lower(input)
+        local next_candidate, iterator_state = translation:iter()
+        local first_native = nil
+        local native_emitted = 0
+
+        -- 原生配额为 0 时不向内部翻译器索取候选。
+        if not limited or native_limit > 0 then
+            while true do
+                local cand = next_candidate(iterator_state)
+
+                if not cand then
+                    break
+                end
+
+                local cand_text = cand.text or ""
+                local is_single_duplicate = #cand_text == 1 and lower(cand_text) == input_lower
+
+                if not is_single_duplicate then
+                    first_native = cand
+                    break
+                end
+            end
+        end
+
+        update_single_candidate_quality(current_candidate, opposite_candidate, first_native and first_native.quality)
+
+        if current_candidate then
+            yield(current_candidate)
+        end
+
+        if opposite_candidate then
+            yield(opposite_candidate)
+        end
+
+        if first_native then
+            yield(first_native)
+            native_emitted = 1
+        end
+
+        if limited and native_emitted >= native_limit then
+            return
+        end
+
+        while true do
+            local cand = next_candidate(iterator_state)
+
+            if not cand then
+                break
+            end
+
+            local cand_text = cand.text or ""
+            local is_single_duplicate = #cand_text == 1 and lower(cand_text) == input_lower
+
+            if not is_single_duplicate then
+                yield(cand)
+                native_emitted = native_emitted + 1
+
+                if limited and native_emitted >= native_limit then
+                    break
+                end
+            end
+        end
+
+        return
+    end
+
+    local emitted = 0
+
+    for cand in translation:iter() do
+        yield(cand)
+        emitted = emitted + 1
+
+        if limited and emitted >= native_limit then
+            break
+        end
+    end
+end
+
+function T.fini(env)
+    env.eng_translator = nil
+end
 
 local function get_now()
     if rime_api and rime_api.get_time_ms then
@@ -30,26 +262,47 @@ local function pure(s)
     return gsub(s, "[^a-zA-Z]", ""):lower()
 end
 
+local function trim_spaces(text)
+    text = gsub(text, "^%s+", "")
+    return gsub(text, "%s+$", "")
+end
+
 local no_spacing_words = {
-    ["http"]  = true, ["https"] = true, ["www"]   = true, ["ftp"]   = true,
-    ["ssh"]   = true, ["mailto"]= true, ["file"]  = true, ["tel"]   = true,
+    ["http"] = true,
+    ["https"] = true,
+    ["www"] = true,
+    ["ftp"] = true,
+    ["ssh"] = true,
+    ["mailto"] = true,
+    ["file"] = true,
+    ["tel"] = true,
 }
 
 local allowed_ascii_symbols = {
-    [32] = true,  -- space
-    [33] = true,  -- !
-    [39] = true,  -- ' 
-    [44] = true,  -- ,
-    [45] = true,  -- -
-    [43] = true,  -- +
-    [46] = true,  -- .
-    [48]=true, [49]=true, [50]=true, [51]=true, [52]=true,
-    [53]=true, [54]=true, [55]=true, [56]=true, [57]=true,
+    [32] = true, -- space
+    [33] = true, -- !
+    [39] = true, -- '
+    [44] = true, -- ,
+    [45] = true, -- -
+    [43] = true, -- +
+    [46] = true, -- .
+    [48] = true,
+    [49] = true,
+    [50] = true,
+    [51] = true,
+    [52] = true,
+    [53] = true,
+    [54] = true,
+    [55] = true,
+    [56] = true,
+    [57] = true,
 }
 
 -- 必须包含至少一个英文字母，否则纯数字/符号直接返回 false
 local function is_ascii_phrase_fast(s)
-    if not s or s == "" then return false end
+    if not s or s == "" then
+        return false
+    end
     local len = #s
     local has_alpha = false
     for i = 1, len do
@@ -57,7 +310,7 @@ local function is_ascii_phrase_fast(s)
         local is_upper = (b >= 65 and b <= 90)
         local is_lower = (b >= 97 and b <= 122)
         local is_allowed_sym = allowed_ascii_symbols[b]
-        
+
         if is_upper or is_lower then
             has_alpha = true
         elseif not is_allowed_sym then
@@ -71,82 +324,137 @@ local function has_letters(s)
     return find(s, "[a-zA-Z]")
 end
 
+local function ascii_lower_byte(code)
+    if code >= 65 and code <= 90 then
+        return code + 32
+    end
+
+    return code
+end
+
 local function find_target_in_text(text, start_pos, target_fp)
     local text_len = #text
     local target_len = #target_fp
-    if target_len == 0 then return nil, nil end
-    local t_idx = 1       
-    local scan_p = start_pos 
-    local s_index = nil   
-    while scan_p <= text_len and t_idx <= target_len do
-        local char_txt = sub(text, scan_p, scan_p)
-        if lower(char_txt) == sub(target_fp, t_idx, t_idx) then
-            if t_idx == 1 then s_index = scan_p end 
-            t_idx = t_idx + 1
+
+    if target_len == 0 then
+        return nil, nil
+    end
+
+    local target_index = 1
+    local scan_pos = start_pos
+    local match_start = nil
+
+    while scan_pos <= text_len and target_index <= target_len do
+        local text_byte = ascii_lower_byte(byte(text, scan_pos))
+        local target_byte = byte(target_fp, target_index)
+
+        if text_byte == target_byte then
+            if target_index == 1 then
+                match_start = scan_pos
+            end
+
+            target_index = target_index + 1
         end
-        scan_p = scan_p + 1
+
+        scan_pos = scan_pos + 1
     end
-    if t_idx > target_len then
-        return s_index, scan_p - 1
+
+    if target_index > target_len then
+        return match_start, scan_pos - 1
     end
+
     return nil, nil
 end
 
 local function restore_sentence_spacing(cand, split_pattern, check_pattern)
     local guide = cand.preedit or ""
-    if not find(guide, check_pattern) then return cand end
+
+    if not find(guide, check_pattern) then
+        return cand
+    end
+
     local text = cand.text
-    local targets = {}
-    for seg in string.gmatch(guide, split_pattern) do
-        local t = pure(seg)
-        if #t > 0 then table.insert(targets, t) end
-    end
-    if #targets == 0 then return cand end
     local starts = {}
-    local p = 1
-    for _, target in ipairs(targets) do
-        local s, e = find_target_in_text(text, p, target)
-        if not s then return cand end
-        table.insert(starts, s)
-        p = e + 1 
-    end
-    local parts = {}
-    if starts[1] > 1 then
-        table.insert(parts, sub(text, 1, starts[1] - 1))
-    end
-    for i = 1, #starts do
-        local current_s = starts[i]
-        local next_s = starts[i+1]
-        local chunk_end = next_s and (next_s - 1) or #text
-        table.insert(parts, sub(text, current_s, chunk_end))
-    end
-    local new_text = ""
-    for i, part in ipairs(parts) do
-        if i == 1 then
-            new_text = part
-        else
-            local last_char = sub(new_text, -1)
-            if last_char == "'" or last_char == "-" then
-                new_text = new_text .. part
-            else
-                new_text = new_text .. " " .. part
+    local search_pos = 1
+    local start_count = 0
+
+    for segment in gmatch(guide, split_pattern) do
+        local target = pure(segment)
+
+        if target ~= "" then
+            local match_start, match_end = find_target_in_text(text, search_pos, target)
+
+            if not match_start then
+                return cand
             end
+
+            start_count = start_count + 1
+            starts[start_count] = match_start
+            search_pos = match_end + 1
         end
     end
-    new_text = gsub(new_text, "%s%s+", " ") 
-    if new_text == "" then return cand end
+
+    if start_count == 0 then
+        return cand
+    end
+
+    local chunks = {}
+    local chunk_count = 0
+
+    if starts[1] > 1 then
+        chunk_count = chunk_count + 1
+        chunks[chunk_count] = sub(text, 1, starts[1] - 1)
+    end
+
+    for index = 1, start_count do
+        local current_start = starts[index]
+        local next_start = starts[index + 1]
+        local chunk_end = next_start and (next_start - 1) or #text
+
+        chunk_count = chunk_count + 1
+        chunks[chunk_count] = sub(text, current_start, chunk_end)
+    end
+
+    local output = {}
+
+    if chunk_count > 0 then
+        output[1] = chunks[1]
+    end
+
+    for index = 2, chunk_count do
+        local previous_chunk = chunks[index - 1]
+        local last_char = sub(previous_chunk, -1)
+
+        if last_char == "'" or last_char == "-" then
+            output[index] = chunks[index]
+        else
+            output[index] = " " .. chunks[index]
+        end
+    end
+
+    local new_text = concat(output)
+    new_text = gsub(new_text, "%s%s+", " ")
+
+    if new_text == "" or new_text == text then
+        return cand
+    end
+
     local nc = Candidate(cand.type, cand.start, cand._end, new_text, cand.comment)
     nc.preedit = cand.preedit
+    nc.quality = cand.quality
+
     return nc
 end
 
 local NBSP = string.char(0xC2, 0xA0)
 
 local function apply_segment_formatting(text, input_code)
-    if not input_code or input_code == "" then return text end
+    if not input_code or input_code == "" or not find(input_code, "%u") then
+        return text
+    end
     local parts = {}
-    local p_code = 1 
-    for word in string.gmatch(text, "%S+") do
+    local p_code = 1
+    for word in gmatch(text, "%S+") do
         local out_word = word
         local clean_word = pure(word)
         local w_len = #clean_word
@@ -154,8 +462,8 @@ local function apply_segment_formatting(text, input_code)
             if find(word, "[\128-\255]") then
                 local input_remain = #input_code - p_code + 1
                 if input_remain > 0 then
-                     local check_len = (w_len < input_remain) and w_len or input_remain
-                     p_code = p_code + check_len
+                    local check_len = (w_len < input_remain) and w_len or input_remain
+                    p_code = p_code + check_len
                 end
             else
                 local input_remain = #input_code - p_code + 1
@@ -172,41 +480,71 @@ local function apply_segment_formatting(text, input_code)
                 end
             end
         end
-        table.insert(parts, out_word)
+        parts[#parts + 1] = out_word
     end
-    return table.concat(parts, " ")
+
+    return concat(parts, " ")
 end
 
-local function apply_formatting(cand, code_ctx)
+local function apply_formatting(cand, code_ctx, preserve_letter_case)
     local text = cand.text
-    if not text or text == "" then return cand end
+    if not text or text == "" then
+        return cand
+    end
+
     local changed = false
-    local norm = gsub(text, NBSP, " ")
-    if norm ~= text then text = norm; changed = true end
+
+    if find(text, NBSP, 1, true) then
+        text = gsub(text, NBSP, " ")
+        changed = true
+    end
+
     if is_ascii_phrase_fast(text) then
-        if code_ctx.raw_input then
+        if code_ctx.raw_input and not preserve_letter_case then
             local new_text = apply_segment_formatting(text, code_ctx.raw_input)
-            if new_text ~= text then text = new_text; changed = true end
+
+            if new_text ~= text then
+                text = new_text
+                changed = true
+            end
         end
+
         if code_ctx.spacing_mode and code_ctx.spacing_mode ~= "off" then
             local mode = code_ctx.spacing_mode
+
             if mode == "smart" then
-                if code_ctx.prev_is_eng then 
-                    if not find(text, "^%s") then text = " " .. text; changed = true end
+                if code_ctx.prev_is_eng and not find(text, "^%s") then
+                    text = " " .. text
+                    changed = true
                 end
-            elseif mode == "before" then 
-                if not find(text, "^%s") then text = " " .. text; changed = true end
-            elseif mode == "after" then 
-                if not find(text, "%s$") then text = text .. " "; changed = true end
+            elseif mode == "before" then
+                if not find(text, "^%s") then
+                    text = " " .. text
+                    changed = true
+                end
+            elseif mode == "after" then
+                if not find(text, "%s$") then
+                    text = text .. " "
+                    changed = true
+                end
             end
         end
     end
-    if not changed then return cand end
+
+    if not changed then
+        return cand
+    end
+
     local nc = Candidate(cand.type, cand.start, cand._end, text, cand.comment)
+
     nc.preedit = cand.preedit
+    nc.quality = cand.quality
+
     return nc
 end
+
 local P = {}
+
 function P.init(env)
     local ctx = env.engine.context
     env.last_ascii_mode = ctx:get_option("ascii_mode") or false
@@ -238,13 +576,14 @@ function P.fini(env)
 end
 
 function P.func(key, env)
-    if key:release() then return 2 end
+    if key:release() then
+        return 2
+    end
 
     local ctx = env.engine.context
     local ascii_mode = ctx:get_option("ascii_mode")
     local kc = key.keycode
 
-    -- 符号和回车打断检测（composition 为空时）
     if ctx.composition:empty() then
         local is_letter = (kc >= 0x41 and kc <= 0x5a) or (kc >= 0x61 and kc <= 0x7a)
         local is_digit = (kc >= 0x30 and kc <= 0x39)
@@ -255,47 +594,55 @@ function P.func(key, env)
         end
     end
 
-    -- 英文模式下记录字符输入
     if ascii_mode then
         env.typed_in_ascii = true
     end
 
     return 2
 end
+
 local F = {}
+
 function F.init(env)
     local cfg = env.engine.schema.config
     env.memory = {}
     env.schema_id = env.engine.schema.schema_id
     env.english_spacing_mode = "off"
-    env.spacing_timeout = 0 
+    env.spacing_timeout = 0
     env.lookup_key = "`"
-    env.max_eng_cands = 0
     env.pair_symbol = "\\"
-    local delimiter_str = " '" 
+    local delimiter_str = " '"
     if cfg then
         local str = cfg:get_string("wanxiang_english/english_spacing")
-        if str then env.english_spacing_mode = str end
+        if str then
+            env.english_spacing_mode = str
+        end
         local timeout = cfg:get_double("wanxiang_english/spacing_timeout")
-        if timeout then env.spacing_timeout = timeout end
+        if timeout then
+            env.spacing_timeout = timeout
+        end
         local key = cfg:get_string("wanxiang_lookup/key")
-        if key and key ~= "" then env.lookup_key = key end
-        local max_cands = cfg:get_int("wanxiang_english/max_candidates")
-        if max_cands then env.max_eng_cands = max_cands end
+        if key and key ~= "" then
+            env.lookup_key = key
+        end
         local sym = cfg:get_string("wanxiang_english/trigger")
-        if sym and #sym > 0 then env.pair_symbol = sub(sym, 1, 1) end
-        delimiter_str = cfg:get_string('speller/delimiter') or delimiter_str
+        if sym and #sym > 0 then
+            env.pair_symbol = sub(sym, 1, 1)
+        end
+        delimiter_str = cfg:get_string("speller/delimiter") or delimiter_str
     end
-    env.lookup_key_esc = gsub(env.lookup_key, "([%%%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1")
-    env.delimiter_char = sub(delimiter_str, 1, 1)
+    env.pair_symbol_double = env.pair_symbol .. env.pair_symbol
+
     local escaped_delims = gsub(delimiter_str, "([%%%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1")
-    env.split_pattern = "[^" .. escaped_delims .. "]+"     
-    env.delim_check_pattern = "[" .. escaped_delims .. "]" 
+
+    env.split_pattern = "[^" .. escaped_delims .. "]+"
+
+    env.delim_check_pattern = "[" .. escaped_delims .. "]"
+
     env.prev_commit_is_eng = false
     env.last_commit_time = 0
     env.comp_start_time = nil
-    env.spacing_active = false  
-    env.decision_locked = false
+    env.block_derivation = false
     if env.engine.context then
         env.update_notifier = env.engine.context.update_notifier:connect(function(ctx)
             local curr_input = ctx.input
@@ -308,23 +655,22 @@ function F.init(env)
             if curr_input == "" then
                 env.comp_start_time = nil
                 env.memory = {}
-                collectgarbage("step", 500)
             elseif env.comp_start_time == nil then
                 env.comp_start_time = get_now()
             end
         end)
         env.commit_notifier = env.engine.context.commit_notifier:connect(function(ctx)
             local commit_text = ctx:get_commit_text()
-            local text_no_space = gsub(commit_text, "%s", "")
-            local is_eng = is_ascii_phrase_fast(text_no_space)
-            
+            local is_eng = is_ascii_phrase_fast(commit_text)
+
             if is_eng then
-                local clean = gsub(commit_text, "%s+$", ""):lower()
+                local clean = lower(trim_spaces(commit_text))
+
                 if no_spacing_words[clean] then
                     is_eng = false
                 end
             end
-            
+
             env.prev_commit_is_eng = is_eng
             if is_eng then
                 env.last_commit_time = get_now()
@@ -338,8 +684,14 @@ function F.init(env)
 end
 
 function F.fini(env)
-    if env.update_notifier then env.update_notifier:disconnect(); env.update_notifier = nil end
-    if env.commit_notifier then env.commit_notifier:disconnect(); env.commit_notifier = nil end
+    if env.update_notifier then
+        env.update_notifier:disconnect()
+        env.update_notifier = nil
+    end
+    if env.commit_notifier then
+        env.commit_notifier:disconnect()
+        env.commit_notifier = nil
+    end
     env.memory = nil
 end
 
@@ -350,185 +702,93 @@ function F.func(input, env)
         env.prev_commit_is_eng = false
     end
 
-
     local curr_input = ctx.input
-    local symbol = env.pair_symbol
+
     if not has_letters(curr_input) then
         for cand in input:iter() do
             yield(cand)
         end
-        return 
+        return
     end
 
     local has_valid_candidate = false
     local best_candidate_saved = false
     local code_len = #curr_input
+    local single_letter_input = code_len == 1 and is_single_ascii_letter(curr_input)
+    local input_lower = single_letter_input and lower(curr_input) or nil
 
     -- [Feature] 强制英文造词
-    if code_len > 2 and sub(curr_input, -2) == symbol .. symbol then
+    if code_len > 2 and sub(curr_input, -2) == env.pair_symbol_double then
         local raw_text = sub(curr_input, 1, code_len - 2)
         if is_ascii_phrase_fast(raw_text) then
             if ctx.composition and not ctx.composition:empty() then
                 ctx.composition:back().prompt = "〔英文造词〕"
             end
             local cand = Candidate("english", 0, code_len, raw_text, "")
-            cand.preedit = raw_text 
+            cand.preedit = raw_text
             yield(cand)
-            return 
+            return
         end
     end
-    
+
     local break_signal = (_G.english_spacing_break == true)
     local effective_prev_is_eng = env.prev_commit_is_eng
 
-    if break_signal then 
+    if break_signal then
         effective_prev_is_eng = false
         env.prev_commit_is_eng = false
     elseif effective_prev_is_eng and env.spacing_timeout > 0 then
         local check_time = env.comp_start_time or get_now()
         if (check_time - env.last_commit_time) > env.spacing_timeout then
             effective_prev_is_eng = false
-            env.prev_commit_is_eng = false 
+            env.prev_commit_is_eng = false
         end
     end
 
     local code_ctx = {
-        raw_input = curr_input, 
+        raw_input = curr_input,
         spacing_mode = env.english_spacing_mode,
-        prev_is_eng = effective_prev_is_eng
+        prev_is_eng = effective_prev_is_eng,
     }
 
-    local single_char_injected = false
-    local single_chars = {}
-    local has_single_chars = false
-    
-    if code_len == 1 then
-        local b = byte(curr_input)
-        local is_upper = (b >= 65 and b <= 90)
-        local is_lower = (b >= 97 and b <= 122)
-        if is_upper or is_lower then
-            local t1 = curr_input
-            local t2 = is_upper and lower(curr_input) or upper(curr_input)
-            table.insert(single_chars, Candidate("completion", 0, 1, t1, ""))
-            table.insert(single_chars, Candidate("completion", 0, 1, t2, ""))
-            has_single_chars = true
-        end
-    else
-        single_char_injected = true 
-    end
-
-    local eng_yield_count = 0
-    -- 如果存在单字母派生，预先将这两个候选计入配额
-    if has_single_chars then
-        eng_yield_count = 2
-    end
-    
-    local safe_max_cands = tonumber(env.max_eng_cands) or 0
-    local consecutive_skips = 0
-
     for cand in input:iter() do
-        local c_type = cand.type
-        local raw_text = cand.text
-        
-        -- [垃圾词判定]：保护符号，只去重单字母
-        local is_garbage = (c_type == "raw") 
-        if not is_garbage and code_len == 1 and has_letters(curr_input) then
-             if lower(raw_text) == lower(curr_input) then
-                 is_garbage = true
-             end
+        local good_cand = restore_sentence_spacing(cand, env.split_pattern, env.delim_check_pattern)
+
+        local preserve_single_letter_case = single_letter_input
+            and is_single_ascii_letter(good_cand.text)
+            and lower(good_cand.text) == input_lower
+
+        local fmt_cand = apply_formatting(good_cand, code_ctx, preserve_single_letter_case)
+
+        if env.schema_id == "wanxiang_english" and fmt_cand.comment and find(fmt_cand.comment, "\226\152\175") then
+            local original_quality = fmt_cand.quality
+
+            local nc = Candidate(fmt_cand.type, fmt_cand.start, fmt_cand._end, fmt_cand.text, "")
+
+            nc.preedit = fmt_cand.preedit
+            nc.quality = original_quality
+            fmt_cand = nc
         end
-        
-        if not is_garbage then
-            local skip_cand = false
-            local is_ascii = is_ascii_phrase_fast(raw_text)
-            
-            -- [前置判断]
-            if is_ascii then
-                if c_type == "user_phrase" or c_type == "user_table" then
-                    -- 命中用户自定义词库(纯英文)，直接放行，既不拦截也不消耗限流名额
-                elseif safe_max_cands > 0 and eng_yield_count >= safe_max_cands then
-                    skip_cand = true
-                else
-                    eng_yield_count = eng_yield_count + 1
-                end
-            end
 
-            if skip_cand then
-                -- 即使当前的词被丢弃，也要确保单字母（若存在）成功插队输出
-                if has_single_chars and not single_char_injected then
-                    if not best_candidate_saved then
-                        env.memory[curr_input] = { text = single_chars[1].text, preedit = curr_input }
-                        best_candidate_saved = true
-                    end
-                    for _, c in ipairs(single_chars) do yield(c) end
-                    single_char_injected = true
-                    has_valid_candidate = true
-                end
+        has_valid_candidate = true
 
-                consecutive_skips = consecutive_skips + 1
-                if consecutive_skips > 50 then
-                    break
-                end
-            else
-                consecutive_skips = 0
+        if not best_candidate_saved and fmt_cand.comment ~= "~" and not env.block_derivation then
+            env.memory[curr_input] = {
+                text = fmt_cand.text,
+            }
 
-                local good_cand = restore_sentence_spacing(cand, env.split_pattern, env.delim_check_pattern)
-                local fmt_cand = apply_formatting(good_cand, code_ctx)
-                
-                if env.schema_id == "wanxiang_english" and fmt_cand.comment and find(fmt_cand.comment, "\226\152\175") then
-                    local nc = Candidate(fmt_cand.type, fmt_cand.start, fmt_cand._end, fmt_cand.text, "")
-                    nc.preedit = fmt_cand.preedit
-                    fmt_cand = nc
-                end
-                
-                has_valid_candidate = true
-                
-                local final_type = fmt_cand.type
-                local is_vip_type = (final_type == "user_table" or final_type == "fixed" or final_type == "phrase")
-                local is_hidden_vip = (not is_vip_type) and (not is_ascii)
-                local treat_as_vip = is_vip_type or is_hidden_vip
-
-                if treat_as_vip then
-                    if not best_candidate_saved and fmt_cand.comment ~= "~" and not env.block_derivation then
-                        env.memory[curr_input] = {
-                            text = fmt_cand.text,
-                            preedit = curr_input
-                        }
-                        best_candidate_saved = true
-                    end
-                    yield(fmt_cand)
-
-                else
-                    if has_single_chars and not single_char_injected then
-                        if not best_candidate_saved then
-                            env.memory[curr_input] = { text = single_chars[1].text, preedit = curr_input }
-                            best_candidate_saved = true
-                        end
-                        for _, c in ipairs(single_chars) do yield(c) end
-                        single_char_injected = true
-                        has_valid_candidate = true
-                    end
-                    
-                    if not best_candidate_saved and fmt_cand.comment ~= "~" and not env.block_derivation then
-                        env.memory[curr_input] = {
-                            text = fmt_cand.text,
-                            preedit = curr_input
-                        }
-                        best_candidate_saved = true
-                    end
-                    yield(fmt_cand)
-                end
-            end
+            best_candidate_saved = true
         end
+
+        yield(fmt_cand)
     end
 
     -- [Phase 3] 历史回溯构造 & 统一兜底
     if not has_valid_candidate then
-        if env.block_derivation then return end
-        
-        local yielded_derived = false 
-        
-        if env.schema_id == "wanxiang_english" and has_letters(curr_input) then
+        if env.block_derivation then
+            return
+        end
+        if env.schema_id == "wanxiang_english" then
             local anchor = nil
             local diff = ""
             for i = #curr_input - 1, 1, -1 do
@@ -539,23 +799,21 @@ function F.func(input, env)
                     break
                 end
             end
-            
+
             if anchor and diff ~= "" then
                 local has_spacing = find(anchor.text, " ")
                 local last_word = match(anchor.text, "(%S+)%s*$") or ""
                 local last_len = #last_word
                 local spacer = " "
-                if sub(anchor.text, -1) == " " then spacer = "" end
+                if sub(anchor.text, -1) == " " then
+                    spacer = ""
+                end
 
                 local output_text = ""
-                local output_preedit = ""
-
                 if has_spacing or last_len > 3 then
                     output_text = anchor.text .. spacer .. diff
-                    output_preedit = anchor.text .. spacer .. diff
                 else
                     output_text = curr_input
-                    output_preedit = curr_input
                 end
 
                 output_text = apply_segment_formatting(output_text, curr_input)
@@ -563,10 +821,13 @@ function F.func(input, env)
                 cand.preedit = output_text
                 cand.quality = 999
                 yield(cand)
-                yielded_derived = true
             end
         end
     end
 end
 
-return { F = F, P = P }
+return {
+    T = T,
+    F = F,
+    P = P,
+}
