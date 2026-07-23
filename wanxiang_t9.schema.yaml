@@ -52,7 +52,7 @@ engine:
   processors:
     - lua_processor@*wanxiang.user_predict*P  #靠自己养的专属预测联想处理器，不再依赖前端插件以及固定数据
     - lua_processor@*wanxiang.super_processor  #KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
-    - t9_processor  #元书T9处理器
+    #- t9_processor  #现在九键前端逐步增多，元书T9处理器，使用者去掉井号，默认开启会报错。
     - lua_processor@*wanxiang.super_tips  #超级提示模块：表情、简码、翻译、化学式、等等靠你想象
     - lua_processor@*wanxiang.super_sequence*P  #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+l 移除位移  ctrl+p 置顶
     - ascii_composer  #处理英文模式及中英文切换
