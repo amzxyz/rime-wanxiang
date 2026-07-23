@@ -12,6 +12,8 @@ switches:
   - name: ascii_mode
     reset: 0
     states: [整句, 字母]
+  - name: full_shape
+    states: [半角, 全角]
   - name: emoji
     states: [表情关, 表情开]
   - name: chinese_english
