@@ -1,5 +1,30 @@
 # Changelog
 
+## [16.2.3](https://github.com/amzxyz/rime-wanxiang/compare/v16.2.2...v16.2.3) (2026-07-23)
+
+
+### 📚 词库更新
+
+* 词库调整 ([b4dae7c](https://github.com/amzxyz/rime-wanxiang/commit/b4dae7ccbdb3b35c91e6498e2bae5b5362f390d6))
+
+
+### 🐛 Bug 修复
+
+* 删除英文候选后面的派生逻辑已经迁移到english对应lua，这里移除相关逻辑 ([4c696bd](https://github.com/amzxyz/rime-wanxiang/commit/4c696bd15d9f5616dd39023b7fcd0383fedd9c9f))
+* 删除英文相关逻辑继续优化 ([2efddd9](https://github.com/amzxyz/rime-wanxiang/commit/2efddd937d29d896bd2e13ed7e6ff4edf5dabe9e))
+* 在确认英文靠前的情形下干掉无效的补全候选 ([0221fcf](https://github.com/amzxyz/rime-wanxiang/commit/0221fcfdff171fabb0c99e31aff8a50812b2f271))
+* 完善英文符号引用 ([6ab2b45](https://github.com/amzxyz/rime-wanxiang/commit/6ab2b458926096457a62b17e6273a2df98232131))
+* 完善英文符号引用 ([ea451a2](https://github.com/amzxyz/rime-wanxiang/commit/ea451a2a2cb5c6e02405ffd65a786543f2830bf8))
+* 移除PR造成的句号问号作为编码的配置 ([8800663](https://github.com/amzxyz/rime-wanxiang/commit/8800663b29a9ef15b340a996e2c76a15cecae1df))
+* 英文方案增加全角半角开关 ([3ac622b](https://github.com/amzxyz/rime-wanxiang/commit/3ac622b7b301e8ed21580a181a04b562464ab797))
+* 英文方案添加符号处理器 ([0e4be46](https://github.com/amzxyz/rime-wanxiang/commit/0e4be462bc4f3df8c9cf4b8d697dbae02054f6e4))
+* 默认注释掉元书t9处理器，现在九键前端增多，使用者自己patch开启 ([16cd5a0](https://github.com/amzxyz/rime-wanxiang/commit/16cd5a08003ad582763cdaf74a4a6e43a543963c))
+
+
+### 💅 重构
+
+* 重构英文限流位置提升性能 ([f01947d](https://github.com/amzxyz/rime-wanxiang/commit/f01947d59d06c5d7d572ea98e301c78c34235591))
+
 ## [16.2.2](https://github.com/amzxyz/rime-wanxiang/compare/v16.2.1...v16.2.2) (2026-07-22)
 
 
