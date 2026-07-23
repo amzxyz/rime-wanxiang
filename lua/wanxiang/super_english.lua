@@ -11,7 +11,8 @@ T（Translator）
 
 F（Filter）
 负责英文候选格式化，包括大小写转换、句内空格恢复、连续英文
-自动空格、英文造词、输入记忆和历史回溯。
+自动空格、英文造词、输入记忆和历史回溯；在中英混合方案中，
+还负责清理明确英文候选之后的无效补全候选。
 
 P（Processor）
 负责监听 ASCII 模式、符号和回车输入，并维护连续英文自动空格
@@ -318,6 +319,95 @@ local function is_ascii_phrase_fast(s)
         end
     end
     return has_alpha
+end
+
+local EnglishPrefixCleanup = {}
+
+local CLEANUP_KEEP = 0
+local CLEANUP_SKIP = 1
+local CLEANUP_STOP = 2
+local CLEANUP_KEEP_AND_STOP = 3
+
+local CLEANUP_MIN_CODE_LENGTH = 4
+local CLEANUP_MIN_ENGLISH_PREFIX = 3
+
+local function get_candidate_type(cand)
+    local cand_type = cand.type
+
+    if cand_type and cand_type ~= "" then
+        return cand_type
+    end
+
+    local genuine = cand.get_genuine and cand:get_genuine() or nil
+
+    return genuine and genuine.type or ""
+end
+
+local function is_exact_table_type(cand_type)
+    return cand_type == "table"
+        or cand_type == "user_table"
+        or cand_type == "fixed"
+end
+
+function EnglishPrefixCleanup.new(schema_id, code_len)
+    if schema_id == "wanxiang_english" or code_len < CLEANUP_MIN_CODE_LENGTH then
+        return nil
+    end
+
+    return {
+        detecting = true,
+        active = false,
+        english_count = 0,
+        english_seen = {},
+    }
+end
+
+function EnglishPrefixCleanup.check(state, cand)
+    local text = trim_spaces(cand.text or "")
+    local is_english = is_ascii_phrase_fast(text)
+
+    if not state.active then
+        if not state.detecting then
+            return CLEANUP_KEEP
+        end
+
+        if not is_english then
+            state.detecting = false
+            state.english_seen = nil
+            return CLEANUP_KEEP
+        end
+
+        local english_key = lower(text)
+
+        if not state.english_seen[english_key] then
+            state.english_seen[english_key] = true
+            state.english_count = state.english_count + 1
+        end
+
+        if state.english_count >= CLEANUP_MIN_ENGLISH_PREFIX then
+            state.active = true
+            state.detecting = false
+            state.english_seen = nil
+        end
+
+        return CLEANUP_KEEP
+    end
+
+    if is_english then
+        return CLEANUP_KEEP
+    end
+
+    local cand_type = get_candidate_type(cand)
+
+    if cand_type == "completion" then
+        return CLEANUP_SKIP
+    end
+
+    if is_exact_table_type(cand_type) then
+        return CLEANUP_KEEP_AND_STOP
+    end
+
+    return CLEANUP_STOP
 end
 
 local function has_letters(s)
@@ -751,36 +841,53 @@ function F.func(input, env)
         prev_is_eng = effective_prev_is_eng,
     }
 
+    local prefix_cleanup = EnglishPrefixCleanup.new(env.schema_id, code_len)
+
     for cand in input:iter() do
-        local good_cand = restore_sentence_spacing(cand, env.split_pattern, env.delim_check_pattern)
+        local cleanup_action = CLEANUP_KEEP
 
-        local preserve_single_letter_case = single_letter_input
-            and is_single_ascii_letter(good_cand.text)
-            and lower(good_cand.text) == input_lower
-
-        local fmt_cand = apply_formatting(good_cand, code_ctx, preserve_single_letter_case)
-
-        if env.schema_id == "wanxiang_english" and fmt_cand.comment and find(fmt_cand.comment, "\226\152\175") then
-            local original_quality = fmt_cand.quality
-
-            local nc = Candidate(fmt_cand.type, fmt_cand.start, fmt_cand._end, fmt_cand.text, "")
-
-            nc.preedit = fmt_cand.preedit
-            nc.quality = original_quality
-            fmt_cand = nc
+        if prefix_cleanup then
+            cleanup_action = EnglishPrefixCleanup.check(prefix_cleanup, cand)
         end
 
-        has_valid_candidate = true
-
-        if not best_candidate_saved and fmt_cand.comment ~= "~" and not env.block_derivation then
-            env.memory[curr_input] = {
-                text = fmt_cand.text,
-            }
-
-            best_candidate_saved = true
+        if cleanup_action == CLEANUP_STOP then
+            return
         end
 
-        yield(fmt_cand)
+        if cleanup_action ~= CLEANUP_SKIP then
+            local good_cand = restore_sentence_spacing(cand, env.split_pattern, env.delim_check_pattern)
+
+            local preserve_single_letter_case = single_letter_input
+                and is_single_ascii_letter(good_cand.text)
+                and lower(good_cand.text) == input_lower
+
+            local fmt_cand = apply_formatting(good_cand, code_ctx, preserve_single_letter_case)
+
+            if env.schema_id == "wanxiang_english" and fmt_cand.comment and find(fmt_cand.comment, "\226\152\175") then
+                local original_quality = fmt_cand.quality
+                local nc = Candidate(fmt_cand.type, fmt_cand.start, fmt_cand._end, fmt_cand.text, "")
+
+                nc.preedit = fmt_cand.preedit
+                nc.quality = original_quality
+                fmt_cand = nc
+            end
+
+            has_valid_candidate = true
+
+            if not best_candidate_saved and fmt_cand.comment ~= "~" and not env.block_derivation then
+                env.memory[curr_input] = {
+                    text = fmt_cand.text,
+                }
+
+                best_candidate_saved = true
+            end
+
+            yield(fmt_cand)
+
+            if cleanup_action == CLEANUP_KEEP_AND_STOP then
+                return
+            end
+        end
     end
 
     -- [Phase 3] 历史回溯构造 & 统一兜底
