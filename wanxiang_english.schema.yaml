@@ -26,6 +26,7 @@ engine:
     - key_binder
     - speller
     - recognizer
+    - punctuator
     - selector
     - navigator
     - express_editor
