@@ -63,6 +63,8 @@ key_binder:
     - {when: always, accept: Shift+space, select: .next}  #下一个方案
     #使用Control+e进入翻译模式
     - {when: has_menu, accept: "Control+e", toggle: chinese_english}
+punctuator:
+  __include: wanxiang_symbols:/ascii_symbol_table
 recognizer:
   import_preset: default
 
