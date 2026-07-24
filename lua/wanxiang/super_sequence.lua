@@ -21,6 +21,7 @@ local userdb   = require("wanxiang/userdb")
 local DEFAULT_SEQ_KEY = { up = "Control+j", down = "Control+k", reset = "Control+l", pin = "Control+p" }
 local SYNC_FILE_PREFIX, SYNC_FILE_SUFFIX = "sequence", ".txt"
 local RUNTIME_EXPORT = false
+local MAX_SORT_CANDIDATES = 500
 
 local _normalize_path, _is_abs_path, _path_join, _manifest_path
 
@@ -165,6 +166,49 @@ end
 ------------------------------------------------------------
 local seq_db = nil
 
+local function resolve_db_name(config)
+    local db_name = config and config:get_string("super_sequence/db_name") or nil
+    if not db_name or db_name == "" then return "lua/sequence" end
+    db_name = db_name:gsub("\\", "/"):gsub("^/+", "")
+    while db_name:match("%.%./") do db_name = db_name:gsub("%.%./", "") end
+    db_name = db_name:gsub("%./", "")
+    return db_name ~= "" and db_name or "lua/sequence"
+end
+
+local function ensure_sequence_db(config)
+    if not seq_db then
+        seq_db = userdb.LevelDb(resolve_db_name(config))
+        seq_db:open()
+    end
+    return seq_db
+end
+
+-- 当前输入先精确查询；命中后再按该输入前缀预取后续记录。
+-- false 表示该完整输入已经确认没有 DB 记录。
+local adjustment_value_cache = {}
+-- 记录已经完整加载的最短前缀；这些前缀彼此不包含。
+local adjustment_loaded_prefixes = {}
+
+local function invalidate_adjustment_cache()
+    adjustment_value_cache = {}
+    adjustment_loaded_prefixes = {}
+end
+
+local function is_prefix_covered(input)
+    for prefix in pairs(adjustment_loaded_prefixes) do
+        if input:sub(1, #prefix) == prefix then return true end
+    end
+    return false
+end
+
+local function mark_prefix_covered(prefix)
+    if is_prefix_covered(prefix) then return end
+    for loaded in pairs(adjustment_loaded_prefixes) do
+        if loaded:sub(1, #prefix) == prefix then adjustment_loaded_prefixes[loaded] = nil end
+    end
+    adjustment_loaded_prefixes[prefix] = true
+end
+
 local seq_property = { ADJUST_KEY = "sequence_adjustment_code" }
 function seq_property.get(context) return context:get_property(seq_property.ADJUST_KEY) end
 function seq_property.reset(context)
@@ -206,11 +250,57 @@ local function parse_adjustment_values(values_str)
     return next(mp) and mp or nil
 end
 
-local function get_input_adjustments(input)
-    if not input or input == "" then return nil end
-    if not seq_db then return nil end
-    local value_str = seq_db:fetch(input)
-    return value_str and parse_adjustment_values(value_str) or nil
+local function has_effective_adjustment(adjustments)
+    for _, adjustment in pairs(adjustments or {}) do
+        if (tonumber(adjustment.fixed_position) or 0) > 0 then
+            return true
+        end
+    end
+    return false
+end
+
+local function cache_adjustment_prefix(prefix)
+    if not prefix or prefix == "" or not seq_db or is_prefix_covered(prefix) then return false end
+
+    local accessor = seq_db:query(prefix)
+    if not accessor then return false end
+
+    for key, value in accessor:iter() do
+        if key:sub(1, #prefix) ~= prefix then break end
+        adjustment_value_cache[key] = value
+    end
+    mark_prefix_covered(prefix)
+    return true
+end
+
+local function get_input_adjustments(input, prefetch_prefix)
+    if not input or input == "" or not seq_db then return nil, false end
+
+    local value_str = adjustment_value_cache[input]
+    if value_str == false then return nil, false end
+
+    if value_str == nil then
+        -- 父前缀已经完整加载时，缓存里不存在就能直接判定为无记录，不再二次 fetch。
+        if is_prefix_covered(input) then
+            adjustment_value_cache[input] = false
+            return nil, false
+        end
+
+        -- 第一阶段：当前完整输入做精确查询。
+        value_str = seq_db:fetch(input)
+        if not value_str then
+            adjustment_value_cache[input] = false
+            return nil, false
+        end
+        adjustment_value_cache[input] = value_str
+    end
+
+    local adjustments = parse_adjustment_values(value_str)
+    local effective = has_effective_adjustment(adjustments)
+
+    -- 第二阶段：只有当前完整输入存在有效排序记录时，才预取其后续前缀记录。
+    if prefetch_prefix and effective then cache_adjustment_prefix(input) end
+    return adjustments, effective
 end
 
 ------------------------------------------------------------
@@ -262,13 +352,18 @@ function seq_data.flush_pending(max_lines)
     if not seq_data._ensure_export_file() then return end
     local _, _, _, export_path = seq_data._current_paths()
     local f = io.open(export_path, "a"); if not f then return end
-    local wrote = 0
-    for _, line in pairs(seq_data.pending_map) do
-        if max_lines and wrote >= max_lines then break end
-        f:write(line); wrote = wrote + 1
+
+    local wrote, remaining = 0, {}
+    for key, line in pairs(seq_data.pending_map) do
+        if max_lines and wrote >= max_lines then
+            remaining[key] = line
+        else
+            f:write(line)
+            wrote = wrote + 1
+        end
     end
     f:close()
-    seq_data.pending_map = {}
+    seq_data.pending_map = remaining
 end
 
 function seq_data.maybe_export(force)
@@ -295,11 +390,14 @@ local function save_adjustment(input, item, adjustment, no_export)
     for it, a in pairs(mp) do
         arr[#arr + 1] = string.format("i=%s p=%s o=%s t=%s", it, a.fixed_position, a.offset or 0, a.updated_at or "")
     end
-    seq_db:update(input, table.concat(arr, "\t"))
+    local value_str = table.concat(arr, "\t")
+    if not seq_db:update(input, value_str) then return false end
+    adjustment_value_cache[input] = value_str
 
     if (not no_export) and RUNTIME_EXPORT then
         _enqueue_export(input, item, { fixed_position = p, offset = o, updated_at = t })
     end
+    return true
 end
 
 local function _keep_latest(latest, input, item, adj)
@@ -415,6 +513,7 @@ local function init_once()
     local latest = collect_latest_from_all_sources()
     rewrite_export_from_latest(latest)
     apply_latest_to_db(latest)
+    invalidate_adjustment_cache()
 end
 
 ------------------------------------------------------------
@@ -422,24 +521,7 @@ end
 ------------------------------------------------------------
 local P = {}
 function P.init(env)
-    local config = env.engine.schema.config
-
-    local raw_db_name = config:get_string("super_sequence/db_name")
-    local db_name = raw_db_name
-
-    if db_name and db_name ~= "" then
-        db_name = db_name:gsub("\\", "/"):gsub("^/+", "")
-        while db_name:match("%.%./") do db_name = db_name:gsub("%.%./", "") end
-        db_name = db_name:gsub("%./", "")
-        if db_name == "" then db_name = "lua/sequence" end
-    else
-        db_name = "lua/sequence"
-    end
-    -- 3. 实例化 LevelDB
-    if not seq_db then 
-        seq_db = userdb.LevelDb(db_name) 
-    end
-    seq_db:open()
+    ensure_sequence_db(env.engine.schema.config)
     seq_data.device_name = _detect_device_name()
     init_once()
 end
@@ -535,22 +617,7 @@ function F.init(env)
     local sym = cfg and (cfg:get_string("paired_symbols/symbol") or cfg:get_string("paired_symbols/trigger")) or "\\"
     env.symbol = string.sub(sym, 1, 1)
     env.page_size = cfg and cfg:get_int("menu/page_size") or 5
-    -- 确保 Filter 也能正确初始化数据库
-    local raw_db_name = cfg:get_string("sequence/db_name")
-    local db_name = raw_db_name
-    if db_name and db_name ~= "" then
-        db_name = db_name:gsub("\\", "/"):gsub("^/+", "")
-        while db_name:match("%.%./") do db_name = db_name:gsub("%.%./", "") end
-        db_name = db_name:gsub("%./", "")
-        if db_name == "" then db_name = "lua/sequence" end
-    else
-        db_name = "lua/sequence"
-    end
-    
-    if not seq_db then 
-        seq_db = userdb.LevelDb(db_name)
-        seq_db:open()
-    end
+    ensure_sequence_db(cfg)
 end
 function F.fini()
     if RUNTIME_EXPORT then seq_data.maybe_export(true) end
@@ -589,33 +656,30 @@ local function apply_prev_adjustment(cands, prev)
 end
 
 local function apply_curr_adjustment(candidates, curr_adjustment)
-    if curr_adjustment == nil then return end
-    local from_position = nil
+    if not curr_adjustment then return end
+
+    local from_position
     for position, cand in ipairs(candidates) do
-        if cand.text == curr_state.selected_phrase then from_position = position; break end
+        if cand.text == curr_state.selected_phrase then
+            from_position = position
+            break
+        end
     end
-    if from_position == nil then return end
+    if not from_position or not curr_adjustment.raw_position then return end
 
     local to_position = from_position
     if curr_state.is_adjust_mode() then
-        to_position = from_position + curr_state.offset
+        to_position = math.max(1, math.min(#candidates, from_position + curr_state.offset))
         curr_adjustment.offset = to_position - curr_adjustment.raw_position
         curr_adjustment.fixed_position = to_position
+        curr_adjustment.final_position = to_position
 
-        local min_position, max_position = 1, #candidates
         if from_position ~= to_position then
-            if to_position < min_position then to_position = min_position
-            elseif to_position > max_position then to_position = max_position end
-            
-            -- 记录当前移动后的最终位置，供标记逻辑使用
-            curr_adjustment.final_position = to_position 
-
             local candidate = table.remove(candidates, from_position)
             table.insert(candidates, to_position, candidate)
             save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment, true)
         end
     else
-        -- 如果不是移动模式（比如点了一下），当前位置也是最终位置
         curr_adjustment.final_position = from_position
     end
     curr_state.highlight_index = to_position - 1
@@ -662,27 +726,43 @@ function F.func(input, env)
     local adjust_code = extract_adjustment_code(context)
     if not adjust_code then return original_list() end
 
-    local prev_adjustments = get_input_adjustments(adjust_code)
     local curr_adjustment = curr_state.has_adjustment() and { fixed_position = 0, offset = 0, updated_at = get_timestamp() } or nil
-    if (not curr_adjustment) and (not prev_adjustments) then return original_list() end
+    local prev_adjustments, has_prev_adjustment = get_input_adjustments(adjust_code, true)
+
+    -- 当前没有正在进行的调整，并且完整输入没有有效排序记录，立即原样透传。
+    if not curr_adjustment and not has_prev_adjustment then return original_list() end
 
     local cands, seen = {}, {}
     local is_fun_mode = wanxiang.is_function_mode_active(context)
     local show_markers = context:get_option("_seq_show_markers")
 
-    local pos = 0
-    for candidate in input:iter() do
+    -- 最多预取前 500 个上游候选参与排序；去重后实际排序数可能少于 500。
+    local iterator, iterator_state, iterator_control = input:iter()
+    local function next_candidate()
+        local candidate = iterator(iterator_state, iterator_control)
+        iterator_control = candidate
+        return candidate
+    end
+
+    local pos, scanned = 0, 0
+    while scanned < MAX_SORT_CANDIDATES do
+        local candidate = next_candidate()
+        if not candidate then break end
+
+        scanned = scanned + 1
         local phrase = candidate.text:match("^%s*(.-)%s*$") or candidate.text
         if not seen[phrase] then
-            seen[phrase] = true; pos = pos + 1; table.insert(cands, candidate)
+            seen[phrase] = true
+            pos = pos + 1
+            cands[#cands + 1] = candidate
             local curr_key = is_fun_mode and tostring(pos - 1) or phrase
-            
+
             if curr_adjustment and curr_state.selected_phrase == phrase then
                 curr_state.adjust_code = adjust_code
-                curr_state.adjust_key  = curr_key
+                curr_state.adjust_key = curr_key
                 curr_adjustment.raw_position = pos
             end
-            
+
             if prev_adjustments and prev_adjustments[curr_key] then
                 prev_adjustments[curr_key].raw_position = pos
             end
@@ -691,7 +771,7 @@ function F.func(input, env)
     prev_adjustments = prev_adjustments or {}
 
     -- 非位移模式（Reset/Pin）立即存 DB
-    if curr_adjustment and not curr_state.is_adjust_mode() then
+    if curr_adjustment and curr_state.adjust_code and curr_state.adjust_key ~= nil and not curr_state.is_adjust_mode() then
         curr_adjustment.offset = 0
         local key = tostring(curr_state.adjust_key)
         if curr_state.is_reset_mode() then
@@ -722,7 +802,6 @@ function F.func(input, env)
     
     local bottom_count = 0 
     for _, cand in ipairs(cands) do
-        local cmt = cand.comment or ""
         if show_markers and prev_adjustments then
             local key = is_fun_mode and tostring(cand.text) or cand.text
             
@@ -752,6 +831,24 @@ function F.func(input, env)
             bottom_count = bottom_count + 1
         end  -- ✨
         yield(cand)
+    end
+
+    -- 第 501 个及之后的候选不参与排序，保持上游顺序继续惰性透传。
+    while true do
+        local cand = next_candidate()
+        if not cand then break end
+
+        local phrase = cand.text:match("^%s*(.-)%s*$") or cand.text
+        if not seen[phrase] then
+            seen[phrase] = true
+
+            if not is_code_has_symbol and bottom_count < cache_limit then
+                _G.WanxiangSharedState.page_cache[#_G.WanxiangSharedState.page_cache + 1] = clone_candidate(cand)
+                bottom_count = bottom_count + 1
+            end
+
+            yield(cand)
+        end
     end
 
     if RUNTIME_EXPORT and (not curr_state.is_reset_mode()) then
