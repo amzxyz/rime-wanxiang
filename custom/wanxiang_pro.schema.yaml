@@ -589,14 +589,7 @@ super_replacer:
       files:
         - lua/data/abbrev.txt
         - lua/data/chengyu.txt
-    - option: true  # 同音派生
-      mode: append
-      comment_mode: none
-      sentence: true
-      tags: [abc]
-      prefix: "_rev_"
-      files:
-        - lua/data/rev.txt
+
 
 # 字符集过滤lua
 # a,通用规范汉字表

@@ -13,7 +13,10 @@ local s_format = string.format
 local s_byte = string.byte
 local s_sub = string.sub
 local s_gsub = string.gsub
+local s_find = string.find
+local s_lower = string.lower
 local s_upper = string.upper
+local t_sort = table.sort
 local open = io.open
 local type = type
 local tonumber = tonumber
@@ -29,21 +32,26 @@ end
 local userdb = safe_require("wanxiang/userdb")
 local wanxiang = safe_require("wanxiang/wanxiang")
 
--- UTF-8 辅助
-local function get_utf8_offsets(text)
-    local offsets = {}
+local function clear_array(t)
+    for i = #t, 1, -1 do t[i] = nil end
+end
+
+-- UTF-8 辅助：复用 offsets 缓冲，避免每次 FMM 都创建新表
+local function get_utf8_offsets(text, offsets)
+    clear_array(offsets)
     local len = #text
-    local i = 1
+    local i, n = 1, 0
     while i <= len do
-        insert(offsets, i)
+        n = n + 1
+        offsets[n] = i
         local b = s_byte(text, i)
         if b < 128 then i = i + 1
         elseif b < 224 then i = i + 2
         elseif b < 240 then i = i + 3
         else i = i + 4 end
     end
-    insert(offsets, len + 1)
-    return offsets
+    offsets[n + 1] = len + 1
+    return n
 end
 
 -- 光速文件特征采样
@@ -75,46 +83,56 @@ local function generate_files_signature(tasks)
     return concat(sig_parts, "||")
 end
 
--- 重建数据库 (支持多行合并和 T9 拼接)
+-- 重建数据库：相邻同键先在内存合并，再一次写入；保持原文件顺序且不放大全文件内存
 local function rebuild(tasks, db, delimiter)
-    if db.empty then db:empty() end
     for _, task in ipairs(tasks) do
         local txt_path = task.path
         local prefix = task.prefix
         local conversion = task.conversion
-        local p_delim = task.preedit_delim 
+        local p_delim = task.preedit_delim
 
         local f = open(txt_path, "r")
         if f then
+            local pending_key = nil
+            local pending_values = {}
+            local pending_count = 0
+
+            local function flush_pending()
+                if not pending_key then return end
+
+                local value = concat(pending_values, delimiter, 1, pending_count)
+                local existing = db:fetch(pending_key)
+                if existing and existing ~= "" then value = existing .. delimiter .. value end
+                db:update(pending_key, value)
+
+                clear_array(pending_values)
+                pending_key = nil
+                pending_count = 0
+            end
+
             for line in f:lines() do
                 if line ~= "" and not s_match(line, "^%s*#") then
                     local k, v = s_match(line, "^([^\t]+)\t+(.+)")
                     if k and v then
                         local orig_k = k
-
-                        if conversion then
-                            k = s_gsub(k, ".", conversion)
-                        end
-                        
+                        if conversion then k = s_gsub(k, ".", conversion) end
                         v = s_match(v, "^%s*(.-)%s*$")
 
-                        if p_delim and p_delim ~= "" then
-                            if not string.find(v, p_delim, 1, true) then
-                                v = v .. p_delim .. orig_k
-                            end
+                        if p_delim and p_delim ~= "" and not s_find(v, p_delim, 1, true) then
+                            v = v .. p_delim .. orig_k
                         end
 
                         local db_key = prefix .. k
-                        local existing_v = db:fetch(db_key)
+                        if pending_key and pending_key ~= db_key then flush_pending() end
+                        if not pending_key then pending_key = db_key end
 
-                        if existing_v and existing_v ~= "" then
-                            v = existing_v .. delimiter .. v
-                        end
-
-                        db:update(db_key, v)
+                        pending_count = pending_count + 1
+                        pending_values[pending_count] = v
                     end
                 end
             end
+
+            flush_pending()
             f:close()
         end
     end
@@ -177,70 +195,66 @@ local function connect_db(db_name, current_version, delimiter, tasks, config_sig
     return nil
 end
 
--- FMM 分词转换算法
-local function segment_convert(text, db, prefix, split_pat, fmm_cache)
-    local offsets = get_utf8_offsets(text)
-    local char_count = #offsets - 1
-    local result_parts = {}
-    local i = 1
+-- FMM 分词转换算法：复用 offsets/result_parts，避免热点路径反复分配临时表
+local function segment_convert(text, db, prefix, split_pat, fmm_cache, offsets, result_parts)
+    local char_count = get_utf8_offsets(text, offsets)
+    clear_array(result_parts)
+
+    local i, result_count = 1, 0
     local MAX_LOOKAHEAD = 6
 
     while i <= char_count do
         local start_byte = offsets[i]
         local matched = false
-        
         local max_j = i + MAX_LOOKAHEAD
         if max_j > char_count + 1 then max_j = char_count + 1 end
 
         for j = max_j, i + 2, -1 do
-            local end_byte = offsets[j] - 1
-            local sub_text = s_sub(text, start_byte, end_byte)
+            local sub_text = s_sub(text, start_byte, offsets[j] - 1)
             local cache_key = prefix .. sub_text
-            
             local val = fmm_cache[cache_key]
+
             if val == nil then
-                local db_res = db:fetch(cache_key)
-                fmm_cache[cache_key] = db_res or false
-                val = fmm_cache[cache_key]
+                val = db:fetch(cache_key) or false
+                fmm_cache[cache_key] = val
             end
-          
+
             if val then
-                local first_val = s_match(val, split_pat)
-                insert(result_parts, first_val or sub_text)
+                result_count = result_count + 1
+                result_parts[result_count] = s_match(val, split_pat) or sub_text
                 i = j - 1
                 matched = true
                 break
             end
         end
-      
+
         if not matched then
-            local single_char = s_sub(text, start_byte, offsets[i+1] - 1)
+            local single_char = s_sub(text, start_byte, offsets[i + 1] - 1)
             local cache_key = prefix .. single_char
-            
             local val = fmm_cache[cache_key]
+
             if val == nil then
-                local db_res = db:fetch(cache_key)
-                fmm_cache[cache_key] = db_res or false
-                val = fmm_cache[cache_key]
+                val = db:fetch(cache_key) or false
+                fmm_cache[cache_key] = val
             end
-            
-            if val then
-                local first_val = s_match(val, split_pat)
-                insert(result_parts, first_val or single_char)
-            else
-                insert(result_parts, single_char)
-            end
+
+            result_count = result_count + 1
+            result_parts[result_count] = val and (s_match(val, split_pat) or single_char) or single_char
         end
-        
+
         i = i + 1
     end
-    return concat(result_parts)
+
+    return concat(result_parts, "", 1, result_count)
 end
 
 -- 模块接口
 function M.init(env)
     env.fmm_cache = {}
+    env.fmm_offsets = {}
+    env.fmm_parts = {}
     env.shared_pending = {}
+    env.shared_pending_comments = {}
     env.shared_comments = {}
     local ns = env.name_space
     ns = s_gsub(ns, "^%*", "")
@@ -463,14 +477,11 @@ end
 function M.fini(env)
     env.db = nil
     env.fmm_cache = nil
+    env.fmm_offsets = nil
+    env.fmm_parts = nil
     env.shared_pending = nil
+    env.shared_pending_comments = nil
     env.shared_comments = nil
-end
-
-local function clear_table(t)
-    for i = 1, #t do
-        t[i] = nil
-    end
 end
 
 --解析连接符工具函数
@@ -496,137 +507,191 @@ function M.func(input, env)
 
     if not ctx:is_composing() or ctx.input == "" then
         env.fmm_cache = {}
-        collectgarbage("step", 500)
         for cand in input:iter() do yield(cand) end
         return
     end
 
-    if not env.rules or #env.rules == 0 or not env.db then
+    if not rules or #rules == 0 or not db then
         for cand in input:iter() do yield(cand) end
         return
     end
 
     local seg = ctx.composition:back()
     local current_seg_tags = seg and seg.tags or {}
-    if seg then input_code = string.sub(ctx.input, seg.start + 1, seg._end) end
-    
-    local function process_rules(cand)
-        local results = {}
+    if seg then input_code = s_sub(ctx.input, seg.start + 1, seg._end) end
+
+    local active_rules = {}
+    local active_abbrev_rules = {}
+
+    local function is_rule_active(t)
+        local option_active = false
+        for _, trigger in ipairs(t.triggers) do
+            if trigger == true then
+                option_active = true
+                break
+            elseif type(trigger) == "string" and ctx:get_option(trigger) then
+                option_active = true
+                break
+            end
+        end
+        if not option_active then return false end
+
+        if t.tags then
+            for req_tag in pairs(t.tags) do
+                if current_seg_tags[req_tag] then return true end
+            end
+            return false
+        end
+
+        return true
+    end
+
+    for _, t in ipairs(rules) do
+        if is_rule_active(t) then
+            if t.mode == "abbrev" then
+                active_abbrev_rules[#active_abbrev_rules + 1] = t
+            else
+                active_rules[#active_rules + 1] = t
+            end
+        end
+    end
+
+    local fetch_cache = {}
+    local function fetch_cached(key)
+        local cached = fetch_cache[key]
+        if cached ~= nil then return cached or nil end
+
+        local value = db:fetch(key)
+        fetch_cache[key] = value or false
+        return value
+    end
+
+    local fmm_offsets = env.fmm_offsets or {}
+    local fmm_parts = env.fmm_parts or {}
+    env.fmm_offsets = fmm_offsets
+    env.fmm_parts = fmm_parts
+
+    local pending_texts = env.shared_pending or {}
+    local pending_comments = env.shared_pending_comments or {}
+    local shared_comments = env.shared_comments or {}
+    local main_results = {}
+    local aux_results = {}
+    env.shared_pending = pending_texts
+    env.shared_pending_comments = pending_comments
+    env.shared_comments = shared_comments
+
+    local function process_rules(cand, results)
+        clear_array(results)
+        clear_array(pending_texts)
+        clear_array(pending_comments)
+        clear_array(shared_comments)
+
         local current_text = cand.text
         local show_main = true
         local current_main_comment = cand.comment
-        local matched_cand_type = nil 
-      
-        -- 使用 env 的共享表
-        clear_table(env.shared_pending)
-        clear_table(env.shared_comments)
-      
-        for _, t in ipairs(rules) do
-            if t.mode ~= "abbrev" then
-                local is_active = false
-                for _, trigger in ipairs(t.triggers) do
-                    if trigger == true then is_active = true; break
-                    elseif type(trigger) == "string" and ctx:get_option(trigger) then is_active = true; break end
-                end
-              
-                local is_tag_match = true
-                if t.tags then
-                    is_tag_match = false
-                    for req_tag, _ in pairs(t.tags) do
-                        if current_seg_tags[req_tag] then is_tag_match = true; break end
-                    end
-                end
-              
-                if is_active and is_tag_match then
-                    local query_text = is_chain and current_text or cand.text
-                    local key = t.prefix .. query_text
-                    local val = db:fetch(key)
-                    if not val and string.find(query_text, "%u") then
-                        local lower_key = t.prefix .. string.lower(query_text)
-                        val = db:fetch(lower_key)
-                    end
-                    if not val and t.fmm then
-                        local seg_result = segment_convert(query_text, db, t.prefix, split_pat, env.fmm_cache)
-                        if seg_result ~= query_text then val = seg_result end
-                    end
-                  
-                    if val then
-                        matched_cand_type = t.cand_type or matched_cand_type 
+        local matched_cand_type = nil
+        local pending_count = 0
 
-                        local mode = t.mode
-                        local rule_comment = ""
-                        if t.comment_mode == "text" then rule_comment = cand.text
-                        elseif t.comment_mode == "comment" then rule_comment = cand.comment end
-                        if mode ~= "comment" and rule_comment ~= "" then
-                            rule_comment = s_format(comment_fmt, rule_comment)
-                        end
-                        if mode == "comment" then
-                            local parts = {}
-                            for p in s_gmatch(val, split_pat) do 
-                                if p ~= input_code then
-                                    insert(parts, p) 
+        for _, t in ipairs(active_rules) do
+            local query_text = is_chain and current_text or cand.text
+            local val = fetch_cached(t.prefix .. query_text)
+
+            if not val and s_find(query_text, "%u") then
+                val = fetch_cached(t.prefix .. s_lower(query_text))
+            end
+
+            if not val and t.fmm then
+                local seg_result = segment_convert(query_text, db, t.prefix, split_pat, env.fmm_cache, fmm_offsets, fmm_parts)
+                if seg_result ~= query_text then val = seg_result end
+            end
+
+            if val then
+                matched_cand_type = t.cand_type or matched_cand_type
+
+                local mode = t.mode
+                local rule_comment = ""
+                if t.comment_mode == "text" then
+                    rule_comment = cand.text
+                elseif t.comment_mode == "comment" then
+                    rule_comment = cand.comment
+                end
+
+                if mode ~= "comment" and rule_comment ~= "" then
+                    rule_comment = s_format(comment_fmt, rule_comment)
+                end
+
+                if mode == "comment" then
+                    -- 直接汇入共享数组；最终 concat 结果与原来的分规则 parts 完全一致。
+                    for p in s_gmatch(val, split_pat) do
+                        if p ~= input_code then shared_comments[#shared_comments + 1] = p end
+                    end
+                elseif mode == "replace" then
+                    if is_chain then
+                        local first = true
+                        for p in s_gmatch(val, split_pat) do
+                            if first then
+                                current_text = p
+                                if t.comment_mode == "none" then
+                                    current_main_comment = ""
+                                elseif t.comment_mode == "text" then
+                                    current_main_comment = cand.text
                                 end
-                            end
-                            if #parts > 0 then
-                                insert(env.shared_comments, concat(parts, " "))
-                            end
-                        elseif mode == "replace" then
-                            if is_chain then
-                                local first = true
-                                for p in s_gmatch(val, split_pat) do
-                                    if first then
-                                        current_text = p
-                                        if t.comment_mode == "none" then current_main_comment = ""
-                                        elseif t.comment_mode == "text" then current_main_comment = cand.text end
-                                        first = false
-                                    else
-                                        insert(env.shared_pending, { text=p, comment=rule_comment })
-                                    end
-                                end
+                                first = false
                             else
-                                show_main = false
-                                for p in s_gmatch(val, split_pat) do
-                                    insert(env.shared_pending, { text=p, comment=rule_comment })
-                                end
-                            end
-                        elseif mode == "append" then
-                            for p in s_gmatch(val, split_pat) do
-                                insert(env.shared_pending, { text=p, comment=rule_comment })
+                                pending_count = pending_count + 1
+                                pending_texts[pending_count] = p
+                                pending_comments[pending_count] = rule_comment
                             end
                         end
+                    else
+                        show_main = false
+                        for p in s_gmatch(val, split_pat) do
+                            pending_count = pending_count + 1
+                            pending_texts[pending_count] = p
+                            pending_comments[pending_count] = rule_comment
+                        end
+                    end
+                elseif mode == "append" then
+                    for p in s_gmatch(val, split_pat) do
+                        pending_count = pending_count + 1
+                        pending_texts[pending_count] = p
+                        pending_comments[pending_count] = rule_comment
                     end
                 end
             end
         end
 
-        if #env.shared_comments > 0 then
-            local comment_str = concat(env.shared_comments, " ")
-            local fmt = s_format(comment_fmt, comment_str)
-            current_main_comment = fmt 
+        if #shared_comments > 0 then
+            current_main_comment = s_format(comment_fmt, concat(shared_comments, " "))
         end
 
+        local result_count = 0
         if show_main then
+            result_count = 1
             if is_chain and current_text ~= cand.text then
                 local final_type = matched_cand_type or cand.type or "kv"
                 local nc = Candidate(final_type, cand.start, cand._end, current_text, current_main_comment)
                 nc.preedit = cand.preedit
                 nc.quality = cand.quality
-                insert(results, nc)
+                results[1] = nc
             else
                 cand.comment = current_main_comment
-                insert(results, cand)
+                results[1] = cand
             end
         end
 
-        for _, item in ipairs(env.shared_pending) do
-            if not (show_main and item.text == current_text) then
-                local final_type = matched_cand_type or "derived"
-                local nc = Candidate(final_type, cand.start, cand._end, item.text, item.comment)
+        local final_type = matched_cand_type or "derived"
+        for i = 1, pending_count do
+            local item_text = pending_texts[i]
+            if not (show_main and item_text == current_text) then
+                local nc = Candidate(final_type, cand.start, cand._end, item_text, pending_comments[i])
                 nc.preedit = cand.preedit
                 nc.quality = cand.quality
-                insert(results, nc)
+                result_count = result_count + 1
+                results[result_count] = nc
             end
         end
+
         return results
     end
 
@@ -637,50 +702,53 @@ function M.func(input, env)
     local lazy_cands = {}
     local group_fronted = {}
 
-    for _, t in ipairs(rules) do
-        if t.mode == "abbrev" then
-            local is_active = false
-            for _, trigger in ipairs(t.triggers) do
-                if trigger == true then is_active = true; break
-                elseif type(trigger) == "string" and ctx:get_option(trigger) then is_active = true; break end
+    local query_code = s_gsub(input_code, env.speller_delimiter, "")
+    if s_match(ctx.input, "^[a-zA-Z]+$") then
+        query_code = s_gsub(ctx.input, env.speller_delimiter, "")
+    end
+
+    if query_code ~= "" then
+        for _, t in ipairs(active_abbrev_rules) do
+            local val = fetch_cached(t.prefix .. query_code)
+            if not val and not s_match(query_code, "[A-Z]") then
+                val = fetch_cached(t.prefix .. s_upper(query_code))
             end
 
-            local is_tag_match = true
-            if t.tags then
-                is_tag_match = false
-                for req_tag, _ in pairs(t.tags) do
-                    if current_seg_tags[req_tag] then is_tag_match = true; break end
-                end
-            end
-            
-            local query_code = string.gsub(input_code, env.speller_delimiter, "")
-            if string.match(ctx.input, "^[a-zA-Z]+$") then
-                query_code = string.gsub(ctx.input, env.speller_delimiter, "")
-            end
+            if val then
+                local count = 0
+                local group_key = t.prefix
 
-            if is_active and is_tag_match and query_code ~= "" then
-                local key = t.prefix .. query_code
-                local val = db:fetch(key) or (not s_match(query_code, "[A-Z]") and db:fetch(t.prefix .. s_upper(query_code)))
+                for p in s_gmatch(val, split_pat) do
+                    local item_text, item_preedit = parse_item(p, t.preedit_delim)
+                    if not seen_texts[item_text] then
+                        seen_texts[item_text] = true
 
-                if val then
-                    local count = 0
-                    local group_key = t.prefix
-                    for p in s_gmatch(val, split_pat) do
-                        local item_text, item_preedit = parse_item(p, t.preedit_delim)
-                        if not seen_texts[item_text] then
-                            seen_texts[item_text] = true
-                            local final_type = t.cand_type or "abbrev"
-                            local abbrev_cand = Candidate(final_type, seg and seg.start or 0, seg and seg._end or #ctx.input, item_text, "")
-                            if item_preedit and item_preedit ~= "" then abbrev_cand.preedit = item_preedit end
-                            
-                            count = count + 1
-                            if count <= t.always_qty then
-                                abbrev_cand.quality = 999
-                                insert(always_cands, { cand = abbrev_cand, index = t.always_idx + (count - 1), group_key = group_key, yielded = false })
-                            else
-                                abbrev_cand.quality = 98
-                                insert(lazy_cands, { cand = abbrev_cand, group_key = group_key, yielded = false })
-                            end
+                        local final_type = t.cand_type or "abbrev"
+                        local abbrev_cand = Candidate(
+                            final_type,
+                            seg and seg.start or 0,
+                            seg and seg._end or #ctx.input,
+                            item_text,
+                            ""
+                        )
+                        if item_preedit and item_preedit ~= "" then abbrev_cand.preedit = item_preedit end
+
+                        count = count + 1
+                        if count <= t.always_qty then
+                            abbrev_cand.quality = 999
+                            always_cands[#always_cands + 1] = {
+                                cand = abbrev_cand,
+                                index = t.always_idx + count - 1,
+                                group_key = group_key,
+                                yielded = false
+                            }
+                        else
+                            abbrev_cand.quality = 98
+                            lazy_cands[#lazy_cands + 1] = {
+                                cand = abbrev_cand,
+                                group_key = group_key,
+                                yielded = false
+                            }
                         end
                     end
                 end
@@ -688,53 +756,68 @@ function M.func(input, env)
         end
     end
 
-    table.sort(always_cands, function(a, b) return a.index < b.index end)
-
     local function trim_space(str)
         if not str then return "" end
-        return string.match(str, "^%s*(.-)%s*$")
+        return s_match(str, "^%s*(.-)%s*$")
     end
+
+    if #always_cands == 0 and #lazy_cands == 0 then
+        for cand in input:iter() do
+            local processed = process_rules(cand, main_results)
+            for _, pc in ipairs(processed) do
+                local dedup_key = trim_space(pc.text)
+                if not global_yielded[dedup_key] then
+                    global_yielded[dedup_key] = true
+                    yield(pc)
+                end
+            end
+        end
+        return
+    end
+
+    t_sort(always_cands, function(a, b) return a.index < b.index end)
 
     local abbrev_lookup = {}
     for _, item in ipairs(always_cands) do
-        local key = trim_space(item.cand.text)
-        abbrev_lookup[key] = { type = "always", ref = item }
+        abbrev_lookup[trim_space(item.cand.text)] = { type = "always", ref = item }
     end
     for _, item in ipairs(lazy_cands) do
-        local key = trim_space(item.cand.text)
-        abbrev_lookup[key] = { type = "lazy", ref = item }
+        abbrev_lookup[trim_space(item.cand.text)] = { type = "lazy", ref = item }
     end
 
+    local abbrevs_dumped = false
     local function dump_all_abbrevs()
+        if abbrevs_dumped then return end
+        abbrevs_dumped = true
+
         for _, item in ipairs(always_cands) do
             if not item.yielded then
                 item.yielded = true
-                local processed = process_rules(item.cand)
+                local processed = process_rules(item.cand, aux_results)
                 for _, pc in ipairs(processed) do
                     local dedup_key = trim_space(pc.text)
                     if not global_yielded[dedup_key] then
                         global_yielded[dedup_key] = true
-                        yield(pc); yield_count = yield_count + 1 
+                        yield(pc)
+                        yield_count = yield_count + 1
                     end
                 end
             end
         end
-        
-        -- 如果没被前置消耗掉，才释放它的兜底词
+
         for _, item in ipairs(lazy_cands) do
             if not item.yielded then
+                item.yielded = true
                 if not group_fronted[item.group_key] then
-                    item.yielded = true
-                    local processed = process_rules(item.cand)
+                    local processed = process_rules(item.cand, aux_results)
                     for _, pc in ipairs(processed) do
                         local dedup_key = trim_space(pc.text)
                         if not global_yielded[dedup_key] then
                             global_yielded[dedup_key] = true
-                            yield(pc); yield_count = yield_count + 1
+                            yield(pc)
+                            yield_count = yield_count + 1
                         end
                     end
-                else
-                    item.yielded = true
                 end
             end
         end
@@ -744,84 +827,91 @@ function M.func(input, env)
     local lookahead_cache = {}
     local has_phrase = false
     local is_exhausted = false
-    
+
     while #lookahead_cache < 30 do
         iter_var = iter_func(state, iter_var)
-        if not iter_var then 
+        if not iter_var then
             is_exhausted = true
-            break 
+            break
         end
-        insert(lookahead_cache, iter_var)
-        
+
+        lookahead_cache[#lookahead_cache + 1] = iter_var
         if iter_var.type == "phrase" then
             has_phrase = true
             break
         end
     end
+
     local cache_idx = 1
     local function get_next_cand()
         if cache_idx <= #lookahead_cache then
             local c = lookahead_cache[cache_idx]
             cache_idx = cache_idx + 1
             return c
-        elseif not is_exhausted then
+        end
+
+        if not is_exhausted then
             iter_var = iter_func(state, iter_var)
             if not iter_var then is_exhausted = true end
             return iter_var
-        else
-            return nil
         end
+
+        return nil
     end
 
     local cand = get_next_cand()
     local next_always_ptr = 1
 
     while cand do
-        local processed_cands = process_rules(cand)
+        local processed_cands = process_rules(cand, main_results)
+
         for _, pc in ipairs(processed_cands) do
             local dedup_key = trim_space(pc.text)
 
             if not global_yielded[dedup_key] then
                 local c_type = cand.type or ""
-                local is_user = (c_type == "user_phrase" or c_type == "user_table")
-                local is_regular = (c_type == "phrase") or (c_type == "table" and has_phrase)
-
+                local is_user = c_type == "user_phrase" or c_type == "user_table"
+                local is_regular = c_type == "phrase" or (c_type == "table" and has_phrase)
                 local match_info = abbrev_lookup[dedup_key]
                 local is_reserved = match_info ~= nil
 
                 if is_user then
-                    if is_reserved then 
+                    if is_reserved then
                         match_info.ref.yielded = true
                         if match_info.type == "always" then
-                            group_fronted[match_info.ref.group_key] = true 
+                            group_fronted[match_info.ref.group_key] = true
                         end
                     end
+
                     global_yielded[dedup_key] = true
                     yield(pc)
                     yield_count = yield_count + 1
-                    
                 elseif is_regular then
                     while next_always_ptr <= #always_cands do
                         local item = always_cands[next_always_ptr]
-                        if not item.yielded and (yield_count + 1) >= item.index then
+
+                        if item.yielded then
+                            next_always_ptr = next_always_ptr + 1
+                        elseif yield_count + 1 >= item.index then
                             item.yielded = true
                             group_fronted[item.group_key] = true
-                            local ac_processed = process_rules(item.cand)
+
+                            local ac_processed = process_rules(item.cand, aux_results)
                             for _, apc in ipairs(ac_processed) do
                                 local apc_key = trim_space(apc.text)
                                 if not global_yielded[apc_key] then
                                     global_yielded[apc_key] = true
-                                    yield(apc); yield_count = yield_count + 1 
+                                    yield(apc)
+                                    yield_count = yield_count + 1
                                 end
                             end
+
+                            next_always_ptr = next_always_ptr + 1
                         else
-                            if item.yielded or (yield_count + 1) < item.index then
-                                break
-                            end
+                            break
                         end
-                        next_always_ptr = next_always_ptr + 1
                     end
-                    
+
                     if not is_reserved then
                         global_yielded[dedup_key] = true
                         yield(pc)
@@ -829,7 +919,7 @@ function M.func(input, env)
                     end
                 else
                     dump_all_abbrevs()
-                    
+
                     if not is_reserved then
                         global_yielded[dedup_key] = true
                         yield(pc)
@@ -838,8 +928,10 @@ function M.func(input, env)
                 end
             end
         end
+
         cand = get_next_cand()
     end
+
     dump_all_abbrevs()
 end
 return M
