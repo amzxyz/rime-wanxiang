@@ -54,7 +54,6 @@ engine:
     - lua_processor@*wanxiang.super_processor  #KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
     #- t9_processor  #现在九键前端逐步增多，元书T9处理器，使用者去掉井号，默认开启会报错。
     - lua_processor@*wanxiang.super_tips  #超级提示模块：表情、简码、翻译、化学式、等等靠你想象
-    - lua_processor@*wanxiang.super_sequence*P  #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+l 移除位移  ctrl+p 置顶
     - ascii_composer  #处理英文模式及中英文切换
     - recognizer  #与 matcher 搭配，处理符合特定规则的输入码，如网址、反查等 tags
     - key_binder  #在特定条件下将按键绑定到其他按键，如重定义逗号、句号为候选翻页、开关快捷键等
@@ -87,7 +86,6 @@ engine:
     - lua_filter@*wanxiang.super_comment_preedit  #超级注释模块、超级preedit，支持错词提示、辅助码显示，部件组字读音注释，有声调、无声调全拼编码的转换，支持个性化配置和关闭相应的功能，详情搜索super_comment_preedit进行详细配置
     - lua_filter@*wanxiang.super_replacer  #OpenCC替代器，更灵活的处理方式，更自由的自定义方式，支持简繁转换、简码模式、支持候选替换、注释替换、候选派生等等
     - lua_filter@*wanxiang.super_filter  #replacer后面，先进行转换后过滤，这样能繁体继承简体权重。本质功能相关功能见Lua文件
-    - lua_filter@*wanxiang.super_sequence*F  #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
     - lua_filter@*wanxiang.user_predict*F  #用于输入编码后的上下文调频
     - uniquifier  # 去重
 
@@ -166,7 +164,6 @@ speller:
     - derive/ONG$/ON/
     - derive/IONG$/ION/
     - derive/ENG$/EN/
-    - derive/^([NL])VE$/$1UE/
     - derive/^([jqxy])u/$1v/
     - derive/^([JQXY])U/$1V/
     - xlit/ABCDEFGHIJKLMNOPQRSTUVWXYZ/22233344455566677778889999/
@@ -252,13 +249,6 @@ user_predict:
     - 年月天周岁秒分刻代期届任夜季  # 时间周期
     - 本册篇首句段卷幅节堂门帖字行  # 文化作品
     - 米寸尺里斤两吨克升元角毛笔百千万亿  # 度量货币
-
-super_sequence:  # Lua 配置：手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
-  db_name: "lua/sequence"
-  up: "Control+j"  # 上移
-  down: "Control+k"  # 下移
-  reset: "Control+l"  # 重置
-  pin: "Control+p"  # 置顶
 
 # 字符集过滤lua
 # a,通用规范汉字表
