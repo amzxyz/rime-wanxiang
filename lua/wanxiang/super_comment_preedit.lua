@@ -1,6 +1,4 @@
---@amzxyz https://github.com/amzxyz/rime-wanxiang
-
-
+-- @amzxyz https://github.com/amzxyz/rime-wanxiang
 local wanxiang = require('wanxiang/wanxiang')
 
 local tone_map = {
@@ -29,7 +27,7 @@ end
 -- ----------------------
 local CR = {}
 local corrections_cache = nil -- 用于缓存已加载的词典
-local cached_dict_path = nil  -- 记录当前缓存的词典路径
+local cached_dict_path = nil -- 记录当前缓存的词典路径
 
 function CR.init(env)
     -- 动态获取样式，因为配置可能在运行时被修改，所以这个不放进缓存拦截里
@@ -61,7 +59,10 @@ function CR.init(env)
                 comment = comment and comment:match("^%s*(.-)%s*$") or ""
                 comment = comment:gsub("%s+", auto_delimiter)
                 code = code:gsub("%s+", auto_delimiter)
-                corrections_cache[code] = { text = text, comment = comment }
+                corrections_cache[code] = {
+                    text = text,
+                    comment = comment
+                }
             end
         end
     end
@@ -86,25 +87,53 @@ end
 -- 部件组字返回的注释
 -- ----------------------
 local function get_charset_label(text)
-    if not text or text == "" then return nil end
+    if not text or text == "" then
+        return nil
+    end
     local cp = utf8.codepoint(text)
-    if not cp then return nil end
+    if not cp then
+        return nil
+    end
 
     -- 按照 Unicode 区块频率排序
-    if cp >= 0x4E00   and cp <= 0x9FFF  then return "基本" end
-    if cp >= 0x3400   and cp <= 0x4DBF  then return "扩A" end
-    if cp >= 0x20000  and cp <= 0x2A6DF then return "扩B" end
-    if cp >= 0x2A700  and cp <= 0x2B73F then return "扩C" end
-    if cp >= 0x2B740  and cp <= 0x2B81F then return "扩D" end
-    if cp >= 0x2B820  and cp <= 0x2CEAF then return "扩E" end
-    if cp >= 0x2CEB0  and cp <= 0x2EBEF then return "扩F" end
-    if cp >= 0x2EBF0  and cp <= 0x2EE5F then return "扩I" end
-    if cp >= 0x30000  and cp <= 0x3134F then return "扩G" end
-    if cp >= 0x31350  and cp <= 0x323AF then return "扩H" end
+    if cp >= 0x4E00 and cp <= 0x9FFF then
+        return "基本"
+    end
+    if cp >= 0x3400 and cp <= 0x4DBF then
+        return "扩A"
+    end
+    if cp >= 0x20000 and cp <= 0x2A6DF then
+        return "扩B"
+    end
+    if cp >= 0x2A700 and cp <= 0x2B73F then
+        return "扩C"
+    end
+    if cp >= 0x2B740 and cp <= 0x2B81F then
+        return "扩D"
+    end
+    if cp >= 0x2B820 and cp <= 0x2CEAF then
+        return "扩E"
+    end
+    if cp >= 0x2CEB0 and cp <= 0x2EBEF then
+        return "扩F"
+    end
+    if cp >= 0x2EBF0 and cp <= 0x2EE5F then
+        return "扩I"
+    end
+    if cp >= 0x30000 and cp <= 0x3134F then
+        return "扩G"
+    end
+    if cp >= 0x31350 and cp <= 0x323AF then
+        return "扩H"
+    end
 
     -- 兼容区
-    if cp >= 0xF900   and cp <= 0xFAFF  then return "兼容" end
-    if cp >= 0x2F800  and cp <= 0x2FA1F then return "兼容" end
+    if cp >= 0xF900 and cp <= 0xFAFF then
+        return "兼容"
+    end
+    if cp >= 0x2F800 and cp <= 0x2FA1F then
+        return "兼容"
+    end
 
     return nil
 end
@@ -135,7 +164,6 @@ local function get_az_comment(cand, env, initial_comment)
                 if pinyin then
                     pinyins[#pinyins + 1] = pinyin
                 end
-                if not fuzhu and fz and fz ~= "" then fuzhu = fz end
             end
 
             if #pinyins > 0 then
@@ -304,10 +332,11 @@ function ZH.func(input, env)
 
     for cand in input:iter() do
         local genuine_cand = cand:get_genuine()
-        if genuine_cand.type == "shijian" then
+        if genuine_cand.type == "shijian" or genuine_cand.type == "compose" or genuine_cand.type == "super_sym" or genuine_cand.type == "super_emoji" then
             yield(genuine_cand)
             goto continue
         end
+
         local preedit = genuine_cand.preedit or ""
         local initial_comment = genuine_cand.comment
         local final_comment = initial_comment
@@ -372,7 +401,7 @@ function ZH.func(input, env)
                                 pinyin_index = pinyin_index + 1
                             elseif i == #input_parts and #part == 1 then
                                 local prefix = py:sub(1, 2)
-                                local first_char = part:sub(1,1):lower()
+                                local first_char = part:sub(1, 1):lower()
                                 if first_char == "s" or first_char == "c" or first_char == "z" then
                                     input_parts[i] = part
                                 else
@@ -396,7 +425,7 @@ function ZH.func(input, env)
                                 pinyin_index = pinyin_index + 1
                             elseif i == #input_parts and #part == 1 then
                                 local prefix = py:sub(1, 2)
-                                local first_char = part:sub(1,1):lower()
+                                local first_char = part:sub(1, 1):lower()
                                 if first_char == "s" or first_char == "c" or first_char == "z" then
                                     input_parts[i] = part
                                 else
@@ -440,32 +469,28 @@ function ZH.func(input, env)
         if initial_comment and (string.find(initial_comment, "~") or cand.type == "shijian") then
             final_comment = initial_comment
 
-        -- 2. 常规的辅助码提示模式
+            -- 2. 常规的辅助码提示模式
         elseif is_comment_hint then
             local fz_comment = get_fz_comment(cand, env, initial_comment, fuzhu_type)
             if fz_comment then
                 final_comment = fz_comment
             end
 
-        -- 3. 常规的带调拼音模式
+            -- 3. 常规的带调拼音模式
         elseif is_tone_comment then
             local fz_comment = get_fz_comment(cand, env, initial_comment, fuzhu_type)
             if fz_comment then
                 final_comment = fz_comment
             end
 
-        -- 4. 常规的无调拼音模式
+            -- 4. 常规的无调拼音模式
         elseif is_toneless_comment then
             local fz_comment = get_fz_comment(cand, env, initial_comment, fuzhu_type)
             if fz_comment then
                 final_comment = remove_pinyin_tone(fz_comment)
             end
 
-        -- 5. 超级符号模式，显示对应的Typst代码
-        elseif genuine_cand.type == "super_sym" or genuine_cand.type == "super_emoji" then
-            final_comment = initial_comment
-
-        -- 6. 其他情况一律清空注释
+            -- 5. 其他情况一律清空注释
         else
             final_comment = ""
         end

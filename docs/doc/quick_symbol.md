@@ -37,7 +37,7 @@
 patch:
   # 自定义快符触发规则与映射
   quick_symbol_text/trigger: "^;([a-z])$"  # 根据需求设为;起始引导
-  recognizer/patterns/quick: "^;[a-z])$"   # 需同时设置;不上屏
+  recognizer/patterns/quick: "^;[a-z]$"   # 需同时设置;不上屏
 
   quick_symbol_text/symkey/a: "🔥"          # 将 a/ 映射为火焰表情
   quick_symbol_text/symkey/s: "（"          # 自定义左括号

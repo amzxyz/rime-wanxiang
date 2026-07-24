@@ -17,7 +17,7 @@
 
     ```yaml
     patch:
-      switches/@6/reset: 1   # @3 代表在 switches 的第7组里加入 reset: 1 参数,即可长期启用
+      switches/@6/reset: 1   # @6 对应 switches 的第7组（charset_filter 字集过滤开关），加入 reset: 1 参数即可长期启用大字集；base 与 pro 顺序不同，请按实际数组从0数
     ```
 ---
 

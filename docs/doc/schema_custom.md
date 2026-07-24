@@ -1,4 +1,4 @@
-# 🧰 万象拼音：全段落 Patch 终极对照表（完整版）
+# 🎛️ 万象拼音：全段落 Patch 终极对照表（完整版）
 
 为了让你在自定义 `wanxiang.custom.yaml` 时不再迷茫，我们对主方案从上到下的**所有命名空间**进行了左右对照。
 左侧是 `wanxiang.schema.yaml` 中的原始代码，右侧是如何修改该段落的精准 Patch 补丁。需要说清楚的是，custom patch必须顶部只有一个`patch:`，段落中每个都有写`patch：`只是为了对照段落和缩进。  
@@ -487,8 +487,10 @@ patch:
 
 ---
 
-## 15. 输入统计与计算器 (input_stats & calculator)
+## 15. 输入统计与计算器 (input_stats & recognizer)
 时光机统计与 V 模式计算器。
+
+> **注意**：万象拼音没有顶层 `calculator:` 配置块。超级计算器（V 引导）由 `recognizer/patterns/calculator` 正则前缀控制；数字金额大写（R 引导）由 `recognizer/patterns/number` 正则前缀控制，并响应 `lua_translator@*wanxiang.number_translator`。
 
 <div class="grid" markdown>
 
@@ -497,8 +499,10 @@ input_stats:
   triggers:
     today: "/rtj"
 
-calculator:
-  trigger: "V"
+recognizer:
+  patterns:
+    calculator: "^V.*$"  # 超级计算器功能引导（V 前缀）
+    number: "^R[0-9]+[.]?[0-9]*"  # 数字金额大写（R 前缀）
 ```
 
 ```yaml title="右：wanxiang.custom.yaml"
@@ -506,9 +510,10 @@ patch:
   # 修改查今日统计的触发词
   input_stats/triggers/today: "jrtj"
   
-  # 修改计算器触发词为大写 C
-  calculator/trigger: "C"
-  # 这些都不建议修改，意义不大
+  # 修改超级计算器触发前缀（默认 V，一般不建议修改）
+  recognizer/patterns/calculator: "^V.*$"
+  # 修改数字金额大写触发前缀（默认 R，一般不建议修改）
+  recognizer/patterns/number: "^R[0-9]+[.]?[0-9]*"
 ```
 
 </div>
@@ -600,20 +605,23 @@ patch:
 ## 19. 正则指令分发 (recognizer)
 处理特定前缀引导指令的正则表达式。
 
+> **注意**：`recognizer/patterns` 中各前缀的含义——`V` 为超级计算器、`R` 为数字金额大写、`N` 为日期、`U` 为 Unicode 码点、`C` 为 Compose 合成、`/sym` 为超级符号、`/emoji` 为超级表情。请勿混淆 `number`（`R` 金额大写）与日期（`N`）前缀。
+
 <div class="grid" markdown>
 
 ```yaml title="左：wanxiang.schema.yaml"
 recognizer:
   patterns:
     punct: "^/([0-9]|10|[A-Za-z]+)$"
-    number: "^R[0-9]+[.]?[0-9]*"
+    number: "^R[0-9]+[.]?[0-9]*"  # R 引导：数字金额大写
+    calculator: "^V.*$"  # V 引导：超级计算器
     email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"
 ```
 
 ```yaml title="右：wanxiang.custom.yaml"
 patch:
-  # 更改数字大写的触发符为 E
-  recognizer/patterns/number: "^E[0-9]+[.]?[0-9]*"
+  # 更改数字金额大写的触发前缀（默认 R，一般不建议修改）
+  recognizer/patterns/number: "^R[0-9]+[.]?[0-9]*"
     # 按需增加了一个原来没有的键xxx，并写上值
   recognizer/patterns/xxx: "^YYY[0-9]+[.]?[0-9]*"
 ```
@@ -695,13 +703,14 @@ patch:
 ## 22. 拼写器 (speller)
 包含字母表、模糊音、双拼转换规则的底层设置。
 
+> **注意**：`speller` 没有 `visual_delimiter` 字段，拼音之间的分隔符由 `delimiter` 控制（其第二个字符为手动分隔符，如 `'`）。
+
 <div class="grid" markdown>
 
 ```yaml title="左：wanxiang.schema.yaml"
 speller:
   alphabet: zyxwv...
   delimiter: " '"
-  visual_delimiter: " "
   algebra:
     __patch:
       - wanxiang_algebra:/base/全拼
@@ -709,9 +718,6 @@ speller:
 
 ```yaml title="右：wanxiang.custom.yaml"
 patch:
-  # 更改拼音视觉分割符为 ·
-  speller/visual_delimiter: "·"
-  
   # 末尾增加模糊音规则，注意只是示例，是否在最后要看实际情况
   speller/algebra/+:
     - derive/^z/zh/

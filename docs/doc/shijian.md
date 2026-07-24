@@ -1,4 +1,4 @@
-# 🕒 时间与动态数据插件 (Shijian)
+# 📅 时间与动态数据插件 (Shijian)
 
 市面上的时间插件大多只能提供固定的格式，而万象的 `shijian` 插件是**唯一一个将“格式化与展示逻辑”完全交由用户定义的插件**。
 
@@ -146,7 +146,7 @@ datetime_formats:
 ---
 
 ### 🌟 终极应用示例 (txt 词库编写)
-在你的 `lua/data/other.txt` 或 `custom_phrase.txt` 中写入以下内容，即可实现对应的魔法输入体验：
+在你的 `lua/data/others.txt` 或 `custom_phrase.txt` 中写入以下内容，即可实现对应的魔法输入体验：
 
 ```text
 # 示例 1：古典报时,写在custom_phrase.txt里
@@ -154,7 +154,7 @@ datetime_formats:
 
 # 解读：输入csck候选出现输出： -> 1.此时此刻 2.\T\K ，然后卵生候选又被格式化，最终输出： -> 1.此时此刻 2.午时三刻
 
-lua/data/other.txt中格式稍有不同编码在前：
+lua/data/others.txt中格式稍有不同编码在前：
 
 csck	\T\K
 
