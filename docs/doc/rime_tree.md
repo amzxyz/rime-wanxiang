@@ -1,13 +1,23 @@
 ### 📂 万象拼音完整目录架构
 
-* 📂 **custom/** —— `用户自定义示例，这里的文件不生效哦！`
+* 📂 **custom/** —— `用户自定义与参考配置示例（仓库内置示例，部署时按需拷贝到用户目录）`
     * 🖼️ **万象键位映射.jpg** —— `双拼与辅助码键位参考图`
-    * 🖼️ **万象双拼.png** —— `双拼布局图解`
     * 🖼️ **赞赏.jpg** —— `开源支持赞赏二维码`
+    * 🗜️ **简纯.zip** —— `精简纯净版方案打包`
+    * 📄 **aux_code.csv** —— `辅助码映射源数据`
+    * 📄 **jm_flypy.txt** —— `小鹤双拼键位映射参考`
+    * 📄 **jm_zrm.txt** —— `自然码双拼键位映射参考`
+    * 📄 **wubi_chaifen.txt** —— `五笔部件拆分反查参考`
     * 📄 **wanxiang.custom.yaml** —— `🟢 主方案自定义配置文件示例`
     * 📄 **wanxiang_english.custom.yaml** —— `🔠 英文方案自定义配置文件示例`
     * 📄 **wanxiang_mixedcode.custom.yaml** —— `🧬 混输方案自定义配置文件示例`
     * 📄 **wanxiang_reverse.custom.yaml** —— `🧩 反查方案自定义配置文件示例`
+    * 📄 **wanxiang_pro.custom.yaml** —— `⚡ 专业版方案自定义配置（含双拼/辅助码增强）`
+    * 📄 **wanxiang_pro.dict.yaml** —— `⚡ 专业版方案词库入口`
+    * 📄 **wanxiang_pro.schema.yaml** —— `⚡ 专业版方案主文件`
+    * 📄 **wanxiang_pure.custom.yaml** —— `🌿 纯净版方案自定义配置`
+    * 📄 **wanxiang_pure.dict.yaml** —— `🌿 纯净版方案词库入口`
+    * 📄 **wanxiang_pure.schema.yaml** —— `🌿 纯净版方案主文件`
 * 📄 **custom_phrase.txt** —— `自定义快捷短语源文件（置顶）`
 * ⚙️ **default.yaml** —— `Rime 全局默认行为与快捷键配置`
 * 📚 **dicts/** —— `万象词库集群`
@@ -20,6 +30,15 @@
     * 📄 **lianxiang.dict.yaml** —— `联想长词库`
     * 📄 **shici.dict.yaml** —— `古诗词与文言文大全词库`
     * 📄 **zi.dict.yaml** —— `单字及带调辅助码映射词库`
+    * 📄 **fangyan.dict.yaml** —— `方言词汇库`
+    * 📄 **huaxue.dict.yaml** —— `化学专业词库`
+    * 📄 **mingren.dict.yaml** —— `名人专有名词库`
+    * 📄 **renming.dict.yaml** —— `高频人名库`
+    * 📄 **taifeng.dict.yaml** —— `最新台风命名表`
+    * 📄 **wuzhong.dict.yaml** —— `物种多样性词库`
+    * 📄 **yaopin.dict.yaml** —— `药品名库`
+    * 📄 **yiren.dict.yaml** —— `艺人名词库`
+    * 📄 **yixue.dict.yaml** —— `医学专业词库`
 * 🪄 **lua/** —— `万象底层魔法扩展与数据`
     * 📂 **data/** —— `脚本依赖静态数据库`
         * 📄 **abbrev.txt** —— `简拼与全拼映射表`
@@ -36,9 +55,16 @@
         * 📄 **STCharacters.txt** —— `简繁单字转换引擎表`
         * 📄 **STPhrases.txt** —— `简繁词组转换引擎表`
         * 📄 **TWVariants.txt** —— `台湾正体字形转换表`
+        * 📄 **codex_sym.txt** —— `超级符号库数据（typst/codex 符号表，供 /sym）`
+        * 📄 **codex_emoji.txt** —— `超级表情库数据（供 /emoji）`
+        * 📄 **compose.txt** —— `Compose 合成字符静态码表（XCompose 转换，供 C 前缀）`
+        * 📄 **en_abbrev.txt** —— `英文简码数据（abbrev 模式英文简码）`
+        * 📄 **rev.txt** —— `同音派生数据（append 模式）`
     * 📂 **wanxiang/** —— `Lua 核心功能源码组件`
         * 📄 **auto_phrase.lua** —— `无感造词、中英文造词处理模块`
+        * 📄 **bit.lua** —— `跨运行时位运算兼容模块（兼容 LuaJIT bit 库，统一 64 位掩码）`
         * 📄 **charset_filter.lua** —— `字符集过滤模块`
+        * 📄 **compose.lua** —— `Compose 合成字符模式模块（仿系统 XCompose，C 前缀触发）`
         * 📄 **force_upper_aux.lua** —— `大写辅助码锁定句子模块`
         * 📄 **input_statistics.lua** —— `输入状态统计与监控模块`
         * 📄 **key_binder.lua** —— `高级快捷键绑定扩展模块`

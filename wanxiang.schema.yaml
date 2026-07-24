@@ -51,7 +51,9 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - lua_processor@*wanxiang.compose*processor  #compose: 小键盘数字/运算符作普通字符参与(显示正常数码), 功能键/小键盘Enter直接不支持(吞键), 主键数字透传选词
     - lua_processor@*wanxiang.user_predict*P  #靠自己养的专属预测联想处理器，不再依赖前端插件以及固定数据
+    - lua_processor@*wanxiang.super_symbols*P  #超级符号：选择「（字符分类）」候选（空格/回车/数字键）时展开为该分类全部条目（须置于 super_processor 之前以抢先拦截数字键）
     - lua_processor@*wanxiang.super_processor  #KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
     - lua_processor@*wanxiang.super_english*P  #英文只能加空格捕获按键操作
     - lua_processor@*wanxiang.partial_commit  #通过ctrl+1~0局部提交10个字以内的句子的前几个字（一般为正确的前几个）使用时要遵循合理的分词结构能促进后续编码打出正确的词汇
@@ -81,10 +83,11 @@ engine:
     - lua_translator@*wanxiang.set_schema  #输入'/zrm'，快速切换为自然码双拼， /flypy→小鹤双拼 /mspy→微软双拼 /zrm→自然码 /sogou→搜狗双拼 /abc→智能ABC /ziguang→紫光双拼 /pyjj→拼音加加 /gbpy→国标双拼 /lxsq→乱序17 /pinyin→全拼
     - lua_translator@*wanxiang.shijian  #农历、日期、节气、节日、时间、周、问候模板等等，触发清单看下文
     - lua_translator@*wanxiang.unicode  #通过输入大写U引导，并输入Unicode编码获得汉字输出
+    - lua_translator@*wanxiang.compose*translator  #通过输入大写C引导，并依次键入Compose序列获得合成字符(仿系统Compose)
     - lua_translator@*wanxiang.number_translator  #数字、金额大写，通过输入大写R1234获得候选输出
     - lua_translator@*wanxiang.super_calculator  #超级计算器，Lua内查看高级用法
     - lua_translator@*wanxiang.input_statistics  #一个输入统计的脚本，以日、周、月、年等维度的统计
-    - lua_translator@*wanxiang.super_symbols  #超级符号库：/sym.arrow.r.double→⇒  /sym?arrow 或 /sym/arrow 模糊搜索  /emoji.xxx 同理
+    - lua_translator@*wanxiang.super_symbols*T  #超级符号库：/sym.arrow.r.double→⇒  /sym?arrow 或 /sym/arrow 模糊搜索  /emoji.xxx 同理
     - table_translator@custom_phrase  #自定义短语 custom_phrase.txt，用于置顶自定义编码候选词
     - lua_translator@*wanxiang.super_english*T  #英文词汇表导入，限流，格式化
     - table_translator@wanxiang_mixedcode  #混合编码词汇表导入
@@ -241,6 +244,7 @@ recognizer:
     super_emoji_pre: "^/emoji[.?/]?$"  # 仅 /emoji /emoji. /emoji? /emoji/ 模式提示
     wanxiang_reverse: "^`[A-Za-z;]*$"  # 响应部件拆字与笔画的反查，与 wanxiang_reverse/prefix 匹配
     unicode: "^U[a-f0-9]+"  # U 作为触发前缀，响应 lua_translator@unicode，输出 Unicode 字符
+    compose: "^C.*"  # C 作为触发前缀，响应 lua_translator@compose，仿系统Compose合成字符
     number: "^R[0-9]+[.]?[0-9]*"  # R 作为触发前缀, 响应 lua_translator@number_translator，数字金额大写
     sjc: "^[/o]rc\\d+[-+=op]?$"
     yr1: "^N0[1-9]?0?[1-9]?"
@@ -268,6 +272,10 @@ recognizer:
 punctuator:
   digit_separators: ",.:"  #数字分隔符，系统逻辑是在中文状态下输入数字后继续输入句号按下两次即输入半角状态
   __include: wanxiang_symbols:/symbol_table  # 从 wanxiang_symbols.yaml 导入所有符号配置
+
+# Compose 模式设置
+compose:
+  alt_send_char: true  # 左 Alt + 任意主键盘键: 将对应字符直接送入 Compose 序列(便于无小键盘用户完成合成, 如 Alt+1 把 "1" 加入序列)。右 Alt(AltGr)不受影响, 可在 custom 中设为 false 关闭。
 
 # 从 default 继承快捷键
 key_binder:

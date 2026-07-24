@@ -682,6 +682,19 @@ local function handle_number_logic(key, env, ctx)
             return false
         end
 
+        -- Compose 模式判定：当前分段带 compose tag 时，主键盘数字用于选词
+        -- (设计: 主键盘选词, 小键盘参与合成)。compose 的 recognizer pattern 为 ^C.*
+        -- 过宽，会让 is_function_code_after_digit 把主键盘数字误吞入合成序列，
+        -- 故 compose 模式下须跳过该判断并关闭声调压缩，直接进入选词逻辑。
+        local in_compose = false
+        do
+            local comp0 = ctx.composition
+            if comp0 and not comp0:empty() then
+                local seg0 = comp0:back()
+                if seg0 and seg0:has_tag("compose") then in_compose = true end
+            end
+        end
+
         if env.enable_tone_fallback then
             local is_func_mode = false
             if wanxiang.is_function_mode_active then
@@ -695,7 +708,7 @@ local function handle_number_logic(key, env, ctx)
                 end
             end
 
-            if input:find(env.lookup_key, 1, true) or is_func_mode or is_first_cand_has_eng then
+            if in_compose or input:find(env.lookup_key, 1, true) or is_func_mode or is_first_cand_has_eng then
                 env.tone_state = "idle"
             else
                 env.tone_state = "compress"
@@ -707,7 +720,7 @@ local function handle_number_logic(key, env, ctx)
             end
         end
 
-        if is_function_code_after_digit(env, ctx, digit_str) then
+        if not in_compose and is_function_code_after_digit(env, ctx, digit_str) then
             if ctx.push_input then ctx:push_input(digit_str) else ctx.input = input .. digit_str end
             return true
         end

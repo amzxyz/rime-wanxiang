@@ -1,4 +1,4 @@
-### 🛠️ Super Replacer 增强替换器配置手册
+### 🔄 Super Replacer 增强替换器配置手册
 
 #### 1. 核心全局参数 (`super_replacer` 根节点)
 控制组件的基础运行环境与全局逻辑。

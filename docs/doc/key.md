@@ -1,4 +1,4 @@
-# Rime 按键映射速查表 (Key Binding Reference)
+# 🧭 Rime 按键映射速查表 (Key Binding Reference)
 
 本文档整理了 Rime (中州韵输入法引擎) 的 `key_binder` 模块中支持的所有标准按键名称。在编写 `custom.yaml` 或 `schema.yaml` 时，`accept` 和 `send` 字段必须严格遵守以下大小写。
 
