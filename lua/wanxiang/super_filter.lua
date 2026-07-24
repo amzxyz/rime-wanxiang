@@ -548,38 +548,24 @@ function M.func(input, env)
     end
 
     -- 2. 探查触发符号（斜杠 \）
+    -- 包裹键必须从完整 context.input 解析，不能依赖最后一个 segment。
+    -- 手动排序刷新 composition 后，触发符号及其后缀可能被切成独立尾段；
+    -- 此时符号位于尾段首位，旧逻辑的 pos > 1 会导致 wrap_key 永远无法识别。
     local symbol = env.symbol
     local sym_len = #symbol
     local symbol_pos = symbol and sym_len > 0 and find(code, symbol, 1, true)
-    local code_has_symbol = symbol_pos and symbol_pos > 1
+    local code_has_symbol = symbol_pos and symbol_pos > 1 or false
 
     if not code_has_symbol then
         env.page_cache = {}
     end
 
-    local fully_consumed = false
     local wrap_key = nil
-
     if code_has_symbol then
-        local segm = comp and comp:toSegmentation()
-        local confirmed = segm and segm.get_confirmed_position and segm:get_confirmed_position() or 0
-
-        if last_seg and last_seg.start and last_seg._end then
-            fully_consumed = (last_seg.start == confirmed) and (last_seg._end == code_len)
-
-            if fully_consumed then
-                local last_text = sub(code, last_seg.start + 1, last_seg._end)
-                local pos = find(last_text, symbol, 1, true)
-
-                if pos and pos > 1 then
-                    local right = sub(last_text, pos + sym_len)
-                    local k = right:lower()
-
-                    if k ~= "" and env.wrap_map[k] then
-                        wrap_key = k
-                    end
-                end
-            end
+        local right = sub(code, symbol_pos + sym_len)
+        local key = right:lower()
+        if key ~= "" and env.wrap_map[key] then
+            wrap_key = key
         end
     end
 
@@ -598,12 +584,12 @@ function M.func(input, env)
         end
     end
 
-    -- 保障机制：优先使用存得更多的缓存
+    -- 排序脚本的缓存是最终排序结果；只要输入精确匹配且缓存非空，就应当优先使用。
+    -- 不能再按缓存数量比较，否则排序去重后数量稍少时，会错误回退到本地未排序快照。
     local target_cache = env.page_cache
-    if _G.WanxiangSharedState.sorter_active and _G.WanxiangSharedState.last_input == raw_code then
-        if _G.WanxiangSharedState.page_cache and #_G.WanxiangSharedState.page_cache >= #env.page_cache then
-            target_cache = _G.WanxiangSharedState.page_cache
-        end
+    local shared = _G.WanxiangSharedState
+    if shared.sorter_active and shared.last_input == raw_code and shared.page_cache and #shared.page_cache > 0 then
+        target_cache = shared.page_cache
     end
 
     -- PHASE 1: 缓存快照输出
@@ -612,28 +598,20 @@ function M.func(input, env)
             local final_cand = c
 
             if wrap_key then
-                local pair = env.wrap_map[wrap_key]
-                if pair then
-                    local pr = env.wrap_parts[wrap_key] or { l = "", r = "" }
-                    local wrapped_text = (pr.l or "") .. c.text .. (pr.r or "")
+                local pr = env.wrap_parts[wrap_key] or { l = "", r = "" }
+                local wrapped_text = (pr.l or "") .. c.text .. (pr.r or "")
 
-                    local start_pos = c.start
-                    local end_pos = c._end
-
-                    if fully_consumed and last_seg then
-                        end_pos = last_seg._end
-                    end
-
-                    final_cand = Candidate(c.type, start_pos, end_pos, wrapped_text, "")
-                    final_cand.preedit = c.preedit or ""
-                end
+                -- 快照候选来自输入触发符之前；包裹后必须覆盖完整当前输入，
+                -- 否则独立尾段中的触发符和包裹键不会被候选消费。
+                final_cand = Candidate(c.type, c.start, code_len, wrapped_text, "")
+                final_cand.preedit = c.preedit or ""
             else
-                if fully_consumed and last_seg then
-                    final_cand = Candidate(c.type, c.start, last_seg._end, c.text, "")
-
-                    local typed_tail = sub(code, c._end + 1, last_seg._end)
-                    final_cand.preedit = (c.preedit or "") .. typed_tail
-                end
+                -- 仅输入触发符、尚未形成合法包裹键时，继续锁定原候选快照，
+                -- 并把已输入的尾部附加到 preedit。
+                local cand_end = tonumber(c._end) or 0
+                local typed_tail = cand_end < code_len and sub(code, cand_end + 1, code_len) or ""
+                final_cand = Candidate(c.type, c.start, code_len, c.text, "")
+                final_cand.preedit = (c.preedit or "") .. typed_tail
             end
 
             yield(final_cand)
@@ -728,3 +706,4 @@ function M.func(input, env)
     end
 end
 return M
+
