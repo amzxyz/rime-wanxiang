@@ -193,6 +193,7 @@ recognizer:
 punctuator:
   digit_separators: ",."  #数字分隔符，系统逻辑是在中文状态下输入数字后继续输入句号按下两次即输入半角状态
   __include: wanxiang_symbols:/symbol_table         # 从 wanxiang_symbols.yaml 导入所有符号配置
+  __patch: wanxiang_symbols:/symbols
   __patch: t9_sym
 t9_sym:
   half_shape/+:

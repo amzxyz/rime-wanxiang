@@ -47,7 +47,8 @@ engine:
     - uniquifier
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA\
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/\
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/
   delimiter: " '"
   algebra:
     __include: wanxiang_algebra:/english/通用规则
@@ -68,9 +69,11 @@ key_binder:
     - {when: has_menu, accept: "Control+e", toggle: chinese_english}
 punctuator:
   __include: wanxiang_symbols:/ascii_symbol_table
+  __patch: wanxiang_symbols:/symbols
 recognizer:
   import_preset: default
-
+  patterns:
+    punct: "^/([0-9]|10|[A-Za-z]+)$"
 wanxiang_english:
   dictionary: wanxiang_english
   user_dict: en
