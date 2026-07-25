@@ -1,5 +1,33 @@
 # Changelog
 
+## [16.3.0](https://github.com/amzxyz/rime-wanxiang/compare/v16.2.3...v16.3.0) (2026-07-25)
+
+
+### ✨ 新特性
+
+* 用于万象拼音的Linux Compose键模拟 ([e0fc9a1](https://github.com/amzxyz/rime-wanxiang/commit/e0fc9a12ebf19db576f073509051d235b2f2e79f))
+
+
+### 📚 词库更新
+
+* 词库调整 ([38dcbbf](https://github.com/amzxyz/rime-wanxiang/commit/38dcbbf38e3270fd65fd1db5668d6c6e705ed838))
+* 词库调整 ([a5889f9](https://github.com/amzxyz/rime-wanxiang/commit/a5889f95bfa66bab4dac0940e5bb5f0892f0062b))
+
+
+### 🐛 Bug 修复
+
+* base,t9移除手动排序 ([57aa072](https://github.com/amzxyz/rime-wanxiang/commit/57aa0723db41731ad55f066deee9778a8cf203ff))
+* **super_symbols:** 优化超级符号用户交互 ([e0fc9a1](https://github.com/amzxyz/rime-wanxiang/commit/e0fc9a12ebf19db576f073509051d235b2f2e79f))
+* 优化replacer lua，移除单字匹配的句子派生 ([351fd04](https://github.com/amzxyz/rime-wanxiang/commit/351fd048b104c403e80e10a569f9a740d10753e1))
+* 优化手动排序脚本 ([86a8f51](https://github.com/amzxyz/rime-wanxiang/commit/86a8f513a55f71589fd46e51e4367f7ec44d95f8))
+* 优化超级注释，移除掉分隔符转换的代码，其他性能优化 ([5345d29](https://github.com/amzxyz/rime-wanxiang/commit/5345d291eab15c56984ace6b1b6c16711fdddedc))
+* 修复手动排序数据不能参与到真实位置的符号包裹 ([245e2ff](https://github.com/amzxyz/rime-wanxiang/commit/245e2ff6d8d77c33501666bfce160616bb337891))
+
+
+### 📖 文档
+
+* 修订所有文档 ([e0fc9a1](https://github.com/amzxyz/rime-wanxiang/commit/e0fc9a12ebf19db576f073509051d235b2f2e79f))
+
 ## [16.2.3](https://github.com/amzxyz/rime-wanxiang/compare/v16.2.2...v16.2.3) (2026-07-23)
 
 
