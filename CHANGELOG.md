@@ -1,5 +1,20 @@
 # Changelog
 
+## [16.3.1](https://github.com/amzxyz/rime-wanxiang/compare/v16.3.0...v16.3.1) (2026-07-26)
+
+
+### 📚 词库更新
+
+* 词库调整 ([51cf6d7](https://github.com/amzxyz/rime-wanxiang/commit/51cf6d7674ffc995b68aa96d8da7ead33a53dd61))
+* 词库调整 ([6419185](https://github.com/amzxyz/rime-wanxiang/commit/64191854f9fe84ee16f2e6ea1f458088c1b6292a))
+* 词库调整 ([f77700b](https://github.com/amzxyz/rime-wanxiang/commit/f77700b797aeb5f1e7031f143866a3b648e45975))
+
+
+### 🐛 Bug 修复
+
+* t9符号引入错误 ([6adbb51](https://github.com/amzxyz/rime-wanxiang/commit/6adbb514770f373e4e6e41008aec16ca83821693))
+* 英文方案增加导入symbol列表 ([244cbce](https://github.com/amzxyz/rime-wanxiang/commit/244cbce27befb082b6b2688c6d4614665eee3e0c))
+
 ## [16.3.0](https://github.com/amzxyz/rime-wanxiang/compare/v16.2.3...v16.3.0) (2026-07-25)
 
 
