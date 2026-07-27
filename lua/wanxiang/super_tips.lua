@@ -66,11 +66,13 @@ local function generate_files_signature(paths)
     return table.concat(sig_parts, "||")
 end
 
--- 元数据 Key
+-- 仅在数据库结构或解析格式变化时递增，不能使用万象整体版本号。
+local DB_FORMAT_VERSION = "1"
+
 local META_KEY = {
-    version = "wanxiang_version",
-    disabled_types = "disabled_types_fingerprint", -- 配置指纹
-    files_sig = "files_signature",                 -- 文件特征码
+    version = "db_format_version",
+    disabled_types = "disabled_types_fingerprint",
+    files_sig = "files_signature",
 }
 
 ---判断某个类型是否被禁用
@@ -112,108 +114,102 @@ end
 ---初始化核心逻辑
 ---@param config Config
 function tips.init(config)
-    if tips.status ~= "pending" then return end
+    if tips.status == "done" then return true end
+    if tips.status == "initialing" then return false end
+    tips.status = "initialing"
 
-    -- 确保目录存在 (仅非特定发行版)
+    -- 暂时保留：部分打包程序在用户目录尚无数据库时，不能主动创建 lua/data。
+    -- 上游支持完善后再移除这层兼容。
     local dist = rime_api.get_distribution_code_name() or ""
     if dist ~= "hamster" and dist ~= "hamster3" and dist ~= "Weasel" then
         local user_lua_dir = rime_api.get_user_data_dir() .. "/lua"
         tips.ensure_dir_exist(user_lua_dir .. "/data")
     end
-    -- 获取自定义数据库名称并实例化，缺省为 "lua/tips"
-    local db_name = config:get_string("super_tips/db_name")
-    if not db_name or db_name == "" then
-        db_name = "lua/tips"
-    end
-    tips_db = userdb.LevelDb(db_name)
 
-    -- 读取 disabled_types 配置
+    local db_name = config:get_string("super_tips/db_name")
+    if not db_name or db_name == "" then db_name = "lua/tips" end
+    tips_db = userdb.LevelDb(db_name)
+    if not tips_db then
+        tips.status = "pending"
+        return false
+    end
+
+    -- 每次真正初始化时重建配置状态，避免失败重试后残留旧类型。
+    tips.disabled_types = {}
     local disabled_keys = {}
     local disabled_types_list = config:get_list("super_tips/disabled_types")
     if disabled_types_list then
-        for i = 1, disabled_types_list.size do
-            local item = disabled_types_list:get_value_at(i - 1)
-            if item and #item.value > 0 then
-                tips.disabled_types[item.value] = true
-                table.insert(disabled_keys, item.value)
+        for i = 0, disabled_types_list.size - 1 do
+            local item = disabled_types_list:get_value_at(i)
+            local value = item and item.value
+            if value and value ~= "" then
+                tips.disabled_types[value] = true
+                disabled_keys[#disabled_keys + 1] = value
             end
         end
     end
     table.sort(disabled_keys)
     local current_disabled_fingerprint = table.concat(disabled_keys, "|")
 
-    -- 获取数据文件列表（支持 files 配置）
     local files = {}
     local files_list = config:get_list("super_tips/files")
     if files_list then
-        -- 用户显式配置了文件列表
         for i = 0, files_list.size - 1 do
-            local file_entry = files_list:get_value_at(i)
-            if file_entry and file_entry.value ~= "" then
-                local resolved = resolve_path(file_entry.value)
-                if resolved then
-                    table.insert(files, resolved)
-                end
+            local entry = files_list:get_value_at(i)
+            if entry and entry.value ~= "" then
+                local resolved = resolve_path(entry.value)
+                if resolved then files[#files + 1] = resolved end
             end
         end
     end
+    if #files == 0 then files = { tips.default_preset, tips.default_user } end
 
-    -- 如果没有配置 files，则使用默认文件
-    if #files == 0 then
-        files = { tips.default_preset, tips.default_user }
-    end
-
-    -- 生成当前文件签名（所有文件组合）
     local current_signature = generate_files_signature(files)
+    local needs_rebuild = true
 
-    -- 打开数据库，检查是否需要重建
-    tips_db:open()
-    local needs_rebuild = false
+    -- 稳定路径只读打开一次；元数据一致时直接保留句柄，不再读写打开后又关闭重开。
+    if tips_db:open_read_only() then
+        local db_ver = tips_db:meta_fetch(META_KEY.version) or ""
+        local db_disabled = tips_db:meta_fetch(META_KEY.disabled_types) or ""
+        local db_signature = tips_db:meta_fetch(META_KEY.files_sig) or ""
 
-    -- 检查全局版本号
-    local db_ver = tips_db:meta_fetch(META_KEY.version)
-    if db_ver ~= wanxiang.version then
-        needs_rebuild = true
-    end
+        needs_rebuild = db_ver ~= DB_FORMAT_VERSION
+            or db_disabled ~= current_disabled_fingerprint
+            or db_signature ~= current_signature
 
-    -- 检查配置指纹
-    if not needs_rebuild then
-        local db_fingerprint = tips_db:meta_fetch(META_KEY.disabled_types) or ""
-        if db_fingerprint ~= current_disabled_fingerprint then
-            needs_rebuild = true
+        if not needs_rebuild then
+            tips.status = "done"
+            return true
         end
+        tips_db:close()
     end
 
-    -- 检查文件签名
-    if not needs_rebuild then
-        local db_sig = tips_db:meta_fetch(META_KEY.files_sig) or ""
-        if db_sig ~= current_signature then
-            needs_rebuild = true
-        end
+    -- 只有数据库不存在或数据确实变化时，才进入读写模式并重建。
+    if not tips_db:open() then
+        tips.status = "pending"
+        return false
     end
 
-    -- 执行重建
-    if needs_rebuild then
-        -- 优雅清空，防止体积膨胀
-        if tips_db.clear then tips_db:clear() elseif tips_db.empty then tips_db:empty() end
-        tips.load_data_from_files(files)
-
-        -- 更新元数据
-        tips_db:meta_update(META_KEY.version, wanxiang.version)
-        tips_db:meta_update(META_KEY.disabled_types, current_disabled_fingerprint)
-        tips_db:meta_update(META_KEY.files_sig, current_signature)
-    end
-
-    -- 切换为只读模式 (查询更快)
+    if tips_db.clear then tips_db:clear() elseif tips_db.empty then tips_db:empty() end
+    tips.load_data_from_files(files)
+    tips_db:meta_update(META_KEY.version, DB_FORMAT_VERSION)
+    tips_db:meta_update(META_KEY.disabled_types, current_disabled_fingerprint)
+    tips_db:meta_update(META_KEY.files_sig, current_signature)
     tips_db:close()
-    tips_db:open_read_only()
-    
+
+    if not tips_db:open_read_only() then
+        tips.status = "pending"
+        return false
+    end
+
     tips.status = "done"
+    return true
 end
 
 ---从数据库中查询 tips
 function tips.get_tip(keys)
-    if type(keys) == 'string' then keys = { keys } end
+    if tips.status ~= "done" or not tips_db then return nil end
+    if type(keys) == "string" then keys = { keys } end
     for _, key in ipairs(keys) do
         if key and key ~= "" then
             local tip = tips_db:fetch(key)
