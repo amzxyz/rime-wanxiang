@@ -1,5 +1,24 @@
 # Changelog
 
+## [16.3.2](https://github.com/amzxyz/rime-wanxiang/compare/v16.3.1...v16.3.2) (2026-07-27)
+
+
+### 🔥 性能优化
+
+* **charset_filter:** 延迟初始化字符集反查库 ([22c60ef](https://github.com/amzxyz/rime-wanxiang/commit/22c60ef7de9127c6c2d4cdbae8998659f1108a32))
+* **force_upper_aux:** 延迟初始化辅助码反查库 ([00f5ba8](https://github.com/amzxyz/rime-wanxiang/commit/00f5ba8985a39ab566ab84b1a3837dc768809670))
+* **input_stats:** 延迟初始化统计数据库 ([7429fb4](https://github.com/amzxyz/rime-wanxiang/commit/7429fb41e530a0f96a86b1862cf4a3f7b8dd7663))
+* **replacer:** 优化数据库初始化与重建流程 ([e369837](https://github.com/amzxyz/rime-wanxiang/commit/e36983781236d8a1b6c92edde35b1ba3911e9313))
+* **sequence:** 延迟同步并优化排序数据导出 ([8d412ff](https://github.com/amzxyz/rime-wanxiang/commit/8d412ffb5affb06516f428982021b8f16c590fbe))
+* **super_lookup:** 延迟初始化反查数据库资源 ([0935878](https://github.com/amzxyz/rime-wanxiang/commit/093587804b1d6de1530dc059817f5815fedf6233))
+* **tips:** 优化数据库初始化与重建流程 ([2e13d9f](https://github.com/amzxyz/rime-wanxiang/commit/2e13d9fe5554c2bc55d347b4c2a4bc521f837598))
+* **user_predict:** 延迟执行预测库过期清理 ([c33a2ab](https://github.com/amzxyz/rime-wanxiang/commit/c33a2ab48ca72eb983bca8678dc1bad127bcce64))
+
+
+### 🐛 Bug 修复
+
+* **super_english:** 显式释放英文翻译器 ([0ac8758](https://github.com/amzxyz/rime-wanxiang/commit/0ac8758246b56ce9042b1bb976d9228ffde9d6ce))
+
 ## [16.3.1](https://github.com/amzxyz/rime-wanxiang/compare/v16.3.0...v16.3.1) (2026-07-26)
 
 
