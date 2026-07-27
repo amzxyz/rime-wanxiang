@@ -10,12 +10,18 @@ local _db_pool = {}
 local raw_software_name = rime_api.get_distribution_code_name()
 
 local function get_db(env)
-    local config = env.engine.schema.config
-    local db_name = config:get_string("input_stats/db_name") or "lua/stats"
-    if not _db_pool[db_name] then 
-        _db_pool[db_name] = userdb.LevelDb(db_name) 
+    local db_name = env.stats_db_name
+    if not db_name or db_name == "" then
+        db_name = env.engine.schema.config:get_string("input_stats/db_name")
+        if not db_name or db_name == "" then db_name = "lua/stats" end
+        env.stats_db_name = db_name
     end
+
     local db = _db_pool[db_name]
+    if not db then
+        db = userdb.LevelDb(db_name)
+        _db_pool[db_name] = db
+    end
     if db and not db:loaded() then db:open() end
     return db
 end
@@ -60,6 +66,16 @@ local pending_max_speeds = {} -- { [day_key] = { ["_spd"]=N } }
 local BATCH_INTERVAL = 5      -- 最多每5秒落盘一次
 local MAX_PENDING_WORDS = 200 -- 积累超过200字时强制刷盘
 local last_flush_ts = 0
+
+local DEFAULT_TITLES = {
+    { threshold = 5000000, name = "⌨️·天人合一" },
+    { threshold = 1000000, name = "⌨️·登峰造极" },
+    { threshold = 500000,  name = "✨·出神入化" },
+    { threshold = 100000,  name = "💨·行云流水" },
+    { threshold = 50000,   name = "🚀·运指如飞" },
+    { threshold = 10000,   name = "🌟·渐入佳境" },
+    { threshold = 0,       name = "🌱·初学乍练" }
+}
 
 local function get_current_kpm(now)
     if now - last_cleanup_ts > 5 then
@@ -169,6 +185,7 @@ local function clear_all_data(env)
         speed_buffer = {}
         pending_stats = {}
         pending_max_speeds = {}
+        last_flush_ts = os.time()
         return true
     end
     local iter = db:query("")
@@ -179,6 +196,7 @@ local function clear_all_data(env)
         speed_buffer = {}
         pending_stats = {}
         pending_max_speeds = {}
+        last_flush_ts = os.time()
         return true
     end
     return false
@@ -273,12 +291,39 @@ local function aggregate_custom_period(env, year, month, day, end_year, end_mont
     return res
 end
 
+local function ensure_titles(env)
+    if env.titles then return env.titles end
+
+    local titles = {}
+    local custom_titles = env.engine.schema.config:get_list("input_stats/titles")
+    if custom_titles then
+        for i = 0, custom_titles.size - 1 do
+            local item = custom_titles:get_value_at(i)
+            local value = item and item.value
+            if value then
+                local threshold, name = value:match("^(%d+):(.+)$")
+                if threshold and name then
+                    titles[#titles + 1] = { threshold = tonumber(threshold), name = name }
+                end
+            end
+        end
+    end
+
+    if #titles == 0 then
+        env.titles = DEFAULT_TITLES
+    else
+        table.sort(titles, function(a, b) return a.threshold > b.threshold end)
+        env.titles = titles
+    end
+    return env.titles
+end
+
 local function get_user_title(env)
     local db = get_db(env)
     if not db or not db:loaded() then return "初学乍练" end
-    
+
     local current_len = db_get(db, "total_len")
-    for _, item in ipairs(env.titles) do
+    for _, item in ipairs(ensure_titles(env)) do
         if current_len >= item.threshold then return item.name end
     end
     return "初学乍练"
@@ -365,8 +410,12 @@ end
 local function init(env)
     local config = env.engine.schema.config
     env.schema_name = env.engine.schema.schema_name or "万象方案"
+    env.stats_db_name = config:get_string("input_stats/db_name")
+    if not env.stats_db_name or env.stats_db_name == "" then env.stats_db_name = "lua/stats" end
+    env.titles = nil
 
-    get_db(env)
+    -- 避免首次提交因为 last_flush_ts=0 立刻打开数据库。
+    if last_flush_ts == 0 then last_flush_ts = os.time() end
 
     env.triggers = {
         clear   = config:get_string("input_stats/triggers/clear")   or "/qctj",
@@ -377,31 +426,6 @@ local function init(env)
         total   = config:get_string("input_stats/triggers/total")   or "/tj",
         history = config:get_string("input_stats/triggers/history") or "/htj",
     }
-
-    env.titles = {}
-    local custom_titles = config:get_list("input_stats/titles")
-    if custom_titles and custom_titles.size > 0 then
-        for i = 0, custom_titles.size - 1 do
-            local item = custom_titles:get_value_at(i)
-            if item and item.value then
-                local t_val, t_name = item.value:match("^(%d+):(.+)$")
-                if t_val and t_name then table.insert(env.titles, { threshold = tonumber(t_val), name = t_name }) end
-            end
-        end
-    end
-    
-    if #env.titles == 0 then
-        env.titles = {
-            { threshold = 5000000, name = "⌨️·天人合一" },
-            { threshold = 1000000, name = "⌨️·登峰造极" },
-            { threshold = 500000,  name = "✨·出神入化" },
-            { threshold = 100000,  name = "💨·行云流水" },
-            { threshold = 50000,   name = "🚀·运指如飞" },
-            { threshold = 10000,   name = "🌟·渐入佳境" },
-            { threshold = 0,       name = "🌱·初学乍练" }
-        }
-    end
-    table.sort(env.titles, function(a, b) return a.threshold > b.threshold end)
 
     if env.stat_notifier then env.stat_notifier:disconnect() end
     local ctx = env.engine.context
