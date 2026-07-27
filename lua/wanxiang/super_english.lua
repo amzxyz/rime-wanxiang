@@ -96,10 +96,17 @@ local function normalized_limit(value)
 end
 
 local T = {}
+local function release_eng_translator(env)
+    local translator = env.eng_translator
+    if not translator then return end
+
+    translator:disconnect()
+    env.eng_translator = nil
+end
 
 function T.init(env)
+    release_eng_translator(env)
     env.max_candidates = DEFAULT_MAX_CANDIDATES
-    env.eng_translator = nil
 
     local config = env.engine and env.engine.schema and env.engine.schema.config
 
@@ -249,7 +256,7 @@ function T.func(input, seg, env)
 end
 
 function T.fini(env)
-    env.eng_translator = nil
+    release_eng_translator(env)
 end
 
 local function get_now()
@@ -343,9 +350,7 @@ local function get_candidate_type(cand)
 end
 
 local function is_exact_table_type(cand_type)
-    return cand_type == "table"
-        or cand_type == "user_table"
-        or cand_type == "fixed"
+    return cand_type == "table" or cand_type == "user_table" or cand_type == "fixed"
 end
 
 function EnglishPrefixCleanup.new(schema_id, code_len)
