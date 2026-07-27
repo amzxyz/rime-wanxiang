@@ -29,12 +29,31 @@ local function str_to_mask(s)
     return m
 end
 
+local function get_charset_db(env)
+    if env.charset_db_checked then return env.charset_db end
+    env.charset_db_checked = true
+
+    if not ReverseDb then return nil end
+
+    local dist = (rime_api and rime_api.get_distribution_code_name and rime_api.get_distribution_code_name() or ""):lower()
+    local fname = dist == "weasel"
+        and "lua/data/charset.reverse.bin"
+        or wanxiang.get_filename_with_fallback("lua/data/charset.reverse.bin")
+        or "lua/data/charset.reverse.bin"
+
+    local ok, db = pcall(function() return ReverseDb(fname) end)
+    if ok then env.charset_db = db end
+    return env.charset_db
+end
+
 local function get_char_mask(env, char)
-    -- 先查缓存
     local mask = env.db_memo[char]
     if mask ~= nil then return mask end
-    if not env.charset_db then return 0 end
-    local attr = env.charset_db:lookup(char)
+
+    local db = get_charset_db(env)
+    if not db then return 0 end
+
+    local attr = db:lookup(char)
     if attr and attr ~= "" then
         mask = str_to_mask(attr)
         env.db_memo[char] = mask
@@ -63,11 +82,9 @@ local function char_is_valid(env, codepoint, char, active_rules, cache)
         if not allowed then
             if rule.add[codepoint] then
                 allowed = true
-            else
+            elseif rule.base ~= 0 then
                 local m = get_char_mask(env, char)
-                if m ~= 0 and bit.band(m, rule.base) ~= 0 then
-                    allowed = true
-                end
+                if m ~= 0 and bit.band(m, rule.base) ~= 0 then allowed = true end
             end
         end
     end
@@ -193,20 +210,8 @@ end
 function M.init(env)
     local cfg = env.engine and env.engine.schema and env.engine.schema.config
 
-    -- 加载数据库
-    local dist = (rime_api and rime_api.get_distribution_code_name and rime_api.get_distribution_code_name() or ""):lower()
-    local fname
-    if dist == "weasel" then
-        fname = "lua/data/charset.reverse.bin"
-    else
-        fname = wanxiang.get_filename_with_fallback("lua/data/charset.reverse.bin") or "lua/data/charset.reverse.bin"
-    end
-
     env.charset_db = nil
-    if ReverseDb then
-        local ok, db = pcall(function() return ReverseDb(fname) end)
-        if ok and db then env.charset_db = db end
-    end
+    env.charset_db_checked = false
 
     env.db_memo = {}
     env.filters = {}
@@ -235,6 +240,7 @@ function M.fini(env)
         env.opt_update_conn = nil
     end
     env.charset_db = nil
+    env.charset_db_checked = nil
     env.db_memo = nil
     env.filters = nil
     env.phrase_history_dict = nil
