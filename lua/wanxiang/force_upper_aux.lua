@@ -40,11 +40,16 @@ local function get_script_text_parts(ctx)
     return parts
 end
 
+-- 首次实际查询辅助码时再创建反查对象
+local function get_dict(env)
+    if not env.dict then env.dict = ReverseLookup(env.dict_name) end
+    return env.dict
+end
+
 -- 查询辅助码
 local function lookup_aux_code(env, char)
-    if not env.dict then return "" end 
     if env.aux_cache[char] then return env.aux_cache[char] end
-    local raw_code = env.dict:lookup(char)
+    local raw_code = get_dict(env):lookup(char)
     if not raw_code or raw_code == "" then return "" end
     local aux_part = raw_code:match(";([^,]+)") or raw_code:match("^([^;]+)") or ""
     local final_code = aux_part:gsub("[^a-zA-Z]", ""):sub(1, 2):upper()
@@ -57,7 +62,8 @@ function ForceUpperAux.init(env)
     local config = env.engine.schema.config
     env.trigger_key = config:get_string("force_upper_aux/hotkey") or "Tab"
     env.aux_cache = {}
-    env.dict = ReverseLookup(config:get_string("translator/dictionary") or "wanxiang_pro")
+    env.dict_name = config:get_string("translator/dictionary") or "wanxiang_pro"
+    env.dict = nil
     
     env.history_first = {}   
     env.press_count = 0      
@@ -123,6 +129,7 @@ end
 function ForceUpperAux.fini(env)
     if env.update_conn then env.update_conn:disconnect() end
     env.dict = nil
+    env.dict_name = nil
     env.aux_cache = nil
     env.history_first = nil
     env.snapshot_parts = nil
