@@ -331,16 +331,25 @@ local function parse_and_separate_rules(schema_id)
     return final_main, final_xlit
 end
 
-local function get_schema_rules(env)
-    local db_list = env.engine.schema.config:get_list("wanxiang_lookup/lookup")
-    if not db_list or db_list.size == 0 then
-        return {}, {}
+local function ensure_lookup_resources(env)
+    if not env.has_db or env.db_table then
+        return
     end
 
-    local schema_id = db_list:get_value_at(0).value
-    local main_rules, xlit_rules = parse_and_separate_rules(schema_id)
+    env.db_table = {}
+    for i = 1, #env.db_names do
+        env.db_table[i] = ReverseLookup(env.db_names[i])
+    end
 
-    return main_rules or {}, xlit_rules or {}
+    local main_rules, xlit_rules = parse_and_separate_rules(env.db_names[1])
+    if main_rules then
+        env.main_projection = Projection()
+        env.main_projection:load(main_rules)
+    end
+    if xlit_rules then
+        env.xlit_projection = Projection()
+        env.xlit_projection:load(xlit_rules)
+    end
 end
 
 local function add_unique(list, seen, value)
@@ -577,14 +586,8 @@ local function ensure_db_cache_entry(env, char_str, need_xlit)
     local entry = db_cache[char_str]
 
     if not entry then
-        local main_codes, xlit_codes = build_reverse_group(
-            env.main_projection,
-            env.xlit_projection,
-            env.db_table,
-            char_str,
-            true,
-            need_xlit
-        )
+        local main_codes, xlit_codes =
+            build_reverse_group(env.main_projection, env.xlit_projection, env.db_table, char_str, true, need_xlit)
         entry = {
             main = main_codes or {},
             xlit = need_xlit and (xlit_codes or {}) or nil,
@@ -593,14 +596,8 @@ local function ensure_db_cache_entry(env, char_str, need_xlit)
         db_cache[char_str] = entry
         env.cache_size = env.cache_size + 1
     elseif need_xlit and entry.xlit == nil then
-        local _, xlit_codes = build_reverse_group(
-            env.main_projection,
-            env.xlit_projection,
-            env.db_table,
-            char_str,
-            false,
-            true
-        )
+        local _, xlit_codes =
+            build_reverse_group(env.main_projection, env.xlit_projection, env.db_table, char_str, false, true)
         entry.xlit = xlit_codes or {}
     end
 
@@ -637,12 +634,8 @@ local function build_candidate_raw_data(cand, cand_len, env)
             local cache_key = cand_text .. "_" .. comment_text
             local parsed_comment = comment_cache[cache_key]
             if parsed_comment == nil then
-                parsed_comment = parse_comment_codes(
-                    comment_text,
-                    env.comment_split_ptrn,
-                    cand_len,
-                    env.enable_tone
-                ) or false
+                parsed_comment = parse_comment_codes(comment_text, env.comment_split_ptrn, cand_len, env.enable_tone)
+                    or false
                 comment_cache[cache_key] = parsed_comment
                 env.cache_size = env.cache_size + 1
             end
@@ -1037,7 +1030,8 @@ local function check_explicit_match(raw_data, cand_len, clean_fuma, tone_filter_
         if codes_seq then
             local tone_match_pass = true
             if apply_tone_filter then
-                tone_match_pass = check_explicit_tone_match(codes_seq, tone_filter_seq, raw_data._comment_internal, source_type)
+                tone_match_pass =
+                    check_explicit_tone_match(codes_seq, tone_filter_seq, raw_data._comment_internal, source_type)
             end
 
             if tone_match_pass then
@@ -1126,6 +1120,8 @@ end
 
 -- A. 引导模式 (Explicit Mode) 控制器
 local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly_fuma, s_end)
+    ensure_lookup_resources(env)
+
     if not env.mem then
         env.mem = Memory(env.engine, env.engine.schema)
     end
@@ -1311,6 +1307,8 @@ local function handle_direct_mode(input, env, ctx_input)
     end
 
     local function build_matches()
+        ensure_lookup_resources(env)
+
         matched_cands = {}
         matched_text_count = {}
         fuma = ctx_input:sub(#base_input + 1):gsub("['%s]", "")
@@ -1479,32 +1477,16 @@ function f.init(env)
         env.has_comment = true
     end
 
+    env.db_names = {}
     env.db_table = nil
+    env.main_projection = nil
+    env.xlit_projection = nil
 
     if env.has_db then
         local db_list = config:get_list("wanxiang_lookup/lookup")
         if db_list and db_list.size > 0 then
-            env.db_table = {}
             for i = 0, db_list.size - 1 do
-                table.insert(env.db_table, ReverseLookup(db_list:get_value_at(i).value))
-            end
-
-            local main_rules, xlit_rules = get_schema_rules(env)
-
-            env.main_projection = nil
-            if type(main_rules) == "table" and #main_rules > 0 then
-                env.main_projection = Projection()
-            end
-            if env.main_projection then
-                env.main_projection:load(main_rules)
-            end
-
-            env.xlit_projection = nil
-            if type(xlit_rules) == "table" and #xlit_rules > 0 then
-                env.xlit_projection = Projection()
-            end
-            if env.xlit_projection then
-                env.xlit_projection:load(xlit_rules)
+                env.db_names[#env.db_names + 1] = db_list:get_value_at(i).value
             end
         else
             env.has_db = false
@@ -1650,7 +1632,10 @@ function f.fini(env)
         env.mem:disconnect()
     end
 
+    env.db_names = nil
     env.db_table = nil
+    env.main_projection = nil
+    env.xlit_projection = nil
     env._db_cache = nil
     env._comment_cache = nil
     env.history_parts = nil
