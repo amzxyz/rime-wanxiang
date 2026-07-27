@@ -31,6 +31,8 @@ local os_time  = os.time
 local wanxiang = require("wanxiang/wanxiang")
 local shared_reverted_code = ""
 local shared_is_backspacing = false
+local CLEAN_INTERVAL = 3 * 24 * 3600
+local LAST_CLEAN_KEY = "\0last_clean_time"
 -- 内部运行参数默认值 (会被外部 YAML 配置覆盖)
 local CONFIG = {
     MAX_CANDIDATES      = 5,             
@@ -148,6 +150,37 @@ local function get_db(env)
     local db = _db_pool[db_name]
     if db and not db:loaded() then db:open() end
     return db
+end
+
+local function clean_expired_records(db, now)
+    if not db then return 0 end
+    local query = db:query("")
+    if not query then return 0 end
+
+    local deleted_count = 0
+    for k, v in query:iter() do
+        local first = s_sub(k, 1, 1)
+        if first ~= "\1" and first ~= "\0" then
+            local _, ts_str = s_match(v, "^([^|]+)|?(.*)$")
+            local ts = tonumber(ts_str) or 0
+            local limit
+
+            if s_sub(k, 1, 2) == "S\t" then
+                limit = math.huge
+            elseif s_sub(k, 1, 2) == "P\t" then
+                limit = CONFIG.P_EXPIRY_SECONDS
+            else
+                limit = CONFIG.EXPIRY_SECONDS
+            end
+
+            if ts == 0 then ts = now - limit - 1 end
+            if now - ts > limit then
+                if db.erase then db:erase(k) else db:update(k, "") end
+                deleted_count = deleted_count + 1
+            end
+        end
+    end
+    return deleted_count
 end
 
 -- 语境分割算法 (纯汉字白名单)
@@ -347,35 +380,11 @@ function P.init(env)
     end
     local db = get_db(env)
     local now = os_time()
-    local CLEAN_INTERVAL = 259200  --3天
-    
-    local last_clean_str = db:fetch("\0last_clean_time")
-    local last_clean_time = tonumber(last_clean_str) or 0
+    local last_clean_time = tonumber(db:fetch(LAST_CLEAN_KEY)) or 0
 
-    if (now - last_clean_time) > CLEAN_INTERVAL then
-        local deleted_count = 0
-        for k, v in db:query(""):iter() do
-            if s_sub(k, 1, 1) ~= "\1" and s_sub(k, 1, 1) ~= "\0" then
-                local _, ts_str = s_match(v, "^([^|]+)|?(.*)$")
-                local ts = tonumber(ts_str) or 0
-                if s_sub(k, 1, 2) == "S\t" then
-                    limit = math.huge
-                else
-                    local is_p_gram = (s_sub(k, 1, 2) == "P\t")
-                    limit = is_p_gram and CONFIG.P_EXPIRY_SECONDS or CONFIG.EXPIRY_SECONDS
-                end
-                if ts == 0 then ts = now - limit - 1 end
-                if (now - ts) > limit then
-                    if db.erase then db:erase(k) else db:update(k, "") end
-                    deleted_count = deleted_count + 1
-                end
-            end
-        end
-        db:update("\0last_clean_time", tostring(now))
-        if deleted_count > 0 then
-            log.info("【用户预测库自动维护】距上次清理已超3天，本次静默扫除 " .. deleted_count .. " 条过期记忆。")
-        end
-    end
+    -- 初始化只检查清理时间；全库扫描延迟到 P.fini。
+    env.auto_clean_due = now - last_clean_time > CLEAN_INTERVAL
+
     env.need_push = false 
     env.last_written_keys = {}
     env.just_committed = false
@@ -574,32 +583,15 @@ function P.init(env)
         if input == "/clean" then
             ctx:clear()
             local now = os_time()
-            local deleted_count = 0
-            for k, v in db:query(""):iter() do
-                if s_sub(k, 1, 1) ~= "\1" and s_sub(k, 1, 1) ~= "\0" then
-                    local _, ts_str = s_match(v, "^([^|]+)|?(.*)$")
-                    local ts = tonumber(ts_str) or 0
-                    if s_sub(k, 1, 2) == "S\t" then
-                        limit = math.huge
-                    else
-                        local is_p_gram = (s_sub(k, 1, 2) == "P\t")
-                        limit = is_p_gram and CONFIG.P_EXPIRY_SECONDS or CONFIG.EXPIRY_SECONDS
-                    end
-                    
-                    if ts == 0 then ts = now - limit - 1 end
-                    
-                    if (now - ts) > limit then
-                        if db.erase then db:erase(k) else db:update(k, "") end
-                        deleted_count = deleted_count + 1
-                    end
-                end
-            end
-            
+            local deleted_count = clean_expired_records(db, now)
+            db:update(LAST_CLEAN_KEY, tostring(now))
+            env.auto_clean_due = false
+
             reset_memory_chain(env, "手动清理结束")
-            -- 上屏提示信息，让用户知道清理了多少条垃圾
             env.engine:commit_text("【预测数据库清理完成：共清除 " .. deleted_count .. " 条过期记忆】")
             return
         end
+
         if input == "/outpredict" then
             ctx:clear()
             local sync_path = rime_api.get_user_data_dir() .. "/predict_export.txt"
@@ -802,6 +794,18 @@ function P.func(key, env)
 end
 
 function P.fini(env)
+    if env.auto_clean_due then
+        local db = get_db(env)
+        local now = os_time()
+        local deleted_count = clean_expired_records(db, now)
+        db:update(LAST_CLEAN_KEY, tostring(now))
+        env.auto_clean_due = false
+
+        if deleted_count > 0 and log and log.info then
+            log.info("【用户预测库自动维护】本次静默扫除 " .. deleted_count .. " 条过期记忆。")
+        end
+    end
+
     if env.commit_connection then env.commit_connection:disconnect(); env.commit_connection = nil end
     if env.update_connection then env.update_connection:disconnect(); env.update_connection = nil end
     if env.delete_connection then env.delete_connection:disconnect(); env.delete_connection = nil end
