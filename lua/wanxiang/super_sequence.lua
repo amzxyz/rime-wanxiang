@@ -1,9 +1,10 @@
 -- 万象拼音 · 手动自由排序
--- 核心规则： 向前移动 = "Control+j", 向后移动 = "Control+k", 重置 = "Control+l", 置顶 = "Control+p
+-- 核心规则：向前移动 = "Control+j"，向后移动 = "Control+k"，重置 = "Control+l"，置顶 = "Control+p"
 -- 1) p>0：有效排序（DB upsert + 导出）
 -- 2) p=0：墓碑（DB 删除 + 导出墓碑）
--- 3) 初始化：先 flush 本机增量到导出 → 外部合并(所有设备文件+本机DB，LWW) → 重写本机导出(含墓碑) → 导入覆盖DB，p=0删除键，不导入
--- 4) 关于同步的使用方法：先点击同步确保同步目录已经创建，建立sequence_device_list.txt设备清单，内部填写不同设备导出文件名称
+-- 3) 初始化只打开本机 DB；第一次排序时延迟合并同步数据
+-- 4) 连续排序只保留最终状态，离开排序操作后覆盖写出对应记录
+-- 5) 关于同步的使用方法：先点击同步确保同步目录已经创建，建立sequence_device_list.txt设备清单，内部填写不同设备导出文件名称
 -- sequence_ff9b2823-8733-44bb-a497-daf382b74ca5.txt
 -- sequence_deepin.txt
 -- 可能是自定义名称，可能是随机串号
@@ -20,7 +21,6 @@ local userdb   = require("wanxiang/userdb")
 ------------------------------------------------------------
 local DEFAULT_SEQ_KEY = { up = "Control+j", down = "Control+k", reset = "Control+l", pin = "Control+p" }
 local SYNC_FILE_PREFIX, SYNC_FILE_SUFFIX = "sequence", ".txt"
-local RUNTIME_EXPORT = false
 local MAX_SORT_CANDIDATES = 500
 
 local _normalize_path, _is_abs_path, _path_join, _manifest_path
@@ -306,11 +306,7 @@ end
 ------------------------------------------------------------
 -- 七、导出缓冲
 ------------------------------------------------------------
-local seq_data = {
-    status = "pending", device_name = "device",
-    last_export_ts = 0, export_interval = 1.2, pending_map = {},
-}
-local function _pending_count() local n = 0; for _ in pairs(seq_data.pending_map) do n = n + 1 end; return n end
+local seq_data = { device_name = "device", pending_map = {} }
 
 function seq_data._current_paths()
     local dir = _sync_dir()
@@ -347,37 +343,34 @@ local function _enqueue_export(input, item, adj)
         input, item, adj.fixed_position or 0, adj.offset or 0, adj.updated_at or "")
 end
 
-function seq_data.flush_pending(max_lines)
-    if _pending_count() == 0 then return end
-    if not seq_data._ensure_export_file() then return end
+function seq_data.flush_pending()
+    if next(seq_data.pending_map) == nil or not seq_data._ensure_export_file() then return end
     local _, _, _, export_path = seq_data._current_paths()
-    local f = io.open(export_path, "a"); if not f then return end
+    local lines = {}
 
-    local wrote, remaining = 0, {}
-    for key, line in pairs(seq_data.pending_map) do
-        if max_lines and wrote >= max_lines then
-            remaining[key] = line
-        else
-            f:write(line)
-            wrote = wrote + 1
+    local old = io.open(export_path, "r")
+    if old then
+        for line in old:lines() do
+            local input, item = line:match("^([^	]+)	i=(.-)%s+p=")
+            local key = input and item and (input .. "	" .. item)
+            if not key or not seq_data.pending_map[key] then lines[#lines + 1] = line end
         end
+        old:close()
     end
-    f:close()
-    seq_data.pending_map = remaining
-end
 
-function seq_data.maybe_export(force)
-    if force then seq_data.flush_pending(nil); seq_data.last_export_ts = get_timestamp(); return end
-    if _pending_count() == 0 then return end
-    local now = get_timestamp()
-    if now - (seq_data.last_export_ts or 0) < (seq_data.export_interval or 1.2) then return end
-    seq_data.flush_pending(200); seq_data.last_export_ts = now
+    for _, line in pairs(seq_data.pending_map) do lines[#lines + 1] = line:gsub("\n$", "") end
+
+    local out = io.open(export_path, "w")
+    if not out then return end
+    for _, line in ipairs(lines) do out:write(line, "\n") end
+    out:close()
+    seq_data.pending_map = {}
 end
 
 ------------------------------------------------------------
 -- 八、保存与合并 (Save & Merge)
 ------------------------------------------------------------
-local function save_adjustment(input, item, adjustment, no_export)
+local function save_adjustment(input, item, adjustment)
     if not input or input == "" or not item or item == "" then return end
     local p = tonumber(adjustment.fixed_position) or 0
     local o = tonumber(adjustment.offset) or 0
@@ -394,9 +387,7 @@ local function save_adjustment(input, item, adjustment, no_export)
     if not seq_db:update(input, value_str) then return false end
     adjustment_value_cache[input] = value_str
 
-    if (not no_export) and RUNTIME_EXPORT then
-        _enqueue_export(input, item, { fixed_position = p, offset = o, updated_at = t })
-    end
+    _enqueue_export(input, item, { fixed_position = p, offset = o, updated_at = t })
     return true
 end
 
@@ -507,9 +498,14 @@ local function apply_latest_to_db(latest)
     end
 end
 
-local function init_once()
+local function sync_once()
+    if seq_data.synced then return end
+    seq_data.synced = true
+    if not _sync_ready() then return end
+
+    seq_data.device_name = _detect_device_name()
     seq_data._ensure_export_file()
-    seq_data.maybe_export(true)
+
     local latest = collect_latest_from_all_sources()
     rewrite_export_from_latest(latest)
     apply_latest_to_db(latest)
@@ -522,8 +518,6 @@ end
 local P = {}
 function P.init(env)
     ensure_sequence_db(env.engine.schema.config)
-    seq_data.device_name = _detect_device_name()
-    init_once()
 end
 
 local function process_adjustment(context)
@@ -542,6 +536,15 @@ end
 function P.func(key_event, env)
     local context = env.engine.context
     local code = key_event.keycode
+    local key_repr = key_event:repr()
+    local config = env.engine.schema.config
+    local function seq_key(name) return config:get_string("super_sequence/" .. name) or DEFAULT_SEQ_KEY[name] end
+
+    local up, down, reset, pin = seq_key("up"), seq_key("down"), seq_key("reset"), seq_key("pin")
+    local is_sort_key = key_repr == up or key_repr == down or key_repr == reset or key_repr == pin
+    local is_ctrl_key = code == 0xffe3 or code == 0xffe4
+
+    if not key_event:release() and not is_sort_key and not is_ctrl_key then seq_data.flush_pending() end
 
     -- Ctrl 监听，用于开关可视化标记
     -- 0xffe3 = Left Ctrl, 0xffe4 = Right Ctrl
@@ -586,16 +589,15 @@ function P.func(key_event, env)
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
-    local key_repr = key_event:repr()
-    local function get_seq_key(type) return env.engine.schema.config:get_string("super_sequence/" .. type) or DEFAULT_SEQ_KEY[type] end
+    if is_sort_key then sync_once() end
 
-    if key_repr == get_seq_key("up") then
+    if key_repr == up then
         curr_state.offset = -1; curr_state.mode = curr_state.ADJUST_MODE.Adjust
-    elseif key_repr == get_seq_key("down") then
+    elseif key_repr == down then
         curr_state.offset = 1;  curr_state.mode = curr_state.ADJUST_MODE.Adjust
-    elseif key_repr == get_seq_key("reset") then
+    elseif key_repr == reset then
         curr_state.offset = nil; curr_state.mode = curr_state.ADJUST_MODE.Reset
-    elseif key_repr == get_seq_key("pin") then
+    elseif key_repr == pin then
         curr_state.offset = nil; curr_state.mode = curr_state.ADJUST_MODE.Pin
     else
         if context:get_option("_seq_show_markers") then
@@ -620,7 +622,7 @@ function F.init(env)
     ensure_sequence_db(cfg)
 end
 function F.fini()
-    if RUNTIME_EXPORT then seq_data.maybe_export(true) end
+    seq_data.flush_pending()
 end
 
 local function apply_prev_adjustment(cands, prev)
@@ -677,7 +679,7 @@ local function apply_curr_adjustment(candidates, curr_adjustment)
         if from_position ~= to_position then
             local candidate = table.remove(candidates, from_position)
             table.insert(candidates, to_position, candidate)
-            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment, true)
+            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment)
         end
     else
         curr_adjustment.final_position = from_position
@@ -777,12 +779,12 @@ function F.func(input, env)
         if curr_state.is_reset_mode() then
             curr_adjustment.fixed_position = 0
             prev_adjustments[key] = nil
-            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment, true)
+            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment)
         elseif curr_state.is_pin_mode() then
             curr_adjustment.fixed_position = 1
             curr_adjustment.final_position = 1 -- 置顶的最终位置肯定是1
             prev_adjustments[key] = curr_adjustment
-            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment, true)
+            save_adjustment(curr_state.adjust_code, curr_state.adjust_key, curr_adjustment)
         end
     end
 
@@ -851,8 +853,5 @@ function F.func(input, env)
         end
     end
 
-    if RUNTIME_EXPORT and (not curr_state.is_reset_mode()) then
-        seq_data.maybe_export(false)
-    end
 end
 return { P = P, F = F }
