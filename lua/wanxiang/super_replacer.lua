@@ -21,11 +21,13 @@ local open = io.open
 local type = type
 local tonumber = tonumber
 
-local DB_FORMAT_VERSION = "2"
+local DB_FORMAT_VERSION = "4"
 local OPTION_KEYS = {"option", "options"}
 local TAG_KEYS = {"tag", "tags"}
 local FILE_KEYS = {"files", "file"}
+local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english"}
 local db_instances, db_refs = {}, {}
+local file_signature_cache = {}
 local RECORD_SEPARATOR = " \t"
 
 local T9_MAP = {}
@@ -99,38 +101,197 @@ local function hash_bytes(hash, value)
     return hash
 end
 
--- 采样文件并生成只包含安全字符的特征。
+-- 采样单个文件；同一路径在当前 Lua 进程内只读取一次。
+local function get_file_signature(path)
+    local cached = file_signature_cache[path]
+    if cached then return cached end
+
+    local file = open(path, "rb")
+    if not file then
+        file_signature_cache[path] = "missing"
+        return "missing"
+    end
+
+    local size = file:seek("end") or 0
+    local hash = hash_bytes(2166136261, tostring(size))
+
+    if size > 0 then
+        file:seek("set", 0)
+        hash = hash_bytes(hash, file:read(64) or "")
+
+        file:seek("set", math.max(0, math.floor(size / 2) - 32))
+        hash = hash_bytes(hash, file:read(64) or "")
+
+        file:seek("set", math.max(0, size - 64))
+        hash = hash_bytes(hash, file:read(64) or "")
+    end
+
+    file:close()
+    cached = s_format("%08x:%d", hash, size)
+    file_signature_cache[path] = cached
+    return cached
+end
+
+-- 为合并后的任务生成统一文件特征。
 local function generate_files_signature(tasks)
     local parts = {}
+    local seen = {}
 
     for _, task in ipairs(tasks) do
-        local file = open(task.path, "rb")
-
-        if file then
-            local size = file:seek("end") or 0
-            local hash = 2166136261
-
-            hash = hash_bytes(hash, task.path or "")
-            hash = hash_bytes(hash, task.prefix or "")
-            hash = hash_bytes(hash, tostring(size))
-
-            if size > 0 then
-                file:seek("set", 0)
-                hash = hash_bytes(hash, file:read(64) or "")
-
-                file:seek("set", math.max(0, math.floor(size / 2) - 32))
-                hash = hash_bytes(hash, file:read(64) or "")
-
-                file:seek("set", math.max(0, size - 64))
-                hash = hash_bytes(hash, file:read(64) or "")
-            end
-
-            file:close()
-            parts[#parts + 1] = s_format("%08x:%d", hash, size)
+        if not seen[task.path] then
+            seen[task.path] = true
+            parts[#parts + 1] =
+                (task.source or task.path) .. "\31"
+                .. get_file_signature(task.path)
         end
     end
 
-    return concat(parts, "|")
+    return concat(parts, "\30")
+end
+
+-- 解析数据文件路径。
+local function resolve_path(relative, user_dir, shared_dir)
+    if not relative or relative == "" then return nil end
+
+    local user_path = user_dir .. "/" .. relative
+    local file = open(user_path, "r")
+    if file then file:close(); return user_path end
+
+    local shared_path = shared_dir .. "/" .. relative
+    file = open(shared_path, "r")
+    if file then file:close(); return shared_path end
+    return user_path
+end
+
+-- 从指定配置中提取真正影响写库结果的任务。
+local function collect_tasks(config, ns, user_dir, shared_dir)
+    local tasks = {}
+    local root = config and config:get_map(ns)
+    local rules = root and root:get("rules")
+    local list = rules and rules:get_list()
+    if not list then return tasks end
+
+    for i = 0, list.size - 1 do
+        local item = list:get_at(i)
+        local rule = item and item:get_map()
+
+        if rule then
+            local value = rule:get_value("prefix")
+            local prefix = value and value:get_string() or ""
+            value = rule:get_value("t9_optimization")
+            local t9 = value and value:get_bool() or false
+
+            each_config_value(rule, FILE_KEYS, function(file_value)
+                local source = file_value:get_string()
+                local path = resolve_path(source, user_dir, shared_dir)
+
+                if path then
+                    tasks[#tasks + 1] = {
+                        source = source,
+                        path = path,
+                        prefix = prefix,
+                        conversion = t9 and T9_MAP or nil,
+                        preedit_delim = t9 and "==" or nil,
+                    }
+                end
+            end)
+        end
+    end
+
+    return tasks
+end
+
+-- 生成单方案建库配置特征。
+local function tasks_signature(tasks)
+    local parts = {}
+
+    for i, task in ipairs(tasks) do
+        parts[i] = concat({
+            task.source or "",
+            task.prefix or "",
+            task.conversion and "t9" or "plain",
+            task.preedit_delim or "",
+        }, "\31")
+    end
+
+    return concat(parts, "\30")
+end
+
+-- 从部署后的 default 配置读取实际启用方案。
+local function enabled_schema_ids(env, user_dir)
+    local enabled = {}
+    local current = env.engine.schema.schema_id or ""
+    local config =
+        Config(user_dir .. "/build/default.yaml")
+    local list = config and config:get_list("schema_list")
+
+    if list then
+        for i = 0, list.size - 1 do
+            local item = list:get_at(i)
+            local map = item and item:get_map()
+            local value = map and map:get_value("schema")
+            local id = value and value:get_string()
+            if id then enabled[id] = true end
+        end
+    end
+
+    if current ~= "" then enabled[current] = true end
+
+    local ids = {}
+    for _, id in ipairs(MERGED_SCHEMA_IDS) do
+        if enabled[id] then ids[#ids + 1] = id end
+    end
+
+    if #ids == 0 and current ~= "" then ids[1] = current end
+    return ids
+end
+
+-- 合并启用方案的任务；相同文件、前缀和 T9 配置只保留一次。
+local function merge_tasks(env, ns, current_tasks, user_dir, shared_dir)
+    local current_id = env.engine.schema.schema_id or ""
+    local groups = {}
+    local signatures = {}
+    local enabled_ids =
+        enabled_schema_ids(env, user_dir)
+
+    for order, id in ipairs(enabled_ids) do
+        local tasks
+
+        if id == current_id then
+            tasks = current_tasks
+        else
+            local schema = Schema(id)
+            tasks = schema and collect_tasks(
+                schema.config, ns, user_dir, shared_dir
+            ) or {}
+        end
+
+        groups[#groups + 1] = {
+            id = id, order = order, tasks = tasks
+        }
+        signatures[id] = tasks_signature(tasks)
+    end
+
+    table.sort(groups, function(a, b)
+        if #a.tasks ~= #b.tasks then return #a.tasks > #b.tasks end
+        return a.order < b.order
+    end)
+
+    local merged = {}
+    local seen = {}
+
+    for _, group in ipairs(groups) do
+        for _, task in ipairs(group.tasks) do
+            local key = tasks_signature({task})
+
+            if not seen[key] then
+                seen[key] = true
+                merged[#merged + 1] = task
+            end
+        end
+    end
+
+    return merged, signatures, concat(enabled_ids, "\31")
 end
 
 -- 生成一条标准 UserDb raw key。
@@ -269,18 +430,38 @@ local function retain_db(db_name)
 end
 
 -- 连接数据库，并在文件或格式变化时按一值一记录格式重建。
-local function connect_db(db_name, tasks, config_sig, env_fmm_cache)
-    local current_signature =
-        generate_files_signature(tasks) .. "|" .. (config_sig or "")
+local function connect_db(
+    db_name, tasks, config_sig, scheme_sigs, env_fmm_cache
+)
+    local files_sig = generate_files_signature(tasks)
+    local current_signature = config_sig or ""
     local cached = db_instances[db_name]
 
+    local function database_matches(db)
+        if (db:meta_fetch("_format_ver") or "")
+                ~= DB_FORMAT_VERSION
+            or (db:meta_fetch("_replacer_files") or "")
+                ~= files_sig
+            or (db:meta_fetch("_replacer_union") or "")
+                ~= current_signature
+        then
+            return false
+        end
+
+        for schema_id, signature in pairs(scheme_sigs) do
+            if (db:meta_fetch(
+                "_replacer_scheme/" .. schema_id
+            ) or "") ~= signature
+            then
+                return false
+            end
+        end
+
+        return true
+    end
+
     if cached then
-        local ok, same = pcall(function()
-            return (cached:meta_fetch("_format_ver") or "")
-                    == DB_FORMAT_VERSION
-                and (cached:meta_fetch("_files_sig") or "")
-                    == current_signature
-        end)
+        local ok, same = pcall(database_matches, cached)
 
         if ok and same then
             retain_db(db_name)
@@ -303,12 +484,7 @@ local function connect_db(db_name, tasks, config_sig, env_fmm_cache)
     if not db then return nil end
 
     if db:open_read_only() then
-        local same = (db:meta_fetch("_format_ver") or "")
-                == DB_FORMAT_VERSION
-            and (db:meta_fetch("_files_sig") or "")
-                == current_signature
-
-        if same then
+        if database_matches(db) then
             db_instances[db_name] = db
             retain_db(db_name)
             return db
@@ -319,12 +495,8 @@ local function connect_db(db_name, tasks, config_sig, env_fmm_cache)
 
     if not db:open() then return nil end
 
-    local cleared
-    if db.clear then
-        cleared = db:clear()
-    else
-        cleared = db:empty(true)
-    end
+    -- 只清普通数据，保留既有 #@ 元数据。
+    local cleared = db:empty(false)
 
     if cleared == false or not rebuild(tasks, db) then
         db:close()
@@ -334,14 +506,24 @@ local function connect_db(db_name, tasks, config_sig, env_fmm_cache)
     for key in pairs(env_fmm_cache) do env_fmm_cache[key] = nil end
 
     if not db:meta_update("_format_ver", DB_FORMAT_VERSION)
-        or not db:meta_update("_files_sig", current_signature)
+        or not db:meta_update("_replacer_files", files_sig)
+        or not db:meta_update("_replacer_union", current_signature)
     then
         db:close()
         return nil
     end
 
+    for schema_id, signature in pairs(scheme_sigs) do
+        if not db:meta_update(
+            "_replacer_scheme/" .. schema_id, signature
+        ) then
+            db:close()
+            return nil
+        end
+    end
+
     if log and log.info then
-        log.info("super_replacer: 一值一记录数据已重载")
+        log.info("super_replacer: 联合配置数据已重载")
     end
 
     collectgarbage("collect")
@@ -475,17 +657,6 @@ function M.init(env)
     env.rules = {}
     local tasks = {}
 
-    local function resolve_path(relative)
-        if not relative then return nil end
-        local user_path = user_dir .. "/" .. relative
-        local f = open(user_path, "r")
-        if f then f:close(); return user_path end
-        local shared_path = shared_dir .. "/" .. relative
-        f = open(shared_path, "r")
-        if f then f:close(); return shared_path end
-        return user_path
-    end
-
     -- 3. 读取并遍历 rules 列表
     local rules_item = cfg_root and cfg_root:get("rules")
     local rule_list = rules_item and rules_item:get_list()
@@ -590,9 +761,13 @@ function M.init(env)
 
             -- 解析文件路径列表
             each_config_value(rule, FILE_KEYS, function(value)
-                local path = resolve_path(value:get_string())
+                local source = value:get_string()
+                local path =
+                    resolve_path(source, user_dir, shared_dir)
+
                 if path then
                     tasks[#tasks + 1] = {
+                        source = source,
                         path = path,
                         prefix = prefix,
                         conversion = conversion_map,
@@ -605,14 +780,12 @@ function M.init(env)
         end
     end
 
-    local config_sig_parts = {}
-    for _, t in ipairs(env.rules) do
-        insert(config_sig_parts, tostring(t.t9_opt or false) .. (t.cand_type or ""))
-    end
+    local merged_tasks, scheme_sigs, config_sig =
+        merge_tasks(env, ns, tasks, user_dir, shared_dir)
 
-    local config_sig = concat(config_sig_parts, "\t")
     env.db = connect_db(
-        db_name, tasks, config_sig, env.fmm_cache
+        db_name, merged_tasks, config_sig,
+        scheme_sigs, env.fmm_cache
     )
 
     if env.db then env.db_name = db_name end
