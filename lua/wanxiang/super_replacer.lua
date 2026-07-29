@@ -21,12 +21,12 @@ local open = io.open
 local type = type
 local tonumber = tonumber
 
-local DB_FORMAT_VERSION = "7"
+local DB_FORMAT_VERSION = "2"
 local OPTION_KEYS = {"option", "options"}
 local TAG_KEYS = {"tag", "tags"}
 local FILE_KEYS = {"files", "file"}
-local db_instances = {}
-local db_refs = {}
+local db_instances, db_refs = {}, {}
+local RECORD_SEPARATOR = " \t"
 
 local T9_MAP = {}
 do
@@ -45,12 +45,10 @@ end
 local userdb = safe_require("wanxiang/userdb")
 local wanxiang = safe_require("wanxiang/wanxiang")
 
--- 清空并复用数组，减少热点路径临时分配。
 local function clear_array(t)
     for i = #t, 1, -1 do t[i] = nil end
 end
 
--- 遍历配置节点中允许使用的单值或列表值。
 local function each_config_value(map, keys, callback)
     for _, key in ipairs(keys) do
         local item = map:get(key)
@@ -69,7 +67,6 @@ local function each_config_value(map, keys, callback)
     end
 end
 
--- 去除字符串首尾空白。
 local function trim_space(str)
     if not str then return "" end
     return s_match(str, "^%s*(.-)%s*$")
@@ -93,23 +90,24 @@ local function get_utf8_offsets(text, offsets)
     return n
 end
 
--- 计算字节串的稳定摘要，避免把原始文本写入元数据。
-local function hash_bytes(hash, text)
-    for i = 1, #text do
-        hash = (hash * 131 + s_byte(text, i)) % 4294967296
+-- 计算字节串摘要，避免把原始文件内容写入元数据。
+local function hash_bytes(hash, value)
+    for i = 1, #value do
+        hash = (hash * 131 + s_byte(value, i)) % 4294967296
     end
+
     return hash
 end
 
--- 采样文件特征并只返回安全的十六进制摘要。
+-- 采样文件并生成只包含安全字符的特征。
 local function generate_files_signature(tasks)
-    local sig_parts = {}
+    local parts = {}
 
     for _, task in ipairs(tasks) do
-        local f = open(task.path, "rb")
+        local file = open(task.path, "rb")
 
-        if f then
-            local size = f:seek("end") or 0
+        if file then
+            local size = file:seek("end") or 0
             local hash = 2166136261
 
             hash = hash_bytes(hash, task.path or "")
@@ -117,44 +115,39 @@ local function generate_files_signature(tasks)
             hash = hash_bytes(hash, tostring(size))
 
             if size > 0 then
-                f:seek("set", 0)
-                hash = hash_bytes(hash, f:read(64) or "")
+                file:seek("set", 0)
+                hash = hash_bytes(hash, file:read(64) or "")
 
-                local mid_pos = math.floor(size / 2) - 32
-                if mid_pos < 0 then mid_pos = 0 end
-                f:seek("set", mid_pos)
-                hash = hash_bytes(hash, f:read(64) or "")
+                file:seek("set", math.max(0, math.floor(size / 2) - 32))
+                hash = hash_bytes(hash, file:read(64) or "")
 
-                local tail_pos = size - 64
-                if tail_pos < 0 then tail_pos = 0 end
-                f:seek("set", tail_pos)
-                hash = hash_bytes(hash, f:read(64) or "")
+                file:seek("set", math.max(0, size - 64))
+                hash = hash_bytes(hash, file:read(64) or "")
             end
 
-            f:close()
-            insert(sig_parts, s_format("%08x:%d", hash, size))
+            file:close()
+            parts[#parts + 1] = s_format("%08x:%d", hash, size)
         end
     end
 
-    return concat(sig_parts, "|")
+    return concat(parts, "|")
 end
 
--- 生成只包含十六进制字符的规则配置摘要。
-local function generate_config_signature(rules)
-    local hash = 2166136261
+-- 生成一条标准 UserDb raw key。
+local function make_raw_key(key, value)
+    if not key or key == "" or not value or value == "" then return nil end
+    return key .. RECORD_SEPARATOR .. value
+end
 
-    for _, rule in ipairs(rules) do
-        hash = hash_bytes(hash, tostring(rule.t9_opt or false))
-        hash = hash_bytes(hash, "\0")
-        hash = hash_bytes(hash, rule.cand_type or "")
-        hash = hash_bytes(hash, "\0")
-        hash = hash_bytes(hash, rule.prefix or "")
-        hash = hash_bytes(hash, "\0")
-        hash = hash_bytes(hash, rule.mode or "")
-        hash = hash_bytes(hash, "\0")
-    end
+-- 生成保存候选顺序的 c/d/t 尾部。
+local function make_record_tail(position)
+    return s_format("c=%d d=0 t=0", position)
+end
 
-    return s_format("%08x", hash)
+-- 从 c/d/t 尾部读取候选顺序。
+local function parse_position(tail)
+    if type(tail) ~= "string" then return 0 end
+    return tonumber(s_match(tail, "c=([^%s\t]+)")) or 0
 end
 
 -- 重建数据库：每个 value 独立存储，c 保存同一逻辑 key 下的位置。
@@ -163,35 +156,44 @@ local function rebuild(tasks, db)
     local seen_records = {}
 
     for _, task in ipairs(tasks) do
-        local txt_path = task.path
-        local prefix = task.prefix
-        local conversion = task.conversion
-        local p_delim = task.preedit_delim
+        local file = open(task.path, "r")
 
-        local f = open(txt_path, "r")
-        if f then
-            for line in f:lines() do
+        if file then
+            for line in file:lines() do
                 if line ~= "" and not s_match(line, "^%s*#") then
-                    local k, values = s_match(line, "^([^\t]+)\t+(.+)")
-                    if k and values then
-                        local orig_k = k
-                        if conversion then k = s_gsub(k, ".", conversion) end
+                    local key, values = s_match(line, "^([^\t]+)\t+(.+)")
 
-                        local db_key = prefix .. k
+                    if key and values then
+                        local original_key = key
+                        if task.conversion then
+                            key = s_gsub(key, ".", task.conversion)
+                        end
 
-                        for v in s_gmatch(values, "[^\t]+") do
-                            v = s_match(v, "^%s*(.-)%s*$")
+                        local db_key = task.prefix .. key
 
-                            if v ~= "" then
-                                if p_delim and p_delim ~= ""
-                                    and not s_find(v, p_delim, 1, true)
+                        -- 源文件一行可包含多个 Tab 分隔 value。
+                        for value in s_gmatch(values, "[^\t]+") do
+                            value = s_match(value, "^%s*(.-)%s*$")
+
+                            if value ~= "" then
+                                if task.preedit_delim
+                                    and task.preedit_delim ~= ""
+                                    and not s_find(
+                                        value,
+                                        task.preedit_delim,
+                                        1,
+                                        true
+                                    )
                                 then
-                                    v = v .. p_delim .. orig_k
+                                    value = value
+                                        .. task.preedit_delim
+                                        .. original_key
                                 end
 
-                                local raw_key =
-                                    userdb.make_record_key(db_key, v)
+                                local raw_key = make_raw_key(db_key, value)
 
+                                -- 相同逻辑 key + value 只保留第一次出现，
+                                -- c 按源文件顺序连续编号。
                                 if raw_key and not seen_records[raw_key] then
                                     seen_records[raw_key] = true
 
@@ -199,12 +201,11 @@ local function rebuild(tasks, db)
                                         (positions[db_key] or 0) + 1
                                     positions[db_key] = position
 
-                                    local tail = userdb.make_record_tail(
-                                        position, 0, 0
-                                    )
-
-                                    if not db:update_raw(raw_key, tail) then
-                                        f:close()
+                                    if not db:update(
+                                        raw_key,
+                                        make_record_tail(position)
+                                    ) then
+                                        file:close()
                                         return false
                                     end
                                 end
@@ -214,40 +215,37 @@ local function rebuild(tasks, db)
                 end
             end
 
-            f:close()
+            file:close()
         end
     end
 
     return true
 end
 
--- 从记录尾部读取候选在当前逻辑 key 下的位置。
-local function parse_position(tail)
-    if type(tail) ~= "string" then return 0 end
-    return tonumber(s_match(tail, "c=([^%s\t]+)")) or 0
-end
-
--- 按逻辑 key 查询全部 value，并按固定位置恢复源文件顺序。
+-- 按逻辑 key 查询全部 value，并按 c 恢复源文件顺序。
 local function fetch_values(db, key, delimiter)
-    local accessor = db:query(key .. userdb.RECORD_KEY_SEPARATOR)
+    local prefix = key .. RECORD_SEPARATOR
+    local accessor = db:query(prefix)
     if not accessor then return nil end
 
     local records = {}
     local count = 0
 
-    for record_key, value, tail in accessor:iter() do
-        if record_key ~= key then break end
+    for raw_key, tail in accessor:iter() do
+        if s_sub(raw_key, 1, #prefix) ~= prefix then break end
 
-        count = count + 1
-        records[count] = {
-            value = value,
-            position = parse_position(tail),
-            index = count,
-        }
+        local value = s_sub(raw_key, #prefix + 1)
+        if value ~= "" then
+            count = count + 1
+            records[count] = {
+                value = value,
+                position = parse_position(tail),
+                index = count,
+            }
+        end
     end
 
     accessor = nil
-
     if count == 0 then return nil end
 
     t_sort(records, function(a, b)
@@ -265,12 +263,12 @@ local function fetch_values(db, key, delimiter)
     return concat(values, delimiter, 1, count)
 end
 
--- 增加共享数据库的组件引用计数。
+-- 增加共享数据库的组件引用。
 local function retain_db(db_name)
     db_refs[db_name] = (db_refs[db_name] or 0) + 1
 end
 
--- 连接数据库，并在文件或格式变化时按新键值结构重建。
+-- 连接数据库，并在文件或格式变化时按一值一记录格式重建。
 local function connect_db(db_name, tasks, config_sig, env_fmm_cache)
     local current_signature =
         generate_files_signature(tasks) .. "|" .. (config_sig or "")
@@ -289,7 +287,7 @@ local function connect_db(db_name, tasks, config_sig, env_fmm_cache)
             return cached
         end
 
-        -- 正在被其他组件使用时不能强行关闭底层数据库。
+        -- 初始化交叠期间不能关闭其他组件仍在使用的对象。
         if (db_refs[db_name] or 0) > 0 then
             retain_db(db_name)
             return cached
@@ -320,25 +318,33 @@ local function connect_db(db_name, tasks, config_sig, env_fmm_cache)
     end
 
     if not db:open() then return nil end
-    if not db:empty(true) then
-        db:close()
-        return nil
+
+    local cleared
+    if db.clear then
+        cleared = db:clear()
+    else
+        cleared = db:empty(true)
     end
 
-    if not rebuild(tasks, db) then
+    if cleared == false or not rebuild(tasks, db) then
         db:close()
         return nil
     end
 
     for key in pairs(env_fmm_cache) do env_fmm_cache[key] = nil end
 
-    db:meta_update("_format_ver", DB_FORMAT_VERSION)
-    db:meta_update("_files_sig", current_signature)
-
-    if log and log.info then
-        log.info("super_replacer: 键值数据已重载，最新特征已记录")
+    if not db:meta_update("_format_ver", DB_FORMAT_VERSION)
+        or not db:meta_update("_files_sig", current_signature)
+    then
+        db:close()
+        return nil
     end
 
+    if log and log.info then
+        log.info("super_replacer: 一值一记录数据已重载")
+    end
+
+    collectgarbage("collect")
     db:close()
 
     if not db:open_read_only() then return nil end
@@ -348,19 +354,15 @@ local function connect_db(db_name, tasks, config_sig, env_fmm_cache)
     return db
 end
 
--- 释放组件引用，并在最后一个使用者退出时关闭数据库。
+-- 释放当前组件引用，并在最后一个使用者退出时关闭数据库。
 local function release_db(env)
     local db = env.db
     local db_name = env.db_name
 
-    if not db or not db_name then
-        env.db = nil
-        env.db_name = nil
-        return
-    end
-
     env.db = nil
     env.db_name = nil
+
+    if not db or not db_name then return end
 
     local refs = (db_refs[db_name] or 1) - 1
     if refs > 0 then
@@ -369,11 +371,11 @@ local function release_db(env)
     end
 
     db_refs[db_name] = nil
-
     if db_instances[db_name] == db then
         db_instances[db_name] = nil
     end
 
+    collectgarbage("collect")
     pcall(function() db:close() end)
 end
 
@@ -431,7 +433,6 @@ local function segment_convert(text, db, prefix, split_pat, fmm_cache, offsets, 
 end
 
 -- 模块接口
--- 初始化规则、数据文件任务、缓存和只读数据库。
 function M.init(env)
     env.fmm_cache = {}
     env.fmm_offsets = {}
@@ -604,14 +605,20 @@ function M.init(env)
         end
     end
 
-    local config_sig = generate_config_signature(env.rules)
-    env.db = connect_db(db_name, tasks, config_sig, env.fmm_cache)
-    env.db_name = env.db and db_name or nil
+    local config_sig_parts = {}
+    for _, t in ipairs(env.rules) do
+        insert(config_sig_parts, tostring(t.t9_opt or false) .. (t.cand_type or ""))
+    end
+
+    local config_sig = concat(config_sig_parts, "\t")
+    env.db = connect_db(
+        db_name, tasks, config_sig, env.fmm_cache
+    )
+
+    if env.db then env.db_name = db_name end
 end
 
--- 释放当前组件持有的数据库和缓存引用。
 function M.fini(env)
-    release_db(env)
     env.fmm_cache = nil
     env.fmm_offsets = nil
     env.fmm_parts = nil
@@ -619,10 +626,11 @@ function M.fini(env)
     env.shared_pending_comments = nil
     env.shared_comments = nil
     env.rules = nil
+
+    release_db(env)
 end
 
 --解析连接符工具函数
--- 按连接符拆分候选文本和预编辑文本。
 local function parse_item(p, delim)
     if delim and delim ~= "" then
         local pos = s_find(p, delim, 1, true)
@@ -632,7 +640,6 @@ local function parse_item(p, delim)
 end
 
 -- [Core Function] 核心逻辑
--- 根据已启用规则转换、追加、注释或插入候选。
 function M.func(input, env)
     local ctx = env.engine.context
     local input_code = ctx.input
@@ -694,8 +701,6 @@ function M.func(input, env)
     end
 
     local fetch_cache = {}
-
-    -- 查询并缓存同一逻辑 key 下的全部 value。
     local function fetch_cached(key)
         local cached = fetch_cache[key]
         if cached ~= nil then return cached or nil end

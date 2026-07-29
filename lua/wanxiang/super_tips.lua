@@ -1,24 +1,22 @@
 -- 万象家族 Lua：超级提示、表情、化学式、方程式、简码等直接上屏，不占用候选位置
--- 采用 UserDb 存储数据，支持候选文本和输入编码匹配
+-- 采用 LevelDb 数据库，支持大数据遍历、多种类型及编码混合
+-- 支持候选匹配和编码匹配，候选支持方向键高亮遍历
 -- https://github.com/amzxyz/rime-wanxiang
 --
 -- super_tips:
---   db_name: "tips"
+--   db_name: "lua/tips"
 --   tips_key: "slash"
 --   disabled_types: []
 --   files:
+--     - lua/data/my_tips.txt
 --     - lua/data/tips_show.txt
 
 local wanxiang = require("wanxiang/wanxiang")
 local userdb = require("wanxiang/userdb")
 
-local USER_DATA_DIR = rime_api.get_user_data_dir() or "."
-local SHARED_DATA_DIR = rime_api.get_shared_data_dir() or "."
-
-local DB_FORMAT_VERSION = "7"
-local META_VERSION = "db_format_version"
-local META_DISABLED = "disabled_types_fingerprint"
-local META_SIGNATURE = "files_signature"
+local RECORD_SEPARATOR = " \t"
+local DEFAULT_RECORD_TAIL = "c=0 d=0 t=0"
+local DB_FORMAT_VERSION = "2"
 
 local tips_db
 local tips = {
@@ -26,49 +24,31 @@ local tips = {
     ref_count = 0,
     disabled_types = {},
     default_preset = wanxiang.get_filename_with_fallback("lua/data/tips_show.txt"),
-    default_user = USER_DATA_DIR .. "/lua/data/tips_user.txt",
+    default_user = rime_api.get_user_data_dir() .. "/lua/data/tips_user.txt",
 }
 
-local function db_call(method, ...)
-    if not tips_db then return false end
+local META_KEY = {
+    version = "db_format_version",
+    disabled_types = "disabled_types_fingerprint",
+    files_sig = "files_signature",
+}
 
-    local fn = tips_db[method]
-    if type(fn) ~= "function" then return false end
+-- 路径解析：优先用户目录，其次共享目录。
+local function resolve_path(relative)
+    if not relative or relative == "" then return nil end
 
-    local ok, result1, result2, result3 = pcall(fn, tips_db, ...)
-    if not ok then return false end
-    return true, result1, result2, result3
+    local user_path = rime_api.get_user_data_dir() .. "/" .. relative
+    local file = io.open(user_path, "r")
+    if file then file:close(); return user_path end
+
+    local shared_path = rime_api.get_shared_data_dir() .. "/" .. relative
+    file = io.open(shared_path, "r")
+    if file then file:close(); return shared_path end
+
+    return user_path
 end
 
-local function file_exists(path)
-    if not path or path == "" then return false end
-
-    local file = io.open(path, "rb")
-    if not file then return false end
-
-    file:close()
-    return true
-end
-
-local function resolve_path(path)
-    if not path or path == "" then return nil end
-
-    if path:sub(1, 1) == "/"
-        or path:sub(1, 1) == "\\"
-        or path:match("^[a-zA-Z]:[\\/]")
-    then
-        return file_exists(path) and path or nil
-    end
-
-    local user_path = USER_DATA_DIR .. "/" .. path
-    if file_exists(user_path) then return user_path end
-
-    local shared_path = SHARED_DATA_DIR .. "/" .. path
-    if file_exists(shared_path) then return shared_path end
-
-    return nil
-end
-
+-- 将采样字节转换为安全十六进制，避免元数据串行。
 local function bytes_to_hex(data)
     local parts = {}
 
@@ -79,10 +59,11 @@ local function bytes_to_hex(data)
     return table.concat(parts)
 end
 
-local function generate_files_signature(files)
-    local signatures = {}
+-- 采样多个文件生成只包含安全字符的特征。
+local function generate_files_signature(paths)
+    local parts = {}
 
-    for _, path in ipairs(files) do
+    for _, path in ipairs(paths) do
         local file = io.open(path, "rb")
 
         if file then
@@ -101,156 +82,178 @@ local function generate_files_signature(files)
             end
 
             file:close()
-
-            signatures[#signatures + 1] = table.concat({
-                path,
+            parts[#parts + 1] = table.concat({
                 tostring(size),
                 bytes_to_hex(head),
                 bytes_to_hex(middle),
                 bytes_to_hex(tail),
-            }, "|")
+            }, ":")
         end
     end
 
-    return table.concat(signatures, "||")
+    return table.concat(parts, "|")
 end
 
-local function load_disabled_types(config)
-    tips.disabled_types = {}
-
-    local keys = {}
-    local list = config:get_list("super_tips/disabled_types")
-
-    if list then
-        for i = 0, list.size - 1 do
-            local item = list:get_value_at(i)
-            local value = item and item.value
-
-            if value and value ~= "" then
-                tips.disabled_types[value] = true
-                keys[#keys + 1] = value
-            end
-        end
-    end
-
-    table.sort(keys)
-    return table.concat(keys, "|")
-end
-
-local function load_data_files(config)
-    local files = {}
-    local list = config:get_list("super_tips/files")
-
-    if list then
-        for i = 0, list.size - 1 do
-            local item = list:get_value_at(i)
-            local path = resolve_path(item and item.value)
-
-            if path then files[#files + 1] = path end
-        end
-    end
-
-    if #files == 0 then
-        if file_exists(tips.default_preset) then
-            files[#files + 1] = tips.default_preset
-        end
-
-        if file_exists(tips.default_user) then
-            files[#files + 1] = tips.default_user
-        end
-    end
-
-    return files
-end
-
+-- 判断某个提示类型是否被禁用。
 local function is_disabled(value)
     local tip_type = value:match("^(..-):") or value:match("^(..-)：")
     return tip_type and tips.disabled_types[tip_type] == true or false
 end
 
+-- 从文件加载提示；相同 key 由后出现的 value 覆盖。
+local function load_data_from_files(files)
+    local written = {}
+
+    for _, file_path in ipairs(files) do
+        local file = io.open(file_path, "r")
+
+        if file then
+            for line in file:lines() do
+                line = line:gsub("\r$", "")
+                local value, key = line:match("^([^\t]+)\t([^\t]+)$")
+
+                if key and value and not is_disabled(value) then
+                    local raw_key = key .. RECORD_SEPARATOR .. value
+                    local old_raw_key = written[key]
+
+                    if raw_key ~= old_raw_key then
+                        if old_raw_key and not tips_db:erase(old_raw_key) then
+                            file:close()
+                            return false
+                        end
+
+                        if not tips_db:update(
+                            raw_key, DEFAULT_RECORD_TAIL
+                        ) then
+                            file:close()
+                            return false
+                        end
+
+                        written[key] = raw_key
+                    end
+                end
+            end
+
+            file:close()
+        end
+    end
+
+    return true
+end
+
+-- 关闭数据库并恢复待初始化状态。
 local function close_database()
     if tips_db then
-        db_call("close")
+        collectgarbage("collect")
+        pcall(function() tips_db:close() end)
         tips_db = nil
     end
 
     tips.status = "pending"
 end
 
-local function rebuild_database(files, disabled_fingerprint, signature)
-    local ok, opened = db_call("open")
-    if not ok or not opened then return false end
-
-    -- import_files() 使用批量直接写入，因此重建前必须先清空数据库。
-    if not db_call("empty", true) then return false end
-
-    local import_ok, _, _, failed = db_call("import_files", files, function(_, value)
-        return not is_disabled(value)
-    end)
-
-    if not import_ok or (failed or 0) > 0 then return false end
-
-    local ok_version, version_updated =
-        db_call("meta_update", META_VERSION, DB_FORMAT_VERSION)
-    local ok_disabled, disabled_updated =
-        db_call("meta_update", META_DISABLED, disabled_fingerprint)
-    local ok_signature, signature_updated =
-        db_call("meta_update", META_SIGNATURE, signature)
-
-    if not ok_version or not version_updated
-        or not ok_disabled or not disabled_updated
-        or not ok_signature or not signature_updated
-    then
-        return false
-    end
-
-    db_call("close")
-
-    local reopen_ok, reopened = db_call("open_read_only")
-    return reopen_ok and reopened == true
-end
-
+-- 初始化提示数据库。
 local function init_database(config)
     if tips.status == "done" then return true end
     if tips.status == "initialing" then return false end
-
     tips.status = "initialing"
 
     local db_name = config:get_string("super_tips/db_name")
-    if not db_name or db_name == "" then db_name = "tips" end
+    if not db_name or db_name == "" then db_name = "lua/tips" end
 
     local ok, db = pcall(userdb.LevelDb, db_name)
     if not ok or not db then
         tips.status = "pending"
         return false
     end
-
     tips_db = db
 
-    local disabled_fingerprint = load_disabled_types(config)
-    local files = load_data_files(config)
+    tips.disabled_types = {}
+    local disabled_keys = {}
+    local disabled_list = config:get_list("super_tips/disabled_types")
+
+    if disabled_list then
+        for i = 0, disabled_list.size - 1 do
+            local item = disabled_list:get_value_at(i)
+            local value = item and item.value
+
+            if value and value ~= "" then
+                tips.disabled_types[value] = true
+                disabled_keys[#disabled_keys + 1] = value
+            end
+        end
+    end
+
+    table.sort(disabled_keys)
+    local disabled_fingerprint = table.concat(disabled_keys, "|")
+
+    local files = {}
+    local files_list = config:get_list("super_tips/files")
+
+    if files_list then
+        for i = 0, files_list.size - 1 do
+            local entry = files_list:get_value_at(i)
+            local value = entry and entry.value
+
+            if value and value ~= "" then
+                local path = resolve_path(value)
+                if path then files[#files + 1] = path end
+            end
+        end
+    end
+
+    if #files == 0 then files = {tips.default_preset, tips.default_user} end
+
     local signature = generate_files_signature(files)
+    local needs_rebuild = true
 
-    local open_ok, opened = db_call("open_read_only")
+    -- 稳定路径只读打开一次，元数据一致时直接保留句柄。
+    if tips_db:open_read_only() then
+        local db_version = tips_db:meta_fetch(META_KEY.version) or ""
+        local db_disabled = tips_db:meta_fetch(META_KEY.disabled_types) or ""
+        local db_signature = tips_db:meta_fetch(META_KEY.files_sig) or ""
 
-    if open_ok and opened then
-        local _, db_version = db_call("meta_fetch", META_VERSION)
-        local _, db_disabled = db_call("meta_fetch", META_DISABLED)
-        local _, db_signature = db_call("meta_fetch", META_SIGNATURE)
+        needs_rebuild = db_version ~= DB_FORMAT_VERSION
+            or db_disabled ~= disabled_fingerprint
+            or db_signature ~= signature
 
-        local unchanged = db_version == DB_FORMAT_VERSION
-            and db_disabled == disabled_fingerprint
-            and db_signature == signature
-
-        if unchanged then
+        if not needs_rebuild then
             tips.status = "done"
             return true
         end
 
-        db_call("close")
+        tips_db:close()
     end
 
-    if not rebuild_database(files, disabled_fingerprint, signature) then
+    -- 仅在数据库不存在或数据变化时进入读写模式。
+    if not tips_db:open() then
+        close_database()
+        return false
+    end
+
+    local cleared
+    if tips_db.clear then
+        cleared = tips_db:clear()
+    else
+        cleared = tips_db:empty(true)
+    end
+
+    if cleared == false
+        or not load_data_from_files(files)
+        or not tips_db:meta_update(META_KEY.version, DB_FORMAT_VERSION)
+        or not tips_db:meta_update(
+            META_KEY.disabled_types, disabled_fingerprint
+        )
+        or not tips_db:meta_update(META_KEY.files_sig, signature)
+    then
+        close_database()
+        return false
+    end
+
+    collectgarbage("collect")
+    tips_db:close()
+
+    if not tips_db:open_read_only() then
         close_database()
         return false
     end
@@ -259,39 +262,60 @@ local function init_database(config)
     return true
 end
 
+-- 按逻辑 key 查询并解析提示 value。
+local function fetch_tip(key)
+    local prefix = key .. RECORD_SEPARATOR
+    local accessor = tips_db:query(prefix)
+    if not accessor then return nil end
+
+    local value
+
+    for raw_key in accessor:iter() do
+        if raw_key:sub(1, #prefix) ~= prefix then break end
+        value = raw_key:sub(#prefix + 1)
+        break
+    end
+
+    accessor = nil
+    return value ~= "" and value or nil
+end
+
+-- 从编码或候选文本中查询提示。
 local function get_tip(keys)
     if tips.status ~= "done" or not tips_db then return nil end
-    if type(keys) == "string" then keys = { keys } end
+    if type(keys) == "string" then keys = {keys} end
 
     for _, key in ipairs(keys) do
         if key and key ~= "" then
-            local ok, value = db_call("fetch", key)
-            if ok and value and value ~= "" then return value end
+            local value = fetch_tip(key)
+            if value then return value end
         end
     end
 
     return nil
 end
 
-local function update_prompt(context, env)
+-- 更新候选提示。
+local function update_tips_prompt(context, env)
     env.current_tip = nil
 
     if not context:get_option("super_tips") then return end
-    if not context.input or context.input == "" or context.input:find("^›") then return end
+    if not context.input or context.input == "" or context.input:find("^›") then
+        return
+    end
 
     local segment = context.composition:back()
     if not segment then return end
 
     local candidate = context:get_selected_candidate() or {}
-    local page_size = env.engine.schema.page_size
 
-    if segment.selected_index < page_size then
-        env.current_tip = get_tip({ context.input, candidate.text })
+    if segment.selected_index < env.engine.schema.page_size then
+        env.current_tip = get_tip({context.input, candidate.text})
     else
         env.current_tip = get_tip(candidate.text)
     end
 
-    if env.current_tip and env.current_tip ~= "" then
+    if env.current_tip then
         segment.prompt = "〔" .. env.current_tip .. "〕"
         env.last_prompt = segment.prompt
     elseif segment.prompt ~= "" and segment.prompt == env.last_prompt then
@@ -302,6 +326,7 @@ end
 
 local P = {}
 
+-- 初始化处理器和提示更新通知器。
 function P.init(env)
     local config = env.engine.schema.config
     local ready = init_database(config)
@@ -314,21 +339,16 @@ function P.init(env)
         env.tips_db_attached = true
     end
 
-    local ok, connection = pcall(function()
-        return env.engine.context.update_notifier:connect(function(context)
-            update_prompt(context, env)
+    env.tips_update_connection =
+        env.engine.context.update_notifier:connect(function(context)
+            update_tips_prompt(context, env)
         end)
-    end)
-
-    if ok then env.tips_update_connection = connection end
 end
 
+-- 断开通知器，并在最后一个实例退出时关闭数据库。
 function P.fini(env)
     if env.tips_update_connection then
-        pcall(function()
-            env.tips_update_connection:disconnect()
-        end)
-
+        env.tips_update_connection:disconnect()
         env.tips_update_connection = nil
     end
 
@@ -344,6 +364,7 @@ function P.fini(env)
     if tips.ref_count == 0 then close_database() end
 end
 
+-- 处理提示内容直接上屏。
 function P.func(key, env)
     local context = env.engine.context
 

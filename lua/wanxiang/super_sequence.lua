@@ -30,7 +30,7 @@ local TOMBSTONE_SLOT = 511
 local C_MAX = 2147483000
 local MAX_VERSION = math.floor((C_MAX - TOMBSTONE_SLOT) / POSITION_BASE)
 
-local RECORD_SEPARATOR = userdb.RECORD_KEY_SEPARATOR
+local RECORD_SEPARATOR = " \t"
 
 
 -- ✨ 全局通信通道
@@ -85,14 +85,24 @@ local function make_record_tail(commits, tick)
     tick = to_integer(tick, 0)
 
     -- UserDb 标准尾巴：c、d、t，字段间仅一个空格。
-    local tail = userdb.make_record_tail(commits, 0, tick)
-    if not userdb.is_record_tail(tail) then return nil end
-    return tail
+    return string.format("c=%d d=0 t=%d", commits, tick)
 end
 
 local function make_raw_key(input, item)
     if not input or input == "" or not item or item == "" then return nil end
-    return userdb.make_record_key(input, item)
+    return input .. RECORD_SEPARATOR .. item
+end
+
+local function parse_raw_key(raw_key)
+    if type(raw_key) ~= "string" then return nil, nil end
+
+    local split_pos = raw_key:find(RECORD_SEPARATOR, 1, true)
+    if not split_pos then return nil, nil end
+
+    local input = raw_key:sub(1, split_pos - 1)
+    local item = raw_key:sub(split_pos + #RECORD_SEPARATOR)
+    if input == "" or item == "" then return nil, nil end
+    return input, item
 end
 
 local function decode_state(commits)
@@ -206,10 +216,14 @@ local function load_input_records(input, refresh)
 
     local records = {}
     local has_active = false
-    local accessor = seq_db:query(input .. RECORD_SEPARATOR)
+    local prefix = input .. RECORD_SEPARATOR
+    local accessor = seq_db:query(prefix)
 
     if accessor then
-        for record_input, item, tail in accessor:iter() do
+        for raw_key, tail in accessor:iter() do
+            if raw_key:sub(1, #prefix) ~= prefix then break end
+
+            local record_input, item = parse_raw_key(raw_key)
             if record_input ~= input then break end
 
             -- 旧格式 value 会以 i=... 开头；它已经迁移并写成墓碑，
@@ -230,6 +244,8 @@ local function load_input_records(input, refresh)
                 if active then has_active = true end
             end
         end
+
+        accessor = nil
     end
 
     record_cache[input] = {
@@ -275,7 +291,7 @@ local function write_active_position(input, item, position, records)
     if not raw_key then return false end
 
     local tail = make_record_tail(commits, tick)
-    if not tail or not seq_db:update_raw(raw_key, tail) then return false end
+    if not tail or not seq_db:update(raw_key, tail) then return false end
 
     update_cached_record(input, item, commits, tick, tail)
     records[item] = record_cache[input]
@@ -302,7 +318,7 @@ local function write_reset_tombstone(input, item, records)
     if not raw_key then return false end
 
     local tail = make_record_tail(commits, record.tick)
-    if not tail or not seq_db:update_raw(raw_key, tail) then return false end
+    if not tail or not seq_db:update(raw_key, tail) then return false end
 
     update_cached_record(input, item, commits, record.tick, tail)
     records[item] = record_cache[input]

@@ -6,7 +6,7 @@ local wanxiang = require("wanxiang/wanxiang")
 
 local DB_POOL = {}
 local SOFTWARE_NAME = rime_api.get_distribution_code_name()
-local RECORD_SEPARATOR = userdb.RECORD_KEY_SEPARATOR
+local RECORD_SEPARATOR = " \t"
 local STATS_C_MAX = 2147483000
 local BATCH_INTERVAL = 5
 local MAX_PENDING_WORDS = 200
@@ -103,7 +103,34 @@ local function release_db(env)
 
     DB_POOL[env.stats_db_name] = nil
     collectgarbage("collect")
-    if entry.db and entry.db:loaded() then entry.db:close() end
+
+    if entry.db and entry.db:loaded() then
+        pcall(function() entry.db:close() end)
+    end
+end
+
+-- 在统计业务层生成稳定的 UserDb raw key。
+local function make_raw_key(key, device_id)
+    if not key or key == "" or not is_device_id(device_id) then return nil end
+    return key .. RECORD_SEPARATOR .. device_id
+end
+
+-- 从稳定 raw key 中解析统计键与设备标识。
+local function parse_raw_key(raw_key)
+    if type(raw_key) ~= "string" then return nil, nil end
+
+    local split_pos = raw_key:find(RECORD_SEPARATOR, 1, true)
+    if not split_pos then return nil, nil end
+
+    local key = raw_key:sub(1, split_pos - 1)
+    local device_id = raw_key:sub(split_pos + #RECORD_SEPARATOR)
+    if key == "" or not is_device_id(device_id) then return nil, nil end
+    return key, device_id
+end
+
+-- 生成标准 c/d/t 统计记录尾部。
+local function make_record_tail(value)
+    return string.format("c=%d d=0 t=0", value)
 end
 
 local function to_integer(value)
@@ -127,32 +154,36 @@ local function parse_tail(tail)
 end
 
 local function db_get_local(db, key, device_id)
-    local raw_key = userdb.make_record_key(key, device_id)
-    return raw_key and parse_tail(db:fetch_raw(raw_key)) or 0
+    local raw_key = make_raw_key(key, device_id)
+    return raw_key and parse_tail(db:fetch(raw_key)) or 0
 end
 
 local function db_set_local(db, key, device_id, value)
-    local raw_key = userdb.make_record_key(key, device_id)
+    local raw_key = make_raw_key(key, device_id)
     if not raw_key then return false end
 
-    local tail = userdb.make_record_tail(to_integer(value), 0, 0)
-    return userdb.is_record_tail(tail) and db:update_raw(raw_key, tail) or false
+    return db:update(raw_key, make_record_tail(to_integer(value)))
 end
 
 local function db_read(db, key, device_id, use_max)
     if device_id then return db_get_local(db, key, device_id) end
 
     local result = 0
-    local accessor = db:query(key .. RECORD_SEPARATOR)
+    local prefix = key .. RECORD_SEPARATOR
+    local accessor = db:query(prefix)
     if not accessor then return result end
 
-    for record_key, record_device, tail in accessor:iter() do
-        if record_key ~= key then break end
-        if is_device_id(record_device) then
+    for raw_key, tail in accessor:iter() do
+        if raw_key:sub(1, #prefix) ~= prefix then break end
+
+        local record_key, record_device = parse_raw_key(raw_key)
+        if record_key == key and record_device then
             local value = parse_tail(tail)
             result = use_max and math.max(result, value) or result + value
         end
     end
+
+    accessor = nil
     return result
 end
 

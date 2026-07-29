@@ -32,14 +32,14 @@ local wanxiang = require("wanxiang/wanxiang")
 local userdb = require("wanxiang/userdb")
 local shared_reverted_code = ""
 local shared_is_backspacing = false
--- 旧格式迁移已移至外部 migrate_predict_v3.py。
--- 运行时只读取稳定的 code<TAB>phrase / c-d-t 记录。
+-- 旧格式迁移由外部 migrate_predict_v3.py 完成。
+-- 运行时使用稳定的 code<TAB>phrase / c-d-t 记录，保证同步同键合并。
 local KEY_SEP = ";"
 local S_PREFIX = "S" .. KEY_SEP
 local P_PREFIX = "P" .. KEY_SEP
 local ONE_PREFIX = "1" .. KEY_SEP
 local TWO_PREFIX = "2" .. KEY_SEP
-local RECORD_SEPARATOR = userdb.RECORD_KEY_SEPARATOR
+local RECORD_SEPARATOR = " \t"
 local C_MAX = 2147483000
 local SELF_SPLIT_PREFIXES = { ONE_PREFIX, P_PREFIX }
 -- 内部运行参数默认值 (会被外部 YAML 配置覆盖)
@@ -161,7 +161,21 @@ end
 -- 生成经过范围保护的预测记录尾部。
 local function make_record_tail(commits, tick)
     commits = math_max(-C_MAX, math_min(C_MAX, commits or 0))
-    return userdb.make_record_tail(commits, 0, tick or 0)
+    return s_format("c=%d d=0 t=%d", commits, tick or 0)
+end
+
+-- 判断文本是否为完整的 c/d/t 记录尾部。
+local function is_record_tail(tail)
+    if type(tail) ~= "string" then return false end
+
+    local commits, deletes, tick = s_match(
+        tail,
+        "^c=([^%s\t]+)%s+d=([^%s\t]+)%s+t=([^%s\t]+)$"
+    )
+
+    return tonumber(commits) ~= nil
+        and tonumber(deletes) ~= nil
+        and tonumber(tick) ~= nil
 end
 
 -- 将预测逻辑键拆分为数据库 code 和候选词。
@@ -183,9 +197,23 @@ local function split_memory_key(key)
     return code, word
 end
 
--- 使用公共 UserDb 规则生成完整预测 raw key。
+-- 在预测业务层生成完整 raw key。
 local function make_raw_key(code, word)
-    return userdb.make_record_key(code, word)
+    if not code or code == "" or not word or word == "" then return nil end
+    return code .. RECORD_SEPARATOR .. word
+end
+
+-- 将完整 raw key 拆分为预测 code 和候选词。
+local function parse_raw_key(raw_key)
+    if type(raw_key) ~= "string" then return nil, nil end
+
+    local split_pos = s_find(raw_key, RECORD_SEPARATOR, 1, true)
+    if not split_pos then return nil, nil end
+
+    local code = s_sub(raw_key, 1, split_pos - 1)
+    local word = s_sub(raw_key, split_pos + s_len(RECORD_SEPARATOR))
+    if code == "" or word == "" then return nil, nil end
+    return code, word
 end
 
 -- 精确读取预测记录及其完整 raw key。
@@ -193,7 +221,7 @@ local function fetch_record(db, code, word)
     local raw_key = make_raw_key(code, word)
     if not raw_key then return 0, 0, nil, nil end
 
-    local tail = db:fetch_raw(raw_key)
+    local tail = db:fetch(raw_key)
     local commits, tick = parse_record_tail(tail)
     return commits, tick, tail, raw_key
 end
@@ -202,7 +230,7 @@ end
 local function update_record(db, code, word, commits, tick)
     local raw_key = make_raw_key(code, word)
     if not raw_key then return false end
-    return db:update_raw(raw_key, make_record_tail(commits, tick))
+    return db:update(raw_key, make_record_tail(commits, tick))
 end
 
 -- 根据当前状态生成下一次有效学习计数。
@@ -223,7 +251,7 @@ local function mark_record_deleted(db, code, word)
     if magnitude < C_MAX then magnitude = magnitude + 1 end
     if magnitude == 0 then magnitude = 1 end
 
-    return db:update_raw(raw_key, make_record_tail(-magnitude, tick))
+    return db:update(raw_key, make_record_tail(-magnitude, tick))
 end
 
 -- 解析预测导入文件中的稳定记录行。
@@ -236,7 +264,7 @@ local function split_predict_line(line)
         return nil, nil, nil
     end
 
-    if not userdb.is_record_tail(tail) then
+    if not is_record_tail(tail) then
         local commits = tonumber(tail)
         if not commits then return nil, nil, nil end
         tail = make_record_tail(commits, 0)
@@ -257,10 +285,14 @@ local function get_db(env)
 
     if not db then
         db = userdb.LevelDb(db_name)
+        if not db then return nil end
         _db_pool[db_name] = db
     end
 
-    if not db:loaded() and not db:open() then return nil end
+    if not db:loaded() and not db:open() then
+        _db_pool[db_name] = nil
+        return nil
+    end
 
     _db_refs[db_name] = (_db_refs[db_name] or 0) + 1
     env.predict_db, env.predict_db_name = db, db_name
@@ -283,8 +315,8 @@ local function release_db(env)
     _db_refs[db_name] = nil
     _db_pool[db_name] = nil
 
-    collectgarbage()
-    db:close()
+    collectgarbage("collect")
+    pcall(function() db:close() end)
 end
 
 
@@ -358,17 +390,24 @@ local function get_predictions(env, prev_commit)
     -- 查询单个预测层级并按权重收集候选。
     local function fetch_candidates(query_key, multiplier)
         local code = s_sub(query_key, 1, -2)
-        local accessor = db:query(code .. RECORD_SEPARATOR)
+        local prefix = code .. RECORD_SEPARATOR
+        local accessor = db:query(prefix)
         if not accessor then return end
 
         local prefix_cands = {}
         local scan_count = 0
 
-        for record_code, word, tail in accessor:iter() do
-            if record_code ~= code or scan_count >= scan_limit then break end
+        for raw_key, tail in accessor:iter() do
+            if scan_count >= scan_limit
+                or s_sub(raw_key, 1, s_len(prefix)) ~= prefix
+            then
+                break
+            end
 
+            local record_code, word = parse_raw_key(raw_key)
             local commits = parse_record_tail(tail)
-            if commits > 0 and word ~= "" then
+
+            if record_code == code and commits > 0 and word ~= "" then
                 insert(prefix_cands, {
                     word = word,
                     weight = commits * multiplier,
@@ -613,11 +652,16 @@ function P.init(env)
                 local is_known_prefix = false
                 for _, prefix in ipairs(SELF_SPLIT_PREFIXES) do
                     local code = prefix .. part1
-                    local da = db:query(code .. RECORD_SEPARATOR)
+                    local raw_prefix = code .. RECORD_SEPARATOR
+                    local da = db:query(raw_prefix)
 
                     if da then
-                        for record_code, _, tail in da:iter() do
-                            if record_code ~= code then break end
+                        for raw_key, tail in da:iter() do
+                            if s_sub(raw_key, 1, s_len(raw_prefix))
+                                ~= raw_prefix
+                            then
+                                break
+                            end
 
                             local commits = parse_record_tail(tail)
                             if commits > 0 then
@@ -625,7 +669,10 @@ function P.init(env)
                                 break
                             end
                         end
+
+                        da = nil
                     end
+
                     if is_known_prefix then break end
                 end
                 if is_known_prefix then
@@ -696,14 +743,20 @@ function P.init(env)
                 local accessor = db:query("")
 
                 if accessor then
-                    for code, word, tail in accessor:iter() do
-                        if s_sub(code, 1, 1) ~= "\1"
+                    for raw_key, tail in accessor:iter() do
+                        local code, word = parse_raw_key(raw_key)
+
+                        if code and word
+                            and s_sub(code, 1, 1) ~= "\1"
                             and s_sub(code, 1, 1) ~= "\0"
                             and not s_find(word, "|", 1, true)
+                            and is_record_tail(tail)
                         then
                             file:write(code, "\t", word, "\t", tail, "\n")
                         end
                     end
+
+                    accessor = nil
                 end
 
                 file:close()
@@ -727,8 +780,9 @@ function P.init(env)
                     if code and word and tail
                         and not s_find(word, "|", 1, true)
                     then
-                        local incoming = parse_record_tail(tail)
-                        local current, tick = fetch_record(db, code, word)
+                        local incoming, incoming_tick =
+                            parse_record_tail(tail)
+                        local current = fetch_record(db, code, word)
 
                         local incoming_abs = math_abs(incoming)
                         local current_abs = math_abs(current)
@@ -738,7 +792,9 @@ function P.init(env)
                                 and incoming < 0 and current >= 0
 
                         if should_update then
-                            update_record(db, code, word, incoming, tick)
+                            update_record(
+                                db, code, word, incoming, incoming_tick
+                            )
                         end
                     end
                 end
@@ -843,7 +899,7 @@ function P.func(key, env)
                     if tail == "" then
                         db:erase(raw_key)
                     else
-                        db:update_raw(raw_key, tail)
+                        db:update(raw_key, tail)
                     end
                 end
                 env.last_action_time = current_time
@@ -926,6 +982,12 @@ function P.fini(env)
         env.delete_connection:disconnect()
         env.delete_connection = nil
     end
+
+    env.commit_cb = nil
+    env.update_cb = nil
+    env.delete_cb = nil
+    env.last_written_keys = nil
+    env.undo_stack = nil
 
     release_db(env)
 end
