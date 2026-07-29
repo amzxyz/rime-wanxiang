@@ -58,12 +58,14 @@ local function has_english_token_fast(s)
 end
 
 -- 1. 内部常量与工具函数
+local zwsp = "\226\128\139"
+
 local escape_map = {
-    ["\\n"] = "\n",
+    ["\\n"] = zwsp .. "\n",  --用来应对electron开发的软件行尾字符被转移到内容最后一行的问题
     ["\\r"] = "\r",
     ["\\t"] = "\t",
     ["\\s"] = " ",
-    ["\\z"] = "\226\128\139",
+    ["\\z"] = zwsp,
 }
 
 local utf8_char_pattern = "[%z\1-\127\194-\244][\128-\191]*"
