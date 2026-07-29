@@ -396,7 +396,7 @@ super_processor:
   # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
 
 user_predict:
-  db_name: lua/predict  # 数据库名称（默认 predict，将生成 predict.userdb 文件夹）
+  db_name: predict  # 数据库名称（默认 predict，将生成 predict.userdb 文件夹）
   mobile_predict_style: post   # 移动端联想模式："post"（上屏后弹出预测候选）| "reorder"（输入时调频）| "off"（关闭）
   # 上面的开关是总开关，开启后pc端自动为上下文调频模式，不再有弹出模式。
   enable_fallback_reorder: false  # 同码回删再输首次交换
@@ -418,7 +418,7 @@ user_predict:
     - 米寸尺里斤两吨克升元角毛笔百千万亿  # 度量货币
 
 super_tips:
-  db_name: "lua/tips"  # 可选字段，不写的话默认使用 "lua/tips"，相对路径
+  db_name: "tips"  # 可选字段，不写的话默认使用 "tips"，相对路径
   tips_key: "comma"  # key英文单词不清楚去default找
   files:  # 自定义数据文件列表（可选，不配置则使用默认文件）
     - lua/data/tips_show.txt  # 仍可保留默认文件
@@ -453,7 +453,7 @@ tone_preedit:
   "0": "⁴"
 
 super_sequence:  # Lua 配置：手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
-  db_name: "lua/sequence"
+  db_name: "sequence"
   up: "Control+j"  # 上移
   down: "Control+k"  # 下移
   reset: "Control+l"  # 重置
@@ -461,7 +461,7 @@ super_sequence:  # Lua 配置：手动排序的快捷键 super_sequence.lua，�
 
 
 input_stats:
-  db_name: "lua/stats"  # 自定义统计数据库路径
+  db_name: "stats"  # 自定义统计数据库路径
   triggers:
     clear: "/qctj"  # 清除数据（推荐长一点防误触）
     today: "/rtj"  # 查今日（日统计）
@@ -515,7 +515,7 @@ input_stats:
 # only_types: [pinyin]  # 仅对特定类型的候选词生效，其他类型候选词不受影响
 
 super_replacer:
-  db_name: lua/replacer
+  db_name: replacer
   comment_format: "〔%s〕"
   chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
   rules:
