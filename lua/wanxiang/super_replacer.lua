@@ -21,7 +21,7 @@ local open = io.open
 local type = type
 local tonumber = tonumber
 
-local DB_FORMAT_VERSION = "4"
+local DB_FORMAT_VERSION = "7"
 local OPTION_KEYS = {"option", "options"}
 local TAG_KEYS = {"tag", "tags"}
 local FILE_KEYS = {"files", "file"}
@@ -157,8 +157,11 @@ local function generate_config_signature(rules)
     return s_format("%08x", hash)
 end
 
--- 重建数据库：一行中的每个制表符 value 都写成独立键值记录。
+-- 重建数据库：每个 value 独立存储，c 保存同一逻辑 key 下的位置。
 local function rebuild(tasks, db)
+    local positions = {}
+    local seen_records = {}
+
     for _, task in ipairs(tasks) do
         local txt_path = task.path
         local prefix = task.prefix
@@ -174,6 +177,8 @@ local function rebuild(tasks, db)
                         local orig_k = k
                         if conversion then k = s_gsub(k, ".", conversion) end
 
+                        local db_key = prefix .. k
+
                         for v in s_gmatch(values, "[^\t]+") do
                             v = s_match(v, "^%s*(.-)%s*$")
 
@@ -185,13 +190,23 @@ local function rebuild(tasks, db)
                                 end
 
                                 local raw_key =
-                                    userdb.make_record_key(prefix .. k, v)
+                                    userdb.make_record_key(db_key, v)
 
-                                if raw_key and not db:update_raw(
-                                    raw_key, userdb.DEFAULT_RECORD_TAIL
-                                ) then
-                                    f:close()
-                                    return false
+                                if raw_key and not seen_records[raw_key] then
+                                    seen_records[raw_key] = true
+
+                                    local position =
+                                        (positions[db_key] or 0) + 1
+                                    positions[db_key] = position
+
+                                    local tail = userdb.make_record_tail(
+                                        position, 0, 0
+                                    )
+
+                                    if not db:update_raw(raw_key, tail) then
+                                        f:close()
+                                        return false
+                                    end
                                 end
                             end
                         end
@@ -206,24 +221,47 @@ local function rebuild(tasks, db)
     return true
 end
 
--- 按逻辑 key 查询全部 value，并临时合并为现有规则使用的字符串。
+-- 从记录尾部读取候选在当前逻辑 key 下的位置。
+local function parse_position(tail)
+    if type(tail) ~= "string" then return 0 end
+    return tonumber(s_match(tail, "c=([^%s\t]+)")) or 0
+end
+
+-- 按逻辑 key 查询全部 value，并按固定位置恢复源文件顺序。
 local function fetch_values(db, key, delimiter)
     local accessor = db:query(key .. userdb.RECORD_KEY_SEPARATOR)
     if not accessor then return nil end
 
-    local values = {}
+    local records = {}
     local count = 0
 
-    for record_key, value in accessor:iter() do
+    for record_key, value, tail in accessor:iter() do
         if record_key ~= key then break end
 
         count = count + 1
-        values[count] = value
+        records[count] = {
+            value = value,
+            position = parse_position(tail),
+            index = count,
+        }
     end
 
     accessor = nil
 
     if count == 0 then return nil end
+
+    t_sort(records, function(a, b)
+        if a.position ~= b.position then
+            if a.position == 0 then return false end
+            if b.position == 0 then return true end
+            return a.position < b.position
+        end
+
+        return a.index < b.index
+    end)
+
+    local values = {}
+    for i = 1, count do values[i] = records[i].value end
     return concat(values, delimiter, 1, count)
 end
 
