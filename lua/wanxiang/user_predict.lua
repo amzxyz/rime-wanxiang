@@ -241,6 +241,11 @@ local function next_active_commits(commits)
     return magnitude + 1
 end
 
+-- 生成严格递增的记录时间戳，避免同一秒内多次修改无法区分。
+local function next_record_tick(tick)
+    return math_max(os_time(), (tick or 0) + 1)
+end
+
 -- 使用递增绝对值的负 c 墓碑标记预测记录已删除。
 local function mark_record_deleted(db, code, word)
     local commits, tick, tail, raw_key = fetch_record(db, code, word)
@@ -251,7 +256,10 @@ local function mark_record_deleted(db, code, word)
     if magnitude < C_MAX then magnitude = magnitude + 1 end
     if magnitude == 0 then magnitude = 1 end
 
-    return db:update(raw_key, make_record_tail(-magnitude, tick))
+    return db:update(
+        raw_key,
+        make_record_tail(-magnitude, next_record_tick(tick))
+    )
 end
 
 -- 解析预测导入文件中的稳定记录行。
@@ -566,18 +574,29 @@ function P.init(env)
         end
 
         env.last_written_keys = {} 
-        -- 更新单条记忆关联并保存回滚前状态。
+        -- 更新单条记忆关联，并保存本次写入前后的完整状态。
         local function update_memory(key, is_tone)
             local code, word = split_memory_key(key)
             if not code or not word then return end
 
             local commits, tick, tail, raw_key =
                 fetch_record(db, code, word)
-
-            env.last_written_keys[raw_key] = tail or ""
-            update_record(
-                db, code, word, next_active_commits(commits), tick
+            local next_tail = make_record_tail(
+                next_active_commits(commits),
+                next_record_tick(tick)
             )
+            local state = env.last_written_keys[raw_key]
+
+            if state then
+                state.after = next_tail
+            else
+                env.last_written_keys[raw_key] = {
+                    before = tail or "",
+                    after = next_tail,
+                }
+            end
+
+            db:update(raw_key, next_tail)
         end
 
         current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
@@ -692,16 +711,18 @@ function P.init(env)
             end
         end
         
-        -- 事务入栈：把本次写库的记录推入回滚栈（最大保留 3 级）
+        -- 事务入栈：只允许本次确实写库的上屏触发一次即时回滚。
         env.undo_stack = env.undo_stack or {}
-        if next(env.last_written_keys) then
+        local wrote_memory = next(env.last_written_keys) ~= nil
+
+        if wrote_memory then
             insert(env.undo_stack, env.last_written_keys)
             if #env.undo_stack > 3 then remove(env.undo_stack, 1) end
         end
 
         last_commit_time = current_time
         env.last_action_time = current_time
-        env.just_committed = true
+        env.just_committed = wrote_memory
         
         -- 如果两个开关都没开，绝对不去查库！绝对不建缓存
         if predict_count <= CONFIG.MAX_PREDICTIONS and ctx:get_option("prediction") then
@@ -888,21 +909,37 @@ function P.func(key, env)
     
     if repr == "BackSpace" then
         local current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
-        local is_safe_to_undo = (not ctx:is_composing() or is_predicting)
-        
+        local is_safe_to_undo = env.just_committed
+            and (not ctx:is_composing() or is_predicting)
+
         if is_safe_to_undo and env.undo_stack and #env.undo_stack > 0 then
-            -- 延时策略：如果在规定时间内连按退格
+            -- 仅回滚刚完成的事务，且数据库仍须保持该事务写入的状态。
             if (current_time - (env.last_action_time or 0)) <= CONFIG.CONTEXT_TIMEOUT_MS then
                 local keys_to_undo = remove(env.undo_stack)
                 local db = get_db(env)
-                for raw_key, tail in pairs(keys_to_undo) do
-                    if tail == "" then
-                        db:erase(raw_key)
-                    else
-                        db:update(raw_key, tail)
+
+                for raw_key, state in pairs(keys_to_undo) do
+                    local current_tail = db:fetch(raw_key)
+
+                    if current_tail == state.after then
+                        if state.before == "" then
+                            db:erase(raw_key)
+                        else
+                            local before_commits =
+                                parse_record_tail(state.before)
+                            local _, current_tick =
+                                parse_record_tail(current_tail)
+
+                            db:update(
+                                raw_key,
+                                make_record_tail(
+                                    before_commits,
+                                    next_record_tick(current_tick)
+                                )
+                            )
+                        end
                     end
                 end
-                env.last_action_time = current_time
             else
                 env.undo_stack = {}
             end
@@ -931,9 +968,12 @@ function P.func(key, env)
             return 1
         end
         
-        -- 任何其他按键都打断联想
+        -- 普通输入只关闭联想界面，保留上文供下一次上屏继续学习
+        predict_count = 0
+        is_predicting = false
+        pending_cands = nil
+        env.need_push = false
         ctx:clear()
-        reset_memory_chain(env, "按键打断联想")
         return 2
     end
 
