@@ -15,6 +15,28 @@ local function utf8_head(s, n)
     return offset and s:sub(1, offset - 1) or s
 end
 
+-- 获取已确认文字和当前未确认段的输入起点
+local function confirmed_prefix(c)
+    local segmentation = c.composition:toSegmentation()
+    local segments = segmentation and segmentation:get_segments()
+    if not segments or #segments == 0 then return "", 0 end
+
+    local parts = {}
+    for i = 1, #segments - 1 do
+        local seg = segments[i]
+        local cand = seg:get_selected_candidate()
+
+        if cand then
+            parts[#parts + 1] = cand.text
+        elseif not seg:has_tag("phony") then
+            parts[#parts + 1] =
+                c.input:sub(seg._start + 1, seg._end)
+        end
+    end
+
+    return table.concat(parts), segments[#segments]._start
+end
+
 -- 事务级状态挂起模块
 local function set_pending(env, rest)
     env._cpc_pending_rest = rest or ""
@@ -69,27 +91,35 @@ function M.init(env)
         local spans = c.composition:spans()
         local count = type(spans.count) == "function" and spans:count() or spans.count
         if not spans or count == 0 then return wanxiang.RIME_PROCESS_RESULTS.kNoop end
-        
+
         local vertices = type(spans.vertices) == "function" and spans:vertices() or spans.vertices
         if not vertices or #vertices < 2 then return wanxiang.RIME_PROCESS_RESULTS.kNoop end
 
-        -- 防呆保护：取 期望长度(N)、实际拼音音节数、候选词字符数 三者中的最小值
-        local available_syllables = #vertices - 1
+        -- 已确认段一并提交；切分点只保留当前未确认段的绝对坐标
+        local prefix, base = confirmed_prefix(c)
+        local stops = {}
+        for _, vertex in ipairs(vertices) do
+            if vertex >= base then stops[#stops + 1] = vertex end
+        end
+        if #stops < 2 then return wanxiang.RIME_PROCESS_RESULTS.kNoop end
+
+        -- 防呆保护：取 期望长度(N)、当前段音节数、候选词字符数 三者中的最小值
+        local available_syllables = #stops - 1
         local cand_len = utf8.len(cand.text) or 0
         n = math.min(n, available_syllables, cand_len)
         if n <= 0 then return wanxiang.RIME_PROCESS_RESULTS.kNoop end
         -- 获取需要上屏的中文候选字串
         local head = utf8_head(cand.text, n)
-        -- 【神级一刀切】：利用 vertices 拿到第 n 个音节的精确字节偏移量
-        local cut_byte = vertices[n + 1]
+        -- 利用当前段 stops 拿到第 n 个音节的绝对字节偏移量
+        local cut_byte = stops[n + 1]
         -- 截取剩余的 raw_input
         local rest = c.input:sub(cut_byte + 1)
         -- 如果剩余输入首字符是手动输入的分隔符（比如 ' ），顺手切掉保证清爽
         if rest:sub(1, 1) == "'" or rest:sub(1, 1) == " " then 
             rest = rest:sub(2) 
         end
-        -- 提交前 n 个字
-        env.engine:commit_text(head)
+        -- 已确认段与当前截取内容一起提交
+        env.engine:commit_text(prefix .. head)
         -- 挂起剩余拼音，触发 update_notifier 恢复
         set_pending(env, rest)
         c:refresh_non_confirmed_composition()
