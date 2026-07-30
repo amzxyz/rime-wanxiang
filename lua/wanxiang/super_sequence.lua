@@ -194,8 +194,6 @@ local function release_sequence_db(env)
     local db = seq_db
     seq_db = nil
 
-    -- 先回收可能仍持有 LevelDB iterator 的 accessor，再释放数据库锁。
-    collectgarbage("collect")
     if db and db:loaded() then db:close() end
 end
 

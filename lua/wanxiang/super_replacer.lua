@@ -37,15 +37,9 @@ do
     for i = 1, #letters do T9_MAP[s_sub(letters, i, i)] = s_sub(digits, i, i) end
 end
 
--- 基础依赖
-local function safe_require(name)
-    local status, lib = pcall(require, name)
-    if status then return lib end
-    return nil
-end
-
-local userdb = safe_require("wanxiang/userdb")
-local wanxiang = safe_require("wanxiang/wanxiang")
+-- 基础依赖：缺失时直接报错，避免功能静默失效。
+local userdb = require("wanxiang/userdb")
+local wanxiang = require("wanxiang/wanxiang")
 
 local function clear_array(t)
     for i = #t, 1, -1 do t[i] = nil end
@@ -461,24 +455,25 @@ local function connect_db(
     end
 
     if cached then
-        local ok, same = pcall(database_matches, cached)
-
-        if ok and same then
+        if database_matches(cached) then
             retain_db(db_name)
             return cached
         end
 
-        -- 初始化交叠期间不能关闭其他组件仍在使用的对象。
-        if (db_refs[db_name] or 0) > 0 then
-            retain_db(db_name)
-            return cached
+        -- 配置已经变化时不能继续把旧库交给新组件，否则旧数据会被长期续用。
+        -- 若这里仍有引用，说明组件生命周期发生交叠，应直接暴露问题。
+        local refs = db_refs[db_name] or 0
+        if refs > 0 then
+            error(s_format(
+                "super_replacer: database '%s' changed while still referenced (%d)",
+                db_name,
+                refs
+            ))
         end
 
-        pcall(function() cached:close() end)
+        cached:close()
         db_instances[db_name] = nil
     end
-
-    if not userdb then return nil end
 
     local db = userdb.LevelDb(db_name)
     if not db then return nil end
@@ -526,7 +521,6 @@ local function connect_db(
         log.info("super_replacer: 联合配置数据已重载")
     end
 
-    collectgarbage("collect")
     db:close()
 
     if not db:open_read_only() then return nil end
@@ -557,8 +551,7 @@ local function release_db(env)
         db_instances[db_name] = nil
     end
 
-    collectgarbage("collect")
-    pcall(function() db:close() end)
+    db:close()
 end
 
 -- FMM 分词转换算法：复用 offsets/result_parts，避免热点路径反复分配临时表

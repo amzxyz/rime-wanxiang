@@ -144,8 +144,7 @@ end
 -- 关闭数据库并恢复待初始化状态。
 local function close_database()
     if tips_db then
-        collectgarbage("collect")
-        pcall(function() tips_db:close() end)
+        if tips_db:loaded() then tips_db:close() end
         tips_db = nil
     end
 
@@ -161,12 +160,11 @@ local function init_database(config)
     local db_name = config:get_string("super_tips/db_name")
     if not db_name or db_name == "" then db_name = "lua/tips" end
 
-    local ok, db = pcall(userdb.LevelDb, db_name)
-    if not ok or not db then
+    tips_db = userdb.LevelDb(db_name)
+    if not tips_db then
         tips.status = "pending"
         return false
     end
-    tips_db = db
 
     tips.disabled_types = {}
     local disabled_keys = {}
@@ -250,7 +248,6 @@ local function init_database(config)
         return false
     end
 
-    collectgarbage("collect")
     tips_db:close()
 
     if not tips_db:open_read_only() then

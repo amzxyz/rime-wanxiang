@@ -102,11 +102,7 @@ local function release_db(env)
     if entry.refs > 0 then return end
 
     DB_POOL[env.stats_db_name] = nil
-    collectgarbage("collect")
-
-    if entry.db and entry.db:loaded() then
-        pcall(function() entry.db:close() end)
-    end
+    if entry.db and entry.db:loaded() then entry.db:close() end
 end
 
 -- 在统计业务层生成稳定的 UserDb raw key。
