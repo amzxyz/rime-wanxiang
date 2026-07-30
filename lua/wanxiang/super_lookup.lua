@@ -712,9 +712,11 @@ local function attempt_pure_tone_translation(cand, env, syllables, tone_filter_s
         local seg_trans = Segment(0, #query_str)
         seg_trans.tags = Set({ "abc" })
 
-        local translation = env.main_translator:query(query_str, seg_trans)
+        local ok, translation = pcall(function()
+            return env.main_translator:query(query_str, seg_trans)
+        end)
 
-        if translation then
+        if ok and translation then
             for c in translation:iter() do
                 local custom_cand = Candidate(cand.type, cand.start, cand._end, c.text, c.comment)
                 custom_cand.quality = c.quality
@@ -818,9 +820,11 @@ local function try_match_two_char_phrase(current_text, search_end_idx, env, syll
             local seg_trans = Segment(0, #query_str)
             seg_trans.tags = Set({ "abc" })
 
-            local translation = env.main_translator:query(query_str, seg_trans)
+            local ok, translation = pcall(function()
+                return env.main_translator:query(query_str, seg_trans)
+            end)
 
-            if translation then
+            if ok and translation then
                 local orig_phrase_text = get_utf8_string_range(current_text, w_start, w_end)
                 for c in translation:iter() do
                     if get_utf8_len(c.text) == 2 and c.text ~= orig_phrase_text then
@@ -1123,9 +1127,9 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
     end
 
     if not env.main_translator and Component and Component.Translator then
-        env.main_translator = Component.Translator(
-            env.engine, "translator", "script_translator"
-        )
+        pcall(function()
+            env.main_translator = Component.Translator(env.engine, "translator", "script_translator")
+        end)
     end
 
     local ctx = env.engine.context
@@ -1633,11 +1637,6 @@ function f.fini(env)
         env.mem = nil
     end
 
-    if env.main_translator then
-        env.main_translator:disconnect()
-        env.main_translator = nil
-    end
-
     env.db_names = nil
     env.db_table = nil
     env.main_projection = nil
@@ -1647,5 +1646,7 @@ function f.fini(env)
     env.history_parts = nil
     env.history_input = nil
     env.direct_cache = nil
+
+    collectgarbage("collect")
 end
 return f
