@@ -712,11 +712,9 @@ local function attempt_pure_tone_translation(cand, env, syllables, tone_filter_s
         local seg_trans = Segment(0, #query_str)
         seg_trans.tags = Set({ "abc" })
 
-        local ok, translation = pcall(function()
-            return env.main_translator:query(query_str, seg_trans)
-        end)
+        local translation = env.main_translator:query(query_str, seg_trans)
 
-        if ok and translation then
+        if translation then
             for c in translation:iter() do
                 local custom_cand = Candidate(cand.type, cand.start, cand._end, c.text, c.comment)
                 custom_cand.quality = c.quality
@@ -820,11 +818,9 @@ local function try_match_two_char_phrase(current_text, search_end_idx, env, syll
             local seg_trans = Segment(0, #query_str)
             seg_trans.tags = Set({ "abc" })
 
-            local ok, translation = pcall(function()
-                return env.main_translator:query(query_str, seg_trans)
-            end)
+            local translation = env.main_translator:query(query_str, seg_trans)
 
-            if ok and translation then
+            if translation then
                 local orig_phrase_text = get_utf8_string_range(current_text, w_start, w_end)
                 for c in translation:iter() do
                     if get_utf8_len(c.text) == 2 and c.text ~= orig_phrase_text then
@@ -1127,9 +1123,9 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
     end
 
     if not env.main_translator and Component and Component.Translator then
-        pcall(function()
-            env.main_translator = Component.Translator(env.engine, "translator", "script_translator")
-        end)
+        env.main_translator = Component.Translator(
+            env.engine, "translator", "script_translator"
+        )
     end
 
     local ctx = env.engine.context
@@ -1624,12 +1620,22 @@ end
 function f.fini(env)
     if env.update_conn then
         env.update_conn:disconnect()
+        env.update_conn = nil
     end
+
     if env.notifier then
         env.notifier:disconnect()
+        env.notifier = nil
     end
+
     if env.mem then
         env.mem:disconnect()
+        env.mem = nil
+    end
+
+    if env.main_translator then
+        env.main_translator:disconnect()
+        env.main_translator = nil
     end
 
     env.db_names = nil
@@ -1639,8 +1645,7 @@ function f.fini(env)
     env._db_cache = nil
     env._comment_cache = nil
     env.history_parts = nil
+    env.history_input = nil
     env.direct_cache = nil
-
-    collectgarbage("collect")
 end
 return f

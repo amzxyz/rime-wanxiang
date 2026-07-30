@@ -68,13 +68,16 @@ function AP.init(env)
     -- 英文：enuser（不受 add_* 开关影响，始终尝试启用）
     env.en_memory = Memory(env.engine, env.engine.schema, "wanxiang_english")
 
-    -- 只要有一边需要，就挂上 commit/delete 通知
+    -- 中英文任一造词启用时，都需要监听上屏事件。
     if env.en_memory or env.memory then
         env._commit_conn = ctx.commit_notifier:connect(function(c)
             AP.commit_handler(c, env)
         end)
+    end
 
-        env._delete_conn = ctx.delete_notifier:connect(function(_)
+    -- 删除事件只用于清理中文造词的注释缓存。
+    if env.memory then
+        env._delete_conn = ctx.delete_notifier:connect(function()
             comment_cache = {}
         end)
     end
@@ -113,9 +116,6 @@ end
 
 -- 入口
 function AP.func(input, env)
-    local config  = env.engine.schema.config
-    local context = env.engine.context
-
     local use_comment_cache = env.memory ~= nil  -- 只有中文造词才需要缓存注释
 
     for cand in input:iter() do
