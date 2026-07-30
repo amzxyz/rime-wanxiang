@@ -1,5 +1,41 @@
 # Changelog
 
+## [16.4.0](https://github.com/amzxyz/rime-wanxiang/compare/v16.3.2...v16.4.0) (2026-07-30)
+
+
+### ✨ 新特性
+
+* 采用融合特征算法，超级替换跨方案也不会造成无修改的重新初始化了 ([7b33c73](https://github.com/amzxyz/rime-wanxiang/commit/7b33c738c5c4c01b6f914a916069145a05ff9c83))
+
+
+### 📚 词库更新
+
+* 词库调整 ([acb6234](https://github.com/amzxyz/rime-wanxiang/commit/acb62347a4633e862137ef6f39141e1dae2a7111))
+* 词库调整 ([21b79a1](https://github.com/amzxyz/rime-wanxiang/commit/21b79a169d52666daff192d00f00d73fbadb9a60))
+* 词库调整 ([30a3967](https://github.com/amzxyz/rime-wanxiang/commit/30a3967ce6c245acbf2efa59b33325373df9ba80))
+* 词库调整 ([06adf5c](https://github.com/amzxyz/rime-wanxiang/commit/06adf5cb22c4ad84af0ada23e72cd2bf8f523c77))
+* 词库调整 ([21e186a](https://github.com/amzxyz/rime-wanxiang/commit/21e186ac97bf8b9deb55aaf85c1f67605aba13a0))
+
+
+### 🐛 Bug 修复
+
+* ctrl+数字上屏时支持先数字选定一段确认的候选接着再去按ctrl+数字，这样已确认部分与后面的部分一起上屏 ([e4830cf](https://github.com/amzxyz/rime-wanxiang/commit/e4830cfc5f5c3d92bbb76a7168e6121438feb2af))
+* 优化字符级过滤中的几个兜底逻辑 ([ce76235](https://github.com/amzxyz/rime-wanxiang/commit/ce76235147ac90f4377b128efb3062f8c94b799a))
+* 候选格式化回车前默认增加了零宽空格以应对electron类软件把尾字拖到内容最后一行的问题 ([f9e4d03](https://github.com/amzxyz/rime-wanxiang/commit/f9e4d03550844653793197bbe8bcdeb7144ddab5))
+* 取消一些安全闭包，有问题就要暴露出来 ([8b68cf9](https://github.com/amzxyz/rime-wanxiang/commit/8b68cf9e0a4d406d2500bd89b8c86e51d04019c3))
+* 安全调用userdb ([5b28dc9](https://github.com/amzxyz/rime-wanxiang/commit/5b28dc9ce6a9b3c4555b6427b82fb34c306563e2))
+* 恢复预测的多条记录能力 ([1cad8c4](https://github.com/amzxyz/rime-wanxiang/commit/1cad8c43db90bbc07ef6397f42f5b1f72b54a544))
+* 稍稍优化初始化懒加载 ([d5a33e7](https://github.com/amzxyz/rime-wanxiang/commit/d5a33e7ce64d7c08b32a3f11766e347c69aa5aea))
+* 脚本两处细节优化 ([c53829b](https://github.com/amzxyz/rime-wanxiang/commit/c53829b109e6aa66a0c9b709f565cdbc01ded845))
+* 英文replacer数据位置调整 ([2da4d4b](https://github.com/amzxyz/rime-wanxiang/commit/2da4d4b4f2adc7d8fda27cefc8dc85f2c9f36f24))
+* 超级替换重构后功能的恢复和修复 ([2f175c9](https://github.com/amzxyz/rime-wanxiang/commit/2f175c9764cf3031f6dd983f9fcdc59c4f22b891))
+* 预测代码持续优化 ([09ba25b](https://github.com/amzxyz/rime-wanxiang/commit/09ba25b04e3c6dea998cd15f1e0828767f4648ce))
+
+
+### 💅 重构
+
+* 对使用数据库的几个插件进行重构，使用公共处理库改写，复用userdb格式，原来因为数据库专用于用户词，对格式设计较为定向，其同步程序也专用于这个格式的解析，这就导致了复杂的数据库需求需要折叠到其他路径，但折叠又面临一个问题，当app打包了你的脚本后用户目录为空，路径不存在就无法创建数据库从而报错，本次也是顶着压力尽可能地想办法复用用户词数据库的格式，不受影响的脚本有，输入统计，反而能统计多个设备的数据了，超级替换简单的数据结构改变，tips也是简单的数据结构变化，难点在于预测、排序这两个，主要测试能否复用同步逻辑，如果存在合并问题其实也可以手动迁移数据依赖同步导入，只是不去依赖自动合并。另有好消息手动排序改变了算法，去掉了依赖时间的排序逻辑在时间复杂度上面大幅度降低 ([5faa37b](https://github.com/amzxyz/rime-wanxiang/commit/5faa37b99656409b3941e50debe637df62874594))
+
 ## [16.3.2](https://github.com/amzxyz/rime-wanxiang/compare/v16.3.1...v16.3.2) (2026-07-27)
 
 
