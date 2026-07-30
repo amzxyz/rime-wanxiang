@@ -292,6 +292,9 @@ local function release_db(env)
 
     _db_refs[db_name] = nil
     _db_pool[db_name] = nil
+
+    -- db 仍由局部变量持有；先回收此前已失去引用的查询访问器，再关闭数据库。
+    collectgarbage("collect")
     db:close()
 end
 
@@ -958,6 +961,11 @@ function P.fini(env)
     env.last_written_keys = nil
     env.undo_stack = nil
 
+    reset_memory_chain(env, "方案切换")
+    shared_reverted_code = ""
+    shared_is_backspacing = false
+    is_after_number = false
+
     release_db(env)
 end
 
@@ -987,10 +995,6 @@ function T.fini(env) end
 -- Filter (F): 负责输入生命周期内的极速实时调频
 local F = {}
 
-local f_last_pending_cands = nil
-local f_reorder_map = nil
-local shared_boosted = {}
-local shared_normal = {}
 -- 快速检测纯英文字母文本（替代 s_find 正则，结果完全等价）
 local function is_alpha_fast(s)
   if not s or s == "" then return false end
@@ -1003,7 +1007,12 @@ local function is_alpha_fast(s)
   return true
 end
 
-function F.init(env) end
+function F.init(env)
+    env.f_last_pending_cands = nil
+    env.f_reorder_map = nil
+    env.shared_boosted = {}
+    env.shared_normal = {}
+end
 
 -- 按预测排名排序，并用原始序号保持稳定性。
 local function stable_sort(a, b)
@@ -1037,7 +1046,11 @@ end
 -- 根据预测记录和量词状态实时调整候选顺序。
 function F.func(input, env)
     local ctx = env.engine.context
-    
+    local shared_boosted = env.shared_boosted or {}
+    local shared_normal = env.shared_normal or {}
+    env.shared_boosted = shared_boosted
+    env.shared_normal = shared_normal
+
     if not ctx:get_option("prediction") or s_match(ctx.input or "", "^[›]+$") then
         for cand in input:iter() do yield(cand) end
         return
@@ -1048,19 +1061,19 @@ function F.func(input, env)
         return
     end
 
-    if f_last_pending_cands ~= pending_cands then
-        f_last_pending_cands = pending_cands
-        f_reorder_map = nil
+    if env.f_last_pending_cands ~= pending_cands then
+        env.f_last_pending_cands = pending_cands
+        env.f_reorder_map = nil
 
         if CONFIG.PREDICT_STYLE == "reorder" and pending_cands then
-            f_reorder_map = {}
+            env.f_reorder_map = {}
             for rank, cand in ipairs(pending_cands) do
-                f_reorder_map[cand.word] = rank
+                env.f_reorder_map[cand.word] = rank
             end
         end
     end
 
-    local do_reorder = f_reorder_map and next(f_reorder_map)
+    local do_reorder = env.f_reorder_map and next(env.f_reorder_map)
     local do_classifier = is_after_number and CLASSIFIER_LOOKUP and next(CLASSIFIER_LOOKUP)
     
     local current_input = ctx.input or ""
@@ -1146,7 +1159,7 @@ function F.func(input, env)
         end
 
         -- 分类与排名逻辑
-        local rank = f_reorder_map and f_reorder_map[text]
+        local rank = env.f_reorder_map and env.f_reorder_map[text]
         local is_classifier = do_classifier and CLASSIFIER_LOOKUP[text]
         
         if (rank or is_classifier) and current_len == target_len then
@@ -1173,5 +1186,28 @@ function F.func(input, env)
     flush_yield(shared_boosted, b_cnt, shared_normal, n_cnt, do_fallback)
 end
 
-function F.fini(env) end
+function F.fini(env)
+    if env.shared_boosted then
+        for i = #env.shared_boosted, 1, -1 do
+            local item = env.shared_boosted[i]
+            if item then
+                item.cand = nil
+                item.rank = nil
+                item.index = nil
+            end
+            env.shared_boosted[i] = nil
+        end
+    end
+
+    if env.shared_normal then
+        for i = #env.shared_normal, 1, -1 do
+            env.shared_normal[i] = nil
+        end
+    end
+
+    env.f_last_pending_cands = nil
+    env.f_reorder_map = nil
+    env.shared_boosted = nil
+    env.shared_normal = nil
+end
 return { P = P, T = T, F = F }
