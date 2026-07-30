@@ -709,11 +709,6 @@ function F.init(env)
     env.symbol = string.sub(symbol, 1, 1)
     env.page_size = config and config:get_int("menu/page_size") or 5
     env.last_adjust_code = nil
-    acquire_sequence_db(env, config)
-end
-
-function F.fini(env)
-    release_sequence_db(env)
 end
 
 local function extract_adjustment_code(context)

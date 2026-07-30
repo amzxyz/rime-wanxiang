@@ -703,7 +703,6 @@ local function init(env)
     env.last_flush_ts, env.titles = os.time(), nil
     env.last_observed_input = ""
     reset_session(env)
-    acquire_db(env)
 
     env.triggers = {
         local_total=config:get_string("input_stats/triggers/local_total") or "/btj",
