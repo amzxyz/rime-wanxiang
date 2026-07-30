@@ -146,7 +146,10 @@ end
 ------------------------------------------------------------
 local seq_db = nil
 local seq_db_refs = 0
+local RECORD_CACHE_LIMIT = 128
 local record_cache = {}
+local record_cache_size = 0
+local record_cache_clock = 0
 
 local function resolve_db_name(config)
     local db_name = config and config:get_string("super_sequence/db_name") or nil
@@ -190,6 +193,8 @@ local function release_sequence_db(env)
     if seq_db_refs > 0 then return end
 
     record_cache = {}
+    record_cache_size = 0
+    record_cache_clock = 0
 
     local db = seq_db
     seq_db = nil
@@ -199,18 +204,50 @@ end
 
 local function invalidate_input_cache(input)
     if input then
-        record_cache[input] = nil
+        if record_cache[input] then
+            record_cache[input] = nil
+            record_cache_size = math.max(0, record_cache_size - 1)
+        end
     else
         record_cache = {}
+        record_cache_size = 0
+        record_cache_clock = 0
     end
 end
 
-local function load_input_records(input, refresh)
+local function touch_cached_entry(cached)
+    record_cache_clock = record_cache_clock + 1
+    cached.last_used = record_cache_clock
+end
+
+local function trim_record_cache()
+    if record_cache_size <= RECORD_CACHE_LIMIT then return end
+
+    local oldest_input = nil
+    local oldest_clock = math.huge
+
+    for input, cached in pairs(record_cache) do
+        local last_used = cached.last_used or 0
+        if last_used < oldest_clock then
+            oldest_input = input
+            oldest_clock = last_used
+        end
+    end
+
+    if oldest_input then
+        record_cache[oldest_input] = nil
+        record_cache_size = math.max(0, record_cache_size - 1)
+    end
+end
+
+local function load_input_records(input)
     if not input or input == "" or not seq_db then return {}, false end
-    if refresh then record_cache[input] = nil end
 
     local cached = record_cache[input]
-    if cached then return cached.records, cached.has_active end
+    if cached then
+        touch_cached_entry(cached)
+        return cached.records, cached.has_active
+    end
 
     local records = {}
     local has_active = false
@@ -246,10 +283,15 @@ local function load_input_records(input, refresh)
         accessor = nil
     end
 
-    record_cache[input] = {
+    cached = {
         records = records,
         has_active = has_active,
     }
+    touch_cached_entry(cached)
+
+    record_cache[input] = cached
+    record_cache_size = record_cache_size + 1
+    trim_record_cache()
 
     return records, has_active
 end
@@ -258,6 +300,7 @@ local function update_cached_record(input, item, commits, tick, tail)
     local cached = record_cache[input]
     if not cached then return end
 
+    touch_cached_entry(cached)
     local version, position, active = decode_state(commits)
 
     cached.records[item] = {
@@ -571,10 +614,19 @@ end
 local P = {}
 
 function P.init(env)
-    acquire_sequence_db(env, env.engine.schema.config)
+    local config = env.engine.schema.config
+    env.seq_keys = {
+        up = config:get_string("super_sequence/up") or DEFAULT_SEQ_KEY.up,
+        down = config:get_string("super_sequence/down") or DEFAULT_SEQ_KEY.down,
+        reset = config:get_string("super_sequence/reset") or DEFAULT_SEQ_KEY.reset,
+        pin = config:get_string("super_sequence/pin") or DEFAULT_SEQ_KEY.pin,
+    }
+
+    acquire_sequence_db(env, config)
 end
 
 function P.fini(env)
+    env.seq_keys = nil
     release_sequence_db(env)
 end
 
@@ -601,17 +653,11 @@ function P.func(key_event, env)
     local context = env.engine.context
     local code = key_event.keycode
     local key_repr = key_event:repr()
-    local config = env.engine.schema.config
-
-    local function seq_key(name)
-        return config:get_string("super_sequence/" .. name)
-            or DEFAULT_SEQ_KEY[name]
-    end
-
-    local up = seq_key("up")
-    local down = seq_key("down")
-    local reset = seq_key("reset")
-    local pin = seq_key("pin")
+    local seq_keys = env.seq_keys or DEFAULT_SEQ_KEY
+    local up = seq_keys.up
+    local down = seq_keys.down
+    local reset = seq_keys.reset
+    local pin = seq_keys.pin
     local is_ctrl_key = code == 0xffe3 or code == 0xffe4
 
     -- Ctrl 监听，用于开关可视化标记。
@@ -708,7 +754,6 @@ function F.init(env)
 
     env.symbol = string.sub(symbol, 1, 1)
     env.page_size = config and config:get_int("menu/page_size") or 5
-    env.last_adjust_code = nil
 end
 
 local function extract_adjustment_code(context)
@@ -761,11 +806,6 @@ function F.func(input, env)
 
     local adjust_code = extract_adjustment_code(context)
     if not adjust_code or adjust_code == "" then return original_list() end
-
-    if env.last_adjust_code ~= adjust_code then
-        env.last_adjust_code = adjust_code
-        invalidate_input_cache(adjust_code)
-    end
 
     local records, has_active = load_input_records(adjust_code)
     local has_current_action =
