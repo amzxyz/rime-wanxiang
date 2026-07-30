@@ -1,5 +1,16 @@
 # Changelog
 
+## [16.4.1](https://github.com/amzxyz/rime-wanxiang/compare/v16.4.0...v16.4.1) (2026-07-30)
+
+
+### 🐛 Bug 修复
+
+* **replacer:** 修复若干bug ([59a22a7](https://github.com/amzxyz/rime-wanxiang/commit/59a22a7ef812af45b2f84d19e55938fb524b3cab))
+* **sequence:** 修复若干bug ([5df7512](https://github.com/amzxyz/rime-wanxiang/commit/5df751293c10a163d68d31cfc6cf3be289f9bf53))
+* **user_predict:** 修复若干bug ([2cca1e8](https://github.com/amzxyz/rime-wanxiang/commit/2cca1e8c437fe48a216480c751df0cdee7ad061a))
+* **user_predict:** 修复若干bug ([3a45923](https://github.com/amzxyz/rime-wanxiang/commit/3a4592332abc12f704401cdb859fa52f37da5908))
+* 恢复保护翻译器挂在的方法 ([3b11f72](https://github.com/amzxyz/rime-wanxiang/commit/3b11f72debc05dc819f29023829b8d162c4b85bd))
+
 ## [16.4.0](https://github.com/amzxyz/rime-wanxiang/compare/v16.3.2...v16.4.0) (2026-07-30)
 
 
