@@ -41,7 +41,6 @@ local ONE_PREFIX = "1" .. KEY_SEP
 local TWO_PREFIX = "2" .. KEY_SEP
 local RECORD_SEPARATOR = " \t"
 local C_MAX = 2147483000
-local SELF_SPLIT_PREFIXES = { ONE_PREFIX, P_PREFIX }
 -- 内部运行参数默认值 (会被外部 YAML 配置覆盖)
 local CONFIG = {
     MAX_CANDIDATES      = 5,             
@@ -509,11 +508,15 @@ function P.init(env)
 
     env.need_push = false 
     env.last_written_keys = {}
+    env.undo_transaction = nil
     env.just_committed = false
     
     -- 处理上屏事件并学习当前预测语境。
     env.commit_cb = function(ctx)
         shared_reverted_code = ""
+        env.undo_transaction = nil
+        env.just_committed = false
+
         local text = ctx:get_commit_text()
         if not s_match(text, "^[0-9]+$") then
             is_after_number = false
@@ -543,20 +546,31 @@ function P.init(env)
         end
 
         env.last_written_keys = {} 
-        -- 更新单条记忆关联并保存回滚前状态。
+        -- 更新单条记忆关联，并保存本次事务写入前后的完整状态。
         local function update_memory(code, word)
             if not code or code == "" or not word or word == "" then return end
 
             local commits, tail, raw_key = fetch_record(db, code, word)
+            local next_tail = make_record_tail(next_active_commits(commits))
+            local state = env.last_written_keys[raw_key]
 
-            env.last_written_keys[raw_key] = tail or ""
-            update_record(db, code, word, next_active_commits(commits))
+            if state then
+                state.after = next_tail
+            else
+                env.last_written_keys[raw_key] = {
+                    before = tail or "",
+                    after = next_tail,
+                }
+            end
+
+            db:update(raw_key, next_tail)
         end
 
         current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
         
         local should_record = true
-        local is_terminal_symbol = false 
+        local is_terminal_symbol = false
+        local is_aba_return = false
         local text_chars = get_utf8_chars(text)
         local len_text = #text_chars
 
@@ -576,14 +590,13 @@ function P.init(env)
             end
         end
 
-        -- 基础规则：防折返输入
+        -- 基础规则：防重复与 ABA 折返输入。
         if should_record and last_commit == text then should_record = false end
-        if should_record and #history >= 2 then
-            if text == history[#history - 1] then
-                should_record = false
-                remove(history, #history)
-                last_commit = history[#history] or ""
-            end
+        if should_record and #history >= 2
+            and text == history[#history - 1]
+        then
+            should_record = false
+            is_aba_return = true
         end
 
         -- 核心录入逻辑区
@@ -616,40 +629,13 @@ function P.init(env)
                     end
                 end
             end
-            -- 四字成语的 2+2 自我拆分学习
+            -- 四字纯中文整句按 2+2 自动拆分学习。
+            -- 无论候选原始排名如何，只要最终上屏文本为四个汉字，
+            -- 都直接记录“前两字 -> 后两字”，支持首次输入即建立关联。
             if len_text == 4 then
                 local part1 = text_chars[1] .. text_chars[2]
                 local part2 = text_chars[3] .. text_chars[4]
-                
-                local is_known_prefix = false
-                for _, prefix in ipairs(SELF_SPLIT_PREFIXES) do
-                    local code = prefix .. part1
-                    local raw_prefix = code .. RECORD_SEPARATOR
-                    local da = db:query(raw_prefix)
-
-                    if da then
-                        for raw_key, tail in da:iter() do
-                            if s_sub(raw_key, 1, s_len(raw_prefix))
-                                ~= raw_prefix
-                            then
-                                break
-                            end
-
-                            local commits = parse_record_tail(tail)
-                            if commits > 0 then
-                                is_known_prefix = true
-                                break
-                            end
-                        end
-
-                        da = nil
-                    end
-
-                    if is_known_prefix then break end
-                end
-                if is_known_prefix then
-                    update_memory(ONE_PREFIX .. part1, part2)
-                end
+                update_memory(ONE_PREFIX .. part1, part2)
             end
         end
         
@@ -662,13 +648,17 @@ function P.init(env)
                 if #history > 2 then remove(history, 1) end
                 last_commit = text
             end
+        elseif is_aba_return then
+            for i = #history, 1, -1 do history[i] = nil end
+            insert(history, text)
+            last_commit = text
         end
-        
-        -- 事务入栈：把本次写库的记录推入回滚栈（最大保留 3 级）
-        env.undo_stack = env.undo_stack or {}
+
+        -- 回滚只绑定当前这次上屏；本次没有写库时不得继承旧事务。
         if next(env.last_written_keys) then
-            insert(env.undo_stack, env.last_written_keys)
-            if #env.undo_stack > 3 then remove(env.undo_stack, 1) end
+            env.undo_transaction = env.last_written_keys
+        else
+            env.undo_transaction = nil
         end
 
         last_commit_time = current_time
@@ -700,8 +690,11 @@ function P.init(env)
     env.update_cb = function(ctx)
         local input = ctx.input or ""
         if is_predicting and not s_find(input, PH_CHAR) and not env.need_push then
-            reset_memory_chain(env, "外部清空输入框")
-            ctx:clear()
+            -- 软键盘输入、候选切换或前端清空占位符时，只关闭联想界面。
+            -- 保留 history / last_commit，确保随后上屏的任意候选都能继续学习。
+            predict_count = 0
+            is_predicting = false
+            pending_cands = nil
         end
 
         if input == "/outpredict" then
@@ -851,31 +844,44 @@ function P.func(key, env)
         shared_is_backspacing = false
     end
 
-    if env.just_committed and repr ~= "BackSpace" and not s_find(repr, "Shift", 1, true) and not s_find(repr, "Control", 1, true) and not s_find(repr, "Alt", 1, true) then
+    if env.just_committed and repr ~= "BackSpace"
+        and not s_find(repr, "Shift", 1, true)
+        and not s_find(repr, "Control", 1, true)
+        and not s_find(repr, "Alt", 1, true)
+    then
         env.just_committed = false
+        env.undo_transaction = nil
     end
     
     if repr == "BackSpace" then
-        local current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
-        local is_safe_to_undo = (not ctx:is_composing() or is_predicting)
-        
-        if is_safe_to_undo and env.undo_stack and #env.undo_stack > 0 then
-            -- 延时策略：如果在规定时间内连按退格
-            if (current_time - (env.last_action_time or 0)) <= CONFIG.CONTEXT_TIMEOUT_MS then
-                local keys_to_undo = remove(env.undo_stack)
-                local db = get_db(env)
-                for raw_key, tail in pairs(keys_to_undo) do
-                    if tail == "" then
+        local current_time = (rime_api and rime_api.get_time_ms)
+            and rime_api.get_time_ms() or (os_time() * 1000)
+        local is_safe_to_undo = env.just_committed
+            and env.undo_transaction
+            and (not ctx:is_composing() or is_predicting)
+
+        if is_safe_to_undo
+            and (current_time - (env.last_action_time or 0))
+                <= CONFIG.CONTEXT_TIMEOUT_MS
+        then
+            local db = get_db(env)
+
+            for raw_key, state in pairs(env.undo_transaction) do
+                local current_tail = db:fetch(raw_key)
+
+                if current_tail == state.after then
+                    if state.before == "" then
                         db:erase(raw_key)
                     else
-                        db:update(raw_key, tail)
+                        db:update(raw_key, state.before)
                     end
                 end
-                env.last_action_time = current_time
-            else
-                env.undo_stack = {}
             end
+
+            env.last_action_time = current_time
         end
+
+        env.undo_transaction = nil
         env.just_committed = false
         if is_predicting then
             ctx:clear()
@@ -959,7 +965,7 @@ function P.fini(env)
     env.update_cb = nil
     env.delete_cb = nil
     env.last_written_keys = nil
-    env.undo_stack = nil
+    env.undo_transaction = nil
 
     reset_memory_chain(env, "方案切换")
     shared_reverted_code = ""

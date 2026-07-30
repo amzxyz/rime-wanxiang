@@ -671,7 +671,10 @@ local function on_commit(context, env)
     local chars = chinese_length(text)
     if chars == 0 then return end
 
-    local code_length = #(context.input or "")
+    local code = context.input or ""
+    if code == "" then code = env.last_observed_input or "" end
+
+    local code_length = #code
     record_stats(env, chars, code_length > 0 and code_length or chars * 2)
     try_flush(env)
 end
