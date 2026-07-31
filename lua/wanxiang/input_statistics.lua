@@ -33,7 +33,7 @@ local FINGER_STYLE_MAP = {
     sogou="搜狗双拼", abc="智能ABC", ziguang="紫光双拼",
     pyjj="拼音加加", gbpy="国标双拼", zrlong="自然龙",
     hxlong="汉心龙", ltsp="蓝天双拼", lxsq="乱序17",
-    sdpy="首道双拼", t9="九键",
+    sdpy="首道双拼", stars="星辰双拼", t9="九键",
 }
 
 local function normalize_device_id(value)
