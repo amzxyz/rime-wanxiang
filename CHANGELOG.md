@@ -1,5 +1,14 @@
 # Changelog
 
+## [16.4.2](https://github.com/amzxyz/rime-wanxiang/compare/v16.4.1...v16.4.2) (2026-07-31)
+
+
+### 🐛 Bug 修复
+
+* **lookup:** 修复直接辅助前置后后面的所有两个字候选消耗编码不正确的问题 ([38b003a](https://github.com/amzxyz/rime-wanxiang/commit/38b003a8cf721a35d6ce4b53e02524735ff5b552))
+* replacer错误引用了绝对路径 ([28f678f](https://github.com/amzxyz/rime-wanxiang/commit/28f678f8bb8cd9a005aebba46b8961b83fc1e464))
+* 涉及到数据加载的统一调用函数进行用户目录与系统目录的回退并使用相对路径 ([703f799](https://github.com/amzxyz/rime-wanxiang/commit/703f799f07c74f9f9af3a5202c7170fe814c9b74))
+
 ## [16.4.1](https://github.com/amzxyz/rime-wanxiang/compare/v16.4.0...v16.4.1) (2026-07-30)
 
 
