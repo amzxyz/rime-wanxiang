@@ -202,7 +202,7 @@ local function enabled_schema_ids(env, user_dir)
     local enabled = {}
     local current = env.engine.schema.schema_id or ""
 
-    local config = Config(user_dir .. "/build/default.yaml")
+    local config = Config("default")
     local list = config and config:get_list("schema_list")
 
     if list then
