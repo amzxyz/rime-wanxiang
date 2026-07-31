@@ -1086,17 +1086,28 @@ function M.func(input, env)
     local always_cands = {}
     local lazy_cands = {}
     local group_fronted = {}
+    local abbrev_start = seg and seg.start or 0
+    local abbrev_end = seg and seg._end or #ctx.input
 
-    local query_code = s_gsub(input_code, env.speller_delimiter, "")
-    if s_match(ctx.input, "^[a-zA-Z]+$") then
-        query_code = s_gsub(ctx.input, env.speller_delimiter, "")
+    local function make_abbrev_candidate(item)
+        local cand = Candidate(item.cand_type, abbrev_start, abbrev_end, item.text, "")
+        cand.quality = item.quality
+        if item.preedit then cand.preedit = item.preedit end
+        return cand
     end
+
+    local query_source = s_match(ctx.input, "^[a-zA-Z]+$") and ctx.input or input_code
+    local query_code = s_gsub(query_source, env.speller_delimiter, "")
+    local query_has_upper = s_find(query_code, "[A-Z]") ~= nil
+    local upper_query = nil
 
     if query_code ~= "" then
         for _, t in ipairs(active_abbrev_rules) do
             local val = fetch_cached(t.prefix .. query_code)
-            if not val and not s_match(query_code, "[A-Z]") then
-                val = fetch_cached(t.prefix .. s_upper(query_code))
+
+            if not val and not query_has_upper then
+                if not upper_query then upper_query = s_upper(query_code) end
+                val = fetch_cached(t.prefix .. upper_query)
             end
 
             if val then
@@ -1107,33 +1118,23 @@ function M.func(input, env)
                     local item_text, item_preedit = parse_item(p, t.preedit_delim)
                     if not seen_texts[item_text] then
                         seen_texts[item_text] = true
-
-                        local final_type = t.cand_type or "abbrev"
-                        local abbrev_cand = Candidate(
-                            final_type,
-                            seg and seg.start or 0,
-                            seg and seg._end or #ctx.input,
-                            item_text,
-                            ""
-                        )
-                        if item_preedit and item_preedit ~= "" then abbrev_cand.preedit = item_preedit end
-
                         count = count + 1
+
+                        local item = {
+                            text = item_text,
+                            preedit = item_preedit and item_preedit ~= "" and item_preedit or nil,
+                            cand_type = t.cand_type or "abbrev",
+                            group_key = group_key
+                        }
+
                         if count <= t.always_qty then
-                            abbrev_cand.quality = 999
-                            always_cands[#always_cands + 1] = {
-                                cand = abbrev_cand,
-                                index = t.always_idx + count - 1,
-                                group_key = group_key,
-                                yielded = false
-                            }
+                            item.quality = 999
+                            item.index = t.always_idx + count - 1
+                            item.is_always = true
+                            always_cands[#always_cands + 1] = item
                         else
-                            abbrev_cand.quality = 98
-                            lazy_cands[#lazy_cands + 1] = {
-                                cand = abbrev_cand,
-                                group_key = group_key,
-                                yielded = false
-                            }
+                            item.quality = 98
+                            lazy_cands[#lazy_cands + 1] = item
                         end
                     end
                 end
@@ -1142,7 +1143,11 @@ function M.func(input, env)
     end
 
     local function trim_space(str)
-        if not str then return "" end
+        if not str or str == "" then return "" end
+
+        local first = s_byte(str, 1)
+        local last = s_byte(str, #str)
+        if first > 32 and last > 32 then return str end
         return s_match(str, "^%s*(.-)%s*$")
     end
 
@@ -1164,10 +1169,10 @@ function M.func(input, env)
 
     local abbrev_lookup = {}
     for _, item in ipairs(always_cands) do
-        abbrev_lookup[trim_space(item.cand.text)] = { type = "always", ref = item }
+        abbrev_lookup[trim_space(item.text)] = item
     end
     for _, item in ipairs(lazy_cands) do
-        abbrev_lookup[trim_space(item.cand.text)] = { type = "lazy", ref = item }
+        abbrev_lookup[trim_space(item.text)] = item
     end
 
     local abbrevs_dumped = false
@@ -1178,7 +1183,7 @@ function M.func(input, env)
         for _, item in ipairs(always_cands) do
             if not item.yielded then
                 item.yielded = true
-                local processed = process_rules(item.cand, aux_results)
+                local processed = process_rules(make_abbrev_candidate(item), aux_results)
                 for _, pc in ipairs(processed) do
                     local dedup_key = trim_space(pc.text)
                     if not global_yielded[dedup_key] then
@@ -1194,7 +1199,7 @@ function M.func(input, env)
             if not item.yielded then
                 item.yielded = true
                 if not group_fronted[item.group_key] then
-                    local processed = process_rules(item.cand, aux_results)
+                    local processed = process_rules(make_abbrev_candidate(item), aux_results)
                     for _, pc in ipairs(processed) do
                         local dedup_key = trim_space(pc.text)
                         if not global_yielded[dedup_key] then
@@ -1248,23 +1253,23 @@ function M.func(input, env)
     local next_always_ptr = 1
 
     while cand do
+        local c_type = cand.type or ""
+        local is_user = c_type == "user_phrase" or c_type == "user_table"
+        local is_regular = c_type == "phrase" or (c_type == "table" and has_phrase)
         local processed_cands = process_rules(cand, main_results)
 
         for _, pc in ipairs(processed_cands) do
             local dedup_key = trim_space(pc.text)
 
             if not global_yielded[dedup_key] then
-                local c_type = cand.type or ""
-                local is_user = c_type == "user_phrase" or c_type == "user_table"
-                local is_regular = c_type == "phrase" or (c_type == "table" and has_phrase)
-                local match_info = abbrev_lookup[dedup_key]
-                local is_reserved = match_info ~= nil
+                local match_item = abbrev_lookup[dedup_key]
+                local is_reserved = match_item ~= nil
 
                 if is_user then
                     if is_reserved then
-                        match_info.ref.yielded = true
-                        if match_info.type == "always" then
-                            group_fronted[match_info.ref.group_key] = true
+                        match_item.yielded = true
+                        if match_item.is_always then
+                            group_fronted[match_item.group_key] = true
                         end
                     end
 
@@ -1281,7 +1286,7 @@ function M.func(input, env)
                             item.yielded = true
                             group_fronted[item.group_key] = true
 
-                            local ac_processed = process_rules(item.cand, aux_results)
+                            local ac_processed = process_rules(make_abbrev_candidate(item), aux_results)
                             for _, apc in ipairs(ac_processed) do
                                 local apc_key = trim_space(apc.text)
                                 if not global_yielded[apc_key] then
