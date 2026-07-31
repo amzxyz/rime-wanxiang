@@ -564,54 +564,82 @@ local function release_db(env)
     db:close()
 end
 
--- FMM 分词转换算法：复用 offsets/result_parts，避免热点路径反复分配临时表
+-- 当前输入生命周期内缓存“两字前缀桶”；匹配结论仍按每个新起点重新判断。
+local function fetch_fmm_bucket(db, prefix, stem, fmm_cache)
+    local cache_key = prefix .. "\0" .. stem
+    local bucket = fmm_cache[cache_key]
+    if bucket then return bucket end
+
+    bucket = {}
+    local query_prefix = prefix .. stem
+    local query_len = #query_prefix
+    local prefix_len = #prefix
+    local accessor = db:query(query_prefix)
+
+    if accessor then
+        for raw_key, _ in accessor:iter() do
+            if s_sub(raw_key, 1, query_len) ~= query_prefix then break end
+
+            local sep_pos = s_find(raw_key, RECORD_SEPARATOR, query_len + 1, true)
+            if sep_pos then
+                local source = s_sub(raw_key, prefix_len + 1, sep_pos - 1)
+                bucket[#bucket + 1] = {
+                    source,
+                    decode_record_value(s_sub(raw_key, sep_pos + #RECORD_SEPARATOR)),
+                    utf8.len(source) or 0
+                }
+            end
+        end
+
+        accessor = nil
+    end
+
+    t_sort(bucket, function(a, b) return a[3] > b[3] end)
+    fmm_cache[cache_key] = bucket
+    return bucket
+end
+
+-- 每个新起点用当前两字选桶，从长到短验证；命中后直接跳过完整词条。
 local function segment_convert(text, db, prefix, split_pat, fmm_cache, offsets, result_parts)
     local char_count = get_utf8_offsets(text, offsets)
     clear_array(result_parts)
 
     local i, result_count = 1, 0
-    local MAX_LOOKAHEAD = 6
 
     while i <= char_count do
         local start_byte = offsets[i]
-        local matched = false
-        local max_j = i + MAX_LOOKAHEAD
-        if max_j > char_count + 1 then max_j = char_count + 1 end
+        local source = s_sub(text, start_byte, offsets[i + 1] - 1)
+        local output = nil
+        local step = 1
 
-        for j = max_j, i + 2, -1 do
-            local sub_text = s_sub(text, start_byte, offsets[j] - 1)
-            local cache_key = prefix .. sub_text
-            local val = fmm_cache[cache_key]
+        if i < char_count then
+            local stem = s_sub(text, start_byte, offsets[i + 2] - 1)
 
-            if val == nil then
-                val = fetch_aggregate(db, cache_key) or false
-                fmm_cache[cache_key] = val
-            end
-
-            if val then
-                result_count = result_count + 1
-                result_parts[result_count] = s_match(val, split_pat) or sub_text
-                i = j - 1
-                matched = true
-                break
+            for _, entry in ipairs(fetch_fmm_bucket(db, prefix, stem, fmm_cache)) do
+                if s_find(text, entry[1], start_byte, true) == start_byte then
+                    source = entry[1]
+                    output = s_match(entry[2], split_pat) or source
+                    step = entry[3]
+                    break
+                end
             end
         end
 
-        if not matched then
-            local single_char = s_sub(text, start_byte, offsets[i + 1] - 1)
-            local cache_key = prefix .. single_char
-            local val = fmm_cache[cache_key]
+        if not output then
+            local cache_key = prefix .. "\1" .. source
+            local value = fmm_cache[cache_key]
 
-            if val == nil then
-                val = fetch_aggregate(db, cache_key) or false
-                fmm_cache[cache_key] = val
+            if value == nil then
+                value = fetch_aggregate(db, prefix .. source) or false
+                fmm_cache[cache_key] = value
             end
 
-            result_count = result_count + 1
-            result_parts[result_count] = val and (s_match(val, split_pat) or single_char) or single_char
+            output = value and (s_match(value, split_pat) or source) or source
         end
 
-        i = i + 1
+        result_count = result_count + 1
+        result_parts[result_count] = output
+        i = i + step
     end
 
     return concat(result_parts, "", 1, result_count)
