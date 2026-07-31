@@ -626,8 +626,19 @@ function M.func(input, env)
     local suppress_set = {}
     local wrap_limit = env.page_size * 2
     local eager_buffer = {}
+    local iterator, iterator_state, iterator_control = input:iter()
 
-    for cand in input:iter() do
+    local function next_candidate()
+        local cand = iterator(iterator_state, iterator_control)
+        iterator_control = cand
+        return cand
+    end
+
+    -- 先从同一个上游迭代器预取两页，确保包裹快照在首个候选 yield 前完整建立。
+    while #eager_buffer < wrap_limit do
+        local cand = next_candidate()
+        if not cand then break end
+
         idx = idx + 1
         local text = cand.text
 
@@ -640,39 +651,31 @@ function M.func(input, env)
             end
         end
 
-        local should_skip = false
-
-        if suppress_set[text] then
-            should_skip = true
-        end
-
-        if not should_skip then
+        if not suppress_set[text] then
             suppress_set[text] = true
 
             local formatted_cand = format_and_autocap(cand, env)
-            if not code_has_symbol and #env.page_cache < wrap_limit then
-                table.insert(env.page_cache, clone_candidate(formatted_cand))
+            if not code_has_symbol then
+                env.page_cache[#env.page_cache + 1] = clone_candidate(formatted_cand)
             end
 
-            table.insert(eager_buffer, formatted_cand)
-            if #eager_buffer >= wrap_limit then
-                break
-            end
+            eager_buffer[#eager_buffer + 1] = formatted_cand
         end
     end
-    for _, c in ipairs(eager_buffer) do
-        yield(c)
+
+    for _, cand in ipairs(eager_buffer) do
+        yield(cand)
     end
-    for cand in input:iter() do
+
+    -- 继续消费同一个上游迭代器，避免重新从头拉取并依赖 suppress_set 跳过前两页。
+    while true do
+        local cand = next_candidate()
+        if not cand then break end
+
         idx = idx + 1
         local text = cand.text
-        local should_skip = false
 
-        if suppress_set[text] then
-            should_skip = true
-        end
-
-        if not should_skip then
+        if not suppress_set[text] then
             suppress_set[text] = true
             yield(format_and_autocap(cand, env))
         end
@@ -708,4 +711,3 @@ function M.func(input, env)
     end
 end
 return M
-
