@@ -22,9 +22,10 @@
 -- 注释: 命中时显示 "[Compose] <序列>"; 仅命中前缀(未完整命中)时显示 "[Compose] <序列> ~" 且候选正文为字面 "C<序列>", 放在首位; 死路(不匹配任何前缀)则不显示 Compose 候选。注释强制显示。
 -- 候选 type 固定为 "compose", 注释/预编辑由本模块设好;
 -- super_comment_preedit 在遍历时对 type 为 "compose" 的候选直接放行(不改动其注释与预编辑)。
--- 注: 自定义路径可用 compose/data_file 覆盖默认(绝对路径, 或相对 RIME 用户数据目录的路径)。
--- 默认数据文件位于部署根下的 lua/data/compose.txt, 运行时经 rime_api.get_user_data_dir() 拼为绝对路径。
--- 切勿用裸相对路径 io.open: RIME 进程工作目录是用户 HOME, 相对路径会解析到 HOME 下而找不到文件。
+-- 注: 自定义路径可用 compose/data_file 覆盖默认，建议始终填写相对 RIME 数据目录的路径。
+-- 默认数据文件为 lua/data/compose.txt，加载顺序为用户目录优先、系统目录兜底。
+local wanxiang = require("wanxiang/wanxiang")
+
 local M = {}
 
 -- 主键区数字(主键盘 1..9,0): 不参与 Compose, 用于选词。
@@ -299,18 +300,10 @@ load_data = function(env)
     -- 仅当配置显式 false 时关闭, 其余(未配置/true)一律开启。
     local ok_alt, alt_val = pcall(function() return config:get_bool("compose/alt_send_char") end)
     env._alt_send_char = (ok_alt and alt_val == false) and false or true
-    -- 允许通过 compose/data_file 自定义路径(绝对, 或相对 RIME 用户数据目录);
-    -- 默认: 相对部署根的 lua/data/compose.txt。RIME 进程 CWD 是用户 HOME,
-    -- 必须用 rime_api.get_user_data_dir() 拿到绝对目录再拼接, 不能用裸相对路径。
-    local path = config:get_string("compose/data_file")
-    if not path then
-        local user_dir = rime_api.get_user_data_dir() or "."
-        path = user_dir .. "/lua/data/compose.txt"
-    end
-    local f = io.open(path, "r")
-    if not f then
-        return false
-    end
+    -- 配置和默认值均保留相对路径，统一按“用户目录 > 系统目录”查找并打开。
+    local path = config:get_string("compose/data_file") or "lua/data/compose.txt"
+    local f, close = wanxiang.load_file_with_fallback(path, "r")
+    if not f then return false end
     for line in f:lines() do
         if line ~= "" and not line:match("^#") then
             -- 制表符分割: 编码 \t 合成结果
@@ -330,7 +323,7 @@ load_data = function(env)
             end
         end
     end
-    f:close()
+    close()
     env._compose_loaded = true
     return true
 end

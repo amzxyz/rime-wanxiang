@@ -17,11 +17,10 @@ local s_find = string.find
 local s_lower = string.lower
 local s_upper = string.upper
 local t_sort = table.sort
-local open = io.open
 local type = type
 local tonumber = tonumber
 local DB_FORMAT_VERSION = "7"
-local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english"}
+local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9"}
 local FILE_KEYS = {"files", "file"}
 local db_instances = {}
 local db_refs = {}
@@ -91,7 +90,7 @@ local function get_file_signature(path)
     local cached = file_signature_cache[path]
     if cached then return cached end
 
-    local file = open(path, "rb")
+    local file, close = wanxiang.load_file_with_fallback(path, "rb")
     if not file then
         file_signature_cache[path] = "missing"
         return "missing"
@@ -113,7 +112,7 @@ local function get_file_signature(path)
         parts[#parts + 1] = file:read(64) or ""
     end
 
-    file:close()
+    close()
     cached = digest_parts(parts)
     file_signature_cache[path] = cached
     return cached
@@ -151,21 +150,8 @@ local function each_file_value(rule, callback)
     end
 end
 
-local function resolve_data_path(relative, user_dir, shared_dir)
-    if not relative or relative == "" then return nil end
-
-    local user_path = user_dir .. "/" .. relative
-    local file = open(user_path, "r")
-    if file then file:close(); return user_path end
-
-    local shared_path = shared_dir .. "/" .. relative
-    file = open(shared_path, "r")
-    if file then file:close(); return shared_path end
-    return user_path
-end
-
 -- 只提取影响数据库内容的字段，运行时规则仍由当前方案原逻辑解析。
-local function collect_build_tasks(config, ns, user_dir, shared_dir)
+local function collect_build_tasks(config, ns)
     local tasks = {}
     local root = config and config:get_map(ns)
     local rules = root and root:get("rules")
@@ -183,11 +169,10 @@ local function collect_build_tasks(config, ns, user_dir, shared_dir)
 
             each_file_value(rule, function(file_value)
                 local source = file_value:get_string()
-                local path = resolve_data_path(source, user_dir, shared_dir)
-                if path then
+                if source and source ~= "" then
                     tasks[#tasks + 1] = {
                         source = source,
-                        path = path,
+                        path = source,
                         prefix = prefix,
                         conversion = t9 and T9_MAP or nil,
                         preedit_delim = t9 and "==" or nil
@@ -248,7 +233,7 @@ local function enabled_schema_ids(env, user_dir)
 end
 
 -- 合并所有启用方案的数据任务，并生成固定的方案级表头特征。
-local function merge_build_tasks(env, ns, current_tasks, user_dir, shared_dir)
+local function merge_build_tasks(env, ns, current_tasks, user_dir)
     local current_id = env.engine.schema.schema_id or ""
     local enabled_ids = enabled_schema_ids(env, user_dir)
     local groups = {}
@@ -258,7 +243,7 @@ local function merge_build_tasks(env, ns, current_tasks, user_dir, shared_dir)
         local tasks = nil
         local schema = Schema(id)
         if schema then
-            tasks = collect_build_tasks(schema.config, ns, user_dir, shared_dir)
+            tasks = collect_build_tasks(schema.config, ns)
         elseif id == current_id then
             tasks = current_tasks
         else
@@ -382,7 +367,7 @@ local function rebuild(tasks, db)
     local invalid_count = 0
 
     for _, task in ipairs(tasks) do
-        local file = open(task.path, "r")
+        local file, close = wanxiang.load_file_with_fallback(task.path, "r")
 
         if file then
             for line in file:lines() do
@@ -407,7 +392,7 @@ local function rebuild(tasks, db)
                         else
                             seen_keys[db_key] = true
                             if not update_aggregate(db, db_key, value) then
-                                file:close()
+                                close()
                                 return false
                             end
                         end
@@ -417,7 +402,7 @@ local function rebuild(tasks, db)
                 end
             end
 
-            file:close()
+            close()
         end
     end
 
@@ -646,7 +631,6 @@ function M.init(env)
     local config = env.engine.schema.config
   
     local user_dir = rime_api.get_user_data_dir()
-    local shared_dir = rime_api.get_shared_data_dir()
 
     -- 1. 获取根节点 Map 对象
     local cfg_root = config:get_map(ns)
@@ -678,17 +662,6 @@ function M.init(env)
 
     env.rules = {}
     local tasks = {} 
-
-    local function resolve_path(relative)
-        if not relative then return nil end
-        local user_path = user_dir .. "/" .. relative
-        local f = open(user_path, "r")
-        if f then f:close(); return user_path end
-        local shared_path = shared_dir .. "/" .. relative
-        f = open(shared_path, "r")
-        if f then f:close(); return shared_path end
-        return user_path
-    end
 
     -- 3. 读取并遍历 rules 列表
     local rules_item = cfg_root and cfg_root:get("rules")
@@ -828,14 +801,16 @@ function M.init(env)
                         for j = 0, list.size - 1 do
                             local val = list:get_value_at(j)
                             local str = val and val:get_string()
-                            local p = resolve_path(str)
-                            if p then insert(tasks, { source = str, path = p, prefix = prefix, conversion = conversion_map, preedit_delim = preedit_delim }) end
+                            if str and str ~= "" then
+                                insert(tasks, { source = str, path = str, prefix = prefix, conversion = conversion_map, preedit_delim = preedit_delim })
+                            end
                         end
                     elseif file_item.type == "kScalar" then
                         local val = file_item:get_value()
                         local str = val and val:get_string()
-                        local p = resolve_path(str)
-                        if p then insert(tasks, { source = str, path = p, prefix = prefix, conversion = conversion_map, preedit_delim = preedit_delim }) end
+                        if str and str ~= "" then
+                            insert(tasks, { source = str, path = str, prefix = prefix, conversion = conversion_map, preedit_delim = preedit_delim })
+                        end
                     end
                 end
             end
@@ -845,7 +820,7 @@ function M.init(env)
     end
     
     local merged_tasks, scheme_sigs, union_sig =
-        merge_build_tasks(env, ns, tasks, user_dir, shared_dir)
+        merge_build_tasks(env, ns, tasks, user_dir)
 
     env.db = connect_db(
         db_name, current_version, env.delimiter,

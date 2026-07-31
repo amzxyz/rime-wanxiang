@@ -5,6 +5,8 @@
 -- /sym?<keyword> 或 /sym/<keyword>   模糊搜索
 -- /emoji.* 同理
 -- 选择「（字符分类）」候选时展开为该分类全部条目（processor 组件 *P）
+local wanxiang = require("wanxiang/wanxiang")
+
 local M = {}
 local STATE = {
     loaded = false,
@@ -63,10 +65,8 @@ end
 
 local function read_store(path, cand_type)
     local store = new_store(cand_type)
-    local file = path and io.open(path, "r") or nil
-    if not file then
-        return store
-    end
+    local file, close = wanxiang.load_file_with_fallback(path, "r")
+    if not file then return store end
 
     for line in file:lines() do
         if line ~= "" and not match(line, "^#") then
@@ -115,22 +115,8 @@ local function read_store(path, cand_type)
         end
     end
 
-    file:close()
+    close()
     return store
-end
-
-local function resolve_path(path)
-    if not path then
-        return nil
-    end
-
-    local user_path = rime_api.get_user_data_dir() .. "/" .. path
-    local file = io.open(user_path, "r")
-    if file then
-        file:close()
-        return user_path
-    end
-    return rime_api.get_shared_data_dir() .. "/" .. path
 end
 
 local function load_data(env)
@@ -144,8 +130,8 @@ local function load_data(env)
 
     local ok, err = pcall(function()
         local config = env.engine.schema.config
-        local sym_path = resolve_path(config:get_string("super_symbols/data_sym") or "lua/data/codex_sym.txt")
-        local emoji_path = resolve_path(config:get_string("super_symbols/data_emoji") or "lua/data/codex_emoji.txt")
+        local sym_path = config:get_string("super_symbols/data_sym") or "lua/data/codex_sym.txt"
+        local emoji_path = config:get_string("super_symbols/data_emoji") or "lua/data/codex_emoji.txt"
 
         STATE.stores = {
             sym = read_store(sym_path, "super_sym"),

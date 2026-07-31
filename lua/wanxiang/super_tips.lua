@@ -16,15 +16,15 @@ local userdb = require("wanxiang/userdb")
 
 local RECORD_SEPARATOR = " \t"
 local DEFAULT_RECORD_TAIL = "c=0 d=0 t=0"
-local DB_FORMAT_VERSION = "2"
+local DB_FORMAT_VERSION = "1"
 
 local tips_db
 local tips = {
     status = "pending",
     ref_count = 0,
     disabled_types = {},
-    default_preset = wanxiang.get_filename_with_fallback("lua/data/tips_show.txt"),
-    default_user = rime_api.get_user_data_dir() .. "/lua/data/tips_user.txt",
+    default_preset = "lua/data/tips_show.txt",
+    default_user = "lua/data/tips_user.txt",
 }
 
 local META_KEY = {
@@ -32,21 +32,6 @@ local META_KEY = {
     disabled_types = "disabled_types_fingerprint",
     files_sig = "files_signature",
 }
-
--- 路径解析：优先用户目录，其次共享目录。
-local function resolve_path(relative)
-    if not relative or relative == "" then return nil end
-
-    local user_path = rime_api.get_user_data_dir() .. "/" .. relative
-    local file = io.open(user_path, "r")
-    if file then file:close(); return user_path end
-
-    local shared_path = rime_api.get_shared_data_dir() .. "/" .. relative
-    file = io.open(shared_path, "r")
-    if file then file:close(); return shared_path end
-
-    return user_path
-end
 
 -- 将采样字节转换为安全十六进制，避免元数据串行。
 local function bytes_to_hex(data)
@@ -64,7 +49,7 @@ local function generate_files_signature(paths)
     local parts = {}
 
     for _, path in ipairs(paths) do
-        local file = io.open(path, "rb")
+        local file, close = wanxiang.load_file_with_fallback(path, "rb")
 
         if file then
             local size = file:seek("end") or 0
@@ -81,7 +66,7 @@ local function generate_files_signature(paths)
                 tail = file:read(64) or ""
             end
 
-            file:close()
+            close()
             parts[#parts + 1] = table.concat({
                 tostring(size),
                 bytes_to_hex(head),
@@ -105,7 +90,7 @@ local function load_data_from_files(files)
     local written = {}
 
     for _, file_path in ipairs(files) do
-        local file = io.open(file_path, "r")
+        local file, close = wanxiang.load_file_with_fallback(file_path, "r")
 
         if file then
             for line in file:lines() do
@@ -118,14 +103,14 @@ local function load_data_from_files(files)
 
                     if raw_key ~= old_raw_key then
                         if old_raw_key and not tips_db:erase(old_raw_key) then
-                            file:close()
+                            close()
                             return false
                         end
 
                         if not tips_db:update(
                             raw_key, DEFAULT_RECORD_TAIL
                         ) then
-                            file:close()
+                            close()
                             return false
                         end
 
@@ -134,7 +119,7 @@ local function load_data_from_files(files)
                 end
             end
 
-            file:close()
+            close()
         end
     end
 
@@ -158,7 +143,7 @@ local function init_database(config)
     tips.status = "initialing"
 
     local db_name = config:get_string("super_tips/db_name")
-    if not db_name or db_name == "" then db_name = "lua/tips" end
+    if not db_name or db_name == "" then db_name = "tips" end
 
     tips_db = userdb.LevelDb(db_name)
     if not tips_db then
@@ -194,8 +179,7 @@ local function init_database(config)
             local value = entry and entry.value
 
             if value and value ~= "" then
-                local path = resolve_path(value)
-                if path then files[#files + 1] = path end
+                files[#files + 1] = value
             end
         end
     end
