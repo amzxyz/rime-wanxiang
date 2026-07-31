@@ -1617,6 +1617,13 @@ function f.func(input, env)
             end
             return
         end
+        local direct_cache = env.direct_cache
+        local first_cached = direct_cache and direct_cache.candidates and direct_cache.candidates[1]
+        if first_cached and first_cached.start ~= seg.start then
+            env.direct_cache = nil
+            for cand in input:iter() do yield(cand) end
+            return
+        end
         return handle_direct_mode(input, env, ctx_input)
     end
 end
@@ -1624,17 +1631,12 @@ end
 function f.fini(env)
     if env.update_conn then
         env.update_conn:disconnect()
-        env.update_conn = nil
     end
-
     if env.notifier then
         env.notifier:disconnect()
-        env.notifier = nil
     end
-
     if env.mem then
         env.mem:disconnect()
-        env.mem = nil
     end
 
     env.db_names = nil
@@ -1644,7 +1646,6 @@ function f.fini(env)
     env._db_cache = nil
     env._comment_cache = nil
     env.history_parts = nil
-    env.history_input = nil
     env.direct_cache = nil
 
     collectgarbage("collect")

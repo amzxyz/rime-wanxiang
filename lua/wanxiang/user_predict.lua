@@ -292,8 +292,6 @@ local function release_db(env)
     _db_refs[db_name] = nil
     _db_pool[db_name] = nil
 
-    -- db 仍由局部变量持有；先回收此前已失去引用的查询访问器，再关闭数据库。
-    collectgarbage("collect")
     db:close()
 end
 
