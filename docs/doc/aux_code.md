@@ -70,6 +70,7 @@
 
 最绝妙的是：**声调与辅助码的输入顺序是完全自由的！** 在双拼的两码之后，你可以在任意位置插入声调数字，彻底释放你的肌肉束缚。
 
+
 <div style="display: flex; flex-direction: column; gap: 15px; align-items: center; margin-top: 1.5rem; margin-bottom: 2rem;">
     <img src="https://storage.deepin.org/thread/202505120222182012_截图_选择区域_20250512101814.png" style="width: 100%; max-width: 520px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
     <img src="https://storage.deepin.org/thread/20250512022217432_截图_选择区域_20250512101752.png" style="width: 100%; max-width: 520px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
@@ -81,6 +82,10 @@
 除了小写字母和声调，你还可以直接穿插**大写字母**来进行定位。系统支持将小写、大写、声调进行疯狂的排列组合，全部都能精准命中！
 
 * *终极混合演示 (目标词“你”)*：`ni/` `ni9/` `niRE/` `niR9E/` `nirE/` `niRe/` `ni9RE/` `niRE9/` `nire9/` `ni9re/` `nir9e` ... 所有这些变体，引擎都能瞬间解析！
+
+## 输入后反查/辅筛（Lua）
+
+[输入后反查/辅筛](doc/super_lookup) 由 Lua 脚本实现，可在完成拼音输入后继续进行反查、候选辅筛和整句定字，提供更多维度的辅助码能力。
 
 ---
 

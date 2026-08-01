@@ -85,10 +85,8 @@ local function is_disabled(value)
     return tip_type and tips.disabled_types[tip_type] == true or false
 end
 
--- 从文件加载提示；相同 key 由后出现的 value 覆盖。
+-- 从文件逐行加载提示；数据文件应自行保证 key 唯一。
 local function load_data_from_files(files)
-    local written = {}
-
     for _, file_path in ipairs(files) do
         local file, close = wanxiang.load_file_with_fallback(file_path, "r")
 
@@ -99,22 +97,12 @@ local function load_data_from_files(files)
 
                 if key and value and not is_disabled(value) then
                     local raw_key = key .. RECORD_SEPARATOR .. value
-                    local old_raw_key = written[key]
 
-                    if raw_key ~= old_raw_key then
-                        if old_raw_key and not tips_db:erase(old_raw_key) then
-                            close()
-                            return false
-                        end
-
-                        if not tips_db:update(
-                            raw_key, DEFAULT_RECORD_TAIL
-                        ) then
-                            close()
-                            return false
-                        end
-
-                        written[key] = raw_key
+                    if not tips_db:update(
+                        raw_key, DEFAULT_RECORD_TAIL
+                    ) then
+                        close()
+                        return false
                     end
                 end
             end
@@ -242,6 +230,7 @@ local function init_database(config)
         return false
     end
 
+    collectgarbage("collect")
     tips.status = "done"
     return true
 end
