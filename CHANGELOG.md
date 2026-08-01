@@ -1,5 +1,25 @@
 # Changelog
 
+## [17.0.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.0.1...v17.0.2) (2026-08-01)
+
+
+### 📚 词库更新
+
+* 词库调整 ([b9312f7](https://github.com/amzxyz/rime-wanxiang/commit/b9312f71980c353d3f07e0f12156f4d302ce17df))
+
+
+### 🐛 Bug 修复
+
+* 优化统计 ([42d66ec](https://github.com/amzxyz/rime-wanxiang/commit/42d66ec76fd7e908c86cdcdfafbed9c1ff2b566e))
+* 修复两个插件兼容lua5.5语法 ([a5e8312](https://github.com/amzxyz/rime-wanxiang/commit/a5e8312550e8c2b333f2b786156216ef3a37d211))
+* 修复因t9转换数字加载引发的bug导致iOS内存短时间增长从而引发系统gc的问题 ([ebce0bb](https://github.com/amzxyz/rime-wanxiang/commit/ebce0bb6ba7b67fece60329a48f33fc9ed90cfbe))
+* 由于luagc慢，加载数据的时候不再管理重复key ([13b714f](https://github.com/amzxyz/rime-wanxiang/commit/13b714fdbc5fec5cf3e640e461a68e4c4fde83ef))
+
+
+### 🏡 杂项
+
+* 修改文档 ([f0aacad](https://github.com/amzxyz/rime-wanxiang/commit/f0aacadf63ac610f6270e3738f4f2d53d9e62ec2))
+
 ## [17.0.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.0.0...v17.0.1) (2026-08-01)
 
 
