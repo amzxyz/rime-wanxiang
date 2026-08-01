@@ -1,5 +1,32 @@
 # Changelog
 
+## [17.0.0](https://github.com/amzxyz/rime-wanxiang/compare/v16.4.2...v17.0.0) (2026-08-01)
+
+
+### 🔥 性能优化
+
+* **super_replacer:** optimize active abbrev processing ([5f82993](https://github.com/amzxyz/rime-wanxiang/commit/5f82993b1ebbf2c64f106afa652d46f5c0d1658b))
+
+
+### 🐛 Bug 修复
+
+* 1、独立元书九键方案，其他九键使用公共九键方案2、预测在滤镜中引用位置提前3、其他方案细节的一些调整 ([0892970](https://github.com/amzxyz/rime-wanxiang/commit/089297039f5d488d08d1662c79fd4a1c1165a93f))
+* **replacer:** 修复九键数据加载问题，数据库关闭前gc释放对象 ([8776513](https://github.com/amzxyz/rime-wanxiang/commit/87765135033fbcd93e415bcb5b1998e6cd0e6fe5))
+* **super_filter:** 减少重复计算与临时分配 ([e9ec1e4](https://github.com/amzxyz/rime-wanxiang/commit/e9ec1e4d262d44272db80c44235f5809013c8a98))
+* **super_replacer:** 优化简繁转换整句转换算法，比fmm更好用 ([4b87425](https://github.com/amzxyz/rime-wanxiang/commit/4b87425d9a97a5c29407d5cf5b3023a3bc636cb9))
+* **user_predict:** 数据库关闭前gc释放对象 ([14dd4bb](https://github.com/amzxyz/rime-wanxiang/commit/14dd4bbefb45ec53bda12e6bc6e5abd5cba41274))
+* 数据库关闭前gc释放对象 ([164c62b](https://github.com/amzxyz/rime-wanxiang/commit/164c62b4e100461f890a2193048ef171dbd1c37e))
+
+
+### 💅 重构
+
+* **input_statistics:** 重构统计算法 ([b47f51a](https://github.com/amzxyz/rime-wanxiang/commit/b47f51a1461b84ac2fd82f583458cffd19013060))
+
+
+### 🏡 杂项
+
+* release 17.0.0 ([a26ce97](https://github.com/amzxyz/rime-wanxiang/commit/a26ce97427612c65b07eb4ae0c78b1cbf36a5a0b))
+
 ## [16.4.2](https://github.com/amzxyz/rime-wanxiang/compare/v16.4.1...v16.4.2) (2026-07-31)
 
 
