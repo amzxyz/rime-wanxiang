@@ -128,9 +128,12 @@ end
 
 -- 关闭数据库并恢复待初始化状态。
 local function close_database()
-    if tips_db then
-        if tips_db:loaded() then tips_db:close() end
-        tips_db = nil
+    local db = tips_db
+    tips_db = nil
+
+    if db then
+        collectgarbage()
+        if db:loaded() then db:close() end
     end
 
     tips.status = "pending"

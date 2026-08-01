@@ -199,6 +199,7 @@ local function release_sequence_db(env)
     local db = seq_db
     seq_db = nil
 
+    collectgarbage()
     if db and db:loaded() then db:close() end
 end
 
