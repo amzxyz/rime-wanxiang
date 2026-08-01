@@ -387,13 +387,19 @@ local function append_preedit(value, delimiter, original_key)
     return concat(parts, "\t", 1, count)
 end
 
+-- 精确删除底层 raw key，供流式合并替换旧聚合记录。
+local function erase_raw_record(db, raw_key)
+    local raw_db = type(db) == "table" and rawget(db, "_db") or db
+    return raw_db and raw_db.erase and raw_db:erase(raw_key) or false
+end
+
 -- 重建数据库：
 -- 1. 同一原始业务 key 重复出现时仍只保留第一次；
--- 2. 不同字母 key 经 T9 转换后落到同一数字 key 时，按出现顺序合并为一行。
+-- 2. 首次出现的数据库 key 立即写入；
+-- 3. T9 等转换后发生同码碰撞时，读取已写记录、合并后原位替换。
 local function rebuild(tasks, db)
     local seen_source_keys = {}
-    local merged_values = {}
-    local merged_order = {}
+    local written_db_keys = {}
     local duplicate_count = 0
     local invalid_count = 0
 
@@ -427,12 +433,27 @@ local function rebuild(tasks, db)
                             )
 
                             local db_key = task.prefix .. key
-                            if merged_values[db_key] then
-                                merged_values[db_key] =
-                                    merged_values[db_key] .. "\t" .. value
+                            if written_db_keys[db_key] then
+                                local old_value, old_raw_key =
+                                    fetch_aggregate(db, db_key)
+
+                                if not old_value or not old_raw_key then
+                                    close()
+                                    return false
+                                end
+
+                                value = old_value .. "\t" .. value
+                                if not erase_raw_record(db, old_raw_key)
+                                    or not update_aggregate(db, db_key, value)
+                                then
+                                    close()
+                                    return false
+                                end
+                            elseif not update_aggregate(db, db_key, value) then
+                                close()
+                                return false
                             else
-                                merged_values[db_key] = value
-                                merged_order[#merged_order + 1] = db_key
+                                written_db_keys[db_key] = true
                             end
                         end
                     else
@@ -442,12 +463,6 @@ local function rebuild(tasks, db)
             end
 
             close()
-        end
-    end
-
-    for _, db_key in ipairs(merged_order) do
-        if not update_aggregate(db, db_key, merged_values[db_key]) then
-            return false
         end
     end
 
@@ -532,7 +547,7 @@ local function connect_db(
     if cached then
         if cached:loaded() then
             retain_db(db_name)
-            return cached
+            return cached, false
         end
 
         db_instances[db_name] = nil
@@ -551,7 +566,7 @@ local function connect_db(
         ) then
             db_instances[db_name] = db
             retain_db(db_name)
-            return db
+            return db, false
         end
 
         db:close()
@@ -591,7 +606,7 @@ local function connect_db(
 
     db_instances[db_name] = db
     retain_db(db_name)
-    return db
+    return db, true
 end
 -- 释放当前组件引用，并在最后一个使用者退出时关闭数据库。
 local function release_db(env)
@@ -612,8 +627,6 @@ local function release_db(env)
     db_refs[db_name] = nil
     if db_instances[db_name] == db then db_instances[db_name] = nil end
 
-    -- DbAccessor 没有显式析构接口。fetch_aggregate 和 fetch_fmm_bucket
-    -- 已先将 accessor 置空；最后一个使用者退出时强制回收，再关闭 LevelDb。
     collectgarbage()
     if db:loaded() then db:close() end
 end
@@ -907,11 +920,17 @@ function M.init(env)
     local merged_tasks, scheme_sigs, union_sig =
         merge_build_tasks(env, ns, tasks, user_dir)
 
-    env.db = connect_db(
+    local rebuilt
+    env.db, rebuilt = connect_db(
         db_name, current_version, env.delimiter,
         merged_tasks, union_sig, scheme_sigs, env.fmm_cache
     )
     if env.db then env.db_name = db_name end
+
+    if rebuilt then
+        tasks, merged_tasks, scheme_sigs, union_sig = nil, nil, nil, nil
+        collectgarbage("collect")
+    end
 end
 
 function M.fini(env)

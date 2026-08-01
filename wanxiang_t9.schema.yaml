@@ -37,7 +37,7 @@ switches:
     states: [简体, 通繁, 港繁, 臺繁]
   - options: [comment_off, tone_hint, toneless_hint]  #开启后在候选的注释里面实时显示全拼声调，不开启则采用系统配置，影响的是comment_format，归属：super_comment.lua
     states: [注释关, 有声调, 无声调]
-    reset: 1  #固定为无声调输出，其他前端用户可以适当patch修改
+    reset: 0  #固定为无声调输出，其他前端用户可以适当patch修改
   - name: super_tips  #开启后在输入编码后面的提示区显示实时的提示数据，受tips数据库影响，表情、翻译、车牌、符号等对应关系数据，并可实现句号上屏，不开启则默认，影响的是segment.prompt参数，归属：super_tips.lua
     states: [提示关, 提示开]
     reset: 1
@@ -141,7 +141,9 @@ speller:
     - derive/^ng$/eng/
     - xform/^n$/en/
     - xform/^m$/me/
+    - derive/^([a-z]).*/$1/
     - derive/^(.*)$/\U$1/
+    - derive/^([A-Z]).*/$1/
     - derive/^([nl])ve$/$1ue/
     - derive/^([NL])VE$/$1UE/
     - derive/ong$/on/
