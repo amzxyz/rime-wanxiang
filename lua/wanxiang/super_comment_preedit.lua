@@ -394,21 +394,21 @@ function ZH.func(input, env)
                             local py_first_char = py:match("[%z\1-\127\194-\244][\128-\191]*") or ""
                             local part_offset = utf8.offset(part, 2)
                             local part_tail = part_offset and part:sub(part_offset) or ""
-                            part = py_first_char .. part_tail
+                            local converted_part = py_first_char .. part_tail
 
                             if is_wanxiang_pro then
                                 input_parts[i] = py
                                 pinyin_index = pinyin_index + 1
-                            elseif i == #input_parts and #part == 1 then
+                            elseif i == #input_parts and #converted_part == 1 then
                                 local prefix = py:sub(1, 2)
-                                local first_char = part:sub(1, 1):lower()
+                                local first_char = converted_part:sub(1, 1):lower()
                                 if first_char == "s" or first_char == "c" or first_char == "z" then
-                                    input_parts[i] = part
+                                    input_parts[i] = converted_part
                                 else
                                     if prefix == "zh" or prefix == "ch" or prefix == "sh" then
                                         input_parts[i] = prefix
                                     else
-                                        input_parts[i] = part
+                                        input_parts[i] = converted_part
                                     end
                                 end
                             else
