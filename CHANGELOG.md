@@ -1,5 +1,14 @@
 # Changelog
 
+## [17.0.3](https://github.com/amzxyz/rime-wanxiang/compare/v17.0.2...v17.0.3) (2026-08-01)
+
+
+### 🐛 Bug 修复
+
+* 兼容lua5.5语法 ([991e8da](https://github.com/amzxyz/rime-wanxiang/commit/991e8dad5432771a1a1704202236a727ab700b01))
+* 数据库采用私有计数复用 ([b85dd4f](https://github.com/amzxyz/rime-wanxiang/commit/b85dd4f76b6e1fff5647d46e5e4f16f3c7851634))
+* 输入统计仅db数据库可用时才进行缓存操作 ([676e4ac](https://github.com/amzxyz/rime-wanxiang/commit/676e4ac77b2cae44e2396391913d8e1ea908adc8))
+
 ## [17.0.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.0.1...v17.0.2) (2026-08-01)
 
 
