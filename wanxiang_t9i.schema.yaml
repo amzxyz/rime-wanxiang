@@ -1,13 +1,13 @@
 # Rime schema
 # encoding: utf-8
 schema:
-  schema_id: wanxiang_t9
-  name: 万象九键
+  schema_id: wanxiang_t9i
+  name: 万象九键(元书)
   version: "LTS"
   author:
     - amzxyz
   description: |
-    万象拼音九宫格公共方案
+    万象拼音九宫格方案，适用于iOS元书、仓输入法的技术路线
   dependencies:
 
 # 开关
@@ -37,7 +37,7 @@ switches:
     states: [简体, 通繁, 港繁, 臺繁]
   - options: [comment_off, tone_hint, toneless_hint]  #开启后在候选的注释里面实时显示全拼声调，不开启则采用系统配置，影响的是comment_format，归属：super_comment.lua
     states: [注释关, 有声调, 无声调]
-    reset: 1  #固定为无声调输出，其他前端用户可以适当patch修改
+    reset: 2  #对于9键，仓、元书用这个参数选择拼音，所以固定为无声调输出，其他前端用户可以适当patch修改
   - name: super_tips  #开启后在输入编码后面的提示区显示实时的提示数据，受tips数据库影响，表情、翻译、车牌、符号等对应关系数据，并可实现句号上屏，不开启则默认，影响的是segment.prompt参数，归属：super_tips.lua
     states: [提示关, 提示开]
     reset: 1
@@ -50,6 +50,7 @@ engine:
   processors:
     - lua_processor@*wanxiang.user_predict*P  #靠自己养的专属预测联想处理器，不再依赖前端插件以及固定数据
     - lua_processor@*wanxiang.super_processor  #KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
+    - t9_processor  #元书T9处理器
     - lua_processor@*wanxiang.super_tips  #超级提示模块：表情、简码、翻译、化学式、等等靠你想象
     - ascii_composer  #处理英文模式及中英文切换
     - recognizer  #与 matcher 搭配，处理符合特定规则的输入码，如网址、反查等 tags
@@ -86,6 +87,7 @@ engine:
     - lua_filter@*wanxiang.super_filter  #replacer后面，先进行转换后过滤，这样能繁体继承简体权重。本质功能相关功能见Lua文件
     - uniquifier  # 去重
 
+
 grammar:
   language: wanxiang-lts-zh-hans
   collocation_max_length: 6
@@ -117,6 +119,7 @@ translator:
   comment_format:
   #disable_user_dict_for_patterns:  #如果你开启调频，需要一并考虑这个配置是否需要，基本的6码3字不调频，你可以自定义，目前的逻辑是依然记录用户词但满足规则的不输出不被使用
   #  - "^[a-z]{1,6}"
+
 
 wanxiang_lookup:  #设置归属于super_lookup.lua
   tags: [abc]  # 检索当前tag的候选
@@ -440,7 +443,7 @@ super_replacer:
       # 前置数量2，前置位置3,数量说的是你维护得数据库编码后面分割了几个词前几个要前置显示,位置说的是你要前置到第二候选还是第几
       # 然后空码或只有英文等自定义词组的时候直接全部兜底显示,这个新的设计简化的应用层面,我们只需要维护一个数据库即可.
       t9_optimization: true  #t9优化,从txt里编码转换为实际打字需要的编码，例如九键维护用字母加载数据库变数字,源编码
-      prefix: "_abr_"
+      prefix: "_abbr_"
       files:
         - lua/data/t9_abbrev.txt  # 格式：zm\t怎么|在吗
         #- lua/data/t9_custom.txt #你可以这样patch一个新的文本代替根目录custom_phrase.txt，九键就有了自己的自定义词典

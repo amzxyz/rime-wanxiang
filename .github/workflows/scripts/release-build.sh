@@ -112,6 +112,7 @@ package_schema_pro() {
     --exclude='release-please-config.json' \
     --exclude='pro-*-fuzhu-dicts' \
     --exclude='wanxiang_t9.schema.yaml' \
+    --exclude='wanxiang_t9i.schema.yaml' \
     --exclude='CHANGELOG.md' \
     --exclude='wanxiang.dict.yaml' \
     --exclude='wanxiang.schema.yaml' \
@@ -191,6 +192,7 @@ package_schema_pure() {
         --exclude='/wanxiang_reverse.dict.yaml' \
         --exclude='/wanxiang_reverse.schema.yaml' \
         --exclude='/wanxiang_t9.schema.yaml' \
+        --exclude='wanxiang_t9i.schema.yaml' \
         --exclude='/CHANGELOG.md' \
         --exclude='.yamlfmt' \
         --exclude='/custom' \

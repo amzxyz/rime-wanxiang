@@ -102,6 +102,7 @@ engine:
     - script_translator@add_user_dict  #自造词之制造词汇入口
   filters:
     - lua_filter@*wanxiang.super_english*F  #放replacer前面,单词变大写后应该能在替换中命中数据,负责英文方案及中英混输中英文单词格式化，语句流，自动加空格等策略
+    - lua_filter@*wanxiang.user_predict*F  #用于输入编码后的上下文调频
     - lua_filter@*wanxiang.auto_phrase  #无感造词,英文造词
     - lua_filter@*wanxiang.super_lookup  #字词输入中反查辅助筛选
     - lua_filter@*wanxiang.charset_filter  #放replacer前面,全方位自定义的字符集过滤器，支持繁体字符集开放
@@ -109,7 +110,6 @@ engine:
     - lua_filter@*wanxiang.super_replacer  #OpenCC替代器，更灵活的处理方式，更自由的自定义方式，支持简繁转换、简码模式、支持候选替换、注释替换、候选派生等等
     - lua_filter@*wanxiang.super_filter  #先进行字符过滤后简繁转换，这样能繁体继承简体权重。本质功能相关功能见Lua文件
     - lua_filter@*wanxiang.super_sequence*F  #放去重前,接管排序索引固定,手动排序，对高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
-    - lua_filter@*wanxiang.user_predict*F  #用于输入编码后的上下文调频
     - uniquifier  #去重,必须在最后
 
 grammar:

@@ -96,13 +96,13 @@ engine:
     - script_translator@user_dict_set  #使用自造词
   filters:
     - lua_filter@*wanxiang.super_english*F  #放replacer前面,单词变大写后应该能在替换中命中数据,负责英文方案及中英混输中英文单词格式化，语句流，自动加空格等策略
+    - lua_filter@*wanxiang.user_predict*F  #用于输入编码后的上下文调频    - lua_filter@*wanxiang.user_predict*F  #用于输入编码后的上下文调频
     - lua_filter@*wanxiang.auto_phrase  #无感造词,英文造词
     - lua_filter@*wanxiang.super_lookup  #字词输入中反查辅助筛选
     - lua_filter@*wanxiang.charset_filter  #放replacer前面,全方位自定义的字符集过滤器，支持繁体字符集开放
     - lua_filter@*wanxiang.super_comment_preedit  #放其他需要注释处理器后面,会有清空注释的操作,超级注释模块，支持错词提示、辅助码显示，部件组字读音注释，支持个性化配置和关闭相应的功能，详情搜索super_comment进行详细配置
     - lua_filter@*wanxiang.super_replacer  #OpenCC替代器，更灵活的处理方式，更自由的自定义方式，支持简繁转换、简码模式、支持候选替换、注释替换、候选派生等等
     - lua_filter@*wanxiang.super_filter  #先进行字符过滤后简繁转换，这样能繁体继承简体权重。本质功能相关功能见Lua文件
-    - lua_filter@*wanxiang.user_predict*F  #用于输入编码后的上下文调频
     - uniquifier  #去重,必须在最后
 
 grammar:
