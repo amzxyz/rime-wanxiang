@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.0.0...v17.0.1) (2026-08-01)
+
+
+### 🐛 Bug 修复
+
+* **super_peplacer:** 流式加载数据 ([1c4b685](https://github.com/amzxyz/rime-wanxiang/commit/1c4b685cbd90ab8d9729a1f72ef8360df2370dae))
+
 ## [17.0.0](https://github.com/amzxyz/rime-wanxiang/compare/v16.4.2...v17.0.0) (2026-08-01)
 
 
