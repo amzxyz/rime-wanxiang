@@ -19,19 +19,11 @@ local s_upper = string.upper
 local t_sort = table.sort
 local type = type
 local tonumber = tonumber
-local DB_FORMAT_VERSION = "1"
+local DB_FORMAT_VERSION = "4"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9"}
 local FILE_KEYS = {"files", "file"}
-local DB_POOL_KEY = "__wanxiang_super_replacer_db_pool"
-local db_pool = rawget(_G, DB_POOL_KEY)
-
-if not db_pool then
-    db_pool = {instances = {}, refs = {}}
-    rawset(_G, DB_POOL_KEY, db_pool)
-end
-
-local db_instances = db_pool.instances
-local db_refs = db_pool.refs
+local db_instances = {}
+local db_refs = {}
 local file_signature_cache = {}
 local RECORD_SEPARATOR = " \t"
 local RECORD_TAIL = "c=0 d=0 t=0"
@@ -387,23 +379,41 @@ local function append_preedit(value, delimiter, original_key)
     return concat(parts, "\t", 1, count)
 end
 
--- 精确删除底层 raw key，供流式合并替换旧聚合记录。
+-- 精确删除底层 raw key，仅供最终键与普通记录冲突时合并。
 local function erase_raw_record(db, raw_key)
     local raw_db = type(db) == "table" and rawget(db, "_db") or db
     return raw_db and raw_db.erase and raw_db:erase(raw_key) or false
 end
 
 -- 重建数据库：
--- 1. 同一原始业务 key 重复出现时仍只保留第一次；
--- 2. 首次出现的数据库 key 立即写入；
--- 3. T9 等转换后发生同码碰撞时，读取已写记录、合并后原位替换。
+-- 1. 普通任务逐行写入，完全不进入转换逻辑；
+-- 2. 转换任务逐行转换并按最终 key 聚合；
+-- 3. 所有转换任务读取完成后，每个最终 key 只写入一次。
 local function rebuild(tasks, db)
-    local seen_source_keys = {}
     local written_db_keys = {}
+    local seen_converted_keys = nil
+    local converted_groups = nil
+    local converted_order = nil
     local duplicate_count = 0
     local invalid_count = 0
 
     for _, task in ipairs(tasks) do
+        local prefix = task.prefix
+        local conversion = task.conversion
+        local seen_source_keys = nil
+
+        if conversion then
+            seen_converted_keys = seen_converted_keys or {}
+            converted_groups = converted_groups or {}
+            converted_order = converted_order or {}
+            seen_source_keys = seen_converted_keys[prefix]
+
+            if not seen_source_keys then
+                seen_source_keys = {}
+                seen_converted_keys[prefix] = seen_source_keys
+            end
+        end
+
         local file, close = wanxiang.load_file_with_fallback(task.path, "r")
 
         if file then
@@ -412,43 +422,40 @@ local function rebuild(tasks, db)
                     local key, value = parse_source_line(line)
 
                     if key and value then
-                        local original_key = key
-                        local task_mode = task.conversion and "t9" or "plain"
-                        local source_key = concat({
-                            task.prefix, task_mode, original_key
-                        }, "\0")
+                        value = s_match(value, "^%s*(.-)%s*$")
 
-                        if seen_source_keys[source_key] then
-                            duplicate_count = duplicate_count + 1
-                        else
-                            seen_source_keys[source_key] = true
+                        if conversion then
+                            local original_key = key
 
-                            if task.conversion then
-                                key = s_gsub(key, ".", task.conversion)
+                            if seen_source_keys[original_key] then
+                                duplicate_count = duplicate_count + 1
+                            else
+                                seen_source_keys[original_key] = true
+                                key = s_gsub(key, ".", conversion)
+                                value = append_preedit(
+                                    value,
+                                    task.preedit_delim,
+                                    original_key
+                                )
+
+                                local db_key = prefix .. key
+                                local group = converted_groups[db_key]
+
+                                if not group then
+                                    group = {}
+                                    converted_groups[db_key] = group
+                                    converted_order[#converted_order + 1] = db_key
+                                end
+
+                                group[#group + 1] = value
                             end
+                        else
+                            local db_key = prefix .. key
+                            local grouped = converted_groups
+                                and converted_groups[db_key]
 
-                            value = s_match(value, "^%s*(.-)%s*$")
-                            value = append_preedit(
-                                value, task.preedit_delim, original_key
-                            )
-
-                            local db_key = task.prefix .. key
-                            if written_db_keys[db_key] then
-                                local old_value, old_raw_key =
-                                    fetch_aggregate(db, db_key)
-
-                                if not old_value or not old_raw_key then
-                                    close()
-                                    return false
-                                end
-
-                                value = old_value .. "\t" .. value
-                                if not erase_raw_record(db, old_raw_key)
-                                    or not update_aggregate(db, db_key, value)
-                                then
-                                    close()
-                                    return false
-                                end
+                            if written_db_keys[db_key] or grouped then
+                                duplicate_count = duplicate_count + 1
                             elseif not update_aggregate(db, db_key, value) then
                                 close()
                                 return false
@@ -466,10 +473,29 @@ local function rebuild(tasks, db)
         end
     end
 
+    if converted_order then
+        for _, db_key in ipairs(converted_order) do
+            local value = concat(converted_groups[db_key], "\t")
+
+            if written_db_keys[db_key] then
+                local old_value, old_raw_key =
+                    fetch_aggregate(db, db_key)
+
+                if not old_value or not old_raw_key then return false end
+
+                value = old_value .. "\t" .. value
+                if not erase_raw_record(db, old_raw_key) then return false end
+            end
+
+            if not update_aggregate(db, db_key, value) then return false end
+            written_db_keys[db_key] = true
+        end
+    end
+
     if log and log.warning then
         if duplicate_count > 0 then
             log.warning(s_format(
-                "super_replacer: 已跳过 %d 行重复原始业务 key，仅保留第一次出现",
+                "super_replacer: 已跳过 %d 行重复源 key，仅保留第一次出现",
                 duplicate_count
             ))
         end

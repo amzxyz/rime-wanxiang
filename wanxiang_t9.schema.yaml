@@ -141,9 +141,9 @@ speller:
     - derive/^ng$/eng/
     - xform/^n$/en/
     - xform/^m$/me/
-    - derive/^([a-z]).*/$1/
+    #- derive/^([a-z]).*/$1/
     - derive/^(.*)$/\U$1/
-    - derive/^([A-Z]).*/$1/
+    #- derive/^([A-Z]).*/$1/
     - derive/^([nl])ve$/$1ue/
     - derive/^([NL])VE$/$1UE/
     - derive/ong$/on/
