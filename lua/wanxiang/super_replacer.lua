@@ -19,11 +19,19 @@ local s_upper = string.upper
 local t_sort = table.sort
 local type = type
 local tonumber = tonumber
-local DB_FORMAT_VERSION = "7"
+local DB_FORMAT_VERSION = "1"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9"}
 local FILE_KEYS = {"files", "file"}
-local db_instances = {}
-local db_refs = {}
+local DB_POOL_KEY = "__wanxiang_super_replacer_db_pool"
+local db_pool = rawget(_G, DB_POOL_KEY)
+
+if not db_pool then
+    db_pool = {instances = {}, refs = {}}
+    rawset(_G, DB_POOL_KEY, db_pool)
+end
+
+local db_instances = db_pool.instances
+local db_refs = db_pool.refs
 local file_signature_cache = {}
 local RECORD_SEPARATOR = " \t"
 local RECORD_TAIL = "c=0 d=0 t=0"
@@ -350,6 +358,7 @@ local function fetch_aggregate(db, key)
         break
     end
 
+    -- 最后一个数据库使用者退出时由 release_db 统一强制回收。
     accessor = nil
     return value, raw_key
 end
@@ -360,9 +369,31 @@ local function update_aggregate(db, key, value)
     return db:update(key .. RECORD_SEPARATOR .. encode_record_value(value), RECORD_TAIL)
 end
 
--- 重建数据库：每个业务 key 只能出现一行，重复 key 保留第一次并跳过后续行。
+-- 给一行中的每个候选分别附加原始编码，避免多候选只标记最后一项。
+local function append_preedit(value, delimiter, original_key)
+    if not delimiter or delimiter == "" then return value end
+
+    local parts = {}
+    local count = 0
+
+    for item in s_gmatch(value, "[^\t]+") do
+        count = count + 1
+        if not s_find(item, delimiter, 1, true) then
+            item = item .. delimiter .. original_key
+        end
+        parts[count] = item
+    end
+
+    return concat(parts, "\t", 1, count)
+end
+
+-- 重建数据库：
+-- 1. 同一原始业务 key 重复出现时仍只保留第一次；
+-- 2. 不同字母 key 经 T9 转换后落到同一数字 key 时，按出现顺序合并为一行。
 local function rebuild(tasks, db)
-    local seen_keys = {}
+    local seen_source_keys = {}
+    local merged_values = {}
+    local merged_order = {}
     local duplicate_count = 0
     local invalid_count = 0
 
@@ -376,24 +407,32 @@ local function rebuild(tasks, db)
 
                     if key and value then
                         local original_key = key
-                        if task.conversion then key = s_gsub(key, ".", task.conversion) end
-                        value = s_match(value, "^%s*(.-)%s*$")
+                        local task_mode = task.conversion and "t9" or "plain"
+                        local source_key = concat({
+                            task.prefix, task_mode, original_key
+                        }, "\0")
 
-                        if task.preedit_delim
-                            and task.preedit_delim ~= ""
-                            and not s_find(value, task.preedit_delim, 1, true)
-                        then
-                            value = value .. task.preedit_delim .. original_key
-                        end
-
-                        local db_key = task.prefix .. key
-                        if seen_keys[db_key] then
+                        if seen_source_keys[source_key] then
                             duplicate_count = duplicate_count + 1
                         else
-                            seen_keys[db_key] = true
-                            if not update_aggregate(db, db_key, value) then
-                                close()
-                                return false
+                            seen_source_keys[source_key] = true
+
+                            if task.conversion then
+                                key = s_gsub(key, ".", task.conversion)
+                            end
+
+                            value = s_match(value, "^%s*(.-)%s*$")
+                            value = append_preedit(
+                                value, task.preedit_delim, original_key
+                            )
+
+                            local db_key = task.prefix .. key
+                            if merged_values[db_key] then
+                                merged_values[db_key] =
+                                    merged_values[db_key] .. "\t" .. value
+                            else
+                                merged_values[db_key] = value
+                                merged_order[#merged_order + 1] = db_key
                             end
                         end
                     else
@@ -406,10 +445,16 @@ local function rebuild(tasks, db)
         end
     end
 
+    for _, db_key in ipairs(merged_order) do
+        if not update_aggregate(db, db_key, merged_values[db_key]) then
+            return false
+        end
+    end
+
     if log and log.warning then
         if duplicate_count > 0 then
             log.warning(s_format(
-                "super_replacer: 已跳过 %d 行重复业务 key，仅保留第一次出现",
+                "super_replacer: 已跳过 %d 行重复原始业务 key，仅保留第一次出现",
                 duplicate_count
             ))
         end
@@ -485,8 +530,13 @@ local function connect_db(
 )
     local cached = db_instances[db_name]
     if cached then
-        retain_db(db_name)
-        return cached
+        if cached:loaded() then
+            retain_db(db_name)
+            return cached
+        end
+
+        db_instances[db_name] = nil
+        db_refs[db_name] = nil
     end
 
     local db = userdb.LevelDb(db_name)
@@ -561,7 +611,11 @@ local function release_db(env)
 
     db_refs[db_name] = nil
     if db_instances[db_name] == db then db_instances[db_name] = nil end
-    db:close()
+
+    -- DbAccessor 没有显式析构接口。fetch_aggregate 和 fetch_fmm_bucket
+    -- 已先将 accessor 置空；最后一个使用者退出时强制回收，再关闭 LevelDb。
+    collectgarbage()
+    if db:loaded() then db:close() end
 end
 
 -- 当前输入生命周期内缓存“两字前缀桶”；匹配结论仍按每个新起点重新判断。
@@ -591,6 +645,7 @@ local function fetch_fmm_bucket(db, prefix, stem, fmm_cache)
             end
         end
 
+        -- 最后一个数据库使用者退出时由 release_db 统一强制回收。
         accessor = nil
     end
 
@@ -647,6 +702,8 @@ end
 
 -- 模块接口
 function M.init(env)
+    if env.db then release_db(env) end
+
     env.fmm_cache = {}
     env.fmm_offsets = {}
     env.fmm_parts = {}
