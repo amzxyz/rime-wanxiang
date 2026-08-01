@@ -19,8 +19,8 @@ local s_upper = string.upper
 local t_sort = table.sort
 local type = type
 local tonumber = tonumber
-local DB_FORMAT_VERSION = "4"
-local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9"}
+local DB_FORMAT_VERSION = "1"
+local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
 local FILE_KEYS = {"files", "file"}
 local db_instances = {}
 local db_refs = {}
@@ -370,10 +370,11 @@ local function append_preedit(value, delimiter, original_key)
 
     for item in s_gmatch(value, "[^\t]+") do
         count = count + 1
-        if not s_find(item, delimiter, 1, true) then
-            item = item .. delimiter .. original_key
+        local output = item
+        if not s_find(output, delimiter, 1, true) then
+            output = output .. delimiter .. original_key
         end
-        parts[count] = item
+        parts[count] = output
     end
 
     return concat(parts, "\t", 1, count)

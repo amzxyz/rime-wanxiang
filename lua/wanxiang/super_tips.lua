@@ -4,7 +4,7 @@
 -- https://github.com/amzxyz/rime-wanxiang
 --
 -- super_tips:
---   db_name: "lua/tips"
+--   db_name: "tips"
 --   tips_key: "slash"
 --   disabled_types: []
 --   files:
@@ -92,8 +92,9 @@ local function load_data_from_files(files)
 
         if file then
             for line in file:lines() do
-                line = line:gsub("\r$", "")
-                local value, key = line:match("^([^\t]+)\t([^\t]+)$")
+                local current_line = line:gsub("\r$", "")
+                local value, key =
+                    current_line:match("^([^\t]+)\t([^\t]+)$")
 
                 if key and value and not is_disabled(value) then
                     local raw_key = key .. RECORD_SEPARATOR .. value
