@@ -1,33 +1,57 @@
 -- amzxyz@https://github.com/amzxyz/rime-wanxiang
--- input_stats.lua：分设备统计 / 有效会话测速 / 历史查询
-
+-- input_stats.lua：分设备统计 / 最近速度 / 峰速格式去重 / 历史查询
 local userdb = require("wanxiang/userdb")
 local wanxiang = require("wanxiang/wanxiang")
+local DB_POOL_NAME = "__wanxiang_input_stats_db_pool"
+local DB_POOL = rawget(_G, DB_POOL_NAME)
+if not DB_POOL then
+    DB_POOL = {}
+    rawset(_G, DB_POOL_NAME, DB_POOL)
+end
 
-local DB_POOL = {}
 local SOFTWARE_NAME = rime_api.get_distribution_code_name()
 local RECORD_SEPARATOR = " \t"
 local STATS_C_MAX = 2147483000
 local BATCH_INTERVAL = 5
-local MAX_PENDING_WORDS = 200
-local DEFAULT_ACTIVE_TIMEOUT = 10
-local DEFAULT_MINIMUM_SPEED_SESSION = 15
+local MAX_PENDING_CHARACTERS = 200
+local DEFAULT_CONTINUOUS_GAP_MS = 1000
+local DEFAULT_AVERAGE_GAP_MS = 5000
+local DEFAULT_MINIMUM_AVERAGE_SESSION_MS = 1000
+local DEFAULT_MINIMUM_AVERAGE_TOTAL_MS = 15000
+local DEFAULT_MINIMUM_PEAK_SEGMENT_MS = 3000
+local DEFAULT_MINIMUM_PEAK_TOTAL_MS = 15000
+local DEFAULT_PEAK_SHARE_PERCENT = 20
+local DEFAULT_PEAK_BUCKET_SIZE = 10
 local DEFAULT_MAX_SPEED_COMMIT_LENGTH = 30
-
-local SUM_FIELDS = {
-    {"len", "_len"}, {"cnt", "_cnt"}, {"code", "_code"},
-    {"slen", "_slen"}, {"ssec", "_ssec"},
-    {"l1", "_l1"}, {"l2", "_l2"}, {"l3", "_l3"},
-    {"l4", "_l4"}, {"l_gt4", "_l_gt4"},
+local STATISTICS_PREFIX = "statistics/"
+local DAY_PREFIX = STATISTICS_PREFIX .. "day/"
+local MIGRATION_KEY = "metadata/readable_statistics_migrated"
+local DAY_FIELDS = {
+    ["text/characters"]="characters",
+    ["text/commits"]="commits",
+    ["text/keystrokes"]="keystrokes",
+    ["commit_length/1"]="length_1",
+    ["commit_length/2"]="length_2",
+    ["commit_length/3"]="length_3",
+    ["commit_length/4"]="length_4",
+    ["commit_length/5_plus"]="length_5_plus",
 }
-
+local LEGACY_FIELDS = {
+    _len="text/characters",
+    _cnt="text/commits",
+    _code="text/keystrokes",
+    _l1="commit_length/1",
+    _l2="commit_length/2",
+    _l3="commit_length/3",
+    _l4="commit_length/4",
+    _l_gt4="commit_length/5_plus",
+}
 local DEFAULT_TITLES = {
     {5000000, "⌨️·天人合一"}, {1000000, "⌨️·登峰造极"},
     {500000, "✨·出神入化"}, {100000, "💨·行云流水"},
     {50000, "🚀·运指如飞"}, {10000, "🌟·渐入佳境"},
     {0, "🌱·初学乍练"},
 }
-
 local FINGER_STYLE_MAP = {
     pinyin="全拼", zrm="自然码", flypy="小鹤双拼", mspy="微软双拼",
     sogou="搜狗双拼", abc="智能ABC", ziguang="紫光双拼",
@@ -47,13 +71,10 @@ end
 local function get_device_id(config)
     local id = normalize_device_id(config:get_string("input_stats/device_id"))
     if #id == 8 then return id end
-
     local user_dir = rime_api.get_user_data_dir()
     if not user_dir or user_dir == "" then return "00000000" end
-
     local file = io.open(user_dir:gsub("[/\\]+$", "") .. "/installation.yaml", "r")
     if not file then return "00000000" end
-
     for line in file:lines() do
         local value = line:match("^%s*installation_id%s*:%s*(.-)%s*$")
         if value then
@@ -64,7 +85,6 @@ local function get_device_id(config)
             return #id == 8 and id or "00000000"
         end
     end
-
     file:close()
     return "00000000"
 end
@@ -74,19 +94,23 @@ local function acquire_db(env)
 
     local entry = DB_POOL[env.stats_db_name]
     if not entry then
-        entry = {db=userdb.LevelDb(env.stats_db_name), refs=0}
+        local db = userdb.LevelDb(env.stats_db_name)
+        if not db or not db:loaded() and not db:open() then
+            env.stats_db_error = true
+            return nil
+        end
+        entry = {db=db, refs=0}
         DB_POOL[env.stats_db_name] = entry
-    end
-
-    local db = entry.db
-    if not db or not db:loaded() and not db:open() then
+    elseif not entry.db or not entry.db:loaded() and not entry.db:open() then
         DB_POOL[env.stats_db_name] = nil
+        env.stats_db_error = true
         return nil
     end
 
     entry.refs = entry.refs + 1
-    env.stats_db, env.stats_db_entry = db, entry
-    return db
+    env.stats_db, env.stats_db_entry = entry.db, entry
+    env.stats_db_error = nil
+    return entry.db
 end
 
 local function get_db(env)
@@ -95,38 +119,36 @@ end
 
 local function release_db(env)
     local entry = env.stats_db_entry
+    env.stats_db, env.stats_db_entry = nil, nil
     if not entry then return end
 
-    env.stats_db, env.stats_db_entry = nil, nil
     entry.refs = math.max(0, entry.refs - 1)
     if entry.refs > 0 then return end
 
-    DB_POOL[env.stats_db_name] = nil
+    -- DbAccessor 没有显式析构接口。所有局部访问器先置空，再执行一次
+    -- 完整垃圾回收，确保其先于所引用的 LevelDb 释放。
+    collectgarbage()
+
+    if DB_POOL[env.stats_db_name] == entry then
+        DB_POOL[env.stats_db_name] = nil
+    end
     if entry.db and entry.db:loaded() then entry.db:close() end
+    entry.db = nil
 end
 
--- 在统计业务层生成稳定的 UserDb raw key。
 local function make_raw_key(key, device_id)
     if not key or key == "" or not is_device_id(device_id) then return nil end
     return key .. RECORD_SEPARATOR .. device_id
 end
 
--- 从稳定 raw key 中解析统计键与设备标识。
 local function parse_raw_key(raw_key)
     if type(raw_key) ~= "string" then return nil, nil end
-
-    local split_pos = raw_key:find(RECORD_SEPARATOR, 1, true)
-    if not split_pos then return nil, nil end
-
-    local key = raw_key:sub(1, split_pos - 1)
-    local device_id = raw_key:sub(split_pos + #RECORD_SEPARATOR)
+    local split = raw_key:find(RECORD_SEPARATOR, 1, true)
+    if not split then return nil, nil end
+    local key = raw_key:sub(1, split - 1)
+    local device_id = raw_key:sub(split + #RECORD_SEPARATOR)
     if key == "" or not is_device_id(device_id) then return nil, nil end
     return key, device_id
-end
-
--- 生成标准 c/d/t 统计记录尾部。
-local function make_record_tail(value)
-    return string.format("c=%d d=0 t=0", value)
 end
 
 local function to_integer(value)
@@ -140,7 +162,6 @@ local function parse_tail(tail)
     if type(tail) ~= "string" then return 0 end
     local c, d, t = tail:match("^c=([^%s\t]+) d=([^%s\t]+) t=([^%s\t]+)$")
     c, d, t = tonumber(c), tonumber(d), tonumber(t)
-
     if not c or c < 0 or c ~= math.floor(c) or d ~= 0
         or not t or t < 0 or t ~= math.floor(t)
     then
@@ -149,49 +170,49 @@ local function parse_tail(tail)
     return to_integer(c)
 end
 
-local function db_get_local(db, key, device_id)
+local function db_get(db, key, device_id)
     local raw_key = make_raw_key(key, device_id)
     return raw_key and parse_tail(db:fetch(raw_key)) or 0
 end
 
-local function db_set_local(db, key, device_id, value)
+local function db_set(db, key, device_id, value)
     local raw_key = make_raw_key(key, device_id)
-    if not raw_key then return false end
-
-    return db:update(raw_key, make_record_tail(to_integer(value)))
+    return raw_key and db:update(raw_key,
+        string.format("c=%d d=0 t=0", to_integer(value))) or false
 end
 
-local function db_read(db, key, device_id, use_max)
-    if device_id then return db_get_local(db, key, device_id) end
+local function db_add(db, key, device_id, amount)
+    return db_set(db, key, device_id, db_get(db, key, device_id) + amount)
+end
 
-    local result = 0
-    local prefix = key .. RECORD_SEPARATOR
+local function scan_prefix(db, prefix, device_id, handler)
     local accessor = db:query(prefix)
-    if not accessor then return result end
+    if not accessor then return end
 
-    for raw_key, tail in accessor:iter() do
-        if raw_key:sub(1, #prefix) ~= prefix then break end
+    do
+        for raw_key, tail in accessor:iter() do
+            if raw_key:sub(1, #prefix) ~= prefix then break end
 
-        local record_key, record_device = parse_raw_key(raw_key)
-        if record_key == key and record_device then
-            local value = parse_tail(tail)
-            result = use_max and math.max(result, value) or result + value
+            local key, record_device = parse_raw_key(raw_key)
+            if key and (not device_id or record_device == device_id) then
+                handler(key, record_device, parse_tail(tail), raw_key)
+            end
         end
     end
 
     accessor = nil
-    return result
 end
 
-local function platform_info(name, version)
-    local names = {
-        Weasel="小狼毫", trime="同文输入法", hamster3="元书输入法",
-        hamster="仓输入法", lyraime="灵韵输入法", xime="曦码输入法",
-        ["Cobra​"]="元书输入法(PC)", default="超越输入法",
-    }
-    version = tostring(version or "")
-    return names[name] or name or "",
-        version:match("^([vV]?%d+%.%d+%.%d+)") or version
+local function monotonic_ms()
+    if rime_api and rime_api.get_time_ms then
+        return math.floor(rime_api.get_time_ms())
+    end
+    return os.time() * 1000
+end
+
+local function day_id(timestamp)
+    local date = os.date("*t", timestamp or os.time())
+    return string.format("%04d%02d%02d", date.year, date.month, date.day)
 end
 
 local function is_chinese(code)
@@ -219,277 +240,388 @@ local function chinese_length(text)
     return count
 end
 
-local function day_key(timestamp)
-    local date = os.date("*t", timestamp)
-    return string.format("d_%04d%02d%02d", date.year, date.month, date.day)
-end
-
 local function new_stats()
     return {
-        len=0, cnt=0, code=0, spd=0, slen=0, ssec=0,
-        l1=0, l2=0, l3=0, l4=0, l_gt4=0,
+        characters=0, commits=0, keystrokes=0,
+        average_characters=0, average_milliseconds=0, average_sessions=0,
+        peak_speed=nil,
+        length_1=0, length_2=0, length_3=0, length_4=0, length_5_plus=0,
+        lifetime_characters=0,
     }
 end
 
-local function pending_add(env, key, suffix, amount)
-    local fields = env.pending_stats[key]
-    if not fields then fields = {}; env.pending_stats[key] = fields end
-    fields[suffix] = (fields[suffix] or 0) + amount
-end
-
-local function pending_set_max(env, key, suffix, value)
-    local fields = env.pending_max[key]
-    if not fields then fields = {}; env.pending_max[key] = fields end
-    fields[suffix] = math.max(fields[suffix] or 0, value)
-end
-
-local function has_pending(env)
-    return next(env.pending_stats) ~= nil or next(env.pending_max) ~= nil
+local function pending_add(env, key, amount)
+    env.pending_stats[key] = (env.pending_stats[key] or 0) + amount
 end
 
 local function flush_pending(env)
-    if not has_pending(env) then return true end
-
+    if not next(env.pending_stats) then return true end
     local db = get_db(env)
     if not db or not db:loaded() then return false end
-
-    for key, fields in pairs(env.pending_stats) do
-        for suffix, amount in pairs(fields) do
-            local daily = key .. suffix
-            db_set_local(db, daily, env.device_id,
-                db_get_local(db, daily, env.device_id) + amount)
-
-            local total = "total" .. suffix
-            db_set_local(db, total, env.device_id,
-                db_get_local(db, total, env.device_id) + amount)
-        end
+    for key, amount in pairs(env.pending_stats) do
+        if not db_add(db, key, env.device_id, amount) then return false end
     end
-
-    for key, fields in pairs(env.pending_max) do
-        for suffix, value in pairs(fields) do
-            local daily = key .. suffix
-            if value > db_get_local(db, daily, env.device_id) then
-                db_set_local(db, daily, env.device_id, value)
-            end
-
-            local total = "total" .. suffix
-            if value > db_get_local(db, total, env.device_id) then
-                db_set_local(db, total, env.device_id, value)
-            end
-        end
-    end
-
-    env.pending_stats, env.pending_max = {}, {}
+    env.pending_stats = {}
+    env.pending_characters = 0
     env.last_flush_ts = os.time()
     return true
 end
 
 local function try_flush(env)
-    if not has_pending(env) then return end
-
-    local words = 0
-    for _, fields in pairs(env.pending_stats) do words = words + (fields._len or 0) end
-
-    if words >= MAX_PENDING_WORDS
-        or os.time() - env.last_flush_ts >= BATCH_INTERVAL
+    if next(env.pending_stats)
+        and (env.pending_characters >= MAX_PENDING_CHARACTERS
+            or os.time() - env.last_flush_ts >= BATCH_INTERVAL)
     then
         flush_pending(env)
     end
 end
 
-local function reset_session(env)
-    env.session_start = nil
-    env.session_last_activity = nil
-    env.session_last_commit = nil
-    env.session_chars = 0
-    env.session_day = nil
+local function reset_sample(sample)
+    sample.started = nil
+    sample.last_activity = nil
+    sample.last_commit = nil
+    sample.characters = 0
+    sample.day = nil
 end
 
-local function start_session(env, key, timestamp)
-    env.session_start = timestamp
-    env.session_last_activity = timestamp
-    env.session_last_commit = nil
-    env.session_chars = 0
-    env.session_day = key
+local function start_sample(sample, day, timestamp_ms)
+    sample.started = timestamp_ms
+    sample.last_activity = timestamp_ms
+    sample.last_commit = nil
+    sample.characters = 0
+    sample.day = day
 end
 
-local function finish_session(env, keep_short)
-    local started = env.session_start
-    local finished = env.session_last_commit
-    local chars = env.session_chars or 0
-    local key = env.session_day
-
-    if not started or not finished or not key then
-        if not keep_short then reset_session(env) end
-        return false
+local function sample_values(sample, minimum_ms)
+    if not sample.started or not sample.last_commit or sample.characters < 2 then
+        return nil
     end
+    local milliseconds = sample.last_commit - sample.started
+    if milliseconds < minimum_ms then return nil end
+    return sample.day, sample.characters, milliseconds
+end
 
-    local elapsed = finished - started
-
-    if elapsed < env.minimum_speed_session or chars <= 0 then
-        if not keep_short then reset_session(env) end
-        return false
-    end
-
-    reset_session(env)
-    pending_add(env, key, "_slen", chars)
-    pending_add(env, key, "_ssec", elapsed)
-    pending_set_max(env, key, "_sspd",
-        math.floor(chars * 60 / elapsed + 0.5))
+local function finish_average(env)
+    local day, characters, milliseconds = sample_values(
+        env.average_sample, env.minimum_average_session_ms
+    )
+    reset_sample(env.average_sample)
+    if not day then return false end
+    local prefix = DAY_PREFIX .. day .. "/speed_average/"
+    pending_add(env, prefix .. "characters", characters)
+    pending_add(env, prefix .. "milliseconds", milliseconds)
+    pending_add(env, prefix .. "sessions", 1)
     return true
 end
 
+local function peak_bucket(env, characters, milliseconds)
+    local speed = characters * 60000 / milliseconds
+    local bucket = math.floor(speed / env.peak_bucket_size) * env.peak_bucket_size
+    return math.max(0, math.min(2000, bucket))
+end
+
+local function finish_peak(env)
+    local day, characters, milliseconds = sample_values(
+        env.peak_sample, env.minimum_peak_segment_ms
+    )
+    reset_sample(env.peak_sample)
+    if not day then return false end
+    local bucket = peak_bucket(env, characters, milliseconds)
+    local prefix = string.format(
+        "%s%s/speed_peak/characters_per_minute_%04d/",
+        DAY_PREFIX, day, bucket
+    )
+    pending_add(env, prefix .. "characters", characters)
+    pending_add(env, prefix .. "milliseconds", milliseconds)
+    pending_add(env, prefix .. "samples", 1)
+    return true
+end
+
+local function ensure_sample(sample, day, timestamp_ms, gap_ms, finish)
+    if sample.started then
+        local gap = timestamp_ms - (sample.last_activity or sample.started)
+        if gap >= 0 and gap <= gap_ms and sample.day == day then return end
+        finish()
+    end
+    start_sample(sample, day, timestamp_ms)
+end
+
+local function finish_stale(env, timestamp_ms)
+    local peak = env.peak_sample
+    if peak.started and timestamp_ms - (peak.last_activity or peak.started)
+        > env.continuous_gap_ms
+    then
+        finish_peak(env)
+    end
+    local average = env.average_sample
+    if average.started and timestamp_ms - (average.last_activity or average.started)
+        > env.average_gap_ms
+    then
+        finish_average(env)
+    end
+end
+
 local function observe_input_activity(env, input)
+    local timestamp_ms = monotonic_ms()
     if not input or input == "" or input:sub(1, 1) == "/" then
+        finish_stale(env, timestamp_ms)
         env.last_observed_input = input or ""
         return
     end
-
     if input == env.last_observed_input then return end
     env.last_observed_input = input
-
-    local timestamp = os.time()
-    local key = day_key(timestamp)
-
-    if not env.session_start then
-        start_session(env, key, timestamp)
-        return
-    end
-
-    local last_activity = env.session_last_activity or env.session_start
-    local gap = timestamp - last_activity
-
-    if gap < 0 or gap > env.active_timeout or key ~= env.session_day then
-        finish_session(env)
-        start_session(env, key, timestamp)
-        return
-    end
-
-    env.session_last_activity = timestamp
+    local day = day_id()
+    ensure_sample(env.average_sample, day, timestamp_ms, env.average_gap_ms,
+        function() finish_average(env) end)
+    ensure_sample(env.peak_sample, day, timestamp_ms, env.continuous_gap_ms,
+        function() finish_peak(env) end)
+    env.average_sample.last_activity = timestamp_ms
+    env.peak_sample.last_activity = timestamp_ms
 end
 
-local function commit_to_session(env, key, timestamp, chars)
-    if not env.session_start then
-        start_session(env, key, timestamp)
-    else
-        local last_activity = env.session_last_activity or env.session_start
-        local gap = timestamp - last_activity
-
-        if gap < 0 or gap > env.active_timeout or key ~= env.session_day then
-            finish_session(env)
-            start_session(env, key, timestamp)
-        end
-    end
-
-    env.session_last_activity = timestamp
-    env.session_last_commit = timestamp
-    env.session_chars = env.session_chars + chars
+local function commit_to_speed(env, day, timestamp_ms, characters)
+    ensure_sample(env.average_sample, day, timestamp_ms, env.average_gap_ms,
+        function() finish_average(env) end)
+    ensure_sample(env.peak_sample, day, timestamp_ms, env.continuous_gap_ms,
+        function() finish_peak(env) end)
+    local average, peak = env.average_sample, env.peak_sample
+    average.last_activity = timestamp_ms
+    average.last_commit = timestamp_ms
+    average.characters = average.characters + characters
+    peak.last_activity = timestamp_ms
+    peak.last_commit = timestamp_ms
+    peak.characters = peak.characters + characters
     env.last_observed_input = ""
 end
 
-local function record_stats(env, chars, code_length)
-    local timestamp = os.time()
-    local key = day_key(timestamp)
-
-    pending_add(env, key, "_len", chars)
-    pending_add(env, key, "_cnt", 1)
-    pending_add(env, key, "_code", code_length)
-
-    if chars <= env.max_speed_commit_length then
-        commit_to_session(env, key, timestamp, chars)
+local function record_stats(env, characters, code_length)
+    local timestamp_ms = monotonic_ms()
+    local day = day_id()
+    local prefix = DAY_PREFIX .. day .. "/"
+    pending_add(env, prefix .. "text/characters", characters)
+    pending_add(env, prefix .. "text/commits", 1)
+    pending_add(env, prefix .. "text/keystrokes", code_length)
+    env.pending_characters = env.pending_characters + characters
+    local field = characters == 1 and "commit_length/1"
+        or characters == 2 and "commit_length/2"
+        or characters == 3 and "commit_length/3"
+        or characters == 4 and "commit_length/4"
+        or "commit_length/5_plus"
+    pending_add(env, prefix .. field, 1)
+    if characters <= env.max_speed_commit_length then
+        commit_to_speed(env, day, timestamp_ms, characters)
     else
-        -- 长文本仍参与字数、次数、编码和字词分布统计，
-        -- 但不参与测速，并结束此前的测速会话。
-        finish_session(env)
+        finish_peak(env)
+        finish_average(env)
         env.last_observed_input = ""
     end
-
-    local suffix = chars == 1 and "_l1"
-        or chars == 2 and "_l2"
-        or chars == 3 and "_l3"
-        or chars == 4 and "_l4"
-        or chars > 4 and "_l_gt4"
-    if suffix then pending_add(env, key, suffix, 1) end
 end
 
-local function read_prefix(db, prefix, device_id)
-    local result = new_stats()
-    for _, field in ipairs(SUM_FIELDS) do
-        result[field[1]] = db_read(db, prefix .. field[2], device_id, false)
+local function in_day_range(day, start_day, end_day)
+    return (not start_day or day >= start_day) and (not end_day or day <= end_day)
+end
+
+local function peak_group(groups, bucket)
+    local group = groups[bucket]
+    if not group then
+        group = {characters=0, milliseconds=0, samples=0}
+        groups[bucket] = group
     end
-    result.spd = db_read(db, prefix .. "_sspd", device_id, true)
-    return result
+    return group
 end
 
-local function add_prefix(result, db, prefix)
-    for _, field in ipairs(SUM_FIELDS) do
-        local name, suffix = field[1], field[2]
-        result[name] = result[name] + db_read(db, prefix .. suffix, nil, false)
+local function merge_peak_groups(target, source)
+    for bucket, group in pairs(source) do
+        local merged = peak_group(target, bucket)
+        merged.characters = merged.characters + group.characters
+        merged.milliseconds = merged.milliseconds + group.milliseconds
+        merged.samples = merged.samples + group.samples
     end
-    result.spd = math.max(result.spd, db_read(db, prefix .. "_sspd", nil, true))
 end
 
-local function aggregate_recent(env, days, device_id)
+local function calculate_peak(env, groups)
+    local total_ms, buckets = 0, {}
+    for bucket, group in pairs(groups) do
+        if group.characters > 0 and group.milliseconds > 0 then
+            total_ms = total_ms + group.milliseconds
+            buckets[#buckets + 1] = bucket
+        end
+    end
+    if total_ms < env.minimum_peak_total_ms then return nil end
+    table.sort(buckets, function(a, b) return a > b end)
+    local target_ms = math.floor(total_ms * env.peak_share_percent / 100)
+    target_ms = math.min(total_ms, math.max(env.minimum_peak_total_ms, target_ms))
+    local characters, milliseconds, remaining = 0, 0, target_ms
+    for _, bucket in ipairs(buckets) do
+        if remaining <= 0 then break end
+        local group = groups[bucket]
+        local used = math.min(remaining, group.milliseconds)
+        characters = characters + group.characters * used / group.milliseconds
+        milliseconds = milliseconds + used
+        remaining = remaining - used
+    end
+    return milliseconds > 0
+        and math.floor(characters * 60000 / milliseconds + 0.5) or nil
+end
+
+local function aggregate_statistics(env, start_day, end_day, device_id,
+        speed_start_day, speed_end_day)
+    speed_start_day = speed_start_day or start_day
+    speed_end_day = speed_end_day or end_day
     local db = get_db(env)
     if not db or not db:loaded() then return nil end
-    if days == 0 then return read_prefix(db, "total", device_id) end
+    local stats, peaks = new_stats(), {}
+    local readable_peaks, legacy_peaks = {}, {}
 
-    local result, now = new_stats(), os.time()
-    for offset = 0, days - 1 do add_prefix(result, db, day_key(now - offset * 86400)) end
-    return result
-end
-
-local function aggregate_keys(env, keys)
-    local db = get_db(env)
-    if not db or not db:loaded() then return nil end
-
-    local result, has_data = new_stats(), false
-    for _, key in ipairs(keys) do
-        if db_read(db, key .. "_len", nil, false) > 0 then
-            has_data = true
-            add_prefix(result, db, key)
+    scan_prefix(db, STATISTICS_PREFIX, device_id,
+        function(key, record_device, value)
+        local day, field = key:match("^statistics/day/(%d%d%d%d%d%d%d%d)/(.+)$")
+        if not day then return end
+        if field == "text/characters" then
+            stats.lifetime_characters = stats.lifetime_characters + value
         end
-    end
-    return has_data and result or nil
-end
 
-local function period_keys(year, month, day, end_year, end_month, end_day)
-    local keys = {}
+        local target = DAY_FIELDS[field]
+        if target then
+            if in_day_range(day, start_day, end_day) then
+                stats[target] = stats[target] + value
+            end
+            return
+        end
 
-    if end_year then
-        local current = os.time({year=year, month=month, day=day, hour=12})
-        local ending = os.time({
-            year=end_year, month=end_month, day=end_day, hour=12,
-        })
-        while current and ending and current <= ending do
-            keys[#keys + 1] = day_key(current)
-            current = current + 86400
-        end
-    elseif day then
-        keys[1] = string.format("d_%04d%02d%02d", year, month, day)
-    elseif month then
-        for d = 1, 31 do
-            keys[#keys + 1] = string.format("d_%04d%02d%02d", year, month, d)
-        end
-    elseif year then
-        for m = 1, 12 do
-            for d = 1, 31 do
-                keys[#keys + 1] = string.format("d_%04d%02d%02d", year, m, d)
+        if not in_day_range(day, speed_start_day, speed_end_day) then return end
+
+        local average_field = field:match("^speed_average/([^/]+)$")
+        if average_field == "characters" then
+            stats.average_characters = stats.average_characters + value
+        elseif average_field == "milliseconds" then
+            stats.average_milliseconds = stats.average_milliseconds + value
+        elseif average_field == "sessions" then
+            stats.average_sessions = stats.average_sessions + value
+        else
+            local bucket, peak_field = field:match(
+                "^speed_peak/characters_per_minute_(%d%d%d%d)/([^/]+)$"
+            )
+            local readable = bucket ~= nil
+
+            if not bucket then
+                bucket, peak_field = field:match(
+                    "^speed_peak/(%d%d%d%d)/([^/]+)$"
+                )
+            end
+
+            if bucket and (peak_field == "characters"
+                or peak_field == "milliseconds" or peak_field == "samples")
+            then
+                local source = readable and readable_peaks or legacy_peaks
+                local sample_key = record_device .. "/" .. day
+                local groups = source[sample_key]
+
+                if not groups then
+                    groups = {}
+                    source[sample_key] = groups
+                end
+
+                local group = peak_group(groups, tonumber(bucket))
+                group[peak_field] = group[peak_field] + value
             end
         end
-    end
+    end)
 
-    return keys
+    for sample_key, groups in pairs(legacy_peaks) do
+        if not readable_peaks[sample_key] then
+            merge_peak_groups(peaks, groups)
+        end
+    end
+    for _, groups in pairs(readable_peaks) do
+        merge_peak_groups(peaks, groups)
+    end
+    local day, characters, milliseconds = sample_values(
+        env.average_sample, env.minimum_average_session_ms
+    )
+    if day and in_day_range(day, speed_start_day, speed_end_day)
+        and (not device_id or device_id == env.device_id)
+    then
+        stats.average_characters = stats.average_characters + characters
+        stats.average_milliseconds = stats.average_milliseconds + milliseconds
+        stats.average_sessions = stats.average_sessions + 1
+    end
+    day, characters, milliseconds = sample_values(
+        env.peak_sample, env.minimum_peak_segment_ms
+    )
+    if day and in_day_range(day, speed_start_day, speed_end_day)
+        and (not device_id or device_id == env.device_id)
+    then
+        local group = peak_group(peaks, peak_bucket(env, characters, milliseconds))
+        group.characters = group.characters + characters
+        group.milliseconds = group.milliseconds + milliseconds
+        group.samples = group.samples + 1
+    end
+    if stats.average_milliseconds < env.minimum_average_total_ms then
+        stats.average_characters = 0
+        stats.average_milliseconds = 0
+        stats.average_sessions = 0
+    end
+    stats.peak_speed = calculate_peak(env, peaks)
+    return stats.commits > 0 and stats or nil
 end
 
-local function aggregate_period(env, ...)
-    local keys = period_keys(...)
-    return #keys > 0 and aggregate_keys(env, keys) or nil
+local function migrate_database(env)
+    local db = get_db(env)
+    if not db or not db:loaded() then return end
+    local additions, old_keys = {}, {}
+    scan_prefix(db, "d_", nil, function(key, device_id, value, raw_key)
+        old_keys[#old_keys + 1] = raw_key
+        local day, suffix = key:match("^d_(%d%d%d%d%d%d%d%d)(_.+)$")
+        local target = day and LEGACY_FIELDS[suffix]
+        if target and value > 0 and db_get(db, MIGRATION_KEY, device_id) == 0 then
+            local device = additions[device_id] or {}
+            additions[device_id] = device
+            local new_key = DAY_PREFIX .. day .. "/" .. target
+            device[new_key] = (device[new_key] or 0) + value
+        end
+    end)
+    scan_prefix(db, "total_", nil, function(_, _, _, raw_key)
+        old_keys[#old_keys + 1] = raw_key
+    end)
+    for device_id, values in pairs(additions) do
+        local success = true
+        for key, value in pairs(values) do
+            if value > db_get(db, key, device_id)
+                and not db_set(db, key, device_id, value)
+            then
+                success = false
+                break
+            end
+        end
+        if success then db_set(db, MIGRATION_KEY, device_id, 1) end
+    end
+    for _, raw_key in ipairs(old_keys) do db:erase(raw_key) end
+    local obsolete = {}
+    scan_prefix(db, STATISTICS_PREFIX, nil, function(key, _, _, raw_key)
+        if key:match("^statistics/day/%d%d%d%d%d%d%d%d/speed/[^/]+$")
+            or key:match("^statistics/day/%d%d%d%d%d%d%d%d/average_speed/[^/]+$")
+            or key:match("^statistics/day/%d%d%d%d%d%d%d%d/peak_speed/[^/]+$")
+            or key:match("^statistics/hour/") then
+            obsolete[#obsolete + 1] = raw_key
+        end
+    end)
+    for _, raw_key in ipairs(obsolete) do db:erase(raw_key) end
+end
+
+local function platform_info(name, version)
+    local names = {
+        Weasel="小狼毫", trime="同文输入法", hamster3="元书输入法",
+        hamster="仓输入法", lyraime="灵韵输入法", xime="曦码输入法",
+        ["Cobra​"]="元书输入法(PC)", default="超越输入法",
+    }
+    version = tostring(version or "")
+    return names[name] or name or "",
+        version:match("^([vV]?%d+%.%d+%.%d+)") or version
 end
 
 local function ensure_titles(env)
     if env.titles then return env.titles end
-
     local titles = {}
     local configured = env.engine.schema.config:get_list("input_stats/titles")
     if configured then
@@ -504,7 +636,6 @@ local function ensure_titles(env)
             end
         end
     end
-
     if #titles == 0 then
         env.titles = DEFAULT_TITLES
     else
@@ -514,13 +645,9 @@ local function ensure_titles(env)
     return env.titles
 end
 
-local function user_title(env, device_id)
-    local db = get_db(env)
-    if not db or not db:loaded() then return "初学乍练" end
-
-    local total = db_read(db, "total_len", device_id, false)
+local function user_title(env, characters)
     for _, item in ipairs(ensure_titles(env)) do
-        if total >= item[1] then return item[2] end
+        if characters >= item[1] then return item[2] end
     end
     return "初学乍练"
 end
@@ -531,31 +658,28 @@ local function draw_bar(percent)
     return string.rep("▓", filled) .. string.rep("░", 10 - filled)
 end
 
-local function format_summary(title, subtitle, data, env, device_id)
-    if not data or data.cnt == 0 then return "※ " .. title .. "暂无数据" end
-
-    local avg_code = data.len > 0 and data.code / data.len or 0
-    local phrase_rate = data.len > 0 and (data.len - data.l1) / data.len * 100 or 0
-    local avg_speed = data.ssec > 0
-        and math.floor(data.slen * 60 / data.ssec + 0.5) or nil
-    local avg_text = avg_speed and tostring(avg_speed) or "--"
-    local peak_text = data.spd > 0 and tostring(math.floor(data.spd)) or "--"
+local function format_summary(title, subtitle, data, env)
+    if not data or data.commits == 0 then return "※ " .. title .. "暂无数据" end
+    local average_code = data.characters > 0 and data.keystrokes / data.characters or 0
+    local phrase_rate = data.characters > 0
+        and (data.characters - data.length_1) / data.characters * 100 or 0
+    local average_speed = data.average_milliseconds > 0
+        and math.floor(data.average_characters * 60000
+            / data.average_milliseconds + 0.5) or nil
     local p = {
-        data.l1 / data.cnt * 100, data.l2 / data.cnt * 100,
-        data.l3 / data.cnt * 100, data.l4 / data.cnt * 100,
-        data.l_gt4 / data.cnt * 100,
+        data.length_1 / data.commits * 100, data.length_2 / data.commits * 100,
+        data.length_3 / data.commits * 100, data.length_4 / data.commits * 100,
+        data.length_5_plus / data.commits * 100,
     }
-
     local software, version = platform_info(
         SOFTWARE_NAME, rime_api.get_distribution_version()
     )
     local style = wanxiang.get_input_method_type(env)
+    local zwsp = "\226\128\139"
     local header = string.format("※ %s统计 · 效率仪表盘\n", title)
     if subtitle and subtitle ~= "" then
-        header = header .. string.format("📅 %s\n", subtitle)
+        header = header .. string.format("📅 %s" .. zwsp .. "\n", subtitle)
     end
-
-    local zwsp = "\226\128\139"
     return header .. string.format(
         "───────────────" .. zwsp .. "\n" ..
         "📊 综合数据" .. zwsp .. "\n" ..
@@ -577,8 +701,10 @@ local function format_summary(title, subtitle, data, env, device_id)
         "◉ 方案：%s" .. zwsp .. "\n" ..
         "◉ 编码：%s" .. zwsp .. "\n" ..
         "◉ 前端：%s %s" .. zwsp,
-        avg_text, math.floor(data.cnt), peak_text, math.floor(data.len),
-        user_title(env, device_id), avg_code, phrase_rate,
+        average_speed and tostring(average_speed) or "--", math.floor(data.commits),
+        data.peak_speed and tostring(data.peak_speed) or "--",
+        math.floor(data.characters), user_title(env, data.lifetime_characters),
+        average_code, phrase_rate,
         math.floor(p[1]), draw_bar(p[1]), math.floor(p[2]), draw_bar(p[2]),
         math.floor(p[3]), draw_bar(p[3]), math.floor(p[4]), draw_bar(p[4]),
         math.floor(p[5]), draw_bar(p[5]), env.schema_name,
@@ -591,91 +717,79 @@ local function yield_msg(seg, text, icon)
 end
 
 local function prepare_report(env)
-    -- 查询不应清空尚未达到最小时长的会话，否则频繁查看统计会
-    -- 导致测速样本永远无法积累到 minimum_speed_session。
-    finish_session(env, true)
+    finish_stale(env, monotonic_ms())
     flush_pending(env)
 end
 
 local function standard_report(input, env)
+    local today = day_id()
+    local recent = day_id(os.time() - (env.speed_history_days - 1) * 86400)
+
     if input == env.triggers.local_total then
-        return "本设备", "设备 " .. env.device_id, 0, env.device_id
+        return "本设备", "设备 " .. env.device_id, nil, nil, env.device_id,
+            recent, today
     elseif input == env.triggers.today then
-        return "今日", "", 1
+        return "今日", "", today, today, nil, today, today
     elseif input == env.triggers.week then
-        return "七日", "", 7
+        local start_day = day_id(os.time() - 6 * 86400)
+        return "七日", "", start_day, today, nil, start_day, today
     elseif input == env.triggers.month then
-        return "卅日", "", 30
+        return "卅日", "", recent, today, nil, recent, today
     elseif input == env.triggers.year then
-        return "本年", "", 365
+        local start_day = day_id(os.time() - 364 * 86400)
+        return "本年", "", start_day, today, nil, start_day, today
     elseif input == env.triggers.total then
-        return "生涯", "", 0
+        return "生涯", "", nil, nil, nil, recent, today
     end
 end
 
 local function history_report(input, env)
     local trigger = env.triggers.history
     if input:sub(1, #trigger) ~= trigger then return nil end
-
     local query = input:sub(#trigger + 1)
     if query == "" then
         return false, "※ 请输入日期或区间 (例: 2026, 202601, 20260101t20260201)", "⌨️"
     end
-
     local sy, sm, sd, ey, em, ed =
         query:match("^(%d%d%d%d)(%d%d)(%d%d)t(%d%d%d%d)(%d%d)(%d%d)$")
     if sy then
         prepare_report(env)
-        return aggregate_period(env, tonumber(sy), tonumber(sm), tonumber(sd),
-            tonumber(ey), tonumber(em), tonumber(ed)),
+        return aggregate_statistics(env, sy .. sm .. sd, ey .. em .. ed),
             "区间", string.format("%s.%s.%s - %s.%s.%s", sy, sm, sd, ey, em, ed),
             "※ 该区间内没有留下打字记录哦"
     end
-
     local y, m, d = query:match("^(%d%d%d%d)(%d%d)(%d%d)$")
     if y then
         prepare_report(env)
-        return aggregate_period(env, tonumber(y), tonumber(m), tonumber(d)),
-            "单日", string.format("%s.%s.%s", y, m, d),
-            "※ 这一天没有留下打字记录哦"
+        local day = y .. m .. d
+        return aggregate_statistics(env, day, day), "单日",
+            string.format("%s.%s.%s", y, m, d), "※ 这一天没有留下打字记录哦"
     end
-
     y, m = query:match("^(%d%d%d%d)(%d%d)$")
     if y then
         prepare_report(env)
-        return aggregate_period(env, tonumber(y), tonumber(m)),
-            "月份", string.format("%s年%s月", y, m),
-            "※ 该月没有留下打字记录哦"
+        return aggregate_statistics(env, y .. m .. "01", y .. m .. "31"),
+            "月份", string.format("%s年%s月", y, m), "※ 该月没有留下打字记录哦"
     end
-
     y = query:match("^(%d%d%d%d)$")
     if y then
         prepare_report(env)
-        return aggregate_period(env, tonumber(y)), "年度",
-            string.format("%s年", y), "※ 该年没有留下打字记录哦"
+        return aggregate_statistics(env, y .. "0101", y .. "1231"),
+            "年度", string.format("%s年", y), "※ 该年没有留下打字记录哦"
     end
-
-    return false, query:find("t", 1, true)
-        and "※ 正在输入区间查询..."
+    return false, query:find("t", 1, true) and "※ 正在输入区间查询..."
         or "※ 正在查询中... 请继续输入完整的年/月/日", "⏳"
 end
 
 local function on_commit(context, env)
     local text = context:get_commit_text()
     if not text or text == "" or text:sub(1, 1) == "/"
-        or text:find("^[※◉🏆📊⚡📈]")
-    then
-        return
-    end
-
-    local chars = chinese_length(text)
-    if chars == 0 then return end
-
+        or text:find("^[※◉🏆📊⚡📈]") then return end
+    local characters = chinese_length(text)
+    if characters == 0 then return end
     local code = context.input or ""
     if code == "" then code = env.last_observed_input or "" end
-
-    local code_length = #code
-    record_stats(env, chars, code_length > 0 and code_length or chars * 2)
+    record_stats(env, characters, #code > 0 and #code or characters * 2)
     try_flush(env)
 end
 
@@ -688,25 +802,41 @@ local function init(env)
     env.schema_name = env.engine.schema.schema_name or "万象方案"
     env.stats_db_name = config:get_string("input_stats/db_name") or "lua/stats"
     if env.stats_db_name == "" then env.stats_db_name = "lua/stats" end
-
     env.device_id = get_device_id(config)
-    env.active_timeout = bounded_int(
-        config, "input_stats/active_timeout", DEFAULT_ACTIVE_TIMEOUT, 2, 60
-    )
-    env.minimum_speed_session = bounded_int(
-        config, "input_stats/minimum_speed_session",
-        DEFAULT_MINIMUM_SPEED_SESSION, 5, 300
-    )
-    env.max_speed_commit_length = bounded_int(
-        config, "input_stats/max_speed_commit_length",
-        DEFAULT_MAX_SPEED_COMMIT_LENGTH, 1, 10000
-    )
-
-    env.pending_stats, env.pending_max = {}, {}
-    env.last_flush_ts, env.titles = os.time(), nil
+    env.continuous_gap_ms = bounded_int(config, "input_stats/continuous_gap_ms",
+        DEFAULT_CONTINUOUS_GAP_MS, 200, 5000)
+    env.average_gap_ms = bounded_int(config, "input_stats/average_gap_ms",
+        DEFAULT_AVERAGE_GAP_MS, env.continuous_gap_ms, 30000)
+    env.minimum_average_session_ms = bounded_int(config,
+        "input_stats/minimum_average_session_ms",
+        DEFAULT_MINIMUM_AVERAGE_SESSION_MS, 500, 10000)
+    env.minimum_average_total_ms = bounded_int(config,
+        "input_stats/minimum_average_total_ms",
+        DEFAULT_MINIMUM_AVERAGE_TOTAL_MS, 3000, 120000)
+    env.minimum_peak_segment_ms = bounded_int(config,
+        "input_stats/minimum_peak_segment_ms",
+        DEFAULT_MINIMUM_PEAK_SEGMENT_MS, 1000, 30000)
+    env.minimum_peak_total_ms = bounded_int(config,
+        "input_stats/minimum_peak_total_ms",
+        DEFAULT_MINIMUM_PEAK_TOTAL_MS, 5000, 120000)
+    env.peak_share_percent = bounded_int(config, "input_stats/peak_share_percent",
+        DEFAULT_PEAK_SHARE_PERCENT, 5, 50)
+    env.peak_bucket_size = bounded_int(config, "input_stats/peak_bucket_size",
+        DEFAULT_PEAK_BUCKET_SIZE, 5, 50)
+    env.max_speed_commit_length = bounded_int(config,
+        "input_stats/max_speed_commit_length",
+        DEFAULT_MAX_SPEED_COMMIT_LENGTH, 1, 10000)
+    env.speed_history_days = bounded_int(config,
+        "input_stats/speed_history_days", 30, 1, 365)
+    env.pending_stats, env.pending_characters = {}, 0
+    env.stats_db_error = nil
+    env.last_flush_ts = os.time()
     env.last_observed_input = ""
-    reset_session(env)
-
+    env.titles = nil
+    env.average_sample = {}
+    env.peak_sample = {}
+    reset_sample(env.average_sample)
+    reset_sample(env.peak_sample)
     env.triggers = {
         local_total=config:get_string("input_stats/triggers/local_total") or "/btj",
         today=config:get_string("input_stats/triggers/today") or "/rtj",
@@ -716,7 +846,7 @@ local function init(env)
         total=config:get_string("input_stats/triggers/total") or "/tj",
         history=config:get_string("input_stats/triggers/history") or "/htj",
     }
-
+    if acquire_db(env) then migrate_database(env) end
     if env.stat_notifier then env.stat_notifier:disconnect() end
     env.stat_notifier = env.engine.context.commit_notifier:connect(
         function(context) on_commit(context, env) end
@@ -724,44 +854,46 @@ local function init(env)
 end
 
 local function fini(env)
-    finish_session(env)
+    finish_peak(env)
+    finish_average(env)
     flush_pending(env)
     env.last_observed_input = ""
-
     if env.stat_notifier then
         env.stat_notifier:disconnect()
         env.stat_notifier = nil
     end
+    env.pending_stats, env.titles = nil, nil
+    env.average_sample, env.peak_sample = nil, nil
     release_db(env)
 end
 
 local function translator(input, seg, env)
     observe_input_activity(env, input)
-
-    local title, subtitle, days, device_id = standard_report(input, env)
+    local title, subtitle, start_day, end_day, device_id,
+        speed_start_day, speed_end_day = standard_report(input, env)
     local data
-
     if title then
         prepare_report(env)
-        data = aggregate_recent(env, days, device_id)
+        data = aggregate_statistics(env, start_day, end_day, device_id,
+            speed_start_day, speed_end_day)
+        if not data and env.stats_db_error then
+            return yield_msg(seg,
+                "※ 统计数据库打开失败", "⚠️")
+        end
     else
         try_flush(env)
         local history, first, second, empty_message = history_report(input, env)
-
-        if history == false then
-            return yield_msg(seg, first, second)
-        elseif history == nil then
-            return
-        end
-
+        if history == false then return yield_msg(seg, first, second) end
+        if history == nil then return end
         data, title, subtitle = history, first, second
+        if not data and env.stats_db_error then
+            return yield_msg(seg,
+                "※ 统计数据库打开失败", "⚠️")
+        end
         if not data then return yield_msg(seg, empty_message) end
     end
-
-    yield(Candidate(
-        "stat", seg.start, seg._end,
-        format_summary(title, subtitle, data, env, device_id), "📊"
-    ))
+    yield(Candidate("stat", seg.start, seg._end,
+        format_summary(title, subtitle, data, env), "📊"))
 end
 
 return {init=init, func=translator, fini=fini}

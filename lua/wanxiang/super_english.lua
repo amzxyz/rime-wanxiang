@@ -931,8 +931,4 @@ function F.func(input, env)
     end
 end
 
-return {
-    T = T,
-    F = F,
-    P = P,
-}
+return {T = T, F = F, P = P}
