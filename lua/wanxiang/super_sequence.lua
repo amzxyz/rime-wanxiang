@@ -1,14 +1,12 @@
 -- 万象拼音 · 手动自由排序
 -- 核心规则：向前移动 = "Control+j"，向后移动 = "Control+k"，重置 = "Control+l"，置顶 = "Control+p"
 --
--- v2 稳定 UserDb 格式：
 -- 1) raw key = 输入编码 + 候选词，同一候选始终使用同一个同步键
 -- 2) c 高位保存候选自己的逻辑版本，低位保存最终位置
 -- 3) d 固定写 0；t 交给 librime，不参与业务排序
 -- 4) 只保存主动操作的候选；普通候选被动让位时不创建记录
 -- 5) 已经手动排序过的候选若再次被挤动，只更新它自己的最终位置
 -- 6) c<0 为重置墓碑；墓碑版本高于旧状态，可通过原生 UserDb 同步传播
--- 7) 旧数据迁移由独立的 migrate_sequence_v4.py 完成，运行时不扫描旧文件
 
 -- ✨ 是给上一层滤镜传递排序上下文信息的代码，不用时便于删除
 local wanxiang = require("wanxiang/wanxiang")
@@ -144,12 +142,8 @@ end
 ------------------------------------------------------------
 -- 四、DB、缓存与旧数据迁移
 ------------------------------------------------------------
-local seq_db = nil
-local seq_db_refs = 0
 local RECORD_CACHE_LIMIT = 128
-local record_cache = {}
-local record_cache_size = 0
-local record_cache_clock = 0
+local DB_POOL = {}
 
 local function resolve_db_name(config)
     local db_name = config and config:get_string("super_sequence/db_name") or nil
@@ -161,73 +155,97 @@ local function resolve_db_name(config)
     return db_name ~= "" and db_name or "lua/sequence"
 end
 
-local function ensure_sequence_db(config)
-    if not seq_db then
-        seq_db = userdb.LevelDb(resolve_db_name(config))
+-- 获取当前组件对应的模块私有共享状态；Filter 不增加数据库引用。
+local function get_sequence_state(env)
+    local db_name = env.sequence_db_name
+        or resolve_db_name(env.engine.schema.config)
+    env.sequence_db_name = db_name
+    return DB_POOL[db_name]
+end
+
+-- Processor 获取数据库引用；同名数据库共用包装器与缓存。
+local function acquire_sequence_db(env, config)
+    if env.sequence_db_attached then
+        local state = get_sequence_state(env)
+        return state and state.db or nil
     end
 
-    if not seq_db:loaded() and not seq_db:open() then
-        seq_db = nil
+    local db_name = resolve_db_name(config)
+    local state = DB_POOL[db_name]
+
+    if not state then
+        local db = userdb.LevelDb(db_name)
+        if not db or not db:loaded() and not db:open() then return nil end
+
+        state = {
+            db = db, refs = 0, cache = {},
+            cache_size = 0, cache_clock = 0,
+        }
+        DB_POOL[db_name] = state
+    elseif not state.db or not state.db:loaded() and not state.db:open() then
+        DB_POOL[db_name] = nil
         return nil
     end
 
-    return seq_db
-end
-
-local function acquire_sequence_db(env, config)
-    if env.sequence_db_attached then return seq_db end
-
-    local db = ensure_sequence_db(config)
-    if not db then return nil end
-
+    state.refs = state.refs + 1
+    env.sequence_db_name = db_name
     env.sequence_db_attached = true
-    seq_db_refs = seq_db_refs + 1
-    return db
+    return state.db
 end
 
+-- Processor 释放数据库引用，并在最后一个使用者退出时关闭。
 local function release_sequence_db(env)
     if not env or not env.sequence_db_attached then return end
 
+    local db_name = env.sequence_db_name
     env.sequence_db_attached = nil
-    seq_db_refs = math.max(0, seq_db_refs - 1)
-    if seq_db_refs > 0 then return end
+    env.sequence_db_name = nil
 
-    record_cache = {}
-    record_cache_size = 0
-    record_cache_clock = 0
+    local state = db_name and DB_POOL[db_name]
+    if not state then return end
 
-    local db = seq_db
-    seq_db = nil
+    state.refs = math.max(0, state.refs - 1)
+    if state.refs > 0 then return end
+
+    DB_POOL[db_name] = nil
+    state.cache = {}
+    state.cache_size = 0
+    state.cache_clock = 0
+
+    local db = state.db
+    state.db = nil
 
     collectgarbage()
     if db and db:loaded() then db:close() end
 end
 
-local function invalidate_input_cache(input)
+local function invalidate_input_cache(state, input)
+    if not state then return end
+
     if input then
-        if record_cache[input] then
-            record_cache[input] = nil
-            record_cache_size = math.max(0, record_cache_size - 1)
+        if state.cache[input] then
+            state.cache[input] = nil
+            state.cache_size = math.max(0, state.cache_size - 1)
         end
     else
-        record_cache = {}
-        record_cache_size = 0
-        record_cache_clock = 0
+        state.cache = {}
+        state.cache_size = 0
+        state.cache_clock = 0
     end
 end
 
-local function touch_cached_entry(cached)
-    record_cache_clock = record_cache_clock + 1
-    cached.last_used = record_cache_clock
+local function touch_cached_entry(state, cached)
+    state.cache_clock = state.cache_clock + 1
+    cached.last_used = state.cache_clock
 end
 
-local function trim_record_cache()
-    if record_cache_size <= RECORD_CACHE_LIMIT then return end
+local function trim_record_cache(state)
+    if state.cache_size <= RECORD_CACHE_LIMIT then return end
 
     local oldest_input = nil
     local oldest_clock = math.huge
 
-    for input, cached in pairs(record_cache) do
+    for input, cached in pairs(state.cache) do
         local last_used = cached.last_used or 0
         if last_used < oldest_clock then
             oldest_input = input
@@ -236,24 +254,24 @@ local function trim_record_cache()
     end
 
     if oldest_input then
-        record_cache[oldest_input] = nil
-        record_cache_size = math.max(0, record_cache_size - 1)
+        state.cache[oldest_input] = nil
+        state.cache_size = math.max(0, state.cache_size - 1)
     end
 end
 
-local function load_input_records(input)
-    if not input or input == "" or not seq_db then return {}, false end
+local function load_input_records(state, input)
+    if not state or not input or input == "" then return {}, false end
 
-    local cached = record_cache[input]
+    local cached = state.cache[input]
     if cached then
-        touch_cached_entry(cached)
+        touch_cached_entry(state, cached)
         return cached.records, cached.has_active
     end
 
     local records = {}
     local has_active = false
     local prefix = input .. RECORD_SEPARATOR
-    local accessor = seq_db:query(prefix)
+    local accessor = state.db:query(prefix)
 
     if accessor then
         for raw_key, tail in accessor:iter() do
@@ -288,20 +306,20 @@ local function load_input_records(input)
         records = records,
         has_active = has_active,
     }
-    touch_cached_entry(cached)
+    touch_cached_entry(state, cached)
 
-    record_cache[input] = cached
-    record_cache_size = record_cache_size + 1
-    trim_record_cache()
+    state.cache[input] = cached
+    state.cache_size = state.cache_size + 1
+    trim_record_cache(state)
 
     return records, has_active
 end
 
-local function update_cached_record(input, item, commits, tick, tail)
-    local cached = record_cache[input]
+local function update_cached_record(state, input, item, commits, tick, tail)
+    local cached = state.cache[input]
     if not cached then return end
 
-    touch_cached_entry(cached)
+    touch_cached_entry(state, cached)
     local version, position, active = decode_state(commits)
 
     cached.records[item] = {
@@ -322,7 +340,7 @@ local function update_cached_record(input, item, commits, tick, tail)
     end
 end
 
-local function write_active_position(input, item, position, records)
+local function write_active_position(state, input, item, position, records)
     local record = records[item]
     local current = record and record.commits or 0
     local tick = record and record.tick or 0
@@ -333,11 +351,11 @@ local function write_active_position(input, item, position, records)
     if not raw_key then return false end
 
     local tail = make_record_tail(commits, tick)
-    if not tail or not seq_db:update(raw_key, tail) then return false end
+    if not tail or not state.db:update(raw_key, tail) then return false end
 
-    update_cached_record(input, item, commits, tick, tail)
-    records[item] = record_cache[input]
-        and record_cache[input].records[item]
+    update_cached_record(state, input, item, commits, tick, tail)
+    records[item] = state.cache[input]
+        and state.cache[input].records[item]
         or {
             commits = commits,
             tick = tick,
@@ -350,7 +368,7 @@ local function write_active_position(input, item, position, records)
     return true
 end
 
-local function write_reset_tombstone(input, item, records)
+local function write_reset_tombstone(state, input, item, records)
     local record = records[item]
     if not record or not record.active then return true end
 
@@ -360,11 +378,11 @@ local function write_reset_tombstone(input, item, records)
     if not raw_key then return false end
 
     local tail = make_record_tail(commits, record.tick)
-    if not tail or not seq_db:update(raw_key, tail) then return false end
+    if not tail or not state.db:update(raw_key, tail) then return false end
 
-    update_cached_record(input, item, commits, record.tick, tail)
-    records[item] = record_cache[input]
-        and record_cache[input].records[item]
+    update_cached_record(state, input, item, commits, record.tick, tail)
+    records[item] = state.cache[input]
+        and state.cache[input].records[item]
         or {
             commits = commits,
             tick = record.tick,
@@ -505,9 +523,9 @@ local function apply_saved_positions(entries, records)
     return slots
 end
 
-local function persist_entry_position(input, entry, position, records)
+local function persist_entry_position(state, input, entry, position, records)
     if position == entry.raw_position then
-        return write_reset_tombstone(input, entry.sort_key, records)
+        return write_reset_tombstone(state, input, entry.sort_key, records)
     end
 
     local record = records[entry.sort_key]
@@ -516,10 +534,10 @@ local function persist_entry_position(input, entry, position, records)
         return true
     end
 
-    return write_active_position(input, entry.sort_key, position, records)
+    return write_active_position(state, input, entry.sort_key, position, records)
 end
 
-local function apply_current_adjustment(input, entries, records)
+local function apply_current_adjustment(state, input, entries, records)
     if not curr_state.has_adjustment() or not curr_state.dirty then return end
 
     local from_position
@@ -576,11 +594,12 @@ local function apply_current_adjustment(input, entries, records)
 
     if curr_state.is_reset_mode() then
         -- 重置只删除当前候选的手动状态。
-        write_reset_tombstone(input, selected_key, records)
+        write_reset_tombstone(state, input, selected_key, records)
     elseif curr_state.is_pin_mode() or moved then
         -- 主动操作的候选必须保存；置顶即使当前已经在第一位，也要
         -- 保存“保持第一位”的明确意图。
         persist_entry_position(
+            state,
             input,
             selected,
             to_position,
@@ -596,6 +615,7 @@ local function apply_current_adjustment(input, entries, records)
 
             if key ~= selected_key and active_before[key] then
                 persist_entry_position(
+                    state,
                     input,
                     entry,
                     position,
@@ -735,7 +755,7 @@ function P.func(key_event, env)
     end
 
     -- 排序动作前刷新当前编码缓存，确保读取到最近一次原生同步结果。
-    invalidate_input_cache(adjust_code)
+    invalidate_input_cache(get_sequence_state(env), adjust_code)
     curr_state.dirty = true
     process_adjustment(context)
     return wanxiang.RIME_PROCESS_RESULTS.kAccepted
@@ -755,6 +775,7 @@ function F.init(env)
 
     env.symbol = string.sub(symbol, 1, 1)
     env.page_size = config and config:get_int("menu/page_size") or 5
+    env.sequence_db_name = resolve_db_name(config)
 end
 
 local function extract_adjustment_code(context)
@@ -808,7 +829,10 @@ function F.func(input, env)
     local adjust_code = extract_adjustment_code(context)
     if not adjust_code or adjust_code == "" then return original_list() end
 
-    local records, has_active = load_input_records(adjust_code)
+    local state = get_sequence_state(env)
+    if not state then return original_list() end
+
+    local records, has_active = load_input_records(state, adjust_code)
     local has_current_action =
         curr_state.has_adjustment() and curr_state.dirty
 
@@ -858,7 +882,7 @@ function F.func(input, env)
     end
 
     local ordered = apply_saved_positions(entries, records)
-    apply_current_adjustment(adjust_code, ordered, records)
+    apply_current_adjustment(state, adjust_code, ordered, records)
 
     local bottom_count = 0
 

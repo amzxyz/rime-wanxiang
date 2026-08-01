@@ -2,12 +2,8 @@
 -- input_stats.lua：分设备统计 / 最近速度 / 峰速格式去重 / 历史查询
 local userdb = require("wanxiang/userdb")
 local wanxiang = require("wanxiang/wanxiang")
-local DB_POOL_NAME = "__wanxiang_input_stats_db_pool"
-local DB_POOL = rawget(_G, DB_POOL_NAME)
-if not DB_POOL then
-    DB_POOL = {}
-    rawset(_G, DB_POOL_NAME, DB_POOL)
-end
+-- 模块私有数据库池：同名数据库共享包装器和生命周期。
+local DB_POOL = {}
 
 local SOFTWARE_NAME = rime_api.get_distribution_code_name()
 local RECORD_SEPARATOR = " \t"
@@ -105,7 +101,7 @@ local function acquire_db(env)
     end
 
     entry.refs = entry.refs + 1
-    env.stats_db, env.stats_db_entry = entry.db, entry
+    env.stats_db = entry.db
     env.stats_db_error = nil
     return entry.db
 end
@@ -115,21 +111,25 @@ local function get_db(env)
 end
 
 local function release_db(env)
-    local entry = env.stats_db_entry
-    env.stats_db, env.stats_db_entry = nil, nil
-    if not entry then return end
+    local db = env.stats_db
+    local db_name = env.stats_db_name
+    env.stats_db = nil
+
+    if not db or not db_name then return end
+
+    local entry = DB_POOL[db_name]
+    if not entry or entry.db ~= db then return end
 
     entry.refs = math.max(0, entry.refs - 1)
     if entry.refs > 0 then return end
+
+    DB_POOL[db_name] = nil
 
     -- DbAccessor 没有显式析构接口。所有局部访问器先置空，再执行一次
     -- 完整垃圾回收，确保其先于所引用的 LevelDb 释放。
     collectgarbage()
 
-    if DB_POOL[env.stats_db_name] == entry then
-        DB_POOL[env.stats_db_name] = nil
-    end
-    if entry.db and entry.db:loaded() then entry.db:close() end
+    if db:loaded() then db:close() end
     entry.db = nil
 end
 

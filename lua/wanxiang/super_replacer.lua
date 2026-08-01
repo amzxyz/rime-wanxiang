@@ -22,8 +22,8 @@ local tonumber = tonumber
 local DB_FORMAT_VERSION = "1"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
 local FILE_KEYS = {"files", "file"}
-local db_instances = {}
-local db_refs = {}
+-- 模块私有数据库池：同名数据库共享包装器和生命周期。
+local DB_POOL = {}
 local file_signature_cache = {}
 local RECORD_SEPARATOR = " \t"
 local RECORD_TAIL = "c=0 d=0 t=0"
@@ -512,11 +512,6 @@ local function rebuild(tasks, db)
     return true
 end
 
--- 增加共享数据库的组件引用。
-local function retain_db(db_name)
-    db_refs[db_name] = (db_refs[db_name] or 0) + 1
-end
-
 -- 检查数据库表头是否与当前联合数据一致。
 local function database_matches(
     db, current_version, delimiter,
@@ -570,15 +565,14 @@ local function connect_db(
     db_name, current_version, delimiter, tasks,
     union_sig, scheme_sigs, env_fmm_cache
 )
-    local cached = db_instances[db_name]
-    if cached then
-        if cached:loaded() then
-            retain_db(db_name)
-            return cached, false
+    local entry = DB_POOL[db_name]
+    if entry then
+        if entry.db and entry.db:loaded() then
+            entry.refs = entry.refs + 1
+            return entry.db, false
         end
 
-        db_instances[db_name] = nil
-        db_refs[db_name] = nil
+        DB_POOL[db_name] = nil
     end
 
     local db = userdb.LevelDb(db_name)
@@ -591,8 +585,7 @@ local function connect_db(
             db, current_version, delimiter,
             files_sig, union_sig, scheme_sigs
         ) then
-            db_instances[db_name] = db
-            retain_db(db_name)
+            DB_POOL[db_name] = {db = db, refs = 1}
             return db, false
         end
 
@@ -631,8 +624,7 @@ local function connect_db(
 
     if not db:open_read_only() then return nil end
 
-    db_instances[db_name] = db
-    retain_db(db_name)
+    DB_POOL[db_name] = {db = db, refs = 1}
     return db, true
 end
 -- 释放当前组件引用，并在最后一个使用者退出时关闭数据库。
@@ -645,17 +637,17 @@ local function release_db(env)
 
     if not db or not db_name then return end
 
-    local refs = (db_refs[db_name] or 1) - 1
-    if refs > 0 then
-        db_refs[db_name] = refs
-        return
-    end
+    local entry = DB_POOL[db_name]
+    if not entry or entry.db ~= db then return end
 
-    db_refs[db_name] = nil
-    if db_instances[db_name] == db then db_instances[db_name] = nil end
+    entry.refs = entry.refs - 1
+    if entry.refs > 0 then return end
 
+    DB_POOL[db_name] = nil
     collectgarbage()
+
     if db:loaded() then db:close() end
+    entry.db = nil
 end
 
 -- 当前输入生命周期内缓存“两字前缀桶”；匹配结论仍按每个新起点重新判断。

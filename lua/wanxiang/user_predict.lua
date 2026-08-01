@@ -250,13 +250,8 @@ local function split_predict_line(line)
     return code, word, tail
 end
 
-local DB_POOL_NAME = "__wanxiang_user_predict_db_pool"
-local DB_POOL = rawget(_G, DB_POOL_NAME)
-
-if not DB_POOL then
-    DB_POOL = {}
-    rawset(_G, DB_POOL_NAME, DB_POOL)
-end
+-- 模块私有数据库池：同名数据库共享包装器和生命周期。
+local DB_POOL = {}
 
 -- 获取并引用当前方案共用的预测数据库。
 local function get_db(env)
@@ -266,42 +261,45 @@ local function get_db(env)
     local db_name = config:get_string("user_predict/db_name") or "lua/predict"
     local entry = DB_POOL[db_name]
 
-    if not entry then
+    if entry then
+        if not entry.db or not entry.db:loaded() and not entry.db:open() then
+            DB_POOL[db_name] = nil
+            return nil
+        end
+    else
         local db = userdb.LevelDb(db_name)
         if not db or not db:loaded() and not db:open() then return nil end
 
-        entry = {db=db, refs=0}
+        entry = {db = db, refs = 0}
         DB_POOL[db_name] = entry
-    elseif not entry.db or not entry.db:loaded() and not entry.db:open() then
-        DB_POOL[db_name] = nil
-        return nil
     end
 
     entry.refs = entry.refs + 1
     env.predict_db = entry.db
-    env.predict_db_entry = entry
     env.predict_db_name = db_name
     return entry.db
 end
 
 -- 释放当前组件的数据库引用并在最后关闭数据库。
 local function release_db(env)
-    local entry = env.predict_db_entry
+    local db = env.predict_db
     local db_name = env.predict_db_name
 
     env.predict_db = nil
-    env.predict_db_entry = nil
     env.predict_db_name = nil
 
-    if not entry then return end
+    if not db or not db_name then return end
+
+    local entry = DB_POOL[db_name]
+    if not entry or entry.db ~= db then return end
 
     entry.refs = math_max(0, entry.refs - 1)
     if entry.refs > 0 then return end
 
+    DB_POOL[db_name] = nil
     collectgarbage()
 
-    if DB_POOL[db_name] == entry then DB_POOL[db_name] = nil end
-    if entry.db and entry.db:loaded() then entry.db:close() end
+    if db:loaded() then db:close() end
     entry.db = nil
 end
 
