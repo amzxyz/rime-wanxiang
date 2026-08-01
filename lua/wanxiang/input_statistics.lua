@@ -18,11 +18,8 @@ local DEFAULT_CONTINUOUS_GAP_MS = 1000
 local DEFAULT_AVERAGE_GAP_MS = 5000
 local DEFAULT_MINIMUM_AVERAGE_SESSION_MS = 1000
 local DEFAULT_MINIMUM_AVERAGE_TOTAL_MS = 15000
-local DEFAULT_MINIMUM_PEAK_SEGMENT_MS = 3000
-local DEFAULT_MINIMUM_PEAK_TOTAL_MS = 15000
-local DEFAULT_PEAK_SHARE_PERCENT = 20
-local DEFAULT_PEAK_BUCKET_SIZE = 10
-local DEFAULT_MAX_SPEED_COMMIT_LENGTH = 30
+local PEAK_WINDOW_MS = 10000
+local DEFAULT_MAX_SPEED_COMMIT_LENGTH = 10
 local STATISTICS_PREFIX = "statistics/"
 local DAY_PREFIX = STATISTICS_PREFIX .. "day/"
 local MIGRATION_KEY = "metadata/readable_statistics_migrated"
@@ -314,26 +311,19 @@ local function finish_average(env)
     return true
 end
 
-local function peak_bucket(env, characters, milliseconds)
-    local speed = characters * 60000 / milliseconds
-    local bucket = math.floor(speed / env.peak_bucket_size) * env.peak_bucket_size
-    return math.max(0, math.min(2000, bucket))
+local function peak_speed(characters, milliseconds)
+    return math.max(0, math.min(2000,
+        math.floor(characters * 60000 / milliseconds + 0.5)))
 end
 
 local function finish_peak(env)
     local day, characters, milliseconds = sample_values(
-        env.peak_sample, env.minimum_peak_segment_ms
+        env.peak_sample, PEAK_WINDOW_MS
     )
     reset_sample(env.peak_sample)
     if not day then return false end
-    local bucket = peak_bucket(env, characters, milliseconds)
-    local prefix = string.format(
-        "%s%s/speed_peak/characters_per_minute_%04d/",
-        DAY_PREFIX, day, bucket
-    )
-    pending_add(env, prefix .. "characters", characters)
-    pending_add(env, prefix .. "milliseconds", milliseconds)
-    pending_add(env, prefix .. "samples", 1)
+    pending_add(env, string.format("%s%s/speed_peak_window_10s/%04d",
+        DAY_PREFIX, day, peak_speed(characters, milliseconds)), 1)
     return true
 end
 
@@ -391,10 +381,19 @@ local function commit_to_speed(env, day, timestamp_ms, characters)
     peak.last_activity = timestamp_ms
     peak.last_commit = timestamp_ms
     peak.characters = peak.characters + characters
+    if peak.last_commit - peak.started >= PEAK_WINDOW_MS then finish_peak(env) end
     env.last_observed_input = ""
 end
 
-local function record_stats(env, characters, code_length)
+local function is_valid_speed_commit(env, characters, code_length)
+    if code_length <= 0 or characters > env.max_speed_commit_length then
+        return false
+    end
+
+    return characters <= math.max(4, code_length * 2)
+end
+
+local function record_stats(env, characters, code_length, speed_code_length)
     local timestamp_ms = monotonic_ms()
     local day = day_id()
     local prefix = DAY_PREFIX .. day .. "/"
@@ -408,7 +407,7 @@ local function record_stats(env, characters, code_length)
         or characters == 4 and "commit_length/4"
         or "commit_length/5_plus"
     pending_add(env, prefix .. field, 1)
-    if characters <= env.max_speed_commit_length then
+    if is_valid_speed_commit(env, characters, speed_code_length) then
         commit_to_speed(env, day, timestamp_ms, characters)
     else
         finish_peak(env)
@@ -421,47 +420,21 @@ local function in_day_range(day, start_day, end_day)
     return (not start_day or day >= start_day) and (not end_day or day <= end_day)
 end
 
-local function peak_group(groups, bucket)
-    local group = groups[bucket]
-    if not group then
-        group = {characters=0, milliseconds=0, samples=0}
-        groups[bucket] = group
-    end
-    return group
-end
-
-local function merge_peak_groups(target, source)
-    for bucket, group in pairs(source) do
-        local merged = peak_group(target, bucket)
-        merged.characters = merged.characters + group.characters
-        merged.milliseconds = merged.milliseconds + group.milliseconds
-        merged.samples = merged.samples + group.samples
-    end
-end
-
-local function calculate_peak(env, groups)
-    local total_ms, buckets = 0, {}
-    for bucket, group in pairs(groups) do
-        if group.characters > 0 and group.milliseconds > 0 then
-            total_ms = total_ms + group.milliseconds
-            buckets[#buckets + 1] = bucket
+local function calculate_peak(peaks)
+    local speeds, samples = {}, 0
+    for speed, count in pairs(peaks) do
+        if count > 0 then
+            speeds[#speeds + 1] = speed
+            samples = samples + count
         end
     end
-    if total_ms < env.minimum_peak_total_ms then return nil end
-    table.sort(buckets, function(a, b) return a > b end)
-    local target_ms = math.floor(total_ms * env.peak_share_percent / 100)
-    target_ms = math.min(total_ms, math.max(env.minimum_peak_total_ms, target_ms))
-    local characters, milliseconds, remaining = 0, 0, target_ms
-    for _, bucket in ipairs(buckets) do
-        if remaining <= 0 then break end
-        local group = groups[bucket]
-        local used = math.min(remaining, group.milliseconds)
-        characters = characters + group.characters * used / group.milliseconds
-        milliseconds = milliseconds + used
-        remaining = remaining - used
+    if samples == 0 then return nil end
+    table.sort(speeds, function(a, b) return a > b end)
+    local rank = samples == 1 and 1 or 2
+    for _, speed in ipairs(speeds) do
+        rank = rank - peaks[speed]
+        if rank <= 0 then return speed end
     end
-    return milliseconds > 0
-        and math.floor(characters * 60000 / milliseconds + 0.5) or nil
 end
 
 local function aggregate_statistics(env, start_day, end_day, device_id,
@@ -471,7 +444,6 @@ local function aggregate_statistics(env, start_day, end_day, device_id,
     local db = get_db(env)
     if not db or not db:loaded() then return nil end
     local stats, peaks = new_stats(), {}
-    local readable_peaks, legacy_peaks = {}, {}
 
     scan_prefix(db, STATISTICS_PREFIX, device_id,
         function(key, record_device, value)
@@ -499,43 +471,13 @@ local function aggregate_statistics(env, start_day, end_day, device_id,
         elseif average_field == "sessions" then
             stats.average_sessions = stats.average_sessions + value
         else
-            local bucket, peak_field = field:match(
-                "^speed_peak/characters_per_minute_(%d%d%d%d)/([^/]+)$"
-            )
-            local readable = bucket ~= nil
-
-            if not bucket then
-                bucket, peak_field = field:match(
-                    "^speed_peak/(%d%d%d%d)/([^/]+)$"
-                )
-            end
-
-            if bucket and (peak_field == "characters"
-                or peak_field == "milliseconds" or peak_field == "samples")
-            then
-                local source = readable and readable_peaks or legacy_peaks
-                local sample_key = record_device .. "/" .. day
-                local groups = source[sample_key]
-
-                if not groups then
-                    groups = {}
-                    source[sample_key] = groups
-                end
-
-                local group = peak_group(groups, tonumber(bucket))
-                group[peak_field] = group[peak_field] + value
+            local speed = field:match("^speed_peak_window_10s/(%d%d%d%d)$")
+            if speed then
+                speed = tonumber(speed)
+                peaks[speed] = (peaks[speed] or 0) + value
             end
         end
     end)
-
-    for sample_key, groups in pairs(legacy_peaks) do
-        if not readable_peaks[sample_key] then
-            merge_peak_groups(peaks, groups)
-        end
-    end
-    for _, groups in pairs(readable_peaks) do
-        merge_peak_groups(peaks, groups)
-    end
     local day, characters, milliseconds = sample_values(
         env.average_sample, env.minimum_average_session_ms
     )
@@ -546,23 +488,19 @@ local function aggregate_statistics(env, start_day, end_day, device_id,
         stats.average_milliseconds = stats.average_milliseconds + milliseconds
         stats.average_sessions = stats.average_sessions + 1
     end
-    day, characters, milliseconds = sample_values(
-        env.peak_sample, env.minimum_peak_segment_ms
-    )
+    day, characters, milliseconds = sample_values(env.peak_sample, PEAK_WINDOW_MS)
     if day and in_day_range(day, speed_start_day, speed_end_day)
         and (not device_id or device_id == env.device_id)
     then
-        local group = peak_group(peaks, peak_bucket(env, characters, milliseconds))
-        group.characters = group.characters + characters
-        group.milliseconds = group.milliseconds + milliseconds
-        group.samples = group.samples + 1
+        local speed = peak_speed(characters, milliseconds)
+        peaks[speed] = (peaks[speed] or 0) + 1
     end
     if stats.average_milliseconds < env.minimum_average_total_ms then
         stats.average_characters = 0
         stats.average_milliseconds = 0
         stats.average_sessions = 0
     end
-    stats.peak_speed = calculate_peak(env, peaks)
+    stats.peak_speed = calculate_peak(peaks)
     return stats.commits > 0 and stats or nil
 end
 
@@ -602,6 +540,8 @@ local function migrate_database(env)
         if key:match("^statistics/day/%d%d%d%d%d%d%d%d/speed/[^/]+$")
             or key:match("^statistics/day/%d%d%d%d%d%d%d%d/average_speed/[^/]+$")
             or key:match("^statistics/day/%d%d%d%d%d%d%d%d/peak_speed/[^/]+$")
+            or key:match("^statistics/day/%d%d%d%d%d%d%d%d/speed_peak/")
+            or key:match("^statistics/day/%d%d%d%d%d%d%d%d/speed_peak_window/")
             or key:match("^statistics/hour/") then
             obsolete[#obsolete + 1] = raw_key
         end
@@ -789,7 +729,9 @@ local function on_commit(context, env)
     if characters == 0 then return end
     local code = context.input or ""
     if code == "" then code = env.last_observed_input or "" end
-    record_stats(env, characters, #code > 0 and #code or characters * 2)
+    local code_length = #code
+    record_stats(env, characters,
+        code_length > 0 and code_length or characters * 2, code_length)
     try_flush(env)
 end
 
@@ -813,19 +755,9 @@ local function init(env)
     env.minimum_average_total_ms = bounded_int(config,
         "input_stats/minimum_average_total_ms",
         DEFAULT_MINIMUM_AVERAGE_TOTAL_MS, 3000, 120000)
-    env.minimum_peak_segment_ms = bounded_int(config,
-        "input_stats/minimum_peak_segment_ms",
-        DEFAULT_MINIMUM_PEAK_SEGMENT_MS, 1000, 30000)
-    env.minimum_peak_total_ms = bounded_int(config,
-        "input_stats/minimum_peak_total_ms",
-        DEFAULT_MINIMUM_PEAK_TOTAL_MS, 5000, 120000)
-    env.peak_share_percent = bounded_int(config, "input_stats/peak_share_percent",
-        DEFAULT_PEAK_SHARE_PERCENT, 5, 50)
-    env.peak_bucket_size = bounded_int(config, "input_stats/peak_bucket_size",
-        DEFAULT_PEAK_BUCKET_SIZE, 5, 50)
     env.max_speed_commit_length = bounded_int(config,
         "input_stats/max_speed_commit_length",
-        DEFAULT_MAX_SPEED_COMMIT_LENGTH, 1, 10000)
+        DEFAULT_MAX_SPEED_COMMIT_LENGTH, 1, 10)
     env.speed_history_days = bounded_int(config,
         "input_stats/speed_history_days", 30, 1, 365)
     env.pending_stats, env.pending_characters = {}, 0
