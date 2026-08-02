@@ -16,6 +16,8 @@ sudo apt install fcitx5-rime fcitx5 librime-plugin-lua librime1 librime-bin libr
 ```
 *(注：安装完成后，请继续执行下方的 第 2 步 下载并手动解压万象方案。)*
 
+*(注：另需特别注意，debian系列的软件包从在陈旧性问题，debian12以上、ubuntu24以上才能使用librime-lua这个插件，或自行编译修改。)*
+
 #### 📦 发行版 B：Arch Linux (AUR / ArchCN 仓库一键安装)
 
 如果您是 Arch 用户并启用了 **[Arch Linux CN 仓库](https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/)**，您可以直接通过包管理器一键安装万象方案，免去手动解压的烦恼。
