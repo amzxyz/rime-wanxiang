@@ -226,7 +226,6 @@ speller:
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/›
   delimiter: " '"  # 系统配置，第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
-  tone_isolate: true  # super_preedit.lua配置：是否将数字声调从转换后拼音中隔离出来（true=隔离， false 直接参与转换）例如：nǐ3
   algebra:
     __patch:
       #- 模糊音             #模糊音选择性开启
@@ -358,10 +357,12 @@ navigator:
     Shift+Left: left_by_syllable
     Shift+Right: right_by_syllable
 
-
-super_comment:  # 超级注释模块，子项配置 true 开启，false 关闭
+#super_comment_preedit.lua配置：
+super_comment:
   candidate_length: 2  # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
   corrector_type: "〔comment〕"  # 随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
+  tone_isolate: true  # 是否将数字声调从转换后拼音中隔离出来（true=隔离， false 直接参与转换）例如：nǐ3
+  convert_abbrev_preedit: false  #单音节简码是否转换为全拼读音
   cand_type:
     user_phrase: ""  # 自造词和用户词，通过``引导造词的和无感造词的结果都会展示这一标记
     sentence: ""  # 造句结果，展示这一标记说明词库中没有对应内容

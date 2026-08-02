@@ -372,6 +372,8 @@ navigator:
 super_comment:  # 超级注释模块，子项配置 true 开启，false 关闭
   candidate_length: 1  # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
   corrector_type: "〔comment〕"  # 随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
+  tone_isolate: true  # 是否将数字声调从转换后拼音中隔离出来（true=隔离， false 直接参与转换）例如：nǐ3
+  convert_abbrev_preedit: false  #单音节简码是否转换为全拼读音
   cand_type:
     user_phrase: "⁺"
     sentence: ""
