@@ -1,5 +1,30 @@
 # Changelog
 
+## [17.1.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.0.3...v17.1.0) (2026-08-03)
+
+
+### ✨ 新特性
+
+* 超级注释新增单音节简码是否转换preedit的设置，并优化preedit代码可读性 ([fdda7af](https://github.com/amzxyz/rime-wanxiang/commit/fdda7afb218e9643f695ada5ec337ec03762751b))
+
+
+### 📚 词库更新
+
+* 词库调整 ([6643577](https://github.com/amzxyz/rime-wanxiang/commit/66435779d2a4f3a68e3ff83144fd10af13735b47))
+
+
+### 🐛 Bug 修复
+
+* super_replacer的热路径性能应该是抠到了极致 ([53baa6f](https://github.com/amzxyz/rime-wanxiang/commit/53baa6ff84ae99d2807a3290a23cecae4bea79f2))
+* 若干脚本整体优化性能和执行效率 ([e1b1514](https://github.com/amzxyz/rime-wanxiang/commit/e1b1514d5bc17c8d489042a82a062410301bf08c))
+* 补齐了遗漏的一些配置 ([f9e924d](https://github.com/amzxyz/rime-wanxiang/commit/f9e924d1a83f435c244029767cc8f667cd8061f8))
+* 超级替换合并为单一缓存表 ([5db3c99](https://github.com/amzxyz/rime-wanxiang/commit/5db3c99221c83bc595bc2ab1ebe74f03eb5075f7))
+
+
+### 🏡 杂项
+
+* 更新文档 ([e1cd878](https://github.com/amzxyz/rime-wanxiang/commit/e1cd87802f7dedc1311b98d3310a9624e7895629))
+
 ## [17.0.3](https://github.com/amzxyz/rime-wanxiang/compare/v17.0.2...v17.0.3) (2026-08-01)
 
 
