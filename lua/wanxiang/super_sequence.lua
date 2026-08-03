@@ -11,6 +11,7 @@
 -- ✨ 是给上一层滤镜传递排序上下文信息的代码，不用时便于删除
 local wanxiang = require("wanxiang/wanxiang")
 local userdb   = require("wanxiang/userdb")
+local byte     = string.byte
 
 ------------------------------------------------------------
 -- 一、常量与键位
@@ -43,6 +44,23 @@ local function clone_candidate(c)
     local nc = Candidate(c.type, c.start, c._end, c.text, c.comment or "")
     nc.preedit = c.preedit
     return nc
+end
+
+local function clear_array(t)
+    for i = #t, 1, -1 do t[i] = nil end
+end
+
+local function yield_original_list(input, has_symbol, cache_limit, page_cache)
+    local top_count = 0
+
+    for candidate in input:iter() do
+        if not has_symbol and top_count < cache_limit then
+            page_cache[#page_cache + 1] = clone_candidate(candidate)
+            top_count = top_count + 1
+        end
+
+        yield(candidate)
+    end
 end
 
 ------------------------------------------------------------
@@ -89,18 +107,6 @@ end
 local function make_raw_key(input, item)
     if not input or input == "" or not item or item == "" then return nil end
     return input .. RECORD_SEPARATOR .. item
-end
-
-local function parse_raw_key(raw_key)
-    if type(raw_key) ~= "string" then return nil, nil end
-
-    local split_pos = raw_key:find(RECORD_SEPARATOR, 1, true)
-    if not split_pos then return nil, nil end
-
-    local input = raw_key:sub(1, split_pos - 1)
-    local item = raw_key:sub(split_pos + #RECORD_SEPARATOR)
-    if input == "" or item == "" then return nil, nil end
-    return input, item
 end
 
 local function decode_state(commits)
@@ -271,14 +277,14 @@ local function load_input_records(state, input)
     local records = {}
     local has_active = false
     local prefix = input .. RECORD_SEPARATOR
+    local prefix_len = #prefix
     local accessor = state.db:query(prefix)
 
     if accessor then
         for raw_key, tail in accessor:iter() do
-            if raw_key:sub(1, #prefix) ~= prefix then break end
+            if raw_key:find(prefix, 1, true) ~= 1 then break end
 
-            local record_input, item = parse_raw_key(raw_key)
-            if record_input ~= input then break end
+            local item = raw_key:sub(prefix_len + 1)
 
             -- 旧格式 value 会以 i=... 开头；它已经迁移并写成墓碑，
             -- 不再进入新的候选位置表。
@@ -478,7 +484,7 @@ local function apply_saved_positions(entries, records)
         if a.position ~= b.position then return a.position < b.position end
         if a.version ~= b.version then return a.version > b.version end
         if a.magnitude ~= b.magnitude then return a.magnitude > b.magnitude end
-        return tostring(a.entry.sort_key) < tostring(b.entry.sort_key)
+        return a.entry.sort_key < b.entry.sort_key
     end)
 
     local function find_free_slot(target)
@@ -665,9 +671,10 @@ local function process_adjustment(context)
 end
 
 local function is_single_lowercase_letter(text)
-    return type(text) == "string"
-        and #text == 1
-        and text:match("^[a-z]$") ~= nil
+    if type(text) ~= "string" or #text ~= 1 then return false end
+
+    local code = byte(text, 1)
+    return code >= 97 and code <= 122
 end
 
 function P.func(key_event, env)
@@ -715,21 +722,17 @@ function P.func(key_event, env)
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
-    local function get_adjust_code()
-        if wanxiang.is_function_mode_active(context) then
-            local value = seq_property.get(context)
-            if value and value ~= "" then return value end
-            return nil
-        end
+    local is_function_mode = wanxiang.is_function_mode_active(context)
+    local adjust_code
 
-        return context.input:sub(1, context.caret_pos)
+    if is_function_mode then
+        local value = seq_property.get(context)
+        if value and value ~= "" then adjust_code = value end
+    else
+        adjust_code = context.input:sub(1, context.caret_pos)
     end
 
-    local adjust_code = get_adjust_code()
-
-    if not wanxiang.is_function_mode_active(context)
-        and is_single_lowercase_letter(adjust_code)
-    then
+    if not is_function_mode and is_single_lowercase_letter(adjust_code) then
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
@@ -778,8 +781,8 @@ function F.init(env)
     env.sequence_db_name = resolve_db_name(config)
 end
 
-local function extract_adjustment_code(context)
-    if wanxiang.is_function_mode_active(context) then
+local function extract_adjustment_code(context, is_function_mode)
+    if is_function_mode then
         local code = seq_property.get(context)
         if code and code ~= "" then return code end
         return nil
@@ -790,91 +793,75 @@ end
 
 function F.func(input, env)
     -- ✨ 宣告：排序脚本活着，包裹脚本不要自行处理。
-    _G.WanxiangSharedState.sorter_active = true
+    local shared = _G.WanxiangSharedState
+    shared.sorter_active = true
 
     local context = env.engine.context
     local code = context.input
     local symbol = env.symbol or "\\"
     local has_symbol = code
         and string.find(code, symbol, 1, true) ~= nil
+    local page_cache = shared.page_cache
 
     if not has_symbol then
-        _G.WanxiangSharedState.last_input = code
-        _G.WanxiangSharedState.page_cache = {}
+        shared.last_input = code
+        clear_array(page_cache)
     end
 
     local cache_limit = (env.page_size or 5) * 2
-
-    local function original_list()
-        local top_count = 0
-
-        for candidate in input:iter() do
-            if not has_symbol and top_count < cache_limit then
-                _G.WanxiangSharedState.page_cache[#_G.WanxiangSharedState.page_cache + 1] =
-                    clone_candidate(candidate)
-                top_count = top_count + 1
-            end
-
-            yield(candidate)
-        end
-    end
-
+    local is_function_mode = wanxiang.is_function_mode_active(context)
     local adjustment_allowed = not (
-        wanxiang.is_function_mode_active(context)
-        and seq_property.get(context) == nil
+        is_function_mode and seq_property.get(context) == nil
     )
 
-    if not adjustment_allowed then return original_list() end
+    if not adjustment_allowed then
+        return yield_original_list(input, has_symbol, cache_limit, page_cache)
+    end
 
-    local adjust_code = extract_adjustment_code(context)
-    if not adjust_code or adjust_code == "" then return original_list() end
+    local adjust_code = extract_adjustment_code(context, is_function_mode)
+    if not adjust_code or adjust_code == "" then
+        return yield_original_list(input, has_symbol, cache_limit, page_cache)
+    end
 
     local state = get_sequence_state(env)
-    if not state then return original_list() end
+    if not state then
+        return yield_original_list(input, has_symbol, cache_limit, page_cache)
+    end
 
     local records, has_active = load_input_records(state, adjust_code)
     local has_current_action =
         curr_state.has_adjustment() and curr_state.dirty
 
     if not has_active and not has_current_action then
-        return original_list()
+        return yield_original_list(input, has_symbol, cache_limit, page_cache)
     end
 
     local entries = {}
     local seen = {}
-    local is_function_mode = wanxiang.is_function_mode_active(context)
     local show_markers = context:get_option("_seq_show_markers")
     local iterator, iterator_state, iterator_control = input:iter()
-
-    local function next_candidate()
-        local candidate = iterator(iterator_state, iterator_control)
-        iterator_control = candidate
-        return candidate
-    end
-
     local raw_position = 0
     local scanned = 0
 
     while scanned < MAX_SORT_CANDIDATES do
-        local candidate = next_candidate()
+        local candidate = iterator(iterator_state, iterator_control)
+        iterator_control = candidate
         if not candidate then break end
 
         scanned = scanned + 1
 
-        local phrase =
-            candidate.text:match("^%s*(.-)%s*$")
-            or candidate.text
+        local text = candidate.text
 
-        if not seen[phrase] then
-            seen[phrase] = true
+        if not seen[text] then
+            seen[text] = true
             raw_position = raw_position + 1
 
             entries[#entries + 1] = {
                 cand = candidate,
-                phrase = phrase,
+                phrase = text,
                 sort_key = is_function_mode
                     and tostring(raw_position - 1)
-                    or phrase,
+                    or text,
                 raw_position = raw_position,
                 final_position = raw_position,
             }
@@ -910,9 +897,7 @@ function F.func(input, env)
         end
 
         if not has_symbol and bottom_count < cache_limit then
-            _G.WanxiangSharedState.page_cache[
-                #_G.WanxiangSharedState.page_cache + 1
-            ] = clone_candidate(candidate)
+            page_cache[#page_cache + 1] = clone_candidate(candidate)
             bottom_count = bottom_count + 1
         end
 
@@ -921,20 +906,17 @@ function F.func(input, env)
 
     -- 第 501 个及之后的候选不参与排序，保持上游顺序继续惰性透传。
     while true do
-        local candidate = next_candidate()
+        local candidate = iterator(iterator_state, iterator_control)
+        iterator_control = candidate
         if not candidate then break end
 
-        local phrase =
-            candidate.text:match("^%s*(.-)%s*$")
-            or candidate.text
+        local text = candidate.text
 
-        if not seen[phrase] then
-            seen[phrase] = true
+        if not seen[text] then
+            seen[text] = true
 
             if not has_symbol and bottom_count < cache_limit then
-                _G.WanxiangSharedState.page_cache[
-                    #_G.WanxiangSharedState.page_cache + 1
-                ] = clone_candidate(candidate)
+                page_cache[#page_cache + 1] = clone_candidate(candidate)
                 bottom_count = bottom_count + 1
             end
 

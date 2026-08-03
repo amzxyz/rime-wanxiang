@@ -21,6 +21,7 @@ local sort     = table.sort
 local s_match  = string.match
 local s_sub    = string.sub
 local s_len    = string.len
+local s_byte   = string.byte
 local s_find   = string.find
 local s_format = string.format
 local tonumber = tonumber
@@ -41,6 +42,12 @@ local ONE_PREFIX = "1" .. KEY_SEP
 local TWO_PREFIX = "2" .. KEY_SEP
 local RECORD_SEPARATOR = " \t"
 local C_MAX = 2147483000
+local SYMBOL_MAP = {
+    ["?"] = "？",
+    ["!"] = "！",
+    [","] = "，",
+    ["."] = "。",
+}
 -- 内部运行参数默认值 (会被外部 YAML 配置覆盖)
 local CONFIG = {
     MAX_CANDIDATES      = 5,             
@@ -112,12 +119,18 @@ local function load_config(env)
             local custom_str = ""
             local list = config:get_list("user_predict/custom_classifiers")
             if list then
+                local parts = {}
+                local count = 0
+
                 for i = 0, list.size - 1 do
                     local val = list:get_value_at(i)
-                    if val then 
-                        custom_str = custom_str .. val:get_string() 
+                    if val then
+                        count = count + 1
+                        parts[count] = val:get_string()
                     end
                 end
+
+                custom_str = table.concat(parts, "", 1, count)
             else
                 custom_str = config:get_string("user_predict/custom_classifiers") or ""
             end
@@ -218,6 +231,26 @@ local function next_active_commits(commits)
     return magnitude + 1
 end
 
+-- 更新单条记忆关联，并保存本次事务写入前后的完整状态。
+local function update_memory_record(db, transaction, code, word)
+    if not code or code == "" or not word or word == "" then return end
+
+    local commits, tail, raw_key = fetch_record(db, code, word)
+    local next_tail = make_record_tail(next_active_commits(commits))
+    local state = transaction[raw_key]
+
+    if state then
+        state.after = next_tail
+    else
+        transaction[raw_key] = {
+            before = tail or "",
+            after = next_tail,
+        }
+    end
+
+    db:update(raw_key, next_tail)
+end
+
 -- 使用递增绝对值的负 c 墓碑标记预测记录已删除。
 local function mark_record_deleted(db, code, word)
     local commits, tail, raw_key = fetch_record(db, code, word)
@@ -304,9 +337,8 @@ local function release_db(env)
 end
 
 
--- 语境分割算法 (纯汉字白名单)
-local function is_chinese_char(char)
-    local cp = utf8 and utf8.codepoint(char) or 0
+-- 判断Unicode码点是否属于允许进入预测语境的汉字范围。
+local function is_chinese_codepoint(cp)
     if not cp or cp == 0 then return false end
     return (cp >= 0x4E00 and cp <= 0x9FFF)   -- Basic
         or (cp >= 0x3400 and cp <= 0x4DBF)  -- Ext A
@@ -324,14 +356,30 @@ local function is_chinese_char(char)
         or (cp >= 0x2F00  and cp <= 0x2FDF)  -- Kangxi Radicals
 end
 
--- 判断上屏文本是否允许进入预测语境。
-local function is_valid_commit_text(text)
-    if not text or text == "" then return false end
-    if is_tone_symbol(text) then return true end -- 特许白名单语气标点通行
-    for c in string.gmatch(text, "[%z\1-\127\194-\244][\128-\191]*") do
-        if not is_chinese_char(c) then return false end
+-- 一次完成上屏文本合法性验证与UTF-8拆分。
+local function get_valid_commit_chars(text)
+    if not text or text == "" then return nil, false end
+    if is_tone_symbol(text) then return {text}, true end
+
+    local chars = {}
+    local count = 0
+
+    if utf8 and utf8.codes and utf8.char then
+        for _, cp in utf8.codes(text) do
+            if not is_chinese_codepoint(cp) then return nil, false end
+            count = count + 1
+            chars[count] = utf8.char(cp)
+        end
+    else
+        for char in string.gmatch(text, "[%z\1-\127\194-\244][\128-\191]*") do
+            local cp = utf8 and utf8.codepoint(char) or 0
+            if not is_chinese_codepoint(cp) then return nil, false end
+            count = count + 1
+            chars[count] = char
+        end
     end
-    return true
+
+    return chars, false
 end
 
 -- 分词聚集算法
@@ -351,13 +399,9 @@ local function get_utf8_chars(str)
     return chars
 end
 
--- 模糊查询降级参数 (现在统一供 1 和 P 使用)
-local function get_suffix_lengths(len)
-    if len >= 4 then return {4, 3, 2} 
-    elseif len == 3 then return {3, 2}    
-    elseif len == 2 then return {2}       
-    elseif len == 1 then return {1} end
-    return {}
+-- 按预测权重降序排列。
+local function sort_weight_desc(a, b)
+    return a.weight > b.weight
 end
 
 -- 读取层预测核心
@@ -367,6 +411,10 @@ local function get_predictions(env, prev_commit)
     local db = get_db(env)
     if not db then return nil end
 
+    local history_count = #history
+    local u1 = history_count >= 1 and history[history_count] or nil
+    local u1_chars = nil
+    local u1_char_count = 0
     local cands = {}
     local seen = {}
     local scan_limit = CONFIG.SCAN_LIMIT
@@ -374,6 +422,7 @@ local function get_predictions(env, prev_commit)
     -- 查询单个预测层级并按权重收集候选。
     local function fetch_candidates(code, multiplier)
         local prefix = code .. RECORD_SEPARATOR
+        local prefix_len = s_len(prefix)
         local accessor = db:query(prefix)
         if not accessor then return end
 
@@ -382,20 +431,18 @@ local function get_predictions(env, prev_commit)
 
         for raw_key, tail in accessor:iter() do
             if scan_count >= scan_limit
-                or s_sub(raw_key, 1, s_len(prefix)) ~= prefix
+                or s_find(raw_key, prefix, 1, true) ~= 1
             then
                 break
             end
 
-            local record_code, word = parse_raw_key(raw_key)
+            local word = s_sub(raw_key, prefix_len + 1)
             local commits = parse_record_tail(tail)
 
-            if record_code == code and commits > 0 and word ~= "" then
+            if commits > 0 and word ~= "" then
                 insert(prefix_cands, {
                     word = word,
                     weight = commits * multiplier,
-                    db_code = record_code,
-                    db_word = word,
                 })
             end
 
@@ -407,29 +454,27 @@ local function get_predictions(env, prev_commit)
         if #prefix_cands == 0 then return end
 
         -- 按当前层级计算后的权重降序排列。
-        sort(prefix_cands, function(a, b) return a.weight > b.weight end)
+        sort(prefix_cands, sort_weight_desc)
 
         for i, cand in ipairs(prefix_cands) do
             if i <= CONFIG.MAX_MEMORY_BRANCHES then
                 if not seen[cand.word] then
+                    cand.db_code = code
                     insert(cands, cand)
                     seen[cand.word] = true
                 end
             else
-                mark_record_deleted(db, cand.db_code, cand.db_word)
+                mark_record_deleted(db, code, cand.word)
             end
         end
     end
 
     -- S先读
-    if #history >= 1 then
-        fetch_candidates(S_PREFIX .. history[#history], 1000000)
-    end
+    if u1 then fetch_candidates(S_PREFIX .. u1, 1000000) end
 
     -- 小于等于2先找上文组合查 2-Gram
-    if #history >= 2 then
-        local u0 = history[#history - 1]
-        local u1 = history[#history]
+    if history_count >= 2 then
+        local u0 = history[history_count - 1]
         local len_u0 = u0 and utf8_len(u0) or 0
         local len_u1 = u1 and utf8_len(u1) or 0
 
@@ -442,16 +487,16 @@ local function get_predictions(env, prev_commit)
     end
 
     -- 查 1-Gram
-    if #cands < CONFIG.MAX_CANDIDATES and #history >= 1 then
-        local u1 = history[#history]
-        local chars = get_utf8_chars(u1)
-        local len_u1 = #chars
-        local max_len = math_min(len_u1, 4)
-        local min_len = len_u1 >= 2 and 2 or 1
+    if #cands < CONFIG.MAX_CANDIDATES and u1 then
+        u1_chars = get_utf8_chars(u1)
+        u1_char_count = #u1_chars
+        local max_len = math_min(u1_char_count, 4)
+        local min_len = u1_char_count >= 2 and 2 or 1
 
         for l = max_len, min_len, -1 do
-            local lookup_u1 =
-                table.concat(chars, "", len_u1 - l + 1, len_u1)
+            local lookup_u1 = table.concat(
+                u1_chars, "", u1_char_count - l + 1, u1_char_count
+            )
 
             fetch_candidates(ONE_PREFIX .. lookup_u1, 100)
             if #cands > 0 then break end
@@ -460,11 +505,26 @@ local function get_predictions(env, prev_commit)
 
     -- 查不到再去拿 P 去匹配
     if #cands < CONFIG.MAX_CANDIDATES then
-        local chars = get_utf8_chars(prev_commit)
-        local lengths_to_query = get_suffix_lengths(#chars)
+        local chars = nil
+        local char_count = 0
 
-        for _, l in ipairs(lengths_to_query) do
-            local suffix = table.concat(chars, "", #chars - l + 1, #chars)
+        if prev_commit == u1 then
+            if not u1_chars then
+                u1_chars = get_utf8_chars(u1)
+                u1_char_count = #u1_chars
+            end
+            chars = u1_chars
+            char_count = u1_char_count
+        else
+            chars = get_utf8_chars(prev_commit)
+            char_count = #chars
+        end
+
+        local max_len = math_min(char_count, 4)
+        local min_len = char_count >= 2 and 2 or 1
+
+        for l = max_len, min_len, -1 do
+            local suffix = table.concat(chars, "", char_count - l + 1, char_count)
             fetch_candidates(P_PREFIX .. suffix, 1)
             if #cands > 0 then break end
         end
@@ -473,7 +533,7 @@ local function get_predictions(env, prev_commit)
     if #cands == 0 then return nil end
 
     -- 汇总所有层级后按最终权重降序排列。
-    sort(cands, function(a, b) return a.weight > b.weight end)
+    sort(cands, sort_weight_desc)
     return cands
 end
 
@@ -485,21 +545,42 @@ local function remove_predict_candidate(env, word)
     if pending_cands then
         for _, cand in ipairs(pending_cands) do
             if cand.word == word then
-                mark_record_deleted(db, cand.db_code, cand.db_word)
+                mark_record_deleted(db, cand.db_code, cand.word)
                 break
             end
         end
     end
 
     local chars = get_utf8_chars(last_commit)
-    local lengths = get_suffix_lengths(#chars)
+    local char_count = #chars
+    local max_len = math_min(char_count, 4)
+    local min_len = char_count >= 2 and 2 or 1
 
-    for _, l in ipairs(lengths) do
-        local suffix = table.concat(chars, "", #chars - l + 1, #chars)
+    for l = max_len, min_len, -1 do
+        local suffix = table.concat(chars, "", char_count - l + 1, char_count)
         mark_record_deleted(db, P_PREFIX .. suffix, word)
     end
 end
 
+
+-- 识别主键区和数字小键盘的单个数字键。
+local function get_digit_key(repr)
+    local len = #repr
+
+    if len == 1 then
+        local code = s_byte(repr, 1)
+        if code >= 48 and code <= 57 then return repr end
+    elseif len == 4
+        and s_byte(repr, 1) == 75
+        and s_byte(repr, 2) == 80
+        and s_byte(repr, 3) == 95
+    then
+        local code = s_byte(repr, 4)
+        if code >= 48 and code <= 57 then return s_sub(repr, 4, 4) end
+    end
+
+    return nil
+end
 
 local P = {}
 -- 初始化按键处理器、数据库及上下文通知器。
@@ -527,7 +608,9 @@ function P.init(env)
         if not s_match(text, "^[0-9]+$") then
             is_after_number = false
         end
-        if not is_valid_commit_text(text) then
+
+        local text_chars, is_tone_text = get_valid_commit_chars(text)
+        if not text_chars then
             reset_memory_chain(env, "非纯汉字阻断")
             return
         end
@@ -551,40 +634,21 @@ function P.init(env)
             return
         end
 
-        env.last_written_keys = {} 
-        -- 更新单条记忆关联，并保存本次事务写入前后的完整状态。
-        local function update_memory(code, word)
-            if not code or code == "" or not word or word == "" then return end
-
-            local commits, tail, raw_key = fetch_record(db, code, word)
-            local next_tail = make_record_tail(next_active_commits(commits))
-            local state = env.last_written_keys[raw_key]
-
-            if state then
-                state.after = next_tail
-            else
-                env.last_written_keys[raw_key] = {
-                    before = tail or "",
-                    after = next_tail,
-                }
-            end
-
-            db:update(raw_key, next_tail)
-        end
+        local transaction = env.last_written_keys
+        for raw_key in pairs(transaction) do transaction[raw_key] = nil end
 
         current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
         
         local should_record = true
         local is_terminal_symbol = false
         local is_aba_return = false
-        local text_chars = get_utf8_chars(text)
         local len_text = #text_chars
 
         -- 基础规则：单次上屏超过 4 个字不记录
         if len_text > 4 then should_record = false end
         
         -- 基础规则：标点与助词白名单隔离
-        if should_record and is_tone_symbol(text) then
+        if should_record and is_tone_text then
             local prev_chars = get_utf8_chars(last_commit)
             local last_char = prev_chars[#prev_chars] or "" 
             
@@ -613,17 +677,19 @@ function P.init(env)
                 local len_u1 = #u1_chars
                 
                 -- P-Gram
-                local lengths_to_learn = get_suffix_lengths(len_u1)
-                for _, l in ipairs(lengths_to_learn) do
+                local max_len = math_min(len_u1, 4)
+                local min_len = len_u1 >= 2 and 2 or 1
+
+                for l = max_len, min_len, -1 do
                     if l < len_u1 or len_u1 >= 4 then
                         local suffix = table.concat(u1_chars, "", len_u1 - l + 1, len_u1)
-                        update_memory(P_PREFIX .. suffix, text)
+                        update_memory_record(db, transaction, P_PREFIX .. suffix, text)
                     end
                 end
                 
                 -- 1-Gram
                 if len_u1 <= 4 and #history >= 1 then 
-                    update_memory(ONE_PREFIX .. last_commit, text)
+                    update_memory_record(db, transaction, ONE_PREFIX .. last_commit, text)
                 end
                 
                 -- 2-Gram
@@ -631,7 +697,10 @@ function P.init(env)
                     local u0 = history[#history - 1]
                     local len_u0 = u0 and #get_utf8_chars(u0) or 0
                     if (len_u0 + len_u1) <= 5 then
-                        update_memory(TWO_PREFIX .. u0 .. KEY_SEP .. last_commit, text)
+                        update_memory_record(
+                            db, transaction,
+                            TWO_PREFIX .. u0 .. KEY_SEP .. last_commit, text
+                        )
                     end
                 end
             end
@@ -641,7 +710,7 @@ function P.init(env)
             if len_text == 4 then
                 local part1 = text_chars[1] .. text_chars[2]
                 local part2 = text_chars[3] .. text_chars[4]
-                update_memory(ONE_PREFIX .. part1, part2)
+                update_memory_record(db, transaction, ONE_PREFIX .. part1, part2)
             end
         end
         
@@ -661,8 +730,8 @@ function P.init(env)
         end
 
         -- 回滚只绑定当前这次上屏；本次没有写库时不得继承旧事务。
-        if next(env.last_written_keys) then
-            env.undo_transaction = env.last_written_keys
+        if next(transaction) then
+            env.undo_transaction = transaction
         else
             env.undo_transaction = nil
         end
@@ -833,38 +902,47 @@ function P.func(key, env)
     local input = ctx.input
     if not input then return 2 end
     if key:release() then return 2 end
+
     local repr = key:repr()
-    if repr == "BackSpace" then
-        if not shared_is_backspacing and ctx:is_composing() then
+    local is_composing = ctx:is_composing()
+    local is_backspace = repr == "BackSpace"
+    local has_shift = not is_backspace
+        and s_find(repr, "Shift", 1, true) ~= nil
+    local has_control = not is_backspace
+        and s_find(repr, "Control", 1, true) ~= nil
+    local has_alt = not is_backspace
+        and s_find(repr, "Alt", 1, true) ~= nil
+    local has_modifier = has_shift or has_control or has_alt
+    local digit = (is_predicting or not is_composing)
+        and get_digit_key(repr) or nil
+
+    if is_backspace then
+        if not shared_is_backspacing and is_composing then
             local current_input = ctx.input or ""
             if current_input ~= "" then
                 if shared_reverted_code == current_input then
-                    shared_reverted_code = "" 
+                    shared_reverted_code = ""
                 else
                     shared_reverted_code = current_input
                 end
             end
         end
         shared_is_backspacing = true
-    elseif not s_find(repr, "Shift", 1, true) and not s_find(repr, "Control", 1, true) and not s_find(repr, "Alt", 1, true) then
+    elseif not has_modifier then
         shared_is_backspacing = false
     end
 
-    if env.just_committed and repr ~= "BackSpace"
-        and not s_find(repr, "Shift", 1, true)
-        and not s_find(repr, "Control", 1, true)
-        and not s_find(repr, "Alt", 1, true)
-    then
+    if env.just_committed and not is_backspace and not has_modifier then
         env.just_committed = false
         env.undo_transaction = nil
     end
-    
-    if repr == "BackSpace" then
+
+    if is_backspace then
         local current_time = (rime_api and rime_api.get_time_ms)
             and rime_api.get_time_ms() or (os_time() * 1000)
         local is_safe_to_undo = env.just_committed
             and env.undo_transaction
-            and (not ctx:is_composing() or is_predicting)
+            and (not is_composing or is_predicting)
 
         if is_safe_to_undo
             and (current_time - (env.last_action_time or 0))
@@ -892,26 +970,26 @@ function P.func(key, env)
         if is_predicting then
             ctx:clear()
             reset_memory_chain(env, "退格强清联想")
-            return 1 
+            return 1
         end
     end
-    
+
     if is_predicting then
         -- 数字键打断联想并上屏数字
-        if s_match(repr, "^[0-9]$") or s_match(repr, "^KP_[0-9]$") then
+        if digit then
             if env.is_t9 then
                 -- T9: 数字键是编码，放行
                 env.engine.context:clear()
                 reset_memory_chain(env, "T9数字放行起音节")
                 return 2
             end
-            local digit = s_match(repr, "%d")
+
             ctx:clear()
             reset_memory_chain(env, "数字打断联想并上屏")
             env.engine:commit_text(digit)
             return 1
         end
-        
+
         -- 普通输入只关闭联想界面，保留上文供下一次上屏继续学习
         predict_count = 0
         is_predicting = false
@@ -921,24 +999,30 @@ function P.func(key, env)
         return 2
     end
 
-    if not ctx:is_composing() then
-        if s_match(repr, "^[0-9]$") or s_match(repr, "^KP_[0-9]$") then
+    if not is_composing then
+        if digit then
             is_after_number = true
-        elseif repr == "BackSpace" then
+        elseif is_backspace then
             is_after_number = false
         end
+
         if repr == "Return" or repr == "KP_Enter" or key.keycode == 0x20 then
             reset_memory_chain(env, "非输入状态排版打断")
-            return 2 
+            return 2
         end
-        local symbol_map = { ["?"] = "？", ["!"] = "！", [","] = "，", ["."] = "。" }
-        if symbol_map[repr] then
-            env.engine:commit_text(symbol_map[repr])
+
+        local symbol = SYMBOL_MAP[repr]
+        if symbol then
+            env.engine:commit_text(symbol)
             return 1
         end
     end
 
-    if ctx:has_menu() and (s_find(repr, "Shift") or s_find(repr, "Control")) and (s_find(repr, "Delete") or s_find(repr, "BackSpace")) then
+    if ctx:has_menu()
+        and (has_shift or has_control)
+        and (s_find(repr, "Delete", 1, true)
+            or s_find(repr, "BackSpace", 1, true))
+    then
         local cand = ctx:get_selected_candidate()
         if cand and cand.type == "predict" then
             remove_predict_candidate(env, cand.text)
@@ -947,7 +1031,7 @@ function P.func(key, env)
             return 1
         end
     end
-    return 2 
+    return 2
 end
 
 -- 断开按键处理器通知器并释放数据库。
@@ -1006,22 +1090,14 @@ function T.fini(env) end
 
 -- Filter (F): 负责输入生命周期内的极速实时调频
 local F = {}
-
--- 快速检测纯英文字母文本（替代 s_find 正则，结果完全等价）
-local function is_alpha_fast(s)
-  if not s or s == "" then return false end
-  local b = string.byte(s, 1)
-  if not ((b >= 0x41 and b <= 0x5A) or (b >= 0x61 and b <= 0x7A)) then return false end
-  for i = 2, #s do
-    b = string.byte(s, i)
-    if not ((b >= 0x41 and b <= 0x5A) or (b >= 0x61 and b <= 0x7A)) then return false end
-  end
-  return true
-end
+local REORDER_TYPE_WHITELIST = {
+    user_phrase = true,
+    phrase = true,
+}
 
 function F.init(env)
     env.f_last_pending_cands = nil
-    env.f_reorder_map = nil
+    env.f_reorder_map = {}
     env.shared_boosted = {}
     env.shared_normal = {}
 end
@@ -1058,8 +1134,10 @@ end
 -- 根据预测记录和量词状态实时调整候选顺序。
 function F.func(input, env)
     local ctx = env.engine.context
+    local reorder_map = env.f_reorder_map or {}
     local shared_boosted = env.shared_boosted or {}
     local shared_normal = env.shared_normal or {}
+    env.f_reorder_map = reorder_map
     env.shared_boosted = shared_boosted
     env.shared_normal = shared_normal
 
@@ -1075,17 +1153,16 @@ function F.func(input, env)
 
     if env.f_last_pending_cands ~= pending_cands then
         env.f_last_pending_cands = pending_cands
-        env.f_reorder_map = nil
+        for word in pairs(reorder_map) do reorder_map[word] = nil end
 
         if CONFIG.PREDICT_STYLE == "reorder" and pending_cands then
-            env.f_reorder_map = {}
             for rank, cand in ipairs(pending_cands) do
-                env.f_reorder_map[cand.word] = rank
+                reorder_map[cand.word] = rank
             end
         end
     end
 
-    local do_reorder = env.f_reorder_map and next(env.f_reorder_map)
+    local do_reorder = next(reorder_map)
     local do_classifier = is_after_number and CLASSIFIER_LOOKUP and next(CLASSIFIER_LOOKUP)
     
     local current_input = ctx.input or ""
@@ -1110,9 +1187,9 @@ function F.func(input, env)
             if idx == 1 then
                 c1 = cand
             elseif idx == 2 then
-                local ct = cand.type
-                local is_cand_valid = ct ~= "raw" and ct ~= "english" and not is_alpha_fast(cand.text)
-                if c1.type ~= "sentence" and is_cand_valid and c1._end == cand._end then
+                local c1_valid = REORDER_TYPE_WHITELIST[c1.type]
+                local c2_valid = REORDER_TYPE_WHITELIST[cand.type]
+                if c1_valid and c2_valid and c1._end == cand._end then
                     yield(cand)
                     yield(c1)
                 else
@@ -1139,31 +1216,30 @@ function F.func(input, env)
         count = count + 1
         local text = cand.text or ""
         local ct = cand.type
-        local current_len = utf8_len(text) or 0
-        
-        if count == 1 then 
-            target_len = current_len 
-            target_end = cand._end
-            if ct == "sentence" then
-                do_fallback = false
+        local should_stop = not REORDER_TYPE_WHITELIST[ct] or count > max_scan
+        local current_len = 0
+
+        if not should_stop then
+            if count > 1 and cand._end ~= target_end then
+                should_stop = true
+            else
+                current_len = utf8_len(text) or 0
+
+                if count == 1 then
+                    target_len = current_len
+                    target_end = cand._end
+                elseif do_classifier then
+                    should_stop = current_len < target_len
+                else
+                    should_stop = current_len ~= target_len
+                end
             end
         end
-        
-        local length_mismatch_stop = false
-        if cand._end ~= target_end then
-            length_mismatch_stop = true
-        end
 
-        if do_classifier then
-            if count > 1 and current_len < target_len then length_mismatch_stop = true end
-        else
-            if count > 1 and current_len ~= target_len then length_mismatch_stop = true end
-        end
-
-        if ct == "raw" or ct == "english" or is_alpha_fast(text) or length_mismatch_stop or count > max_scan then
+        if should_stop then
             for i = b_cnt + 1, #shared_boosted do shared_boosted[i] = nil end
             for i = n_cnt + 1, #shared_normal do shared_normal[i] = nil end
-            sort(shared_boosted, stable_sort)
+            if b_cnt > 1 then sort(shared_boosted, stable_sort) end
             flush_yield(shared_boosted, b_cnt, shared_normal, n_cnt, do_fallback)
             yield(cand)
             for rest_cand in input:iter() do yield(rest_cand) end
@@ -1171,7 +1247,7 @@ function F.func(input, env)
         end
 
         -- 分类与排名逻辑
-        local rank = env.f_reorder_map and env.f_reorder_map[text]
+        local rank = reorder_map[text]
         local is_classifier = do_classifier and CLASSIFIER_LOOKUP[text]
         
         if (rank or is_classifier) and current_len == target_len then
@@ -1194,7 +1270,7 @@ function F.func(input, env)
     for i = b_cnt + 1, #shared_boosted do shared_boosted[i] = nil end
     for i = n_cnt + 1, #shared_normal do shared_normal[i] = nil end
     
-    sort(shared_boosted, stable_sort)
+    if b_cnt > 1 then sort(shared_boosted, stable_sort) end
     flush_yield(shared_boosted, b_cnt, shared_normal, n_cnt, do_fallback)
 end
 
