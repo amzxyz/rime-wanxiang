@@ -20,7 +20,6 @@ local type = type
 local tonumber = tonumber
 local DB_FORMAT_VERSION = "2"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
-local FILE_KEYS = {"files", "file"}
 -- 模块私有数据库池：同名数据库共享包装器和生命周期。
 local DB_POOL = {}
 local file_signature_cache = {}
@@ -141,21 +140,23 @@ local function generate_files_signature(tasks)
 end
 
 local function each_file_value(rule, callback)
-    for _, key in ipairs(FILE_KEYS) do
-        local item = rule:get(key)
-        if item then
-            if item.type == "kList" then
-                local list = item:get_list()
-                for i = 0, list.size - 1 do
-                    local value = list:get_value_at(i)
-                    if value then callback(value) end
-                end
-            elseif item.type == "kScalar" then
-                local value = item:get_value()
+    local function each_item(item)
+        if not item then return end
+
+        if item.type == "kList" then
+            local list = item:get_list()
+            for i = 0, list.size - 1 do
+                local value = list:get_value_at(i)
                 if value then callback(value) end
             end
+        elseif item.type == "kScalar" then
+            local value = item:get_value()
+            if value then callback(value) end
         end
     end
+
+    each_item(rule:get("files"))
+    each_item(rule:get("file"))
 end
 
 -- 只提取影响数据库内容的字段，运行时规则仍由当前方案原逻辑解析。
@@ -193,20 +194,22 @@ local function collect_build_tasks(config, ns)
     return tasks
 end
 
+local function task_signature(task)
+    return (task.source or "")
+        .. "|" .. (task.prefix or "")
+        .. "|" .. (task.conversion and "t9" or "plain")
+        .. "|" .. (task.preedit_delim or "")
+end
+
 local function tasks_signature(tasks)
     local parts = {}
     for i, task in ipairs(tasks) do
-        parts[i] = concat({
-            task.source or "",
-            task.prefix or "",
-            task.conversion and "t9" or "plain",
-            task.preedit_delim or ""
-        }, "|")
+        parts[i] = task_signature(task)
     end
     return digest_parts(parts)
 end
 
-local function enabled_schema_ids(env, user_dir)
+local function enabled_schema_ids(env)
     local enabled = {}
     local current = env.engine.schema.schema_id or ""
 
@@ -241,9 +244,9 @@ local function enabled_schema_ids(env, user_dir)
 end
 
 -- 合并所有启用方案的数据任务，并生成固定的方案级表头特征。
-local function merge_build_tasks(env, ns, current_tasks, user_dir)
+local function merge_build_tasks(env, ns, current_tasks)
     local current_id = env.engine.schema.schema_id or ""
-    local enabled_ids = enabled_schema_ids(env, user_dir)
+    local enabled_ids = enabled_schema_ids(env)
     local groups = {}
     local signatures = {}
 
@@ -271,7 +274,7 @@ local function merge_build_tasks(env, ns, current_tasks, user_dir)
     local seen = {}
     for _, group in ipairs(groups) do
         for _, task in ipairs(group.tasks) do
-            local key = tasks_signature({task})
+            local key = task_signature(task)
             if not seen[key] then
                 seen[key] = true
                 merged[#merged + 1] = task
@@ -731,8 +734,6 @@ function M.init(env)
     ns = s_gsub(ns, "^%*", "")
     ns = string.match(ns, "([^%.]+)$") or ns
     local config = env.engine.schema.config
-  
-    local user_dir = rime_api.get_user_data_dir()
 
     -- 1. 获取根节点 Map 对象
     local cfg_root = config:get_map(ns)
@@ -888,40 +889,29 @@ function M.init(env)
                 comment_mode = comment_mode,
                 fmm = fmm,
                 preedit_delim = preedit_delim,
-                t9_opt = t9_opt,
                 cand_type = custom_cand_type
             })
 
             -- 解析文件路径列表
-            local keys_to_check = {"files", "file"}
-            for _, key in ipairs(keys_to_check) do
-                local file_item = rule:get(key)
-                if file_item then
-                    if file_item.type == "kList" then
-                        local list = file_item:get_list()
-                        for j = 0, list.size - 1 do
-                            local val = list:get_value_at(j)
-                            local str = val and val:get_string()
-                            if str and str ~= "" then
-                                insert(tasks, { source = str, path = str, prefix = prefix, conversion = conversion_map, preedit_delim = preedit_delim })
-                            end
-                        end
-                    elseif file_item.type == "kScalar" then
-                        local val = file_item:get_value()
-                        local str = val and val:get_string()
-                        if str and str ~= "" then
-                            insert(tasks, { source = str, path = str, prefix = prefix, conversion = conversion_map, preedit_delim = preedit_delim })
-                        end
-                    end
+            each_file_value(rule, function(file_value)
+                local source = file_value:get_string()
+                if source and source ~= "" then
+                    tasks[#tasks + 1] = {
+                        source = source,
+                        path = source,
+                        prefix = prefix,
+                        conversion = conversion_map,
+                        preedit_delim = preedit_delim
+                    }
                 end
-            end
+            end)
 
             ::continue_rule::
         end
     end
     
     local merged_tasks, scheme_sigs, union_sig =
-        merge_build_tasks(env, ns, tasks, user_dir)
+        merge_build_tasks(env, ns, tasks)
 
     local rebuilt
     env.db, rebuilt = connect_db(
@@ -1031,7 +1021,6 @@ function M.func(input, env)
     local pending_comments = env.shared_pending_comments or {}
     local shared_comments = env.shared_comments or {}
     local main_results = {}
-    local aux_results = {}
     env.shared_pending = pending_texts
     env.shared_pending_comments = pending_comments
     env.shared_comments = shared_comments
@@ -1050,7 +1039,6 @@ function M.func(input, env)
 
         for _, t in ipairs(active_rules) do
             local query_text = is_chain and current_text or cand.text
-            local query_len = utf8.len(query_text) or 0
             local query_key = t.prefix .. query_text
             local val
 
@@ -1062,12 +1050,15 @@ function M.func(input, env)
                 val = fetch_exact_cached(db, query_key, query_cache)
             end
 
-            if not val and t.fmm and query_len > 1 then
-                local seg_result = segment_convert(
-                    query_text, db, t.prefix,
-                    query_cache, fmm_offsets, fmm_parts
-                )
-                if seg_result ~= query_text then val = seg_result end
+            if not val and t.fmm then
+                local query_len = utf8.len(query_text) or 0
+                if query_len > 1 then
+                    local seg_result = segment_convert(
+                        query_text, db, t.prefix,
+                        query_cache, fmm_offsets, fmm_parts
+                    )
+                    if seg_result ~= query_text then val = seg_result end
+                end
             end
 
             if val then
@@ -1165,12 +1156,50 @@ function M.func(input, env)
         return results
     end
 
+    local function trim_space(str)
+        if not str or str == "" then return "" end
+
+        local first = s_byte(str, 1)
+        local last = s_byte(str, #str)
+        if first > 32 and last > 32 then return str end
+        return s_match(str, "^%s*(.-)%s*$")
+    end
+
+    local candidate_count = 0
+    local function process_main(cand)
+        candidate_count = candidate_count + 1
+        if candidate_count <= CANDIDATE_LIMIT then
+            return process_rules(cand, main_results)
+        end
+
+        clear_array(main_results)
+        main_results[1] = cand
+        return main_results
+    end
+
+    local global_yielded = {}
+
+    -- 没有活跃简码规则时，跳过整套简码查询、排序与候选临时对象。
+    if #active_abbrev_rules == 0 then
+        for cand in input:iter() do
+            local processed = process_main(cand)
+            for _, pc in ipairs(processed) do
+                local dedup_key = trim_space(pc.text)
+                if not global_yielded[dedup_key] then
+                    global_yielded[dedup_key] = true
+                    yield(pc)
+                end
+            end
+        end
+        return
+    end
+
     local yield_count = 0
     local seen_texts = {}
-    local global_yielded = {}
     local always_cands = {}
     local lazy_cands = {}
     local group_fronted = {}
+    local aux_results = {}
     local abbrev_start = seg and seg.start or 0
     local abbrev_end = seg and seg._end or #ctx.input
 
@@ -1230,27 +1259,6 @@ function M.func(input, env)
                 end
             end
         end
-    end
-
-    local function trim_space(str)
-        if not str or str == "" then return "" end
-
-        local first = s_byte(str, 1)
-        local last = s_byte(str, #str)
-        if first > 32 and last > 32 then return str end
-        return s_match(str, "^%s*(.-)%s*$")
-    end
-
-    local candidate_count = 0
-    local function process_main(cand)
-        candidate_count = candidate_count + 1
-        if candidate_count <= CANDIDATE_LIMIT then
-            return process_rules(cand, main_results)
-        end
-
-        clear_array(main_results)
-        main_results[1] = cand
-        return main_results
     end
 
     if #always_cands == 0 and #lazy_cands == 0 then
