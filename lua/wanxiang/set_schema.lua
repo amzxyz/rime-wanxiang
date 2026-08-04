@@ -105,6 +105,7 @@ local function translator(input, seg, env)
         ["/hxlong"] = "汉心龙",
         ["/pinyin"] = "全拼",
         ["/sdpy"] = "首道双拼",
+        ["/dnsp"] = "大牛双拼",
     }
 
     local target_schema = schema_map[input]

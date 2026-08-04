@@ -988,9 +988,92 @@ base:
       - xlit/ⓆⓌⒺⓇⓉⓎⓊⒾⓄⓅⒶⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwertyuiopasdfghjklzxcvbnm/
       - derive/^(..)(\d)$/$1/
       - derive/^(.).+(\d)$/$1$2/
+  大牛双拼:
+    __append:
+      - xform/Ⅽ//  # 用于 Lua 判断输入类型的标记
+      - xform/^([a-z]+)$/$1④/
+      - xform/ā([a-z]*)$/a$1①/
+      - xform/á([a-z]*)$/a$1②/
+      - xform/ǎ([a-z]*)$/a$1③/
+      - xform/à([a-z]*)$/a$1④/
+      - xform/ō([a-z]*)$/o$1①/
+      - xform/ó([a-z]*)$/o$1②/
+      - xform/ǒ([a-z]*)$/o$1③/
+      - xform/ò([a-z]*)$/o$1④/
+      - xform/ē([a-z]*)$/e$1①/
+      - xform/é([a-z]*)$/e$1②/
+      - xform/ě([a-z]*)$/e$1③/
+      - xform/è([a-z]*)$/e$1④/
+      - xform/ī([a-z]*)$/i$1①/
+      - xform/í([a-z]*)$/i$1②/
+      - xform/ǐ([a-z]*)$/i$1③/
+      - xform/ì([a-z]*)$/i$1④/
+      - xform/ū([a-z]*)$/u$1①/
+      - xform/ú([a-z]*)$/u$1②/
+      - xform/ǔ([a-z]*)$/u$1③/
+      - xform/ù([a-z]*)$/u$1④/
+      - xform/ǖ([a-z]*)$/v$1①/
+      - xform/ǘ([a-z]*)$/v$1②/
+      - xform/ǚ([a-z]*)$/v$1③/
+      - xform/ǜ([a-z]*)$/v$1④/
+      - xform/ü/v/
+      - xform/ń([a-z]*)$/n$1②/
+      - xform/ň([a-z]*)$/n$1③/
+      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/ḿ([a-z]*)$/m$1②/
+      - xform/m̀([a-z]*)$/m$1④/
+      - xlit/①②③④/7890
+      - derive/^ng(\d)$/eng$1/
+      - xform/^n(\d)$/en$1/
+      - xform/^m(\d)$/me$1/
+      - derive/^([jqxy])u(\d)$/$1v$2/
+      - derive/^([jqxy])uan(\d)$/$1van$2/
+      - derive/^([jqxy])ue(\d)$/$1ve$2/
+      - derive/^([jqxy])un(\d)$/$1vn$2/
+      - xform/^([aoe][a-z]*)(\d)$/e$1$2/
+      - xform/uang(\d)$/Ⓧ$1/
+      - xform/uai(\d)$/Ⓖ$1/
+      - xform/uan(\d)$/Ⓩ$1/
+      - xform/van(\d)$/Ⓙ$1/
+      - xform/ua(\d)$/Ⓠ$1/
+      - xform/iang(\d)$/Ⓝ$1/
+      - xform/iong(\d)$/Ⓛ$1/
+      - xform/ian(\d)$/Ⓒ$1/
+      - derive/Ⓒ(\d)$/Ⓠ$1/
+      - xform/iao(\d)$/Ⓜ$1/
+      - xform/ing(\d)$/Ⓖ$1/
+      - xform/iu(\d)$/Ⓣ$1/
+      - xform/ia(\d)$/Ⓚ$1/
+      - xform/ie(\d)$/Ⓟ$1/
+      - xform/in(\d)$/Ⓑ$1/
+      - xform/eng(\d)$/Ⓙ$1/
+      - xform/ang(\d)$/Ⓕ$1/
+      - xform/ong(\d)$/Ⓛ$1/
+      - xform/ao(\d)$/Ⓢ$1/
+      - xform/ai(\d)$/Ⓗ$1/
+      - xform/ei(\d)$/Ⓦ$1/
+      - xform/an(\d)$/Ⓓ$1/
+      - xform/en(\d)$/Ⓚ$1/
+      - xform/ou(\d)$/Ⓡ$1/
+      - xform/er(\d)$/Ⓤ$1/
+      - xform/ue(\d)$/Ⓗ$1/
+      - xform/ve(\d)$/Ⓧ$1/
+      - xform/uo(\d)$/Ⓞ$1/
+      - xform/un(\d)$/Ⓨ$1/
+      - xform/vn(\d)$/Ⓦ$1/
+      - xform/ui(\d)$/Ⓝ$1/
+      - derive/Ⓝ(\d)$/Ⓥ$1/
+      - derive/^zh/Ⓐ/
+      - xform/^zh/Ⓞ/
+      - xform/^ch/Ⓘ/
+      - derive/^sh/Ⓥ/
+      - xform/^sh/Ⓤ/
+      - xlit/ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ/abcdefghijklmnopqrstuvwxyz/
+      - derive/^(..)(\d)$/$1/
+      - derive/^(.).+(\d)$/$1$2/
   首道双拼:
     __append:
-      - xform/ⅩⅢ//  #用于Lua判断输入类型的标记
+      - xform/Ⅾ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
       - xform/ā([a-z]*)$/a$1①/
       - xform/á([a-z]*)$/a$1②/
@@ -1865,10 +1948,88 @@ pro:
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
       - xlit/ⓆⓌⒺⓇⓉⓎⓊⒾⓄⓅⒶⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwertyuiopasdfghjklzxcvbnm/
+  大牛双拼:
+    __append:
+      - xform/Ⅽ//  # 用于 Lua 判断输入类型的标记
+      - xform/^([a-z]+);/$1④;/
+      - xform/ā([^;]*);/a$1①;/
+      - xform/á([^;]*);/a$1②;/
+      - xform/ǎ([^;]*);/a$1③;/
+      - xform/à([^;]*);/a$1④;/
+      - xform/ō([^;]*);/o$1①;/
+      - xform/ó([^;]*);/o$1②;/
+      - xform/ǒ([^;]*);/o$1③;/
+      - xform/ò([^;]*);/o$1④;/
+      - xform/ē([^;]*);/e$1①;/
+      - xform/é([^;]*);/e$1②;/
+      - xform/ě([^;]*);/e$1③;/
+      - xform/è([^;]*);/e$1④;/
+      - xform/ī([^;]*);/i$1①;/
+      - xform/í([^;]*);/i$1②;/
+      - xform/ǐ([^;]*);/i$1③;/
+      - xform/ì([^;]*);/i$1④;/
+      - xform/ū([^;]*);/u$1①;/
+      - xform/ú([^;]*);/u$1②;/
+      - xform/ǔ([^;]*);/u$1③;/
+      - xform/ù([^;]*);/u$1④;/
+      - xform/ǖ([^;]*);/v$1①;/
+      - xform/ǘ([^;]*);/v$1②;/
+      - xform/ǚ([^;]*);/v$1③;/
+      - xform/ǜ([^;]*);/v$1④;/
+      - xform/ü/v/
+      - xform/ń([^;]*);/n$1②;/
+      - xform/ň([^;]*);/n$1③;/
+      - xform/ǹ([^;]*);/n$1④;/
+      - xform/ḿ([^;]*);/m$1②;/
+      - xform/m̀([^;]*);/m$1④;/
+      - xlit/①②③④/7890
+      - derive/^ng(\d);$/eng$1;/
+      - xform/^n(\d);/en$1;/
+      - xform/^m(\d);/me$1;/
+      - derive/^([jqxy])u(\d);/$1v$2;/
+      - xform/^([aoe][a-z]*)(\d);/e$1$2;/
+      - xform/uang(\d);/Ⓧ$1;/
+      - xform/uai(\d);/Ⓖ$1;/
+      - xform/uan(\d);/Ⓩ$1;/
+      - xform/van(\d);/Ⓙ$1;/
+      - xform/ua(\d);/Ⓠ$1;/
+      - xform/iang(\d);/Ⓝ$1;/
+      - xform/iong(\d);/Ⓛ$1;/
+      - xform/ian(\d);/Ⓒ$1;/
+      - derive/Ⓒ(\d);/Ⓠ$1;/
+      - xform/iao(\d);/Ⓜ$1;/
+      - xform/ing(\d);/Ⓖ$1;/
+      - xform/iu(\d);/Ⓣ$1;/
+      - xform/ia(\d);/Ⓚ$1;/
+      - xform/ie(\d);/Ⓟ$1;/
+      - xform/in(\d);/Ⓑ$1;/
+      - xform/eng(\d);/Ⓙ$1;/
+      - xform/ang(\d);/Ⓕ$1;/
+      - xform/ong(\d);/Ⓛ$1;/
+      - xform/ao(\d);/Ⓢ$1;/
+      - xform/ai(\d);/Ⓗ$1;/
+      - xform/ei(\d);/Ⓦ$1;/
+      - xform/an(\d);/Ⓓ$1;/
+      - xform/en(\d);/Ⓚ$1;/
+      - xform/ou(\d);/Ⓡ$1;/
+      - xform/er(\d);/Ⓤ$1;/
+      - xform/ue(\d);/Ⓗ$1;/
+      - xform/ve(\d);/Ⓧ$1;/
+      - xform/uo(\d);/Ⓞ$1;/
+      - xform/un(\d);/Ⓨ$1;/
+      - xform/vn(\d);/Ⓦ$1;/
+      - xform/ui(\d);/Ⓝ$1;/
+      - derive/Ⓝ(\d);/Ⓥ$1;/
+      - derive/^zh/Ⓐ/
+      - xform/^zh/Ⓞ/
+      - xform/^ch/Ⓘ/
+      - derive/^sh/Ⓥ/
+      - xform/^sh/Ⓤ/
+      - xlit/ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ/abcdefghijklmnopqrstuvwxyz/
 
   首道双拼:
     __append:
-      - xform/ⅩⅢ//  # 用于Lua判断输入类型的标记
+      - xform/Ⅾ//  # 用于Lua判断输入类型的标记
       - xform/^([a-z]+)(;.*)$/$1④$2/
       - xform/^(.*)ā(.*)(;.*)$/$1a$2①$3/
       - xform/^(.*)á(.*)(;.*)$/$1a$2②$3/
