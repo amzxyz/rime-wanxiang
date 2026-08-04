@@ -14,6 +14,7 @@
 -- 9. 语气助词智能白名单 (特许“吧呢吗”等助词接标点的合法性，实现终结符平滑解耦)
 -- 10. 跨平台双层按键防线 (针对移动端软键盘强删字节的底层特性，彻底免疫退格乱码)
 -- 11. 融合前端联动删除机制 (捕获前端发送的 delete_notifier，实现点击/手势删词同步清除数据库)
+-- 12. S-Gram 长上文前缀桥接 (持续补充静态长句，并以完整句优先续查下文)
 
 local insert   = table.insert
 local remove   = table.remove
@@ -42,6 +43,11 @@ local ONE_PREFIX = "1" .. KEY_SEP
 local TWO_PREFIX = "2" .. KEY_SEP
 local RECORD_SEPARATOR = " \t"
 local C_MAX = 2147483000
+local S_BRIDGE_MIN_PREFIX = 2
+local S_BRIDGE_MAX_REMAINDER = 7
+local S_BRIDGE_SCAN_LIMIT = 20
+local S_BRIDGE_MAX_CANDIDATES = 3
+local S_BRIDGE_MAX_WITH_NORMAL = 2
 local SYMBOL_MAP = {
     ["?"] = "？",
     ["!"] = "！",
@@ -404,23 +410,44 @@ local function sort_weight_desc(a, b)
     return a.weight > b.weight
 end
 
--- 读取层预测核心
-local function get_predictions(env, prev_commit)
-    if not prev_commit or prev_commit == "" then return nil end
+-- S前缀桥接优先补全较短剩余内容，同长度再按静态记录权重排序。
+local function sort_s_bridge(a, b)
+    if a.remainder_len == b.remainder_len then
+        if a.weight == b.weight then return a.full_context < b.full_context end
+        return a.weight > b.weight
+    end
+
+    return a.remainder_len < b.remainder_len
+end
+
+-- 读取层预测核心；strong_context仅用于桥接完成后的完整S键优先查询。
+local function get_predictions(env, prev_commit, strong_context)
+    if (not prev_commit or prev_commit == "")
+        and (not strong_context or strong_context == "")
+    then
+        return nil
+    end
 
     local db = get_db(env)
     if not db then return nil end
 
     local history_count = #history
-    local u1 = history_count >= 1 and history[history_count] or nil
+    local history_u1 = history_count >= 1 and history[history_count] or nil
+    local u1 = prev_commit
+    local u0 = history_u1 == u1
+        and history_count >= 2 and history[history_count - 1] or history_u1
+
     local u1_chars = nil
     local u1_char_count = 0
     local cands = {}
     local seen = {}
+    local bridges = {}
+    local bridge_by_word = {}
     local scan_limit = CONFIG.SCAN_LIMIT
 
     -- 查询单个预测层级并按权重收集候选。
     local function fetch_candidates(code, multiplier)
+        local is_static_s = s_find(code, S_PREFIX, 1, true) == 1
         local prefix = code .. RECORD_SEPARATOR
         local prefix_len = s_len(prefix)
         local accessor = db:query(prefix)
@@ -461,22 +488,113 @@ local function get_predictions(env, prev_commit)
                 if not seen[cand.word] then
                     cand.db_code = code
                     insert(cands, cand)
-                    seen[cand.word] = true
+                    seen[cand.word] = cand
                 end
-            else
+            elseif not is_static_s then
                 mark_record_deleted(db, code, cand.word)
             end
         end
     end
 
-    -- S先读
-    if u1 then fetch_candidates(S_PREFIX .. u1, 1000000) end
+    -- 一次扫描当前S键家族，同时读取精确下文和长句前缀桥接。
+    local function fetch_s_family(prefix_text)
+        if (utf8_len(prefix_text) or 0) < S_BRIDGE_MIN_PREFIX then
+            fetch_candidates(S_PREFIX .. prefix_text, 1000000)
+            return
+        end
+
+        local query = S_PREFIX .. prefix_text
+        local query_len = s_len(query)
+        local sep_len = s_len(RECORD_SEPARATOR)
+        local accessor = db:query(query)
+        if not accessor then return end
+
+        local exact = {}
+        local scan_count = 0
+
+        for raw_key, tail in accessor:iter() do
+            if scan_count >= S_BRIDGE_SCAN_LIMIT
+                or s_find(raw_key, query, 1, true) ~= 1
+            then
+                break
+            end
+
+            scan_count = scan_count + 1
+            local split_pos = s_find(raw_key, RECORD_SEPARATOR, query_len + 1, true)
+
+            if split_pos then
+                local commits = parse_record_tail(tail)
+
+                if commits > 0 then
+                    if split_pos == query_len + 1 then
+                        local word = s_sub(raw_key, split_pos + sep_len)
+                        if word ~= "" then
+                            exact[#exact + 1] = {
+                                word = word,
+                                weight = commits * 1000000,
+                            }
+                        end
+                    else
+                        local code = s_sub(raw_key, 1, split_pos - 1)
+                        local remainder = s_sub(code, query_len + 1)
+                        local remainder_len = utf8_len(remainder) or 0
+
+                        if remainder_len >= 1
+                            and remainder_len <= S_BRIDGE_MAX_REMAINDER
+                        then
+                            local bridge = bridge_by_word[remainder]
+                            local full_context = s_sub(code, s_len(S_PREFIX) + 1)
+
+                            if not bridge then
+                                bridge = {
+                                    word = remainder,
+                                    weight = commits,
+                                    remainder_len = remainder_len,
+                                    full_context = full_context,
+                                }
+                                bridge_by_word[remainder] = bridge
+                                bridges[#bridges + 1] = bridge
+                            elseif commits > bridge.weight then
+                                bridge.weight = commits
+                                bridge.full_context = full_context
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+        accessor = nil
+        if #exact == 0 then return end
+
+        sort(exact, sort_weight_desc)
+        for i = 1, math_min(#exact, CONFIG.MAX_MEMORY_BRANCHES) do
+            local cand = exact[i]
+            if not seen[cand.word] then
+                cand.db_code = query
+                cands[#cands + 1] = cand
+                seen[cand.word] = cand
+            end
+        end
+    end
+
+    -- 桥接候选上屏后，完整长句拥有最高优先级；命中即直接返回。
+    if strong_context and strong_context ~= "" then
+        fetch_candidates(S_PREFIX .. strong_context, 1000000)
+
+        if #cands > 0 then
+            sort(cands, sort_weight_desc)
+            return cands
+        end
+    end
+
+    -- S精确与S前缀桥接共用一次家族扫描。
+    if u1 then fetch_s_family(u1) end
 
     -- 小于等于2先找上文组合查 2-Gram
-    if history_count >= 2 then
-        local u0 = history[history_count - 1]
-        local len_u0 = u0 and utf8_len(u0) or 0
-        local len_u1 = u1 and utf8_len(u1) or 0
+    if u0 and u1 then
+        local len_u0 = utf8_len(u0) or 0
+        local len_u1 = utf8_len(u1) or 0
 
         if len_u1 <= 4 and (len_u0 + len_u1) <= 5 then
             fetch_candidates(
@@ -530,13 +648,55 @@ local function get_predictions(env, prev_commit)
         end
     end
 
-    if #cands == 0 then return nil end
+    if #cands > 0 then sort(cands, sort_weight_desc) end
 
-    -- 汇总所有层级后按最终权重降序排列。
-    sort(cands, sort_weight_desc)
-    return cands
+    -- 同词只补完整上下文；纯桥接候选直接插入原候选表的可见区。
+    if #bridges > 0 then
+        sort(bridges, sort_s_bridge)
+        local available = 0
+
+        for i = 1, #bridges do
+            local bridge = bridges[i]
+            local existing = seen[bridge.word]
+
+            if existing then
+                existing.full_context = bridge.full_context
+            else
+                available = available + 1
+                bridges[available] = bridge
+            end
+        end
+
+        local normal_count = #cands
+        local limit = normal_count > 0
+            and S_BRIDGE_MAX_WITH_NORMAL or S_BRIDGE_MAX_CANDIDATES
+        limit = math_min(available, limit, CONFIG.MAX_CANDIDATES)
+
+        if normal_count == 0 then
+            for i = 1, limit do cands[i] = bridges[i] end
+        else
+            limit = math_min(limit, math_max(0, CONFIG.MAX_CANDIDATES - 1))
+            local pos = math_min(normal_count, CONFIG.MAX_CANDIDATES - limit) + 1
+            for i = normal_count, pos, -1 do cands[i + limit] = cands[i] end
+            for i = 1, limit do cands[pos + i - 1] = bridges[i] end
+        end
+    end
+
+    return #cands > 0 and cands or nil
 end
 
+
+-- 从当前预测结果中查找本次实际上屏的候选。
+local function find_pending_candidate(word)
+    if not pending_cands then return nil end
+
+    for i = 1, #pending_cands do
+        local cand = pending_cands[i]
+        if cand.word == word then return cand end
+    end
+
+    return nil
+end
 
 -- 物理按键与前端通用的删除逻辑
 local function remove_predict_candidate(env, word)
@@ -545,7 +705,17 @@ local function remove_predict_candidate(env, word)
     if pending_cands then
         for _, cand in ipairs(pending_cands) do
             if cand.word == word then
-                mark_record_deleted(db, cand.db_code, cand.word)
+                -- 静态S记录及其虚拟桥接候选均保持只读，不写墓碑也不联动删P。
+                if cand.full_context and not cand.db_code
+                    or cand.db_code
+                        and s_find(cand.db_code, S_PREFIX, 1, true) == 1
+                then
+                    return
+                end
+
+                if cand.db_code then
+                    mark_record_deleted(db, cand.db_code, cand.word)
+                end
                 break
             end
         end
@@ -605,6 +775,10 @@ function P.init(env)
         env.just_committed = false
 
         local text = ctx:get_commit_text()
+        local selected_pending = find_pending_candidate(text)
+        local strong_context = selected_pending
+            and selected_pending.full_context or nil
+
         if not s_match(text, "^[0-9]+$") then
             is_after_number = false
         end
@@ -617,7 +791,9 @@ function P.init(env)
 
         local current_time = (rime_api and rime_api.get_time_ms) and rime_api.get_time_ms() or (os_time() * 1000)
         if last_commit ~= "" and (current_time - last_commit_time) > CONFIG.CONTEXT_TIMEOUT_MS then
-            reset_memory_chain(env, "输入超时") 
+            reset_memory_chain(env, "输入超时")
+            selected_pending = nil
+            strong_context = nil
         end
 
         if not is_predicting then 
@@ -743,7 +919,8 @@ function P.init(env)
         -- 如果两个开关都没开，绝对不去查库！绝对不建缓存
         if predict_count <= CONFIG.MAX_PREDICTIONS and ctx:get_option("prediction") then
             if CONFIG.PREDICT_STYLE ~= "off" then
-                pending_cands = get_predictions(env, last_commit)
+                local prediction_context = selected_pending and text or last_commit
+                pending_cands = get_predictions(env, prediction_context, strong_context)
                 if pending_cands then 
                     if CONFIG.PREDICT_STYLE == "post" then
                         env.need_push = true 
