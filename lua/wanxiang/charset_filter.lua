@@ -6,31 +6,42 @@
 -- 3. 只有词组末尾为生僻字时，才尝试从历史记录生成兜底。
 -- 4. table、user_table 和 completion 候选不能写入兜底历史。
 -- 5. 兜底只允许复用完全相同编码和词长的历史，不拼接剩余编码。
+-- 6. user_phrase 完全豁免字符集过滤。
+-- 7. 配置根节点为 charset_filter，使用 Rime Config 对象直接加载。
 
 local wanxiang = require("wanxiang/wanxiang")
 local M = {}
 
 local sub = string.sub
 local byte = string.byte
+local match = string.match
 local utf8_codes = utf8.codes
 local utf8_len = utf8.len
 local utf8_char = utf8.char
-local ipairs = ipairs
 local pairs = pairs
 local pcall = pcall
-local insert = table.insert
-local type = type
 local bit = require("wanxiang/bit")
+local bit_bor = bit.bor
+local bit_band = bit.band
+local bit_lshift = bit.lshift
+
+local function clear_array(t)
+    for i = #t, 1, -1 do t[i] = nil end
+end
+
+local function clear_map(t)
+    for k in pairs(t) do t[k] = nil end
+end
 
 -- 将字符集属性字符串转换为位掩码。
 local function str_to_mask(s)
     if not s or s == "" then return 0 end
 
-    local m = 0
+    local mask = 0
     for i = 1, #s do
-        m = bit.bor(m, bit.lshift(1, bit.band(byte(s, i), 0x3F)))
+        mask = bit_bor(mask, bit_lshift(1, bit_band(byte(s, i), 0x3F)))
     end
-    return m
+    return mask
 end
 
 -- 延迟加载并缓存字符集反查数据库。
@@ -53,27 +64,34 @@ local function get_charset_db(env)
 end
 
 -- 查询并缓存单个汉字所属字符集的位掩码。
-local function get_char_mask(env, char)
-    local mask = env.db_memo[char]
+-- 使用码点作为缓存键；数据库未命中时也缓存 0。
+local function get_char_mask(env, codepoint)
+    local mask = env.db_memo[codepoint]
     if mask ~= nil then return mask end
 
     local db = get_charset_db(env)
-    if not db then return 0 end
-
-    local attr = db:lookup(char)
-    if attr and attr ~= "" then
-        mask = str_to_mask(attr)
-        env.db_memo[char] = mask
-        return mask
+    if not db then
+        env.db_memo[codepoint] = 0
+        return 0
     end
 
-    return 0
+    local attr = db:lookup(utf8_char(codepoint))
+    mask = attr and attr ~= "" and str_to_mask(attr) or 0
+    env.db_memo[codepoint] = mask
+    return mask
 end
 
--- 判断单个汉字是否符合当前启用规则。
-local function char_is_valid(env, codepoint, char, active_rules, cache)
-    local r = cache[codepoint]
-    if r ~= nil then return r end
+-- 判断单个码点是否符合当前启用规则。
+-- 同一轮候选流中按码点缓存结果，非汉字也缓存为 true。
+local function codepoint_is_valid(env, codepoint, active_rules, cache)
+    local result = cache[codepoint]
+    if result ~= nil then return result end
+
+    local char = utf8_char(codepoint)
+    if not wanxiang.IsChineseCharacter(char) then
+        cache[codepoint] = true
+        return true
+    end
 
     local allowed = false
     local banned = false
@@ -91,110 +109,116 @@ local function char_is_valid(env, codepoint, char, active_rules, cache)
             if rule.add[codepoint] then
                 allowed = true
             elseif rule.base ~= 0 then
-                local m = get_char_mask(env, char)
-                if m ~= 0 and bit.band(m, rule.base) ~= 0 then
+                local mask = get_char_mask(env, codepoint)
+                if mask ~= 0 and bit_band(mask, rule.base) ~= 0 then
                     allowed = true
                 end
             end
         end
     end
 
-    local result = not banned and allowed
+    result = not banned and allowed
     cache[codepoint] = result
     return result
 end
 
--- 判断文本中的全部汉字是否符合当前字符集规则。
-local function text_is_valid(env, text, active_rules, cache)
-    if not text or text == "" then return true end
+-- 一次 UTF-8 遍历同时得到：
+-- 1. 文本码点长度；
+-- 2. 全部汉字是否合法；
+-- 3. 是否只有末尾一个汉字非法，可用于兜底。
+local function inspect_text(env, text, active_rules, cache)
+    if not text or text == "" then return 0, true, false end
 
-    for _, cp in utf8_codes(text) do
-        local char = utf8_char(cp)
-        if wanxiang.IsChineseCharacter(char)
-            and not char_is_valid(env, cp, char, active_rules, cache)
-        then
-            return false
+    local text_len = 0
+    local invalid_count = 0
+    local last_invalid_pos = 0
+
+    for _, codepoint in utf8_codes(text) do
+        text_len = text_len + 1
+
+        if not codepoint_is_valid(env, codepoint, active_rules, cache) then
+            invalid_count = invalid_count + 1
+            last_invalid_pos = text_len
         end
     end
 
-    return true
+    local all_valid = invalid_count == 0
+    local can_fallback = text_len >= 2
+        and invalid_count == 1
+        and last_invalid_pos == text_len
+
+    return text_len, all_valid, can_fallback
 end
 
--- 将原始规则转换为运行时结构。
-local function preprocess(raw)
-    return {
-        options = raw.options,
-        base = str_to_mask(raw.base_str),
-        add = raw.add,
-        ban = raw.ban,
-    }
+-- 直接读取 Rime ConfigItem，不再拼接 /@n 配置路径。
+local function append_config(item, target, as_codepoints)
+    if not item then return end
+
+    local function append(value, scalar)
+        if not value then return end
+        local text = value:get_string()
+
+        if scalar then
+            if value:get_bool() then text = "true"
+            elseif text == "true" then return end
+        end
+        if not text or text == "" then return end
+
+        if as_codepoints then
+            for _, codepoint in utf8_codes(text) do target[codepoint] = true end
+        else
+            target[#target + 1] = text
+        end
+    end
+
+    if item.type == "kList" then
+        local list = item:get_list()
+        for i = 0, list.size - 1 do append(list:get_value_at(i), false) end
+    elseif item.type == "kScalar" and not as_codepoints then
+        append(item:get_value(), true)
+    end
 end
 
--- 从配置中加载全部字符集过滤规则。
-local function load_rules(cfg, path)
+local function load_rules(cfg)
     local rules = {}
-    local list = cfg:get_list(path)
+    local list = cfg:get_list("charset_filter")
     if not list then return rules end
 
     for i = 0, list.size - 1 do
-        local ep = path .. "/@" .. i
+        local item = list:get_at(i)
+        local rule = item and item:get_map()
+        if not rule then goto continue end
+
         local triggers = {}
+        append_config(rule:get("option"), triggers, false)
+        append_config(rule:get("options"), triggers, false)
+        if #triggers == 0 then goto continue end
 
-        for _, key in ipairs({"option", "options"}) do
-            local kp = ep .. "/" .. key
-            local sl = cfg:get_list(kp)
-
-            if sl then
-                for k = 0, sl.size - 1 do
-                    local v = cfg:get_string(kp .. "/@" .. k)
-                    if v and v ~= "" then insert(triggers, v) end
-                end
-            elseif cfg:get_bool(kp) then
-                insert(triggers, "true")
-            else
-                local v = cfg:get_string(kp)
-                if v and v ~= "" and v ~= "true" then insert(triggers, v) end
-            end
-        end
-
-        if #triggers == 0 then goto next end
-
-        local base_str = cfg:get_string(ep .. "/base") or ""
         local add = {}
         local ban = {}
+        local base = rule:get_value("base")
+        append_config(rule:get("addlist"), add, true)
+        append_config(rule:get("blacklist"), ban, true)
 
-        -- 将字符列表加载为码点查找表。
-        local function load_list(name, target)
-            local lp = ep .. "/" .. name
-            local sl = cfg:get_list(lp)
-            if not sl then return end
-
-            for k = 0, sl.size - 1 do
-                local v = cfg:get_string(lp .. "/@" .. k)
-                if v and v ~= "" then
-                    for _, cp in utf8_codes(v) do target[cp] = true end
-                end
-            end
-        end
-
-        load_list("addlist", add)
-        load_list("blacklist", ban)
-
-        insert(rules, preprocess({
+        rules[#rules + 1] = {
             options = triggers,
-            base_str = base_str,
+            base = str_to_mask(base and base:get_string() or ""),
             add = add,
             ban = ban,
-        }))
+        }
 
-        ::next::
+        ::continue::
     end
 
     return rules
 end
 
 -- 返回当前输入状态下已经启用的规则。
+-- 复用 env.active_rules，避免每轮创建临时数组。
 local function get_active_rules(env, ctx)
+    local active = env.active_rules
+    clear_array(active)
+
     local filters = env.filters
     if not filters or #filters == 0 then return nil end
 
@@ -204,16 +228,13 @@ local function get_active_rules(env, ctx)
         return nil
     end
 
-    local active = {}
-
     for i = 1, #filters do
         local rule = filters[i]
 
         for j = 1, #rule.options do
-            if rule.options[j] == "true"
-                or ctx:get_option(rule.options[j])
-            then
-                insert(active, rule)
+            local option = rule.options[j]
+            if option == "true" or ctx:get_option(option) then
+                active[#active + 1] = rule
                 break
             end
         end
@@ -229,35 +250,6 @@ local function can_record_history(cand)
     return cand_type ~= "table"
         and cand_type ~= "user_table"
         and cand_type ~= "completion"
-end
-
--- 只有最后一个字符为非法汉字时才允许启动兜底。
-local function can_fallback_from_text(
-    env, text, text_len, active_rules, cache
-)
-    if not text or text == "" or text_len < 2 then return false end
-
-    local position = 0
-    local found_invalid = false
-
-    for _, cp in utf8_codes(text) do
-        position = position + 1
-
-        local char = utf8_char(cp)
-        if wanxiang.IsChineseCharacter(char)
-            and not char_is_valid(
-                env, cp, char, active_rules, cache
-            )
-        then
-            if position ~= text_len or found_invalid then
-                return false
-            end
-
-            found_invalid = true
-        end
-    end
-
-    return found_invalid
 end
 
 -- 判断候选是否完整覆盖当前活动编码段。
@@ -289,18 +281,20 @@ function M.init(env)
     env.charset_db_checked = false
     env.db_memo = {}
     env.filters = {}
+    env.active_rules = {}
+    env.valid_cache = {}
     env.phrase_history = nil
 
-    if cfg then env.filters = load_rules(cfg, "charset") end
+    if cfg then env.filters = load_rules(cfg) end
 
     env.opt_update_conn =
         env.engine.context.option_update_notifier:connect(
             function(ctx, name)
                 for i = 1, #env.filters do
-                    local opts = env.filters[i].options
+                    local options = env.filters[i].options
 
-                    for j = 1, #opts do
-                        if name == opts[j] then
+                    for j = 1, #options do
+                        if name == options[j] then
                             ctx:refresh_non_confirmed_composition()
                             return
                         end
@@ -327,6 +321,8 @@ function M.fini(env)
     env.charset_db_checked = nil
     env.db_memo = nil
     env.filters = nil
+    env.active_rules = nil
+    env.valid_cache = nil
     env.phrase_history = nil
 end
 
@@ -336,21 +332,22 @@ function M.func(input, env)
     local code = ctx.input or ""
     local comp = ctx.composition
     local code_len = #code
-    local cache = {}
+    local cache = env.valid_cache
+
+    clear_map(cache)
 
     -- 输入清空时结束当前兜底历史上下文。
-    if code == "" or comp and comp:empty() then
+    if code == "" or (comp and comp:empty()) then
         env.phrase_history = nil
     end
 
-    -- 获取活跃规则
     local active_rules = get_active_rules(env, ctx)
     local charset_on = active_rules ~= nil
 
     -- 5码豁免
     if charset_on and code_len == 5 then
         local last = sub(code, -1)
-        if not last:match("[%w]") then charset_on = false end
+        if not match(last, "[%w]") then charset_on = false end
     end
 
     local has_valid = false
@@ -375,10 +372,23 @@ function M.func(input, env)
     end
 
     for cand in input:iter() do
-        local text = cand.text
-        local text_len = utf8_len(text)
+        local text = cand.text or ""
+        local cand_type = cand.type or ""
+        local bypass_user_phrase = charset_on
+            and cand_type == "user_phrase"
 
-        -- 处理 pending 的兜底候选
+        local text_len
+        local all_valid = true
+        local can_fallback = false
+
+        if charset_on and text ~= "" and not bypass_user_phrase then
+            text_len, all_valid, can_fallback =
+                inspect_text(env, text, active_rules, cache)
+        else
+            text_len = text == "" and 0 or (utf8_len(text) or 0)
+        end
+
+        -- 处理 pending 的兜底候选。
         if pending then
             if text_len == pending_len then
                 output(pending, pending.text, pending_len)
@@ -392,47 +402,45 @@ function M.func(input, env)
             pending = nil
         end
 
-        if not charset_on or text == "" then
+        if not charset_on or text == "" or bypass_user_phrase then
+            -- user_phrase 在字符集检查前完全放行。
             output(cand, text, text_len)
             has_valid = true
-        elseif text_is_valid(env, text, active_rules, cache) then
+        elseif all_valid then
             output(cand, text, text_len)
             has_valid = true
-        elseif text_len >= 2
-            and (cand.type == "phrase" or cand.type == "user_phrase")
-        then
-            -- 词库中真实存在的多字词组，直接放行不过滤
+        elseif text_len >= 2 and cand_type == "phrase" then
+            -- phrase 保持原有逻辑：完成字符集检查后，多字词仍直接放行。
             output(cand, text, text_len)
             has_valid = true
         elseif not has_valid and not pending
             and covers_current_segment(cand, comp, code_len)
-            and can_fallback_from_text(
-                env, text, text_len, active_rules, cache
-            )
+            and can_fallback
         then
-            local fb = get_exact_history(env, code, text_len)
+            local fallback = get_exact_history(env, code, text_len)
 
-            if fb then
-                local pre = cand.preedit or code
+            if fallback then
+                local preedit = cand.preedit or code
 
-                if #pre > 1 and pre:sub(-1):match("[%w%p]") then
-                    pre = sub(pre, 1, -2) .. " " .. sub(pre, -1)
+                if #preedit > 1 and match(sub(preedit, -1), "[%w%p]") then
+                    preedit = sub(preedit, 1, -2) .. " " .. sub(preedit, -1)
                 end
 
-                local nc = Candidate(
+                local replacement = Candidate(
                     "fallback",
                     cand.start,
                     cand._end,
-                    fb,
+                    fallback,
                     cand.comment or ""
                 )
-                nc.preedit = pre
+                replacement.preedit = preedit
 
-                if text_is_valid(
-                    env, nc.text, active_rules, cache
-                ) then
-                    pending = nc
-                    pending_len = text_len
+                local fallback_len, fallback_valid =
+                    inspect_text(env, replacement.text, active_rules, cache)
+
+                if fallback_valid then
+                    pending = replacement
+                    pending_len = fallback_len
                 end
             end
         end
