@@ -237,8 +237,8 @@ recognizer:
   patterns:  # 再增加方案专有的：
     # 排除 /sym /emoji 开头（含单独 /sym /emoji），交给 super_sym / super_emoji tag 处理
     punct: "^/([0-9]|10|[A-Za-z]+)$"  # 响应 symbols.yaml 的 symbols
-    super_sym: "^/sym[.?/][A-Za-z.]*$"  # /sym.arrow.r.double 精确  /sym?keyword 或 /sym/keyword 模糊
-    super_emoji: "^/emoji[.?/][A-Za-z.]*$"  # /emoji.apple.red  /emoji?keyword  /emoji/keyword
+    super_sym: "^/sym[.?/][A-Za-z.]+$"  # /sym.arrow.r.double 精确  /sym?keyword 或 /sym/keyword 模糊
+    super_emoji: "^/emoji[.?/][A-Za-z.]+$"  # /emoji.apple.red  /emoji?keyword  /emoji/keyword
     super_sym_pre: "^/sym[.?/]?$"  # 仅 /sym /sym. /sym? /sym/ 模式提示
     super_emoji_pre: "^/emoji[.?/]?$"  # 仅 /emoji /emoji. /emoji? /emoji/ 模式提示
     wanxiang_reverse: "^`[A-Za-z;]*$"  # 响应部件拆字与笔画的反查，与 wanxiang_reverse/prefix 匹配
