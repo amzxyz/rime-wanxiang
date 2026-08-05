@@ -441,6 +441,11 @@ function ZH.init(env)
         comment_split_pattern = "[^" .. escaped_delimiters .. "]+",
     }
 
+    env.is_t9 = false
+    if wanxiang.get_input_method_type then
+        env.is_t9 = wanxiang.get_input_method_type(env) == "t9"
+    end
+
     env.tone_map = {}
 
     for d = 0, 9 do
@@ -456,8 +461,7 @@ end
 function ZH.func(input, env)
     local context = env.engine.context
     local input_str = context.input or ""
-    local is_t9_key = input_str:match("^%d") ~= nil
-    local skip_tone_preedit = is_t9_key or input_str:match("%d%d") ~= nil
+    local is_t9 = env.is_t9
     local is_radical_mode = wanxiang.is_in_radical_mode(env)
     local schema_id = env.engine.schema.schema_id or ""
     local is_wanxiang_pro = (schema_id == "wanxiang_pro")
@@ -470,7 +474,7 @@ function ZH.func(input, env)
     local is_tone_display = context:get_option("tone_display")
     local is_full_pinyin = context:get_option("full_pinyin")
     local preedit_state = {
-        is_t9 = is_t9_key,
+        is_t9 = is_t9,
         is_pro = is_wanxiang_pro,
         is_full_pinyin = is_full_pinyin,
         tone_isolate = env.settings.tone_isolate,
@@ -510,7 +514,7 @@ function ZH.func(input, env)
             yield(genuine_cand)
             goto continue
         end
-        if not skip_tone_preedit then
+        if not is_t9 then
             apply_tone_preedit(env, genuine_cand)
         end
         -- 进入注释处理阶段
