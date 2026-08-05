@@ -1,5 +1,13 @@
 # Changelog
 
+## [17.2.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.1...v17.2.2) (2026-08-05)
+
+
+### 🐛 Bug 修复
+
+* 修复历史残留的t9模式判断错误 ([581ae39](https://github.com/amzxyz/rime-wanxiang/commit/581ae394347e57a89f95e910cf39bd6f9cce0228))
+* 添加user_table为字符集过滤豁免 ([8620bfb](https://github.com/amzxyz/rime-wanxiang/commit/8620bfb64c5a5c869f81d4c3022ab7bede3872f2))
+
 ## [17.2.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.0...v17.2.1) (2026-08-05)
 
 
