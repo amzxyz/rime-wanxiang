@@ -4,8 +4,8 @@
 -- 1. 支持配置多个选项，开启多个选项时 Base 和 Addlist 取并集，Blacklist 一票否决。
 -- 2. 单字如果不符合字符集，直接丢弃（删除），不进行兜底。
 -- 3. 只有词组末尾为生僻字时，才尝试从历史记录生成兜底。
--- 4. table、user_table 和 completion 候选不能写入兜底历史。
--- 5. 兜底只允许复用完全相同编码和词长的历史，不拼接剩余编码。
+-- 4. table、user_table、completion 和 fallback 候选不能写入兜底历史。
+-- 5. 兜底只复用上一输入编码对应、相同词长的历史，不拼接剩余编码。
 -- 6. user_phrase 完全豁免字符集过滤。
 -- 7. 配置根节点为 charset_filter，使用 Rime Config 对象直接加载。
 
@@ -250,6 +250,7 @@ local function can_record_history(cand)
     return cand_type ~= "table"
         and cand_type ~= "user_table"
         and cand_type ~= "completion"
+        and cand_type ~= "fallback"
 end
 
 -- 判断候选是否完整覆盖当前活动编码段。
@@ -263,13 +264,15 @@ local function covers_current_segment(cand, comp, code_len)
     return cand.start == 0 and cand._end == code_len
 end
 
--- 读取完全相同输入编码下、相同词长的历史候选。
-local function get_exact_history(env, code, text_len)
-    local history = env.phrase_history
-    if not history or history.code ~= code then return nil end
-    if history.text_len ~= text_len then return nil end
+-- 读取当前编码的直接前一输入状态中、相同词长的历史候选。
+local function get_previous_history(env, code, text_len)
+    if not code or #code <= 1 then return nil end
 
-    return history.text
+    local history = env.phrase_history
+    local previous = history and history[sub(code, 1, -2)]
+    if not previous or previous.text_len ~= text_len then return nil end
+
+    return previous.text
 end
 
 -- 初始化过滤规则、历史缓存和选项监听。
@@ -283,7 +286,7 @@ function M.init(env)
     env.filters = {}
     env.active_rules = {}
     env.valid_cache = {}
-    env.phrase_history = nil
+    env.phrase_history = {}
 
     if cfg then env.filters = load_rules(cfg) end
 
@@ -338,7 +341,7 @@ function M.func(input, env)
 
     -- 输入清空时结束当前兜底历史上下文。
     if code == "" or (comp and comp:empty()) then
-        env.phrase_history = nil
+        clear_map(env.phrase_history)
     end
 
     local active_rules = get_active_rules(env, ctx)
@@ -355,13 +358,14 @@ function M.func(input, env)
     local pending_len = 0
     local recorded = false
 
-    -- 输出候选，并记录当前完整编码对应的可靠历史候选。
-    local function output(cand, text, text_len)
-        if not recorded and can_record_history(cand)
+    -- 输出候选；只有完整覆盖当前编码段的可靠候选才写入历史。
+    local function output(cand, text, text_len, remember)
+        if remember and not recorded and code ~= ""
+            and can_record_history(cand)
+            and covers_current_segment(cand, comp, code_len)
             and text and text ~= "" and (text_len or 0) >= 1
         then
-            env.phrase_history = {
-                code = code,
+            env.phrase_history[code] = {
                 text = text,
                 text_len = text_len,
             }
@@ -391,33 +395,33 @@ function M.func(input, env)
         -- 处理 pending 的兜底候选。
         if pending then
             if text_len == pending_len then
-                output(pending, pending.text, pending_len)
+                output(pending, pending.text, pending_len, false)
                 has_valid = true
                 pending = nil
                 goto next
             end
 
-            output(pending, pending.text, pending_len)
+            output(pending, pending.text, pending_len, false)
             has_valid = true
             pending = nil
         end
 
         if not charset_on or text == "" or bypass_user_phrase then
             -- user_phrase 在字符集检查前完全放行。
-            output(cand, text, text_len)
+            output(cand, text, text_len, text ~= "")
             has_valid = true
         elseif all_valid then
-            output(cand, text, text_len)
+            output(cand, text, text_len, true)
             has_valid = true
         elseif text_len >= 2 and cand_type == "phrase" then
             -- phrase 保持原有逻辑：完成字符集检查后，多字词仍直接放行。
-            output(cand, text, text_len)
+            output(cand, text, text_len, false)
             has_valid = true
         elseif not has_valid and not pending
             and covers_current_segment(cand, comp, code_len)
             and can_fallback
         then
-            local fallback = get_exact_history(env, code, text_len)
+            local fallback = get_previous_history(env, code, text_len)
 
             if fallback then
                 local preedit = cand.preedit or code
@@ -448,7 +452,7 @@ function M.func(input, env)
         ::next::
     end
 
-    if pending then output(pending, pending.text, pending_len) end
+    if pending then output(pending, pending.text, pending_len, false) end
 end
 
 return M
