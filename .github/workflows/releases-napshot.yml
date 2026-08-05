@@ -1,4 +1,3 @@
-
 name: Build release branch snapshot
 
 on:
@@ -20,12 +19,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           fetch-depth: 20
-          
+
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: "3.x"
 
@@ -69,7 +68,7 @@ jobs:
               echo "Warning: $src does not exist, skipped."
             fi
           }
-          pack_dict "dist/rime-wanxiang-wx-fuzhu/dicts"    "pro-wx-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-wx-fuzhu/dicts"      "pro-wx-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-moqi-fuzhu/dicts"    "pro-moqi-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-flypy-fuzhu/dicts"   "pro-flypy-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-zrm-fuzhu/dicts"     "pro-zrm-fuzhu-dicts.zip"
@@ -83,7 +82,7 @@ jobs:
 
       # 3. 删除旧的 Nightly/Preview Release 和 Tag
       - name: Delete existing Nightly Release and Tag
-        uses: actions/github-script@v6
+        uses: actions/github-script@v9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -128,42 +127,43 @@ jobs:
 
       # 5. 创建统一的 Nightly 预览版 Release，上传所有方案与词库产物
       - name: Create Unified Nightly Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: dict-nightly
           name: "🚀 实时全量预览版 (Rolling Preview)"
           body: |
             ⚠️ **注意：这是由 CI 自动构建的最新开发预览版（Rolling Preview）。**
-            
+
             包含了仓库最新的代码、方案和词库变动。此 Release 会在每次推送后**被自动覆盖更新**。
             如果您追求稳定，请前往下载 [🌟 最新正式版](../../releases/latest)。
-            
+
             ---
-            
+
             ### 📦 产物说明 (Assets)
-            
+
             #### 1️⃣ 完整方案包 (包含配置、Lua 脚本、词库等)
             - `rime-wanxiang-base.zip`: 标准版完整方案
             - `rime-wanxiang-pure.zip`: 精简版完整方案
             - `rime-wanxiang-pro-*-fuzhu.zip`: 携带各款辅助码的 Pro 版完整方案
-            
+
             #### 2️⃣ 独立词库包 (仅含 dicts 目录下的文件，供单独覆盖升级)
             - `base-dicts.zip`: 标准版独立词库
             - `pure-dicts.zip`: 精简版独立词库
             - `pro-*-fuzhu-dicts.zip`: 携带各款辅助码的独立词库
             - **[wanxiang-lts-zh-hans.gram](https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram)**：与词库同步更新的语法模型
-            
+
             ---
-            
+
             ### 🔄 最近 10 次代码变动
             ${{ env.COMMIT_LOGS }}
-            
+
             ---
             **触发用户**：@${{ github.actor }} | **构建分支**：`${{ github.ref_name }}`
           files: dist/*.zip
           draft: false
           prerelease: true
+
       # 6. 为每个方案生成独立分支：wanxiang-base / wanxiang-moqi-fuzhu / ...
       - name: Commit and force push per-scheme snapshots
         env:

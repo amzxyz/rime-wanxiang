@@ -9,6 +9,7 @@ on:
       - 'docs/**'
       - 'mkdocs.yml'
       - '.github/workflows/deploy-docs.yml'
+
 # 权限设置：允许机器人写入 gh-pages 分支
 permissions:
   contents: write
@@ -18,20 +19,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 检出代码
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 1
 
       - name: 配置 Python 环境
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: 3.x
 
       - name: 缓存提速配置
-        run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+        run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
 
       - name: 设置 MkDocs 缓存
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache

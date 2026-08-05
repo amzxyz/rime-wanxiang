@@ -35,7 +35,7 @@ jobs:
         id: trime_version
         run: |
           LATEST_TAG=$(curl -s https://api.github.com/repos/osfans/trime/tags | jq -r 'map(select(.name | startswith("v"))) | .[0].name')
-          
+
           echo "TRIME_LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
           echo ">>> 成功获取到 Trime 最新版本为: $LATEST_TAG"
 
@@ -65,12 +65,12 @@ jobs:
           SHARED_DEST="$GITHUB_WORKSPACE/trime_src/app/src/main/assets/shared"
           SCRIPT_PATH="$GITHUB_WORKSPACE/wanxiang_root/.github/workflows/scripts/openccset.py"
           DM_PATH="$GITHUB_WORKSPACE/trime_src/app/src/main/java/com/osfans/trime/data/base/DataManager.kt"
-          
+
           rm -rf "$RIME_DEST" "$SHARED_DEST"
           mkdir -p "$RIME_DEST" "$SHARED_DEST"
-          
+
           git clone -b ${{ matrix.branch }} --single-branch --depth 1 https://github.com/${{ github.repository }}.git temp_scheme
-          
+
           if [ -d "temp_scheme/opencc" ]; then
             python3 "$SCRIPT_PATH" "$GITHUB_WORKSPACE/temp_scheme/opencc"
           fi
@@ -85,7 +85,7 @@ jobs:
           fi
           for pattern in ${{ env.DELETE_LIST }}; do rm -rf $pattern || true; done
           cd ..
-          
+
           cp -rf temp_scheme/. "$SHARED_DEST"/
           rm -rf temp_scheme
 
@@ -96,7 +96,7 @@ jobs:
           find "$SHARED_DEST/opencc" -name "*.txt" -delete 2>/dev/null || true
           #rm -f "$SHARED_DEST/dicts/wuzhong.dict.yaml" 2>/dev/null || true
           rm -f "$SHARED_DEST/"*.jpg "$SHARED_DEST/"*.png 2>/dev/null || true
-          
+
           echo ">>> [Source] 正在修改 DataManager.kt ..."
           if [ -f "$DM_PATH" ]; then
             sed -i 's/File(Environment.getExternalStorageDirectory(), "rime")/File(Environment.getExternalStorageDirectory(), "wanxiang")/g' "$DM_PATH"
@@ -112,23 +112,23 @@ jobs:
             export INJECT_CODE='
             try {
                 val am = appContext.assets
-                
+
                 // 1. 释放 fonts 目录
                 val fd = java.io.File(userDataDir, "fonts").apply { mkdirs() }
                 am.list("shared/fonts")?.forEach { try { ResourceUtils.copyFile("shared/fonts/$it", java.io.File(fd, it).absolutePath) } catch(e:Exception){} }
-                
+
                 // 2. 释放 backgrounds 目录
                 val bd = java.io.File(userDataDir, "backgrounds").apply { mkdirs() }
                 val nomedia = java.io.File(bd, ".nomedia")
                 if (!nomedia.exists()) { nomedia.createNewFile() }
                 am.list("shared/backgrounds")?.forEach { try { ResourceUtils.copyFile("shared/backgrounds/$it", java.io.File(bd, it).absolutePath) } catch(e:Exception){} }
-                
+
                 // 3. 创建 build 目录，并将 trime.yaml 释放进去
                 val buildDir = java.io.File(userDataDir, "build").apply { mkdirs() }
                 try { 
                     ResourceUtils.copyFile("shared/trime.yaml", java.io.File(buildDir, "trime.yaml").absolutePath) 
                 } catch(e:Exception){}
-                
+
             } catch(e: Exception) { Timber.e(e, "Assets inject error") }
             Timber.d("Synced!")'
 
@@ -144,7 +144,7 @@ jobs:
           cache: 'gradle'
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
 
       # 使用官方 CMake
       - name: Install Android Build Tools
@@ -156,17 +156,17 @@ jobs:
         run: |
           echo ">>> 修改包名为 amzxyz.wanxiang.trime ..."
           sed -i 's/applicationId = "com.osfans.trime"/applicationId = "amzxyz.wanxiang.trime"/g' app/build.gradle.kts
-          
+
           TRIME_VERSION=$(grep -oE "[0-9]+\.[0-9]+\.[0-9]+" CHANGELOG.md | head -n 1)
           if [ -z "$TRIME_VERSION" ]; then TRIME_VERSION="3.3.x"; fi
           COMMIT_ID=$(git rev-parse --short HEAD || echo "custom")
-          
+
           sed -i 's/buildConfigField("String", "BUILDER", .*)/buildConfigField("String", "BUILDER", "\\"GitHub Actions\\"")/g' app/build.gradle.kts
           sed -i 's/buildConfigField("long", "BUILD_TIMESTAMP", .*)/buildConfigField("long", "BUILD_TIMESTAMP", "0L")/g' app/build.gradle.kts
           sed -i 's/buildConfigField("String", "BUILD_COMMIT_HASH", .*)/buildConfigField("String", "BUILD_COMMIT_HASH", "\\"'${COMMIT_ID}'\\"")/g' app/build.gradle.kts
           sed -i 's/buildConfigField("String", "BUILD_GIT_REPO", .*)/buildConfigField("String", "BUILD_GIT_REPO", "\\"Wanxiang\\"")/g' app/build.gradle.kts
           sed -i 's/buildConfigField("String", "BUILD_VERSION_NAME", .*)/buildConfigField("String", "BUILD_VERSION_NAME", "\\"v'${TRIME_VERSION}-${COMMIT_ID}'\\"")/g' app/build.gradle.kts
-          
+
           git config --global --add safe.directory "*"
 
       - name: Calculate JNI cache hash
@@ -194,10 +194,10 @@ jobs:
           keyAlias=${{ secrets.ALIAS }}
           keyPassword=${{ secrets.KEY_PASSWORD }}
           EOF
-          
+
           echo ">>> 编译底层 C++ 库 (librime)..."
           make release
-          
+
           echo ">>> 确保 APK 生成完毕..."
           ./gradlew :app:assembleRelease --stacktrace
 
@@ -217,57 +217,57 @@ jobs:
           mv "$ORIGINAL_APK" "$NEW_NAME"
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: APK-${{ matrix.branch }}
           path: trime_src/app/build/outputs/apk/release/trime-${{ matrix.branch }}-armv8a.apk
 
-  # Release 环节不变
+  # Release 环节
   release_all:
-      needs: build_apks
-      runs-on: ubuntu-latest
-      if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
-      permissions:
-        contents: write
-      steps:
-        - name: Get current date
-          id: date
-          run: echo "date=$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')" >> $GITHUB_OUTPUT
+    needs: build_apks
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+    permissions:
+      contents: write
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "date=$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')" >> $GITHUB_OUTPUT
 
-        - name: Download All Artifacts
-          uses: actions/download-artifact@v4
-          with:
-            path: all_apks
-            merge-multiple: true
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: all_apks
+          merge-multiple: true
 
-        - name: Delete 'apk' tag and release
-          uses: dev-drprasad/delete-tag-and-release@v1.1
-          if: github.event_name == 'workflow_dispatch'
-          with:
-            delete_release: true
-            tag_name: apk
-            github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Delete 'apk' tag and release
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release delete apk --cleanup-tag --yes || true
+          gh api --method DELETE "repos/${GITHUB_REPOSITORY}/git/refs/tags/apk" || true
 
-        - name: Create GitHub Release
-          uses: softprops/action-gh-release@v2
-          with:
-            files: all_apks/*.apk
-            name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '同文万象安卓版本APP下载' }}
-            tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || 'apk' }}
-            body: |
-              ### 🛠️ 构建信息
-              - **构建时间**: ${{ steps.date.outputs.date }}
-              - **包名**: `amzxyz.wanxiang.trime`
-              - **主题**: 默认集成色彩简纯
-              - **用户目录**: `wanxiang`
-              - **语法模型**: 需单独下载放入`wanxiang`目录
-              - 更新内容参照同文及万象的commit
-              ## 📢 版权与归属声明
-            
-              - **软件内核**：基于 [Trime (同文)](https://github.com/osfans/trime) 编译，归原作者所有。
-              - **输入方案**：归 [万象拼音](https://github.com/${{ github.repository }}) 所有。
-              - **作品性质**：再打包集成版。
-              ---
-              *由 GitHub Actions 自动构建生成。*
-            draft: false
-            prerelease: true
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: all_apks/*.apk
+          name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '同文万象安卓版本APP下载' }}
+          tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || 'apk' }}
+          body: |
+            ### 🛠️ 构建信息
+            - **构建时间**: ${{ steps.date.outputs.date }}
+            - **包名**: `amzxyz.wanxiang.trime`
+            - **主题**: 默认集成色彩简纯
+            - **用户目录**: `wanxiang`
+            - **语法模型**: 需单独下载放入`wanxiang`目录
+            - 更新内容参照同文及万象的commit
+            ## 📢 版权与归属声明
+
+            - **软件内核**：基于 [Trime (同文)](https://github.com/osfans/trime) 编译，归原作者所有。
+            - **输入方案**：归 [万象拼音](https://github.com/${{ github.repository }}) 所有。
+            - **作品性质**：再打包集成版。
+            ---
+            *由 GitHub Actions 自动构建生成。*
+          draft: false
+          prerelease: true

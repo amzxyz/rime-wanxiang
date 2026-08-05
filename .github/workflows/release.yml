@@ -14,14 +14,14 @@ jobs:
   release-please:
     runs-on: ubuntu-22.04
     steps:
-      - uses: googleapis/release-please-action@v4
+      - uses: googleapis/release-please-action@v5
         id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout repository
         if: ${{ steps.release.outputs.release_created }}
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Release edit to draft
         if: ${{ steps.release.outputs.release_created }}
@@ -52,10 +52,10 @@ jobs:
       TAG_VERSION: ${{ needs.release-please.outputs.release_tag_name }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Download build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: rime-wanxiang-dist-${{ github.ref_name }}
           path: ~/artifact
