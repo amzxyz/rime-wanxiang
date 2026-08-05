@@ -209,22 +209,35 @@ local function tasks_signature(tasks)
     return digest_parts(parts)
 end
 
--- 合并固定列表中所有已安装方案的数据任务，并生成固定的方案级表头特征。
+-- 为兼容旧版 librime-lua，不使用 Config 接口，直接读取部署后的 build/default.yaml。
+local function enabled_schema_ids()
+    local enabled = {}
+    local file, close = wanxiang.load_file_with_fallback("build/default.yaml", "r")
+
+    for line in file:lines() do
+        local id = s_match(line, "^%s*%-%s*schema:%s*[\"']?([%w_%-]+)")
+        if id then enabled[id] = true end
+    end
+    close()
+
+    local ids = {}
+    for _, id in ipairs(MERGED_SCHEMA_IDS) do
+        if enabled[id] then ids[#ids + 1] = id end
+    end
+    return ids
+end
+
+-- 合并 default.yaml 中已启用方案的数据任务，并生成固定的方案级表头特征。
 local function merge_build_tasks(ns)
     local groups = {}
     local signatures = {}
-    local schema_ids = {}
+    local schema_ids = enabled_schema_ids()
 
-    for order, id in ipairs(MERGED_SCHEMA_IDS) do
+    for order, id in ipairs(schema_ids) do
         local schema = Schema(id)
-        local config = schema and schema.config
-
-        if config and config:get_string("schema/schema_id") == id then
-            local tasks = collect_build_tasks(config, ns)
-            schema_ids[#schema_ids + 1] = id
-            groups[#groups + 1] = {id = id, order = order, tasks = tasks}
-            signatures[id] = tasks_signature(tasks)
-        end
+        local tasks = collect_build_tasks(schema.config, ns)
+        groups[#groups + 1] = {id = id, order = order, tasks = tasks}
+        signatures[id] = tasks_signature(tasks)
     end
 
     t_sort(groups, function(a, b)
