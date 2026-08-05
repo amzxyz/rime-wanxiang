@@ -209,60 +209,22 @@ local function tasks_signature(tasks)
     return digest_parts(parts)
 end
 
-local function enabled_schema_ids(env)
-    local enabled = {}
-    local current = env.engine.schema.schema_id or ""
-
-    local config = Config("default")
-    local list = config and config:get_list("schema_list")
-
-    if list then
-        for i = 0, list.size - 1 do
-            local item = list:get_at(i)
-            local map = item and item:get_map()
-            local value = map and map:get_value("schema")
-            local id = value and value:get_string()
-            if id then enabled[id] = true end
-        end
-
-        if current ~= "" then enabled[current] = true end
-    else
-        -- default.yaml 暂时不可读时按固定列表探测，不能退化为“仅当前方案”。
-        for _, id in ipairs(MERGED_SCHEMA_IDS) do
-            local schema = Schema(id)
-            if schema then enabled[id] = true end
-        end
-    end
-
-    local ids = {}
-    for _, id in ipairs(MERGED_SCHEMA_IDS) do
-        if enabled[id] then ids[#ids + 1] = id end
-    end
-
-    if #ids == 0 and current ~= "" then ids[1] = current end
-    return ids
-end
-
--- 合并所有启用方案的数据任务，并生成固定的方案级表头特征。
-local function merge_build_tasks(env, ns, current_tasks)
-    local current_id = env.engine.schema.schema_id or ""
-    local enabled_ids = enabled_schema_ids(env)
+-- 合并固定列表中所有已安装方案的数据任务，并生成固定的方案级表头特征。
+local function merge_build_tasks(ns)
     local groups = {}
     local signatures = {}
+    local schema_ids = {}
 
-    for order, id in ipairs(enabled_ids) do
-        local tasks = nil
+    for order, id in ipairs(MERGED_SCHEMA_IDS) do
         local schema = Schema(id)
-        if schema then
-            tasks = collect_build_tasks(schema.config, ns)
-        elseif id == current_id then
-            tasks = current_tasks
-        else
-            tasks = {}
-        end
+        local config = schema and schema.config
 
-        groups[#groups + 1] = {id = id, order = order, tasks = tasks}
-        signatures[id] = tasks_signature(tasks)
+        if config and config:get_string("schema/schema_id") == id then
+            local tasks = collect_build_tasks(config, ns)
+            schema_ids[#schema_ids + 1] = id
+            groups[#groups + 1] = {id = id, order = order, tasks = tasks}
+            signatures[id] = tasks_signature(tasks)
+        end
     end
 
     t_sort(groups, function(a, b)
@@ -282,7 +244,7 @@ local function merge_build_tasks(env, ns, current_tasks)
         end
     end
 
-    return merged, signatures, digest_parts(enabled_ids)
+    return merged, signatures, digest_parts(schema_ids)
 end
 
 local function next_value(value, start)
@@ -763,7 +725,6 @@ function M.init(env)
     env.chain = chain_val and chain_val:get_bool() or false
 
     env.rules = {}
-    local tasks = {} 
 
     -- 3. 读取并遍历 rules 列表
     local rules_item = cfg_root and cfg_root:get("rules")
@@ -852,13 +813,7 @@ function M.init(env)
             -- T9 优化逻辑
             local t9_val = rule:get_value("t9_optimization")
             local t9_opt = t9_val and t9_val:get_bool() or false
-            local conversion_map = nil
-            local preedit_delim = nil
-            
-            if t9_opt then
-                conversion_map = T9_MAP
-                preedit_delim = "=="
-            end
+            local preedit_delim = t9_opt and "==" or nil
 
             local comment_mode_val = rule:get_value("comment_mode")
             local comment_mode = comment_mode_val and comment_mode_val:get_string() or "comment"
@@ -892,26 +847,11 @@ function M.init(env)
                 cand_type = custom_cand_type
             })
 
-            -- 解析文件路径列表
-            each_file_value(rule, function(file_value)
-                local source = file_value:get_string()
-                if source and source ~= "" then
-                    tasks[#tasks + 1] = {
-                        source = source,
-                        path = source,
-                        prefix = prefix,
-                        conversion = conversion_map,
-                        preedit_delim = preedit_delim
-                    }
-                end
-            end)
-
             ::continue_rule::
         end
     end
     
-    local merged_tasks, scheme_sigs, union_sig =
-        merge_build_tasks(env, ns, tasks)
+    local merged_tasks, scheme_sigs, union_sig = merge_build_tasks(ns)
 
     local rebuilt
     env.db, rebuilt = connect_db(
@@ -921,7 +861,7 @@ function M.init(env)
     if env.db then env.db_name = db_name end
 
     if rebuilt then
-        tasks, merged_tasks, scheme_sigs, union_sig = nil, nil, nil, nil
+        merged_tasks, scheme_sigs, union_sig = nil, nil, nil
         collectgarbage("collect")
     end
 end
