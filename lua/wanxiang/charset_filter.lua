@@ -379,7 +379,7 @@ function M.func(input, env)
         local text = cand.text or ""
         local cand_type = cand.type or ""
         local bypass_user_phrase = charset_on
-            and cand_type == "user_phrase"
+            and (cand_type == "user_phrase" or cand_type == "user_table")
 
         local text_len
         local all_valid = true
