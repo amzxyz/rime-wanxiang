@@ -1,5 +1,18 @@
 # Changelog
 
+## [17.2.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.0...v17.2.1) (2026-08-05)
+
+
+### 📚 词库更新
+
+* 词库调整 ([72a2a1f](https://github.com/amzxyz/rime-wanxiang/commit/72a2a1fed25a4f9fb7b20634c2a1380456555055))
+
+
+### 🐛 Bug 修复
+
+* 修复字符级过滤句子兜底的一个错误 ([14cc722](https://github.com/amzxyz/rime-wanxiang/commit/14cc72296e16448ddfcd56dfab1739ae7706bab3))
+* 还是通过lua open读取default拿清单这样既能避免旧版本librime不可用也能避免W日志的频繁输出 ([49d5689](https://github.com/amzxyz/rime-wanxiang/commit/49d56893b1324b12ad502c39e0afe474b8e77ea5))
+
 ## [17.2.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.1.0...v17.2.0) (2026-08-05)
 
 
