@@ -1,5 +1,20 @@
 # Changelog
 
+## [17.2.3](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.2...v17.2.3) (2026-08-06)
+
+
+### 📚 词库更新
+
+* 词库调整 ([5453984](https://github.com/amzxyz/rime-wanxiang/commit/54539840098156fea0e771e7f3b52d7dd7324e32))
+* 词库调整 ([a3284e8](https://github.com/amzxyz/rime-wanxiang/commit/a3284e8c3cb52e023e30089d6df515426f84d541))
+
+
+### 🐛 Bug 修复
+
+* 优化文件重复key判断逻辑 ([3513802](https://github.com/amzxyz/rime-wanxiang/commit/35138023189f1376b4d55363f21b2fc373033729))
+* 升级ci ([77b1744](https://github.com/amzxyz/rime-wanxiang/commit/77b1744f8db80d5b733278e692bf54dc65d48262))
+* 移除不必要的日志 ([734364f](https://github.com/amzxyz/rime-wanxiang/commit/734364f43fe53040f552356d1d7890e30fd867cf))
+
 ## [17.2.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.1...v17.2.2) (2026-08-05)
 
 
