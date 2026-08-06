@@ -18,7 +18,7 @@ local s_upper = string.upper
 local t_sort = table.sort
 local type = type
 local tonumber = tonumber
-local DB_FORMAT_VERSION = "3"
+local DB_FORMAT_VERSION = "4"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
 -- 模块私有数据库池：同名数据库共享包装器和生命周期。
 local DB_POOL = {}
@@ -345,29 +345,31 @@ local function erase_raw_record(db, raw_key)
 end
 
 -- 重建数据库：
--- 1. 重复源 key 仅在“相同前缀 + 相同处理模式”内判定；
--- 2. 不同前缀互不比较，不同原始 key 转换到同一最终 key 时合并候选；
--- 3. 所有任务先按最终数据库 key 聚合，再统一写入，避免加载顺序影响结果。
+-- 1. 普通任务按最终数据库 key 逐行写入，避免把全部词库堆在 Lua 内存中；
+-- 2. 重复判定始终包含 prefix，不同模块前缀互不比较；
+-- 3. 转换任务仅按“同一 prefix + 原始 key”判重，并按最终 key 聚合碰撞候选；
+-- 4. 普通任务与转换任务无论加载先后，最终 key 冲突时都合并候选，不丢数据。
 local function rebuild(tasks, db)
-    local seen_source_keys = {}
-    local value_groups = {}
-    local value_order = {}
+    local written_db_keys = {}
+    local seen_converted_keys = nil
+    local converted_groups = nil
+    local converted_order = nil
 
     for _, task in ipairs(tasks) do
         local prefix = task.prefix or ""
         local conversion = task.conversion
-        local mode = conversion and "t9" or "plain"
-        local prefix_seen = seen_source_keys[prefix]
+        local seen_source_keys = nil
 
-        if not prefix_seen then
-            prefix_seen = {}
-            seen_source_keys[prefix] = prefix_seen
-        end
+        if conversion then
+            seen_converted_keys = seen_converted_keys or {}
+            converted_groups = converted_groups or {}
+            converted_order = converted_order or {}
+            seen_source_keys = seen_converted_keys[prefix]
 
-        local mode_seen = prefix_seen[mode]
-        if not mode_seen then
-            mode_seen = {}
-            prefix_seen[mode] = mode_seen
+            if not seen_source_keys then
+                seen_source_keys = {}
+                seen_converted_keys[prefix] = seen_source_keys
+            end
         end
 
         local file, close = wanxiang.load_file_with_fallback(task.path, "r")
@@ -377,30 +379,44 @@ local function rebuild(tasks, db)
                 if line ~= "" and not s_match(line, "^%s*#") then
                     local key, value = parse_source_line(line)
 
-                    if key and value and not mode_seen[key] then
-                        mode_seen[key] = true
+                    if key and value then
                         value = s_match(value, "^%s*(.-)%s*$")
 
                         if conversion then
                             local original_key = key
-                            key = s_gsub(key, ".", conversion)
-                            value = append_preedit(
-                                value,
-                                task.preedit_delim,
-                                original_key
-                            )
+
+                            if not seen_source_keys[original_key] then
+                                seen_source_keys[original_key] = true
+                                key = s_gsub(key, ".", conversion)
+                                value = append_preedit(
+                                    value,
+                                    task.preedit_delim,
+                                    original_key
+                                )
+
+                                local db_key = prefix .. key
+                                local group = converted_groups[db_key]
+
+                                if not group then
+                                    group = {}
+                                    converted_groups[db_key] = group
+                                    converted_order[#converted_order + 1] = db_key
+                                end
+
+                                group[#group + 1] = value
+                            end
+                        else
+                            local db_key = prefix .. key
+
+                            -- db_key 已包含 prefix；只有同模块同 key 才视为重复。
+                            if not written_db_keys[db_key] then
+                                if not update_aggregate(db, db_key, value) then
+                                    close()
+                                    return false
+                                end
+                                written_db_keys[db_key] = true
+                            end
                         end
-
-                        local db_key = prefix .. key
-                        local group = value_groups[db_key]
-
-                        if not group then
-                            group = {}
-                            value_groups[db_key] = group
-                            value_order[#value_order + 1] = db_key
-                        end
-
-                        group[#group + 1] = value
                     end
                 end
             end
@@ -409,9 +425,25 @@ local function rebuild(tasks, db)
         end
     end
 
-    for _, db_key in ipairs(value_order) do
-        local value = concat(value_groups[db_key], VALUE_SEPARATOR)
-        if not update_aggregate(db, db_key, value) then return false end
+    if converted_order then
+        for _, db_key in ipairs(converted_order) do
+            local value = concat(converted_groups[db_key], VALUE_SEPARATOR)
+
+            -- 普通任务可能在转换任务之前或之后读取；统一在这里合并。
+            if written_db_keys[db_key] then
+                local old_value, old_raw_key = fetch_aggregate(db, db_key)
+                if not old_value or not old_raw_key then return false end
+
+                value = old_value .. VALUE_SEPARATOR .. value
+                if not erase_raw_record(db, old_raw_key) then return false end
+            end
+
+            if not update_aggregate(db, db_key, value) then return false end
+            written_db_keys[db_key] = true
+
+            -- 写入后立即释放当前碰撞组，降低重建阶段的尾部占用。
+            converted_groups[db_key] = nil
+        end
     end
 
     return true

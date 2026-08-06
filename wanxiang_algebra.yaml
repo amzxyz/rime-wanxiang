@@ -1987,6 +1987,9 @@ pro:
       - xform/^n(\d);/en$1;/
       - xform/^m(\d);/me$1;/
       - derive/^([jqxy])u(\d);/$1v$2;/
+      - derive/^([jqxy])uan(\d);$/$1van$2;/
+      - derive/^([jqxy])ue(\d);$/$1ve$2;/
+      - derive/^([jqxy])un(\d);$/$1vn$2;/
       - xform/^([aoe][a-z]*)(\d);/e$1$2;/
       - xform/uang(\d);/Ⓧ$1;/
       - xform/uai(\d);/Ⓖ$1;/
