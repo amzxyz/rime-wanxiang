@@ -451,22 +451,6 @@ local function rebuild(tasks, db)
         end
     end
 
-    if log and log.warning then
-        if duplicate_count > 0 then
-            log.warning(s_format(
-                "super_replacer: 已跳过 %d 行重复源 key，仅保留第一次出现",
-                duplicate_count
-            ))
-        end
-
-        if invalid_count > 0 then
-            log.warning(s_format(
-                "super_replacer: 已跳过 %d 行无效数据，格式必须为 key<真实Tab>候选1\\t候选2",
-                invalid_count
-            ))
-        end
-    end
-
     return true
 end
 
@@ -571,10 +555,6 @@ local function connect_db(
     end
 
     clear_table(env_query_cache)
-
-    if log and log.info then
-        log.info("super_replacer: 联合配置数据已重载，固定表头特征已记录")
-    end
 
     db:close()
 
