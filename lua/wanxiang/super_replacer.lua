@@ -18,7 +18,7 @@ local s_upper = string.upper
 local t_sort = table.sort
 local type = type
 local tonumber = tonumber
-local DB_FORMAT_VERSION = "2"
+local DB_FORMAT_VERSION = "3"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
 -- 模块私有数据库池：同名数据库共享包装器和生命周期。
 local DB_POOL = {}
@@ -345,32 +345,29 @@ local function erase_raw_record(db, raw_key)
 end
 
 -- 重建数据库：
--- 1. 普通任务逐行写入，完全不进入转换逻辑；
--- 2. 转换任务逐行转换并按最终 key 聚合；
--- 3. 所有转换任务读取完成后，每个最终 key 只写入一次。
+-- 1. 重复源 key 仅在“相同前缀 + 相同处理模式”内判定；
+-- 2. 不同前缀互不比较，不同原始 key 转换到同一最终 key 时合并候选；
+-- 3. 所有任务先按最终数据库 key 聚合，再统一写入，避免加载顺序影响结果。
 local function rebuild(tasks, db)
-    local written_db_keys = {}
-    local seen_converted_keys = nil
-    local converted_groups = nil
-    local converted_order = nil
-    local duplicate_count = 0
-    local invalid_count = 0
+    local seen_source_keys = {}
+    local value_groups = {}
+    local value_order = {}
 
     for _, task in ipairs(tasks) do
-        local prefix = task.prefix
+        local prefix = task.prefix or ""
         local conversion = task.conversion
-        local seen_source_keys = nil
+        local mode = conversion and "t9" or "plain"
+        local prefix_seen = seen_source_keys[prefix]
 
-        if conversion then
-            seen_converted_keys = seen_converted_keys or {}
-            converted_groups = converted_groups or {}
-            converted_order = converted_order or {}
-            seen_source_keys = seen_converted_keys[prefix]
+        if not prefix_seen then
+            prefix_seen = {}
+            seen_source_keys[prefix] = prefix_seen
+        end
 
-            if not seen_source_keys then
-                seen_source_keys = {}
-                seen_converted_keys[prefix] = seen_source_keys
-            end
+        local mode_seen = prefix_seen[mode]
+        if not mode_seen then
+            mode_seen = {}
+            prefix_seen[mode] = mode_seen
         end
 
         local file, close = wanxiang.load_file_with_fallback(task.path, "r")
@@ -380,50 +377,30 @@ local function rebuild(tasks, db)
                 if line ~= "" and not s_match(line, "^%s*#") then
                     local key, value = parse_source_line(line)
 
-                    if key and value then
+                    if key and value and not mode_seen[key] then
+                        mode_seen[key] = true
                         value = s_match(value, "^%s*(.-)%s*$")
 
                         if conversion then
                             local original_key = key
-
-                            if seen_source_keys[original_key] then
-                                duplicate_count = duplicate_count + 1
-                            else
-                                seen_source_keys[original_key] = true
-                                key = s_gsub(key, ".", conversion)
-                                value = append_preedit(
-                                    value,
-                                    task.preedit_delim,
-                                    original_key
-                                )
-
-                                local db_key = prefix .. key
-                                local group = converted_groups[db_key]
-
-                                if not group then
-                                    group = {}
-                                    converted_groups[db_key] = group
-                                    converted_order[#converted_order + 1] = db_key
-                                end
-
-                                group[#group + 1] = value
-                            end
-                        else
-                            local db_key = prefix .. key
-                            local grouped = converted_groups
-                                and converted_groups[db_key]
-
-                            if written_db_keys[db_key] or grouped then
-                                duplicate_count = duplicate_count + 1
-                            elseif not update_aggregate(db, db_key, value) then
-                                close()
-                                return false
-                            else
-                                written_db_keys[db_key] = true
-                            end
+                            key = s_gsub(key, ".", conversion)
+                            value = append_preedit(
+                                value,
+                                task.preedit_delim,
+                                original_key
+                            )
                         end
-                    else
-                        invalid_count = invalid_count + 1
+
+                        local db_key = prefix .. key
+                        local group = value_groups[db_key]
+
+                        if not group then
+                            group = {}
+                            value_groups[db_key] = group
+                            value_order[#value_order + 1] = db_key
+                        end
+
+                        group[#group + 1] = value
                     end
                 end
             end
@@ -432,23 +409,9 @@ local function rebuild(tasks, db)
         end
     end
 
-    if converted_order then
-        for _, db_key in ipairs(converted_order) do
-            local value = concat(converted_groups[db_key], VALUE_SEPARATOR)
-
-            if written_db_keys[db_key] then
-                local old_value, old_raw_key =
-                    fetch_aggregate(db, db_key)
-
-                if not old_value or not old_raw_key then return false end
-
-                value = old_value .. VALUE_SEPARATOR .. value
-                if not erase_raw_record(db, old_raw_key) then return false end
-            end
-
-            if not update_aggregate(db, db_key, value) then return false end
-            written_db_keys[db_key] = true
-        end
+    for _, db_key in ipairs(value_order) do
+        local value = concat(value_groups[db_key], VALUE_SEPARATOR)
+        if not update_aggregate(db, db_key, value) then return false end
     end
 
     return true
