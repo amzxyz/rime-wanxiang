@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.2.4](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.3...v17.2.4) (2026-08-06)
+
+
+### 🐛 Bug 修复
+
+* 恢复流式加载数据并解决前缀key问题 ([f219fbf](https://github.com/amzxyz/rime-wanxiang/commit/f219fbfb2286eec956373f9316fc4641f5052135))
+
 ## [17.2.3](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.2...v17.2.3) (2026-08-06)
 
 
