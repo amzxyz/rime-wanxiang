@@ -20,9 +20,8 @@ _G.WanxiangSharedState = _G.WanxiangSharedState
 -- 性能优化：本地化字符串函数
 local byte = string.byte
 local find = string.find
-local gsub = string.gsub
-local upper = string.upper
 local sub = string.sub
+local concat = table.concat
 local utf8_codes = utf8.codes
 local utf8_len = utf8.len
 
@@ -61,14 +60,14 @@ end
 local zwsp = "\226\128\139"
 
 local escape_map = {
-    ["\\n"] = zwsp .. "\n",  --用来应对electron开发的软件行尾字符被转移到内容最后一行的问题
-    ["\\r"] = "\r",
-    ["\\t"] = "\t",
-    ["\\s"] = " ",
-    ["\\z"] = zwsp,
+    n = zwsp .. "\n",  --用来应对electron开发的软件行尾字符被转移到内容最后一行的问题
+    r = "\r",
+    t = "\t",
+    s = " ",
+    z = zwsp,
 }
 
-local utf8_char_pattern = "[%z\1-\127\194-\244][\128-\191]*"
+local time_token_chars = "ACDEFGHIKMNOPSTYdjlmopwy"
 
 local shichen_data = {
     { name = "子时", start_hour = 23, end_hour = 1 },
@@ -145,14 +144,8 @@ local function iso_week_number(year, month, day)
     return thursday.year, week_number
 end
 
-local time_tokens_pattern = "\\[ACDEFGHIKMNOPSTYdjlmopwy]"
-
--- 2. 核心：处理动态时间
-local function process_datetime_internal(s, dt)
-    if not string.find(s, time_tokens_pattern) then
-        return s
-    end
-
+-- 2. 构造动态时间映射；仅在扫描到时间转义符时调用。
+local function build_datetime_map(dt)
     local current_shichen, current_ke = get_shichen_and_ke(dt.hour, dt.min)
 
     local week_table_big = { "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" }
@@ -161,42 +154,28 @@ local function process_datetime_internal(s, dt)
     local week_en_short = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" }
 
     local h12 = dt.hour % 12
-    if h12 == 0 then
-        h12 = 12
-    end
+    if h12 == 0 then h12 = 12 end
 
     local ampm = (dt.hour < 12) and "am" or "pm"
     local raw_tz = os.date("%z") or "+0800"
-    local tz_colon = raw_tz:match("^([%+%-])(%d%d)(%d%d)$")
-    if tz_colon then
-        local sign, h_str, m_str = raw_tz:match("^([%+%-])(%d%d)(%d%d)$")
-        tz_colon = sign .. h_str .. ":" .. m_str
-    else
-        tz_colon = raw_tz
-    end
+    local sign, h_str, m_str = raw_tz:match("^([%+%-])(%d%d)(%d%d)$")
+    local tz_colon = sign and (sign .. h_str .. ":" .. m_str) or raw_tz
 
-    local zh_period
     local h = dt.hour
-    if h < 6 then
-        zh_period = "凌晨"
-    elseif h < 12 then
-        zh_period = "上午"
-    elseif h < 13 then
-        zh_period = "中午"
-    elseif h < 18 then
-        zh_period = "下午"
-    else
-        zh_period = "晚上"
-    end
+    local zh_period
+    if h < 6 then zh_period = "凌晨"
+    elseif h < 12 then zh_period = "上午"
+    elseif h < 13 then zh_period = "中午"
+    elseif h < 18 then zh_period = "下午"
+    else zh_period = "晚上" end
 
-    -- ISO 周数
     local iso_week_str = ""
     if dt.year and dt.year > 0 then
         local _, wk = iso_week_number(dt.year, dt.month, dt.day)
         iso_week_str = tostring(wk)
     end
 
-    local time_map = {
+    return {
         Y = string.format("%04d", dt.year),
         y = string.format("%02d", dt.year % 100),
         m = string.format("%02d", dt.month),
@@ -222,38 +201,114 @@ local function process_datetime_internal(s, dt)
         o = raw_tz,
         A = zh_period,
     }
-
-    return s:gsub("\\(%a)", function(char)
-        return time_map[char] or ("\\" .. char)
-    end)
 end
 
--- 3. 转义处理
+-- 3. 转义处理：严格按源文本从左到右消费，每个片段只解释一次。
 local function apply_escape_fast(text)
-    if not text or not string.find(text, "\\", 1, true) then
-        return text, false, false
+    if not text or not find(text, "\\", 1, true) then return text, false end
+
+    local parts = {}
+    local count = 0
+    local changed = false
+    local last_char = nil
+    local time_map = nil
+    local i = 1
+    local len = #text
+
+    local function push(value)
+        if not value or value == "" then return end
+        count = count + 1
+        parts[count] = value
+        local pos = utf8.offset(value, -1)
+        last_char = pos and sub(value, pos) or value
     end
 
-    local blocks = {}
-    local s = text:gsub("%[%[(.-)%]%]", function(txt)
-        blocks[#blocks + 1] = txt
-        return "\0BLK" .. #blocks .. "\0"
-    end)
-
-    s = s:gsub("\\[ntrsz]", escape_map)
-
-    s = s:gsub("(" .. utf8_char_pattern .. ")\\(%d+)", function(char, count)
-        local n = tonumber(count)
-        if n and n > 0 and n < 200 then
-            return string.rep(char, n)
+    while i <= len do
+        -- [[...]] 为原样块：去掉包裹标记，内部内容不参与任何转义解析。
+        if sub(text, i, i + 1) == "[[" then
+            local close_pos = find(text, "]]", i + 2, true)
+            if close_pos then
+                push(sub(text, i + 2, close_pos - 1))
+                changed = true
+                i = close_pos + 2
+                goto continue
+            end
         end
-        return char .. "\\" .. count
-    end)
-    local need_time = string.find(s, time_tokens_pattern) ~= nil
-    s = s:gsub("\0BLK(%d+)\0", function(i)
-        return blocks[tonumber(i)] or ""
-    end)
-    return s, s ~= text, need_time
+
+        local b = byte(text, i)
+        if b == 0x5C then
+            if i == len then
+                push("\\")
+                break
+            end
+
+            local next_char = sub(text, i + 1, i + 1)
+
+            -- \\ 优先级最高：两个反斜杠只生成一个字面反斜杠，生成结果不再二次解析。
+            if next_char == "\\" then
+                push("\\")
+                changed = true
+                i = i + 2
+                goto continue
+            end
+
+            local escaped = escape_map[next_char]
+            if escaped then
+                push(escaped)
+                changed = true
+                i = i + 2
+                goto continue
+            end
+
+            -- \数字：重复已经输出的前一个 UTF-8 字符，总次数为数字本身。
+            if next_char >= "0" and next_char <= "9" then
+                local j = i + 1
+                while j <= len do
+                    local c = sub(text, j, j)
+                    if c < "0" or c > "9" then break end
+                    j = j + 1
+                end
+
+                local digits = sub(text, i + 1, j - 1)
+                local n = tonumber(digits)
+                if last_char and n and n > 0 and n < 200 then
+                    if n > 1 then push(string.rep(last_char, n - 1)) end
+                    changed = true
+                else
+                    push("\\" .. digits)
+                end
+                i = j
+                goto continue
+            end
+
+            -- 时间变量只解析源文本中真实出现的 \X；由 \\ 产生的字面内容不会再次进入这里。
+            if find(time_token_chars, next_char, 1, true) then
+                if not time_map then time_map = build_datetime_map(os.date("*t")) end
+                push(time_map[next_char] or ("\\" .. next_char))
+                changed = true
+                i = i + 2
+                goto continue
+            end
+
+            -- 未知转义保持原样，同时整体消费，避免后续规则重新解释其中字符。
+            push("\\" .. next_char)
+            i = i + 2
+        else
+            local char_len
+            if b < 0x80 then char_len = 1
+            elseif b < 0xE0 then char_len = 2
+            elseif b < 0xF0 then char_len = 3
+            else char_len = 4 end
+
+            push(sub(text, i, i + char_len - 1))
+            i = i + char_len
+        end
+
+        ::continue::
+    end
+
+    local result = concat(parts, "", 1, count)
+    return result, changed or result ~= text
 end
 
 local function format_and_autocap(cand, env)
@@ -262,15 +317,7 @@ local function format_and_autocap(cand, env)
         return cand
     end
 
-    local t2, text_changed, need_time = apply_escape_fast(text)
-    if need_time then
-        local dt = os.date("*t")
-        local time_replaced = process_datetime_internal(t2, dt)
-        if time_replaced ~= t2 then
-            t2 = time_replaced
-            text_changed = true -- 时间替换也算文本变化
-        end
-    end
+    local t2, text_changed = apply_escape_fast(text)
 
     local genuine = cand:get_genuine()
     local current_comment = genuine.comment or ""
