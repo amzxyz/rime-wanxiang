@@ -18,6 +18,26 @@
   --md-typeset-font-size:       16px;
 }
 
+
+/* 莫兰迪绿色阶：正文元素统一从这一组变量取色 */
+:root {
+  --morandi-50:  #F6F9F6;
+  --morandi-100: #EDF3EE;
+  --morandi-150: #E5EEE6;
+  --morandi-200: #D6E4D8;
+  --morandi-300: #B8D0BB;
+  --morandi-400: #8FBC93;
+  --morandi-500: #61A165;
+  --morandi-600: #548F58;
+  --morandi-700: #49814D;
+  --morandi-800: #3B683F;
+  --morandi-900: #2D382E;
+  --morandi-border: rgba(97, 161, 101, 0.24);
+  --morandi-soft: rgba(97, 161, 101, 0.08);
+  --morandi-soft-hover: rgba(97, 161, 101, 0.14);
+  --morandi-shadow: rgba(52, 91, 56, 0.10);
+}
+
 /* =========================================
    2. 基础元素：线条、引用与圆角
    ========================================= */
@@ -133,7 +153,7 @@
 
 /* 1. 默认状态：平时安安静静，透明底色 */
 .md-tabs__list .md-tabs__item .md-tabs__link {
-  color: #333333 !important; 
+  color: #334536 !important; 
   font-weight: 600 !important;
   font-size: 15px !important;
   opacity: 0.8 !important;
@@ -258,28 +278,410 @@ body {
   overflow-x: hidden;
 }
 /* =========================================
-   12. 文章主标题 (H1) 莫兰迪绿美化
+   12. 正文标题体系：H1-H6 莫兰迪层级
    ========================================= */
-.md-content h1 {
-  /* 1. 使用莫兰迪绿色 (与你之前的绿色呼应) */
-  color: #61a165 !important; 
-  
-  /* 2. 加粗并微调字体 */
-  font-weight: 800 !important;
-  letter-spacing: -0.02em; /* 略微收紧字间距，更有张力 */
-  
-  /* 3. 布局调整：增加下方间距，不显得局促 */
-  margin-bottom: 1.5rem !important;
-  padding-bottom: 0.5rem;
-  
-  /* 4. 可选：加一条淡淡的下划线作为装饰 (如果不喜欢可以删掉这行) */
-  border-bottom: 1px solid rgba(97, 161, 101, 0.1);
-  
-  /* 5. 让标题里的 Emoji 也能对齐 */
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  color: var(--morandi-900);
+  font-weight: 700 !important;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  scroll-margin-top: 5rem;
 }
+
+.md-typeset h1 {
+  color: var(--morandi-600) !important;
+  font-size: 2em;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em;
+  margin: 0 0 1.5rem !important;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid rgba(97, 161, 101, 0.18);
+}
+
+.md-typeset h2 {
+  color: var(--morandi-800) !important;
+  font-size: 1.55em;
+  font-weight: 800 !important;
+  line-height: 1.35;
+  margin-top: 2.15em;
+  margin-bottom: 0.95em;
+  padding: 0.34em 0.58em;
+  border-radius: 7px;
+  background: linear-gradient(
+    90deg,
+    rgba(97, 161, 101, 0.13) 0%,
+    rgba(97, 161, 101, 0.055) 52%,
+    rgba(97, 161, 101, 0) 100%
+  );
+}
+
+.md-typeset h3 {
+  color: var(--morandi-700) !important;
+  font-size: 1.28em;
+  font-weight: 750 !important;
+  line-height: 1.4;
+  margin-top: 1.85em;
+  margin-bottom: 0.72em;
+}
+
+.md-typeset h4 {
+  color: var(--morandi-800) !important;
+  font-size: 1.08em;
+  font-weight: 750 !important;
+}
+
+.md-typeset h5 {
+  color: var(--morandi-800) !important;
+  font-size: 1em;
+  font-weight: 700 !important;
+}
+
+.md-typeset h6 {
+  color: var(--morandi-600) !important;
+  font-size: 0.92em;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+}
+
+/* 标题锚点：平时弱化，悬停时显示 */
+.md-typeset :is(h1, h2, h3, h4, h5, h6) .headerlink {
+  color: var(--morandi-400) !important;
+  opacity: 0;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.md-typeset :is(h1, h2, h3, h4, h5, h6):hover .headerlink {
+  color: var(--morandi-600) !important;
+  opacity: 0.75;
+}
+
+/* =========================================
+   13. Markdown 正文要素完整风格化
+   ========================================= */
+
+/* 正文节奏与选择高亮 */
+.md-typeset p,
+.md-typeset li {
+  line-height: 1.72;
+}
+
+.md-typeset ::selection {
+  color: var(--morandi-900);
+  background: rgba(126, 186, 130, 0.28);
+}
+
+/* 粗体、斜体、删除线、插入、高亮 */
+.md-typeset strong,
+.md-typeset b {
+  color: var(--morandi-800);
+  font-weight: 800;
+}
+
+.md-typeset em,
+.md-typeset i {
+  color: #45624A;
+  font-style: italic;
+  font-weight: 550;
+}
+
+.md-typeset del,
+.md-typeset s {
+  color: rgba(45, 56, 46, 0.62);
+  text-decoration-color: rgba(73, 129, 77, 0.65);
+  text-decoration-thickness: 1.5px;
+}
+
+.md-typeset ins {
+  color: var(--morandi-800);
+  text-decoration-color: var(--morandi-400);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.16em;
+}
+
+.md-typeset mark {
+  color: var(--morandi-900);
+  background: linear-gradient(
+    transparent 22%,
+    rgba(143, 188, 147, 0.34) 22%,
+    rgba(143, 188, 147, 0.34) 88%,
+    transparent 88%
+  );
+  padding: 0 0.12em;
+  border-radius: 3px;
+}
+
+/* 正文链接 */
+.md-typeset a:not(.md-button):not(.headerlink) {
+  color: var(--morandi-700);
+  text-decoration-color: rgba(73, 129, 77, 0.35);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.md-typeset a:not(.md-button):not(.headerlink):hover {
+  color: var(--morandi-500);
+  text-decoration-color: var(--morandi-500);
+}
+
+/* 缩写、上下标 */
+.md-typeset abbr[title] {
+  text-decoration: underline dotted rgba(73, 129, 77, 0.65);
+  text-underline-offset: 0.18em;
+  cursor: help;
+}
+
+.md-typeset sup,
+.md-typeset sub {
+  color: var(--morandi-700);
+}
+
+/* 无序、有序列表 */
+.md-typeset ul > li::marker {
+  color: var(--morandi-500);
+}
+
+.md-typeset ol > li::marker {
+  color: var(--morandi-600);
+  font-weight: 700;
+}
+
+.md-typeset li > ul,
+.md-typeset li > ol {
+  margin-top: 0.25em;
+  margin-bottom: 0.35em;
+}
+
+/* 任务列表 */
+.md-typeset .task-list-item input[type="checkbox"],
+.md-typeset input[type="checkbox"] {
+  accent-color: var(--morandi-500);
+}
+
+.md-typeset .task-list-item {
+  margin-bottom: 0.22em;
+}
+
+/* 定义列表 */
+.md-typeset dl {
+  margin: 1.2em 0;
+}
+
+.md-typeset dt {
+  color: var(--morandi-700);
+  font-weight: 800;
+  margin-top: 0.9em;
+}
+
+.md-typeset dd {
+  margin-left: 1rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--morandi-200);
+}
+
+/* 行内代码 */
+.md-typeset :not(pre) > code {
+  color: var(--morandi-800);
+  background-color: rgba(97, 161, 101, 0.10);
+  border: 1px solid rgba(97, 161, 101, 0.18);
+  border-radius: 5px;
+  padding: 0.08em 0.34em;
+  font-weight: 600;
+}
+
+/* 代码块 */
+.md-typeset pre {
+  border: 1px solid rgba(97, 161, 101, 0.20);
+  box-shadow: 0 3px 12px var(--morandi-shadow);
+}
+
+.md-typeset pre > code {
+  line-height: 1.62;
+}
+
+.md-typeset .highlight .hll {
+  background-color: rgba(126, 186, 130, 0.18) !important;
+  box-shadow: inset 3px 0 0 var(--morandi-500);
+}
+
+/* 代码复制/操作按钮 */
+.md-typeset .md-clipboard,
+.md-typeset .md-code__button {
+  color: var(--morandi-600) !important;
+  opacity: 0.65;
+}
+
+.md-typeset .md-clipboard:hover,
+.md-typeset .md-code__button:hover {
+  color: var(--morandi-500) !important;
+  opacity: 1;
+}
+
+/* 键盘键 */
+.md-typeset kbd,
+.md-typeset .keys kbd {
+  color: var(--morandi-800);
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--morandi-100) 100%);
+  border: 1px solid var(--morandi-300);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(45, 56, 46, 0.10);
+  font-weight: 700;
+}
+
+/* Admonition 与 details：统一莫兰迪卡片语言，不破坏原图标 */
+.md-typeset .admonition,
+.md-typeset details {
+  border: 1px solid var(--morandi-border) !important;
+  border-left: 4px solid var(--morandi-500) !important;
+  background-color: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 3px 14px rgba(52, 91, 56, 0.07);
+  font-size: 0.96em;
+  line-height: 1.72;
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  color: var(--morandi-800) !important;
+  background-color: rgba(97, 161, 101, 0.10) !important;
+  font-size: 1.07em;
+  font-weight: 800 !important;
+  line-height: 1.5;
+}
+
+.md-typeset .admonition-title::before,
+.md-typeset summary::before {
+  background-color: var(--morandi-600) !important;
+}
+
+.md-typeset details[open] {
+  background-color: rgba(246, 249, 246, 0.92);
+}
+
+/* 内容标签页 */
+.md-typeset .tabbed-set {
+  margin: 1.4em 0;
+  border: 1px solid rgba(97, 161, 101, 0.18);
+  border-radius: 9px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.62);
+}
+
+.md-typeset .tabbed-labels {
+  gap: 0.2rem;
+  padding: 0.35rem 0.45rem 0;
+  background-color: rgba(97, 161, 101, 0.07);
+  border-bottom: 1px solid rgba(97, 161, 101, 0.16);
+}
+
+.md-typeset .tabbed-labels > label,
+.md-typeset .tabbed-labels > a {
+  color: var(--morandi-700) !important;
+  font-weight: 700;
+  border-radius: 6px 6px 0 0;
+}
+
+.md-typeset .tabbed-labels > label:hover,
+.md-typeset .tabbed-labels > a:hover {
+  color: var(--morandi-500) !important;
+  background-color: rgba(97, 161, 101, 0.10);
+}
+
+.md-typeset .tabbed-content {
+  padding: 0.25rem 0.8rem 0.5rem;
+}
+
+/* 脚注 */
+.md-typeset .footnote {
+  margin-top: 2rem;
+  padding-top: 0.8rem;
+  border-top: 1px dashed rgba(97, 161, 101, 0.40);
+}
+
+.md-typeset .footnote-ref,
+.md-typeset .footnote-backref {
+  color: var(--morandi-600) !important;
+  font-weight: 700;
+}
+
+/* 图片与图注 */
+.md-typeset figure {
+  margin: 1.6em auto;
+}
+
+.md-typeset figure img,
+.md-typeset > p > img {
+  border-radius: 8px;
+  border: 1px solid rgba(97, 161, 101, 0.16);
+  box-shadow: 0 5px 18px rgba(52, 91, 56, 0.08);
+}
+
+.md-typeset figcaption {
+  color: rgba(45, 56, 46, 0.68);
+  font-size: 0.88em;
+  font-style: normal;
+}
+
+/* Material 按钮 */
+.md-typeset .md-button {
+  color: var(--morandi-700) !important;
+  border-color: var(--morandi-500) !important;
+  border-radius: 7px;
+  font-weight: 700;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.md-typeset .md-button:hover {
+  color: #FFFFFF !important;
+  background-color: var(--morandi-500) !important;
+  transform: translateY(-1px);
+}
+
+.md-typeset .md-button--primary {
+  color: #FFFFFF !important;
+  background-color: var(--morandi-600) !important;
+  border-color: var(--morandi-600) !important;
+}
+
+.md-typeset .md-button--primary:hover {
+  background-color: var(--morandi-700) !important;
+  border-color: var(--morandi-700) !important;
+}
+
+/* 注解数字标记 */
+.md-typeset .md-annotation__index {
+  color: #FFFFFF;
+  background-color: var(--morandi-600);
+  box-shadow: 0 0 0 2px rgba(97, 161, 101, 0.15);
+}
+
+/* Critic Markup：增加、删除、评论 */
+.md-typeset .critic.addition,
+.md-typeset ins.critic {
+  background-color: rgba(97, 161, 101, 0.14);
+}
+
+.md-typeset .critic.deletion,
+.md-typeset del.critic {
+  background-color: rgba(143, 126, 116, 0.12);
+}
+
+.md-typeset .critic.comment {
+  color: var(--morandi-700);
+  background-color: rgba(184, 208, 187, 0.24);
+}
+
+/* Mermaid / 数学等扩展块：只做容器融合，不干预内部配色 */
+.md-typeset .mermaid,
+.md-typeset .arithmatex {
+  border-radius: 8px;
+}
+
 /* =========================================
    14. Grid 左右分栏代码块优雅对齐 (等高 & 无痕滚动条)
    ========================================= */
@@ -404,6 +806,133 @@ body {
 [data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item--nested > .md-nav:hover {
   border-left-color: rgba(97, 161, 101, 0.8) !important;
 }
+
+/* =========================================
+   15.1 Markdown 要素暗黑模式补全
+   ========================================= */
+[data-md-color-scheme="slate"] {
+  --morandi-border: rgba(126, 186, 130, 0.25);
+  --morandi-soft: rgba(97, 161, 101, 0.13);
+  --morandi-soft-hover: rgba(126, 186, 130, 0.18);
+  --morandi-shadow: rgba(0, 0, 0, 0.28);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h1 {
+  color: #95C399 !important;
+  border-bottom-color: rgba(126, 186, 130, 0.22);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h2 {
+  color: #A9CBAA !important;
+  background: linear-gradient(
+    90deg,
+    rgba(126, 186, 130, 0.16) 0%,
+    rgba(126, 186, 130, 0.06) 52%,
+    rgba(126, 186, 130, 0) 100%
+  );
+}
+
+[data-md-color-scheme="slate"] .md-typeset h3,
+[data-md-color-scheme="slate"] .md-typeset h4,
+[data-md-color-scheme="slate"] .md-typeset h5 {
+  color: #C5D6C7 !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset h6 {
+  color: #A3B8A5 !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset strong,
+[data-md-color-scheme="slate"] .md-typeset b {
+  color: #E0EAE1;
+}
+
+[data-md-color-scheme="slate"] .md-typeset em,
+[data-md-color-scheme="slate"] .md-typeset i {
+  color: #D0DFD2;
+  font-weight: 550;
+}
+
+[data-md-color-scheme="slate"] .md-typeset del,
+[data-md-color-scheme="slate"] .md-typeset s {
+  color: rgba(211, 223, 212, 0.58);
+  text-decoration-color: rgba(126, 186, 130, 0.55);
+}
+
+[data-md-color-scheme="slate"] .md-typeset mark {
+  color: #E7EFE8;
+  background: linear-gradient(
+    transparent 22%,
+    rgba(126, 186, 130, 0.26) 22%,
+    rgba(126, 186, 130, 0.26) 88%,
+    transparent 88%
+  );
+}
+
+[data-md-color-scheme="slate"] .md-typeset :not(pre) > code {
+  color: #A9D1AC;
+  background-color: rgba(97, 161, 101, 0.15);
+  border-color: rgba(126, 186, 130, 0.20);
+}
+
+[data-md-color-scheme="slate"] .md-typeset kbd,
+[data-md-color-scheme="slate"] .md-typeset .keys kbd {
+  color: #DDE8DE;
+  background: linear-gradient(180deg, #28322A 0%, #202822 100%);
+  border-color: rgba(126, 186, 130, 0.35);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.32);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition,
+[data-md-color-scheme="slate"] .md-typeset details {
+  background-color: rgba(33, 41, 34, 0.88);
+  border-color: rgba(126, 186, 130, 0.24) !important;
+  border-left-color: #7EBA82 !important;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.24);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset summary {
+  color: #CFE0D1 !important;
+  background-color: rgba(97, 161, 101, 0.14) !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset details[open] {
+  background-color: rgba(29, 36, 30, 0.95);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .tabbed-set {
+  background-color: rgba(33, 41, 34, 0.78);
+  border-color: rgba(126, 186, 130, 0.20);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .tabbed-labels {
+  background-color: rgba(97, 161, 101, 0.10);
+  border-bottom-color: rgba(126, 186, 130, 0.18);
+}
+
+[data-md-color-scheme="slate"] .md-typeset figcaption {
+  color: rgba(211, 223, 212, 0.64);
+}
+
+[data-md-color-scheme="slate"] .md-typeset figure img,
+[data-md-color-scheme="slate"] .md-typeset > p > img {
+  border-color: rgba(126, 186, 130, 0.18);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .md-button {
+  color: #A9D1AC !important;
+  border-color: #7EBA82 !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .md-button:hover,
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary {
+  color: #172019 !important;
+  background-color: #8FBC93 !important;
+  border-color: #8FBC93 !important;
+}
+
 /* =========================================
    16. 当前页面高亮样式：莫兰迪专属定制 (完美对齐版)
 ========================================= */
