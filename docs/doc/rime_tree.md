@@ -1,104 +1,118 @@
-### 📂 万象拼音完整目录架构
+### 万象拼音完整目录架构
 
-* 📂 **custom/** —— `用户自定义与参考配置示例（仓库内置示例，部署时按需拷贝到用户目录）`
-    * 🖼️ **万象键位映射.jpg** —— `双拼与辅助码键位参考图`
-    * 🖼️ **赞赏.jpg** —— `开源支持赞赏二维码`
-    * 🗜️ **简纯.zip** —— `精简纯净版方案打包`
-    * 📄 **aux_code.csv** —— `辅助码映射源数据`
-    * 📄 **jm_flypy.txt** —— `小鹤双拼键位映射参考`
-    * 📄 **jm_zrm.txt** —— `自然码双拼键位映射参考`
-    * 📄 **wubi_chaifen.txt** —— `五笔部件拆分反查参考`
-    * 📄 **wanxiang.custom.yaml** —— `🟢 主方案自定义配置文件示例`
-    * 📄 **wanxiang_english.custom.yaml** —— `🔠 英文方案自定义配置文件示例`
-    * 📄 **wanxiang_mixedcode.custom.yaml** —— `🧬 混输方案自定义配置文件示例`
-    * 📄 **wanxiang_reverse.custom.yaml** —— `🧩 反查方案自定义配置文件示例`
-    * 📄 **wanxiang_pro.custom.yaml** —— `⚡ 专业版方案自定义配置（含双拼/辅助码增强）`
-    * 📄 **wanxiang_pro.dict.yaml** —— `⚡ 专业版方案词库入口`
-    * 📄 **wanxiang_pro.schema.yaml** —— `⚡ 专业版方案主文件`
-    * 📄 **wanxiang_pure.custom.yaml** —— `🌿 纯净版方案自定义配置`
-    * 📄 **wanxiang_pure.dict.yaml** —— `🌿 纯净版方案词库入口`
-    * 📄 **wanxiang_pure.schema.yaml** —— `🌿 纯净版方案主文件`
-* 📄 **custom_phrase.txt** —— `自定义快捷短语源文件（置顶）`
-* ⚙️ **default.yaml** —— `Rime 全局默认行为与快捷键配置`
-* 📚 **dicts/** —— `万象词库集群`
-    * 📄 **mixed.dict.yaml** —— `中英混合词汇库`
-    * 📄 **cuoyin.dict.yaml** —— `常见错音容错词库`
-    * 📄 **diming.dict.yaml** —— `全国地名专名词库`
-    * 📄 **duoyin.dict.yaml** —— `多音字校对词库`
-    * 📄 **en.dict.yaml** —— `基础英文词库`
-    * 📄 **jichu.dict.yaml** —— `基础高频核心词库`
-    * 📄 **lianxiang.dict.yaml** —— `联想长词库`
-    * 📄 **shici.dict.yaml** —— `古诗词与文言文大全词库`
-    * 📄 **zi.dict.yaml** —— `单字及带调辅助码映射词库`
-    * 📄 **fangyan.dict.yaml** —— `方言词汇库`
-    * 📄 **huaxue.dict.yaml** —— `化学专业词库`
-    * 📄 **mingren.dict.yaml** —— `名人专有名词库`
-    * 📄 **renming.dict.yaml** —— `高频人名库`
-    * 📄 **taifeng.dict.yaml** —— `最新台风命名表`
-    * 📄 **wuzhong.dict.yaml** —— `物种多样性词库`
-    * 📄 **yaopin.dict.yaml** —— `药品名库`
-    * 📄 **yiren.dict.yaml** —— `艺人名词库`
-    * 📄 **yixue.dict.yaml** —— `医学专业词库`
-* 🪄 **lua/** —— `万象底层魔法扩展与数据`
-    * 📂 **data/** —— `脚本依赖静态数据库`
-        * 📄 **abbrev.txt** —— `简拼与全拼映射表`
-        * 📄 **chaifen.txt** —— `汉字部件拆分反查数据`
-        * 📄 **charset.reverse.bin** —— `字符集反查二进制加速库`
-        * 📄 **chengyu.txt** —— `成语简码数据`
-        * 📄 **chinese_english.txt** —— `中翻英释义数据`
-        * 📄 **emoji.txt** —— `Emoji 表情中英映射表`
-        * 📄 **english_chinese.txt** —— `英翻中释义数据`
-        * 📄 **t9_abbrev.txt** —— `九宫格简拼映射表`
-        * 📄 **tips_show.txt** —— `万能输入提示文本数据`
-        * 📄 **others.txt** —— `其他辅助提示数据`
-        * 📄 **HKVariants.txt** —— `香港繁体字形转换表`
-        * 📄 **STCharacters.txt** —— `简繁单字转换引擎表`
-        * 📄 **STPhrases.txt** —— `简繁词组转换引擎表`
-        * 📄 **TWVariants.txt** —— `台湾正体字形转换表`
-        * 📄 **codex_sym.txt** —— `超级符号库数据（typst/codex 符号表，供 /sym）`
-        * 📄 **codex_emoji.txt** —— `超级表情库数据（供 /emoji）`
-        * 📄 **compose.txt** —— `Compose 合成字符静态码表（XCompose 转换，供 C 前缀）`
-        * 📄 **en_abbrev.txt** —— `英文简码数据（abbrev 模式英文简码）`
-        * 📄 **rev.txt** —— `同音派生数据（append 模式）`
-    * 📂 **wanxiang/** —— `Lua 核心功能源码组件`
-        * 📄 **auto_phrase.lua** —— `无感造词、中英文造词处理模块`
-        * 📄 **bit.lua** —— `跨运行时位运算兼容模块（兼容 LuaJIT bit 库，统一 64 位掩码）`
-        * 📄 **charset_filter.lua** —— `字符集过滤模块`
-        * 📄 **compose.lua** —— `Compose 合成字符模式模块（仿系统 XCompose，C 前缀触发）`
-        * 📄 **force_upper_aux.lua** —— `大写辅助码锁定句子模块`
-        * 📄 **input_statistics.lua** —— `输入状态统计与监控模块`
-        * 📄 **key_binder.lua** —— `高级快捷键绑定扩展模块`
-        * 📄 **librime.lua** —— `Rime 底层 C++ 接口封装`
-        * 📄 **number_translator.lua** —— `数字/金额大写快速转换模块`
-        * 📄 **partial_commit.lua** —— `分段上屏模块`
-        * 📄 **set_schema.lua** —— `方案快捷切换控制模块`
-        * 📄 **shijian.lua** —— `动态时间与日期扩展模块`
-        * 📄 **super_calculator.lua** —— `内联极速计算器模块`
-        * 📄 **super_comment_preedit.lua** —— `候选词超级注释生成模块`
-        * 📄 **super_english.lua** —— `英文智能空格、整句、与大小写处理模块`
-        * 📄 **super_filter.lua** —— `超级过滤引擎节点`
-        * 📄 **super_lookup.lua** —— `超级辅筛/全聚合反查/定点改字模块`
-        * 📄 **super_processor.lua** —— `全局按键拦截与中枢处理器`
-        * 📄 **super_replacer.lua** —— `滤镜动态替换引擎`
-        * 📄 **super_sequence.lua** —— `按键序列处理与手动排序模块`
-        * 📄 **super_tips.lua** —— `超级提示组件`
-        * 📄 **unicode.lua** —— `Unicode 编码直出解析模块`
-        * 📄 **userdb.lua** —— `底层用户词库 LevelDB 操作 API`
-        * 📄 **user_predict.lua** —— `N-Gram 语境大脑与动态调频引擎`
-        * 📄 **version_display.lua** —— `当前输入法版本号显示模块`
-        * 📄 **wanxiang.lua** —— `万象 Lua 功能复用函数集挂载入口`
-* 📖 **README.md** —— `项目主页展示文档`
-* 🏷️ **version.txt** —— `项目版本标识文件`
-* 🧮 **wanxiang_algebra.yaml** —— `全局拼写运算与转写规则库 (含 9键/14键及模糊音逻辑)`
-* ⌨️ **输入方案与字典集群** (Schema & Dict)
-    * 📄 **wanxiang.dict.yaml** —— `🟢 主方案词库挂载入口`
-    * 📄 **wanxiang.schema.yaml** —— `🟢 标准版主输入方案主文件`
-    * 📄 **wanxiang_english.dict.yaml** —— `🔠 英文方案词库入口`
-    * 📄 **wanxiang_english.schema.yaml** —— `🔠 英文整句输入方案主文件`
-    * 📄 **wanxiang_mixedcode.dict.yaml** —— `🧬 混输方案词库入口`
-    * 📄 **wanxiang_mixedcode.schema.yaml** —— `🧬 全能混合输入方案主文件`
-    * 📄 **wanxiang_reverse.dict.yaml** —— `🧩 反查/拆字方案词库入口`
-    * 📄 **wanxiang_reverse.schema.yaml** —— `🧩 生僻字全聚合反查方案主文件`
-    * 📄 **wanxiang_t9.schema.yaml** —— `📱 九宫格专属方案主文件`
-* 🔣 **wanxiang_symbols.yaml** —— `全局标点符号与快捷键映射表`
-* 💻 **weasel.yaml** —— `Windows 端 UI 与外观专属配置文件`
+下面按仓库目录结构说明万象各类文件的主要用途。文件名与目录层级保持与项目一致，便于查找、维护和排错。
+
+> **说明**：`custom/` 目录主要用于存放自定义配置示例和参考文件。其中的 `.custom.yaml` 通常需要按需复制到 Rime 用户根目录后才会参与实际部署，直接修改示例文件本身不会自动生效。
+
+* **custom/** —— `用户自定义配置示例与参考文件`
+    * **万象键位映射.jpg** —— `双拼与辅助码键位参考图`
+    * **赞赏.jpg** —— `项目赞赏二维码`
+    * **简纯.zip** —— `精简版方案打包文件`
+    * **aux_code.csv** —— `辅助码映射源数据`
+    * **jm_flypy.txt** —— `小鹤双拼键位映射参考`
+    * **jm_zrm.txt** —— `自然码双拼键位映射参考`
+    * **wubi_chaifen.txt** —— `五笔部件拆分与反查参考数据`
+    * **wanxiang.custom.yaml** —— `标准版主方案自定义配置示例`
+    * **wanxiang_english.custom.yaml** —— `英文方案自定义配置示例`
+    * **wanxiang_mixedcode.custom.yaml** —— `混输方案自定义配置示例`
+    * **wanxiang_reverse.custom.yaml** —— `反查方案自定义配置示例`
+    * **wanxiang_pro.custom.yaml** —— `Pro 版主方案自定义配置示例`
+    * **wanxiang_pro.dict.yaml** —— `Pro 版词库入口`
+    * **wanxiang_pro.schema.yaml** —— `Pro 版主方案文件`
+    * **wanxiang_pure.custom.yaml** —— `Pure 版自定义配置示例`
+    * **wanxiang_pure.dict.yaml** —— `Pure 版词库入口`
+    * **wanxiang_pure.schema.yaml** —— `Pure 版主方案文件`
+
+* **custom_phrase.txt** —— `自定义短语源文件，用于配置固定编码与置顶候选`
+
+* **default.yaml** —— `Rime 全局默认配置，包括方案列表、快捷键及公共行为`
+
+* **dicts/** —— `万象词库数据目录`
+    * **mixed.dict.yaml** —— `中英混合词汇库`
+    * **cuoyin.dict.yaml** —— `常见错音与容错词库`
+    * **diming.dict.yaml** —— `地名专名词库`
+    * **duoyin.dict.yaml** —— `多音字校对词库`
+    * **en.dict.yaml** —— `基础英文词库`
+    * **jichu.dict.yaml** —— `基础高频词库`
+    * **lianxiang.dict.yaml** —— `联想与长词词库`
+    * **shici.dict.yaml** —— `古诗词与文言词库`
+    * **zi.dict.yaml** —— `单字、带调拼音及辅助码映射词库`
+    * **fangyan.dict.yaml** —— `方言词汇库`
+    * **huaxue.dict.yaml** —— `化学专业词库`
+    * **mingren.dict.yaml** —— `名人名称词库`
+    * **renming.dict.yaml** —— `常用人名词库`
+    * **taifeng.dict.yaml** —— `台风名称词库`
+    * **wuzhong.dict.yaml** —— `物种名称词库`
+    * **yaopin.dict.yaml** —— `药品名称词库`
+    * **yiren.dict.yaml** —— `艺人名称词库`
+    * **yixue.dict.yaml** —— `医学专业词库`
+
+* **lua/** —— `Lua 扩展模块及其配套数据`
+    * **data/** —— `Lua 模块使用的静态数据文件`
+        * **abbrev.txt** —— `简拼与全拼映射数据`
+        * **chaifen.txt** —— `汉字部件拆分与反查数据`
+        * **charset.reverse.bin** —— `字符集反查二进制数据库`
+        * **chengyu.txt** —— `成语简码数据`
+        * **chinese_english.txt** —— `中译英释义数据`
+        * **emoji.txt** —— `Emoji 中英文映射数据`
+        * **english_chinese.txt** —— `英译中释义数据`
+        * **t9_abbrev.txt** —— `九宫格简拼映射数据`
+        * **tips_show.txt** —— `输入提示文本数据`
+        * **others.txt** —— `其他辅助提示数据`
+        * **HKVariants.txt** —— `香港繁体字形转换表`
+        * **STCharacters.txt** —— `简繁单字转换表`
+        * **STPhrases.txt** —— `简繁词组转换表`
+        * **TWVariants.txt** —— `台湾正体字形转换表`
+        * **codex_sym.txt** —— `Typst / Codex 符号数据，供 `/sym` 等功能使用`
+        * **codex_emoji.txt** —— `Emoji 扩展数据，供 `/emoji` 等功能使用`
+        * **compose.txt** —— `Compose 合成字符静态码表，供 `C` 前缀模式使用`
+        * **en_abbrev.txt** —— `英文简码数据，用于 abbrev 模式`
+
+    * **wanxiang/** —— `万象 Lua 核心功能模块`
+        * **auto_phrase.lua** —— `自动造词与英文造词处理模块`
+        * **bit.lua** —— `位运算兼容模块，用于统一不同 Lua 运行环境下的位操作`
+        * **charset_filter.lua** —— `字符集过滤模块`
+        * **compose.lua** —— `Compose 合成字符处理模块`
+        * **force_upper_aux.lua** —— `大写辅助码与句子锁定处理模块`
+        * **input_statistics.lua** —— `输入数据统计模块`
+        * **key_binder.lua** —— `快捷键绑定扩展模块`
+        * **librime.lua** —— `librime 底层接口封装`
+        * **number_translator.lua** —— `数字与人民币大写转换模块`
+        * **partial_commit.lua** —— `局部提交与分段上屏模块`
+        * **set_schema.lua** —— `输入类型快捷切换模块`
+        * **shijian.lua** —— `日期、时间、农历、节气等动态内容模块`
+        * **super_calculator.lua** —— `计算器模块`
+        * **super_comment_preedit.lua** —— `候选注释与 Preedit 处理模块`
+        * **super_english.lua** —— `英文格式、自动空格、连续输入与大小写处理模块`
+        * **super_filter.lua** —— `综合候选过滤模块`
+        * **super_lookup.lua** —— `辅助码筛选、反查与定点改字模块`
+        * **super_processor.lua** —— `综合按键处理模块`
+        * **super_replacer.lua** —— `候选、注释及转换规则动态替换模块`
+        * **super_sequence.lua** —— `候选序列与手动排序模块`
+        * **super_tips.lua** —— `输入提示模块`
+        * **unicode.lua** —— `Unicode 编码输入与解析模块`
+        * **userdb.lua** —— `用户词库与 LevelDB 操作封装`
+        * **user_predict.lua** —— `N-Gram 用户预测与上下文调频模块`
+        * **version_display.lua** —— `版本与项目信息显示模块`
+        * **wanxiang.lua** —— `万象 Lua 公共函数与模块挂载入口`
+
+* **README.md** —— `项目主页与总体说明文档`
+
+* **version.txt** —— `项目版本标识文件`
+
+* **wanxiang_algebra.yaml** —— `全局拼写运算与转写规则库，包括全拼、双拼、模糊音及 9 键 / 14 键 / 18 键映射`
+
+* **输入方案与字典集群 (Schema & Dict)**
+    * **wanxiang.dict.yaml** —— `标准版主方案词库入口`
+    * **wanxiang.schema.yaml** —— `标准版主输入方案文件`
+    * **wanxiang_english.dict.yaml** —— `英文方案词库入口`
+    * **wanxiang_english.schema.yaml** —— `英文输入方案文件`
+    * **wanxiang_mixedcode.dict.yaml** —— `混输方案词库入口`
+    * **wanxiang_mixedcode.schema.yaml** —— `中英混合输入方案文件`
+    * **wanxiang_reverse.dict.yaml** —— `部件、拆字与反查词库入口`
+    * **wanxiang_reverse.schema.yaml** —— `生僻字与部件反查方案文件`
+    * **wanxiang_t9.schema.yaml** —— `九宫格输入方案文件`
+
+* **wanxiang_symbols.yaml** —— `全局标点、符号及相关映射配置`
+
+* **weasel.yaml** —— `Windows 小狼毫前端界面与外观配置`

@@ -1,293 +1,1058 @@
-# 🎯 超级符号 super_symbols
+# 超级符号 (Super Symbols)
 
-万象拼音现已集成 [typst/codex](https://github.com/typst/codex) 符号命名库，提供 **数千个 Unicode 符号**的「按名输入」能力。
+万象拼音集成了 [typst/codex](https://github.com/typst/codex) 的符号命名数据，可通过符号名称直接检索并输入大量 Unicode 符号与 Emoji。
 
-源自 Typst 排版系统的底层符号表，覆盖数学运算符、希腊字母、箭头、集合论、几何、天文、货币、控制字符图形等十余大类，以及一千余个 emoji 表情。
+数据沿用 Typst / Codex 的点分命名方式，例如：
 
-具体符号库可参考Typst官方文档：
+```text
+arrow.r.double
+chess.king.white
+apple.red
+```
 
-- `sym`(符号): [点击这里](https://typst.app/docs/reference/symbols/sym/)
-- `emoji`(表情): [点击这里](https://typst.app/docs/reference/symbols/emoji/)
+在万象中分别通过 `/sym` 与 `/emoji` 进入符号和表情查询。
+
+Typst 官方符号表可参考：
+
+- `sym`（符号）：[Typst Symbols](https://typst.app/docs/reference/symbols/sym/)
+- `emoji`（表情）：[Typst Emoji](https://typst.app/docs/reference/symbols/emoji/)
 
 ---
 
 ## 一、触发方式
 
-| 输入                                     | 含义                                                                               | 示例                                                          |
-| ---------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `/sym.<name>`                            | 精确查找某个符号（含变体）                                                         | `/sym.alpha` → α                                              |
-| `/sym.<root>.<mod1>.<mod2>...`           | 点分链式任意顺序精确匹配（首值精确、中间值精确、尾值前缀；修饰符顺序无关、可省略） | `/sym.arrow.r.double` → ⇒ ，且 `/sym.arrow.double.r` 等价     |
-| `/sym?<keyword>` 或 `/sym/<keyword>`     | 点分链式任意顺序模糊匹配（关键字按 `.` 拆分，各组件在名字中任意顺序子串命中）      | `/sym?double.arrow` 或 `/sym?arrow.double` 都列出所有双线箭头 |
-| `/emoji.<name>[.<mod>...]`               | 同上，针对 emoji 模块                                                              | `/emoji.apple.red` → 🍎                                        |
-| `/emoji?<keyword>` 或 `/emoji/<keyword>` | emoji 点分链式任意顺序模糊匹配                                                     | `/emoji?red.apple` 或 `/emoji?apple.red`                      |
+| 输入 | 含义 | 示例 |
+| --- | --- | --- |
+| `/sym.<name>` | 按点分名称查询符号 | `/sym.alpha` → α |
+| `/sym.<root>.<mod1>.<mod2>...` | 根名称 + 修饰符链查询 | `/sym.arrow.r.double` → ⇒ |
+| `/sym?<keyword>` | 模糊搜索符号名称 | `/sym?double.arrow` |
+| `/sym/<keyword>` | 与 `/sym?` 等价的模糊搜索写法 | `/sym/arrow.double` |
+| `/emoji.<name>[.<mod>...]` | 查询 Emoji 名称 | `/emoji.apple.red` → 🍎 |
+| `/emoji?<keyword>` | 模糊搜索 Emoji 名称 | `/emoji?red.apple` |
+| `/emoji/<keyword>` | 与 `/emoji?` 等价的模糊搜索写法 | `/emoji/apple.red` |
 
 !!! tip "两种模糊搜索语法等价"
-    `/sym?keyword` 和 `/sym/keyword` 完全等价，可按习惯选用。
-    - `/sym?` 风格接近 URL query string，视觉上更突出"搜索"
-    - `/sym/` 风格更接近命令行路径，便于在 `/sym` 前缀后自然延续
+    `/sym?keyword` 与 `/sym/keyword` 使用相同的搜索逻辑，Emoji 同理。
 
-!!! tip "精确匹配：点分链式任意顺序"
-    查询按 `.` 拆分为 `首值.中间值...尾值`，匹配规则如下：
-    - **首值**必须匹配字典首值（根/分类）：一旦首值被 `.` 结束（即后面还有组件），首值改用 **exact match**；若首值整串唯一（无末尾点），则用**子串（prefix）match** 匹配根。
-    - **中间值**在字典中**任意乱序**匹配修饰符，使用 **exact match**。
-    - **尾值**永远使用 **prefix match**（悬垂点 `/sym.arrows.` 视为尾值为空串，列出该分类全部变体）；重复修饰符自动合并成一个。
-    - 因此 `/sym.arrow.double` 会列出**所有方向**的双线箭头（含左、右），而 `/sym.arrow.r.double` 与 `/sym.arrow.double.r` 等价。
-    - 仅输入首值（如 `/sym.arrow`）时只投“根字符”进候选；若根无裸字符，则投占位符 `（字符分类）<根>`（提示这是一个分类，补 `.` 即可浏览其全部变体）。**交互升级**：直接「选择」该 `（字符分类）` 候选（空格 / 回车确认，或按对应数字键 1-9 / 0）并不会上屏该占位文本，而是自动把输入展开为 `/sym.<根>.`，从而列出该分类的全部变体，无需手动补 `.`。emoji 同理。
+    * `?` 更接近“搜索”语义，例如 `/sym?arrow`
+    * `/` 更接近路径式输入，例如 `/sym/arrow`
 
-!!! info "候选注释强制显示完整 Typst 代码"
-    每个候选的注释区会显示**完整的 Typst 代码**（含 `sym.` / `emoji.` 前缀、按字典原序，提供完整版），方便 Typst 用户输入。例如输入 `/sym.arrow.double` 时：
-    ```
-    1 ⇒  sym.arrow.r.double
-    2 ⤇  sym.arrow.r.double.bar
-    3 ⟹  sym.arrow.r.double.long
-    ```
-    注释中的 `sym.arrow.r.double` 与 Typst 中输入 `sym.arrow.r.double` 完全一致。**即使关闭"注释"开关，super_symbols 的注释也会强制显示**，确保符号名始终可见。
+    两种写法只是在触发形式上不同，进入的都是 `search` 模式。
 
 ---
 
-## 二、模式提示
+## 二、精确查询的点分规则
 
-仅输入前缀（无后续字符）时，候选区会显示引导提示，帮助用户记住下一步该怎么输入：
+Super Symbols 的精确模式并不是简单地对完整字符串做一次相等比较，而是把查询按 `.` 拆分后分别处理。
 
-| 输入      | 候选区显示（正文 / 注释）        |
-| --------- | -------------------------------- |
-| `/sym`    | 超级符号 / `~`                   |
-| `/sym.`   | 超级符号 / `直接输入`            |
-| `/sym?`   | 超级符号 / `模糊搜索`            |
-| `/sym/`   | 超级符号 / `模糊搜索`            |
-| `/emoji`  | 超级表情 / `~`                   |
-| `/emoji.` | 超级表情 / `直接输入`            |
-| `/emoji?` | 超级表情 / `模糊搜索`            |
-| `/emoji/` | 超级表情 / `模糊搜索`            |
+例如：
 
-输入任何字符后即进入实际查询模式。
+```text
+/sym.arrow.r.double
+```
+
+去掉 `/sym.` 后，实际查询为：
+
+```text
+arrow.r.double
+```
+
+可以理解为：
+
+```text
+根名称 . 中间修饰符 . 尾值
+```
+
+当前规则如下。
+
+!!! tip "精确模式的匹配规则"
+    1. **只有一个组件时：按根名称前缀浏览**
+
+       例如：
+
+       ```text
+       /sym.arrow
+       ```
+
+       此时 `arrow` 会作为根名称前缀处理。
+
+       对于命中的根：
+
+       * 如果该根存在裸字符，则直接给出裸字符
+       * 如果该根本身只是分类，没有裸字符，则给出 `（字符分类）<根名>` 占位候选
+
+    2. **出现第二个 `.` 后：根名称改为精确匹配**
+
+       例如：
+
+       ```text
+       /sym.arrow.r
+       ```
+
+       此时 `arrow` 必须是实际存在的根名称，不再按照多个根前缀展开。
+
+    3. **中间修饰符：精确匹配，顺序不要求与 Codex 原始名称一致**
+
+       例如：
+
+       ```text
+       /sym.arrow.r.double
+       ```
+
+       中间的 `r` 必须是该条目的完整修饰符。
+
+    4. **最后一个组件：前缀匹配**
+
+       例如：
+
+       ```text
+       /sym.arrow.double
+       ```
+
+       `double` 作为尾值，会匹配该根下修饰符以 `double` 开头的条目。
+
+    5. **悬垂点表示尾值为空**
+
+       例如：
+
+       ```text
+       /sym.arrow.
+       ```
+
+       尾值为空，因此会列出 `arrow` 分类下满足条件的全部条目。
+
+    6. **中间修饰符会去重**
+
+       查询中的中间修饰符会先做去重，再参与匹配。尾值仍单独承担前缀匹配职责。
+
+### 关于修饰符顺序
+
+中间修饰符采用“是否存在于该条目的修饰符集合中”进行判断，因此完整修饰符通常可以交换顺序。
+
+例如：
+
+```text
+/sym.arrow.r.double
+/sym.arrow.double.r
+```
+
+在对应修饰符名称都完整且无前缀歧义时，通常可以命中相同目标。
+
+不过需要注意：
+
+**最后一个组件始终使用前缀匹配，而不是 exact match。**
+
+因此如果尾值本身同时是多个修饰符的共同前缀，交换组件位置后，候选集合可能出现差异。更准确地说，Super Symbols 支持的是：
+
+```text
+中间修饰符无序精确匹配
++
+尾修饰符前缀匹配
+```
+
+而不是所有组件完全对称的任意顺序匹配。
 
 ---
 
-## 三、点分命名规则
+## 三、字符分类占位符与自动展开
 
-codex 使用「**符号 + 修饰符**」的层级命名，符号之间用 `.` 分隔。
+部分 Codex 根名称没有对应的“裸字符”，只用于组织一组变体。
+
+此时输入根名称后，候选区会出现：
+
+```text
+（字符分类）<根名>
+```
+
+例如某个根只有多个细分变体而没有独立字符时，Super Symbols 不会把分类名称本身当作普通文本上屏。
+
+当前还提供了分类展开 Processor。
+
+!!! info "选择字符分类即可展开"
+    当高亮候选为：
+
+    ```text
+    （字符分类）<根名>
+    ```
+
+    使用以下方式确认：
+
+    * 空格
+    * 回车
+    * 小键盘回车
+    * 当前页对应的数字选词键
+
+    Processor 会拦截这次上屏，并把当前输入改写为：
+
+    ```text
+    <精确前缀>.<根名>.
+    ```
+
+    例如：
+
+    ```text
+    /sym.arrow.
+    ```
+
+    随后直接列出该分类下的变体。
+
+因此分类占位符只是交互入口，不会把：
+
+```text
+（字符分类）arrow
+```
+
+这样的提示文本真正提交到应用程序中。
+
+!!! note "数字键遵循当前候选页大小"
+    数字选词会根据当前 `menu/page_size` 计算候选位置。
+
+    `1-9` 对应相应序号，`0` 表示第 10 个候选；如果当前页面大小没有覆盖该序号，则不会触发分类展开。
+
+---
+
+## 四、模糊搜索规则
+
+模糊模式由：
+
+```text
+/sym?
+```
+
+或：
+
+```text
+/sym/
+```
+
+进入，Emoji 使用同样的规则。
+
+### 1. 单关键字搜索
+
+如果关键字中没有 `.`：
+
+```text
+/sym?arrow
+```
+
+则对完整 Codex 名称进行子串匹配。
+
+例如：
+
+```text
+/sym?double
+/sym?alpha
+/emoji?heart
+```
+
+都不要求关键字位于名称开头。
+
+同时，单关键字模式还支持**字符本身的精确反查**：
+
+```text
+/sym?⇒
+```
+
+可以直接匹配字符为 `⇒` 的条目。
+
+### 2. 点分多关键字搜索
+
+如果关键字中包含 `.`：
+
+```text
+/sym?double.arrow
+```
+
+会先拆成：
+
+```text
+double
+arrow
+```
+
+然后要求每个组件都能作为子串出现在目标 Codex 名称中。
+
+组件顺序不固定，因此：
+
+```text
+/sym?double.arrow
+/sym?arrow.double
+```
+
+使用相同的多组件匹配思路。
+
+多组件搜索还会：
+
+* 自动去除重复组件
+* 优先处理较长组件
+* 要求所有组件同时命中
+* 最终按 Codex 名称排序输出
+
+!!! note "字符反查只属于无点关键字模式"
+    `/sym?⇒` 这类直接输入字符的反查可以工作。
+
+    但点分模糊模式的每个组件是对**名称字符串**做子串判断，并不会把每个组件同时当作字符进行匹配。
+
+---
+
+## 五、模式提示
+
+只输入触发前缀、尚未真正查询时，候选区会显示模式提示。
+
+| 输入 | 候选正文 | 候选注释 |
+| --- | --- | --- |
+| `/sym` | 超级符号 | `~` |
+| `/sym.` | 超级符号 | `直接输入` |
+| `/sym?` | 超级符号 | `模糊搜索` |
+| `/sym/` | 超级符号 | `模糊搜索` |
+| `/emoji` | 超级表情 | `~` |
+| `/emoji.` | 超级表情 | `直接输入` |
+| `/emoji?` | 超级表情 | `模糊搜索` |
+| `/emoji/` | 超级表情 | `模糊搜索` |
+
+输入实际查询内容后，才进入精确或模糊匹配流程。
+
+---
+
+## 六、候选注释与 Typst 名称
+
+实际符号候选的注释中会保留完整的 Typst / Codex 名称。
+
+例如输入：
+
+```text
+/sym.arrow.double
+```
+
+候选可能显示为：
+
+```text
+1 ⇒  sym.arrow.r.double
+2 ⤇  sym.arrow.r.double.bar
+3 ⟹  sym.arrow.r.double.long
+```
+
+其中：
+
+```text
+sym.arrow.r.double
+```
+
+可以直接对应到 Typst 的符号名称。
+
+Super Symbols 在生成候选时：
+
+* `sym` 候选使用 `super_sym` 类型
+* `emoji` 候选使用 `super_emoji` 类型
+
+`super_comment_preedit.lua` 对这两种候选类型直接放行，不再进入普通候选的注释清理流程，因此完整 Codex 名称可以持续保留。
+
+!!! info "关闭普通候选注释不会清掉 Super Symbols 名称"
+    `super_comment_preedit.lua` 检测到：
+
+    ```text
+    super_sym
+    super_emoji
+    ```
+
+    后，会直接输出原候选。
+
+    因此 Super Symbols 的 Typst 名称注释不受普通拼音候选注释开关的清空逻辑影响。
+
+---
+
+## 七、点分命名规则
+
+Codex 使用：
+
+```text
+根名称.修饰符.修饰符...
+```
+
+组织符号名称。
 
 ### 常见修饰符
 
-| 修饰符             | 含义                 | 示例                        |
-| ------------------ | -------------------- | --------------------------- |
-| `.l .r .t .b`      | 左 / 右 / 上 / 下    | `/sym.arrow.l` → ←          |
-| `.tl .tr .bl .br`  | 四个对角方向         | `/sym.arrow.tr` → ↗         |
-| `.double .triple`  | 双线 / 三线          | `/sym.arrow.double` → ⇔     |
-| `.stroked .filled` | 空心 / 实心          | `/sym.circle.stroked` → ○   |
-| `.not`             | 否定                 | `/sym.eq.not` → ≠           |
-| `.big`             | 大号（n-ary 运算符） | `/sym.union.big` → ⋃        |
-| `.o`               | 外加圆圈             | `/sym.plus.o` → ⊕           |
-| `.inv .rev`        | 倒置 / 镜像          | `/sym.ast.inv` → ⁂          |
-| `.white .black`    | 棋类颜色             | `/sym.chess.king.white` → ♔ |
-| `.alt`             | 替代字形             | `/sym.phi.alt` → ϕ          |
+| 修饰符 | 常见含义 | 示例 |
+| --- | --- | --- |
+| `.l .r .t .b` | 左 / 右 / 上 / 下 | `/sym.arrow.l` → ← |
+| `.tl .tr .bl .br` | 四个对角方向 | `/sym.arrow.tr` → ↗ |
+| `.double .triple` | 双线 / 三线 | `/sym.arrow.r.double` → ⇒ |
+| `.stroked .filled` | 描边 / 实心变体 | `/sym.circle.stroked` → ○ |
+| `.not` | 否定 | `/sym.eq.not` → ≠ |
+| `.big` | 大型运算符变体 | `/sym.union.big` → ⋃ |
+| `.o` | 外加圆圈 | `/sym.plus.o` → ⊕ |
+| `.inv .rev` | 倒置 / 反向变体 | `/sym.ast.inv` → ⁂ |
+| `.white .black` | 黑白变体 | `/sym.chess.king.white` → ♔ |
+| `.alt` | 替代字形 | `/sym.phi.alt` → ϕ |
 
-### 嵌套模块
+具体含义以 Codex 中对应名称为准；同一个修饰符在不同符号家族中可能承担不同的字形区分作用。
 
-部分符号位于子模块下，需带模块前缀：
+### 嵌套名称
 
-- `chess.*` — 国际象棋：`/sym.chess.queen.black` → ♛
-- `gender.*` — 性别符号：`/sym.gender.male` → ♂
-- `control.*` — 控制字符图形：`/sym.control.del` → ␡
+部分符号名称本身具有多层结构，例如：
+
+```text
+chess.king.white
+gender.male
+control.del
+```
+
+对应输入：
+
+```text
+/sym.chess.king.white
+/sym.gender.male
+/sym.control.del
+```
+
+从 Super Symbols 的实现角度看，第一个组件仍作为根名称，后续组件统一作为修饰符链处理。
 
 ---
 
-## 四、常用符号速查
+## 八、常用符号速查
 
 ### 希腊字母
 
-| 输入         | 结果 | 输入         | 结果 |
-| ------------ | ---- | ------------ | ---- |
-| `/sym.alpha` | α    | `/sym.Alpha` | Α    |
-| `/sym.beta`  | β    | `/sym.Beta`  | Β    |
-| `/sym.gamma` | γ    | `/sym.Gamma` | Γ    |
-| `/sym.delta` | δ    | `/sym.Delta` | Δ    |
-| `/sym.pi`    | π    | `/sym.Pi`    | Π    |
-| `/sym.omega` | ω    | `/sym.Omega` | Ω    |
-| `/sym.phi`   | φ    | `/sym.Phi`   | Φ    |
-| `/sym.psi`   | ψ    | `/sym.Psi`   | Ψ    |
+| 输入 | 结果 | 输入 | 结果 |
+| --- | --- | --- | --- |
+| `/sym.alpha` | α | `/sym.Alpha` | Α |
+| `/sym.beta` | β | `/sym.Beta` | Β |
+| `/sym.gamma` | γ | `/sym.Gamma` | Γ |
+| `/sym.delta` | δ | `/sym.Delta` | Δ |
+| `/sym.pi` | π | `/sym.Pi` | Π |
+| `/sym.omega` | ω | `/sym.Omega` | Ω |
+| `/sym.phi` | φ | `/sym.Phi` | Φ |
+| `/sym.psi` | ψ | `/sym.Psi` | Ψ |
 
-### 箭头家族
+### 箭头
 
-| 输入                    | 结果 | 说明       |
-| ----------------------- | ---- | ---------- |
-| `/sym.arrow.r`          | →    | 右箭头     |
-| `/sym.arrow.l`          | ←    | 左箭头     |
-| `/sym.arrow.t`          | ↑    | 上箭头     |
-| `/sym.arrow.b`          | ↓    | 下箭头     |
-| `/sym.arrow.r.double`   | ⇒    | 双线右箭头 |
-| `/sym.arrow.l.r`        | ↔    | 左右箭头   |
-| `/sym.arrow.tr`         | ↗    | 右上箭头   |
-| `/sym.arrow.cw`         | ↻    | 顺时针箭头 |
-| `/sym.arrow.r.squiggly` | ⇝    | 波浪右箭头 |
+| 输入 | 结果 | 说明 |
+| --- | --- | --- |
+| `/sym.arrow.r` | → | 右箭头 |
+| `/sym.arrow.l` | ← | 左箭头 |
+| `/sym.arrow.t` | ↑ | 上箭头 |
+| `/sym.arrow.b` | ↓ | 下箭头 |
+| `/sym.arrow.r.double` | ⇒ | 双线右箭头 |
+| `/sym.arrow.l.r` | ↔ | 左右箭头 |
+| `/sym.arrow.tr` | ↗ | 右上箭头 |
+| `/sym.arrow.cw` | ↻ | 顺时针箭头 |
+| `/sym.arrow.r.squiggly` | ⇝ | 波浪右箭头 |
 
 ### 数学运算
 
-| 输入              | 结果 | 输入           | 结果 |
-| ----------------- | ---- | -------------- | ---- |
-| `/sym.plus`       | +    | `/sym.minus`   | −    |
-| `/sym.times`      | ×    | `/sym.div`     | ÷    |
-| `/sym.plus.o`     | ⊕    | `/sym.times.o` | ⊗    |
-| `/sym.plus.minus` | ±    | `/sym.eq`      | =    |
-| `/sym.eq.triple`  | ≡    | `/sym.eq.not`  | ≠    |
-| `/sym.lt.eq`      | ≤    | `/sym.gt.eq`   | ≥    |
-| `/sym.approx`     | ≈    | `/sym.infty`   | ∞    |
-| `/sym.partial`    | ∂    | `/sym.nabla`   | ∇    |
-| `/sym.integral`   | ∫    | `/sym.sum`     | ∑    |
-| `/sym.product`    | ∏    | `/sym.forall`  | ∀    |
-| `/sym.exists`     | ∃    | `/sym.in`      | ∈    |
-| `/sym.union`      | ∪    | `/sym.inter`   | ∩    |
-| `/sym.subset`     | ⊂    | `/sym.supset`  | ⊃    |
-| `/sym.emptyset`   | ∅    | `/sym.angle`   | ∠    |
+| 输入 | 结果 | 输入 | 结果 |
+| --- | --- | --- | --- |
+| `/sym.plus` | + | `/sym.minus` | − |
+| `/sym.times` | × | `/sym.div` | ÷ |
+| `/sym.plus.o` | ⊕ | `/sym.times.o` | ⊗ |
+| `/sym.plus.minus` | ± | `/sym.eq` | = |
+| `/sym.eq.triple` | ≡ | `/sym.eq.not` | ≠ |
+| `/sym.lt.eq` | ≤ | `/sym.gt.eq` | ≥ |
+| `/sym.approx` | ≈ | `/sym.infty` | ∞ |
+| `/sym.partial` | ∂ | `/sym.nabla` | ∇ |
+| `/sym.integral` | ∫ | `/sym.sum` | ∑ |
+| `/sym.product` | ∏ | `/sym.forall` | ∀ |
+| `/sym.exists` | ∃ | `/sym.in` | ∈ |
+| `/sym.union` | ∪ | `/sym.inter` | ∩ |
+| `/sym.subset` | ⊂ | `/sym.supset` | ⊃ |
+| `/sym.emptyset` | ∅ | `/sym.angle` | ∠ |
 
 ### 货币符号
 
-| 输入                | 结果 | 输入            | 结果 |
-| ------------------- | ---- | --------------- | ---- |
-| `/sym.dollar`       | $    | `/sym.euro`     | €    |
-| `/sym.yen`          | ¥    | `/sym.sterling` | £    |
-| `/sym.won`          | ₩    | `/sym.ruble`    | ₽    |
-| `/sym.rupee.indian` | ₹    | `/sym.bitcoin`  | ₿    |
-| `/sym.cent`         | ¢    | `/sym.currency` | ¤    |
+| 输入 | 结果 | 输入 | 结果 |
+| --- | --- | --- | --- |
+| `/sym.dollar` | $ | `/sym.euro` | € |
+| `/sym.yen` | ¥ | `/sym.sterling` | £ |
+| `/sym.won` | ₩ | `/sym.ruble` | ₽ |
+| `/sym.rupee.indian` | ₹ | `/sym.bitcoin` | ₿ |
+| `/sym.cent` | ¢ | `/sym.currency` | ¤ |
 
 ### 分隔符
 
-| 输入             | 结果 |
-| ---------------- | ---- |
-| `/sym.paren.l`   | (    |
-| `/sym.paren.r`   | )    |
-| `/sym.bracket.l` | [    |
-| `/sym.bracket.r` | ]    |
-| `/sym.brace.l`   | {    |
-| `/sym.brace.r`   | }    |
-| `/sym.chevron.l` | ⟨    |
-| `/sym.chevron.r` | ⟩    |
-| `/sym.floor.l`   | ⌊    |
-| `/sym.ceil.l`    | ⌈    |
+| 输入 | 结果 |
+| --- | --- |
+| `/sym.paren.l` | ( |
+| `/sym.paren.r` | ) |
+| `/sym.bracket.l` | [ |
+| `/sym.bracket.r` | ] |
+| `/sym.brace.l` | { |
+| `/sym.brace.r` | } |
+| `/sym.chevron.l` | ⟨ |
+| `/sym.chevron.r` | ⟩ |
+| `/sym.floor.l` | ⌊ |
+| `/sym.ceil.l` | ⌈ |
 
-### 常用 emoji
+### 常用 Emoji
 
-| 输入                    | 结果 | 输入                  | 结果 |
-| ----------------------- | ---- | --------------------- | ---- |
-| `/emoji.apple.red`      | 🍎    | `/emoji.apple.green`  | 🍏    |
-| `/emoji.heart.red`      | ❤️    | `/emoji.heart.broken` | 💔    |
-| `/emoji.arrow.r.filled` | ➡️    | `/emoji.face.smile`   | 😊    |
-| `/emoji.fire`           | 🔥    | `/emoji.rocket`       | 🚀    |
+| 输入 | 结果 | 输入 | 结果 |
+| --- | --- | --- | --- |
+| `/emoji.apple.red` | 🍎 | `/emoji.apple.green` | 🍏 |
+| `/emoji.heart.red` | ❤️ | `/emoji.heart.broken` | 💔 |
+| `/emoji.arrow.r.filled` | ➡️ | `/emoji.face.smile` | 😊 |
+| `/emoji.fire` | 🔥 | `/emoji.rocket` | 🚀 |
 
 ---
 
-## 五、模糊搜索技巧
+## 九、模糊搜索示例
 
-用 `/sym?<keyword>` 或 `/sym/<keyword>` 可以快速找到记不清全名的符号（两种语法完全等价）。
+记不清完整 Codex 名称时，可以直接搜索其中的一部分：
 
+```text
+/sym?arrow
+/sym/arrow
+
+/sym?double
+/sym/double
+
+/sym?triple
+/sym/triple
+
+/sym?alpha
+/sym/alpha
+
+/emoji?heart
+/emoji/heart
+
+/emoji?face
+/emoji/face
 ```
-/sym?arrow        # 或 /sym/arrow       所有名字含 "arrow" 的符号
-/sym?double       # 或 /sym/double       所有修饰符含 "double" 的符号
-/sym?triple       # 或 /sym/triple       三线变体
-/sym?alpha        # 或 /sym/alpha        名字含 alpha 的（包括 Alpha 大写）
-/emoji?heart      # 或 /emoji/heart      所有心形 emoji
-/emoji?face       # 或 /emoji/face       所有人脸 emoji
+
+也可以使用多个点分关键字：
+
+```text
+/sym?arrow.double
+/sym?double.arrow
 ```
 
-关键字会同时匹配 **符号名、完整路径、字符本身**，例如 `/sym?⇒` 也能反向找到 `arrow.r.double`。
+如果已经知道字符本身，还可以反查：
 
----
-
-## 六、与现有功能的关系
-
-| 现有功能         | 触发                | 适用场景         | 与 super_symbols 关系                               |
-| ---------------- | ------------------- | ---------------- | --------------------------------------------------- |
-| 标点快打         | `/` + 字母          | 万象精选常用符号 | 互不冲突，`/sym` `/emoji` 由独立 tag 处理           |
-| Unicode 码点输入 | `U+xxxx`            | 已知码点         | super_symbols 提供「按名输入」补充                  |
-| 超级计算器       | `V` 引导            | 数学运算         | 不冲突                                              |
-| 农历/日期        | `/` 或 `o` 引导     | 日期时间         | 不冲突（super_symbols 仅匹配 `/sym` `/emoji` 前缀） |
-| 自定义短语       | `custom_phrase.txt` | 高频固定短语     | 互不冲突                                            |
-
----
-
-## 七、中文 tips 联动
-
-万象的 **super_tips** 模块（开启后输入框右侧实时显示提示）已内置 codex 中文翻译：
-
-- 所有 codex 符号均生成了**纯中文**说明（不含 Typst 代码后缀），便于在输入时快速识别
-- 已与原有 tips_show.txt **去重**（按「类型 + 字符」维度去重，避免重复条目）
-- 共新增 **1090 条符号 tips + 341 条 emoji tips**
-- 开启 `super_tips` 开关后即可在输入时看到「`⇒ 双线右箭头`」「`🍎 红苹果`」风格的提示
-
-如需禁用某类 tips，可在 `wanxiang.schema.yaml` 的 `super_tips/disabled_types` 中加入类型名（如 `符号` 或 `表情`）。
-
----
-
-## 八、数据来源与文件清单
-
-| 文件                             | 用途                                                  | 行数     |
-| -------------------------------- | ----------------------------------------------------- | -------- |
-| `lua/data/codex_sym.txt`         | 符号数据（`typst_name<TAB>char`）                     | 1214 条  |
-| `lua/data/codex_emoji.txt`       | emoji 数据（同上）                                    | 1389 条  |
-| `lua/data/tips_show.txt`         | 已合并中文 tips（含 codex 符号/emoji 翻译，末尾追加） | +1431 条 |
-| `lua/wanxiang/super_symbols.lua` | 翻译器主逻辑                                          | 659 行   |
-
-中文 tips 已合并进 `tips_show.txt`，原 `codex_tips_sym.txt` / `codex_tips_emoji.txt` 不再单独存在。
-
-**数据格式**：
+```text
+/sym?⇒
 ```
+
+---
+
+## 十、与现有功能的关系
+
+| 功能 | 常见触发 | 适用场景 | 与 Super Symbols 的关系 |
+| --- | --- | --- | --- |
+| 标点快打 | `/` + 字母 | 常用标点与快捷符号 | 独立功能；`/sym`、`/emoji` 使用自己的识别入口 |
+| Unicode 码点输入 | `U` / Unicode 相关入口 | 已知 Unicode 码点 | Super Symbols 补充按名称搜索 |
+| 超级计算器 | `V` 引导 | 数学计算 | 独立功能 |
+| 日期 / 时间 | `/`、`N` 等入口 | 日期时间内容 | 独立功能 |
+| 自定义短语 | `custom_phrase.txt` | 高频固定文本 | 独立功能 |
+
+Super Symbols 的重点不是替代这些功能，而是补充：
+
+```text
+已知符号名称或名称片段
+→ 查找 Unicode 字符
+```
+
+这一输入方式。
+
+---
+
+## 十一、中文 Tips 联动
+
+万象的 `super_tips` 可以为部分 Codex 符号提供中文提示。
+
+开启后，可以在输入过程中看到类似：
+
+```text
+⇒ 双线右箭头
+🍎 红苹果
+```
+
+的辅助说明。
+
+当前数据文件中已经合并了 Codex 相关中文 Tips，并与原有提示数据进行去重。
+
+当前文档所对应的数据版本记录为：
+
+```text
+1090 条符号 Tips
+341 条 Emoji Tips
+合计新增 1431 条
+```
+
+!!! note "数量属于当前数据快照"
+    Codex 数据和中文 Tips 后续都可能继续更新，因此条目数量不应视为永久固定值。
+
+    如果仓库中的 `codex_sym.txt`、`codex_emoji.txt` 或 `tips_show.txt` 已更新，应以实际文件内容为准。
+
+如需关闭某类提示，可根据当前 `super_tips` 配置中的类型控制项进行调整，例如符号或表情类型。
+
+---
+
+## 十二、数据来源与文件
+
+| 文件 | 用途 | 当前文档记录 |
+| --- | --- | --- |
+| `lua/data/codex_sym.txt` | Codex `sym` 符号数据 | 1214 条 |
+| `lua/data/codex_emoji.txt` | Codex Emoji 数据 | 1389 条 |
+| `lua/data/tips_show.txt` | 中文输入提示数据，包含 Codex 相关 Tips | Codex 部分新增 1431 条 |
+| `lua/wanxiang/super_symbols.lua` | Super Symbols Translator / Processor | 659 行 |
+
+!!! note "数据条数可能随上游更新"
+    表中的数量对应当前文档所使用的数据快照。
+
+    后续同步新版 Codex 后，符号、Emoji 和 Tips 条数都可能变化，文档不应依赖这些数字判断功能是否正常。
+
+### 数据格式
+
+`codex_sym.txt` 与 `codex_emoji.txt` 每行使用两个字段：
+
+```text
 typst_name<TAB>char
+```
+
+例如：
+
+```text
 arrow.r.double	⇒
 chess.king.white	♔
 emptyset.zero	∅︀
 ```
 
-标识符为 Typst 写法全文，只有一个字段。
+这里的重点是：
 
-数据源自 [typst/codex](https://github.com/typst/codex) 的 `sym.txt` / `emoji.txt`。支持的转义序列（与 codex `build.rs` 一致）：
-- `\u{XXXX}`：Unicode 码点（如 `\u{2192}` → `→`）
-- `\vs{1}` ~ `\vs{16}`：Variation Selector U+FE00 ~ U+FE0F
-- `\vs{text}`：等价于 `\vs{15}`（U+FE0E）
-- `\vs{emoji}`：等价于 `\vs{16}`（U+FE0F）
+**`typst_name` 作为一个完整字段保存。**
+
+程序读取后才根据 `.` 拆分为：
+
+```text
+root
+mods_list
+mods_set
+```
+
+数据文件本身不会额外拆成：
+
+```text
+symbol<TAB>modifier1<TAB>modifier2
+```
+
+这样的多列结构。
+
+数据来源于 [typst/codex](https://github.com/typst/codex) 的符号数据。
+
+当前数据转换支持的转义形式包括：
+
+```text
+\u{XXXX}
+\vs{1} ~ \vs{16}
+\vs{text}
+\vs{emoji}
+```
+
+其中：
+
+```text
+\vs{text}
+```
+
+对应文本样式 Variation Selector，
+
+```text
+\vs{emoji}
+```
+
+对应 Emoji 样式 Variation Selector。
 
 ---
 
-## 九、配置参数
+## 十三、配置参数
 
-在 `wanxiang.schema.yaml`（或 `custom/wanxiang_pro.schema.yaml`）的 `super_symbols` 节点自定义：
+默认配置由方案文件提供。个人修改建议通过 `wanxiang.custom.yaml` Patch，而不是直接修改主方案文件。
+
+Super Symbols 当前主要使用：
 
 ```yaml
 super_symbols:
-  prefix_sym:    "/sym"      # 仅当未配置 triggers 时作为回退精确前缀
-  prefix_emoji:  "/emoji"    # 仅当未配置 triggers 时作为回退精确前缀
-  max_candidates: 30         # 模糊搜索最大候选数
-  data_sym:      "lua/data/codex_sym.txt"
-  data_emoji:    "lua/data/codex_emoji.txt"
+  prefix_sym: "/sym"
+  prefix_emoji: "/emoji"
+  max_candidates: 120
+  data_sym: "lua/data/codex_sym.txt"
+  data_emoji: "lua/data/codex_emoji.txt"
 ```
 
-精确与模糊两种模式的触发符号均由可 patch 的 `triggers` 列表驱动；未配置时回退到上面的 `prefix_sym` / `prefix_emoji`。每条含 `kind`（类型键，对应数据表 `sym` / `emoji`，也用于 `super_<kind>` 候选 tag）、`exact`（精确前缀，后接 `.` 直输）、`label`（模式提示语）、`marks`（模糊搜索标记，默认 `["?", "/"]`）：
+其中：
+
+| 参数 | 作用 | 未配置时 |
+| --- | --- | --- |
+| `prefix_sym` | 未提供 `triggers` 时的符号精确前缀 | `/sym` |
+| `prefix_emoji` | 未提供 `triggers` 时的 Emoji 精确前缀 | `/emoji` |
+| `max_candidates` | 单次最多输出的查询候选数 | `120` |
+| `data_sym` | `sym` 数据文件路径 | `lua/data/codex_sym.txt` |
+| `data_emoji` | `emoji` 数据文件路径 | `lua/data/codex_emoji.txt` |
+
+例如只想把最大候选数调整为 30：
+
+```yaml
+patch:
+  "super_symbols/max_candidates": 30
+```
+
+也可以一起修改数据路径：
+
+```yaml
+patch:
+  "super_symbols/max_candidates": 30
+  "super_symbols/data_sym": "lua/data/codex_sym.txt"
+  "super_symbols/data_emoji": "lua/data/codex_emoji.txt"
+```
+
+---
+
+## 十四、Triggers 配置
+
+精确与模糊查询入口由 `super_symbols/triggers` 控制。
+
+每条触发定义包含：
+
+```text
+kind
+exact
+label
+marks
+```
+
+其中：
+
+| 字段 | 作用 |
+| --- | --- |
+| `kind` | 数据类型，目前实际使用 `sym` 或 `emoji` |
+| `exact` | 基础触发前缀，例如 `/sym` |
+| `label` | 模式提示正文 |
+| `marks` | 模糊搜索标记，例如 `?`、`/` |
+
+例如：
 
 ```yaml
 super_symbols:
   triggers:
-    - { kind: sym,    exact: /sym,   label: 超级符号 }   # /sym.arrow.r 直输；/sym?arrow 与 /sym/arrow 模糊
-    - { kind: emoji,  exact: /emoji, label: 超级表情 }
-    - { kind: kaomoji, exact: /kk,   label: 颜文字, marks: ["?"] }  # 自定义类型，仅 ? 触发模糊
+    - kind: sym
+      exact: /sym
+      label: 超级符号
+      marks: ["?", "/"]
+
+    - kind: emoji
+      exact: /emoji
+      label: 超级表情
+      marks: ["?", "/"]
 ```
 
-模糊搜索前缀由精确前缀 + 标记派生：`?` 与 `/` 平级，例如 `/sym?arrow` 与 `/sym/arrow` 等价。新增类型只需在 `triggers` 中追加一项，并在 `data_sym`/`data_emoji` 之外自行提供数据表（或复用现有表）。
+运行时会由它们派生：
 
-修改前缀后，需同步更新 `recognizer/patterns/super_sym` 与 `super_emoji` 的正则。
+```text
+/sym.       → exact
+/sym?       → search
+/sym/       → search
+
+/emoji.     → exact
+/emoji?     → search
+/emoji/     → search
+```
+
+如果某条 trigger 没有有效的 `marks`，当前实现会回退为：
+
+```yaml
+["?", "/"]
+```
+
+### `prefix_sym` / `prefix_emoji` 与 `triggers` 的关系
+
+如果 `super_symbols/triggers` 存在有效配置，程序会优先使用整个 `triggers` 列表。
+
+此时：
+
+```text
+prefix_sym
+prefix_emoji
+```
+
+不再负责生成默认触发器。
+
+只有没有有效 `triggers` 时，才会回退为：
+
+```text
+prefix_sym   → sym
+prefix_emoji → emoji
+```
 
 ---
 
-## 十、技术实现
+## 十五、当前并不是任意数据类型加载器
 
-- **经过简化的数据格式**：每条记录只有一个标识符字段 `typst_name`（如 `arrow.r.double`，不含 `sym.`/`emoji.` 前缀），不拆分 symbol + modifiers
-- **点分链式任意顺序精确匹配**（`do_exact`）：加载时单次遍历构建 `by_root`（按根/分类分组）、`roots`（所有根去重列表，供首值子串匹配）、`bare_root`（裸根字符，供首值单值候选）。查询按 `.` 拆分（`split_dot`，悬垂点视为尾值空串）：
-  1. **首值**：被 `.` 结束时 **exact match** 根；整串唯一时用**子串 match** 根（仅投根字符 / `（字符分类）<根>` 占位符）
-  2. **中间值**：在字典修饰符中**任意乱序 exact match**
-  3. **尾值**：永远 **prefix match**（空串匹配全部）
-  4. 重复修饰符 `dedup_list` 自动合并；候选按匹配度（修饰符更少者更贴合）排序，注释补回 `sym.`/`emoji.` 前缀并按字典原序
-- **点分链式任意顺序模糊匹配**（`do_fuzzy`）：关键字含 `.` 时按 `.` 拆分为若干组件，每个组件必须是某条目标名字的**子串**（任意顺序、可乱序）；无 `.` 时退化为旧式子串匹配（名字含关键字 或 字符精确相等）
-- **强制注释**：candidate type 设为 `super_sym` / `super_emoji`，`super_comment_preedit.lua` 识别此类型后跳过清空逻辑，确保 Typst 代码（含前缀、字典原序）始终可见
-- **模式提示**：仅输入前缀（如 `/sym.`）时显示引导文案，输入实际字符后自动进入查询模式
-- **零依赖**：纯 Lua 实现，兼容 librime-lua 标准 API；模块末尾通过 `_internals` 暴露纯函数便于单元测试
+`triggers` 中存在 `kind` 字段，并不意味着当前版本已经支持通过 YAML 任意增加第三种数据文件。
 
-完整实现细节见 `lua/wanxiang/super_symbols.lua` 文件头注释。
+当前 `load_data()` 实际只加载：
+
+```text
+data_sym
+data_emoji
+```
+
+并创建：
+
+```text
+sym
+emoji
+```
+
+两个数据 Store。
+
+因此不能仅仅新增一个第三方 `kind`，再假设提供对应数据文件后就会自动生效。
+
+**当前源码没有通用的 `data_<kind>` 动态加载逻辑。**
+
+如果 trigger 指向不存在的 Store，Translator 会得到一个空 Store，因此不会自动产生第三类实际符号数据。
+
+!!! warning "当前建议只配置 sym 与 emoji"
+    `triggers` 更适合用于调整现有 `sym` / `emoji` 的触发前缀、提示文本和模糊搜索标记。
+
+    如果以后要扩展成任意 `kind → data file` 的通用加载机制，需要同时修改数据加载、Store 建立以及分类展开 Processor，不能只追加一条 YAML trigger。
+
+---
+
+## 十六、修改前缀时的 Recognizer
+
+Lua Translator 能识别新的 trigger，并不代表 Rime 前端一定会把新输入分配给对应的 Segment。
+
+如果修改：
+
+```text
+/sym
+/emoji
+```
+
+这类入口，还需要同步检查方案中的：
+
+```text
+recognizer/patterns/super_sym
+recognizer/patterns/super_emoji
+```
+
+保证 Recognizer 正则能够覆盖新的输入前缀。
+
+因此前缀修改需要同时考虑：
+
+```text
+Super Symbols trigger
++
+Recognizer pattern
+```
+
+两部分。
+
+---
+
+## 十七、技术实现
+
+当前 `super_symbols.lua` 的处理流程可以概括为：
+
+```text
+读取 Codex 数据
+      ↓
+按根名称建立 Store
+      ↓
+建立 root_map / root_list
+      ↓
+记录每条目的 mods_list / mods_set
+      ↓
+根据 triggers 判断 exact / search
+      ↓
+执行 do_exact / do_fuzzy
+      ↓
+生成 super_sym / super_emoji 候选
+```
+
+### 1. 数据加载
+
+每行：
+
+```text
+typst_name<TAB>char
+```
+
+读取后，名称按 `.` 拆分。
+
+例如：
+
+```text
+arrow.r.double
+```
+
+会形成：
+
+```text
+root      = arrow
+mods_list = [r, double]
+mods_set  = { r = true, double = true }
+```
+
+同时按根建立：
+
+```text
+root_map
+root_list
+```
+
+如果某个名称没有修饰符，则把对应字符记录为该根的：
+
+```text
+bare
+```
+
+供单根查询直接使用。
+
+### 2. 精确查询 `do_exact`
+
+`do_exact` 根据点分组件数量选择两种路径：
+
+```text
+单组件
+→ 根名称前缀浏览
+
+两组件及以上
+→ 根 exact
+→ 中间 modifier exact
+→ 尾 modifier prefix
+```
+
+匹配结果会按：
+
+```text
+修饰符数量较少优先
+→ 名称字典序
+```
+
+排列。
+
+### 3. 模糊查询 `do_fuzzy`
+
+无点关键字：
+
+```text
+完整名称子串匹配
+或
+字符精确匹配
+```
+
+有点关键字：
+
+```text
+拆分组件
+→ 去重
+→ 全部组件都必须是名称子串
+→ 组件顺序不限
+```
+
+无点模糊搜索保持数据文件中的原始顺序，因此达到 `max_candidates` 后可以提前停止继续收集。
+
+点分模糊搜索需要先收集匹配项并按名称排序，再裁剪到候选上限。
+
+### 4. 分类展开 Processor
+
+模块同时导出 Processor：
+
+```text
+P
+```
+
+它负责识别：
+
+```text
+（字符分类）<根名>
+```
+
+候选。
+
+确认该候选时，不提交文本，而是把输入改写成：
+
+```text
+<exact>.<root>.
+```
+
+实现分类浏览。
+
+### 5. Translator / Processor 导出
+
+当前模块最终返回：
+
+```lua
+return {
+    T = M,
+    P = P
+}
+```
+
+也就是说当前对外导出的是：
+
+```text
+T → Translator
+P → Processor
+```
+
+当前版本**没有**原文旧说明中的 `_internals` 导出项。
+
+### 6. 注释保留
+
+候选类型：
+
+```text
+super_sym
+super_emoji
+```
+
+会被 `super_comment_preedit.lua` 直接放行，因此 Typst / Codex 完整名称不会被普通候选注释过滤流程清空。
+
+---
+
+## 十八、使用建议
+
+如果记得完整名称，优先使用：
+
+```text
+/sym.<name>
+/emoji.<name>
+```
+
+如果只记得部分名称，可以使用：
+
+```text
+/sym?<keyword>
+/emoji?<keyword>
+```
+
+如果想同时限定多个特征，可以使用：
+
+```text
+/sym?arrow.double
+/sym?double.arrow
+```
+
+如果只记得大致分类，可以先输入：
+
+```text
+/sym.arrow
+```
+
+再选择 `（字符分类）` 候选展开。
+
+对于 Typst 用户，候选注释中的完整：
+
+```text
+sym.*
+emoji.*
+```
+
+名称还可以作为对应 Typst 代码的参考。
+
+---
+
+<div align="center" style="opacity: 0.5; font-size: 0.85em; margin-top: 2rem; font-style: italic;">
+    <em>Super Symbols 以 Codex 点分名称为索引，同时提供精确查询、组合修饰符查询、模糊搜索和分类展开。</em>
+</div>

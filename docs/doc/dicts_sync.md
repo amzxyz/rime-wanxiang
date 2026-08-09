@@ -1,60 +1,72 @@
-# 📚 个性化词库与同步：打造独属于你的输入大脑
+# 个性化词库与同步：自定义与管理个人输入数据
 
-> **从快捷短语到几十万条的行业专属语料，再到多设备的数据漫游，万象为你提供了全套的词库接管方案。**
+> **从少量固定短语，到大规模专业词库，再到多设备之间的用户词同步，万象提供了不同层级的数据扩展方式。**
 
-万象的词库系统分为三个完全独立的层级。请根据你的具体需求，选择最合适的自定义方式：
+根据数据规模、使用方式和是否需要参与正常组句，可以将个性化词库大致分为以下几类。选择合适的方式，可以避免不同词库之间相互干扰，也便于后续更新、维护和同步。
 
 ---
 
-## ⚡ 1. 自定义短语 (Custom Phrase)：快捷上屏的置顶外挂
+## 1. 自定义短语 (Custom Phrase)：适合固定内容快速上屏
 
-这是最简单、最轻量的自定义方式。主要用于**短编码触发长短语、特殊符号串、邮箱地址等需要绝对“置顶”的内容**。
+自定义短语是最简单、最轻量的扩展方式，主要适合**短编码触发固定内容**，例如常用短语、特殊符号串、邮箱地址、固定签名等。
 
-!!! tip "工作原理与配置规范"
-    系统会读取根目录下的文本文件（如 `custom_phrase.txt`）并直接挂载。
+!!! tip "工作方式与配置规范"
+    系统会读取用户目录中的文本文件，例如 `custom_phrase.txt`，并将其中的内容作为固定短语加载。
 
-    * **数据格式**：`你想上屏的文本\t拼音编码\t组内排序权重` (注意：`\t` 代表制表符 Tab 键，绝对不能用空格代替！)。
+    * **数据格式**：`上屏文本\t编码\t组内排序权重`
 
-    * **排序**：数字仅仅是代表此文件内如果编码相同哪个靠前，数字越大越靠前。整体的排序本文件设计都是置顶**。
+      其中 `\t` 表示 **Tab 制表符**，不能使用普通空格代替。
 
-    * **编辑器警告**：强烈建议使用 VS Code、Sublime 等现代代码编辑器，**绝对不要使用 Windows 自带的记事本**。
-    
-    **⚠️ 防覆盖指南 (Patch)**：
+    * **排序规则**：最后一列数字用于控制相同编码下词条在该文件内部的排序，数值越大，位置越靠前。Custom Phrase 本身通常用于提供优先显示的固定候选。
 
-    为了避免万象后续更新时覆盖你的自定义短语文件，请务必在 `wanxiang.custom.yaml` 中将短语文件重命名挂载：
+    * **编辑工具**：建议使用 VS Code、Sublime Text 等能够明确显示编码和制表符的文本编辑器，避免因为 Tab、文件编码等问题造成格式错误。
+
+    **避免更新覆盖**
+
+    如果需要长期维护自己的短语文件，建议新建独立文件，并通过 `wanxiang.custom.yaml` 修改调用路径，而不是直接修改万象随版本提供的默认文件。
 
     ```yaml
     patch:
-      # 将自定义短语源文件指向你新建的 my_phrase.txt
+      # 将自定义短语源文件改为自己维护的 my_phrase.txt
       "custom_phrase/user_dict": my_phrase
     ```
 
+这样后续更新万象时，可以保留自己的短语文件，不必反复合并修改。
+
 ---
 
-## 🗄️ 2. 固定词库自定义：构建你的专属行业语料
+## 2. 固定词库自定义：扩展专业或行业词汇
 
-如果你手里有一份几十万条的医学、法律或二次元词库，希望它像主词库一样参与输入法的长句转写，你需要将其制作为**固定词库 (Dict)**。
+如果需要加入较大规模的医学、法律、工程、专业术语或其他领域词汇，并希望这些词像主词库一样参与正常候选和组句，更适合使用**固定词库 (Dict)**。
 
-### 🔨 核心门槛：词库格式预处理 (刷拼音)
-!!! danger "万象的底层数据约束"
+### 词库预处理
 
-    普通的开源词库（纯拼音）**不能**直接塞进万象！因为万象的底层模型是基于“带调拼音”甚至“声调+辅助码”构建的。
+!!! danger "万象词库的编码要求"
+    普通的纯拼音词库不能直接作为万象固定词库使用，因为万象的基础词库包含带调拼音等编码信息，Pro 版还涉及辅助码数据。
 
-    你必须先利用专用工具，将你的外部词库“刷”成与万象主词库完全一致的编码形态，保证每个字的编码与 `chars` 一致。
+    外部词库需要先通过对应工具处理，使词条编码与万象当前使用的 `chars` 数据保持一致。
 
-    Pro版本需先刷新拼音，产物再次刷辅助码，下载下面的工具一看就懂。
-    
-    👉 [点击获取：万象词库刷拼音/辅助码专属工具](https://github.com/amzxyz/RIME-LMDG/releases/tag/tool)
+    Base 版通常需要先处理拼音；Pro 版在完成拼音处理后，还需要进一步生成对应的辅助码数据。
 
-### 🧩 挂载固定词库的两种 Patch 战术
+    相关工具可以在下面的页面获取：
 
-预处理完成后，你有两种安全挂载的方式（均通过 `wanxiang.custom.yaml` 实现）：
+    [点击获取：万象词库刷拼音/辅助码工具](https://github.com/amzxyz/RIME-LMDG/releases/tag/tool)
 
-**方法 A：Packs 扩展法 (推荐，灵活解耦)**
+### 挂载固定词库的两种方式
 
-将你的词库命名为 `userxx.dict.yaml`（内部必须包含 `name: userxx` 表头）。
+完成预处理后，可以通过 `wanxiang.custom.yaml` 将自己的固定词库加入方案。
 
-```text title="内部表头解析"
+**方法 A：通过 Packs 扩展（推荐）**
+
+这种方式不需要修改主词库文件，自己的词库可以单独维护，后续更新也更加方便。
+
+假设新词库文件命名为：
+
+`userxx.dict.yaml`
+
+其词库表头中的 `name` 需要保持一致：
+
+```text title="词库表头示例"
 # rime dictionary
 ---
 name: userxx
@@ -63,125 +75,234 @@ sort: by_weight
 ...
 ```
 
-```text title="patch方法"
+然后在 `wanxiang.custom.yaml` 中追加：
+
+```yaml title="wanxiang.custom.yaml"
 patch:
   translator/packs/+:
-    - userxx  # 这里写词库名称，不要带dict.yaml
+    - userxx  # 填写词库名称，不需要包含 .dict.yaml
 ```
 
-**方法 B：主词库重命名法 (适合魔改级玩家)**
+重新部署后，该词库即可作为主词库的扩展参与输入。
 
-将根目录下的 `wanxiang.dict.yaml` 复制并重命名为 `wanxianguser.dict.yaml`，在里面尽情添加你的数据。然后在 Patch 中全面接管：
+**方法 B：自定义主词库**
 
-```yaml
+如果需要直接维护一套自己的完整主词库，可以复制根目录中的 `wanxiang.dict.yaml`，例如重命名为：
+
+`wanxianguser.dict.yaml`
+
+同时将词库内部的 `name` 等信息修改为对应名称。
+
+随后通过 Patch 将相关词库调用统一指向新的主词库：
+
+```yaml title="wanxiang.custom.yaml"
 patch:
-  # 将所有调用主词库的节点，全部指向你的魔改版，如果不能看懂方案整体设计，则不适合使用
   translator/dictionary: wanxianguser
   user_dict_set/dictionary: wanxianguser
   add_user_dict/dictionary: wanxianguser
 ```
 
+这种方式会直接替换方案原本调用的主词库，更适合已经了解万象词库结构和相关调用关系的用户。
+
 ---
 
-## 🔗 3. 挂接方案与主方案协同：词库扩展的底层逻辑
+## 3. 挂接方案与主方案：扩展词库的调用关系
 
-在万象的架构中，`wanxiang.schema` 和 `wanxiang_pro.schema` 是**主方案**，而像 `wanxiang_english.schema` 这样的则是**挂接方案**。理解它们之间的协同原理，是你进行深度词库魔改的关键。
+在万象中，`wanxiang.schema` 和 `wanxiang_pro.schema` 属于主输入方案，而 `wanxiang_english.schema` 等方案则承担独立词库的编译和挂接工作。
 
-!!! info "运行原理揭秘：谁生产，谁消费？"
-    挂接方案的作用，本质上是**“生产弹药”**。例如，`wanxiang_english.schema` 最终会协助引擎编译生成一个名为 `wanxiang_english.bin` 的词库文件。
-    
-    而在主方案 `wanxiang.schema` 的底层代码中，存在对应的调用指令（**“消费弹药”**）：
+理解两者之间的关系后，可以进一步替换或扩展英文等独立词库。
+
+!!! info "挂接方案与主方案的关系"
+    以 `wanxiang_english.schema` 为例，它负责调用对应的英文词典并完成编译，最终生成主方案可以使用的词库数据。
+
+    主方案中则存在对应的 Translator 配置，用于调用这套已经编译完成的英文词库：
+
     ```yaml
     wanxiang_english:
-      dictionary: wanxiang_english  # 调用编译好的 bin 词库
+      dictionary: wanxiang_english
     ```
-    总结来说：**挂接方案负责生产 `.bin` 词库文件，主方案负责调用并使用这个 `.bin` 词库文件。**
 
-### 🛠️ 实战演练：如何优雅地替换/扩展英文挂接词库？
+    因此可以简单理解为：
 
-假设你手头有一份极其专业的医学英语词汇表，想要扩展默认的英文词库，你需要分两步走，实现“生产端”与“消费端”的同步修改。
+    **挂接方案负责生成对应词库，主方案负责调用该词库。**
 
-**📌 步骤 1：修改挂接方案（指定新的生产目标）**
+    如果修改了挂接方案使用的词库名称，主方案中的调用名称也需要同步修改。
 
-首先，将你用户目录下的原始英文词库源文件 `wanxiang_english.dict.yaml`，重命名为你自己的专属名称，例如：`wanxiang_english_user.dict.yaml`。
+### 示例：替换或扩展英文挂接词库
 
-然后，新建或打开 `wanxiang_english.custom.yaml`，写入 Patch 指令，告诉挂接方案去编译你的新词库：
+假设需要使用一套自己的专业英文词库，可以同时调整挂接方案和主方案。
+
+**步骤 1：修改挂接方案使用的词库**
+
+例如将原来的：
+
+`wanxiang_english.dict.yaml`
+
+复制或重命名为：
+
+`wanxiang_english_user.dict.yaml`
+
+并确保词典内部的 `name` 与文件名对应。
+
+随后新建或修改 `wanxiang_english.custom.yaml`：
 
 ```yaml title="wanxiang_english.custom.yaml"
 patch:
-  # 其他已有的 Patch 内容保持不变...
-  translator/dictionary: wanxiang_english_user  # 👈 指向你刚刚重命名的新词库
+  # 其他已有 Patch 保持不变
+  translator/dictionary: wanxiang_english_user
 ```
 
-**📌 步骤 2：修改主方案（指定新的消费目标）**
+这样重新部署时，英文挂接方案会使用新的词库进行编译。
 
-“弹药”换了新名字，主方案的“枪膛”也必须跟着适配。新建或打开主方案的补丁文件 `wanxiang.custom.yaml`（Pro 版则为 `wanxiang_pro.custom.yaml`），将引用路径指向你的新词库：
+**步骤 2：修改主方案中的调用名称**
+
+随后在主方案对应的补丁文件中修改英文词库调用。
+
+Base 版使用 `wanxiang.custom.yaml`，Pro 版使用对应的 `wanxiang_pro.custom.yaml`：
 
 ```yaml title="wanxiang.custom.yaml"
 patch:
-  # 其他已有的 Patch 内容保持不变...
-  wanxiang_english/dictionary: wanxiang_english_user  # 👈 让主方案调用你编译出的新词库
+  # 其他已有 Patch 保持不变
+  wanxiang_english/dictionary: wanxiang_english_user
 ```
 
-完成这两步后，重新部署 Rime，你的专业英文扩展词库便会完美融入万象的输入生态中。
+两处名称保持一致后重新部署，即可让主方案调用新的英文词库。
 
 ---
 
+## 4. 用户词库同步：在多设备之间迁移 UserDB
 
-## ☁️ 4. 用户词库漫游与同步：多端无缝闭环
+日常输入过程中产生的用户词会记录在动态数据库中。
 
-你在日常打字时积累的造词，会被实时记录在动态数据库中（Base为 `wanxiang.userdb`，Pro版为 `zc.userdb`）。
+Base 版主要使用：
 
-rime通过**时序合并算法**，实现跨设备的造词数据漫游。
+`wanxiang.userdb`
 
-!!! bug "致命警告：千万别把 Rime 整个用户目录文件夹放进坚果云/OneDrive！"
+Pro 版则根据当前方案配置使用对应的 UserDB，例如：
 
-    直接使用网盘同步整个 Rime 工作目录，会导致动态数据库文件（UserDB）被网盘程序**强制锁定**，这会导致无法使用用户词，不能被输入法读取报错。
+`zc.userdb`
 
-    **正确的做法是：利用 Rime 原生的同步机制，将数据导出（点击同步按钮）为纯文本后再进行网盘同步。只同步同步目录**
+Rime 自带同步机制，可以将用户数据库导出为文本数据，并在不同设备之间进行合并。
 
-### 📌 步骤 1：配置专属同步目录与设备 DNA
+!!! bug "不要直接使用网盘同步整个 Rime 用户目录"
+    不建议将正在运行的整个 Rime 用户目录直接放入坚果云、OneDrive 等网盘中进行实时同步。
 
-打开用户根目录下的 `installation.yaml`，定义你的网盘同步路径（最高级目录务必命名为 `/sync`）以及当前设备 ID：
+    UserDB 属于运行中的动态数据库文件。网盘程序直接读取、占用或同步这些数据库文件，可能造成文件锁定，从而影响 Rime 正常读写用户词库。
+
+    更合适的方式是使用 **Rime 自带的同步功能**：先将 UserDB 导出到同步目录，再通过网盘同步这个目录。
+
+    **只同步 Rime 设置的 `sync` 目录，不直接同步正在使用的 UserDB 数据库目录。**
+
+### 步骤 1：设置同步目录与设备 ID
+
+打开用户目录中的 `installation.yaml`，为当前设备设置独立的 `installation_id`：
+
+```yaml title="installation.yaml"
+distribution_name: Rime
+installation_id: "windows"  # 建议使用容易识别的设备名称，例如 windows、mac、linux
+```
+
+然后配置 `sync_dir`。
+
+Linux、macOS、Android 等环境可以使用类似：
 
 ```yaml
-# installation.yaml 配置示例
-distribution_name: Rime
-installation_id: "windows"  # 修改为极具辨识度的设备名称 (如 windows, mac, linux)
-```
-
-设定同步目录 (指向你的网盘路径)
-linux\mac\android这样写：
-```
 sync_dir: "/home/amz/sync"
 ```
 
-windows这样写：
-```
-sync_dir: "D:\\home\\amz\\sync"  #双引号
-sync_dir: 'D:\home\amz\sync'     #单引号
+Windows 可以根据 YAML 字符串写法选择双引号或单引号：
+
+```yaml
+sync_dir: "D:\\home\\amz\\sync"
 ```
 
-### 📌 步骤 2：理解数据流转与合并逻辑
-执行同步后，系统会在你的网盘 `/sync` 目录下生成以 `installation_id` 命名的文件夹（如 `/sync/windows/`），并在里面释放出一个 `wanxiang.userdb.txt` 纯文本文件。
+或者：
 
-该文件的表头记录了极其严格的设备校验信息：
+```yaml
+sync_dir: 'D:\home\amz\sync'
+```
+
+建议将最终同步目录统一设置到网盘中的 `sync` 目录，便于多设备共享。
+
+### 步骤 2：了解同步后的目录结构
+
+执行 Rime 同步后，会在 `sync` 目录中创建以当前 `installation_id` 命名的设备目录。
+
+例如当前设备设置为：
+
+`installation_id: "windows"`
+
+则可能生成：
+
+`/sync/windows/`
+
+用户词库会被导出为对应的文本文件，例如：
+
+`wanxiang.userdb.txt`
+
+文件头包含数据库和设备相关信息：
+
 ```text
 # Rime user dictionary
-#@/db_name  zc             <-- 必须与当前方案调用的数据库名称绝对一致
+#@/db_name  wanxiang
 #@/db_type  userdb
 #@/rime_version 1.13.1
 #@/tick 793
-#@/user_id  windows        <-- 必须与文件夹名称、installation_id 绝对一致
+#@/user_id  windows
 ```
 
-### 📌 步骤 3：单设备强行导入或多端合并操作
+其中需要特别注意：
 
-* **手动导入旧数据**：如果你只有一台设备，你可以清空本地的 `.userdb` 文件夹，然后在 `/sync/windows/wanxiang.userdb.txt` 中手动添加你的历史词汇（**注意：编码必须经过万象工具预处理过！**）。保存后再次点击“同步”，数据就会被完美吸入并重建为本地数据库。
+* `db_name` 应与当前方案实际使用的 UserDB 名称对应。
 
-* **多端完美漫游**：你甚至可以伪造其他设备的数据（例如把表头的 `user_id` 改成 `linux`，放进 `/sync/linux/` 文件夹下）。点击同步时，Rime 底层引擎会读取 `/sync` 下所有设备的数据，并按时间戳执行一次完美的冲突去重与合并！
+* `user_id` 应与当前设备的 `installation_id` 保持一致。
+
+* 对应的设备目录名称也应与该设备 ID 对应。
+
+Pro 版如果实际使用的是 `zc.userdb`，导出的数据库名称也应以当前实际配置为准。
+
+### 步骤 3：导入旧数据与多设备同步
+
+* **导入已有用户词数据**
+
+  如果需要恢复以前的用户词，可以在确认数据库名称和编码格式正确的前提下，将历史数据整理到对应的 `*.userdb.txt` 文件中。
+
+  用户词编码必须与当前万象方案使用的编码体系保持一致；从其他词库导入的数据，应先完成必要的编码预处理。
+
+  完成后执行 Rime 的同步操作，由同步机制重新读取并合并这些数据。
+
+* **多设备同步**
+
+  每台设备应设置不同的 `installation_id`，例如：
+
+  `windows`
+
+  `linux`
+
+  `mac`
+
+  执行同步后，各设备会在共同的 `sync` 目录中保留自己的同步数据。
+
+  Rime 在执行同步时会读取这些设备目录中的用户词数据，并按照自身的同步机制进行合并，使不同设备产生的用户词可以相互迁移。
 
 ---
-<div align="center" style="opacity: 0.5; font-size: 0.85em; margin-top: 2rem;">
-    掌控了数据，你就真正掌控了万象。
+
+## 如何选择合适的方式？
+
+几种方式的用途并不相同：
+
+* **少量固定内容、邮箱、签名、特殊短语**：使用 Custom Phrase。
+
+* **大量行业词汇或专业语料**：制作独立固定词库，并通过 `translator/packs` 挂载。
+
+* **需要替换英文等独立挂接词库**：同时调整挂接方案与主方案中的词库名称。
+
+* **日常输入产生的人名、术语和个人造词**：保存在 UserDB，并通过 Rime 原生同步机制进行多设备迁移。
+
+固定词库解决的是**预先准备的数据扩展**，UserDB 解决的是**使用过程中逐渐积累的个人数据**。将两者分开管理，后续更新、备份和同步会更加清晰。
+
+---
+
+<div align="center" style="opacity: 0.5; font-size: 0.85em; margin-top: 2rem; font-style: italic;">
+    <em>固定数据独立维护，个人词汇持续积累，并通过 Rime 的同步机制在不同设备之间迁移。</em>
 </div>

@@ -1,134 +1,142 @@
 site_name: 万象拼音
 site_url: https://amzxyz.github.io/rime-wanxiang/
-site_description: 重塑 Rime 生态，带来极致的输入体验。
+site_description: 万象拼音 Rime 输入方案与配置文档
 
 repo_url: https://github.com/amzxyz/rime-wanxiang
 repo_name: amzxyz/rime-wanxiang
 
 theme:
-    name: material
-    #logo: material/leaf       # <--- 比如这里加个叶子的图标作为顶栏 Logo
-    favicon: material/leaf
-    language: zh
-    palette:
-      - media: "(prefers-color-scheme: light)"
-        scheme: default
-        primary: custom
-        accent: custom
-        toggle:
-            icon: material/brightness-7
-            name: 切换到暗黑模式
-      - media: "(prefers-color-scheme: dark)"
-        scheme: slate
-        primary: custom
-        accent: custom
-        toggle:
-            icon: material/brightness-4
-            name: 切换到亮色模式
+  name: material
+  favicon: material/leaf
+  language: zh
 
-    features:
-      - navigation.tabs # 开启顶部一级大标签导航
-      #- navigation.sections          # 侧边栏分段展示 (重要)
-      - navigation.expand # 默认展开所有分类目录
-      - navigation.indexes # 允许点击目录组的名称
-      - navigation.top
-      - search.suggest
-      - search.highlight
-      - content.code.copy
-      - content.code.annotate # 允许在代码块旁边加气泡注释
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: 切换到暗黑模式
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: 切换到亮色模式
+
+  features:
+    - navigation.tabs
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
 
 extra_css:
   - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
-  - attr_list # <--- 必须开启：允许给元素加自定义样式类
-  - md_in_html # <--- 必须开启：允许在 HTML(div) 里写 Markdown
+  - attr_list
+  - md_in_html
   - pymdownx.details
+
   - pymdownx.highlight:
-        anchor_linenums: true
+      anchor_linenums: true
+
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+
   - pymdownx.tabbed:
-        alternate_style: true
+      alternate_style: true
+
   - pymdownx.emoji:
-        # <--- 必须开启：渲染 Material 图标
-        emoji_index: !!python/name:material.extensions.emoji.twemoji ""
-        emoji_generator:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji ""
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg ""
 
-            !!python/name:material.extensions.emoji.to_svg "" # 万象功能分类体系
 nav:
-  - 🏠 首页: index.md
+  - 首页: index.md
 
-  - 🚀 快速上手:
+  - 快速上手:
       - 方案介绍与版本对比: doc/intro.md
-      - 🪟 Windows:
-          - Weasel (小狼毫): doc/weasel.md
-      - 🍎 macOS:
-          - Squirrel (鼠须管): doc/squirrel.md
-          - Fcitx5-macOS （小企鹅）: doc/fcitx5-mac.md
-      - 🐧 Linux:
-          - Fcitx5-Linux （小企鹅）: doc/fcitx5-linux.md
-          - ibus-rime: doc/ibus-rime.md
-      - 📱 iOS:
-          - Hamster (仓输入法): doc/hamster.md
-          - Hamster3 (元书输入法): doc/hamster3.md
-      - 🤖 Android:
-          - Trime (同文输入法): doc/trime.md
-          - Fcitx5-Android: doc/fcitx5-android.md
-      - ⭕ 鸿蒙 HarmonyOS NEXT:
+
+      - Windows:
+          - Weasel 小狼毫: doc/weasel.md
+
+      - macOS:
+          - Squirrel 鼠须管: doc/squirrel.md
+          - Fcitx5 macOS: doc/fcitx5-mac.md
+
+      - Linux:
+          - Fcitx5 Linux: doc/fcitx5-linux.md
+          - IBus Rime: doc/ibus-rime.md
+
+      - iOS:
+          - Hamster 仓输入法: doc/hamster.md
+          - Hamster3 元书输入法: doc/hamster3.md
+
+      - Android:
+          - Trime 同文输入法: doc/trime.md
+          - Fcitx5 Android: doc/fcitx5-android.md
+
+      - HarmonyOS NEXT:
           - 超越输入法: doc/chaoyue.md
-      - ⚙️ 进阶安装:
-          - 使用万象工具链: doc/tools.md
-          - 使用东风破 Plum: doc/plum.md
+
+      - 进阶安装:
+          - 万象工具链: doc/tools.md
+          - 东风破 Plum: doc/plum.md
           - 手动设置: doc/manual.md
 
-  - ⌨️ 基础功能体系:
-      - 📂 万象目录架构: doc/rime_tree.md
-      - 📚 中英词库说明: doc/dicts.md
-      - ⌨️ 快捷键说明: doc/shortcut.md
-      - ⌨️ 辅助码系统全解: doc/aux_code.md
-      - 🧩 生僻字反查系统: doc/reverse_lookup.md
-      - 🔠 中英与混合编码: doc/english.md
-      - 📱 9/14/18键转写: doc/layouts.md
-      - 🗣️ 模糊音配置指南: doc/fuzzy.md
-      - ✍️ 高阶造词指南: doc/custom_words.md
-      - 💡 错音错字提示: doc/word_creation.md
+  - 基础功能:
+      - 万象目录架构: doc/rime_tree.md
+      - 中英词库说明: doc/dicts.md
+      - 快捷键说明: doc/shortcut.md
+      - 辅助码系统: doc/aux_code.md
+      - 生僻字反查: doc/reverse_lookup.md
+      - 中英与混合编码: doc/english.md
+      - 9/14/18键转写: doc/layouts.md
+      - 模糊音配置: doc/fuzzy.md
+      - 高阶造词: doc/custom_words.md
+      - 错音错字提示: doc/word_creation.md
 
-  - 🪄 超强Lua魔法扩展:
-      - 📅 时间日期: doc/shijian.md
-      - 💬 超级注释: doc/super_comment.md
-      - 💡 智能提示: doc/super_tips.md
-      - 🔍 候选辅筛: doc/super_lookup.md
-      - 🔮 预测调频: doc/user_predict.md
-      - 📊 输入统计: doc/input_statistics.md
-      - 🔄 超级替换: doc/super_replacer.md
-      - 🔀 手动排序: doc/super_sequence.md
-      - ⚡ 快速符号: doc/quick_symbol.md
-      - 📦 成对符号: doc/paired_symbols.md
-      - 🎯 超级符号: doc/super_symbols.md
-      - 🔢 按键事件: doc/super_processor.md
-      - 🔣 字符过滤: doc/charset.md
-      - ⚔️ 候选切割: doc/candidate_slicer.md
-      - 🔠 魔法字母: doc/CRUNV.md
-      - 📊 性能评测: doc/profile-analysis.md
+  - Lua 扩展:
+      - 时间日期: doc/shijian.md
+      - 超级注释: doc/super_comment.md
+      - 超级提示: doc/super_tips.md
+      - 候选辅筛: doc/super_lookup.md
+      - 语境预测: doc/user_predict.md
+      - 输入统计: doc/input_statistics.md
+      - 超级替换: doc/super_replacer.md
+      - 手动排序: doc/super_sequence.md
+      - 快速符号: doc/quick_symbol.md
+      - 成对符号: doc/paired_symbols.md
+      - 超级符号: doc/super_symbols.md
+      - 按键处理: doc/super_processor.md
+      - 字符过滤: doc/charset.md
+      - 候选切割: doc/candidate_slicer.md
+      - 魔法字母: doc/CRUNV.md
+      - 性能评测: doc/profile-analysis.md
 
-  - 🛠️ 进阶配置:
-      - ⚙️ rime工作机制: doc/Rime设计逻辑与配置哲学.md
-      - 🛠️ patch方法论: doc/patch方法论.md
-      - 🎛️ 自定义万象方案: doc/schema_custom.md
-      - 📚 词库管理与同步: doc/dicts_sync.md
-      - 📖 RIME配置手册: doc/RIME配置手册.md
-      - 🧭 RIME配置指南: doc/RIME配置指南.md
-      - 🧭 按键映射列表: doc/key.md
+  - 进阶配置:
+      - Rime 工作机制: doc/Rime设计逻辑与配置哲学.md
+      - Patch 方法论: doc/patch方法论.md
+      - 自定义万象方案: doc/schema_custom.md
+      - 词库管理与同步: doc/dicts_sync.md
+      - Rime 配置手册: doc/RIME配置手册.md
+      - Rime 配置指南: doc/RIME配置指南.md
+      - 按键映射列表: doc/key.md
 
-  - 🌍 动态:
-      - 2026年中词库报告: doc/2026-1.md
-      - 2026年中模型更新: doc/400+gram.md
+  - 项目动态:
+      - 2026 年中词库报告: doc/2026-1.md
+      - 2026 年中模型更新: doc/400+gram.md
 
-copyright: Copyright &copy; 2024 万象拼音-开源项目文档
+copyright: Copyright &copy; 2024 万象拼音 · 开源项目文档
 
 extra:
-    # 关掉底部的 "Made with Material for MkDocs"
-    generator: false
+  generator: false

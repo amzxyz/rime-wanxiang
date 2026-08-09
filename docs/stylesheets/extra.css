@@ -128,11 +128,39 @@
 }
 
 /* =========================================
-   5. 顶栏 1：搜索栏 (莫兰迪绿微渐变)
+   5. 顶栏 1：横向主横幅（纯色莫兰迪绿）
    ========================================= */
 .md-header {
-  background: linear-gradient(135deg, #61A165 0%, #4da252 100%) !important;
-  box-shadow: none !important; 
+  background-color: #55725A !important;
+  background-image: none !important;
+  border-bottom: 1px solid rgba(53, 82, 58, 0.24);
+  box-shadow:
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    0 3px 14px rgba(45, 73, 50, 0.14) !important;
+}
+
+/* 顶栏标题：维持白色但增加一点厚度与细微层次 */
+.md-header__title {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 2px rgba(36, 58, 40, 0.18);
+}
+
+/* 搜索框：半透明雾面，不再形成突兀的普通绿色块 */
+.md-header .md-search__form {
+  background-color: rgba(255, 255, 255, 0.13) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.md-header .md-search__form:hover,
+.md-header .md-search__form:focus-within {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 2px 8px rgba(41, 65, 45, 0.10);
 }
 
 /* =========================================
@@ -731,6 +759,15 @@ body {
 /* =========================================
    15. 暗黑模式 (Slate) 适配补丁
    ========================================= */
+
+[data-md-color-scheme="slate"] .md-header {
+  background-color: #334838 !important;
+  background-image: none !important;
+  border-bottom-color: rgba(126, 186, 130, 0.16);
+  box-shadow:
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 3px 14px rgba(0, 0, 0, 0.24) !important;
+}
 
 [data-md-color-scheme="slate"] {
   /* 1. 全局底色重写：保持幽暗的莫兰迪绿氛围，而不是死板的纯黑 */

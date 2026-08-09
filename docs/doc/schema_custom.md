@@ -150,6 +150,8 @@ patch:
 super_comment:
   candidate_length: 2
   corrector_type: "〔comment〕"
+  tone_isolate: true
+  convert_abbrev_preedit: false
   cand_type:
     user_phrase: ""
     sentence: "∞"
@@ -208,7 +210,7 @@ patch:
 
 ```yaml title="左：wanxiang.schema.yaml"
 user_predict:
-  db_name: lua/predict
+  db_name: predict
   max_candidates: 10
   expiry_days: 90
   custom_classifiers:
@@ -236,7 +238,7 @@ patch:
 
 ```yaml title="左：wanxiang.schema.yaml"
 super_tips:
-  db_name: "lua/tips"
+  db_name: "tips"
   tips_key: "comma"
   files:
     - lua/data/tips_show.txt
@@ -267,8 +269,7 @@ patch:
 
 ```yaml title="左：wanxiang.schema.yaml"
 super_replacer:
-  db_name: lua/replacer
-  delimiter: "|"
+  db_name: replacer
   chain: true
   rules:
     - option: emoji
@@ -307,7 +308,7 @@ patch:
 <div class="grid" markdown>
 
 ```yaml title="左：wanxiang.schema.yaml"
-charset:
+charset_filter:
   - option: charset_filter
     base: a  #可以填入多个类别如aj
     addlist:
@@ -426,7 +427,7 @@ patch:
 
 ```yaml title="左：wanxiang.schema.yaml"
 super_sequence:  # Lua 配置：手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
-  db_name: "lua/sequence"
+  db_name: "sequence"
   up: "Control+j"    # 上移
   down: "Control+k"  # 下移
   reset: "Control+l" # 重置

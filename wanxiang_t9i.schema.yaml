@@ -362,7 +362,7 @@ datetime_formats:
 input_stats:
   db_name: "stats"  # 自定义统计数据库路径
   triggers:
-    clear: "/qctj"  # 清除数据（推荐长一点防误触）
+    local_total: "/btj"  # 查设备生涯统计
     today: "/rtj"  # 查今日（日统计）
     week: "/ztj"  # 查本周（周统计）
     month: "/ytj"  # 查本月（月统计）
