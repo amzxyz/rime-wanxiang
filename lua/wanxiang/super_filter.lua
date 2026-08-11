@@ -728,7 +728,7 @@ function M.func(input, env)
         end
     end
     -- PHASE 3: 三码空候选兜底
-    if idx == 0 and seg_len == 3 then
+    if idx == 0 and seg_len == 3 and not wanxiang.s2t_conversion(ctx) then
         local fallback_text = env.last_2code_char
 
         if fallback_text then
