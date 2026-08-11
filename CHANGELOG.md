@@ -1,5 +1,31 @@
 # Changelog
 
+## [17.2.5](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.4...v17.2.5) (2026-08-11)
+
+
+### 📚 词库更新
+
+* 词库调整 ([984c5d3](https://github.com/amzxyz/rime-wanxiang/commit/984c5d3d3ccd2f989d437165431255e254f0b759))
+* 词库调整 ([7b5db65](https://github.com/amzxyz/rime-wanxiang/commit/7b5db6525a34b01e933b2207b09277f870f38e31))
+* 词库调整 ([844c9f5](https://github.com/amzxyz/rime-wanxiang/commit/844c9f502848ad78aa8f5cd4781b0e112d20f922))
+* 词库调整 ([5a79168](https://github.com/amzxyz/rime-wanxiang/commit/5a79168c7ef0c487deab10fec39c35ad476b683a))
+* 词库调整 ([cf1a351](https://github.com/amzxyz/rime-wanxiang/commit/cf1a3510bec5392c61c0002e60f1953af3ffabe8))
+* 词库调整 ([a185669](https://github.com/amzxyz/rime-wanxiang/commit/a185669ed0e24fbc73ed0407a7c9a712b939fe0a))
+* 词库调整 ([052b0fe](https://github.com/amzxyz/rime-wanxiang/commit/052b0fea091b43b3d5091b02801c92517aee508c))
+
+
+### 🐛 Bug 修复
+
+* 修复文本格式化一些逻辑漏洞 ([6088975](https://github.com/amzxyz/rime-wanxiang/commit/6088975a385d5a54ea02d5a3804d48835e63df56))
+* 同步新参数到简纯皮肤 ([33ba551](https://github.com/amzxyz/rime-wanxiang/commit/33ba5515284bd6775cf7489564535de5e32b99a8))
+* 特殊tag下不进行空码兜底 ([982c4a4](https://github.com/amzxyz/rime-wanxiang/commit/982c4a4ded77e29030f277db305e4ba16dee64ce))
+
+
+### 🏡 杂项
+
+* 更新文档 ([7221df6](https://github.com/amzxyz/rime-wanxiang/commit/7221df6a5274595f964445daa5e2dc1d683e53fa))
+* 更新文档 ([8913fc6](https://github.com/amzxyz/rime-wanxiang/commit/8913fc67a2e0a175126a7afafbe4fc355c7b1567))
+
 ## [17.2.4](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.3...v17.2.4) (2026-08-06)
 
 
