@@ -1,5 +1,34 @@
 # Changelog
 
+## [17.3.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.5...v17.3.0) (2026-08-13)
+
+
+### 📚 词库更新
+
+* 词库调整 ([0f64c01](https://github.com/amzxyz/rime-wanxiang/commit/0f64c01c1fbf7ce6e1fa5d8291a5026b7f041519))
+* 词库调整 ([f7a63e4](https://github.com/amzxyz/rime-wanxiang/commit/f7a63e4ace5053a99f959f21e662fb0382a7531d))
+* 词库调整 ([4df40cf](https://github.com/amzxyz/rime-wanxiang/commit/4df40cfeb236173e7f6eded3b276574db6d9b3a7))
+* 词库调整 ([2272351](https://github.com/amzxyz/rime-wanxiang/commit/22723512903b45bf01d37fbb5541896f2590aa5e))
+* 词库调整 ([410920e](https://github.com/amzxyz/rime-wanxiang/commit/410920ee984d0ab3b839ad466eba06bdf94286d8))
+
+
+### 🐛 Bug 修复
+
+* 优化英文大写格式化中对于预设英文句子的正确处理 ([d18c21f](https://github.com/amzxyz/rime-wanxiang/commit/d18c21f2c2374278c400892db864c6180a518c44))
+* 恢复之前误删除的代码，删除英文句子后面派生的无意义句子 ([0da40dd](https://github.com/amzxyz/rime-wanxiang/commit/0da40dd0d44298fd0ad664d8edf8da850208e6fc))
+
+
+### 💅 重构
+
+* **shijian.lua:** 大规模重构代码质量，增强复用懒加载，新增/ed单独候选序列，新增全拼写单词月和前缀单词月变量，在ed中得到应用，同时其他sj、rq等也都可以通过配置设置新增候选样式 ([527069e](https://github.com/amzxyz/rime-wanxiang/commit/527069e75f94e99608a13411f8bf1f00690b1cbe))
+* 全新重构的U码转换功能 ([3ae7a90](https://github.com/amzxyz/rime-wanxiang/commit/3ae7a90897982f108b5b0af67749ea6c0422d8a3))
+* 金额大写全新重构为数字转换lua提供更多转换结果 ([a07d61e](https://github.com/amzxyz/rime-wanxiang/commit/a07d61eca1a7350b26c10ab9a2b4b575641cdfc2))
+
+
+### 🏡 杂项
+
+* release 17.3.0 ([d154250](https://github.com/amzxyz/rime-wanxiang/commit/d154250d4c5b5fe535702f281ed875163896e25f))
+
 ## [17.2.5](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.4...v17.2.5) (2026-08-11)
 
 
