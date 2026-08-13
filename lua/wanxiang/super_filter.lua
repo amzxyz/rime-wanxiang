@@ -71,11 +71,11 @@ local time_token_chars = "ACDEFGHIKMNOPSTYdjlmopwy"
 
 local shichen_data = {
     { name = "子时", start_hour = 23, end_hour = 1 },
-    { name = "丑时", start_hour = 1, end_hour = 3 },
-    { name = "寅时", start_hour = 3, end_hour = 5 },
-    { name = "卯时", start_hour = 5, end_hour = 7 },
-    { name = "辰时", start_hour = 7, end_hour = 9 },
-    { name = "巳时", start_hour = 9, end_hour = 11 },
+    { name = "丑时", start_hour = 1,  end_hour = 3 },
+    { name = "寅时", start_hour = 3,  end_hour = 5 },
+    { name = "卯时", start_hour = 5,  end_hour = 7 },
+    { name = "辰时", start_hour = 7,  end_hour = 9 },
+    { name = "巳时", start_hour = 9,  end_hour = 11 },
     { name = "午时", start_hour = 11, end_hour = 13 },
     { name = "未时", start_hour = 13, end_hour = 15 },
     { name = "申时", start_hour = 15, end_hour = 17 },
@@ -416,7 +416,7 @@ local default_wrap_map = {
     zz = "⟅⟆", -- 数学 / 装饰括号
 
     --  Markdown / 标记
-    md = "**|**", -- Markdown 粗体
+    md = "**|**", --Markdown 粗体
     jc = "**|**", -- 加粗
     it = "__|__", -- 斜体
     st = "~~|~~", -- 删除线
@@ -671,6 +671,7 @@ function M.func(input, env)
     -- PHASE 2: 直通车
     local idx = 0
     local suppress_set = {}
+    local drop_sentence = false
     local wrap_limit = env.page_size * 2
     local eager_buffer = {}
     local iterator, iterator_state, iterator_control = input:iter()
@@ -696,9 +697,15 @@ function M.func(input, env)
             if seg_len == 2 and (utf8_len(text) or 0) == 1 and not has_eng then
                 env.last_2code_char = text
             end
+
+            local cand_type = fast_type(cand)
+            if (cand_type == "table" or cand_type == "user_table" or cand_type == "fixed" or cand_type == "completion")
+                and #text >= 4 and has_eng then
+                drop_sentence = true
+            end
         end
 
-        if not suppress_set[text] then
+        if not (drop_sentence and fast_type(cand) == "sentence") and not suppress_set[text] then
             suppress_set[text] = true
 
             local formatted_cand = format_and_autocap(cand, env)
@@ -722,7 +729,7 @@ function M.func(input, env)
         idx = idx + 1
         local text = cand.text
 
-        if not suppress_set[text] then
+        if not (drop_sentence and fast_type(cand) == "sentence") and not suppress_set[text] then
             suppress_set[text] = true
             yield(format_and_autocap(cand, env))
         end
