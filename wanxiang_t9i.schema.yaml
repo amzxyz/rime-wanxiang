@@ -76,7 +76,7 @@ engine:
     - lua_translator@*wanxiang.shijian  #农历、日期、节气、节日、时间、周、问候模板等等，触发清单看下文
     - lua_translator@*wanxiang.super_calculator  #超级计算器，Lua内查看高级用法
     - lua_translator@*wanxiang.input_statistics  #一个输入统计的脚本，以日、周、月、年等维度的统计
-    - lua_translator@*wanxiang.number_translator  #数字、金额大写，通过输入大写R1234获得候选输出
+    - lua_translator@*wanxiang.number_conversion  #数字、金额大写，通过输入大写R1234获得候选输出
     - reverse_lookup_translator@wanxiang_reverse  #挂接部件组字和笔画反查
   filters:
     - lua_filter@*wanxiang.super_lookup  #字词输入中反查辅助筛选
@@ -164,7 +164,7 @@ recognizer:
     wanxiang_reverse: "^`[A-Za-z;]*$"  # 响应部件拆字与笔画的反查，与 wanxiang_reverse/prefix 匹配
     #add_user_dict: "^ac[A-Za-z/`']*$"   #引导式造词
     unicode: "^U[a-f0-9]+"  # U 作为触发前缀，响应 lua_translator@unicode，输出 Unicode 字符
-    number: "^R[0-9]+[.]?[0-9]*"  # R 作为触发前缀, 响应 lua_translator@number_translator，数字金额大写
+    number: "^R(-|-?[0-9]+[.:]?[0-9]*)$"  # R 作为触发前缀, 响应 lua_translator@number_conversion，数字金额大写
     yr1: "^N0[1-9]?0?[1-9]?"
     yr2: "^N1[02]?0?[1-9]?"
     yr3: "^N0[1-9]?[1-2]?[1-9]?"
