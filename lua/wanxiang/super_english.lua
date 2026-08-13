@@ -464,6 +464,19 @@ local function restore_sentence_spacing(cand, split_pattern, check_pattern)
     return nc
 end
 
+local function is_phrase_initial_prefix(text, input_code)
+    if not text or not find(text, " ", 1, true) then return false end
+    local code = pure(input_code)
+    if #code < 2 then return false end
+
+    local initials = ""
+    for word in gmatch(text, "%S+") do
+        local first = match(word, "[a-zA-Z]")
+        if first then initials = initials .. lower(first) end
+    end
+    return sub(initials, 1, #code) == code
+end
+
 local function apply_segment_formatting(text, input_code, input_has_upper)
     if not input_code or input_code == "" or not input_has_upper then return text end
     local parts = {}
@@ -773,7 +786,10 @@ function F.func(input, env)
             and is_single_ascii_letter(good_cand.text)
             and lower(good_cand.text) == input_lower
 
-        local fmt_cand = apply_formatting(good_cand, code_ctx, preserve_single_letter_case)
+        local preserve_letter_case = preserve_single_letter_case
+            or is_phrase_initial_prefix(good_cand.text, curr_input)
+
+        local fmt_cand = apply_formatting(good_cand, code_ctx, preserve_letter_case)
 
         if env.schema_id == "wanxiang_english" and fmt_cand.comment and find(fmt_cand.comment, "\226\152\175") then
             local original_quality = fmt_cand.quality
