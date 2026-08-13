@@ -88,7 +88,7 @@ engine:
     - lua_translator@*wanxiang.version_display  #输入'/wx'，显示万象项目网址和当前版本号
     - lua_translator@*wanxiang.set_schema  #输入'/zrm'，快速切换为自然码双拼， /flypy→小鹤双拼 /mspy→微软双拼 /zrm→自然码 /sogou→搜狗双拼 /abc→智能ABC /ziguang→紫光双拼 /pyjj→拼音加加 /gbpy→国标双拼 /lxsq→乱序17 /pinyin→全拼
     - lua_translator@*wanxiang.shijian  #农历、日期、节气、节日、时间、周、问候模板等等，触发清单看下文
-    - lua_translator@*wanxiang.unicode  #通过输入大写U引导，并输入Unicode编码获得汉字输出
+    - lua_translator@*wanxiang.unicode_conversion  #通过输入大写U引导，并输入Unicode编码获得汉字输出
     - lua_translator@*wanxiang.compose*translator  #通过输入大写C引导，并依次键入Compose序列获得合成字符(仿系统Compose)
     - lua_translator@*wanxiang.number_conversion  #数字、金额大写，通过输入大写R1234获得候选输出
     - lua_translator@*wanxiang.super_calculator  #超级计算器，Lua内查看高级用法
@@ -253,7 +253,7 @@ recognizer:
     super_emoji_pre: "^/emoji[.?/]?$"  # 仅 /emoji /emoji. /emoji? /emoji/ 模式提示
     wanxiang_reverse: "^`[A-Za-z;]*$"  # 响应部件拆字与笔画的反查，与 radical_lookup/prefix 匹配
     add_user_dict: "^``[A-Za-z/`']*$"  #自造词
-    unicode: "^U[a-f0-9]+"  # 脚本将自动获取第 2 个字符 U 作为触发前缀，响应 lua_translator@unicode，输出 Unicode 字符
+    unicode: "^U([0-9A-Fa-f]*|[xXhH][0-9A-Fa-f]*|[dD][0-9]*|[bB][01]*|[oO][0-7]*|0[xX][0-9A-Fa-f]*|0[dD][0-9]*|0[bB][01]*|0[oO][0-7]*|\\+[0-9A-Fa-f]*|c.*)$"  # U 作为触发前缀，响应 lua_translator@unicode_conversion，输出 Unicode 字符
     compose: "^C.*"  # C 作为触发前缀，响应 lua_translator@compose，仿系统Compose合成字符
     number: "^R(-|-?[0-9]+[.:]?[0-9]*)$"  # 脚本将自动获取第 2 个字符 R 作为触发前缀，响应 lua_translator@number_conversion，数字金额大写
     sjc: "^[/o]rc\\d+[-+=op]?$"
