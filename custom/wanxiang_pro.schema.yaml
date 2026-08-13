@@ -654,6 +654,8 @@ charset_filter:
 #   n  月（不带前导零）     1-12       例：2
 #   d  日（前导零）        01-31      例：09
 #   j  日（不带前导零）     1-31       例：9
+#   B  月（英文完整单词）    August
+#   b  月（英文单词前缀）    Aug
 #
 # 【时间】
 #   H  24小时（前导零）   00-23      例：08
@@ -696,6 +698,10 @@ datetime_formats:
   - "YmdHMS"
   - "Y年m月d日 H点M分"
   - "y/m/d I:M p"
+english_date_formats:
+  - "B j, Y"
+  - "j b Y"
+  - "Y-m-d"
 
 # a/、单字母组合，触发预设编码自动上屏快符，支持将值设为"repeat" 以支持对应按键重复上屏功能，custom>schema>lua最终合并键值
 # 现在就支持26字母快符，结合成对符号输入，这边的压力小一些

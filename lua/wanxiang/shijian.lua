@@ -4,8 +4,8 @@
 ------------------------------------
 ------wirting by 98wubi Group-------
 -----万象新增节日候选,格式化问候语,重写农历倒计
--- *******农历节气计算部分
---=====角度变换===============
+
+--角度变换
 local rad = 180 * 3600 / math.pi -- 每弧度的角秒数
 local RAD = 180 / math.pi        -- 每弧度的角度数
 function int2(v)                 -- 取整数部分
@@ -79,7 +79,7 @@ function rad2str(d, tim) -- 将弧度转为字串
     return s
 end
 
---=============日历计算===============
+--日历计算
 local J2000 = 2451545 -- 2000年前儒略日数(2000-1-1 12:00:00格林威治平时)
 
 local JDate = {       -- 日期元件
@@ -269,7 +269,7 @@ local JDate = {       -- 日期元件
         end
     end
 }
---======黄赤交角及黄赤坐标变换===========
+--黄赤交角及黄赤坐标变换
 local hcjjB = { 84381.448, -46.8150, -0.00059, 0.001813 }                                   -- 黄赤交角系数表
 local preceB = { 0, 50287.92262, 111.24406, 0.07699, -0.23479, -0.00178, 0.00018, 0.00001 } -- Date黄道上的岁差p
 
@@ -374,19 +374,6 @@ function nutationRaDec(t, zb) -- 本函数计算赤经章动及赤纬章动
 end
 
 --==============以下是月球及地球运动参数表===================
---[[***************************************
-* 如果用记事本查看此代码,请在"格式"菜单中去除"自动换行"
-* E10是关于地球的,格式如下:
-*    它是一个数组,每3个数看作一条记录,每条记录的3个数记为A,B,C
-*    rec=A*cos(B+C*t)  式中t是J2000起算的儒略千年数
-*    每条记录的计算结果(即rec)取和即得地球的日心黄经的周期量L0
-* E11格式如下: rec = A*cos*(B+C*t) *t,     取和后得泊松量L1
-* E12格式如下: rec = A*cos*(B+C*t) *t*t,   取和后得泊松量L2
-* E13格式如下: rec = A*cos*(B+C*t) *t*t*t, 取和后得泊松量L3
-* 最后地球的地心黄经:L = L0+L1+L2+L3+...
-* E20,E21,E22,E23...用于计算黄纬
-* M10,M11等是关于月球的,参数的用法请阅读Mnn()函数
-***************************************** --]]
 -- 地球运动VSOP87参数
 local E10 = { -- 黄经周期项
     1.75347045673, 0.00000000000, 0.0000000000, 0.03341656456, 4.66925680417, 6283.0758499914, 0.00034894275, 4.62610241759,
@@ -628,7 +615,7 @@ local M31 = { 0.5139500, 12.0108556517, 14914.4523349355, -6.3524240E-05, 6.3330
 local M1n = { 3.81034392032, 8.39968473021E+03, -3.31919929753E-05, -- 月球平黄经系数
     3.20170955005E-08, -1.53637455544E-10 }
 
---===============日位置计算===================
+--日位置计算
 local EnnT = 0  -- 调用Enn前先设置EnnT时间变量
 function Enn(F) -- 计算E10,E11,E20等,即:某一组周期项或泊松项算出,计算前先设置EnnT时间
     local i
@@ -670,7 +657,7 @@ function sunCal2(jd) -- 传回jd时刻太阳的地心视黄经及黄纬
     return sun                        -- 返回太阳视位置
 end
 
---===============月位置计算===================
+--月位置计算
 local MnnT = 0  -- 调用Mnn前先设置MnnT时间变量
 function Mnn(F) -- 计算M10,M11,M20等,计算前先设置MnnT时间
     local i
@@ -716,7 +703,7 @@ function moonCal3(jd) -- 传回月球的地心视赤经及视赤纬
     return moon
 end
 
---===============地心坐标中的日月位置计算===================
+--地心坐标中的日月位置计算
 function jiaoCai(lx, t, jiao)
     -- lx=1时计算t时刻日月角距与jiao的差, lx=0计算t时刻太阳黄经与jiao的差
     local sun = earCal(t) -- 计算太阳真位置(先算出日心坐标中地球的位置)
@@ -733,7 +720,7 @@ function jiaoCai(lx, t, jiao)
     return rad2mrad(jiao - (moon[1] - sun[1]))
 end
 
---===============已知位置反求时间===================
+--已知位置反求时间=
 function jiaoCal(t1, jiao, lx) -- t1是J2000起算儒略日数
     -- 已知角度(jiao)求时间(t)
     -- lx=0是太阳黄经达某角度的时刻计算(用于节气计算)
@@ -780,82 +767,123 @@ function jiaoCal(t1, jiao, lx) -- t1是J2000起算儒略日数
     return t
 end
 
---===============节气计算===================
-local jqB = { -- 节气表
+--节气服务（统一计算 + 按年缓存）
+-- 底层天文公式（jiaoCal/JDate 等）保持不变；这里只统一管理结果，避免各功能重复计算。
+local JIEQI_NAMES = {
     "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露",
-    "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至", "小寒", "大寒", "立春", "雨水", "惊蛰" }
+    "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至", "小寒", "大寒", "立春", "雨水", "惊蛰"
+}
 
-function JQtest(y) -- 节气使计算范例,y是年分,这是个测试函数
-    local i, q, s1, s2
-    y = tostring(y)
-    local jd = 365.2422 * (tonumber(y.sub(y, 1, 4)) - 2000)
+local jieqi_cycle_cache = {} -- [起算年] = 春分...惊蛰的24条记录
+local jieqi_year_cache = {}  -- [公历年] = 立春开始的24个时间戳（供干支历使用）
+local jieqi_date_cache = {}  -- [公历年] = { [yyyymmdd] = 节气名 }
+
+local function build_jieqi_cycle(year)
+    year = tonumber(year)
+    if not year then return {} end
+    if jieqi_cycle_cache[year] then
+        return jieqi_cycle_cache[year]
+    end
+
+    local jd = 365.2422 * (year - 2000)
+    local records = {}
+
     for i = 0, 23 do
-        q = jiaoCal(jd + i * 15.2, i * 15, 0) + J2000 + 8 / 24 -- 计算第i个节气(i=0是春分),结果转为北京时
-        -- log.info('q=' .. q)
+        local q = jiaoCal(jd + i * 15.2, i * 15, 0) + J2000 + 8 / 24
         JDate:setFromJD(q, 1)
-        s1 = JDate:toStr() -- 将儒略日转成世界时
-        JDate:setFromJD(q, 0)
-        s2 = JDate:toStr() -- 将儒略日转成日期格式(输出日期形式的力学时)
-        jqData = s1.sub(s1.gsub(s1, "^( )", ""), 1, 10)
-        jqData = jqData.gsub(jqData, "-", "")
-        -- log.info(jqB[i+1] .. " : " .. jqData .. " " .. jqData.len(jqData) ) --显示
-        if (jqData == y) then
-            return "-" .. jqB[i + 1]
+
+        local date_str = JDate:toStr():gsub("^%s+", ""):sub(1, 10)
+        records[i + 1] = {
+            name = JIEQI_NAMES[i + 1],
+            date = date_str,
+            ymd = date_str:gsub("-", ""),
+            timestamp = JDate:JQ()
+        }
+    end
+
+    jieqi_cycle_cache[year] = records
+    return records
+end
+
+local function format_jieqi_record(record)
+    return record.name .. " " .. record.date
+end
+
+local function get_jieqi_date_map(year)
+    year = tonumber(year)
+    if not year then return {} end
+    if jieqi_date_cache[year] then
+        return jieqi_date_cache[year]
+    end
+
+    local result = {}
+    local target_year = string.format("%04d", year)
+    for _, cycle_year in ipairs({ year - 1, year }) do
+        for _, record in ipairs(build_jieqi_cycle(cycle_year)) do
+            if record.ymd:sub(1, 4) == target_year then
+                result[record.ymd] = record.name
+            end
         end
     end
-    return ""
+
+    jieqi_date_cache[year] = result
+    return result
 end
 
-function GetNextJQ(y) -- 节气使计算范例,y是年分,这是个测试函数
-    local i, obj, q, s1, s2
-    y = tostring(y)
-    local jd = 365.2422 * (tonumber(y.sub(y, 1, 4)) - 2000)
-    obj = {}
-    for i = 0, 23 do
-        q = jiaoCal(jd + i * 15.2, i * 15, 0) + J2000 + 8 / 24 -- 计算第i个节气(i=0是春风),结果转为北京时
-        -- log.info('q=' .. q)
-        JDate:setFromJD(q, 1)
-        s1 = JDate:toStr() -- 将儒略日转成世界时
-        JDate:setFromJD(q, 0)
-        s2 = JDate:toStr() -- 将儒略日转成日期格式(输出日期形式的力学时)
-        jqData = s1.sub(s1.gsub(s1, "^( )", ""), 1, 10)
-        jqData = jqData.gsub(jqData, "-", "")
-        if (jqData >= y) then
-            table.insert(obj, jqB[i + 1] .. " " .. s1.sub(s1.gsub(s1, "^( )", ""), 1, 10))
-            -- log.info(i .. s1.sub(s1.gsub(s1, "^( )", ""),1,10))
+function JQtest(date)
+    local ymd = tostring(date):sub(1, 8)
+    if #ymd < 8 then return "" end
+    local year = tonumber(ymd:sub(1, 4))
+    local name = get_jieqi_date_map(year)[ymd]
+    return name and ("-" .. name) or ""
+end
+
+function GetNextJQ(date)
+    local ymd = tostring(date):sub(1, 8)
+    if #ymd < 8 then return {} end
+    local year = tonumber(ymd:sub(1, 4))
+    if not year then return {} end
+
+    local result = {}
+    for _, record in ipairs(build_jieqi_cycle(year)) do
+        if record.ymd >= ymd then
+            result[#result + 1] = format_jieqi_record(record)
         end
     end
-    return obj
+    return result
 end
 
-function getJQ(y) -- 返回一年中各个节气的时间表，从春分开始
-    local i
-    local jd = 365.2422 * (y - 2000)
-    local q
-    local jq = {}
-    for i = 0, 23 do
-        q = jiaoCal(jd + i * 15.2, i * 15, 0) + J2000 + 8 / 24 -- 计算第i个节气(i=0是春分),结果转为北京时
-        JDate:setFromJD(q, 1)
-        jq[i + 1] = JDate:JQ()                                 -- 将儒略日转成世界时
+function getJQ(year)
+    local result = {}
+    for i, record in ipairs(build_jieqi_cycle(year)) do
+        result[i] = record.timestamp
     end
-    return jq
+    return result
 end
 
--- 返回一年的二十四个节气,从立春开始
-function getYearJQ(y)
-    local jq1 = getJQ(y - 1) -- 上一年
-    local jq2 = getJQ(y)     -- 当年
-    local jq = {}
+function getYearJQ(year)
+    year = tonumber(year)
+    if not year then return {} end
+    if jieqi_year_cache[year] then
+        return jieqi_year_cache[year]
+    end
+
+    local prev_cycle = build_jieqi_cycle(year - 1)
+    local curr_cycle = build_jieqi_cycle(year)
+    local result = {}
+
     for i = 1, 3 do
-        jq[i] = jq1[i + 21]
+        result[i] = prev_cycle[i + 21].timestamp
     end
     for i = 1, 21 do
-        jq[i + 3] = jq2[i]
+        result[i + 3] = curr_cycle[i].timestamp
     end
-    return jq
+
+    jieqi_year_cache[year] = result
+    return result
 end
 
---==============定朔弦望计算========================
+--定朔弦望计算
 function dingSuo(y, arc) -- 这是个测试函数
     local i, jd = 365.2422 * (y - 2000), q, s1, s2
     log.info("月份:世界时  原子时<br>")
@@ -869,77 +897,41 @@ function dingSuo(y, arc) -- 这是个测试函数
     end
 end
 
---==============农历计算========================
---[[*****
-1.冬至所在的UTC日期保存在A[0],根据"规定1"得知在A[0]之前(含A[0])的那个UTC朔日定为年首日期
-冬至之后的中气分保存在A[1],A[2],A[3]...A[13],其中A[12]又回到了冬至,共计算13次中气
-2.连续计算冬至后14个朔日,即起算时间时A[0]+1
-14个朔日编号为0,1...12,保存在C[0],C[1]...C[13]
-这14个朔日表示编号为0月,1月,...12月0月的各月终止日期,但要注意实际终止日是新月初一,不属本月
-这14个朔日同样表示编号为1月,2月...的开始日期
-设某月编号为n,那么开始日期为C[n-1],结束日期为C[n],如果每月都含中气,该月所含的中气为A[n]
-注:为了全总计算出13个月的大小月情况,须算出14个朔日。
-3.闰年判断:含有13个月的年份是闰年
-当第13月(月编号12月)终止日期大于冬至日,  即C[12]〉A[12], 那么该月是新年,本年没月12月,本年共12个月
-当第13月(月编号12月)终止日期小等于冬至日,即C[12]≤A[12],那么该月是本年的有效月份,本年共13个月
-4.闰年中处理闰月:
-13个月中至少1个月份无中气,首个无中气的月置闰,在n=1...12月中找到闰月,即C[n]≤A[n]
-从农历年首的定义知道,0月一定含有中气冬至,所以不可能是闰月。
-首月有时很贪心,除冬至外还可能再吃掉本年或前年的另一个中气
-定出闰月后,该月及以后的月编号减1
-5.以上所述的月编号不是日常生活中说的"正月","二月"等月名称:
-如果"建子",0月为首月,如果"建寅",2月的月名"正月",3月是"二月",其余类推
-*****--]]
-
--- local yueMing={"正","二","三","四","五","六","七","八","九","十","冬","腊"}
---
--- function paiYue(inYear) --农历排月序计算,可定出农历
---  --y=in1.value-0
---  local y = inYear-0
---  local zq={},jq={}, hs={}  --中气表,节气表,日月合朔表
---
---  --从冬至开始,连续计算14个中气时刻
---  local i,t1=365.2422*(y-2000)-50 --农历年首始于前一年的冬至,为了节气中气一起算,取前年大雪之前
---  for i=0,13 do   --计算节气(从冬至开始),注意:返回的是力学时
---    zq[i+1]=jiaoCal(t1+i*30.4,i*30-90, 0) --中气计算,冬至的太阳黄经是270度(或-90度)
---    jq[i+1]=jiaoCal(t1+i*30.4,i*30-105,0) --顺便计算节气,它不是农历定朔计算所必需的
--- end
--- ...
--- end
-
+--农历计算
 function GetNowTimeJq(date)
-    local JQtable1, JQtable2
-    date = tostring(date)
-    if string.len(date) < 8 then
+    local ymd = tostring(date):sub(1, 8)
+    if #ymd < 8 then
         return "无效日期"
     end
-    JQtable2 = GetNextJQ(date)
-    if tonumber(string.sub(date, 5, 8)) < 322 then
-        --JQtable1 = GetNextJQ(tonumber(string.sub(date, 1, 4)) - 1 .. string.sub(date, 5, 8))
-        JQtable1 = GetNextJQ(tonumber(string.sub(date, 1, 4)) - 1 .. "0101")
-        -- log.info(#JQtable1)
-        if tonumber(string.sub(date, 5, 8)) < 108 then
-            for i = 20, 24 do
-                table.insert(JQtable2, i - 19, JQtable1[i])
-            end
-        elseif tonumber(string.sub(date, 5, 8)) < 122 then
-            for i = 21, 24 do
-                table.insert(JQtable2, i - 20, JQtable1[i])
-            end
-        elseif tonumber(string.sub(date, 5, 8)) < 206 then
-            for i = 22, 24 do
-                table.insert(JQtable2, i - 21, JQtable1[i])
-            end
-        elseif tonumber(string.sub(date, 5, 8)) < 221 then
-            for i = 23, 24 do
-                table.insert(JQtable2, i - 22, JQtable1[i])
-            end
-        else
-            table.insert(JQtable2, 1, JQtable1[24])
-        end
-        -- log.info(table.concat(JQtable2))
+
+    local year = tonumber(ymd:sub(1, 4))
+    if not year then
+        return "无效日期"
     end
-    return JQtable2
+
+    local records = {}
+    for _, cycle_year in ipairs({ year - 1, year }) do
+        for _, record in ipairs(build_jieqi_cycle(cycle_year)) do
+            if record.ymd >= ymd then
+                records[#records + 1] = record
+            end
+        end
+    end
+
+    table.sort(records, function(a, b)
+        return a.timestamp < b.timestamp
+    end)
+
+    local result = {}
+    local seen = {}
+    for _, record in ipairs(records) do
+        local key = record.name .. "@" .. record.ymd
+        if not seen[key] then
+            result[#result + 1] = format_jieqi_record(record)
+            seen[key] = true
+        end
+    end
+    return result
 end
 
 -- 公历转干支历实现
@@ -952,7 +944,6 @@ function GanZhiLi:new()
     local o = {}
     setmetatable(o, self)
     self.__index = self
-    o:setTime(os.time())
     return o
 end
 
@@ -1173,9 +1164,23 @@ local function english_weekday_abbr(wday)
     local abbrs = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" }
     return abbrs[wday + 1]
 end
-local jqB = { -- 节气表
-    "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑",
-    "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至", "小寒", "大寒" }
+
+-- 获取英文月份全称 / 简称，供 format_dt 复用
+local function english_month(month)
+    local months = {
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    }
+    return months[tonumber(month) or 1] or ""
+end
+
+local function english_month_abbr(month)
+    local abbrs = {
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    }
+    return abbrs[tonumber(month) or 1] or ""
+end
 -- 天干
 local tiangan = { '甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸' }
 
@@ -1195,42 +1200,37 @@ local function get60JiaZiStr(i)
     return tiangan[gan] .. dizhi[zhi]
 end
 
-function lunarJzl(y)
-    local x, yidx, midx, didx, hidx
-    y = tostring(y)
-    x = GanZhiLi:new()
-    x:setTime(os.time({
-        year = tonumber(y.sub(y, 1, 4)),
-        month = tonumber(y.sub(y, 5, -5)),
-        day = tonumber(y.sub(y, 7, -3)),
-        hour = tonumber(y.sub(y, 9, -1)),
-        min = 4,
-        sec = 5
-    }))
-    yidx = x:getYearGanZhi()
-    midx = x:getMonGanZhi()
-    didx = x:getDayGanZhi()
-    hidx = x:getHourGanZhi()
-    GzData = get60JiaZiStr(yidx) .. '年' .. get60JiaZiStr(midx) .. '月' .. get60JiaZiStr(didx) .. '日' ..
-        get60JiaZiStr(hidx) .. '时'
-    -- log.info('干支:'  .. GzData)
-    return GzData
+-- 干支计算先返回结构化字段；lunarJzl 只保留为展示兼容层。
+-- 输入支持 YYYYMMDD 或 YYYYMMDDHH，缺省时辰按 12 时计算。
+local function get_ganzhi_info(value)
+    local s = tostring(value or "")
+    local year = tonumber(s:sub(1, 4))
+    local month = tonumber(s:sub(5, 6))
+    local day = tonumber(s:sub(7, 8))
+    local hour = tonumber(s:sub(9, 10)) or 12
+    if not year or not month or not day or month < 1 or month > 12 or day < 1 or day > 31 or hour < 0 or hour > 23 then
+        return nil
+    end
+    local ts = os.time({ year = year, month = month, day = day, hour = hour, min = 4, sec = 5 })
+    if not ts then return nil end
+    local x = GanZhiLi:new()
+    x:setTime(ts)
+    local yidx, midx, didx, hidx = x:getYearGanZhi(), x:getMonGanZhi(), x:getDayGanZhi(), x:getHourGanZhi()
+    local info = {
+        year_index = yidx, month_index = midx, day_index = didx, hour_index = hidx,
+        year_ganzhi = get60JiaZiStr(yidx), month_ganzhi = get60JiaZiStr(midx),
+        day_ganzhi = get60JiaZiStr(didx), hour_ganzhi = get60JiaZiStr(hidx),
+        day_gan_index = calR2(didx, 10), day_zhi_index = calR2(didx, 12),
+    }
+    info.day_gan = tiangan[info.day_gan_index]
+    info.day_zhi = dizhi[info.day_zhi_index]
+    info.text = info.year_ganzhi .. '年' .. info.month_ganzhi .. '月' .. info.day_ganzhi .. '日' .. info.hour_ganzhi .. '时'
+    return info
 end
 
-local function time_to_num(time)
-    pattern = "(%d+):(%d+) +([AP]M)"
-    if string.match(time, pattern) ~= nil then
-        hours, minutes, am = string.match(time, pattern)
-        if ((am == "AM") and (tonumber(hours) >= 12)) then
-            hours = hours - 12
-        elseif ((am == "PM") and (tonumber(hours) < 12)) then
-            hours = hours + 12
-        end
-    else
-        pattern = "(%d+):(%d+)"
-        hours, minutes = string.match(time, pattern)
-    end
-    return (hours * 60) + minutes
+function lunarJzl(y)
+    local info = get_ganzhi_info(y)
+    return info and info.text or nil
 end
 
 local GetLunarSichen = function(time, t)
@@ -1327,83 +1327,19 @@ end
 -- 年天数判断
 local function IsLeap(y)
     local year = tonumber(y)
-    if math.fmod(year, 400) ~= 0 and math.fmod(year, 4) == 0 or math.fmod(year, 400) == 0 then
+    if not year then return 365 end
+    if math.fmod(year, 400) == 0 or (math.fmod(year, 4) == 0 and math.fmod(year, 100) ~= 0) then
         return 366
-    else
-        return 365
     end
+    return 365
 end
 
--- 计算日期差，两个8位数日期之间相隔的天数，date2>date1
-function diffDate(date1, date2)
-    local t1, t2, n, total
-    total = 0
-    date1 = tostring(date1)
-    date2 = tostring(date2)
-    if tonumber(date2) > tonumber(date1) then
-        n = tonumber(string.sub(date2, 1, 4)) - tonumber(string.sub(date1, 1, 4))
-        if n > 1 then
-            for i = 1, n - 1 do
-                total = total + IsLeap(tonumber(string.sub(date1, 1, 4)) + i)
-            end
-            total = total + leaveDate(tonumber(string.sub(date2, 1, 8))) + IsLeap(tonumber(string.sub(date1, 1, 4))) -
-                leaveDate(tonumber(string.sub(date1, 1, 8)))
-        elseif n == 1 then
-            total = IsLeap(tonumber(string.sub(date1, 1, 4))) - leaveDate(tonumber(string.sub(date1, 1, 8))) +
-                leaveDate(tonumber(string.sub(date2, 1, 8)))
-        else
-            total = leaveDate(tonumber(string.sub(date2, 1, 8))) - leaveDate(tonumber(string.sub(date1, 1, 8)))
-            -- log.info(date1 .. "-" .. date2)
-        end
-    elseif tonumber(date2) == tonumber(date1) then
-        return 0
-    else
-        return -1
-    end
-    return total
-end
+-- 公历日期差与日期推进统一由后面的结构化公历服务提供。
 
--- 返回当年过了多少天
-function leaveDate(y)
-    local day, total
-    total = 0
-    if IsLeap(tonumber(string.sub(y, 1, 4))) > 365 then
-        day = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
-    else
-        day = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
-    end
-    if tonumber(string.sub(y, 5, 6)) > 1 then
-        for i = 1, tonumber(string.sub(y, 5, 6)) - 1 do
-            total = total + day[i]
-        end
-        total = total + tonumber(string.sub(y, 7, 8))
-    else
-        return tonumber(string.sub(y, 7, 8))
-    end
-    return tonumber(total)
-end
-
--- 公历转农历，支持转化范围公元1900-2100年
--- 公历日期 Gregorian:格式 YYYYMMDD
--- <返回值>农历日期 中文 天干地支属相
-function Date2LunarDate(Gregorian)
-    -- 天干名称
-    local cTianGan = { "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸" }
-    -- 地支名称
-    local cDiZhi = { "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥" }
-    -- 属相名称
-    local cShuXiang = { "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪" }
-    -- 农历日期名
-    local cDayName = { "初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九",
-        "初十", "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八",
-        "十九", "二十", "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七",
-        "廿八", "廿九", "三十" }
-    -- 农历月份名
-    local cMonName = { "正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月",
-        "十月", "冬月", "腊月" }
-
-    -- 农历数据
-    local wNongliData = { "AB500D2", "4BD0883", "4AE00DB", "A5700D0", "54D0581", "D2600D8", "D9500CC", "655147D",
+-- ===== 农历转换核心（结构化数据） =====
+-- 预设农历数据只保留一份；数据内容保持原样，不修改任何年份参数。
+-- 索引 1 对应 1899 农历年（供 1900 年春节前日期反查），索引 2 对应 1900 年。
+local LUNAR_DATA = { "AB500D2", "4BD0883", "4AE00DB", "A5700D0", "54D0581", "D2600D8", "D9500CC", "655147D",
         "56A00D5", "9AD00CA", "55D027A", "4AE00D2", "A5B0682", "A4D00DA", "D2500CE", "D25157E",
         "B5400D6", "D6A00CB", "ADA027B", "95B00D3", "49717C9", "49700DC", "A4B00D0", "B4B0580",
         "6A500D8", "6D400CD", "AB5147C", "2B600D5", "95700CA", "52F027B", "49700D2", "6560682",
@@ -1430,220 +1366,225 @@ function Date2LunarDate(Gregorian)
         "D5200DA", "DAA00CF", "6AA167F", "56D00D7", "4AE00CD", "A9D047D", "A2D00D4", "D1500C9",
         "F250279", "D5200D1", "DB20781", "B5A00D9", "55D00CF", "4DB0580", "49B00D7", "A4B00CC",
         "D4B047C", "AA500D4", "B550983", "6D200DB", "AD600D0", "5760681", "93700D8" }
-    Gregorian = tostring(Gregorian)
-    local Year, Month, Day, Pos, Data0, Data1, MonthInfo, LeapInfo, Leap, Newyear, Data2, Data3, LYear, thisMonthInfo
-    Year = tonumber(Gregorian.sub(Gregorian, 1, 4))
-    Month = tonumber(Gregorian.sub(Gregorian, 5, 6))
-    Day = tonumber(Gregorian.sub(Gregorian, 7, 8))
-    if (Year > 2100 or Year < 1899 or Month > 12 or Month < 1 or Day < 1 or Day > 31 or string.len(Gregorian) < 8) then
-        return "无效日期"
+
+local LUNAR_TIAN_GAN = { "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸" }
+local LUNAR_DI_ZHI = { "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥" }
+local LUNAR_ZODIAC = { "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪" }
+local LUNAR_DAY_NAMES = {
+    "初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九", "初十",
+    "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十",
+    "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七", "廿八", "廿九", "三十"
+}
+local LUNAR_MONTH_NAMES = { "正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "冬月", "腊月" }
+
+local lunar_year_info_cache = {}
+local GREGORIAN_MONTH_DAYS = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
+
+local function days_in_gregorian_month(year, month)
+    if month == 2 and IsLeap(year) == 366 then return 29 end
+    return GREGORIAN_MONTH_DAYS[month]
+end
+
+local function is_valid_gregorian_date(year, month, day)
+    year, month, day = tonumber(year), tonumber(month), tonumber(day)
+    if not year or not month or not day or month < 1 or month > 12 or day < 1 then return false end
+    local max_day = days_in_gregorian_month(year, month)
+    return max_day ~= nil and day <= max_day
+end
+
+local function gregorian_ordinal(year, month, day)
+    local y = year - 1
+    local total = 365 * y + math.floor(y / 4) - math.floor(y / 100) + math.floor(y / 400)
+    for m = 1, month - 1 do
+        total = total + GREGORIAN_MONTH_DAYS[m]
+        if m == 2 and IsLeap(year) == 366 then total = total + 1 end
     end
-    -- log.info(Year .. "-" .. Month .. "-" .. Day)
-    -- 获取两百年内的农历数据
-    Pos = Year - 1900 + 2
-    Data0 = wNongliData[Pos - 1]
-    Data1 = wNongliData[Pos]
-    -- 判断农历年份
-    local tb1 = Analyze(Data1)
-    MonthInfo = tb1[1]
-    LeapInfo = tb1[2]
-    Leap = tb1[3]
-    Newyear = tb1[4]
-    Date1 = Year .. Newyear
-    Date2 = Gregorian
-    Date3 = diffDate(Date1, Date2) -- 和当年农历新年相差的天数
-    -- log.info(Date3 .. "-11")
-    if (Date3 < 0) then
-        -- log.info(Data0 .. "-2")
-        tb1 = Analyze(Data0)
-        Year = Year - 1
-        MonthInfo = tb1[1]
-        LeapInfo = tb1[2]
-        Leap = tb1[3]
-        Newyear = tb1[4]
-        Date1 = Year .. Newyear
-        Date2 = Gregorian
-        Date3 = diffDate(Date1, Date2)
-        -- log.info(Date2 .. "--" .. Date1 .. "--" .. Date3)
-    end
-    -- log.info(MonthInfo .. "-" .. LeapInfo .. "-" .. Leap .. "-" .. Newyear .. "-" .. Year)
-    Date3 = Date3 + 1
-    LYear = Year     -- 农历年份，就是上面计算后的值
-    if Leap > 0 then -- 有闰月
-        thisMonthInfo = string.sub(MonthInfo, 1, Leap) .. LeapInfo .. string.sub(MonthInfo, Leap + 1)
-    else
-        thisMonthInfo = MonthInfo
-    end
-    local thisMonth, thisDays, LDay, Isleap, LunarYear, LunarMonth
-    for i = 1, 13 do
-        thisMonth = string.sub(thisMonthInfo, i, i)
-        thisDays = 29 + thisMonth
-        if (Date3 > thisDays) then
-            Date3 = Date3 - thisDays
-        else
-            if (Leap > 0) then
-                if (Leap >= i) then
-                    LMonth = i
-                    Isleap = 0
-                else
-                    LMonth = i - 1
-                    if i - Leap == 1 then
-                        Isleap = 1
-                    else
-                        Isleap = 0
-                    end
-                end
+    return total + day
+end
+
+local function days_between_gregorian(date1, date2)
+    date1, date2 = tostring(date1 or ""), tostring(date2 or "")
+    if #date1 < 8 or #date2 < 8 then return -1 end
+    local y1, m1, d1 = tonumber(date1:sub(1,4)), tonumber(date1:sub(5,6)), tonumber(date1:sub(7,8))
+    local y2, m2, d2 = tonumber(date2:sub(1,4)), tonumber(date2:sub(5,6)), tonumber(date2:sub(7,8))
+    if not is_valid_gregorian_date(y1,m1,d1) or not is_valid_gregorian_date(y2,m2,d2) then return -1 end
+    local diff = gregorian_ordinal(y2,m2,d2) - gregorian_ordinal(y1,m1,d1)
+    return diff >= 0 and diff or -1
+end
+
+function diffDate(date1, date2)
+    return days_between_gregorian(date1, date2)
+end
+
+local function add_days_to_gregorian(year, month, day, offset)
+    year, month, day = tonumber(year), tonumber(month), tonumber(day)
+    offset = math.floor(tonumber(offset) or 0)
+    if not is_valid_gregorian_date(year, month, day) then return nil end
+    if offset >= 0 then
+        while offset > 0 do
+            local max_day = days_in_gregorian_month(year, month)
+            local remain = max_day - day
+            if offset <= remain then
+                day = day + offset
+                offset = 0
             else
-                LMonth = i
-                Isleap = 0
-            end
-            LDay = math.floor(Date3)
-            break
-        end
-    end
-    -- log.info(LYear .. "-" .. LMonth .. "-" .. LDay)
-    if Isleap > 0 then
-        LunarMonth = "闰" .. cMonName[LMonth]
-    else
-        LunarMonth = cMonName[LMonth]
-    end
-    -- log.info(LDay)
-    LunarYear = cTianGan[math.fmod(LYear - 4, 10) + 1] .. cDiZhi[math.fmod(LYear - 4, 12) + 1] .. "年(" ..
-        cShuXiang[math.fmod(LYear - 4, 12) + 1] .. ")" .. LunarMonth .. cDayName[LDay]
-    -- log.info(LunarYear)
-    return LunarYear
-end
-
--- Date日期参数格式YYMMDD，dayCount累加的天数--修复了可能为6月00日的可能性,回退到5月31日
--- 返回值：公历日期
-local function GettotalDay(Date, dayCount)
-    local Year, Month, Day, days, total, t
-    Date = tostring(Date)
-    Year = tonumber(Date.sub(Date, 1, 4))
-    Month = tonumber(Date.sub(Date, 5, 6))
-    Day = tonumber(Date.sub(Date, 7, 8))
-
-    -- 根据是否是闰年设置天数表
-    if IsLeap(Year) > 365 then
-        days = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
-    else
-        days = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
-    end
-
-    -- 判断天数是否超过当前月份的剩余天数
-    if dayCount > days[Month] - Day then
-        total = dayCount - (days[Month] - Day) -- 减去当前月份剩余的天数
-        Month = Month + 1                      -- 移动到下个月
-        if Month > 12 then
-            Month = 1                          -- 如果超过12月，跳转到1月
-            Year = Year + 1                    -- 增加一年
-        end
-
-        -- 继续加上余下的天数，跨月处理
-        while total > days[Month] do
-            total = total - days[Month] -- 减去当前月份的天数
-            Month = Month + 1           -- 移动到下个月
-            if Month > 12 then
-                Month = 1               -- 如果超过12月，跳转到1月
-                Year = Year + 1         -- 增加一年
+                offset = offset - remain - 1
+                day = 1
+                month = month + 1
+                if month > 12 then month, year = 1, year + 1 end
             end
         end
     else
-        total = Day + dayCount -- 如果不跨月，直接累加
+        while offset < 0 do
+            if day + offset >= 1 then
+                day = day + offset
+                offset = 0
+            else
+                offset = offset + day
+                month = month - 1
+                if month < 1 then month, year = 12, year - 1 end
+                day = days_in_gregorian_month(year, month)
+            end
+        end
     end
-
-    -- 确保月份和日期都是两位数格式
-    if string.len(Month) == 1 then
-        Month = "0" .. Month
-    end
-    if string.len(total) == 1 then
-        total = "0" .. total
-    end
-
-    -- 返回格式化的日期
-    return Year .. "年" .. Month .. "月" .. total .. "日"
+    return year, month, day
 end
 
--- 农历转公历
--- 农历 Gregorian:数字格式 YYYYMMDD
--- <返回值>公历日期 格式YYYY年MM月DD日
--- 农历日期月份为闰月需指定参数IsLeap为1，非闰月需指定参数IsLeap为0
+local function shift_gregorian_ymd(ymd, offset)
+    ymd = tostring(ymd or ""):gsub("%D", "")
+    if #ymd < 8 then return nil end
+    local y, m, d = tonumber(ymd:sub(1,4)), tonumber(ymd:sub(5,6)), tonumber(ymd:sub(7,8))
+    local ny, nm, nd = add_days_to_gregorian(y, m, d, offset)
+    if not ny then return nil end
+    return string.format("%04d%02d%02d", ny, nm, nd)
+end
+
+local function format_gregorian_ymd(year, month, day)
+    return string.format("%04d%02d%02d", year, month, day)
+end
+
+local function format_gregorian_cn(year, month, day)
+    return string.format("%04d年%02d月%02d日", year, month, day)
+end
+
+local function get_lunar_year_info(year)
+    year = tonumber(year)
+    if not year or year < 1899 or year > 2100 then return nil end
+    if lunar_year_info_cache[year] then return lunar_year_info_cache[year] end
+    local data = LUNAR_DATA[year - 1898]
+    if not data then return nil end
+    local decoded = Analyze(data)
+    local month_info = decoded[1]
+    local leap_days_bit = tonumber(decoded[2]) or 0
+    local leap_month = tonumber(decoded[3]) or 0
+    local new_year_mmdd = tostring(decoded[4])
+    if #new_year_mmdd < 4 then new_year_mmdd = string.rep("0", 4 - #new_year_mmdd) .. new_year_mmdd end
+    local months = {}
+    for month = 1, 12 do
+        months[#months + 1] = { month = month, is_leap = false, days = 29 + (tonumber(month_info:sub(month, month)) or 0) }
+        if leap_month == month then
+            months[#months + 1] = { month = month, is_leap = true, days = 29 + leap_days_bit }
+        end
+    end
+    local info = {
+        year = year,
+        leap_month = leap_month,
+        new_year_mmdd = new_year_mmdd,
+        new_year_month = tonumber(new_year_mmdd:sub(1, 2)),
+        new_year_day = tonumber(new_year_mmdd:sub(3, 4)),
+        months = months
+    }
+    lunar_year_info_cache[year] = info
+    return info
+end
+
+-- 公历 -> 农历：内部首先得到语义字段，最后才拼展示文本。
+local function GregorianToLunarInfo(Gregorian)
+    Gregorian = tostring(Gregorian or "")
+    if #Gregorian < 8 then return nil, "无效日期" end
+    local solar_year = tonumber(Gregorian:sub(1, 4))
+    local solar_month = tonumber(Gregorian:sub(5, 6))
+    local solar_day = tonumber(Gregorian:sub(7, 8))
+    if not solar_year or solar_year < 1900 or solar_year > 2100 or not is_valid_gregorian_date(solar_year, solar_month, solar_day) then
+        return nil, "无效日期"
+    end
+    local lunar_year = solar_year
+    local year_info = get_lunar_year_info(lunar_year)
+    if not year_info then return nil, "无效日期" end
+    local current_ordinal = gregorian_ordinal(solar_year, solar_month, solar_day)
+    local cny_ordinal = gregorian_ordinal(solar_year, year_info.new_year_month, year_info.new_year_day)
+    if current_ordinal < cny_ordinal then
+        lunar_year = solar_year - 1
+        year_info = get_lunar_year_info(lunar_year)
+        if not year_info then return nil, "无效日期" end
+        cny_ordinal = gregorian_ordinal(lunar_year, year_info.new_year_month, year_info.new_year_day)
+    end
+    local offset = current_ordinal - cny_ordinal
+    local selected
+    for _, month_info in ipairs(year_info.months) do
+        if offset < month_info.days then selected = month_info break end
+        offset = offset - month_info.days
+    end
+    if not selected then return nil, "无效日期" end
+    local lunar_day = offset + 1
+    local ganzhi = LUNAR_TIAN_GAN[math.fmod(lunar_year - 4, 10) + 1] .. LUNAR_DI_ZHI[math.fmod(lunar_year - 4, 12) + 1]
+    local zodiac = LUNAR_ZODIAC[math.fmod(lunar_year - 4, 12) + 1]
+    local month_name = LUNAR_MONTH_NAMES[selected.month]
+    local day_name = LUNAR_DAY_NAMES[lunar_day]
+    local display_month = (selected.is_leap and "闰" or "") .. month_name
+    return {
+        solar_year = solar_year, solar_month = solar_month, solar_day = solar_day,
+        solar_ymd = format_gregorian_ymd(solar_year, solar_month, solar_day),
+        lunar_year = lunar_year, lunar_month = selected.month, lunar_day = lunar_day,
+        is_leap = selected.is_leap, leap_month = year_info.leap_month, month_days = selected.days,
+        ganzhi_year = ganzhi, zodiac = zodiac, month_name = month_name, day_name = day_name,
+        text = ganzhi .. "年(" .. zodiac .. ")" .. display_month .. day_name
+    }
+end
+
+function Date2LunarDate(Gregorian)
+    local info, err = GregorianToLunarInfo(Gregorian)
+    return info and info.text or err
+end
+
+-- 农历 -> 公历：调用者明确普通月/闰月；内部直接按月份序列定位，不再解析中文。
+local function LunarToGregorianInfo(LunarDate, is_leap)
+    LunarDate = tostring(LunarDate or "")
+    if #LunarDate < 8 then return nil, "无效日期" end
+    local year = tonumber(LunarDate:sub(1, 4))
+    local month = tonumber(LunarDate:sub(5, 6))
+    local day = tonumber(LunarDate:sub(7, 8))
+    local leap = (is_leap == true or tonumber(is_leap) == 1)
+    if not year or year < 1900 or year > 2100 or not month or month < 1 or month > 12 or not day or day < 1 or day > 30 then
+        return nil, "无效日期"
+    end
+    local year_info = get_lunar_year_info(year)
+    if not year_info then return nil, "无效日期" end
+    if leap and year_info.leap_month == 0 then return nil, "该年没有闰月！" end
+    if leap and year_info.leap_month ~= month then return nil, "该月不是闰月！" end
+    local offset = 0
+    local selected
+    for _, month_info in ipairs(year_info.months) do
+        if month_info.month == month and month_info.is_leap == leap then selected = month_info break end
+        offset = offset + month_info.days
+    end
+    if not selected or day > selected.days then return nil, "无效日期" end
+    offset = offset + day - 1
+    local gy, gm, gd = add_days_to_gregorian(year, year_info.new_year_month, year_info.new_year_day, offset)
+    if not gy then return nil, "无效日期" end
+    return {
+        lunar_year = year, lunar_month = month, lunar_day = day,
+        is_leap = leap, leap_month = year_info.leap_month, month_days = selected.days,
+        solar_year = gy, solar_month = gm, solar_day = gd,
+        ymd = format_gregorian_ymd(gy, gm, gd), text = format_gregorian_cn(gy, gm, gd)
+    }
+end
+
 function LunarDate2Date(Gregorian, IsLeap)
-    LunarData = { "AB500D2", "4BD0883", "4AE00DB", "A5700D0", "54D0581", "D2600D8", "D9500CC", "655147D", "56A00D5",
-        "9AD00CA", "55D027A", "4AE00D2", "A5B0682", "A4D00DA", "D2500CE", "D25157E", "B5400D6", "D6A00CB",
-        "ADA027B", "95B00D3", "49717C9", "49700DC", "A4B00D0", "B4B0580", "6A500D8", "6D400CD", "AB5147C",
-        "2B600D5", "95700CA", "52F027B", "49700D2", "6560682", "D4A00D9", "EA500CE", "6A9157E", "5AD00D6",
-        "2B600CC", "86E137C", "92E00D3", "C8D1783", "C9500DB", "D4A00D0", "D8A167F", "B5500D7", "56A00CD",
-        "A5B147D", "25D00D5", "92D00CA", "D2B027A", "A9500D2", "B550781", "6CA00D9", "B5500CE", "535157F",
-        "4DA00D6", "A5B00CB", "457137C", "52B00D4", "A9A0883", "E9500DA", "6AA00D0", "AEA0680", "AB500D7",
-        "4B600CD", "AAE047D", "A5700D5", "52600CA", "F260379", "D9500D1", "5B50782", "56A00D9", "96D00CE",
-        "4DD057F", "4AD00D7", "A4D00CB", "D4D047B", "D2500D3", "D550883", "B5400DA", "B6A00CF", "95A1680",
-        "95B00D8", "49B00CD", "A97047D", "A4B00D5", "B270ACA", "6A500DC", "6D400D1", "AF40681", "AB600D9",
-        "95700CE", "4AF057F", "49700D7", "64B00CC", "74A037B", "EA500D2", "6B50883", "5AC00DB", "AB600CF",
-        "96D0580", "92E00D8", "C9600CD", "D95047C", "D4A00D4", "DA500C9", "755027A", "56A00D1", "ABB0781",
-        "25D00DA", "92D00CF", "CAB057E", "A9500D6", "B4A00CB", "BAA047B", "AD500D2", "55D0983", "4BA00DB",
-        "A5B00D0", "5171680", "52B00D8", "A9300CD", "795047D", "6AA00D4", "AD500C9", "5B5027A", "4B600D2",
-        "A6E0681", "A4E00D9", "D2600CE", "EA6057E", "D5300D5", "5AA00CB", "76A037B", "96D00D3", "4AF0B83",
-        "4AD00DB", "A4D00D0", "D0B1680", "D2500D7", "D5200CC", "DD4057C", "B5A00D4", "56D00C9", "55B027A",
-        "49B00D2", "A570782", "A4B00D9", "AA500CE", "B25157E", "6D200D6", "ADA00CA", "4B6137B", "93700D3",
-        "49F08C9", "49700DB", "64B00D0", "68A1680", "EA500D7", "6AA00CC", "A6C147C", "AAE00D4", "92E00CA",
-        "D2E0379", "C9600D1", "D550781", "D4A00D9", "DA500CD", "5D5057E", "56A00D6", "A6D00CB", "55D047B",
-        "52D00D3", "A9B0883", "A9500DB", "B4A00CF", "B6A067F", "AD500D7", "55A00CD", "ABA047C", "A5B00D4",
-        "52B00CA", "B27037A", "69300D1", "7330781", "6AA00D9", "AD500CE", "4B5157E", "4B600D6", "A5700CB",
-        "54E047C", "D1600D2", "E960882", "D5200DA", "DAA00CF", "6AA167F", "56D00D7", "4AE00CD", "A9D047D",
-        "A2D00D4", "D1500C9", "F250279", "D5200D1", "DB20781", "B5A00D9", "55D00CF", "4DB0580", "49B00D7",
-        "A4B00CC", "D4B047C", "AA500D4", "B550983", "6D200DB", "AD600D0", "5760681", "93700D8" }
-    Gregorian = tostring(Gregorian)
-    local Year, Month, Day, Pos, Data, MonthInfo, LeapInfo, Leap, Newyear, Sum, thisMonthInfo, GDate
-    Year = tonumber(Gregorian.sub(Gregorian, 1, 4))
-    Month = tonumber(Gregorian.sub(Gregorian, 5, 6))
-    Day = tonumber(Gregorian.sub(Gregorian, 7, 8))
-    if (Year > 2100 or Year < 1900 or Month > 12 or Month < 1 or Day > 30 or Day < 1 or string.len(Gregorian) < 8) then
-        return "无效日期"
-    end
-
-    -- 获取当年农历数据
-    Pos = (Year - 1899) + 1
-    Data = LunarData[Pos]
-    -- log.info(Data)
-    -- 判断公历日期
-    local tb1 = Analyze(Data)
-    MonthInfo = tb1[1]
-    LeapInfo = tb1[2]
-    Leap = tb1[3]
-    Newyear = tb1[4]
-    -- 计算到当天到当年农历新年的天数
-    Sum = 0
-
-    if Leap > 0 then -- 有闰月
-        thisMonthInfo = string.sub(MonthInfo, 1, Leap) .. LeapInfo .. string.sub(MonthInfo, Leap + 1)
-        if (Leap ~= Month and tonumber(IsLeap) == 1) then
-            return "该月不是闰月！"
-        end
-        if (Month <= Leap and tonumber(IsLeap) == 0) then
-            for i = 1, Month - 1 do
-                Sum = Sum + 29 + string.sub(thisMonthInfo, i, i)
-            end
-        else
-            for i = 1, Month do
-                Sum = Sum + 29 + string.sub(thisMonthInfo, i, i)
-            end
-        end
-    else
-        if (tonumber(IsLeap) == 1) then
-            return "该年没有闰月！"
-        end
-        for i = 1, Month - 1 do
-            thisMonthInfo = MonthInfo
-            Sum = Sum + 29 + string.sub(thisMonthInfo, i, i)
-        end
-    end
-    Sum = math.floor(Sum + Day - 1)
-    GDate = Year .. Newyear
-    GDate = GettotalDay(GDate, Sum)
-
-    return GDate
+    local info, err = LunarToGregorianInfo(Gregorian, IsLeap)
+    return info and info.text or err
 end
+-- ===== 农历转换核心结束 =====
 
 local function main()
     log.info(LunarDate2Date(20210101, 0))
@@ -1656,25 +1597,6 @@ local function main()
 end
 
 -- main()
-
-------------农历转换函数结束--------------
-
---[[
-    --%a 星期简称，如Wed    %A 星期全称，如Wednesday
-    --%b 月份简称，如Sep    %B 月份全称，如September
-    --%c 日期时间格式 (e.g., 09/16/98 23:48:10)
-    --%d 一个月的第几天 [01-31]    %j 一年的第几天
-    --%H 24小时制 [00-23]    %I 12小时制 [01-12]
-    --%M 分钟 [00-59]    %m 月份 (09) [01-12]
-    --%p 上午/下午 (pm or am)
-    --%S 秒 (10) [00-61]
-    --%w 星期的第几天 [0-6 = Sunday-Saturday]    %W 一年的第几周
-    --%x 日期格式 (e.g., 09/16/98)    %X 时间格式 (e.g., 23:48:10)
-    --%Y 年份全称 (1998)    %y 年份简称 [00-99]
-    --%% 百分号
-    --os.date() 把时间戳转化成可显示的时间字符串
-    --os.time ([table])
---]]
 
 local format_Time = function()
     if os.date("%p") == "AM" then
@@ -1718,63 +1640,21 @@ function CnDate_translator(y)
     return t
 end
 
--- 年天数判断
-function IsLeap(y)
-    local year = tonumber(y)
-    if math.floor(year % 400) ~= 0 and math.floor(year % 4) == 0 or math.floor(year % 400) == 0 then
-        return 366
-    else
-        return 365
-    end
+-- ISO 8601 周数：只使用公历日序，不依赖 86400 秒或系统 DST。
+local function gregorian_weekday_iso(year, month, day)
+    return ((gregorian_ordinal(year, month, day) - 1) % 7) + 1
 end
 
--- ISO 8601 计算：返回当前日期是第几周，不使用os.date(%w)
 local function iso_week_number(year, month, day)
-    local function date_to_julian(y, m, d)
-        -- 将年月日转换为儒略日（Julian Day Number）
-        if m <= 2 then
-            y = y - 1
-            m = m + 12
-        end
-        local A = math.floor(y / 100)
-        local B = 2 - A + math.floor(A / 4)
-        return math.floor(365.25 * (y + 4716)) + math.floor(30.6001 * (m + 1)) + d + B - 1524.5
-    end
-
-    -- 获取当前日期的星期（ISO，周一为1，周日为7）
-    local function get_iso_weekday(y, m, d)
-        local t = os.time {
-            year = y,
-            month = m,
-            day = d
-        }
-        local w = tonumber(os.date("%w", t))
-        return (w == 0) and 7 or w
-    end
-
-    local jd = date_to_julian(year, month, day)
-    local t = os.time {
-        year = year,
-        month = month,
-        day = day
-    }
-    local iso_day = get_iso_weekday(year, month, day)
-
-    -- 计算该日期所在的星期的周四（ISO周的基准点）
-    local thursday_time = t + (4 - iso_day) * 86400
-    local thursday = os.date("*t", thursday_time)
-
-    -- 计算周数
-    local first_thursday = os.time {
-        year = thursday.year,
-        month = 1,
-        day = 4
-    }
-    local first_thursday_weekday = get_iso_weekday(thursday.year, 1, 4)
-    local start_of_week1 = first_thursday - (first_thursday_weekday - 1) * 86400
-
-    local week_number = math.floor((thursday_time - start_of_week1) / (7 * 86400)) + 1
-    return thursday.year, week_number
+    year, month, day = tonumber(year), tonumber(month), tonumber(day)
+    if not is_valid_gregorian_date(year, month, day) then return year, 0 end
+    local iso_day = gregorian_weekday_iso(year, month, day)
+    local ty, tm, td = add_days_to_gregorian(year, month, day, 4 - iso_day)
+    local iso_year = ty
+    local jan4_weekday = gregorian_weekday_iso(iso_year, 1, 4)
+    local wy, wm, wd = add_days_to_gregorian(iso_year, 1, 4, 4 - jan4_weekday)
+    local week_number = math.floor((gregorian_ordinal(ty, tm, td) - gregorian_ordinal(wy, wm, wd)) / 7) + 1
+    return iso_year, week_number
 end
 -- 日期格式化函数，用于自定义日期格式。N20150101和/rq使用，自定义时间/sj /dt
 -- 转义规则：
@@ -1792,216 +1672,224 @@ function format_dt(dt, format_str)
 
     local s = format_str or ""
 
-    -- 1) 保护 [[...]] 
     local blocks = {}
     s = s:gsub("%[%[(.-)%]%]", function(txt)
-        blocks[#blocks+1] = txt
-        return "\0BLK" .. #blocks .. "\0"
+        blocks[#blocks + 1] = txt
+        return "\1" .. #blocks .. "\2"
     end)
 
-    -- 2) 保护 \X
     local escs = {}
     s = s:gsub("\\(.)", function(c)
-        escs[#escs+1] = c
-        return "\0ESC" .. #escs .. "\0"
+        escs[#escs + 1] = c
+        return "\3" .. #escs .. "\4"
     end)
 
-    -- 3) 占位符替换
-    -- 日期部分
+    local need_h12 = s:find("[Il]") ~= nil
+    local need_ampm = s:find("[pP]") ~= nil
+    local need_period = s:find("A", 1, true) ~= nil
+    local need_timezone = s:find("[Oo]") ~= nil
+    local need_weekday = s:find("[EFCD]") ~= nil
+    local need_iso_week = s:find("w", 1, true) ~= nil
+    local need_month_full = s:find("B", 1, true) ~= nil
+    local need_month_abbr = s:find("b", 1, true) ~= nil
+
     s = s:gsub("Y", string.format("%04d", dt.year))
     s = s:gsub("y", string.format("%02d", dt.year % 100))
     s = s:gsub("m", string.format("%02d", dt.month))
     s = s:gsub("d", string.format("%02d", dt.day))
     s = s:gsub("n", tostring(dt.month))
     s = s:gsub("j", tostring(dt.day))
-
-    -- 时间部分
     s = s:gsub("H", string.format("%02d", dt.hour))
     s = s:gsub("G", tostring(dt.hour))
-    
-    local h12 = dt.hour % 12; if h12 == 0 then h12 = 12 end
-    s = s:gsub("I", string.format("%02d", h12))
-    s = s:gsub("l", tostring(h12))
     s = s:gsub("M", string.format("%02d", dt.min))
     s = s:gsub("S", string.format("%02d", dt.sec))
 
-    -- 英文 AM/PM
-    local ampm = (dt.hour < 12) and "AM" or "PM"
-    s = s:gsub("p", ampm:lower())
-    s = s:gsub("P", ampm)
+    if need_h12 then
+        local h12 = dt.hour % 12
+        if h12 == 0 then h12 = 12 end
+        s = s:gsub("I", string.format("%02d", h12))
+        s = s:gsub("l", tostring(h12))
+    end
 
-    -- 中文时段变量 A
-    local zh_period = ""
-    local h = dt.hour
-    if h < 6 then zh_period = "凌晨"
-    elseif h < 12 then zh_period = "上午"
-    elseif h < 13 then zh_period = "中午"
-    elseif h < 18 then zh_period = "下午"
-    else zh_period = "晚上" end
-    s = s:gsub("A", zh_period)
+    if need_ampm then
+        local ampm = (dt.hour < 12) and "AM" or "PM"
+        s = s:gsub("p", ampm:lower())
+        s = s:gsub("P", ampm)
+    end
 
-    -- 时区
-    local raw_tz = os.date("%z") or "+0000"
-    local tz_colon = raw_tz:sub(1,3) .. ":" .. raw_tz:sub(4,5)
-    s = s:gsub("O", tz_colon)
-    s = s:gsub("o", raw_tz)
-    -- 星期占位符
-    local t = os.time { year = dt.year, month = dt.month, day = dt.day, hour = 12 }
-    local wday = tonumber(os.date("%w", t))
+    if need_period then
+        local h = dt.hour
+        local zh_period
+        if h < 6 then zh_period = "凌晨"
+        elseif h < 12 then zh_period = "上午"
+        elseif h < 13 then zh_period = "中午"
+        elseif h < 18 then zh_period = "下午"
+        else zh_period = "晚上" end
+        s = s:gsub("A", zh_period)
+    end
 
-    s = s:gsub("E", english_weekday(wday))       -- 英文星期全称
-    s = s:gsub("F", english_weekday_abbr(wday))  -- 英文星期简称
-    s = s:gsub("C", chinese_weekday2(wday))      -- 中文星期全称
-    s = s:gsub("D", chinese_weekday(wday))       -- 中文星期简称
-    -- ISO 8601 周数
-    s = s:gsub("w", function()
-        if dt.year and dt.year > 0 then
-            local _, wk = iso_week_number(dt.year, dt.month, dt.day)
-            return tostring(wk)
-        end
-        return "?"
-    end)
-    -- 4) 还原
-    s = s:gsub("\0ESC(%d+)\0", function(i) return escs[tonumber(i)] or "" end)
-    s = s:gsub("\0BLK(%d+)\0", function(i) return blocks[tonumber(i)] or "" end)
+    if need_timezone then
+        local raw_tz = os.date("%z") or "+0000"
+        local tz_colon = raw_tz:sub(1, 3) .. ":" .. raw_tz:sub(4, 5)
+        s = s:gsub("O", tz_colon)
+        s = s:gsub("o", raw_tz)
+    end
 
+    if need_weekday then
+        local t = os.time { year = dt.year, month = dt.month, day = dt.day, hour = 12 }
+        local wday = tonumber(os.date("%w", t))
+        s = s:gsub("E", english_weekday(wday))
+        s = s:gsub("F", english_weekday_abbr(wday))
+        s = s:gsub("C", chinese_weekday2(wday))
+        s = s:gsub("D", chinese_weekday(wday))
+    end
+
+    if need_iso_week then
+        s = s:gsub("w", function()
+            if dt.year and dt.year > 0 then
+                local _, wk = iso_week_number(dt.year, dt.month, dt.day)
+                return tostring(wk)
+            end
+            return "?"
+        end)
+    end
+
+    if need_month_full then
+        s = s:gsub("B", english_month(dt.month))
+    end
+    if need_month_abbr then
+        s = s:gsub("b", english_month_abbr(dt.month))
+    end
+
+    s = s:gsub("\3(%d+)\4", function(i) return escs[tonumber(i)] or "" end)
+    s = s:gsub("\1(%d+)\2", function(i) return blocks[tonumber(i)] or "" end)
     return s
 end
 
--- 修改后的 QueryLunarInfo 函数
-local function QueryLunarInfo(env, date)
-    local config  = env.engine.schema.config
-    local str, LunarDate, LunarGz, result, DateTime
-    date = tostring(date)
-    result = {}
-    str = date:gsub("^(%u+)", "")
-    
-    if string.match(str, "^(20)%d%d+$") ~= nil or string.match(str, "^(19)%d%d+$") ~= nil then
-        -- 日期格式补全逻辑保持不变
-        if string.len(str) == 4 then
-            str = str .. "010101"
-        elseif string.len(str) == 5 then
-            str = str .. "10101"
-        elseif string.len(str) == 6 then
-            str = str .. "0101"
-        elseif string.len(str) == 7 then
-            str = str .. "101"
-        elseif string.len(str) == 8 then
-            str = str .. "01"
-        elseif string.len(str) == 9 then
-            str = str .. "0"
-        else
-            str = string.sub(str, 1, 10)
-        end
-        
-        -- 日期有效性检查保持不变
-        if tonumber(string.sub(str, 5, 6)) > 12 or tonumber(string.sub(str, 5, 6)) < 1 or
-            tonumber(string.sub(str, 7, 8)) > 31 or tonumber(string.sub(str, 7, 8)) < 1 or
-            tonumber(string.sub(str, 9, 10)) > 24 then
-            return result
-        end
-        
-        LunarDate = Date2LunarDate(str)
-        LunarGz = lunarJzl(str)
-        DateTime = LunarDate2Date(str, 0)
-        dateRQ = string.sub(str, 1, 4) .. "年" .. string.sub(str, 5, 6) .. "月" .. string.sub(str, 7, 8) .. "日"
-
-        if LunarGz ~= nil then
-            local y = tonumber(string.sub(str, 1, 4))
-            local m = tonumber(string.sub(str, 5, 6))
-            local d = tonumber(string.sub(str, 7, 8))
-
-            -- 尝试使用自定义格式
-            local custom_formats = config:get_list("date_formats")
-            local use_custom_format = custom_formats and custom_formats.size > 0
-            
-            if use_custom_format then
-                -- 使用自定义格式
-                result = {}
-                for i = 1, custom_formats.size do
-                    local format_str = custom_formats:get_value_at(i-1):get_string()
-                    local formatted_date = format_dt({year = y, month = m, day = d}, format_str)
-                    if formatted_date then
-                        table.insert(result, { formatted_date, "" })
-                    end
-                end
-            else
-                -- 使用默认格式
-                result = {
-                    -- ==公历格式==
-                    { dateRQ, "" },
-                    { string.sub(str, 1, 4) .. "." .. string.sub(str, 5, 6) .. "." .. string.sub(str, 7, 8), "" },
-                    { string.sub(str, 1, 4) .. "-" .. string.sub(str, 5, 6) .. "-" .. string.sub(str, 7, 8), "" },
-                    { string.sub(str, 1, 4) .. "/" .. string.sub(str, 5, 6) .. "/" .. string.sub(str, 7, 8), "" },
-                    { string.format("%d年%d月%d日", y, m, d), "" },
-                    { string.format("%d月%d日", m, d), "" },
-                }
-            end
-            
-            -- 添加农历和干支信息（无论是否使用自定义格式）
-            table.insert(result, { LunarDate, "" })
-            table.insert(result, { LunarGz, "" })
-            
-            -- 添加闰月信息
-            if tonumber(string.sub(str, 7, 8)) < 31 then
-                table.insert(result, { DateTime, "" })
-                local leapDate = LunarDate2Date(str, 1) .. "（闰）"
-                if string.match(leapDate, "^(%d+)") ~= nil then
-                    table.insert(result, { leapDate, "〔农历⇉公历〕" })
-                end
-            end
-        end
+-- N 日期输入解析：只负责补全和拆字段，不替公历/农历业务做合法性判断。
+-- 兼容原有逐位输入规则：N2025 -> 2025-01-01 01时，N20251 -> 2025-11-01 01时等。
+local function parse_n_date_input(date)
+    local raw = tostring(date or ""):gsub("^(%u+)", "")
+    if not raw:match("^%d+$") or not (raw:match("^19%d%d") or raw:match("^20%d%d")) then
+        return nil
     end
-    return result
+
+    local len = #raw
+    if len < 4 then return nil end
+
+    local completed
+    if len == 4 then
+        completed = raw .. "010101"
+    elseif len == 5 then
+        completed = raw .. "10101"
+    elseif len == 6 then
+        completed = raw .. "0101"
+    elseif len == 7 then
+        completed = raw .. "101"
+    elseif len == 8 then
+        completed = raw .. "01"
+    elseif len == 9 then
+        completed = raw .. "0"
+    else
+        completed = raw:sub(1, 10)
+    end
+
+    local year = tonumber(completed:sub(1, 4))
+    local month = tonumber(completed:sub(5, 6))
+    local day = tonumber(completed:sub(7, 8))
+    local hour = tonumber(completed:sub(9, 10))
+    if not year or not month or not day or not hour or hour < 0 or hour > 23 then
+        return nil
+    end
+
+    return {
+        raw = raw,
+        completed = completed,
+        year = year,
+        month = month,
+        day = day,
+        hour = hour,
+        ymd = completed:sub(1, 8),
+        ymdh = completed:sub(1, 10)
+    }
+end
+
+-- N 日期查询：公历、普通农历、闰月农历分别判定，互不替代。
+-- 候选只从已经通过对应转换核心验证的数据生成，避免先拼出非法日期文本再补救。
+local function QueryLunarInfo(env, date)
+    local config = env.engine.schema.config
+    local result = {}
+    local parsed = parse_n_date_input(date)
+    local status = {
+        parsed = parsed ~= nil,
+        gregorian_valid = false,
+        lunar_normal_valid = false,
+        lunar_leap_valid = false,
+        any_valid = false
+    }
+
+    if not parsed then
+        return result, status
+    end
+
+    -- 三种语义各自交给自己的转换核心判断是否合法。
+    local gregorian_info = GregorianToLunarInfo(parsed.ymd)
+    local normal_date_info = LunarToGregorianInfo(parsed.ymd, false)
+    local leap_date_info = LunarToGregorianInfo(parsed.ymd, true)
+
+    status.gregorian_valid = gregorian_info ~= nil
+    status.lunar_normal_valid = normal_date_info ~= nil
+    status.lunar_leap_valid = leap_date_info ~= nil
+    status.any_valid = status.gregorian_valid or status.lunar_normal_valid or status.lunar_leap_valid
+
+    -- 只有公历语义合法时，才生成公历格式、农历结果和干支；非法公历绝不交给 os.time 归一化。
+    if gregorian_info then
+        local y, m, d = parsed.year, parsed.month, parsed.day
+        local custom_formats = config:get_list("date_formats")
+
+        if custom_formats and custom_formats.size > 0 then
+            for i = 1, custom_formats.size do
+                local format_str = custom_formats:get_value_at(i - 1):get_string()
+                local formatted_date = format_dt({ year = y, month = m, day = d }, format_str)
+                if formatted_date and formatted_date ~= "" then
+                    result[#result + 1] = { formatted_date, "" }
+                end
+            end
+        else
+            result = {
+                { string.format("%04d年%02d月%02d日", y, m, d), "" },
+                { string.format("%04d.%02d.%02d", y, m, d), "" },
+                { string.format("%04d-%02d-%02d", y, m, d), "" },
+                { string.format("%04d/%02d/%02d", y, m, d), "" },
+                { string.format("%d年%d月%d日", y, m, d), "" },
+                { string.format("%d月%d日", m, d), "" },
+            }
+        end
+
+        result[#result + 1] = { gregorian_info.text, "" }
+        result[#result + 1] = { lunarJzl(parsed.ymdh), "" }
+    end
+
+    -- 农历 -> 公历与公历合法性无关：普通月、闰月分别由结构化农历核心验证。
+    if normal_date_info then
+        result[#result + 1] = { normal_date_info.text, "" }
+    end
+    if leap_date_info then
+        result[#result + 1] = { leap_date_info.text .. "（闰）", "〔农历⇉公历〕" }
+    end
+
+    return result, status
 end
 
 -- 万象新增三伏天计算函数
--- 输入yyyymmdd返回:初伏(1)形式字符串
--- 起点：夏至之后(查询节气表找到夏至的日期)
--- 以夏至为起点向后遍历公历转农历，正则提取返回值以获取是否为庚日
--- 初伏：夏至起第3个庚日开始 ➔相隔10天
--- 中伏：初伏和末伏间隔，可能为10或者20天
--- 末伏：立秋起第1个庚日开始 ➔ 10天结束
-
--- 全局缓存表
+-- 三伏只读取结构化干支字段 day_gan，不再从展示字符串中正则反解。
+-- 日期推进统一使用公历日期服务。
 local sanfu_cache = {}
 
--- 三伏天专用日期计算函数（无跨年处理）
-function nextDayForSanfu(ymd, offset)
-    offset = offset or 1
-    local y = tonumber(ymd:sub(1, 4))
-    local m = tonumber(ymd:sub(5, 6))
-    local d = tonumber(ymd:sub(7, 8))
-
-    -- 三伏天月份天数定义（6-9月）
-    local month_days = {
-        [6] = 30, -- 六月
-        [7] = 31, -- 七月
-        [8] = 31, -- 八月
-        [9] = 30  -- 九月
-    }
-    -- 日期计算
-    d = d + offset
-    while true do
-        local max_days = month_days[m] or 31 -- 默认为31天
-        
-        -- 日期在有效范围内
-        if d <= max_days and d >= 1 then
-            break
-        end
-        -- 超出本月天数（进入下个月）
-        if d > max_days then
-            d = d - max_days
-            m = m + 1
-        end
-        -- 小于1（进入上个月）
-        if d < 1 then
-            m = m - 1
-            d = d + (month_days[m] or 31)
-        end
-    end
-    return string.format("%04d%02d%02d", y, m, d)
+local function nextDayForSanfu(ymd, offset)
+    return shift_gregorian_ymd(ymd, offset or 1)
 end
+
 function buildSanfuCache(year)
     if sanfu_cache[year] then
         return sanfu_cache[year]
@@ -2028,18 +1916,14 @@ function buildSanfuCache(year)
     local geng_count = 0
     local chufu_start
     while geng_count < 3 do
-        local lunar_str = lunarJzl(date .. "12")
-        -- 保留原始正则表达式匹配
-        if lunar_str:match("月庚.*日") then
+        local ganzhi_info = get_ganzhi_info(date .. "12")
+        if ganzhi_info and ganzhi_info.day_gan == "庚" then
             geng_count = geng_count + 1
             if geng_count == 3 then
                 chufu_start = date
             end
         end
-        local _year = date:sub(1, 4)
-        local _month = date:sub(5, 6)
-        local _day = date:sub(7, 8)
-        date = os.date("%Y%m%d", os.time({ year = _year, month = _month, day = tonumber(_day) + 1 }))
+        date = nextDayForSanfu(date)
     end
  
     -- 2. 计算末伏第一天（立秋后第一个庚日）
@@ -2047,9 +1931,8 @@ function buildSanfuCache(year)
     local mofu_start
 
     while not mofu_start do
-        local lunar_str = lunarJzl(date .. "12")
-        -- 保留原始正则表达式匹配
-        if lunar_str:match("月庚.*日") then
+        local ganzhi_info = get_ganzhi_info(date .. "12")
+        if ganzhi_info and ganzhi_info.day_gan == "庚" then
             mofu_start = date
         end
         date = nextDayForSanfu(date) -- 使用专用日期函数
@@ -2098,105 +1981,23 @@ function get_sanfu_info(yyyymmdd)
     end
     return cache[yyyymmdd]
 end
--- 初始化函数：在部署时构建缓存
-function initSanfuCache()
-    if initialized then return end  -- 避免重复初始化
-    
-    -- 只初始化当前年份
-    local current_year = os.date("%Y")
-    buildSanfuCache(current_year)
-    
-    initialized = true
-end
--- 在部署时调用此函数初始化缓存
-initSanfuCache()
 --三伏天计算结束
 
-
 -- 万象修改的新的农历倒计时模块
--- 定义一个月映射表，采用明确的字符串键
-local month_map = {
-    ["正月"] = "01",
-    ["二月"] = "02",
-    ["三月"] = "03",
-    ["四月"] = "04",
-    ["五月"] = "05",
-    ["六月"] = "06",
-    ["七月"] = "07",
-    ["八月"] = "08",
-    ["九月"] = "09",
-    ["十月"] = "10",
-    ["冬月"] = "11",
-    ["腊月"] = "12"
-}
-
--- 功能：将农历日期转换为公历日期
-local function nl_shengri(y, m, d)
-    -- 获取当前日期
-    local date1 = os.date("%Y%m%d")
-    local nlsrsj = y .. m .. d                  -- 农历时间
-    -- 提取农历日期的年份
-    local year = string.sub(nlsrsj, 1, 4) -- 提取“2015”从“20150621”
-
-    -- 第二步：扩展为该年份的所有可能日期（每月15号）
-    local dates = {}
-    for month = 1, 12 do
-        local date = year .. string.format("%02d", month) .. "15" -- 例如：20150115, 20150215...20151215取15日保险
-        table.insert(dates, date)
-    end
-
-    -- 第三步：调用 Date2LunarDate 验证这些日期，检查是否为闰月
-    local leap_month = nil                               -- 默认没有闰月
-    for _, date in ipairs(dates) do
-        local lunar_date = Date2LunarDate(os.date(date)) -- 返回:乙巳年(蛇)正月三十/
-
-        if string.match(lunar_date, "闰") then
-            local lunar_month = string.match(lunar_date, "(.-)月") -- 提取“闰”后面的月份
-            leap_month = month_map[lunar_month] -- 闰月对应的数字（例如“闰二月” -> "02"）
+-- 传统节日直接使用结构化农历转换结果，不再扫描公历月份、不再从中文字符串反解“闰月”。
+local function get_next_lunar_occurrence(month, day, is_leap, current_ymd)
+    current_ymd = tostring(current_ymd or os.date("%Y%m%d"))
+    local current_info = GregorianToLunarInfo(current_ymd)
+    if not current_info then return nil end
+    local mmdd = string.format("%02d%02d", tonumber(month), tonumber(day))
+    for lunar_year = current_info.lunar_year, math.min(current_info.lunar_year + 2, 2100) do
+        local target = LunarToGregorianInfo(tostring(lunar_year) .. mmdd, is_leap)
+        if target and target.ymd >= current_ymd then
+            target.days = days_between_gregorian(current_ymd, target.ymd)
+            return target
         end
     end
-
-    -- 第四步：从数字日期（如“20250607”）中提取月份02
-    local lunar_month_str = string.sub(nlsrsj, 5, 6) -- 提取月份部分（如“02”）
-
-    -- 第五步：根据已识别的闰月进行判断
-    local lunar_month = lunar_month_str -- 直接使用提取的月份（例如“02”）
-
-    -- 第六步：检查输入的农历月份是否为闰月
-    local date2 = nil
-    if leap_month and lunar_month == leap_month then
-        -- 如果是闰月，传递1
-        date2 = LunarDate2Date(nlsrsj, 1) -- 闰月传递1
-    else
-        -- 非闰月，传递0
-        date2 = LunarDate2Date(nlsrsj, 0) -- 非闰月传递0
-    end
-    -- 继续处理年份和月份，格式化为公历格式
-    m = string.match(date2, "年(.-)月")
-    if #m == 2 then
-        date2 = string.gsub(date2, "年", "", 1)
-    else
-        date2 = string.gsub(date2, "年", "0", 1)
-    end
-    d = string.match(date2, "月(.-)日")
-    if #d == 2 then
-        date2 = string.gsub(date2, "月", "", 1)
-    else
-        date2 = string.gsub(date2, "月", "0", 1)
-    end
-    date2 = string.gsub(date2, "日", "", 1)
-
-    -- 计算日期差异
-    local result = diffDate(date1, date2)
-    return result
-end
--- 二次循环跨年调用
-local function nl_shengri2(y, m, d)
-    while nl_shengri(y, m, d) == -1 do
-        y = math.floor(y + 1)
-    end
-    local result = nl_shengri(y, m, d)
-    return result
+    return nil
 end
 
 
@@ -2240,146 +2041,153 @@ local lunar_holidays = {
     ["小年"] = "1223" -- 腊月廿三
 }
 
--- 获取指定月的第n个指定星期几
+-- 公历星期与“第 n 个星期”均使用日序计算，避免 os.time 的 DST 归一化。
+local WEEKDAY_NAME_TO_NUM = {
+    ["星期日"] = 0, ["星期一"] = 1, ["星期二"] = 2, ["星期三"] = 3,
+    ["星期四"] = 4, ["星期五"] = 5, ["星期六"] = 6
+}
+
+local function gregorian_weekday(year, month, day)
+    local iso = gregorian_weekday_iso(year, month, day)
+    return iso == 7 and 0 or iso
+end
+
 local function get_nth_weekday(year, month, weekday, n)
-    -- 遍历1到31号日期
-    for day = 1, 31 do
-        -- 获取该日期
-        local current_date = os.time({
-            year = year,
-            month = month,
-            day = day
-        })
+    year, month, n = tonumber(year), tonumber(month), tonumber(n)
+    local target = type(weekday) == "number" and weekday or WEEKDAY_NAME_TO_NUM[weekday]
+    if not year or not month or target == nil or not n or n < 1 or month < 1 or month > 12 then return nil end
+    local first_wday = gregorian_weekday(year, month, 1)
+    local day = 1 + ((target - first_wday) % 7) + (n - 1) * 7
+    if not is_valid_gregorian_date(year, month, day) then return nil end
+    return string.format("%04d%02d%02d", year, month, day)
+end
 
-        -- 如果超出当前月的天数，则结束
-        if os.date("%m", current_date) ~= string.format("%02d", month) then
-            break
+local function get_last_weekday(year, month, weekday)
+    local target = type(weekday) == "number" and weekday or WEEKDAY_NAME_TO_NUM[weekday]
+    if target == nil then return nil end
+    local max_day = days_in_gregorian_month(year, month)
+    local last_wday = gregorian_weekday(year, month, max_day)
+    local day = max_day - ((last_wday - target) % 7)
+    return string.format("%04d%02d%02d", year, month, day)
+end
+
+local function days_until(target_date, current_date)
+    current_date = current_date or os.date("%Y%m%d")
+    target_date = tostring(target_date or ""):gsub("%D", "")
+    return days_between_gregorian(current_date, target_date)
+end
+
+local function next_fixed_solar_occurrence(mmdd, current_ymd)
+    local current_year = tonumber(current_ymd:sub(1, 4))
+    for year = current_year, current_year + 1 do
+        local month, day = tonumber(mmdd:sub(1, 2)), tonumber(mmdd:sub(3, 4))
+        local target = string.format("%04d%02d%02d", year, month, day)
+        if is_valid_gregorian_date(year, month, day) and target >= current_ymd then
+            return { ymd = target, year = year, month = month, day = day, days = days_until(target, current_ymd) }
         end
-        -- 获取该日期是星期几
-        local week_day_str = chinese_weekday2(tonumber(os.date("%w", current_date)))
+    end
+    return nil
+end
 
-        -- 判断是否是目标星期几
-        if week_day_str == weekday then
-            -- 减去1，因为要获取的是第n个目标星期几
-            n = n - 1
-            -- 如果找到了第n个目标星期几，返回该日期
-            if n == 0 then
-                return os.date("%Y%m%d", current_date) -- 返回日期的格式为 "YYYYMMDD"
+local function next_nth_weekday_occurrence(month, weekday, n, current_ymd)
+    local current_year = tonumber(current_ymd:sub(1, 4))
+    for year = current_year, current_year + 1 do
+        local target = get_nth_weekday(year, month, weekday, n)
+        if target and target >= current_ymd then
+            return { ymd = target, days = days_until(target, current_ymd) }
+        end
+    end
+    return nil
+end
+
+local function next_jieqi_occurrence(name, current_ymd)
+    local current_year = tonumber(current_ymd:sub(1, 4))
+    for cycle_year = current_year, current_year + 1 do
+        for _, record in ipairs(build_jieqi_cycle(cycle_year)) do
+            if record.name == name and record.ymd >= current_ymd then
+                return { ymd = record.ymd, text = record.date, days = days_until(record.ymd, current_ymd) }
             end
         end
     end
-    return nil -- 如果没有找到，返回nil
+    return nil
 end
--- 计算目标日期和当前日期的天数差
-local function days_until(target_date)
-    local current_date = os.date("%Y%m%d")           -- 获取当前日期 (yyyyMMdd)
-    -- 去除返回值中的汉字，只保留数字部分
-    target_date = target_date:gsub("%D", "")         -- 去除所有非数字字符
-    local diff = diffDate(current_date, target_date) -- 计算当前日期与目标日期的天数差
-    return diff                                      -- 返回天数差
+
+local function get_next_chuxi(current_ymd)
+    local reference = current_ymd
+    for _ = 1, 2 do
+        local cny = get_next_lunar_occurrence(1, 1, false, reference)
+        if not cny then return nil end
+        local eve = shift_gregorian_ymd(cny.ymd, -1)
+        if eve and eve >= current_ymd then
+            local y, m, d = tonumber(eve:sub(1,4)), tonumber(eve:sub(5,6)), tonumber(eve:sub(7,8))
+            return { ymd = eve, text = format_gregorian_cn(y, m, d), days = days_until(eve, current_ymd) }
+        end
+        reference = shift_gregorian_ymd(current_ymd, 1) or current_ymd
+    end
+    return nil
 end
--- 获取即将到来的节日（公历和农历）
-local function get_upcoming_holidays()
+
+local upcoming_holiday_cache = { date = nil, data = nil }
+
+local function get_upcoming_holidays(jqs, now_ts)
+    now_ts = now_ts or os.time()
+    local current_ymd = os.date("%Y%m%d", now_ts)
+    if upcoming_holiday_cache.date == current_ymd and upcoming_holiday_cache.data then
+        return upcoming_holiday_cache.data
+    end
+
     local upcoming_holidays = {}
-    local current_year = os.date("%Y")
 
-    -- 处理公历节日
-    for holiday, date in pairs(solar_holidays) do
-        local target_date = current_year .. date -- 当前年份的公历节日
-        local days_left = days_until(target_date)
-        if days_left >= 0 then
-            -- 直接获取完整日期，格式为 "yyyy年mm月dd日"
-            local m, d = target_date:sub(5, 6), target_date:sub(7, 8)
-            local formatted_date = string.format("%s年%s月%s日", current_year, m, d)
-            table.insert(upcoming_holidays, { holiday, formatted_date, days_left })
+    -- 固定公历节日：今年已过则滚到下一年。
+    for holiday, mmdd in pairs(solar_holidays) do
+        local occurrence = next_fixed_solar_occurrence(mmdd, current_ymd)
+        if occurrence then
+            upcoming_holidays[#upcoming_holidays + 1] = {
+                holiday, format_gregorian_cn(occurrence.year, occurrence.month, occurrence.day), occurrence.days
+            }
         end
     end
-    -- 处理农历节日
+
+    -- 固定传统节日属于普通农历月；闰月不自动重复节日。
     for holiday, lunar_date in pairs(lunar_holidays) do
-        local days_ymd = os.date("%Y%m%d") -- 获取当前年月日
-        -- 使用农历倒计时
-        local countdown = nl_shengri2(os.date("%Y"), lunar_date:sub(1, 2), lunar_date:sub(3, 4))
-
-        -- 如果倒计时为负，说明节日已过，需要加一年
-        if countdown < 0 then
-            countdown = nl_shengri2(os.date("%Y") + 1, lunar_date:sub(1, 2), lunar_date:sub(3, 4))
-        end
-
-        -- 使用倒计时和GettotalDay函数计算农历节日的公历日期
-        local solar_date = GettotalDay(days_ymd, countdown)
-
-        -- 直接使用完整的公历日期格式（假设 GettotalDay 返回 "yyyy年mm月dd日"）
-        table.insert(upcoming_holidays, { holiday, solar_date, countdown })
-
-        -- 如果是春节，计算除夕
-        if holiday == "春节" then
-            -- 计算春节的公历日期
-            local year, month, day = solar_date:match("^(%d+)年(%d+)月(%d+)日")
-            -- 将日期减去一天来获得除夕的日期
-            local previous_day = os.time {
-                year = tonumber(year),
-                month = tonumber(month),
-                day = tonumber(day)
-            } - 24 * 60 * 60
-            -- 格式化除夕的日期为 "yyyy年mm月dd日"
-            local eve_date = os.date("%Y年%m月%d日", previous_day)
-            -- 将除夕的日期插入到节日列表中
-            table.insert(upcoming_holidays, { "除夕", eve_date, countdown - 1 })
+        local occurrence = get_next_lunar_occurrence(lunar_date:sub(1, 2), lunar_date:sub(3, 4), false, current_ymd)
+        if occurrence then
+            upcoming_holidays[#upcoming_holidays + 1] = { holiday, occurrence.text, occurrence.days }
         end
     end
 
-    -- 感恩节：每年11月的第四个星期四
-    local thanksgiving_date = get_nth_weekday(current_year, 11, "星期四", 4) -- 获取11月第四个星期四
-    local thanksgiving_days_left = days_until(thanksgiving_date)
-    if thanksgiving_days_left and thanksgiving_days_left >= 0 then
-        -- 直接使用完整日期
-        local formatted_date = thanksgiving_date:sub(1, 4) .. "年" .. thanksgiving_date:sub(5, 6) .. "月" ..
-            thanksgiving_date:sub(7, 8) .. "日"
-        table.insert(upcoming_holidays, { "感恩节", formatted_date, thanksgiving_days_left })
+    -- 除夕是下一次春节的前一天，不硬编码“腊月三十”。
+    local chuxi = get_next_chuxi(current_ymd)
+    if chuxi then
+        upcoming_holidays[#upcoming_holidays + 1] = { "除夕", chuxi.text, chuxi.days }
     end
 
-    -- 母亲节：每年5月的第二个星期日
-    local mothers_day_date = get_nth_weekday(current_year, 5, "星期日", 2) -- 获取5月第二个星期日
-    local mothers_day_days_left = days_until(mothers_day_date)
-    if mothers_day_days_left and mothers_day_days_left >= 0 then
-        -- 直接使用完整日期
-        local formatted_date = mothers_day_date:sub(1, 4) .. "年" .. mothers_day_date:sub(5, 6) .. "月" ..
-            mothers_day_date:sub(7, 8) .. "日"
-        table.insert(upcoming_holidays, { "母亲节", formatted_date, mothers_day_days_left })
-    end
-
-    -- 父亲节：每年6月的第三个星期日
-    local fathers_day_date = get_nth_weekday(current_year, 6, "星期日", 3) -- 获取6月第三个星期日
-    local fathers_day_days_left = days_until(fathers_day_date)
-    if fathers_day_days_left and fathers_day_days_left >= 0 then
-        -- 直接使用完整日期
-        local formatted_date = fathers_day_date:sub(1, 4) .. "年" .. fathers_day_date:sub(5, 6) .. "月" ..
-            fathers_day_date:sub(7, 8) .. "日"
-        table.insert(upcoming_holidays, { "父亲节", formatted_date, fathers_day_days_left })
-    end
-
-    -- 获取所有节气
-    local jqs = GetNowTimeJq(os.date("%Y%m%d", os.time())) -- 获取节气
-    -- 遍历所有节气
-    for _, jq_info in ipairs(jqs) do
-        -- 使用正则匹配节气名称和日期（假设日期格式为 yyyy-mm-dd）
-        local jq_name, jq_date = jq_info:match("^(%S+)%s+(%d+%-%d+%-%d+)$") -- 匹配节气名称和日期
-        -- 如果是清明节
-        if jq_name == "清明" then
-            -- 直接使用完整日期
-            local formatted_date = jq_date:gsub("%-", "") -- 去掉日期中的"-"
-            local days_left = days_until(formatted_date)  -- 获取距离清明节的天数
-            -- 格式化为 "yyyy年mm月dd日"
-            formatted_date = jq_date:sub(1, 4) .. "年" .. jq_date:sub(6, 7) .. "月" .. jq_date:sub(9, 10) .. "日"
-            table.insert(upcoming_holidays, { "清明节", formatted_date, days_left })
+    local moving_holidays = {
+        { "母亲节", 5, "星期日", 2 },
+        { "父亲节", 6, "星期日", 3 },
+        { "感恩节", 11, "星期四", 4 },
+    }
+    for _, item in ipairs(moving_holidays) do
+        local occurrence = next_nth_weekday_occurrence(item[2], item[3], item[4], current_ymd)
+        if occurrence then
+            local y, m, d = tonumber(occurrence.ymd:sub(1,4)), tonumber(occurrence.ymd:sub(5,6)), tonumber(occurrence.ymd:sub(7,8))
+            upcoming_holidays[#upcoming_holidays + 1] = { item[1], format_gregorian_cn(y, m, d), occurrence.days }
         end
     end
 
-    -- 按照距离最近的天数排序
+    local qingming = next_jieqi_occurrence("清明", current_ymd)
+    if qingming then
+        local y, m, d = tonumber(qingming.ymd:sub(1,4)), tonumber(qingming.ymd:sub(5,6)), tonumber(qingming.ymd:sub(7,8))
+        upcoming_holidays[#upcoming_holidays + 1] = { "清明节", format_gregorian_cn(y, m, d), qingming.days }
+    end
+
     table.sort(upcoming_holidays, function(a, b)
+        if a[3] == b[3] then return a[1] < b[1] end
         return a[3] < b[3]
     end)
 
+    upcoming_holiday_cache.date = current_ymd
+    upcoming_holiday_cache.data = upcoming_holidays
     return upcoming_holidays
 end
 
@@ -2401,23 +2209,181 @@ local function generate_candidates(input, alias, seg, candidates)
     end
 end
 
--- 判断指定年月日是否合法
-local function DateExists(year, month, day)
-    local days
-    if IsLeap(year) > 365 then
-        days = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
-    else
-        days = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
-    end
-    return month >= 1 and month <= 12 and day >= 1 and day <= days[month]
-end
-
 -- 设置 segment 提示
-local function set_prompt_if_invalid(context, msg)
+local function set_segment_prompt(context, msg)
     local segment = context.composition:back()
     if segment then
         segment.prompt = msg
     end
+end
+
+
+-- 候选数据公共构建层
+local function append_candidates(target, extra)
+    for _, item in ipairs(extra or {}) do
+        target[#target + 1] = item
+    end
+end
+
+local function build_configured_format_candidates(config, config_key, dt, default_builder)
+    local configured = config:get_list(config_key)
+    if configured and configured.size > 0 then
+        local candidates = {}
+        for i = 1, configured.size do
+            local fmt = configured:get_value_at(i - 1):get_string()
+            local formatted = format_dt(dt, fmt)
+            if formatted and formatted ~= "" then
+                candidates[#candidates + 1] = { formatted, "" }
+            end
+        end
+        return candidates
+    end
+    return default_builder()
+end
+
+local function build_date_candidates(config, dt, ts)
+    ts = ts or os.time(dt)
+    return build_configured_format_candidates(config, "date_formats", dt, function()
+        return {
+            { os.date("%Y年%m月%d日", ts), "" },
+            { os.date("%Y.%m.%d", ts), "" },
+            { os.date("%Y-%m-%d", ts), "" },
+            { os.date("%Y/%m/%d", ts), "" },
+            { os.date("%Y%m%d", ts), "" },
+            { os.date("%y年%m月%d日", ts), "" },
+            { os.date("%y%m%d", ts), "" },
+            { string.format("%d年%d月%d日", dt.year, dt.month, dt.day), "" },
+            { string.format("%d年%d月%d日", dt.year % 100, dt.month, dt.day), "" },
+            { string.format("%d月%d日", dt.month, dt.day), "" },
+        }
+    end)
+end
+
+-- ===== 世界时钟：基础时区 + DST 规则 =====
+local WORLD_CLOCK_ZONES = {
+    { name="北京", offset=8 },
+    { name="伦敦", offset=0, dst="eu" },
+    { name="纽约", offset=-5, dst="us" },
+    { name="东京", offset=9 },
+    { name="洛杉矶", offset=-8, dst="us" },
+    { name="香港", offset=8 },
+    { name="新加坡", offset=8 },
+    { name="巴黎", offset=1, dst="eu" },
+    { name="柏林", offset=1, dst="eu" },
+    { name="悉尼", offset=10, dst="au_sydney" },
+    { name="首尔", offset=9 },
+    { name="莫斯科", offset=3 },
+    { name="旧金山", offset=-8, dst="us" },
+    { name="多伦多", offset=-5, dst="us" },
+    { name="芝加哥", offset=-6, dst="us" },
+    { name="迪拜", offset=4 },
+    { name="孟买", offset=5.5 },
+    { name="温哥华", offset=-8, dst="us" },
+    { name="曼谷", offset=7 },
+}
+
+local function datetime_key(t)
+    return (((((t.year * 100 + t.month) * 100 + t.day) * 100 + t.hour) * 100) + (t.min or 0))
+end
+
+local function ymdh_key(year, month, day, hour, min)
+    return (((((year * 100 + month) * 100 + day) * 100 + hour) * 100) + (min or 0))
+end
+
+local function zone_dst_active(zone, now_ts)
+    if not zone.dst then return false end
+    local base_local = os.date("!*t", now_ts + zone.offset * 3600)
+    local year = base_local.year
+    local now_key = datetime_key(base_local)
+
+    if zone.dst == "us" then
+        local start = get_nth_weekday(year, 3, 0, 2)
+        local finish = get_nth_weekday(year, 11, 0, 1)
+        local sd, ed = tonumber(start:sub(7,8)), tonumber(finish:sub(7,8))
+        -- 起点：02:00 标准时；终点：02:00 夏令时 = 01:00 标准时。
+        return now_key >= ymdh_key(year, 3, sd, 2, 0) and now_key < ymdh_key(year, 11, ed, 1, 0)
+    elseif zone.dst == "eu" then
+        local start = get_last_weekday(year, 3, 0)
+        local finish = get_last_weekday(year, 10, 0)
+        local sd, ed = tonumber(start:sub(7,8)), tonumber(finish:sub(7,8))
+        local boundary_hour = 1 + zone.offset -- 欧洲切换统一发生于 UTC 01:00
+        return now_key >= ymdh_key(year, 3, sd, boundary_hour, 0) and now_key < ymdh_key(year, 10, ed, boundary_hour, 0)
+    elseif zone.dst == "au_sydney" then
+        local start = get_nth_weekday(year, 10, 0, 1)
+        local finish = get_nth_weekday(year, 4, 0, 1)
+        local sd, ed = tonumber(start:sub(7,8)), tonumber(finish:sub(7,8))
+        if base_local.month >= 10 then
+            return now_key >= ymdh_key(year, 10, sd, 2, 0)
+        elseif base_local.month <= 4 then
+            -- 03:00 夏令时结束，等价于基础 UTC+10 标准时的 02:00。
+            return now_key < ymdh_key(year, 4, ed, 2, 0)
+        end
+    end
+    return false
+end
+
+local function zone_effective_offset(zone, now_ts)
+    local dst = zone_dst_active(zone, now_ts)
+    return zone.offset + (dst and 1 or 0), dst
+end
+
+local function format_utc_offset(offset)
+    local sign = offset >= 0 and "+" or "-"
+    local abs = math.abs(offset)
+    local hour = math.floor(abs)
+    local min = math.floor((abs - hour) * 60 + 0.5)
+    return string.format("UTC%s%02d:%02d", sign, hour, min)
+end
+
+local function format_beijing_diff(offset)
+    local diff = offset - 8
+    if math.abs(diff) < 1e-9 then return "同频" end
+    local sign = diff > 0 and "+" or "-"
+    local abs = math.abs(diff)
+    local hour = math.floor(abs)
+    local min = math.floor((abs - hour) * 60 + 0.5)
+    if min == 0 then return "北京" .. sign .. tostring(hour) end
+    return string.format("北京%s%d:%02d", sign, hour, min)
+end
+
+local function local_utc_offset()
+    local raw = os.date("%z") or "+0000"
+    local sign, hh, mm = raw:match("^([+-])(%d%d):?(%d%d)$")
+    if not sign then return 0 end
+    local value = tonumber(hh) + tonumber(mm) / 60
+    return sign == "-" and -value or value
+end
+-- ===== 世界时钟服务结束 =====
+
+local function build_lunar_snapshot(ts)
+    local ymd = os.date("%Y%m%d", ts)
+    local ymdh = os.date("%Y%m%d%H", ts)
+    local lunar_date = Date2LunarDate(ymd)
+
+    return {
+        chinese_date = CnDate_translator(ymd),
+        ganzhi = lunarJzl(ymdh),
+        lunar_date = lunar_date,
+        jieqi = JQtest(ymd),
+        sichen = GetLunarSichen(os.date("%H", ts), 1)
+    }
+end
+
+local function build_full_lunar_variants(snapshot)
+    return {
+        { snapshot.chinese_date, "" },
+        { snapshot.ganzhi, "" },
+        { snapshot.lunar_date .. snapshot.jieqi, "" },
+        { snapshot.lunar_date .. snapshot.sichen, "" }
+    }
+end
+
+local function build_lunar_only_candidates(snapshot)
+    return {
+        { snapshot.lunar_date .. snapshot.jieqi, "" },
+        { snapshot.ganzhi, "" },
+        { snapshot.lunar_date .. snapshot.sichen, "" }
+    }
 end
 
 ---@param input string
@@ -2428,8 +2394,6 @@ local function translator(input, seg, env)
     local context = engine.context
     local config  = engine.schema.config
     local segment = context.composition:back()
-    local handled = false  -- 仅当我们真正产出了候选，才设置为 true 并 return
-
     local function set_ndate_tag(context, on)
         local comp = context and context.composition
         if not comp or comp:empty() then return end
@@ -2463,17 +2427,14 @@ local function translator(input, seg, env)
                 local mm = tonumber(n:sub(1, 2))
                 local dd = tonumber(n:sub(3, 4))
 
-                -- 粗校验 + 精校验（不 return；合法时再产出、并结束）
-                local ok = (mm and dd and mm >= 1 and mm <= 12 and dd >= 1 and dd <= 31)
-                if ok then
-                    ok = DateExists(tonumber(yr), mm, dd)
-                end
+                -- 公历合法性的唯一来源：统一使用底层日期校验。
+                local ok = is_valid_gregorian_date(tonumber(yr), mm, dd)
 
                 if not ok then
-                    set_prompt_if_invalid(context, " 〔日期不存在〕")
+                    set_segment_prompt(context, " 〔日期不存在〕")
                 else
                     -- 合法 → 产出候选并结束
-                    set_prompt_if_invalid(context, " 〔" .. yr .. "年" .. "〕")
+                    set_segment_prompt(context, " 〔" .. yr .. "年" .. "〕")
 
                     local mm_str = string.format("%02d", mm)
                     local dd_str = string.format("%02d", dd)
@@ -2485,7 +2446,6 @@ local function translator(input, seg, env)
                             { string.format("%d月%d日", mm, dd), "" },
                             { string.format("%02d月%02d日", mm, dd), "" }
                         }
-                        local zodiacs = {"鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"}
                         for _, cand in ipairs(lunar) do
                             local text = cand[1]
                             if not text:match("%d") then
@@ -2506,22 +2466,25 @@ local function translator(input, seg, env)
             if not handled and (n:match("^20%d%d") or n:match("^19%d%d")) then
                 context:set_property("sequence_adjustment_code", "N")
 
+                local lunar, status = QueryLunarInfo(env, n)
+
+                -- 输入完整到 YYYYMMDD 后，再根据三种语义的真实状态给提示。
+                -- 公历无效但农历有效时仍保留农历->公历候选，不做一刀切。
                 if len >= 8 then
-                    local yyyy = tonumber(n:sub(1, 4))
-                    local mm   = tonumber(n:sub(5, 6))
-                    local dd   = tonumber(n:sub(7, 8))
-                    if not DateExists(yyyy, mm, dd) then
-                        set_prompt_if_invalid(context, " 〔日期不存在〕")
+                    if not status.any_valid then
+                        set_segment_prompt(context, " 〔日期不存在〕")
+                    elseif not status.gregorian_valid then
+                        set_segment_prompt(context, " 〔仅农历日期有效〕")
+                    else
+                        set_segment_prompt(context, "")
                     end
+                else
+                    -- 从完整日期回删到输入中状态时，主动清掉上一轮可能留下的错误提示。
+                    set_segment_prompt(context, "")
                 end
 
-                local lunar = QueryLunarInfo(env, n)
                 if #lunar > 0 then
-                    local candidates = {}
-                    for i = 1, #lunar do
-                        candidates[#candidates + 1] = { lunar[i][1], lunar[i][2] }
-                    end
-                    generate_candidates(input, "shijian", seg, candidates)
+                    generate_candidates(input, "shijian", seg, lunar)
                     handled = true
                 end
             end
@@ -2556,60 +2519,18 @@ local function translator(input, seg, env)
 
     segment.tags = segment.tags + Set({ "shijian" })
 
-    -- **日期候选项**
+    -- 日期候选项
     if (command == "rq" or command == "77") then
-        --- 设置手动排序的排序编码，以启用手动排序支持
         context:set_property("sequence_adjustment_code", "/rq")
 
-        local today = os.date("*t") -- 当前时间表
-        local ymd = os.date("%Y%m%d") -- 年月日
-        local ymdh = os.date("%Y%m%d%H") -- 年月日时
-        local num_year = string.format(" 〔%03d/%d〕", today.yday, IsLeap(today.year)) -- 年内第几天/总天数
+        local now_ts = os.time()
+        local today = os.date("*t", now_ts)
+        local num_year = string.format(" 〔%03d/%d〕", today.yday, IsLeap(today.year))
+        local candidates = build_date_candidates(config, today, now_ts)
+        append_candidates(candidates, build_full_lunar_variants(build_lunar_snapshot(now_ts)))
 
-        local candidates = {}
-        local custom_formats = config:get_list("date_formats")
-        
-        if custom_formats and custom_formats.size > 0 then
-            for i = 1, custom_formats.size do
-                local format_str = custom_formats:get_value_at(i-1):get_string()
-                local formatted_date = format_dt(today, format_str)
-                if formatted_date and formatted_date ~= "" then
-                    table.insert(candidates, { formatted_date, "" }) 
-                end
-            end
-        else
-            -- 如果没有自定义配置，使用默认格式
-            candidates = { 
-                -- 带前导零的格式
-                { os.date("%Y年%m月%d日"), "" },
-                { os.date("%Y.%m.%d"), "" },
-                { os.date("%Y-%m-%d"), "" },
-                { os.date("%Y/%m/%d"), "" },
-                { os.date("%Y%m%d"), "" },
-                -- 两位年份格式
-                { os.date("%y年%m月%d日"), "" },
-                { os.date("%y%m%d"), "" },
-                -- 不带前导零的格式
-                { string.format("%d年%d月%d日", today.year, today.month, today.day), "" },
-                { string.format("%d年%d月%d日", today.year % 100, today.month, today.day), "" },
-                { string.format("%d月%d日", today.month, today.day), "" },
-            }
-        end
-        
-        -- 添加农历相关格式（固定显示）
-        local lunar_variants = {
-            { CnDate_translator(ymd), "" },
-            { lunarJzl(ymdh), "" },
-            { Date2LunarDate(ymd) .. JQtest(ymd), "" },
-            { Date2LunarDate(ymd) .. GetLunarSichen(os.date("%H"), 1), "" }
-        }
-        
-        -- 合并日期格式和农历格式
-        for _, variant in ipairs(lunar_variants) do
-            table.insert(candidates, variant) 
-        end
         generate_candidates(input, "rq", seg, candidates)
-        set_prompt_if_invalid(context, num_year)
+        set_segment_prompt(context, num_year)
         return
     end
 
@@ -2624,14 +2545,12 @@ local function translator(input, seg, env)
         segment.tags = segment.tags + Set({ "shijian" })
         context:set_property("sequence_adjustment_code", "/rc")
 
-        -- 状态 1：正在输入数字
         if pending_num then
             local hint = string.format("差值%s天 (从前按 -/o，未来按 +/p/=)", pending_num)
-            generate_candidates("shijian", seg, { { hint, "等待输入..." } })
+            generate_candidates(input, "rc", seg, { { hint, "等待输入..." } })
             return
         end
 
-        -- 状态 2 & 3：计算并显示日期
         local offset = 0
         if finished_num then
             local num = tonumber(finished_num)
@@ -2642,95 +2561,42 @@ local function translator(input, seg, env)
             end
         end
 
-        -- 计算目标时间戳
-        local now_ts = os.time()
-        local target_ts = now_ts + (offset * 24 * 3600)
-        
-        -- 生成目标时间对象
-        local today = os.date("*t", target_ts)
-        local ymd = os.date("%Y%m%d", target_ts)
-        local ymdh = os.date("%Y%m%d%H", target_ts)
-        local num_year = string.format(" 〔%03d/%d〕", today.yday, IsLeap(today.year))
+        local base_ts = os.time()
+        local base_dt = os.date("*t", base_ts)
+        local ty, tm, td = add_days_to_gregorian(base_dt.year, base_dt.month, base_dt.day, offset)
+        local target_ts = os.time({
+            year = ty, month = tm, day = td, hour = base_dt.hour, min = base_dt.min, sec = base_dt.sec, isdst = nil
+        })
+        local target_dt = os.date("*t", target_ts)
+        local num_year = string.format(" 〔%03d/%d〕", target_dt.yday, IsLeap(target_dt.year))
+        local candidates = build_date_candidates(config, target_dt, target_ts)
+        append_candidates(candidates, build_full_lunar_variants(build_lunar_snapshot(target_ts)))
 
-        -- 格式生成逻辑
-        local candidates = {}
-        local custom_formats = config:get_list("date_formats")
-        
-        if custom_formats and custom_formats.size > 0 then
-            for i = 1, custom_formats.size do
-                local format_str = custom_formats:get_value_at(i-1):get_string()
-                local formatted_date = format_dt(today, format_str)
-                if formatted_date and formatted_date ~= "" then
-                    table.insert(candidates, { formatted_date, "" })
-                end
-            end
-        else
-            -- 默认格式
-            candidates = {
-                { os.date("%Y年%m月%d日", target_ts), "" },
-                { os.date("%Y.%m.%d", target_ts), "" },
-                { os.date("%Y-%m-%d", target_ts), "" },
-                { os.date("%Y/%m/%d", target_ts), "" },
-                { os.date("%Y%m%d", target_ts), "" },
-                { os.date("%y年%m月%d日", target_ts), "" },
-                { os.date("%y%m%d", target_ts), "" },
-                { string.format("%d年%d月%d日", today.year, today.month, today.day), "" },
-                { string.format("%d年%d月%d日", today.year % 100, today.month, today.day), "" },
-                { string.format("%d月%d日", today.month, today.day), "" },
-            }
-        end
-        
-        -- 农历部分
-        local lunar_variants = {
-            { CnDate_translator(ymd), "" },
-            { lunarJzl(ymdh), "" },
-            { Date2LunarDate(ymd) .. JQtest(ymd), "" },
-            { Date2LunarDate(ymd) .. GetLunarSichen(os.date("%H", target_ts), 1), "" }
-        }
-        
-        for _, variant in ipairs(lunar_variants) do
-            table.insert(candidates, variant)
-        end
-        
         generate_candidates(input, "rc", seg, candidates)
-        set_prompt_if_invalid(context, num_year)
+        set_segment_prompt(context, num_year)
         return
     end
-    -- **时间候选项**
+    -- 时间候选项
     if (command == "sj" or command == "75") then
-        --- 设置手动排序的排序编码，以启用手动排序支持
         context:set_property("sequence_adjustment_code", "/sj")
 
-        local now = os.date("*t")
-        local time_discrpt = " 〔" .. GetLunarSichen(os.date("%H"), 1) .. "〕"
-
-        -- 优先读 YAML 里的 time_formats
-        local candidates = {}
-        local custom_time_formats = config:get_list("time_formats")
-
-        if custom_time_formats and custom_time_formats.size > 0 then
-            for i = 1, custom_time_formats.size do
-                local fmt = custom_time_formats:get_value_at(i - 1):get_string()
-                local formatted = format_dt(now, fmt)
-                if formatted and formatted ~= "" then
-                    table.insert(candidates, { formatted, "" })
-                end
-            end
-        else
-            -- 没配就走默认
-            candidates = {
-                { os.date("%H:%M"), "" },
-                { os.date("%H:%M:%S"), "" },
-                { format_Time() .. os.date("%I:%M"), "" },
-                { (string.gsub(os.date("%H点%M分%S秒"), "^0", "")), "" },
+        local now_ts = os.time()
+        local now = os.date("*t", now_ts)
+        local hour = os.date("%H", now_ts)
+        local sichen = GetLunarSichen(hour, 1)
+        local time_discrpt = " 〔" .. sichen .. "〕"
+        local candidates = build_configured_format_candidates(config, "time_formats", now, function()
+            return {
+                { os.date("%H:%M", now_ts), "" },
+                { os.date("%H:%M:%S", now_ts), "" },
+                { format_Time() .. os.date("%I:%M", now_ts), "" },
+                { (string.gsub(os.date("%H点%M分%S秒", now_ts), "^0", "")), "" },
             }
-        end
+        end)
 
-        -- 时辰
-        table.insert(candidates, { GetLunarSichen(os.date("%H"), 1), "" })
-
+        candidates[#candidates + 1] = { sichen, "" }
         generate_candidates(input, "sj", seg, candidates)
-        set_prompt_if_invalid(context, time_discrpt)
+        set_segment_prompt(context, time_discrpt)
         return
     end
     -- 世界时钟功能 (/utc)
@@ -2738,111 +2604,74 @@ local function translator(input, seg, env)
         segment.tags = segment.tags + Set({ "shijian" })
         context:set_property("sequence_adjustment_code", "/utc")
 
-        local now = os.time() -- 当前时间戳(UTC)
-
-        -- 1. 构造 UTC 和 本地时间
+        local now = os.time()
+        local candidates = {}
         local utc_tab = os.date("!*t", now)
-        local utc_str = string.format("%02d:%02d", utc_tab.hour, utc_tab.min)
+        candidates[#candidates + 1] = { string.format("%02d:%02d", utc_tab.hour, utc_tab.min), "UTC (世界标准时间)" }
 
         local local_tab = os.date("*t", now)
-        local local_str = string.format("%02d:%02d", local_tab.hour, local_tab.min)
-        
-        -- 计算本地时区
-        local local_offset_sec = os.difftime(os.time(local_tab), os.time(utc_tab))
-        local local_offset_hr = math.floor((local_offset_sec + 1800) / 3600)
-        local local_sign = local_offset_hr >= 0 and "+" or ""
-        
-        local candidates = {}
-
-        -- 置顶：UTC 和 本地时间
-        table.insert(candidates, { utc_str, "UTC (世界标准时间)" })
-        table.insert(candidates, { local_str, "Local (UTC"..local_sign..local_offset_hr..") [北京]" })
-
-        -- 2. 热门城市列表 (直接按书写顺序显示)
-        -- 请在这里调整您想要的显示顺序
-        local zones_data = {
-            { name="北京", offset=8 },   -- 基准
-            { name="伦敦", offset=0 },   -- 英国
-            { name="纽约", offset=-5 },  -- 美东 (夏令时-4)
-            { name="东京", offset=9 },   -- 日本
-            { name="洛杉矶", offset=-8 },-- 美西 (夏令时-7)
-            { name="香港", offset=8 },
-            { name="新加坡", offset=8 },
-            { name="巴黎", offset=1 },   -- 法国 (夏令时+2)
-            { name="柏林", offset=1 },   -- 德国 (夏令时+2)
-            { name="悉尼", offset=10 },  -- 澳洲 (夏令时+11)
-            { name="首尔", offset=9 },
-            { name="莫斯科", offset=3 },
-            { name="旧金山", offset=-8 },
-            { name="多伦多", offset=-5 },
-            { name="芝加哥", offset=-6 },
-            { name="迪拜", offset=4 },
-            { name="孟买", offset=5.5 },
-            { name="温哥华", offset=-8 },
-            { name="曼谷", offset=7 },
+        local local_offset = local_utc_offset()
+        candidates[#candidates + 1] = {
+            string.format("%02d:%02d", local_tab.hour, local_tab.min),
+            "Local (" .. format_utc_offset(local_offset) .. ")"
         }
 
-        -- 3. 遍历生成候选直接按上面顺序输出
-        local bj_ts = now + (8 * 3600)
-        local bj_date = os.date("!*t", bj_ts)
-
-        for _, z in ipairs(zones_data) do
-            -- 计算目标时间
-            local target_ts = now + (z.offset * 3600)
+        local bj_ymd = os.date("!%Y%m%d", now + 8 * 3600)
+        for _, zone in ipairs(WORLD_CLOCK_ZONES) do
+            local offset, dst = zone_effective_offset(zone, now)
+            local target_ts = now + offset * 3600
             local target_str = os.date("!%H:%M", target_ts)
-            
-            -- 计算相对北京时差
-            local diff = z.offset - 8
-            local diff_str = ""
-            if diff > 0 then diff_str = "北京+"..diff
-            elseif diff == 0 then diff_str = "同频"
-            else diff_str = "北京"..diff end 
+            local target_ymd = os.date("!%Y%m%d", target_ts)
 
-            -- 计算日期差异
-            local target_date = os.date("!*t", target_ts)
             local day_hint = ""
-            if target_date.day ~= bj_date.day then
-                if diff < 0 then day_hint = " [昨天]"
-                elseif diff > 0 then day_hint = " [明天]" end
-            end
+            if target_ymd < bj_ymd then day_hint = " [昨天]"
+            elseif target_ymd > bj_ymd then day_hint = " [明天]" end
 
-            -- 格式化输出
-            local comment = string.format("%s (%s)%s", z.name, diff_str, day_hint)
-            table.insert(candidates, { target_str, comment })
+            local dst_hint = dst and ", DST" or ""
+            local comment = string.format("%s (%s%s, %s)%s",
+                zone.name, format_utc_offset(offset), dst_hint, format_beijing_diff(offset), day_hint)
+            candidates[#candidates + 1] = { target_str, comment }
         end
 
         generate_candidates(input, "utc", seg, candidates)
         return
     end
-    -- **日期+时间（/dt，别名）**
+    -- 英文日期（/ed）
+    if (command == "ed" or command == "33") then
+        context:set_property("sequence_adjustment_code", "/ed")
+
+        local today = os.date("*t")
+        local candidates = build_configured_format_candidates(config, "english_date_formats", today, function()
+            return {
+                { format_dt(today, "B j, Y"), "" },
+                { format_dt(today, "j b Y"),  "" },
+                { format_dt(today, "Y-m-d"),  "" },
+            }
+        end)
+
+        generate_candidates(input, "ed", seg, candidates)
+        return
+    end
+
+    -- 日期+时间（/dt）
     if (command == "dt" or command == "38") then
         context:set_property("sequence_adjustment_code", "/dt")
 
-        local now = os.date("*t")
-        local candidates = {}
-        local custom_dt_formats = config:get_list("datetime_formats")
-
-        if custom_dt_formats and custom_dt_formats.size > 0 then
-            for i = 1, custom_dt_formats.size do
-                local fmt = custom_dt_formats:get_value_at(i - 1):get_string()
-                local out = format_dt(now, fmt)
-                if out and out ~= "" then
-                    table.insert(candidates, { out, "" })
-                end
-            end
-        else
-            candidates = {
-                { os.date("%Y-%m-%d %H:%M:%S"), "" },
-                { os.date("%Y-%m-%dT%H:%M:%S"), "" },
-                { os.date("%Y%m%d%H%M%S"),      "" },
+        local now_ts = os.time()
+        local now = os.date("*t", now_ts)
+        local candidates = build_configured_format_candidates(config, "datetime_formats", now, function()
+            return {
+                { os.date("%Y-%m-%d %H:%M:%S", now_ts), "" },
+                { os.date("%Y-%m-%dT%H:%M:%S", now_ts), "" },
+                { os.date("%Y%m%d%H%M%S", now_ts),      "" },
             }
-        end
+        end)
 
         generate_candidates(input, "dt", seg, candidates)
         return
     end
 
-    -- **时间戳（/tt）
+    -- 时间戳（/tt）
     if (command == "tt" or command == "88") then
         -- 启用手动排序支持
         context:set_property("sequence_adjustment_code", "/tt")
@@ -2873,21 +2702,16 @@ local function translator(input, seg, env)
         generate_candidates(input, "tt", seg, candidates)
         return
     end
-    -- **农历候选项**
+    -- 农历候选项
     if (command == "nl" or command == "65") then
-        --- 设置手动排序的排序编码，以启用手动排序支持
         context:set_property("sequence_adjustment_code", "/nl")
 
-        local yr = os.date("%Y")
-        local year = "〔" .. yr .. "年" .. "〕" -- 构造提示字符串
+        local now_ts = os.time()
+        local year = "〔" .. os.date("%Y", now_ts) .. "年〕"
+        local candidates = build_lunar_only_candidates(build_lunar_snapshot(now_ts))
 
-        local candidates = {
-            { Date2LunarDate(os.date("%Y%m%d")) .. JQtest(os.date("%Y%m%d")),        "" },
-            { lunarJzl(os.date("%Y%m%d%H")),                                         "" },
-            { Date2LunarDate(os.date("%Y%m%d")) .. GetLunarSichen(os.date("%H"), 1), "" }
-        }
         generate_candidates(input, "nl", seg, candidates)
-        set_prompt_if_invalid(context, year) -- 显示“〔2025年〕”风格的提示
+        set_segment_prompt(context, year)
         return
     end
 
@@ -2906,7 +2730,7 @@ local function translator(input, seg, env)
         return
     end
 
-    -- **第几周**
+    -- 第几周
     if (command == "ww" or command == "99") then
         --- 设置手动排序的排序编码，以启用手动排序支持
         context:set_property("sequence_adjustment_code", "/ww")
@@ -2920,7 +2744,7 @@ local function translator(input, seg, env)
         return
     end
 
-    -- **节气候选项**
+    -- 节气候选项
     if (command == "jq" or command == "55") then
         --- 设置手动排序的排序编码，以启用手动排序支持
         context:set_property("sequence_adjustment_code", "/jq")
@@ -2963,7 +2787,7 @@ local function translator(input, seg, env)
         return
     end
 
-    -- **节日查询**
+    -- 节日查询
     if (command == "jr" or command == "57") then
         --- 设置手动排序的排序编码，以启用手动排序支持
         context:set_property("sequence_adjustment_code", "/jr")
@@ -2989,40 +2813,36 @@ local function translator(input, seg, env)
         return
     end
 
-    -- **日历信息整合处理**
+    -- 日历信息整合处理
     if (command == "day" or command == "329") then
         -- 获取当前时间
         local now = os.time()
-        local year = tonumber(os.date("%Y", now))
-        local month = tonumber(os.date("%m", now))
-        local day = tonumber(os.date("%d", now))
-        local day_of_year = tonumber(os.date("%j", now)) -- 今年的第几天
         local date_table = os.date("*t", now)
-        local _, week_of_year = iso_week_number(date_table.year, date_table.month, date_table.day)
-        local week_of_month = math.ceil(tonumber(os.date("%d", now)) / 7) -- 当月的第几周
+        local year = date_table.year
+        local month = date_table.month
+        local day = date_table.day
+        local day_of_year = date_table.yday
+        local current_ymd = os.date("%Y%m%d", now)
+        local _, week_of_year = iso_week_number(year, month, day)
+        local week_of_month = math.ceil(day / 7)
 
-        -- 计算一年的总天数，判断是否为闰年
-        local days_in_year = IsLeap(year) == "闰年" and 366 or 365 -- 判断是否为闰年
-        local year_progress = (day_of_year / days_in_year) * 100 -- 今年进度
-        -- 获取星期数据
-        local week_day_str = chinese_weekday2(os.date("%w")) -- 获取中文星期（例如 "星期三"）
-        -- 获取农历数据
-        local lunar_info_str = Date2LunarDate(os.date("%Y%m%d")) -- 获取农历的天干地支和生肖等
+        local days_in_year = IsLeap(year)
+        local year_progress = (day_of_year / days_in_year) * 100
+        local week_day_str = chinese_weekday2(date_table.wday - 1)
+        local lunar_info_str = Date2LunarDate(current_ymd)
 
-        -- 获取最近的三个节气
-        local jqs = GetNowTimeJq(os.date("%Y%m%d", now))
+        -- 本次 /day 只取一次节气，节日模块直接复用。
+        local jqs = GetNowTimeJq(current_ymd)
         local upcoming_jqs = {}
         local jieqi_days = {}
         local zero_jieqi = nil -- 记录今天的节气
 
-        -- ====== 恢复被不小心删掉的计算函数 ======
         local function days_until_jieqi(jieqi)
             local jieqi_date = jieqi:match("(%d+-%d+-%d+)$") -- 提取节气日期部分
             local target_time = jieqi_date:gsub("-", "")
-            local diff_days = days_until(target_time)
+            local diff_days = days_until(target_time, current_ymd)
             return diff_days
         end
-        -- ==========================================
 
         -- 遍历寻找今天和未来的节气，直到凑够2个未来节气
         for i = 1, #jqs do
@@ -3047,7 +2867,7 @@ local function translator(input, seg, env)
         end
 
         -- 获取节日数据
-        local upcoming_holidays = get_upcoming_holidays() or {}
+        local upcoming_holidays = get_upcoming_holidays(jqs, now) or {}
         local holiday_data = {}
         local zero_holidays = {} -- 使用数组记录今天的节日，因为可能多个节日重合
 
@@ -3080,11 +2900,11 @@ local function translator(input, seg, env)
         end
 
         -- 获取三伏天
-        local sanfu = get_sanfu_info(os.date("%Y%m%d", now)) or ""
+        local sanfu = get_sanfu_info(current_ymd) or ""
         
         -- 生成问候语
         local function get_greeting()
-            local current_hour = tonumber(os.date("%H"))
+            local current_hour = date_table.hour
             if current_hour >= 0 and current_hour < 6 then return "晚安!"
             elseif current_hour >= 6 and current_hour < 12 then return "早上好!"
             elseif current_hour >= 12 and current_hour < 14 then return "午安!"
