@@ -93,7 +93,7 @@ nav:
           - 东风破 Plum: doc/plum.md
           - 手动设置: doc/manual.md
 
-  - 基础功能:
+  - 特色功能:
       - 万象目录架构: doc/rime_tree.md
       - 中英词库说明: doc/dicts.md
       - 快捷键说明: doc/shortcut.md
@@ -104,6 +104,7 @@ nav:
       - 模糊音配置: doc/fuzzy.md
       - 高阶造词: doc/custom_words.md
       - 错音错字提示: doc/word_creation.md
+      - 符号合成: doc/XCompose.md
 
   - Lua 扩展:
       - 时间日期: doc/shijian.md
@@ -120,7 +121,7 @@ nav:
       - 按键处理: doc/super_processor.md
       - 字符过滤: doc/charset.md
       - 候选切割: doc/candidate_slicer.md
-      - 魔法字母: doc/CRUNV.md
+      - 魔法字母: doc/RUNV.md
       - 性能评测: doc/profile-analysis.md
 
   - 进阶配置:
