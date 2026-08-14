@@ -3,10 +3,10 @@
 -- 逻辑：
 -- 1. 支持配置多个选项，开启多个选项时 Base 和 Addlist 取并集，Blacklist 一票否决。
 -- 2. 单字如果不符合字符集，直接丢弃（删除），不进行兜底。
--- 3. 只有词组末尾为生僻字时，才尝试从历史记录生成兜底。
+-- 3. 候选中仅有一个字符不符合字符集时，才尝试从历史记录生成兜底。
 -- 4. table、user_table、completion 和 fallback 候选不能写入兜底历史。
--- 5. 兜底只复用上一输入编码对应、相同词长的历史，不拼接剩余编码。
--- 6. user_phrase 完全豁免字符集过滤。
+-- 5. 兜底只复用上一输入编码对应、相同词长的历史；候选文字不拼接剩余编码，预编辑沿用上一稳定切分并追加新输入。
+-- 6. user_phrase 和 user_table 完全豁免字符集过滤。
 -- 7. 配置根节点为 charset_filter，使用 Rime Config 对象直接加载。
 
 local wanxiang = require("wanxiang/wanxiang")
@@ -125,27 +125,26 @@ end
 -- 一次 UTF-8 遍历同时得到：
 -- 1. 文本码点长度；
 -- 2. 全部汉字是否合法；
--- 3. 是否只有末尾一个汉字非法，可用于兜底。
+-- 3. 是否仅有一个汉字非法，可用于兜底。
 local function inspect_text(env, text, active_rules, cache)
     if not text or text == "" then return 0, true, false end
 
     local text_len = 0
     local invalid_count = 0
-    local last_invalid_pos = 0
 
     for _, codepoint in utf8_codes(text) do
         text_len = text_len + 1
 
         if not codepoint_is_valid(env, codepoint, active_rules, cache) then
             invalid_count = invalid_count + 1
-            last_invalid_pos = text_len
         end
     end
 
     local all_valid = invalid_count == 0
+    -- 允许唯一非法字符出现在任意位置；真正兜底仍受“完整覆盖当前编码段 +
+    -- 直接上一输入状态 + 相同词长”三重约束，避免无关历史误替换。
     local can_fallback = text_len >= 2
         and invalid_count == 1
-        and last_invalid_pos == text_len
 
     return text_len, all_valid, can_fallback
 end
@@ -272,7 +271,17 @@ local function get_previous_history(env, code, text_len)
     local previous = history and history[sub(code, 1, -2)]
     if not previous or previous.text_len ~= text_len then return nil end
 
-    return previous.text
+    return previous
+end
+
+-- 兜底时复用上一稳定状态的预编辑切分，只把本轮新增编码作为新尾段追加。
+local function build_fallback_preedit(history, code)
+    local previous_code = sub(code, 1, -2)
+    local preedit = history.preedit or previous_code
+    local suffix = sub(code, #previous_code + 1)
+
+    if suffix == "" then return preedit end
+    return preedit .. (sub(preedit, -1) == " " and "" or " ") .. suffix
 end
 
 -- 初始化过滤规则、历史缓存和选项监听。
@@ -354,8 +363,6 @@ function M.func(input, env)
     end
 
     local has_valid = false
-    local pending = nil
-    local pending_len = 0
     local recorded = false
 
     -- 输出候选；只有完整覆盖当前编码段的可靠候选才写入历史。
@@ -368,6 +375,7 @@ function M.func(input, env)
             env.phrase_history[code] = {
                 text = text,
                 text_len = text_len,
+                preedit = cand.preedit or code,
             }
             recorded = true
         end
@@ -378,36 +386,22 @@ function M.func(input, env)
     for cand in input:iter() do
         local text = cand.text or ""
         local cand_type = cand.type or ""
-        local bypass_user_phrase = charset_on
+        local bypass_charset = charset_on
             and (cand_type == "user_phrase" or cand_type == "user_table")
 
         local text_len
         local all_valid = true
         local can_fallback = false
 
-        if charset_on and text ~= "" and not bypass_user_phrase then
+        if charset_on and text ~= "" and not bypass_charset then
             text_len, all_valid, can_fallback =
                 inspect_text(env, text, active_rules, cache)
         else
             text_len = text == "" and 0 or (utf8_len(text) or 0)
         end
 
-        -- 处理 pending 的兜底候选。
-        if pending then
-            if text_len == pending_len then
-                output(pending, pending.text, pending_len, false)
-                has_valid = true
-                pending = nil
-                goto next
-            end
-
-            output(pending, pending.text, pending_len, false)
-            has_valid = true
-            pending = nil
-        end
-
-        if not charset_on or text == "" or bypass_user_phrase then
-            -- user_phrase 在字符集检查前完全放行。
+        if not charset_on or text == "" or bypass_charset then
+            -- user_phrase / user_table 在字符集检查前完全放行。
             output(cand, text, text_len, text ~= "")
             has_valid = true
         elseif all_valid then
@@ -417,42 +411,34 @@ function M.func(input, env)
             -- phrase 保持原有逻辑：完成字符集检查后，多字词仍直接放行。
             output(cand, text, text_len, false)
             has_valid = true
-        elseif not has_valid and not pending
+        elseif not has_valid
             and covers_current_segment(cand, comp, code_len)
             and can_fallback
         then
             local fallback = get_previous_history(env, code, text_len)
 
             if fallback then
-                local preedit = cand.preedit or code
-
-                if #preedit > 1 and match(sub(preedit, -1), "[%w%p]") then
-                    preedit = sub(preedit, 1, -2) .. " " .. sub(preedit, -1)
-                end
-
                 local replacement = Candidate(
                     "fallback",
                     cand.start,
                     cand._end,
-                    fallback,
+                    fallback.text,
                     cand.comment or ""
                 )
-                replacement.preedit = preedit
+                replacement.preedit = build_fallback_preedit(fallback, code)
 
                 local fallback_len, fallback_valid =
                     inspect_text(env, replacement.text, active_rules, cache)
 
                 if fallback_valid then
-                    pending = replacement
-                    pending_len = fallback_len
+                    output(replacement, replacement.text, fallback_len, false)
+                    has_valid = true
                 end
             end
         end
 
-        ::next::
     end
 
-    if pending then output(pending, pending.text, pending_len, false) end
 end
 
 return M
