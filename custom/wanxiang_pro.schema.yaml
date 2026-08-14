@@ -89,7 +89,6 @@ engine:
     - lua_translator@*wanxiang.set_schema  #输入'/zrm'，快速切换为自然码双拼， /flypy→小鹤双拼 /mspy→微软双拼 /zrm→自然码 /sogou→搜狗双拼 /abc→智能ABC /ziguang→紫光双拼 /pyjj→拼音加加 /gbpy→国标双拼 /lxsq→乱序17 /pinyin→全拼
     - lua_translator@*wanxiang.shijian  #农历、日期、节气、节日、时间、周、问候模板等等，触发清单看下文
     - lua_translator@*wanxiang.unicode_conversion  #通过输入大写U引导，并输入Unicode编码获得汉字输出
-    - lua_translator@*wanxiang.compose*translator  #通过输入大写C引导，并依次键入Compose序列获得合成字符(仿系统Compose)
     - lua_translator@*wanxiang.number_conversion  #数字、金额大写，通过输入大写R1234获得候选输出
     - lua_translator@*wanxiang.super_calculator  #超级计算器，Lua内查看高级用法
     - lua_translator@*wanxiang.input_statistics  #一个输入统计的脚本，以日、周、月、年等维度的统计
@@ -246,7 +245,7 @@ recognizer:
   import_preset: default  # 从 default.yaml 继承通用的
   patterns:  # 再增加方案专有的：
     # 排除 /sym /emoji 开头（含单独 /sym /emoji），交给 super_sym / super_emoji tag 处理
-    punct: "^/([0-9]|10|[A-Za-z]+)$"  # 响应 symbols.yaml 的 symbols
+    punct: "^/[!-.0-~][!-~]*$"  # 响应 symbols.yaml 的 symbols
     super_sym: "^/sym[.?/][A-Za-z.]+$"  # /sym.arrow.r.double 精确  /sym?keyword 或 /sym/keyword 模糊
     super_emoji: "^/emoji[.?/][A-Za-z.]+$"  # /emoji.apple.red  /emoji?keyword  /emoji/keyword
     super_sym_pre: "^/sym[.?/]?$"  # 仅 /sym /sym. /sym? /sym/ 模式提示
@@ -254,7 +253,6 @@ recognizer:
     wanxiang_reverse: "^`[A-Za-z;]*$"  # 响应部件拆字与笔画的反查，与 radical_lookup/prefix 匹配
     add_user_dict: "^``[A-Za-z/`']*$"  #自造词
     unicode: "^U([0-9A-Fa-f]*|[xXhH][0-9A-Fa-f]*|[dD][0-9]*|[bB][01]*|[oO][0-7]*|0[xX][0-9A-Fa-f]*|0[dD][0-9]*|0[bB][01]*|0[oO][0-7]*|\\+[0-9A-Fa-f]*|c.*)$"  # U 作为触发前缀，响应 lua_translator@unicode_conversion，输出 Unicode 字符
-    compose: "^C.*"  # C 作为触发前缀，响应 lua_translator@compose，仿系统Compose合成字符
     number: "^R(-|-?[0-9]+[.:]?[0-9]*)$"  # 脚本将自动获取第 2 个字符 R 作为触发前缀，响应 lua_translator@number_conversion，数字金额大写
     sjc: "^[/o]rc\\d+[-+=op]?$"
     yr1: "^N0[1-9]?0?[1-9]?"
@@ -338,9 +336,9 @@ key_binder:
     # 当输入编码后发现没有词，则通过双击``进入造词模式而且不需要删除编码，这个功能与``直接引导相呼应相配合
     - {match: "^.*`$", accept: "`", send_sequence: '{BackSpace}{Home}{`}{`}{End}'}
     # 斜杠被占用引导符号，因此输入本身设置为双击
-    - {match: "^/$", accept: "/", send_sequence: '{space}',}
+    - {match: "^/$", accept: "/", send_sequence: '{space}'}
     #在预测符号状态下，按下斜杠提交清空与斜杠
-    - {match: "^›+$", accept: "backslash", send_sequence: '{Clear}{backslash}',}
+    - {match: "^›+$", accept: "backslash", send_sequence: '{Clear}{backslash}'}
     - { match: "^›+$", accept: "comma",    send_sequence: '{Clear}{comma}'}
     - { match: "^›+$", accept: "period",   send_sequence: '{Clear}{period}'}
     - {match: "^›+$", accept: "Return", send_sequence: '{Clear}{Return}'}

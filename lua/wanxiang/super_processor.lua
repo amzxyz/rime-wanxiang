@@ -1,7 +1,7 @@
 -- lua/super_processor.lua
 -- @amzxyz
 -- https://github.com/amzxyz/rime-wanxiang
--- 全能按键处理器：整合 KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
+-- 全能按键处理器：整合 KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字、XCompose按键序列
 -- 
 -- 用法: 在 schema.yaml 中 engine/processors 列表添加 - lua_processor@*super_processor
 
@@ -141,6 +141,7 @@ local function is_function_code_after_digit(env, context, digit_char)
     return false
 end
 
+
 -- 计算尾部重复字符数 (LimitRepeated 使用)
 local function tail_rep(s)
     local last, n = s:sub(-1), 1
@@ -192,7 +193,7 @@ function M.init(env)
     local context = engine.context
 
     -- [1] 配置加载 (按功能模块分类)
-    
+
     env.enable_backspace_limit = true
     env.enable_seg_loop = true
     env.enable_tone_fallback = true
@@ -214,7 +215,7 @@ function M.init(env)
         -- 基础开关加载
         local ok_bs, bs_val = pcall(function() return config:get_bool("super_processor/enable_backspace_limit") end)
         if ok_bs and bs_val ~= nil then env.enable_backspace_limit = bs_val end
-        
+
         local ok_seg, seg_val = pcall(function() return config:get_bool("super_processor/enable_seg_loop") end)
         if ok_seg and seg_val ~= nil then env.enable_seg_loop = seg_val end
 
@@ -336,7 +337,7 @@ function M.init(env)
         if env.enable_tone_fallback then
             local t_state = env.tone_state or "idle"
             env.tone_state = "idle" 
-            
+
             if t_state == "compress" and input ~= "" then
                 local caret = (ctx.caret_pos ~= nil) and ctx.caret_pos or #input
                 if caret < 0 then caret = 0 end
@@ -344,7 +345,7 @@ function M.init(env)
 
                 local left  = (caret > 0) and input:sub(1, caret) or ""
                 local left_new, changed = compress_runs_keep_last(left)
-                
+
                 if changed then
                     if caret > 0 then ctx:pop_input(caret) end
                     if #left_new > 0 then ctx:push_input(left_new) end
@@ -363,10 +364,17 @@ function M.init(env)
         env.seg_last_caret_pos = ctx.caret_pos
 
         -- C. [LetterSelector] 缓存激活状态
+        -- number / Ndate 保持原行为；
+        -- punct 仅在 /数字 命令中启用字母选词，避免宽 punct 正则下
+        -- /p!、/a' 等符号命令继续输入字母时被误当成候选选择键。
         env.ls_active = false
         if not ctx.composition:empty() then
             local s = ctx.composition:back()
-            if s and (s:has_tag("number") or s:has_tag("Ndate")) then
+            local numeric_symbol = s
+                and s:has_tag("punct")
+                and input:match("^/%d+$") ~= nil
+
+            if s and (s:has_tag("number") or s:has_tag("Ndate") or numeric_symbol) then
                 env.ls_active = true
             end
         end
@@ -397,10 +405,10 @@ end
 local function handle_quick_symbol_intercept(key, env, ctx)
     local kc = key.keycode
     if kc < 0x20 or kc > 0x7E then return false end
-    
+
     local input = ctx.input or ""
     local next_input = input .. string.char(kc)
-    
+
     if execute_quick_symbol(env, ctx, next_input) then
         return true
     end
@@ -486,7 +494,7 @@ local function handle_segmentation(key, env, ctx)
 
     local m = #conf.all
     local k = tlen - 1
-    
+
     local function restore()
         ctx.input = (env.seg_base or head) .. md
         env.seg_core, env.seg_start_idx, env.seg_N, env.seg_base = nil, nil, nil, nil
@@ -543,7 +551,7 @@ local function handle_limit_repeat(key, env, ctx)
 
     local kc = key.keycode
     if not (kc >= 0x61 and kc <= 0x7A) then return false end
-    
+
     local cand = ctx:get_selected_candidate()
     local preedit = cand and (cand.preedit or cand:get_genuine().preedit) or ""
     local segs = 1
@@ -553,12 +561,12 @@ local function handle_limit_repeat(key, env, ctx)
     local input = ctx.input or ""
     local nxt = input .. ch
     local last, rep_n = tail_rep(nxt)
-    
+
     if last:match(INITIALS) and rep_n > env.max_repeat then
         prompt(ctx, " 〔已超最大重复声母〕")
         return true
     end
-    
+
     if segs >= env.max_segments then
         prompt(ctx, " 〔已超最大输入长度〕")
         return true
@@ -572,14 +580,14 @@ local function handle_letter_select(key, env, ctx)
     if key:ctrl() or key:alt() or key:super() then return false end
     local idx = LETTER_SEL_MAP[key.keycode]
     if not idx then return false end
-    
+
     if ctx.composition:empty() then return false end
     local seg = ctx.composition:back()
     if not seg or not seg.menu then return false end
-    
-    local count = seg.menu:prepare(9)
+
+    local count = seg.menu:prepare(10)
     if idx < 1 or idx > count then return false end
-    
+
     ctx:select(idx - 1)
     return true
 end
@@ -639,7 +647,7 @@ local function handle_number_logic(key, env, ctx)
     -- A. 小键盘不上屏处理
     if kp_num ~= nil then
         if key:ctrl() or key:alt() or key:super() or key:shift() then return false end
-        
+
         if env.enable_tone_fallback then
             env.tone_state = "skip"
         end
@@ -673,26 +681,13 @@ local function handle_number_logic(key, env, ctx)
 
     if digit_str then
         if key:ctrl() or key:alt() or key:super() then return false end
-        
+
         -- 只要是 T9 九键方案，数字键就是打字编码键，放行给底层
         if env.is_t9 then
             if env.enable_tone_fallback then
                 env.tone_state = "idle"
             end
             return false
-        end
-
-        -- Compose 模式判定：当前分段带 compose tag 时，主键盘数字用于选词
-        -- (设计: 主键盘选词, 小键盘参与合成)。compose 的 recognizer pattern 为 ^C.*
-        -- 过宽，会让 is_function_code_after_digit 把主键盘数字误吞入合成序列，
-        -- 故 compose 模式下须跳过该判断并关闭声调压缩，直接进入选词逻辑。
-        local in_compose = false
-        do
-            local comp0 = ctx.composition
-            if comp0 and not comp0:empty() then
-                local seg0 = comp0:back()
-                if seg0 and seg0:has_tag("compose") then in_compose = true end
-            end
         end
 
         if env.enable_tone_fallback then
@@ -708,7 +703,7 @@ local function handle_number_logic(key, env, ctx)
                 end
             end
 
-            if in_compose or input:find(env.lookup_key, 1, true) or is_func_mode or is_first_cand_has_eng then
+            if input:find(env.lookup_key, 1, true) or is_func_mode or is_first_cand_has_eng then
                 env.tone_state = "idle"
             else
                 env.tone_state = "compress"
@@ -720,7 +715,7 @@ local function handle_number_logic(key, env, ctx)
             end
         end
 
-        if not in_compose and is_function_code_after_digit(env, ctx, digit_str) then
+        if is_function_code_after_digit(env, ctx, digit_str) then
             if ctx.push_input then ctx:push_input(digit_str) else ctx.input = input .. digit_str end
             return true
         end
@@ -751,14 +746,14 @@ local function handle_number_logic(key, env, ctx)
             env.tone_state = "idle"
         end
     end
-    
+
     return false
 end
 -- 5. 主入口函数 (Main Logic Flow)
 function M.func(key, env)
     collectgarbage("step", 20)
     local ctx = env.engine.context
-    
+
     -- 1. 优先处理按键释放
     if key:release() then 
         handle_backspace(key, env, ctx)
