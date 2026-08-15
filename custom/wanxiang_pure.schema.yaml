@@ -100,7 +100,8 @@ recognizer:
 #   symbols    Rime 的预设配置是以 '/' 前缀开头输出一系列字符，自定义的修改 symbols.yaml
 punctuator:
   digit_separators: ",."  #数字分隔符，系统逻辑是在中文状态下输入数字后继续输入句号按下两次即输入半角状态
-  __include: wanxiang_symbols:/symbol_table         # 从 wanxiang_symbols.yaml 导入所有符号配置
+  __include: wanxiang_symbols:/symbol_table  # 从 wanxiang_symbols.yaml 导入所有符号配置
+  __patch: wanxiang_symbols:/symbols
 
 # 从 default 继承快捷键
 key_binder:
@@ -154,7 +155,8 @@ speller:
   algebra:
     __patch:
       #- 模糊音             #模糊音选择性开启
-      - wanxiang_algebra:/base/全拼     #拼音转双拼码
+      - wanxiang_algebra:/pro/全拼     #拼音转双拼码
+      - wanxiang_algebra:/pro/间接辅助  #间接辅助、直接辅助可选
 
 
 grammar:
