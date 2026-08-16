@@ -542,6 +542,11 @@ super_replacer:
       abbrev_rule: "1,3"
       files:
         - lua/data/en_abbrev.txt
+    - option: true  # 默认开启以词定词
+      mode: derive
+      tags: [abc]
+      files:
+        - lua/data/derive.txt
 
 # 字符集过滤lua
 # a,通用规范汉字表
