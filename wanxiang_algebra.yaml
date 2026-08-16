@@ -3587,10 +3587,12 @@ english:
 #使用方案跟在拼写运算后面
 18jian:
   __append:
-    - xlit/qwertyuiopasdfghjklzxcvbnm/qwwrryuiipassffhjjlzxxvbbm
+    - derive/(.*)/\U$1/
+    - xlit/QWERTYUIOPASDFGHJKLZXCVBNM/qwwrryuiipassffhjjlzxxvbbm
 14jian:
   __append:
-    - xlit/qwertyuiopasdfghjklzxcvbnm/qqeettuuooaaddggjjlzzccbbm
+    - derive/(.*)/\U$1/
+    - xlit/QWERTYUIOPASDFGHJKLZXCVBNM/qqeettuuooaaddggjjlzzccbbm
 9jian:
   __append:
     - xform/ⅱ//  # 用于 Lua 判断输入类型的标记
