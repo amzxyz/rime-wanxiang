@@ -1,5 +1,35 @@
 # Changelog
 
+## [17.4.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.3.0...v17.4.0) (2026-08-16)
+
+
+### 📚 词库更新
+
+* 词库调整 ([a28c921](https://github.com/amzxyz/rime-wanxiang/commit/a28c9215726a853342c3483032fda3fc92651e61))
+* 词库调整 ([10be068](https://github.com/amzxyz/rime-wanxiang/commit/10be068191bc06c0930c3e29e80aec003a8a5949))
+
+
+### 🐛 Bug 修复
+
+* 14、18等转写新增保留26键内容方便拼音选择器选择 ([0056140](https://github.com/amzxyz/rime-wanxiang/commit/0056140ff71c0393a31de2b365a913f857192878))
+* pure版本默认使用自然码辅助词库，并默认开启间接辅助，从而全部兼容base简化体验，想要换辅助码直接换pro对应词库即可 ([3db4a74](https://github.com/amzxyz/rime-wanxiang/commit/3db4a7446598f35bb6a81576aaab307ae1d991e1))
+* 优化计算器 ([c3c094e](https://github.com/amzxyz/rime-wanxiang/commit/c3c094e47c8b369906736e3c04a4039630089260))
+* 变更字符级过滤兜底的preedit呈现形式统一逻辑 ([bafb5ed](https://github.com/amzxyz/rime-wanxiang/commit/bafb5ed4c216032f7a2c4f0c91b4729d6aee65ef))
+* 更新 wanxiang_pure.custom.yaml ([cec3334](https://github.com/amzxyz/rime-wanxiang/commit/cec3334284307981ae430a56bb72f80907896db8))
+* 细化punct正则 ([64de4aa](https://github.com/amzxyz/rime-wanxiang/commit/64de4aa7dc90d647cc30b84a4a329a0578f1af03))
+* 重新思考后将pr的复杂性较高的C引导合成compose符号序列改成了使用/模式symbol承载的方式，这样可以避免字母引导引发的冲突，可以复用/符号，最关键的是复用符号处理在整个逻辑序列里有着不好描述的得天独厚的逻辑解构，比lua实现存在更少的问题也不用把txt加载成lua表，总之很舒服 ([df2d63b](https://github.com/amzxyz/rime-wanxiang/commit/df2d63b1728fb2b057ab5e4ab882c5259dd378ae))
+
+
+### 💅 重构
+
+* 重构超级符号代码以及用法，在过去的使用中我发现分类对的展示与数字选择对于使用并没有什么提升，不知道还是不知道想要知道那些符号在哪个分类下是没有任何帮助的，所以输入触发按钮键后往往陷入被动，想清楚这是一个先学会才能用的功能，如果认识这些单词以及背后的含义，那么直接输入前缀获得自动补全是最优雅的用法，这也是本次新增的功能前缀自动补全，同时移除了P阶段的复杂实现，在触发/sym后也不再显示分类，因为几百分类显示几个又有什么意义呢，反而制造困惑 ([0ae9bad](https://github.com/amzxyz/rime-wanxiang/commit/0ae9badb3ac504d30372dfccebb2536de2dac49b))
+
+
+### 🏡 杂项
+
+* release 17.4.0 ([c4f6729](https://github.com/amzxyz/rime-wanxiang/commit/c4f67297eea8f546e4936da7a185514c13ebad6f))
+* 更新文档 ([5e1dace](https://github.com/amzxyz/rime-wanxiang/commit/5e1dace47243b39e4aa48731225d222bdbae7f59))
+
 ## [17.3.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.2.5...v17.3.0) (2026-08-13)
 
 
