@@ -1,5 +1,23 @@
 # Changelog
 
+## [17.5.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.4.0...v17.5.0) (2026-08-16)
+
+
+### ✨ 新特性
+
+* (super_replacer): 新增derive模式，即：以词定词，一个由自定义前缀后缀定向生成删减前后缀的派生词，如台风山竹会接着跟着山竹，数据位于lua/data下面 ([833434a](https://github.com/amzxyz/rime-wanxiang/commit/833434acefae3b788769ddbc01905d1bd141c440))
+
+
+### 📚 词库更新
+
+* 词库调整 ([794893b](https://github.com/amzxyz/rime-wanxiang/commit/794893bf94bdc5e372a3362ca65a7de7516257d2))
+* 词库调整 ([c7e29d7](https://github.com/amzxyz/rime-wanxiang/commit/c7e29d77437f4a913ab981cf3fc79016ad8ebe3a))
+
+
+### 🐛 Bug 修复
+
+* 修复上次改版后超级preedit将zh无法转换成zāng的问题 ([f1d26d4](https://github.com/amzxyz/rime-wanxiang/commit/f1d26d42e957cbfdacea0549059c9abc1801e4fa))
+
 ## [17.4.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.3.0...v17.4.0) (2026-08-16)
 
 
