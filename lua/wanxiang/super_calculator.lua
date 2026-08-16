@@ -19,84 +19,92 @@
 -- 常见单位间的换算；数字的进制转换；
 
 -- 功能引导键一览：
--- cb = "连续自然数立方和(从1开始)"
--- fp = "连续自然数4次方之和(从1开始)"
--- sq = "连续自然数平方和(从1开始)"
--- tx = "已知数列的任意两项aᵢ、aₖ及对应的项数i、k，求其通项公式"
--- avg = "平均值"
--- cos = "余弦"
--- deg = "弧度转换为角度"
--- dds = "顶点式求解二次函数解析式"
--- dxf = "点斜法求解一次函数解析式"
--- ecb = "前n个偶数的立方和"
--- efp = "前n个偶数的4次方之和"
--- esq = "前n个偶数的平方和"
--- exp = "返回 e^x"
--- gbs = "计算多个数的最小公倍数"
--- ggs = "求解勾股数"
--- gys = "计算多个数的最大公因数"
--- hls = "计算行列式"
--- ldf = "两点法求解一次函数解析式"
--- ld1 = "已知两点坐标，求两点间的距离"
--- ld2 = "已知两点坐标，求两点间线段的垂直平分线方程"
--- ld3 = "已知两点P(x₁, y₁)和Q(x₂, y₂)，求点P绕点Q旋转角度a(角度制)后的P'坐标"
--- log = "x作为底数的对数"
--- mod = "求余函数"
--- msq = "计算正数的算术平方根"
--- nrt = "计算 x 开 N 次方"
--- ocb = "前n个奇数的立方和"
--- ofp = "前n个奇数的4次方之和"
--- osq = "前n个奇数的平方和"
--- pls = "计算排列数"
--- rad = "角度转换为弧度"
--- sin = "正弦"
--- sjs = "随机数"
--- tan = "正切"
--- tfp = "24点计算器"
--- var = "方差"
--- ybs = "一般式求解二次函数解析式"
--- zhs = "计算组合数"
--- zys = "质因数分解"
--- zzs = "找质数"
--- acos = "反余弦"
--- asin = "反正弦"
--- atan = "反正切"
--- cesd = "已知圆上不同三点的坐标，求圆方程"
--- cexl = "已知圆心和圆上不同两点的坐标求圆方程"
--- cexr = "已知圆心坐标和半径求圆的方程"
--- cosh = "双曲余弦"
--- dbsl = "已知等比数列的首项a₁，公比q，求指定的前n项和"
--- dcsl = "已知等差数列的首项a₁，公差d，求指定的前n项和"
--- dwhs = "单位换算，支持面积、质量、长度、体积，(数字, '原单位', '目标单位')"
--- eyyc = "求解二元一次方程组ax+by=e，cx+dy=f"
--- fact = "阶乘"
--- lzx1 = "已知两直线方程A₁x+B₁y+C₁=0和A₂x+B₂y+C₂=0，判断它们的位置关系"
--- lzx2 = "已知直线l₁:A₁x+B₁y+C₁=0和l₂:A₂x+B₂y+C₂=0，求两条直线以彼此为轴的对称直线方程"
--- loge = "e作为底数的对数"
--- logt = "10作为底数的对数"
--- jzzh = "数字进制转换，支持2~36进制，(数字, 原进制, 目标进制)"
--- psjs = "批量随机数"
--- sinh = "双曲正弦"
--- sjxx = "已知三角形三个顶点坐标，求其“心”的坐标"
--- sjx1 = "已知三角形的三边长a、b、c，求三角形面积"
--- sjx2 = "已知三角形的三个顶点坐标(x₁,y₁)，(x₂,y₂)，(x₃,y₃)，求三角形面积"
--- sqrt = "计算复数的平方根"
--- tanh = "双曲正切"
--- tcr1 = "已知两圆标准方程(x-x₁)²+(y-y₁)²=r₁²和(x-x₂)²+(y-y₂)²=r₂²，判断它们的位置关系"
--- tcr2 = "已知两圆一般方程x²+y²+D₁x+E₁y+F₁=0和x²+y²+D₂x+E₂y+F₂=0，判断它们的位置关系"
--- yyec = "求解一元二次方程"
--- yyyc = "求解一元一次方程"
--- xsqz = "向上取整"
--- xxqz = "向下取整"
--- zdbx = "已知边数n与边长a计算正多边形面积"
--- atan2 = "返回以弧度为单位的点(x,y)相对于x轴的逆时针角度"
--- dyzx1 = "已知一点坐标(x₁,y₁)和直线方程Ax+By+C=0，求点到直线的距离及对称点坐标"
--- dyzx2 = "已知一点P(x₁,y₁)和直线l:Ax+By+C=0，求直线l关于点P的对称直线l'的方程"
--- ldexp = "返回 x*2^y"
--- sjxy1 = "已知三角形三边长，求内切圆半径和外接圆半径"
--- sjxy2 = "已知三角形三个顶点坐标，求内切圆半径和外接圆半径"
--- yysc1 = "求解一元三次方程"
--- yysc2 = "求解一元四次方程"
+-- bfz = "百分之"；示例：Vbfz15 → 0.15
+-- qfz = "千分之"；示例：Vqfz3 → 0.003
+-- wfz = "万分之"；示例：Vwfz8 → 0.0008
+-- fz = "分数，fz(分子,分母)"；示例：Vfz3,8 → 0.375
+--
+-- cb = "连续自然数立方和(从1开始)"；示例：Vcb10
+-- fp = "连续自然数4次方之和(从1开始)"；示例：Vfp10
+-- sq = "连续自然数平方和(从1开始)"；示例：Vsq10
+-- tx = "已知数列任意两项aᵢ、aₖ及项数i、k，求通项公式；b=0等差，b=1等比"；示例：Vtx1,2,4,8,0
+-- avg = "平均值"；示例：Vavg1,2,3,4
+-- cos = "余弦（弧度制）"；示例：Vcospi
+-- cosd = "余弦（角度制）"；示例：Vcosd60
+-- deg = "弧度转换为角度"；示例：Vdegpi → 180
+-- dds = "顶点式求解二次函数解析式，(顶点x₁,y₁,另一点x₂,y₂)"；示例：Vdds0,0,1,1
+-- dxf = "点斜法求解一次函数解析式，(斜率k,x₁,y₁)"；示例：Vdxf2,1,3
+-- ecb = "前n个偶数的立方和"；示例：Vecb5
+-- efp = "前n个偶数的4次方之和"；示例：Vefp5
+-- esq = "前n个偶数的平方和"；示例：Vesq5
+-- exp = "返回 e^x"；示例：Vexp1
+-- gbs / lcm = "计算多个数的最小公倍数"；示例：Vgbs12,18 / Vlcm12,18 → 36
+-- ggs = "求解勾股数，可输入1或2个正整数"；示例：Vggs3
+-- gys / gcd = "计算多个数的最大公因数"；示例：Vgys12,18 / Vgcd12,18 → 6
+-- hls = "计算行列式，按行依次输入全部元素"；示例：Vhls1,2,3,4 → 二阶行列式
+-- ldf = "两点法求解一次函数解析式，(x₁,y₁,x₂,y₂)"；示例：Vldf0,0,1,1
+-- ld1 = "已知两点坐标，求两点间距离"；示例：Vld10,0,3,4 → 5
+-- ld2 = "已知两点坐标，求线段的垂直平分线方程"；示例：Vld20,0,2,0
+-- ld3 = "点P绕点Q旋转，(Px,Py,Qx,Qy,角度)"；示例：Vld31,0,0,0,90
+-- log = "x作为底数的对数，log(底数,真数)"；示例：Vlog10,100 → 2
+-- mod = "求余函数"；示例：Vmod10,3 → 1
+-- msq = "计算非负数的算术平方根"；示例：Vmsq9 → 3
+-- nrt / root = "计算x开n次方，(x,n)"；示例：Vnrt27,3 / Vroot27,3 → 3
+-- ocb = "前n个奇数的立方和"；示例：Vocb5
+-- ofp = "前n个奇数的4次方之和"；示例：Vofp5
+-- osq = "前n个奇数的平方和"；示例：Vosq5
+-- pls / P = "计算排列数P(n,r)"；示例：Vpls5,2 / VP5,2 → 20
+-- rad = "角度转换为弧度"；示例：Vrad180 → π
+-- sin = "正弦（弧度制）"；示例：Vsin(pi/2) → 1
+-- sind = "正弦（角度制）"；示例：Vsind30 → 0.5
+-- sjs / rand = "随机数；可输入下限和上限"；示例：Vsjs1,100 / Vrand1,100
+-- tan = "正切（弧度制）"；示例：Vtan0 → 0
+-- tand = "正切（角度制）"；示例：Vtand45 → 1
+-- tfp = "24点计算器；输入4个1~13整数，也可不输入参数生成随机题"；示例：Vtfp1,2,3,4
+-- var = "方差"；示例：Vvar1,2,3,4
+-- ybs = "一般式求解二次函数解析式，输入三个点坐标"；示例：Vybs0,0,1,1,2,4
+-- zhs / C = "计算组合数C(n,r)"；示例：Vzhs5,2 / VC5,2 → 10
+-- zys = "质因数分解"；示例：Vzys60 → 2²×3×5
+-- zzs = "找出不大于n的全部质数"；示例：Vzzs20 → 2,3,5,7,11,13,17,19
+-- acos = "反余弦"；示例：Vacos1 → 0
+-- asin = "反正弦"；示例：Vasin1 → π/2
+-- atan = "反正切"；示例：Vatan1 → π/4
+-- cesd = "已知圆上三个不同点坐标求圆方程"；示例：Vcesd1,0,0,1,-1,0
+-- cexl = "已知圆心和圆上两个不同点求圆方程，(h,k,x₁,y₁,x₂,y₂)"；示例：Vcexl0,0,1,0,0,1
+-- cexr = "已知圆心坐标和半径求圆方程，(h,k,r)"；示例：Vcexr0,0,1
+-- cosh = "双曲余弦"；示例：Vcosh0 → 1
+-- dbsl = "等比数列前n项和，(首项a₁,公比q,n)"；示例：Vdbsl2,3,4 → 80
+-- dcsl = "等差数列前n项和，(首项a₁,公差d,n)"；示例：Vdcsl2,3,4 → 26
+-- dwhs / u = "单位换算，(数字,原单位,目标单位)"；示例：Vdwhs100,cm,m / Vu100,cm,m → 1
+-- eyyc = "二元一次方程组ax+by=e，cx+dy=f；参数(a,b,c,d,e,f)"；示例：Veyyc1,1,1,-1,4,0
+-- fact = "阶乘"；示例：Vfact5 → 120
+-- lzx1 = "判断两直线位置关系，参数(A₁,B₁,C₁,A₂,B₂,C₂)"；示例：Vlzx11,1,0,1,-1,0
+-- lzx2 = "求两条直线以彼此为轴的对称直线，参数(A₁,B₁,C₁,A₂,B₂,C₂)"；示例：Vlzx21,0,0,0,1,0
+-- loge / ln = "自然对数，以e为底"；示例：Vloge2 / Vln2
+-- logt / lg = "常用对数，以10为底"；示例：Vlogt100 / Vlg100 → 2
+-- jzzh / base = "数字进制转换，(数字,原进制,目标进制)"；示例：VjzzhFF,16,10 / VbaseFF,16,10 → 255
+-- psjs = "批量随机数；(位数,数量,唯一性) 或 (最小值,最大值,数量,唯一性)，0=唯一，1=可重复"；示例：Vpsjs2,5,0
+-- sinh = "双曲正弦"；示例：Vsinh0 → 0
+-- sjxx = "已知三角形三个顶点坐标，求各“心”坐标"；示例：Vsjxx0,0,4,0,0,3
+-- sjx1 = "已知三角形三边长求面积，(a,b,c)"；示例：Vsjx13,4,5 → 6
+-- sjx2 = "已知三角形三个顶点坐标求面积"；示例：Vsjx20,0,4,0,0,3 → 6
+-- sqrt = "计算复数平方根；1个参数为实数，2个参数表示a+bi"；示例：Vsqrt9
+-- tanh = "双曲正切"；示例：Vtanh0 → 0
+-- tcr1 = "两圆标准式位置关系，参数(x₁,y₁,r₁,x₂,y₂,r₂)"；示例：Vtcr10,0,1,2,0,1
+-- tcr2 = "两圆一般式位置关系，参数(D₁,E₁,F₁,D₂,E₂,F₂)"；示例：Vtcr20,0,-1,-4,0,3
+-- yyec = "求解一元二次方程ax²+bx+c=0，参数(a,b,c)"；示例：Vyyec1,-3,2
+-- yyyc = "求解一元一次方程ax+b=0，参数(a,b)"；示例：Vyyyc2,-4 → x=2
+-- xsqz / ceil = "向上取整"；示例：Vxsqz3.2 / Vceil3.2 → 4
+-- xxqz / floor = "向下取整"；示例：Vxxqz3.8 / Vfloor3.8 → 3
+-- zdbx = "已知正多边形边数n与边长a求面积，(n,a)"；示例：Vzdbx4,2 → 4
+-- atan2 = "根据(y,x)返回点相对于x轴的角度（弧度）"；示例：Vatan21,0 → π/2
+-- dyzx1 = "点到直线距离及其关于直线的对称点，(x₁,y₁,A,B,C)"；示例：Vdyzx11,1,1,0,0
+-- dyzx2 = "直线关于点P的对称直线，(Px,Py,A,B,C)"；示例：Vdyzx20,0,1,0,-1
+-- ldexp = "返回 x×2^y，参数(x,y)"；示例：Vldexp3,2 → 12
+-- sjxy1 = "已知三角形三边长，求内切圆和外接圆半径"；示例：Vsjxy13,4,5
+-- sjxy2 = "已知三角形三个顶点坐标，求内切圆和外接圆半径"；示例：Vsjxy20,0,4,0,0,3
+-- yysc1 = "求解一元三次方程ax³+bx²+cx+d=0，参数(a,b,c,d)"；示例：Vyysc11,-6,11,-6
+-- yysc2 = "求解一元四次方程ax⁴+bx³+cx²+dx+e=0，参数(a,b,c,d,e)"；示例：Vyysc21,-10,35,-50,24
 
 
 local T = {}
@@ -143,6 +151,11 @@ local methods_desc = {
     ["y"] = "亿",
     ["g"] = "十亿"
 }
+
+local function register_method(name, method, description)
+    calc_methods[name] = method
+    methods_desc[name] = description
+end
 
 -- 实现计算输入
 local function replaceToFactorial(str)
@@ -203,15 +216,13 @@ end
 local function ceil(x)
     return math.ceil(x)
 end
-calc_methods["xsqz"] = ceil
-methods_desc["xsqz"] = "向上取整"
+register_method("xsqz", ceil, "向上取整")
 
 -- 向下取整函数
 local function floor(x)
     return math.floor(x)
 end
-calc_methods["xxqz"] = floor
-methods_desc["xxqz"] = "向下取整"
+register_method("xxqz", floor, "向下取整")
 
 -- 四舍五入保留小数点后n位
 local function round(m, n)
@@ -261,8 +272,7 @@ local function gcd_multiple(...)
     end
     return fn(result)
 end
-calc_methods["gys"] = gcd_multiple
-methods_desc["gys"] = "计算多个数的最大公因数"
+register_method("gys", gcd_multiple, "计算多个数的最大公因数")
 
 -- 计算两个数的最小公倍数（LCM）
 local function lcm(a, b)
@@ -279,16 +289,14 @@ local function lcm_multiple(...)
     end
     return fn(result)
 end
-calc_methods["gbs"] = lcm_multiple
-methods_desc["gbs"] = "计算多个数的最小公倍数"
+register_method("gbs", lcm_multiple, "计算多个数的最小公倍数")
 
 -- random(m ,n) 返回m-n之间的随机数，n为空则返回1-m之间，都为空则返回0-1之间的小数
 local function random(...)
     return math.random(...)
 end
 -- 注册到函数表中
-calc_methods["sjs"] = random
-methods_desc["sjs"] = "随机数"
+register_method("sjs", random, "随机数")
 
 -- 计算开 N 次方
 local function nth_root(x, n)
@@ -300,72 +308,62 @@ local function nth_root(x, n)
         return x ^ (1 / n)
     end
 end
-calc_methods["nrt"] = nth_root
-methods_desc["nrt"] = "计算 x 开 N 次方"
+register_method("nrt", nth_root, "计算 x 开 N 次方")
 
 -- 正弦
 local function sin(x)
     return math.sin(x)
 end
-calc_methods["sin"] = sin
-methods_desc["sin"] = "正弦"
+register_method("sin", sin, "正弦")
 
 -- 双曲正弦
 local function sinh(x)
     return (math.exp(x) - math.exp(-x)) / 2
 end
-calc_methods["sinh"] = sinh
-methods_desc["sinh"] = "双曲正弦"
+register_method("sinh", sinh, "双曲正弦")
 
 -- 反正弦
 local function asin(x)
     return math.asin(x)
 end
-calc_methods["asin"] = asin
-methods_desc["asin"] = "反正弦"
+register_method("asin", asin, "反正弦")
 
 -- 余弦
 local function cos(x)
     return math.cos(x)
 end
-calc_methods["cos"] = cos
-methods_desc["cos"] = "余弦"
+register_method("cos", cos, "余弦")
 
 -- 双曲余弦
 local function cosh(x)
     return (math.exp(x) + math.exp(-x)) / 2
 end
-calc_methods["cosh"] = cosh
-methods_desc["cosh"] = "双曲余弦"
+register_method("cosh", cosh, "双曲余弦")
 
 -- 反余弦
 local function acos(x)
     return math.acos(x)
 end
-calc_methods["acos"] = acos
-methods_desc["acos"] = "反余弦"
+register_method("acos", acos, "反余弦")
 
 -- 正切
 local function tan(x)
     return math.tan(x)
 end
-calc_methods["tan"] = tan
-methods_desc["tan"] = "正切"
+register_method("tan", tan, "正切")
 
 -- 双曲正切
 local function tanh(x)
     local e = math.exp(2 * x)
     return (e - 1) / (e + 1)
 end
-calc_methods["tanh"] = tanh
-methods_desc["tanh"] = "双曲正切"
+register_method("tanh", tanh, "双曲正切")
 
 -- 反正切
 local function atan(x)
     return math.atan(x)
 end
-calc_methods["atan"] = atan
-methods_desc["atan"] = "反正切"
+register_method("atan", atan, "反正切")
 
 -- 返回以弧度为单位的点(x,y)相对于x轴的逆时针角度。y是点的纵坐标，x是点的横坐标
 -- 返回范围从−π到π （以弧度为单位），其中负角度表示向下旋转，正角度表示向上旋转
@@ -383,29 +381,25 @@ local function atan2(y, x)
         return math.atan(y / x) + (x < 0 and math.pi or 0)
     end
 end
-calc_methods["atan2"] = atan2
-methods_desc["atan2"] = "返回以弧度为单位的点(x,y)相对于x轴的逆时针角度"
+register_method("atan2", atan2, "返回以弧度为单位的点(x,y)相对于x轴的逆时针角度")
 
 -- 将角度从弧度转换为度
 local function deg(x)
     return math.deg(x)
 end
-calc_methods["deg"] = deg
-methods_desc["deg"] = "弧度转换为角度"
+register_method("deg", deg, "弧度转换为角度")
 
 -- 将角度从度转换为弧度
 local function rad(x)
     return math.rad(x)
 end
-calc_methods["rad"] = rad
-methods_desc["rad"] = "角度转换为弧度"
+register_method("rad", rad, "角度转换为弧度")
 
 -- 返回 x*2^y
 local function ldexp(x, y)
     return x * 2 ^ y
 end
-calc_methods["ldexp"] = ldexp
-methods_desc["ldexp"] = "返回 x*2^y"
+register_method("ldexp", ldexp, "返回 x*2^y")
 
 -- 返回 e^x
 local function exp(x)
@@ -415,8 +409,7 @@ local function exp(x)
     end
     return math.exp(x)
 end
-calc_methods["exp"] = exp
-methods_desc["exp"] = "返回 e^x"
+register_method("exp", exp, "返回 e^x")
 
 -- 计算复数的平方根
 local function sqrt(...)
@@ -464,8 +457,7 @@ local function sqrt(...)
         end
     end
 end
-calc_methods["sqrt"] = sqrt
-methods_desc["sqrt"] = "计算复数的平方根"
+register_method("sqrt", sqrt, "计算复数的平方根")
 
 -- 计算正数的算术平方根
 local function msq(x)
@@ -478,8 +470,7 @@ local function msq(x)
     end
     return fn(math.sqrt(x))
 end
-calc_methods["msq"] = msq
-methods_desc["msq"] = "计算正数的算术平方根"
+register_method("msq", msq, "计算正数的算术平方根")
 
 -- x为底的对数， log(10, 100) = log(100) / log(10) = 2
 local function log(x, y)
@@ -489,8 +480,7 @@ local function log(x, y)
     end
     return math.log(y) / math.log(x)
 end
-calc_methods["log"] = log
-methods_desc["log"] = "x作为底数的对数"
+register_method("log", log, "x作为底数的对数")
 
 -- 自然数e为底的对数
 local function loge(x)
@@ -500,8 +490,7 @@ local function loge(x)
     end
     return math.log(x)
 end
-calc_methods["loge"] = loge
-methods_desc["loge"] = "e作为底数的对数"
+register_method("loge", loge, "e作为底数的对数")
 
 -- 10为底的对数
 local function logt(x)
@@ -511,8 +500,7 @@ local function logt(x)
     end
     return math.log(x) / math.log(10)
 end
-calc_methods["logt"] = logt
-methods_desc["logt"] = "10作为底数的对数"
+register_method("logt", logt, "10作为底数的对数")
 
 -- 平均值
 local function avg(...)
@@ -530,8 +518,7 @@ local function avg(...)
     end
     return fn(sum / n)
 end
-calc_methods["avg"] = avg
-methods_desc["avg"] = "平均值"
+register_method("avg", avg, "平均值")
 
 -- 方差
 local function variance(...)
@@ -555,8 +542,7 @@ local function variance(...)
     end
     return fn(sum_squared_diff / n)
 end
-calc_methods["var"] = variance
-methods_desc["var"] = "方差"
+register_method("var", variance, "方差")
 
 -- 阶乘
 local function factorial(x)
@@ -572,8 +558,7 @@ local function factorial(x)
     end
     return fn(result)
 end
-calc_methods["fact"] = factorial
-methods_desc["fact"] = "阶乘"
+register_method("fact", factorial, "阶乘")
 
 -- 计算行列式
 local function hls(...)
@@ -624,8 +609,7 @@ local function hls(...)
     end
     return determinant(matrix)
 end
-calc_methods["hls"] = hls
-methods_desc["hls"] = "计算行列式"
+register_method("hls", hls, "计算行列式")
 
 -- 取余函数
 local function remainder(x, y)
@@ -637,8 +621,7 @@ local function remainder(x, y)
     end
     return fn(result)
 end
-calc_methods["mod"] = remainder
-methods_desc["mod"] = "求余函数"
+register_method("mod", remainder, "求余函数")
 
 -- 连续自然数平方和(从1开始)
 local function sum_of_squares(n)
@@ -650,8 +633,7 @@ local function sum_of_squares(n)
     local result = n * (n + 1) * (2 * n + 1) / 6
     return fn(result)
 end
-calc_methods["sq"] = sum_of_squares
-methods_desc["sq"] = "连续自然数平方和(从1开始)"
+register_method("sq", sum_of_squares, "连续自然数平方和(从1开始)")
 
 -- 连续自然数立方和(从1开始)
 local function sum_of_cubes(n)
@@ -663,8 +645,7 @@ local function sum_of_cubes(n)
     local result = (n * (n + 1)) ^ 2 / 4
     return fn(result)
 end
-calc_methods["cb"] = sum_of_cubes
-methods_desc["cb"] = "连续自然数立方和(从1开始)"
+register_method("cb", sum_of_cubes, "连续自然数立方和(从1开始)")
 
 -- 连续自然数4次方之和(从1开始)
 local function sum_of_fourth_powers(n)
@@ -676,8 +657,7 @@ local function sum_of_fourth_powers(n)
     local result = n * (n + 1) * (2 * n + 1) * (3 * n ^ 2 + 3 * n - 1) / 30
     return fn(result)
 end
-calc_methods["fp"] = sum_of_fourth_powers
-methods_desc["fp"] = "连续自然数4次方之和(从1开始)"
+register_method("fp", sum_of_fourth_powers, "连续自然数4次方之和(从1开始)")
 
 -- 前n个奇数的平方和
 local function sum_of_odd_squares(n)
@@ -689,8 +669,7 @@ local function sum_of_odd_squares(n)
     local result = n * (4 * n ^ 2 - 1) / 3
     return fn(result)
 end
-calc_methods["osq"] = sum_of_odd_squares
-methods_desc["osq"] = "前n个奇数的平方和"
+register_method("osq", sum_of_odd_squares, "前n个奇数的平方和")
 
 -- 前n个偶数的平方和
 local function sum_of_even_squares(n)
@@ -702,8 +681,7 @@ local function sum_of_even_squares(n)
     local result = 2 * n * (n + 1) * (2 * n + 1) / 3
     return fn(result)
 end
-calc_methods["esq"] = sum_of_even_squares
-methods_desc["esq"] = "前n个偶数的平方和"
+register_method("esq", sum_of_even_squares, "前n个偶数的平方和")
 
 -- 前n个奇数的立方和
 local function sum_of_odd_cubes(n)
@@ -715,8 +693,7 @@ local function sum_of_odd_cubes(n)
     local result = n ^ 2 * (2 * n ^ 2 - 1)
     return fn(result)
 end
-calc_methods["ocb"] = sum_of_odd_cubes
-methods_desc["ocb"] = "前n个奇数的立方和"
+register_method("ocb", sum_of_odd_cubes, "前n个奇数的立方和")
 
 -- 前n个偶数的立方和
 local function sum_of_even_cubes(n)
@@ -728,8 +705,7 @@ local function sum_of_even_cubes(n)
     local result = 2 * (n * (n + 1)) ^ 2
     return fn(result)
 end
-calc_methods["ecb"] = sum_of_even_cubes
-methods_desc["ecb"] = "前n个偶数的立方和"
+register_method("ecb", sum_of_even_cubes, "前n个偶数的立方和")
 
 -- 前n个奇数的4次方之和
 local function sum_of_odd_fourth_powers(n)
@@ -741,8 +717,7 @@ local function sum_of_odd_fourth_powers(n)
     local result = (48 * n ^ 5 - 40 * n ^ 3 + 7 * n) / 15
     return fn(result)
 end
-calc_methods["ofp"] = sum_of_odd_fourth_powers
-methods_desc["ofp"] = "前n个奇数的4次方之和"
+register_method("ofp", sum_of_odd_fourth_powers, "前n个奇数的4次方之和")
 
 -- 前n个偶数的4次方之和
 local function sum_of_even_fourth_powers(n)
@@ -754,8 +729,7 @@ local function sum_of_even_fourth_powers(n)
     local result = 8 * n * (n + 1) * (2 * n + 1) * (3 * n ^ 2 + 3 * n - 1) / 15
     return fn(result)
 end
-calc_methods["efp"] = sum_of_even_fourth_powers
-methods_desc["efp"] = "前n个偶数的4次方之和"
+register_method("efp", sum_of_even_fourth_powers, "前n个偶数的4次方之和")
 
 -- 圆的标准方程的表达式优化
 local function CircleStandardEquation(h, k, r_squared)
@@ -969,8 +943,7 @@ local function calculateRegularPolygonArea(n, a)
     local s = (n * a ^ 2) / (4 * math.tan(math.pi / n))
     return fn(s)
 end
-calc_methods["zdbx"] = calculateRegularPolygonArea
-methods_desc["zdbx"] = "已知边数n与边长a计算正多边形面积"
+register_method("zdbx", calculateRegularPolygonArea, "已知边数n与边长a计算正多边形面积")
 
 -- 已知等比数列的首项a₁，公比q，求指定的前n项和
 local function geometricSeriesSum(a1, q, n)
@@ -990,8 +963,7 @@ local function geometricSeriesSum(a1, q, n)
         return fn(s)
     end
 end
-calc_methods["dbsl"] = geometricSeriesSum
-methods_desc["dbsl"] = "已知等比数列的首项a₁，公比q，求指定的前n项和"
+register_method("dbsl", geometricSeriesSum, "已知等比数列的首项a₁，公比q，求指定的前n项和")
 
 -- 已知等差数列的首项a₁，公差d，求指定的前n项和
 local function ArithmeticSeriesSum(a1, d, n)
@@ -1009,8 +981,7 @@ local function ArithmeticSeriesSum(a1, d, n)
         return fn(s)
     end
 end
-calc_methods["dcsl"] = ArithmeticSeriesSum
-methods_desc["dcsl"] = "已知等差数列的首项a₁，公差d，求指定的前n项和"
+register_method("dcsl", ArithmeticSeriesSum, "已知等差数列的首项a₁，公差d，求指定的前n项和")
 
 -- 已知数列中任意两项aᵢ、aₖ，求通项公式
 -- 对应项数分别为i、k
@@ -1119,8 +1090,7 @@ local function findSequenceFormula(i, ai, k, ak, b)
         return "错误：参数b必须是0或1"
     end
 end
-calc_methods["tx"] = findSequenceFormula
-methods_desc["tx"] = "已知数列的任意两项aᵢ、aₖ及对应的项数i、k，求其通项公式"
+register_method("tx", findSequenceFormula, "已知数列的任意两项aᵢ、aₖ及对应的项数i、k，求其通项公式")
 
 -- 已知圆心坐标(h,k)和半径r，求圆的标准方程和一般方程
 local function CircleEquationsxr(h, k, r)
@@ -1140,8 +1110,7 @@ local function CircleEquationsxr(h, k, r)
     -- 返回两个方程
     return "标准方程: " .. se .. "\n一般方程: " .. ge
 end
-calc_methods["cexr"] = CircleEquationsxr
-methods_desc["cexr"] = "已知圆心坐标和半径求圆的方程"
+register_method("cexr", CircleEquationsxr, "已知圆心坐标和半径求圆的方程")
 
 -- 已知圆心坐标(h,k)和圆上不同两点(x₁,y₁),(x₂,y₂)，求圆的标准方程和一般方程
 local function CircleEquationsxl(h, k, x1, y1, x2, y2)
@@ -1168,8 +1137,7 @@ local function CircleEquationsxl(h, k, x1, y1, x2, y2)
     -- 返回两个方程
     return "标准方程: " .. se .. "\n一般方程: " .. ge
 end
-calc_methods["cexl"] = CircleEquationsxl
-methods_desc["cexl"] = "已知圆心和圆上不同两点的坐标求圆方程"
+register_method("cexl", CircleEquationsxl, "已知圆心和圆上不同两点的坐标求圆方程")
 
 -- 已知不共线的三点(x₁,y₁)，(x₂,y₂)，(x₃,y₃)，求过它们的圆的方程
 local function CircleEquationssd(x1, y1, x2, y2, x3, y3)
@@ -1210,8 +1178,7 @@ local function CircleEquationssd(x1, y1, x2, y2, x3, y3)
     -- 返回两个方程
     return "标准方程: " .. se .. "\n一般方程: " .. ge
 end
-calc_methods["cesd"] = CircleEquationssd
-methods_desc["cesd"] = "已知圆上不同三点的坐标，求圆方程"
+register_method("cesd", CircleEquationssd, "已知圆上不同三点的坐标，求圆方程")
 
 -- 求解一元一次方程:ax+b=0
 local function solveLinearEquation(a, b)
@@ -1228,8 +1195,7 @@ local function solveLinearEquation(a, b)
         return "x=" .. x
     end
 end
-calc_methods["yyyc"] = solveLinearEquation
-methods_desc["yyyc"] = "求解一元一次方程"
+register_method("yyyc", solveLinearEquation, "求解一元一次方程")
 
 -- 求解二元一次方程组：ax+by=e，cx+dy=f
 local function solveLinearSystem(a, b, c, d, e, f)
@@ -1250,8 +1216,7 @@ local function solveLinearSystem(a, b, c, d, e, f)
     -- 返回解的字符串表示
     return "x=" .. x .. "\ny=" .. y
 end
-calc_methods["eyyc"] = solveLinearSystem
-methods_desc["eyyc"] = "求解二元一次方程组ax+by=e，cx+dy=f"
+register_method("eyyc", solveLinearSystem, "求解二元一次方程组ax+by=e，cx+dy=f")
 
 -- 点斜法求解一次函数解析式
 -- 定义函数，输入斜率k和点的坐标(x₁, y₁)
@@ -1259,8 +1224,7 @@ local function pointSlopeForm(k, x1, y1)
     local le = LineEquation(x1, y1, k)
     return "直线方程: " .. le
 end
-calc_methods["dxf"] = pointSlopeForm
-methods_desc["dxf"] = "点斜法求解一次函数解析式"
+register_method("dxf", pointSlopeForm, "点斜法求解一次函数解析式")
 
 -- 两点法求解一次函数解析式
 -- 定义函数，输入两点坐标(x₁, y₁)、(x₂,y₂)
@@ -1280,8 +1244,7 @@ local function twoPointsForm(x1, y1, x2, y2)
     le = LineEquation(x1, y1, k)
     return "直线方程: " .. le
 end
-calc_methods["ldf"] = twoPointsForm
-methods_desc["ldf"] = "两点法求解一次函数解析式"
+register_method("ldf", twoPointsForm, "两点法求解一次函数解析式")
 
 -- 求解一元二次方程ax²+bx+c=0
 local function solveQuadraticEquation(a, b, c)
@@ -1333,8 +1296,7 @@ local function solveQuadraticEquation(a, b, c)
     end
     return "x₁=" .. x1 .. "\nx₂=" .. x2
 end
-calc_methods["yyec"] = solveQuadraticEquation
-methods_desc["yyec"] = "求解一元二次方程"
+register_method("yyec", solveQuadraticEquation, "求解一元二次方程")
 
 -- 求解一元三次方程ax³+bx²+cx+d=0
 local function solveCubicEquation(a, b, c, d)
@@ -1412,8 +1374,7 @@ local function solveCubicEquation(a, b, c, d)
         return "x₁=" .. x1 .. "\nx₂=" .. x2 .. "\nx₃=" .. x3
     end
 end
-calc_methods["yysc1"] = solveCubicEquation
-methods_desc["yysc1"] = "求解一元三次方程"
+register_method("yysc1", solveCubicEquation, "求解一元三次方程")
 
 -- 求解一元四次方程ax⁴+bx³+cx²+dx+e=0
 local function solveQuarticEquation(a, b, c, d, e)
@@ -1777,8 +1738,7 @@ local function solveQuarticEquation(a, b, c, d, e)
         return "x₁=" .. x1 .. "\nx₂=" .. x2 .. "\nx₃=" .. x3 .. "\nx₄=" .. x4
     end
 end
-calc_methods["yysc2"] = solveQuarticEquation
-methods_desc["yysc2"] = "求解一元四次方程"
+register_method("yysc2", solveQuarticEquation, "求解一元四次方程")
 
 -- 顶点式求解二次函数解析式：y=a(x-h)²+k
 -- (x₁,y₁)为顶点坐标，(x₂,y₂)为其函数图像上除顶点坐标外任意一点坐标
@@ -1794,8 +1754,7 @@ local function getQuadraticEquationdd(x1, y1, x2, y2)
     qe = QuadraticEquation(a, b, c)
     return "二次函数解析式为：" .. qe
 end
-calc_methods["dds"] = getQuadraticEquationdd
-methods_desc["dds"] = "顶点式求解二次函数解析式"
+register_method("dds", getQuadraticEquationdd, "顶点式求解二次函数解析式")
 
 -- 一般式求解二次函数解析式
 local function getQuadraticEquationy(x1, y1, x2, y2, x3, y3)
@@ -1829,8 +1788,7 @@ local function getQuadraticEquationy(x1, y1, x2, y2, x3, y3)
     qe = QuadraticEquation(a, b, c)
     return "二次函数解析式为：" .. qe
 end
-calc_methods["ybs"] = getQuadraticEquationy
-methods_desc["ybs"] = "一般式求解二次函数解析式"
+register_method("ybs", getQuadraticEquationy, "一般式求解二次函数解析式")
 
 -- 已知三角形的三边a、b、c，求三角形面积
 local function calculateTriangleArea(a, b, c)
@@ -1845,8 +1803,7 @@ local function calculateTriangleArea(a, b, c)
     s = math.sqrt(p * (p - a) * (p - b) * (p - c))
     return fn(s)
 end
-calc_methods["sjx1"] = calculateTriangleArea
-methods_desc["sjx1"] = "已知三角形的三边长a、b、c，求三角形面积"
+register_method("sjx1", calculateTriangleArea, "已知三角形的三边长a、b、c，求三角形面积")
 
 -- 已知三角形的三个顶点坐标(x₁, y₁)，(x₂, y₂)，(x₃, y₃)，求三角形面积
 local function calculateTriangleArea2(x1, y1, x2, y2, x3, y3)
@@ -1864,8 +1821,7 @@ local function calculateTriangleArea2(x1, y1, x2, y2, x3, y3)
     s = fn(math.abs(determinant / 2))
     return s
 end
-calc_methods["sjx2"] = calculateTriangleArea2
-methods_desc["sjx2"] = "已知三角形的三个顶点坐标(x₁,y₁)，(x₂,y₂)，(x₃,y₃)，求三角形面积"
+register_method("sjx2", calculateTriangleArea2, "已知三角形的三个顶点坐标(x₁,y₁)，(x₂,y₂)，(x₃,y₃)，求三角形面积")
 
 -- 已知一点(x₁, y₁)和直线方程Ax+By+C=0，求点到直线的距离和它关于直线的对称点坐标
 local function dyzx1(x1, y1, A, B, C)
@@ -1890,8 +1846,7 @@ local function dyzx1(x1, y1, A, B, C)
     y = fn(y1 - 2 * B * s)
     return "点到直线距离为" .. D .. "\n点关于直线的对称点坐标为(" .. x .. "," .. y .. ")"
 end
-calc_methods["dyzx1"] = dyzx1
-methods_desc["dyzx1"] = "已知一点坐标(x₁, y₁)和直线方程Ax+By+C=0，求点到直线的距离及对称点坐标"
+register_method("dyzx1", dyzx1, "已知一点坐标(x₁, y₁)和直线方程Ax+By+C=0，求点到直线的距离及对称点坐标")
 
 -- 已知两点(x₁, y₁)和(x₂, y₂)，求两点间的距离
 local function ld1(x1, y1, x2, y2)
@@ -1907,8 +1862,7 @@ local function ld1(x1, y1, x2, y2)
     local D = math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
     return fn(D)
 end
-calc_methods["ld1"] = ld1
-methods_desc["ld1"] = "已知两点坐标，求两点间的距离"
+register_method("ld1", ld1, "已知两点坐标，求两点间的距离")
 
 -- 已知两点(x₁, y₁)和(x₂, y₂)，求两点连线的垂直平分线方程
 local function ld2(x1, y1, x2, y2)
@@ -1938,8 +1892,7 @@ local function ld2(x1, y1, x2, y2)
     se = LineEquation(x3, y3, kl)
     return "垂直平分线方程为：" .. se
 end
-calc_methods["ld2"] = ld2
-methods_desc["ld2"] = "已知两点坐标，求两点间线段的垂直平分线方程"
+register_method("ld2", ld2, "已知两点坐标，求两点间线段的垂直平分线方程")
 
 -- 已知两点P(x₁, y₁)和Q(x₂, y₂)，求点P绕点Q旋转角度a(角度制)后的P'坐标
 -- 逆时针时a为正，顺时针时a为负
@@ -1956,8 +1909,7 @@ local function ld3(x1, y1, x2, y2, a)
     y = fn(y2 + (x1 - x2) * sin(a1) + (y1 - y2) * cos(a1))
     return "点P(" .. x1 .. "," .. y1 .. ")绕点Q(" .. x2 .. "," .. y2 .. ")旋转" .. a .. "°后的P'坐标为(" .. x .. "," .. y .. ")"
 end
-calc_methods["ld3"] = ld3
-methods_desc["ld3"] = "已知两点P(x₁, y₁)和Q(x₂, y₂)，求点P绕点Q旋转角度a(角度制)后的P'坐标"
+register_method("ld3", ld3, "已知两点P(x₁, y₁)和Q(x₂, y₂)，求点P绕点Q旋转角度a(角度制)后的P'坐标")
 
 -- 已知两条直线方程 A₁x+B₁y+C₁=0和 A₂x+B₂y+C₂=0，判断它们的位置关系
 local function lines_relationship(A1, B1, C1, A2, B2, C2)
@@ -1993,8 +1945,7 @@ local function lines_relationship(A1, B1, C1, A2, B2, C2)
         return "两直线相交，交点坐标为(" .. x .. "," .. y .. ")"
     end
 end
-calc_methods["lzx1"] = lines_relationship
-methods_desc["lzx1"] = "已知两直线方程A₁x+B₁y+C₁=0和A₂x+B₂y+C₂=0，判断它们的位置关系"
+register_method("lzx1", lines_relationship, "已知两直线方程A₁x+B₁y+C₁=0和A₂x+B₂y+C₂=0，判断它们的位置关系")
 
 -- 已知三角形的三边a、b、c，求内切圆半径和外接圆半径
 local function triangle_circles(a, b, c)
@@ -2017,8 +1968,7 @@ local function triangle_circles(a, b, c)
     R = fn((a * b * c) / (4 * A))
     return "内切圆半径为" .. r .. "\n外接圆半径为" .. R
 end
-calc_methods["sjxy1"] = triangle_circles
-methods_desc["sjxy1"] = "已知三角形三边长，求内切圆半径和外接圆半径"
+register_method("sjxy1", triangle_circles, "已知三角形三边长，求内切圆半径和外接圆半径")
 
 -- 已知三角形三个顶点坐标(x₁,y₁)，(x₂,y₂)，(x₃,y₃)，求其内切圆半径和外接圆半径
 local function triangle_circles_by_points(x1, y1, x2, y2, x3, y3)
@@ -2038,8 +1988,7 @@ local function triangle_circles_by_points(x1, y1, x2, y2, x3, y3)
     -- 调用已知三边长的函数计算内切圆半径和外接圆半径
     return triangle_circles(a, b, c)
 end
-calc_methods["sjxy2"] = triangle_circles_by_points
-methods_desc["sjxy2"] = "已知三角形三个顶点坐标，求内切圆半径和外接圆半径"
+register_method("sjxy2", triangle_circles_by_points, "已知三角形三个顶点坐标，求内切圆半径和外接圆半径")
 
 -- 已知三角形三个顶点坐标A(x₁,y₁)，B(x₂,y₂)，C(x₃,y₃)，求其“心”的坐标
 local function triangle_centers(x1, y1, x2, y2, x3, y3)
@@ -2077,8 +2026,7 @@ local function triangle_centers(x1, y1, x2, y2, x3, y3)
     return "重心(" .. xg .. "," .. yg .. ")\n内心(" .. xn .. "," .. yn .. ")\n外心(" .. xw ..
         "," .. yw .. ")\n垂心(" .. xc .. "," .. yc .. ")"
 end
-calc_methods["sjxx"] = triangle_centers
-methods_desc["sjxx"] = "已知三角形三个顶点坐标，求其“心”的坐标"
+register_method("sjxx", triangle_centers, "已知三角形三个顶点坐标，求其“心”的坐标")
 
 -- 计算排列数
 local function permutation(n, r)
@@ -2126,8 +2074,7 @@ local function permutation(n, r)
     end
     return result
 end
-calc_methods["pls"] = permutation
-methods_desc["pls"] = "计算排列数"
+register_method("pls", permutation, "计算排列数")
 
 -- 计算组合数
 local function combination(n, r)
@@ -2176,8 +2123,7 @@ local function combination(n, r)
     end
     return result
 end
-calc_methods["zhs"] = combination
-methods_desc["zhs"] = "计算组合数"
+register_method("zhs", combination, "计算组合数")
 
 -- 已知直线l₁:A₁x+B₁y+C₁=0和l₂:A₂x+B₂y+C₂=0，求两条直线以彼此为轴的对称直线方程
 local function symmetry_line(A1, B1, C1, A2, B2, C2)
@@ -2203,8 +2149,7 @@ local function symmetry_line(A1, B1, C1, A2, B2, C2)
     ge2 = LineGeneralEquation(A4, B4, C4)
     return "直线l₁关于l₂的对称直线l₃的方程为：" .. ge1 .. "\n直线l₂关于l₁的对称直线l₄的方程为：" .. ge2
 end
-calc_methods["lzx2"] = symmetry_line
-methods_desc["lzx2"] = "已知直线l₁:A₁x+B₁y+C₁=0和l₂:A₂x+B₂y+C₂=0，求两条直线以彼此为轴的对称直线方程"
+register_method("lzx2", symmetry_line, "已知直线l₁:A₁x+B₁y+C₁=0和l₂:A₂x+B₂y+C₂=0，求两条直线以彼此为轴的对称直线方程")
 
 -- 已知一点P(x₁,y₁)和直线l:Ax+By+C=0，求直线l关于点P的对称直线l'的方程
 local function dyzx2(x1, y1, A, B, C)
@@ -2223,8 +2168,7 @@ local function dyzx2(x1, y1, A, B, C)
     ge = LineGeneralEquation(A1, B1, C1)
     return "直线l关于点P的对称直线l'的方程为：" .. ge
 end
-calc_methods["dyzx2"] = dyzx2
-methods_desc["dyzx2"] = "已知一点P(x₁,y₁)和直线l:Ax+By+C=0，求直线l关于点P的对称直线l'的方程"
+register_method("dyzx2", dyzx2, "已知一点P(x₁,y₁)和直线l:Ax+By+C=0，求直线l关于点P的对称直线l'的方程")
 
 -- 已知两圆标准方程(x-x₁)²+(y-y₁)²=r₁²和(x-x₂)²+(y-y₂)²=r₂²，判断它们的位置关系
 local function tcr1(x1, y1, r1, x2, y2, r2)
@@ -2284,8 +2228,7 @@ local function tcr1(x1, y1, r1, x2, y2, r2)
         return "两圆相交，圆心距为" .. d .. "\n交点坐标为(" .. xj1 .. "," .. yj1 .. ")和(" .. xj2 .. "," .. yj2 .. ")\n相交弦弦长为" .. dj
     end
 end
-calc_methods["tcr1"] = tcr1
-methods_desc["tcr1"] = "已知两圆标准方程(x-x₁)²+(y-y₁)²=r₁²和(x-x₂)²+(y-y₂)²=r₂²，判断它们的位置关系"
+register_method("tcr1", tcr1, "已知两圆标准方程(x-x₁)²+(y-y₁)²=r₁²和(x-x₂)²+(y-y₂)²=r₂²，判断它们的位置关系")
 
 -- 已知两圆一般方程x²+y²+D₁x+E₁y+F₁=0和x²+y²+D₂x+E₂y+F₂=0，判断它们的位置关系
 local function tcr2(D1, E1, F1, D2, E2, F2)
@@ -2304,8 +2247,7 @@ local function tcr2(D1, E1, F1, D2, E2, F2)
     -- 调用函数输出结果
     return tcr1(x1, y1, r1, x2, y2, r2)
 end
-calc_methods["tcr2"] = tcr2
-methods_desc["tcr2"] = "已知两圆一般方程x²+y²+D₁x+E₁y+F₁=0和x²+y²+D₂x+E₂y+F₂=0，判断它们的位置关系"
+register_method("tcr2", tcr2, "已知两圆一般方程x²+y²+D₁x+E₁y+F₁=0和x²+y²+D₂x+E₂y+F₂=0，判断它们的位置关系")
 
 -- 求解勾股数
 local function ggs(...)
@@ -2444,8 +2386,7 @@ local function ggs(...)
     end
     return (n == 1) and ggs1(args[1]) or ggs2(args[1], args[2])
 end
-calc_methods["ggs"] = ggs
-methods_desc["ggs"] = "求解勾股数"
+register_method("ggs", ggs, "求解勾股数")
 
 -- 批量随机数生成器
 -- 参数模式1（3个参数）：digits（位数）、count（数量）、unique（是否唯一，0为true/1为false）
@@ -2525,8 +2466,7 @@ local function generateRandomNumbers(...)
     end
     return table.concat(formatted)
 end
-calc_methods["psjs"] = generateRandomNumbers
-methods_desc["psjs"] = "批量随机数"
+register_method("psjs", generateRandomNumbers, "批量随机数")
 
 -- 质因数分解（带优化输出格式）
 local function prime_factorization(n)
@@ -2601,8 +2541,7 @@ local function prime_factorization(n)
     end)
     return table.concat(output, "×")
 end
-calc_methods["zys"] = prime_factorization
-methods_desc["zys"] = "质因数分解"
+register_method("zys", prime_factorization, "质因数分解")
 
 -- 找质数（欧拉筛法）
 local function sieve_of_eratosthenes(n)
@@ -2649,8 +2588,7 @@ local function sieve_of_eratosthenes(n)
     end
     return table.concat(output)
 end
-calc_methods["zzs"] = sieve_of_eratosthenes
-methods_desc["zzs"] = "找质数"
+register_method("zzs", sieve_of_eratosthenes, "找质数")
 
 -- 24点计算器（含去重逻辑）
 local function solve24(...)
@@ -2941,8 +2879,7 @@ local function solve24(...)
         return "错误：请输入4个数字或者不输入参数以生成随机数。"
     end
 end
-calc_methods["tfp"] = solve24
-methods_desc["tfp"] = "24点计算器"
+register_method("tfp", solve24, "24点计算器")
 
 -- 单位换算脚本
 -- 注意：单位是作为字符串类型参数传入的，所以输入时应加引号（单双均可，但不能混用）
@@ -3073,7 +3010,7 @@ local function dwhs(value, from_unit, to_unit)
             end
             return leading_zeros >= 3
         else
-            return (math.log10(int_part) + 1) > 4
+            return (math.log(int_part, 10) + 1) > 4
         end
     end
     -- 格式化数字输出
@@ -3091,8 +3028,7 @@ local function dwhs(value, from_unit, to_unit)
     -- 显示结果
     return formatted_result
 end
-calc_methods["dwhs"] = dwhs
-methods_desc["dwhs"] = "单位换算，支持面积、质量、长度、体积"
+register_method("dwhs", dwhs, "单位换算，支持面积、质量、长度、体积")
 
 -- 数字进制转换
 -- 注意：在输入有字母的非10进制数时，需加上引号（单双均可，但不能混用）
@@ -3213,8 +3149,60 @@ local function convertBase(...)
     end
     return table.concat(result)
 end
-calc_methods["jzzh"] = convertBase
-methods_desc["jzzh"] = "数字进制转换，支持2~36进制"
+register_method("jzzh", convertBase, "数字进制转换，支持2~36进制")
+
+-- 常用输入别名：保留原函数名，同时提供更直观、易记的调用方式。
+-- 百分之/千分之/万分之与普通分数
+local function percentage(x)
+    return x / 100
+end
+
+local function permille(x)
+    return x / 1000
+end
+
+local function permyriad(x)
+    return x / 10000
+end
+
+local function fraction(numerator, denominator)
+    return numerator / denominator
+end
+
+-- 角度制三角函数；原 sin/cos/tan 仍保持弧度制。
+local function sin_degrees(x)
+    return math.sin(math.rad(x))
+end
+
+local function cos_degrees(x)
+    return math.cos(math.rad(x))
+end
+
+local function tan_degrees(x)
+    return math.tan(math.rad(x))
+end
+
+register_method("bfz", percentage, "百分之")
+register_method("qfz", permille, "千分之")
+register_method("wfz", permyriad, "万分之")
+register_method("fz", fraction, "分数")
+register_method("sind", sin_degrees, "角度制正弦")
+register_method("cosd", cos_degrees, "角度制余弦")
+register_method("tand", tan_degrees, "角度制正切")
+
+-- 常用数学名称别名
+register_method("ln", loge, "自然对数")
+register_method("lg", logt, "常用对数")
+register_method("root", nth_root, "N 次方根")
+register_method("gcd", gcd_multiple, "最大公因数")
+register_method("lcm", lcm_multiple, "最小公倍数")
+register_method("ceil", ceil, "向上取整")
+register_method("floor", floor, "向下取整")
+register_method("rand", random, "随机数")
+register_method("C", combination, "组合数")
+register_method("P", permutation, "排列数")
+register_method("u", dwhs, "单位换算")
+register_method("base", convertBase, "进制转换")
 
 -- 执行普通计算的辅助函数
 local function execute_normal_calculation(input, seg, express, env)
@@ -3282,7 +3270,9 @@ local function execute_function_call(input, seg, func_name, params, env)
         -- key: 函数名, value: 需要加引号的参数索引表
         local string_param_funcs = {
             jzzh = {1}, -- jzzh函数的第1个参数（要转换的数字）可能需要引号
-            dwhs = {2, 3} -- dwhs函数的第2（原单位）和第3（目标单位）个参数需要引号
+            base = {1}, -- base 是 jzzh 的易用别名
+            dwhs = {2, 3}, -- dwhs函数的第2（原单位）和第3（目标单位）个参数需要引号
+            u = {2, 3} -- u 是 dwhs 的易用别名
         }
         local indices_to_quote = string_param_funcs[fn_name]
         if not indices_to_quote then
