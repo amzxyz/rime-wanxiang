@@ -23,6 +23,8 @@ local DAY_FIELDS = {
     ["text/characters"]="characters",
     ["text/commits"]="commits",
     ["text/keystrokes"]="keystrokes",
+    ["text/code_keystrokes"]="code_keystrokes",
+    ["text/code_characters"]="code_characters",
     ["commit_length/1"]="length_1",
     ["commit_length/2"]="length_2",
     ["commit_length/3"]="length_3",
@@ -53,8 +55,33 @@ local FINGER_STYLE_MAP = {
     sdpy="首道双拼", t9="九键",
 }
 
-local function normalize_device_id(value)
-    return tostring(value or ""):lower():gsub("[^0-9a-f]", ""):sub(1, 8)
+-- 内部设备键固定为 8 位十六进制：
+-- 1. 显式 8 位 ID / UUID 保持旧格式，兼容既有正常数据；
+-- 2. installation_id 若已改成设备名称，则对完整 UTF-8 字符串做稳定哈希，
+--    不再“抽取其中的 a-f/0-9 再截 8 位”，避免名称误判和 00000000 聚合。
+local function stable_device_hash(value)
+    value = tostring(value or "")
+    local hash = 5381
+    for i = 1, #value do
+        hash = (hash * 33 + value:byte(i)) % 4294967296
+    end
+    return string.format("%08x", hash)
+end
+
+local function canonical_device_id(value)
+    value = tostring(value or ""):match("^%s*(.-)%s*$") or ""
+    if value == "" then return nil end
+
+    local lower = value:lower()
+    if lower:match("^%x%x%x%x%x%x%x%x$") then return lower end
+
+    -- 兼容传统 UUID / 纯十六进制 installation_id：仍取前 8 位。
+    local compact = lower:gsub("[{}%-]", "")
+    if #compact >= 8 and compact:match("^%x+$") then
+        return compact:sub(1, 8)
+    end
+
+    return stable_device_hash(value)
 end
 
 local function is_device_id(value)
@@ -62,24 +89,32 @@ local function is_device_id(value)
 end
 
 local function get_device_id(config)
-    local id = normalize_device_id(config:get_string("input_stats/device_id"))
-    if #id == 8 then return id end
+    local configured = config:get_string("input_stats/device_id")
+    local id = canonical_device_id(configured)
+    if id then return id end
+
     local user_dir = rime_api.get_user_data_dir()
-    if not user_dir or user_dir == "" then return "00000000" end
-    local file = io.open(user_dir:gsub("[/\\]+$", "") .. "/installation.yaml", "r")
-    if not file then return "00000000" end
-    for line in file:lines() do
-        local value = line:match("^%s*installation_id%s*:%s*(.-)%s*$")
-        if value then
-            value = value:gsub("%s+#.*$", ""):gsub('^"(.*)"$', "%1")
-                :gsub("^'(.*)'$", "%1")
-            file:close()
-            id = normalize_device_id(value)
-            return #id == 8 and id or "00000000"
-        end
+    if not user_dir or user_dir == "" then
+        return stable_device_hash(SOFTWARE_NAME or "rime")
     end
-    file:close()
-    return "00000000"
+
+    local file = io.open(user_dir:gsub("[/\\]+$", "") .. "/installation.yaml", "r")
+    if file then
+        for line in file:lines() do
+            local value = line:match("^%s*installation_id%s*:%s*(.-)%s*$")
+            if value then
+                value = value:gsub("%s+#.*$", ""):gsub('^"(.*)"$', "%1")
+                    :gsub("^'(.*)'$", "%1")
+                file:close()
+                return canonical_device_id(value)
+                    or stable_device_hash((SOFTWARE_NAME or "rime") .. "|" .. user_dir)
+            end
+        end
+        file:close()
+    end
+
+    -- installation.yaml 缺失时仍生成稳定键，避免所有设备退化到 00000000。
+    return stable_device_hash((SOFTWARE_NAME or "rime") .. "|" .. user_dir)
 end
 
 local function acquire_db(env)
@@ -237,6 +272,7 @@ end
 local function new_stats()
     return {
         characters=0, commits=0, keystrokes=0,
+        code_keystrokes=0, code_characters=0,
         average_characters=0, average_milliseconds=0, average_sessions=0,
         peak_speed=nil,
         length_1=0, length_2=0, length_3=0, length_4=0, length_5_plus=0,
@@ -381,19 +417,27 @@ local function observe_input_activity(env, input)
     env.peak_sample.last_activity = timestamp_ms
 end
 
-local function commit_to_speed(env, day, timestamp_ms, characters)
+local function commit_to_speed(env, day, timestamp_ms, characters, allow_peak)
     ensure_sample(env.average_sample, day, timestamp_ms, env.average_gap_ms,
         function() finish_average(env) end)
-    ensure_sample(env.peak_sample, day, timestamp_ms, env.continuous_gap_ms,
-        function() finish_peak(env) end)
-    local average, peak = env.average_sample, env.peak_sample
+    local average = env.average_sample
     average.last_activity = timestamp_ms
     average.last_commit = timestamp_ms
     average.characters = average.characters + characters
-    peak.last_activity = timestamp_ms
-    peak.last_commit = timestamp_ms
-    peak.characters = peak.characters + characters
-    if peak.last_commit - peak.started >= PEAK_WINDOW_MS then finish_peak(env) end
+
+    if allow_peak then
+        ensure_sample(env.peak_sample, day, timestamp_ms, env.continuous_gap_ms,
+            function() finish_peak(env) end)
+        local peak = env.peak_sample
+        peak.last_activity = timestamp_ms
+        peak.last_commit = timestamp_ms
+        peak.characters = peak.characters + characters
+        if peak.last_commit - peak.started >= PEAK_WINDOW_MS then finish_peak(env) end
+    else
+        -- user_table 等不参与峰速；当前峰值窗口一并作废，避免混合窗口失真。
+        reset_sample(env.peak_sample)
+    end
+
     env.last_observed_input = ""
 end
 
@@ -405,13 +449,21 @@ local function is_valid_speed_commit(env, characters, code_length)
     return characters <= math.max(4, code_length * 2)
 end
 
-local function record_stats(env, characters, code_length, speed_code_length)
+local function record_stats(env, characters, code_length, candidate_type)
     local timestamp_ms = monotonic_ms()
     local day = day_id()
     local prefix = DAY_PREFIX .. day .. "/"
     if not pending_add(env, prefix .. "text/characters", characters) then return end
     pending_add(env, prefix .. "text/commits", 1)
-    pending_add(env, prefix .. "text/keystrokes", code_length)
+
+    -- 平均编码只使用“确实取得输入编码”的配对样本。
+    -- text/keystrokes 继续保留真实编码总量；新字段保证历史脏数据不会混入新口径。
+    if code_length > 0 then
+        pending_add(env, prefix .. "text/keystrokes", code_length)
+        pending_add(env, prefix .. "text/code_keystrokes", code_length)
+        pending_add(env, prefix .. "text/code_characters", characters)
+    end
+
     env.pending_characters = env.pending_characters + characters
     local field = characters == 1 and "commit_length/1"
         or characters == 2 and "commit_length/2"
@@ -419,8 +471,10 @@ local function record_stats(env, characters, code_length, speed_code_length)
         or characters == 4 and "commit_length/4"
         or "commit_length/5_plus"
     pending_add(env, prefix .. field, 1)
-    if is_valid_speed_commit(env, characters, speed_code_length) then
-        commit_to_speed(env, day, timestamp_ms, characters)
+
+    if is_valid_speed_commit(env, characters, code_length) then
+        commit_to_speed(env, day, timestamp_ms, characters,
+            candidate_type ~= "user_table")
     else
         finish_peak(env)
         finish_average(env)
@@ -441,12 +495,19 @@ local function calculate_peak(peaks)
         end
     end
     if samples == 0 then return nil end
+
     table.sort(speeds, function(a, b) return a > b end)
-    local rank = samples == 1 and 1 or 2
+    local target = math.min(2, samples)
+    local total, used = 0, 0
+
     for _, speed in ipairs(speeds) do
-        rank = rank - peaks[speed]
-        if rank <= 0 then return speed end
+        local take = math.min(peaks[speed], target - used)
+        total = total + speed * take
+        used = used + take
+        if used >= target then break end
     end
+
+    return used > 0 and math.floor(total / used + 0.5) or nil
 end
 
 local function aggregate_statistics(env, start_day, end_day, device_id,
@@ -512,7 +573,16 @@ local function aggregate_statistics(env, start_day, end_day, device_id,
         stats.average_milliseconds = 0
         stats.average_sessions = 0
     end
+
     stats.peak_speed = calculate_peak(peaks)
+    if stats.peak_speed and stats.average_milliseconds > 0 then
+        local average_speed = math.floor(
+            stats.average_characters * 60000 / stats.average_milliseconds + 0.5)
+        if stats.peak_speed < average_speed then
+            stats.peak_speed = average_speed
+        end
+    end
+
     return stats.commits > 0 and stats or nil
 end
 
@@ -612,7 +682,9 @@ end
 
 local function format_summary(title, subtitle, data, env)
     if not data or data.commits == 0 then return "※ " .. title .. "暂无数据" end
-    local average_code = data.characters > 0 and data.keystrokes / data.characters or 0
+    local average_code = data.code_characters > 0
+        and string.format("%.2f", data.code_keystrokes / data.code_characters)
+        or "--"
     local phrase_rate = data.characters > 0
         and (data.characters - data.length_1) / data.characters * 100 or 0
     local average_speed = data.average_milliseconds > 0
@@ -640,7 +712,7 @@ local function format_summary(title, subtitle, data, env)
         "🏆 段位：%s" .. zwsp .. "\n" ..
         "───────────────" .. zwsp .. "\n" ..
         "⚡ 核心效率" .. zwsp .. "\n" ..
-        "  平均编码：%.2f 键/字" .. zwsp .. "\n" ..
+        "  平均编码：%s 键/字" .. zwsp .. "\n" ..
         "  词组连打：%.1f %%" .. zwsp .. "\n" ..
         "───────────────" .. zwsp .. "\n" ..
         "📈 字词分布" .. zwsp .. "\n" ..
@@ -737,13 +809,23 @@ local function on_commit(context, env)
     local text = context:get_commit_text()
     if not text or text == "" or text:sub(1, 1) == "/"
         or text:find("^[※◉🏆📊⚡📈]") then return end
+
     local characters = chinese_length(text)
     if characters == 0 then return end
+
+    local candidate_type = ""
+    local cand = context:get_selected_candidate()
+    if cand then
+        candidate_type = cand.type or ""
+        local genuine = cand.get_genuine and cand:get_genuine() or nil
+        if genuine and genuine.type then candidate_type = genuine.type end
+    end
+
     local code = context.input or ""
     if code == "" then code = env.last_observed_input or "" end
     local code_length = #code
-    record_stats(env, characters,
-        code_length > 0 and code_length or characters * 2, code_length)
+
+    record_stats(env, characters, code_length, candidate_type)
     try_flush(env)
 end
 
