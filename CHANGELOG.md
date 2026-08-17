@@ -1,5 +1,17 @@
 # Changelog
 
+## [17.5.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.0...v17.5.1) (2026-08-17)
+
+
+### 📚 词库更新
+
+* 词库调整 ([239f5b9](https://github.com/amzxyz/rime-wanxiang/commit/239f5b953fda0eb1ad823e5f6ed16291d6a27007))
+
+
+### 🐛 Bug 修复
+
+* 移除正则转换改用boost正则直接处理 ([1b50c28](https://github.com/amzxyz/rime-wanxiang/commit/1b50c28507e0b19a710ff4521de82100d1a1c674))
+
 ## [17.5.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.4.0...v17.5.0) (2026-08-16)
 
 
