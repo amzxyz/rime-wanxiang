@@ -1,5 +1,19 @@
 # Changelog
 
+## [17.5.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.1...v17.5.2) (2026-08-18)
+
+
+### 📚 词库更新
+
+* 词库调整 ([477ecec](https://github.com/amzxyz/rime-wanxiang/commit/477ececf0b9fe2c02d39653781bd5d8d39a25a35))
+
+
+### 🐛 Bug 修复
+
+* 优化峰速统计和设备同步id ([cc58e06](https://github.com/amzxyz/rime-wanxiang/commit/cc58e06c3443f5caebcf17742e524c63b937addf))
+* 新增一个英文动态开关，这样通过开关就能关闭英文混输，更新一些词库 ([4afbc77](https://github.com/amzxyz/rime-wanxiang/commit/4afbc77d52d3bf7f9085fbfe1b11739df837adb2))
+* 梳理符号将emoji都以/e前缀表示，可能可以掌握的并不多，保障所有key不重合 ([2730e36](https://github.com/amzxyz/rime-wanxiang/commit/2730e36c0203c4d36c50733048c076d8ac8e0d85))
+
 ## [17.5.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.0...v17.5.1) (2026-08-17)
 
 
