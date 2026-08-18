@@ -412,7 +412,7 @@ acceptor	acceptor	31
 acceptors	acceptors	6
 accepts	accepts	623
 access	access	8322
-Microsoft Access	Access	14
+Microsoft Access	MicrosoftAccess	33
 accessary	accessary	13
 accessed	accessed	275
 accesses	accesses	63
@@ -655,8 +655,8 @@ acoustical	acoustical	6
 acoustically	acoustically	33
 acoustician	acoustician	2
 acoustics	acoustics	89
-ACP	ACP	2
-Agentic Commerce Protocol	ACP	1
+ACP	ACP	7
+Agentic Commerce Protocol	acp	6
 acquaint	acquaint	44
 acquaintance	acquaintance	468
 acquaintances	acquaintances	232
@@ -806,7 +806,7 @@ adaptors	adaptors	59
 adapts	adapts	55
 adaxial	adaxial	1
 ADC	ADC	35
-Attack Damage Carry	ADC	1
+Attack Damage Carry	AttackDamageCarry	19
 add	add	6267
 add-on	add-on	91
 add-ons	add-ons	27
@@ -1095,7 +1095,7 @@ adulterously	adulterously	5
 adultery	adultery	225
 adulthood	adulthood	228
 adults	adults	2532
-Adult Video	AdultVideo	1
+Adult Video	av	2
 adumbral	adumbral	7
 adumbrate	adumbrate	6
 adumbrated	adumbrated	11
@@ -1474,7 +1474,7 @@ aggrieves	aggrieves	2
 aggrieving	aggrieving	1
 aghast	aghast	129
 artificial general intelligence	agi	2
-AGI	AGI	6
+AGI	AGI	7
 agile	agile	117
 agilely	agilely	2
 agility	agility	130
@@ -1622,7 +1622,6 @@ airfare	airfare	11
 airfares	airfares	10
 airfield	airfield	470
 airfields	airfields	150
-airflow	airflow	41
 airfoil	airfoil	6
 airfoils	airfoils	5
 airforce	airforce	75
@@ -1654,7 +1653,6 @@ airplanes	airplanes	21
 AirPlay	AirPlay	10
 AirPods	AirPods	6
 AirPods Max	AirPods	5
-AirPods Max	AirPodsMax	4
 AirPods Pro	AirPodsPro	3
 airport	airport	2222
 airports	airports	314
@@ -2044,7 +2042,7 @@ allying	allying	19
 Allyn	Allyn	1
 alma	alma	94
 Almaden	Almaden	4
-AlmaLinux	AlmaLinux	3
+AlmaLinux	AlmaLinux	4
 almanac	almanac	26
 almanacs	almanacs	12
 almightiness	almightiness	3
@@ -2228,7 +2226,7 @@ amazing	amazing	1454
 amazingly	amazingly	287
 Amazon	Amazon	273
 Amazons	Amazons	35
-Amazon Web Services	AmazonWebServices	1
+Amazon Web Services	AmazonWebServices	5
 ambassador	ambassador	873
 ambassadorial	ambassadorial	32
 ambassadors	ambassadors	196
@@ -2867,7 +2865,7 @@ anoxia	anoxia	9
 Anselm	Anselm	428
 Anselmo	Anselmo	1
 ANSI	ANSI	50
-Ansible	Ansible	1
+Ansible	Ansible	5
 answer	answer	10975
 answerable	answerable	154
 answered	answered	2885
@@ -2893,7 +2891,7 @@ antagonizing	antagonizing	8
 Antarctic	Antarctic	377
 Antarctica	Antarctica	213
 Antares	Antares	27
-Ant Design	AntDesign	1
+Ant Design	AntDesign	5
 ante	ante	118
 ante-room	ante-room	34
 anteater	anteater	14
@@ -3140,7 +3138,6 @@ apathetic	apathetic	75
 apathy	apathy	208
 apatite	apatite	7
 APC	APC	69
-Ability Power Carry	APC	1
 ape	ape	163
 apeak	apeak	1
 aped	aped	15
@@ -3153,8 +3150,8 @@ apery	apery	1
 apes	apes	199
 Apetalous	Apetalous	1
 apex	apex	235
-APFS	APFS	2
-Apple File System	APFS	1
+APFS	APFS	4
+Apple File System	AppleFileSystem	43
 aphasia	aphasia	85
 aphasic	aphasic	9
 aphelion	aphelion	1
@@ -3168,7 +3165,7 @@ aphorisms	aphorisms	31
 aphorist	aphorist	1
 Aphrodite	Aphrodite	43
 API	API	68
-Application Programming Interface	API	1
+Application Programming Interface	api	6
 apian	apian	5
 apiarian	apiarian	4
 apiaries	apiaries	3
@@ -3324,7 +3321,6 @@ Apple Card	AppleCard	47
 AppleCare	AppleCare	46
 AppleCare+	AppleCare+	45
 Apple Developer	AppleDeveloper	44
-Apple File System	AppleFileSystem	43
 applegate	applegate	42
 Apple ID	AppleID	41
 Apple Intelligence	AppleIntelligence	40
@@ -3770,7 +3766,6 @@ Arlene	Arlene	26
 Arlington	Arlington	40
 arm	arm	6993
 ARM	ARM	6993
-Advanced RISC Machine	ARM	1
 arm64	arm64	1
 Armada	Armada	91
 armadillo	armadillo	14
@@ -4472,7 +4467,6 @@ attachments	attachments	143
 attaché	attaché	22
 attack	attack	7249
 attackable	attackable	20
-Attack Damage Carry	AttackDamageCarry	19
 attacked	attacked	2207
 attacker	attacker	478
 attackers	attackers	221
@@ -4858,7 +4852,6 @@ aux	aux	74
 auxiliaries	auxiliaries	80
 auxiliary	auxiliary	266
 auxin	auxin	1
-Adult Video	av	2
 AV	AV	78
 avail	avail	265
 availabilities	availabilities	9
@@ -5017,10 +5010,8 @@ awnings	awnings	42
 awoke	awoke	282
 awoken	awoken	48
 AWP	AWP	2
-Arctic Warfare Police	AWP	1
 awry	awry	78
-AWS	AWS	2
-Amazon Web Services	AWS	1
+AWS	AWS	5
 ax	ax	57
 axe	axe	599
 axed	axed	140
@@ -5980,11 +5971,10 @@ bazooka	bazooka	8
 bb	bb	52
 BBC	BBC	3253
 BBDown	BBDown	1
-barbecue	bbq	257
 BBQ	BBQ	1
 bbs	bbs	12
 BBS	BBS	12
-Bulletin Board System	BBS	1
+Bulletin Board System	BulletinBoardSystem	25
 bctv	bctv	1
 BD	BD	48
 BDSM	BDSM	1
@@ -6783,7 +6773,6 @@ beyond	beyond	9003
 bezel	bezel	1
 bezique	bezique	1
 bezoar	bezoar	1
-background music	bgm	2
 BGM	BGM	1
 Bhagavad-Gita	Bhagavad-Gita	1
 Bhutan	Bhutan	42
@@ -8904,7 +8893,6 @@ BSD	BSD	21
 Berkeley Software Distribution	BSD	1
 BT	BT	799
 btam	btam	1
-bitcoin	btc	2
 BTC	BTC	1
 btitish	btitish	1
 btrfs	btrfs	1
@@ -9074,7 +9062,6 @@ bulldozing	bulldozing	7
 bulled	bulled	28
 bullet	bullet	543
 bulletin	bulletin	630
-Bulletin Board System	BulletinBoardSystem	25
 bulletins	bulletins	124
 bulletproof	bulletproof	9
 bullets	bullets	421
@@ -9477,7 +9464,7 @@ Byzantinize	Byzantinize	3
 Byzantinizes	Byzantinizes	2
 Byzantium	Byzantium	62
 béchamel	béchamel	1
-C#	C#	1
+C#	C#	7
 C++	C++	169
 C2B	C2B	1
 C2C	C2C	1
@@ -10734,12 +10721,11 @@ CD-ROM	CD-ROM	283
 CD-RW	CD-RW	1
 CDC	CDC	60
 CDMA	CDMA	1
-CDN	CDN	2
-Content Delivery Network	CDN	1
+CDN	CDN	7
+Content Delivery Network	cdn	6
 cDNA	CDNA	382
 CDPR	CDPR	4
 CD Projekt	CDPR	3
-CD Projekt	CDProjekt	2
 CD Projekt RED	CDProjektRED	1
 CDR	CDR	51
 cdrom	cdrom	1
@@ -11638,7 +11624,7 @@ chlorosis	chlorosis	8
 chlorotic	chlorotic	3
 chlorous	chlorous	2
 chlorpromazine	chlorpromazine	11
-chmod	chmod	1
+chmod	chmod	4
 chock	chock	8
 chocks	chocks	8
 choco	choco	6
@@ -12305,7 +12291,7 @@ cleverness	cleverness	75
 clevis	clevis	1
 clew	clew	6
 CLI	CLI	75
-Command-Line Interface	CLI	1
+Command-Line Interface	cli	6
 clianthus	clianthus	1
 clic	clic	11
 cliche	cliche	64
@@ -12315,7 +12301,7 @@ clichés	clichés	7
 click	click	486
 clicked	clicked	224
 clicker	clicker	15
-ClickHouse	ClickHouse	3
+ClickHouse	ClickHouse	5
 clicking	clicking	190
 clicks	clicks	107
 client	client	4642
@@ -12368,7 +12354,7 @@ clinking	clinking	32
 Clint	Clint	163
 Clinton	Clinton	1505
 Clio	Clio	106
-CLion	CLion	1
+CLion	CLion	5
 clip	clip	349
 clipart	clipart	8
 clipboard	clipboard	95
@@ -12422,7 +12408,7 @@ cloisonné	cloisonné	4
 cloister	cloister	66
 cloisters	cloisters	72
 cloistral	cloistral	1
-Clojure	Clojure	1
+Clojure	Clojure	5
 clomp	clomp	1
 clone	clone	269
 cloned	cloned	126
@@ -12552,13 +12538,13 @@ clutters	clutters	1
 Clyde	Clyde	320
 clyster	clyster	1
 Clytemnestra	Clytemnestra	21
-CMake	CMake	1
+CMake	CMake	5
 cmd	cmd	1
 cmdline	cmdline	1
 cmi	cmi	21
 CMOS	CMOS	61
 CMS	CMS	60
-Content Management System	CMS	1
+Content Management System	ContentManagementSystem	151
 CN	CN	5
 CNAME	CNAME	1
 cnb	cnb	1
@@ -14342,7 +14328,6 @@ contention	contention	524
 contentions	contentions	44
 contentious	contentious	374
 contently	contently	152
-Content Management System	ContentManagementSystem	151
 contentment	contentment	200
 contents	contents	2305
 conterminous	conterminous	148
@@ -15295,7 +15280,6 @@ cozily	cozily	2
 coziness	coziness	1
 cozy	cozy	14
 cpi	cpi	17
-C++	CPP	169
 cps	cps	44
 cpu	cpu	219
 CPU	CPU	219
@@ -15663,7 +15647,7 @@ crom	crom	18
 Cromite	Cromite	3
 Cromwell	Cromwell	318
 Cromwellian	Cromwellian	17
-cron	cron	3
+cron	cron	4
 crone	crone	36
 crony	crony	17
 crook	crook	286
@@ -15874,15 +15858,13 @@ crystallography	crystallography	26
 crystalloid	crystalloid	2
 crystals	crystals	448
 Cs	Cs	441
-Counter-Strike	Cs	2
 CS	CS	441
 CS2	CS2	2
-Counter-Strike 2	CS2	1
 CS:GO	CS:GO	1
 CSDN	CSDN	1
 Counter-Strike: Global Offensive	CSGO	1
-CSS	CSS	2
-Cascading Style Sheets	CSS	1
+CSS	CSS	7
+Cascading Style Sheets	CascadingStyleSheets	6
 cstar	cstar	1
 csv	csv	1
 CTO	CTO	2
@@ -15926,7 +15908,7 @@ cucumber	cucumber	161
 cucumbers	cucumbers	30
 cucurbit	cucurbit	1
 cud	cud	48
-CUDA	CUDA	2
+CUDA	CUDA	5
 CUDA Toolkit	CUDAToolkit	1
 cudbear	cudbear	1
 cuddle	cuddle	140
@@ -16227,8 +16209,8 @@ cutworm	cutworm	1
 Cuvier	Cuvier	48
 Cuzco	Cuzco	66
 CV	CV	112
-CVE	CVE	2
-Common Vulnerabilities and Exposures	CVE	1
+CVE	CVE	7
+Common Vulnerabilities and Exposures	CommonVulnerabilitiesandExposures	6
 CWE	CWE	2
 Common Weakness Enumeration	CWE	1
 cwt	cwt	11
@@ -16328,7 +16310,7 @@ Czechoslovakia	Czechoslovakia	846
 czechs	czechs	98
 Czerniak	Czerniak	1
 D&D	D&D	2
-Dungeons & Dragons	D&D	1
+Dungeons & Dragons	Dungeons&Dragons	3
 D.VA	D.VA	1
 dab	dab	119
 dabber	dabber	6
@@ -16672,7 +16654,7 @@ DBMesh	DBMesh	1
 dbms	dbms	68
 dc	dc	1431
 distributed denial-of-service attack	ddos	2
-DDoS	DDoS	1
+DDoS	DDoS	7
 De	De	10010
 deaccentuator	deaccentuator	6
 deacon	deacon	204
@@ -17043,7 +17025,7 @@ decrying	decrying	8
 decrypt	decrypt	5
 decrypted	decrypted	4
 decrypting	decrypting	3
-decryption	decryption	2
+decryption	decryption	4
 decrypts	decrypts	1
 DECstation	DECstation	11
 DECsystem	DECsystem	5
@@ -18201,8 +18183,8 @@ dextrose	dextrose	24
 dfm	dfm	1
 Dhabi	Dhabi	94
 dharma	dharma	19
-DHCP	DHCP	2
-Dynamic Host Configuration Protocol	DHCP	1
+DHCP	DHCP	7
+Dynamic Host Configuration Protocol	dhcp	6
 DHL	DHL	8
 dhole	dhole	1
 dhoti	dhoti	1
@@ -19487,7 +19469,7 @@ Djakarta	Djakarta	1
 django	django	5
 djibouti	djibouti	151
 DjVu	DjVu	1
-downloadable content	dlc	2
+downloadable content	downloadablecontent	29
 DLC	DLC	5
 DLL	DLL	1
 DLsite	DLsite	1
@@ -19499,17 +19481,15 @@ dna	dna	2519
 deoxyribonucleic acid	dna	2
 DNA	DNA	2519
 DnD	DnD	3
-Dungeons & Dragons	DnD	2
-D&D	DND	1
 Dnieper	Dnieper	5
 DNS	DNS	23
-Domain Name System	DNS	1
+Domain Name System	dns	6
 dnsmasq	dnsmasq	1
-DNS over HTTPS	DNSoverHTTPS	3
+DNS over HTTPS	DNSoverHTTPS	6
 DNS over HTTPS/3	DNSoverHTTPS/3	2
 DNS over QUIC	DNSoverQUIC	1
 DNSPod	DNSPod	1
-DNSSEC	DNSSEC	1
+DNSSEC	DNSSEC	4
 do	do	213618
 doable	doable	5
 dobber	dobber	3
@@ -19625,8 +19605,6 @@ Dogtown	Dogtown	1
 dogwatch	dogwatch	2
 dogwood	dogwood	11
 DoH	DoH	147
-DNS over HTTPS	DoH	2
-DNS over HTTPS/3	DoH	1
 Doherty	Doherty	131
 doily	doily	8
 doing	doing	21898
@@ -19661,7 +19639,6 @@ doltish	doltish	1
 dom	dom	137
 DOM	DOM	137
 domain	domain	1267
-Domain Name System	DomainNameSystem	2
 domains	domains	384
 dome	dome	496
 domed	domed	83
@@ -19776,7 +19753,6 @@ dopey	dopey	49
 doping	doping	39
 Doppler	Doppler	84
 DoQ	DoQ	2
-DNS over QUIC	DoQ	1
 dor	dor	8
 Dora	Dora	260
 dork	dork	2
@@ -19809,7 +19785,6 @@ dos	dos	720
 denial-of-service attack	dos	4
 DoS	DoS	720
 DOS	DOS	720
-Disk Operating System	DOS	1
 dosage	dosage	101
 dose	dose	1253
 dosed	dosed	55
@@ -19909,13 +19884,11 @@ downgrading	downgrading	44
 downhearted	downhearted	23
 downhill	downhill	356
 Downie	downie	10
-Downie	Downie	10
 Downing	Downing	589
 downlink	downlink	33
 downlinks	downlinks	32
 download	download	24
 downloadable	downloadable	5
-downloadable content	downloadablecontent	29
 downloaded	downloaded	16
 downloading	downloading	5
 downloads	downloads	26
@@ -20373,7 +20346,6 @@ dung	dung	170
 dungaree	dungaree	5
 dungeon	dungeon	95
 dungeons	dungeons	53
-Dungeons & Dragons	Dungeons&Dragons	3
 dunghill	dunghill	6
 dungy	dungy	1
 Dunham	Dunham	34
@@ -20690,7 +20662,7 @@ ebonite	ebonite	2
 ebony	ebony	120
 ebook	ebook	2
 ebooks	ebooks	1
-eBPF	EBPF	1
+eBPF	eBPF	7
 ebullience	ebullience	18
 ebullient	ebullient	75
 ebullition	ebullition	1
@@ -20709,7 +20681,6 @@ ecclesiastical	ecclesiastical	591
 ecdysiast	ecdysiast	2
 ecdysis	ecdysis	1
 ECharts	ECharts	2
-Apache ECharts	ECharts	1
 echelon	echelon	19
 echidna	echidna	3
 echinoderm	echinoderm	15
@@ -22333,7 +22304,7 @@ erin	erin	45
 Eris	Eris	2
 eristic	eristic	1
 eritrea	eritrea	83
-Erlang	Erlang	1
+Erlang	Erlang	5
 Erlenmeyer	Erlenmeyer	2
 Erlenmeyers	Erlenmeyers	1
 erlking	erlking	1
@@ -22441,7 +22412,7 @@ Eskimo	Eskimo	44
 Eskimoized	Eskimoized	3
 Eskimoizeds	Eskimoizeds	2
 Eskimos	Eskimos	30
-ESLint	ESLint	1
+ESLint	ESLint	5
 Esmark	Esmark	1
 esophagus	esophagus	5
 esoteric	esoteric	164
@@ -22533,7 +22504,7 @@ et al.	etal	1
 etatism	etatism	1
 etc	etc	3841
 etc.	etc	1854
-etcd	etcd	1
+etcd	etcd	5
 etcetera	etcetera	391
 etch	etch	18
 etcher	etcher	2
@@ -22545,7 +22516,7 @@ eternities	eternities	3
 eternity	eternity	323
 eternize	eternize	1
 ETH	ETH	6
-Ethereum	ETH	1
+Ethereum	Ethereum	10
 Ethan	Ethan	6
 ethane	ethane	9
 ethanol	ethanol	313
@@ -22554,7 +22525,6 @@ Ethena	Ethena	14
 ether	ether	104
 ethereal	ethereal	78
 ethereally	ethereally	5
-Ethereum	Ethereum	10
 etherify	etherify	9
 etherisation	etherisation	8
 etherise	etherise	7
@@ -23049,8 +23019,7 @@ exertion	exertion	120
 exertions	exertions	70
 exerts	exerts	104
 Exeter	Exeter	584
-ExFAT	ExFAT	2
-Extended File Allocation Table	ExFAT	1
+Extended File Allocation Table	exFAT	1
 exfoliate	exfoliate	1
 exhalation	exhalation	18
 exhale	exhale	19
@@ -24471,7 +24440,7 @@ FilePlanet	FilePlanet	7
 filer	filer	8
 files	files	2278
 filesize	filesize	4
-filesystem	filesystem	3
+filesystem	filesystem	4
 filetype	filetype	2
 FileVault	FileVault	1
 filherman	filherman	1
@@ -26244,7 +26213,7 @@ Frye	Frye	64
 frying	frying	250
 ftp	ftp	11
 FTP	FTP	11
-File Transfer Protocol	FTP	1
+File Transfer Protocol	FileTransferProtocol	6
 fubsy	fubsy	1
 Fuchs	Fuchs	37
 Fuchsia	Fuchsia	36
@@ -26883,9 +26852,7 @@ gazing	gazing	664
 gazogene	gazogene	1
 gb	gb	123
 GBA	GBA	2
-Game Boy Advance	GBA	1
 GBC	GBC	6
-Game Boy Color	GBC	1
 GBK	GBK	1
 gboard	gboard	1
 GBP	GBP	8
@@ -27190,7 +27157,7 @@ geyser	geyser	27
 GFM	GFM	2
 GitHub Flavored Markdown	GFM	1
 GFW	GFW	2
-Great Firewall	GFW	1
+Great Firewall	GreatFirewall	5
 gfwlist	gfwlist	1
 Ghana	Ghana	272
 Ghanian	Ghanian	1
@@ -27361,7 +27328,7 @@ GitHub Copilot CLI	GitHubCopilotCLI	3
 GitHub Copilot X	GitHubCopilotX	2
 GitHub Pages	GitHubPages	1
 gitignore	gitignore	1
-GitLab	GitLab	1
+GitLab	GitLab	7
 git pull	gitpull	3
 git push -u origin main	gitpush	2
 git push -u origin wanxiang	gitpushw	1
@@ -27515,7 +27482,6 @@ gloaming	gloaming	10
 gloat	gloat	30
 global	global	2746
 globalisation	globalisation	18
-globalization	globalization	27
 globally	globally	85
 globate	globate	9
 globe	globe	519
@@ -27615,7 +27581,7 @@ gm	gm	242
 gmail	gmail	1
 GmbH	GmbH	135
 GMT	GMT	518
-Greenwich Mean Time	GMT	1
+Greenwich Mean Time	GreenwichMeanTime	10
 GMV	GMV	1
 gnarl	gnarl	1
 gnash	gnash	5
@@ -27928,10 +27894,8 @@ GPIB	GPIB	1
 GPIO	GPIO	1
 gpl	gpl	3
 GPL	GPL	2
-GNU General Public License	GPL	1
 GPS	GPS	495
 GPSR	GPSR	1
-gpt	gpt	19
 GPT	GPT	19
 Generative Pre-trained Transformer	GPT	1
 GPTs	GPTs	1
@@ -28214,7 +28178,6 @@ great	great	34410
 greaten	greaten	8
 greater	greater	11760
 greatest	greatest	3907
-Great Firewall	GreatFirewall	5
 greatly	greatly	2538
 greatness	greatness	218
 greave	greave	2
@@ -28266,7 +28229,6 @@ Greentree	Greentree	5
 Greenville	Greenville	5
 greenware	greenware	12
 Greenwich	Greenwich	295
-Greenwich Mean Time	GreenwichMeanTime	10
 greenwood	greenwood	184
 greeny	greeny	11
 Greer	Greer	77
@@ -28290,7 +28252,7 @@ Grendel	Grendel	4
 Grenier	Grenier	3
 Grenoble	Grenoble	56
 Grenville	Grenville	31
-grep	grep	2
+grep	grep	4
 GreptimeDB	GreptimeDB	1
 Gresham	Gresham	57
 Greta	Greta	89
@@ -28499,7 +28461,7 @@ grownups	grownups	5
 grows	grows	985
 growth	growth	9880
 growths	growths	66
-gRPC	gRPC	1
+gRPC	gRPC	7
 grub	grub	123
 grubby	grubby	234
 grubs	grubs	49
@@ -28532,9 +28494,7 @@ Gruyere	Gruyere	1
 grysbok	grysbok	1
 G Suite	GSuite	1
 GTA	GTA	2
-Grand Theft Auto	GTA	1
 GTAV	GTAV	2
-Grand Theft Auto V	GTAV	1
 guacharo	guacharo	1
 Guadalupe	Guadalupe	8
 guadeloupe	guadeloupe	23
@@ -28592,7 +28552,7 @@ Guggenheim	Guggenheim	71
 Guhleman	Guhleman	1
 gui	gui	79
 GUI	GUI	79
-Graphical User Interface	GUI	1
+Graphical User Interface	gui	6
 Guiana	Guiana	31
 GUID	GUID	6
 Globally Unique Identifier	GUID	13
@@ -28788,7 +28748,7 @@ gyroscopes	gyroscopes	7
 gyroscopic	gyroscopic	1
 gyrus	gyrus	14
 gyve	gyve	1
-gzip	gzip	1
+gzip	gzip	4
 ha	ha	2753
 Haag	Haag	5
 Haas	Haas	36
@@ -29468,11 +29428,10 @@ hazily	hazily	27
 haziness	haziness	1
 hazy	hazy	181
 HB	HB	64
-HBase	HBase	1
+HBase	HBase	5
 HBO	HBO	5
 HD	HD	44
-hard disk drive	hdd	2
-HDD	HDD	5
+HDD	HDD	7
 hdlc	hdlc	1
 HDMI	HDMI	2
 High Definition Multimedia Interface	HDMI	1
@@ -29481,7 +29440,7 @@ HDTV	HDTV	82
 he	he	518549
 He	He	518549
 he'd	he'd	1
-he'll	he'll	1
+he'll	hell	24
 he's	he's	1
 head	head	28848
 headache	headache	603
@@ -29756,7 +29715,6 @@ helitron	helitron	3
 helium	helium	162
 helix	helix	162
 hell	hell	4044
-he'll	hell	24
 hellbender	hellbender	23
 hellcat	hellcat	22
 hellene	hellene	21
@@ -30059,7 +30017,7 @@ Heywood	Heywood	61
 Hf	Hf	36
 Hg	Hg	164
 HHCLUB	HHCLUB	1
-hybrid drive	hhd	2
+hybrid drive	hybriddrive	4
 HHD	HHD	1
 HHKB	HHKB	2
 Happy Hacking Keyboard	HHKB	1
@@ -30559,7 +30517,6 @@ honeysuckle	honeysuckle	68
 Honeywell	Honeywell	43
 hong	hong	2140
 hongi	hongi	2
-Hong Kong	HongKong	1
 honing	honing	20
 honk	honk	7
 honky	honky	12
@@ -30885,12 +30842,12 @@ hp	hp	815
 hpp	hpp	1
 href	href	1
 Hrothgar	Hrothgar	1
-HTML	HTML	2
-HyperText Markup Language	HTML	1
+HTML	HTML	7
+HyperText Markup Language	HyperTextMarkupLanguage	6
 http	http	4
-Hypertext Transfer Protocol	http	3
+Hypertext Transfer Protocol	HypertextTransferProtocol	6
 https	https	2
-Hypertext Transfer Protocol Secure	https	1
+Hypertext Transfer Protocol Secure	HypertextTransferProtocolSecure	6
 hualien	hualien	1
 huang	huang	43
 hub	hub	225
@@ -30925,7 +30882,7 @@ hugeness	hugeness	8
 huggee	huggee	5
 hugger	hugger	4
 hugging	hugging	197
-Hugging Face	HuggingFace	2
+Hugging Face	HuggingFace	5
 Huggins	Huggins	16
 Hugh	Hugh	1579
 Hughes	Hughes	1263
@@ -31142,7 +31099,6 @@ hyaline	hyaline	1
 Hyannis	Hyannis	1
 hyatt	hyatt	43
 hybrid	hybrid	469
-hybrid drive	hybriddrive	4
 hybridise	hybridise	5
 hybridization	hybridization	113
 hybridize	hybridize	8
@@ -31372,8 +31328,8 @@ icky	icky	1
 iCloud	ICloud	3
 iCloud Drive	ICloudDrive	2
 iCloud Mail	ICloudMail	1
-ICMP	ICMP	2
-Internet Control Message Protocol	ICMP	1
+ICMP	ICMP	7
+Internet Control Message Protocol	icmp	6
 ICOM	ICOM	12
 icon	icon	381
 iconic	iconic	29
@@ -31427,7 +31383,7 @@ IDEA Ultimate	IDEAUltimate	2
 IdeaVim	IdeaVim	1
 idem	idem	49
 idemnify	idemnify	3
-idempotency	idempotency	2
+idempotency	idempotency	3
 idempotent	idempotent	1
 identical	identical	1658
 identically	identically	58
@@ -31482,7 +31438,7 @@ idolize	idolize	3
 idols	idols	100
 idolum	idolum	1
 idyllic	idyllic	189
-Internet Explorer	ie	2
+Internet Explorer	InternetExplorer	131
 IE	IE	1124
 IEEE	IEEE	32
 IEN	IEN	1
@@ -31496,7 +31452,7 @@ ifcs	ifcs	1
 iFFmpeg	IFFmpeg	1
 Ifni	Ifni	1
 IFTTT	IFTTT	1
-instagram	ig	1
+instagram	instagram	83
 igalia	igalia	1
 igloo	igloo	14
 IGN	IGN	1
@@ -31616,7 +31572,7 @@ imagism	imagism	3
 imagist	imagist	5
 imago	imago	10
 imam	imam	69
-IMAP	IMAP	2
+IMAP	IMAP	4
 Internet Message Access Protocol	IMAP	1
 iMazing	IMazing	1
 IMBA	IMBA	4
@@ -32783,7 +32739,7 @@ influential	influential	1402
 influentially	influentially	4
 influenza	influenza	104
 influx	influx	304
-InfluxDB	InfluxDB	1
+InfluxDB	InfluxDB	5
 info	info	143
 InFocus	InFocus	24
 InfoQ	InfoQ	23
@@ -33085,7 +33041,6 @@ inroad	inroad	18
 inroads	inroads	144
 inrush	inrush	10
 ins	ins	128
-instagram	ins	1
 insalivation	insalivation	10
 insalubrious	insalubrious	5
 insalubrity	insalubrity	8
@@ -33213,7 +33168,6 @@ inspissation	inspissation	1
 instabilities	instabilities	40
 instability	instability	445
 instacast	instacast	84
-instagram	instagram	83
 install	install	590
 installation	installation	996
 installations	installations	427
@@ -33590,7 +33544,6 @@ internationalise	internationalise	5
 internationalism	internationalism	83
 internationalist	internationalist	78
 internationality	internationality	10
-internationalization	internationalization	45
 internationalize	internationalize	139
 internationally	internationally	533
 interne	interne	137
@@ -33599,7 +33552,6 @@ interned	interned	62
 internee	internee	134
 Internet	Internet	69
 INTERNET	INTERNET	69
-Internet Explorer	InternetExplorer	131
 internet protocol	internetprotocol	130
 internetwork	internetwork	6
 interning	interning	5
@@ -34017,7 +33969,6 @@ ions	ions	415
 iOS	IOS	6
 iota	iota	49
 Iowa	Iowa	61
-internet protocol	ip	2
 IP	IP	112
 IPA	IPA	13
 iPack	IPack	1
@@ -34042,8 +33993,8 @@ IPSec	IPSec	1
 ipswich	ipswich	941
 iptables	iptables	1
 IPTV	IPTV	1
-IPv4	IPv4	1
-IPv6	IPv6	1
+IPv4	IPv4	7
+IPv6	IPv6	7
 iq	iq	166
 intelligence quotient	iq	2
 IQ	IQ	166
@@ -34531,8 +34482,8 @@ Java	Java	166
 Java Development Kit	JavaDevelopmentKit	5
 Java EE	JavaEE	4
 Javanese	Javanese	34
-JavaScript	JavaScript	2
-Java Virtual Machine	JavaVirtualMachine	1
+JavaScript	JavaScript	7
+Java Virtual Machine	JavaVirtualMachine	6
 javelin	javelin	48
 javelins	javelins	5
 jaw	jaw	830
@@ -34554,7 +34505,6 @@ JBoss	JBoss	1
 jcl	jcl	5
 JDBC	JDBC	1
 JDK	JDK	2
-Java Development Kit	JDK	1
 jealous	jealous	731
 jealousies	jealousies	53
 jealously	jealously	100
@@ -34885,14 +34835,13 @@ joystick	joystick	78
 JPEG	JPEG	11
 Joint Photographic Experts Group	JPEG	1
 JPG	JPG	2
-Joint Photographic Experts Group	JPG	1
-jQuery	JQuery	1
+jQuery	jQuery	5
 JRE	JRE	2
 Java Runtime Environment	JRE	1
 JRPG	JRPG	2
 Japanese Role-Playing Game	JRPG	1
 JS	JS	136
-JSON	JSON	1
+JSON	JSON	5
 JSP	JSP	24
 jsw	jsw	1
 Juan	Juan	353
@@ -35072,9 +35021,7 @@ juxtaposed	juxtaposed	80
 juxtaposes	juxtaposes	13
 juxtaposing	juxtaposing	14
 juxtaposition	juxtaposition	128
-JavaScript	Jv	1
-JVM	JVM	2
-Java Virtual Machine	JVM	1
+JVM	JVM	7
 JWKS	JWKS	1
 k8s	k8s	2
 kubernetes	k8s	1
@@ -35085,7 +35032,6 @@ Kabul	Kabul	189
 kabyle	kabyle	1
 Kaddish	Kaddish	1
 Kafka	Kafka	75
-Apache Kafka	Kafka	2
 Kafkaesque	Kafkaesque	5
 kagi	kagi	1
 Kahn	Kahn	72
@@ -35247,7 +35193,7 @@ Kepler	Kepler	74
 keplerian	keplerian	1
 kept	kept	10887
 kerala	kerala	33
-Keras	Keras	4
+Keras	Keras	5
 keratin	keratin	11
 keratitis	keratitis	2
 keratose	keratose	1
@@ -35725,8 +35671,7 @@ KTV	KTV	1
 Ku	Ku	43
 Kuala	Kuala	89
 kubeadm	kubeadm	3
-kubectl	kubectl	2
-kubernetes	kubernetes	1
+kubectl	kubectl	5
 kuchen	kuchen	1
 KuCoin	KuCoin	1
 kudo	kudo	2
@@ -35747,7 +35692,6 @@ Kuwaiti	Kuwaiti	251
 kva	kva	1
 kvass	kvass	1
 kW	Kw	64
-kW	KW	64
 kwa	kwa	1
 kwhr	kwhr	1
 kwic	kwic	1
@@ -36375,7 +36319,7 @@ lazybonnes	lazybonnes	1
 lbs	lbs	145
 LCD	LCD	63
 Liquid Crystal Display	LCD	1
-LDAP	LDAP	1
+LDAP	LDAP	4
 lea	lea	769
 leach	leach	130
 lead	lead	11074
@@ -37169,7 +37113,7 @@ lintel	lintel	70
 linter	linter	2
 Linton	Linton	149
 Linus	Linus	2
-Linux	Linux	1
+Linux	Linux	4
 liny	liny	1
 lion	lion	938
 Lionel	Lionel	241
@@ -37358,11 +37302,9 @@ Lizzy	Lizzy	167
 LLaMA	LLaMA	22
 Large Language Model Meta AI	LLaMA	1
 llano	llano	5
-LLM	LLM	2
-Large Language Model	LLM	1
+LLM	LLM	7
 Lloyd	Lloyd	1750
 LMAO	LMAO	2
-Laugh My Ass Off	LMAO	1
 LM Studio	LMStudio	1
 lo	lo	297
 loach	loach	40
@@ -37418,7 +37360,6 @@ localiser	localiser	24
 localism	localism	41
 localities	localities	351
 locality	locality	516
-localization	localization	45
 localize	localize	8
 localized	localized	160
 localizer	localizer	16
@@ -37554,8 +37495,6 @@ loitering	loitering	56
 loiters	loiters	1
 Loki	Loki	15
 LOL	LOL	5
-Laugh Out Loudly	LOL	2
-League of Legends	LOL	1
 Lola	Lola	56
 lolita	lolita	25
 loll	loll	14
@@ -38060,7 +37999,7 @@ lysin	lysin	2
 lysine	lysine	22
 M-Team	M-Team	1
 m17n	m17n	2
-multilingualization	m17n	1
+multilingualization	multilingualization	63
 M4A1	M4A1	1
 ma'am	ma'am	387
 Mabel	Mabel	188
@@ -38151,17 +38090,8 @@ macOS Ventura	MacOS	30
 macOS Catalina	MacOS	29
 macOS Monterey	MacOS	28
 macOS High Sierra	MacOS	27
-macOS Big Sur	MacOSBigSur	26
-macOS Catalina	MacOSCatalina	25
-macOS High Sierra	MacOSHighSierra	24
-macOS Mojave	MacOSMojave	23
-macOS Monterey	MacOSMonterey	22
-macOS Sequoia	MacOSSequoia	21
 macOS Server	MacOSServer	20
-macOS Sierra	MacOSSierra	19
-macOS Sonoma	MacOSSonoma	18
 macOS Tahoe	MacOSTahoe	17
-macOS Ventura	MacOSVentura	16
 Mac OS X	MacOSX	15
 Mac OS X Puma	MacOSX	14
 Mac OS X Tiger	MacOSX	13
@@ -38170,13 +38100,6 @@ Mac OS X Cheetah	MacOSX	11
 Mac OS X Leopard	MacOSX	10
 Mac OS X Panther	MacOSX	9
 Mac OS X Snow Leopard	MacOSX	8
-Mac OS X Cheetah	MacOSXCheetah	7
-Mac OS X Jaguar	MacOSXJaguar	6
-Mac OS X Leopard	MacOSXLeopard	5
-Mac OS X Panther	MacOSXPanther	4
-Mac OS X Puma	MacOSXPuma	3
-Mac OS X Snow Leopard	MacOSXSnowLeopard	2
-Mac OS X Tiger	MacOSXTiger	1
 MacPaint	MacPaint	6
 Mac Pro	MacPro	1
 macquarie	macquarie	10
@@ -38537,7 +38460,7 @@ maltose	maltose	4
 maltreat	maltreat	3
 malts	malts	18
 malty	malty	6
-malware	malware	1
+malware	malware	4
 mama	mama	423
 mamba	mamba	16
 mambo	mambo	33
@@ -39265,13 +39188,10 @@ mazy	mazy	8
 mb	mb	110
 MB	MB	110
 MBA	MBA	128
-MacBook Air	MBA	1
 Mbabane	Mbabane	1
 MBP	MBP	2
-MacBook Pro	MBP	1
 mbps	mbps	1
-master boot record	mbr	2
-MBR	MBR	1
+MBR	MBR	4
 mbyte	mbyte	1
 McAdam	McAdam	31
 McAdams	McAdams	1
@@ -40136,7 +40056,6 @@ microscopy	microscopy	138
 microsecond	microsecond	5
 microseconds	microseconds	5
 Microsoft	Microsoft	1521
-Microsoft Access	MicrosoftAccess	33
 Microsoft Azure	MicrosoftAzure	32
 Microsoft Corporation	MicrosoftCorporation	31
 Microsoft Edge	MicrosoftEdge	30
@@ -41622,7 +41541,7 @@ MP4	MP4	1
 MPa	mpa	1
 mpeg	mpeg	13
 MplayerX	MplayerX	1
-MPLS	MPLS	1
+MPLS	MPLS	7
 mpu	mpu	1
 mpv	mpv	1
 mRNA	MRNA	196
@@ -41636,10 +41555,9 @@ msg	msg	8
 MSKU	MSKU	1
 MSN	MSN	9
 MSNBC	MSNBC	1
-MSVC	MSVC	2
-Microsoft Visual C++	MSVC	1
+MSVC	MSVC	5
 MTV	MTV	56
-Music Television	MTV	1
+Music Television	MusicTelevision	4
 mu	mu	167
 much	much	70123
 mucilage	mucilage	2
@@ -41749,7 +41667,6 @@ multilayer	multilayer	7
 multilayered	multilayered	66
 multilevel	multilevel	13
 multilingual	multilingual	52
-multilingualization	multilingualization	63
 multimedia	multimedia	715
 multimillion	multimillion	16
 multimillionaire	multimillionaire	8
@@ -41928,7 +41845,6 @@ musicians	musicians	941
 musicologist	musicologist	8
 musicology	musicology	12
 musicotherapy	musicotherapy	5
-Music Television	MusicTelevision	4
 musing	musing	53
 musings	musings	30
 musixmatch	musixmatch	1
@@ -41993,7 +41909,7 @@ mute	mute	196
 muted	muted	292
 mutely	mutely	38
 muteness	muteness	2
-mutex	mutex	1
+mutex	mutex	4
 mutilate	mutilate	8
 mutilated	mutilated	150
 mutilates	mutilates	10
@@ -42031,17 +41947,17 @@ muzzle	muzzle	147
 muzzles	muzzles	32
 muzzy	muzzy	18
 MV	MV	81
-MVC	MVC	2
+MVC	MVC	7
 Model-View-Controller	MVC	1
 mvn	mvn	1
 mvnd	mvnd	1
 MVP	MVP	1
-MVVM	MVVM	2
+MVVM	MVVM	7
 Model-View-ViewModel	MVVM	1
 MX Player	MXPlayer	1
 my	my	116154
 myanmar	myanmar	19
-MyBatis	MyBatis	2
+MyBatis	MyBatis	5
 MyBatis-Plus	MyBatis-Plus	1
 mycelial	mycelial	5
 mycelium	mycelium	9
@@ -42073,7 +41989,7 @@ myself	myself	9543
 mysimon	mysimon	1
 Mysore	Mysore	6
 myspace	myspace	1
-MySQL	MySQL	1
+MySQL	MySQL	7
 mysteries	mysteries	408
 mysterious	mysterious	1023
 mysteriously	mysteriously	221
@@ -42385,7 +42301,7 @@ NCAA	NCAA	1
 Nd	Nd	103
 Ndjamena	Ndjamena	5
 NDM	NDM	2
-Neat Download Manager	NDM	1
+Neat Download Manager	NeatDownloadManager	7
 NDS	NDS	1
 ne	ne	262
 Ne	Ne	262
@@ -42407,7 +42323,6 @@ nears	nears	38
 nearsighted	nearsighted	2
 nearsightedness	nearsightedness	1
 neat	neat	1316
-Neat Download Manager	NeatDownloadManager	7
 neaten	neaten	5
 neater	neater	54
 neatest	neatest	22
@@ -42558,7 +42473,7 @@ nematode	nematode	37
 nemean	nemean	8
 nemesis	nemesis	53
 nemo	nemo	30
-Neo4j	Neo4j	1
+Neo4j	Neo4j	5
 neoclassic	neoclassic	5
 neoclassical	neoclassical	56
 neoclassicism	neoclassicism	14
@@ -42781,7 +42696,7 @@ New Zealand	NewZealand	2
 New Zealander	NewZealander	1
 nexitally	nexitally	1
 next	next	32830
-Next.js	Next.js	4
+Next.js	Next.js	7
 NexTag	NexTag	3
 nextcloud	nextcloud	2
 nextel	nextel	1
@@ -42971,9 +42886,9 @@ nix	nix	10
 Nixon	Nixon	311
 nizam	nizam	1
 NLP	NLP	43
-Natural Language Processing	NLP	1
+Natural Language Processing	nlp	6
 nlsfunc	nlsfunc	1
-Nmap	Nmap	1
+Nmap	Nmap	5
 no	no	159772
 Noah	Noah	230
 nob	nob	10
@@ -43483,17 +43398,12 @@ noxious	noxious	133
 Noyes	Noyes	1
 nozzle	nozzle	138
 NPC	NPC	65
-Non-Player Character	NPC	1
 nPlayer	nPlayer	1
-npm	npm	2
-Node Package Manager	npm	1
+npm	npm	5
 .npmrc	npmrc	1
 NSFW	NSFW	3
-Not Safe For Work	NSFW	2
-Not Suitable For Work	NSFW	1
 nss	nss	29
-NTFS	NTFS	3
-Microsoft NTFS	NTFS	2
+NTFS	NTFS	4
 New Technology File System	NTFS	1
 nth	nth	26
 NTR	NTR	5
@@ -43640,8 +43550,7 @@ nveil	nveil	1
 NVIDIA	NVIDIA	1
 nvim	nvim	1
 nvm	nvm	2
-Node Version Manager	nvm	1
-NVMe	NVMe	1
+NVMe	NVMe	7
 nybble	nybble	1
 NYC	NYC	1
 nyctalopia	nyctalopia	1
@@ -43866,9 +43775,8 @@ obviations	obviations	4
 obvious	obvious	6493
 obviously	obviously	8382
 obviousness	obviousness	17
-Objective-C	Oc	2
 OC	OC	23
-OCaml	OCaml	1
+OCaml	OCaml	5
 ocarina	ocarina	1
 Occam	Occam	53
 occasion	occasion	4027
@@ -43938,7 +43846,7 @@ ochre	ochre	86
 Oconomowoc	Oconomowoc	1
 OCR	OCR	43
 Optical Character Recognition	OCR	1
-OCSP	OCSP	2
+OCSP	OCSP	4
 Online Certificate Status Protocol	OCSP	1
 oct.	oct	2411
 octad	octad	15
@@ -44358,7 +44266,7 @@ OpenTofu	OpenTofu	5
 Open WebUI	OpenWebUI	4
 openwork	openwork	8
 Open World	OpenWorld	2
-OpenWrt	OpenWrt	1
+OpenWrt	OpenWrt	7
 opera	opera	1777
 operability	operability	26
 operable	operable	11
@@ -44646,7 +44554,7 @@ Orleans	Orleans	186
 Orlick	Orlick	11
 orlon	orlon	1
 Orly	Orly	1
-ORM	ORM	2
+ORM	ORM	7
 Object Relational Mapping	ORM	1
 ormolu	ormolu	18
 ornament	ornament	206
@@ -44702,7 +44610,6 @@ Orwellian	Orwellian	11
 oryx	oryx	13
 orz	orz	1
 os	os	269
-Operating System	os	3
 Os	Os	269
 OS	OS	269
 osage	osage	1
@@ -44789,11 +44696,6 @@ OS X Yosemite	OSX	4
 OS X Mavericks	OSX	3
 OS X El Capitan	OSX	2
 OS X Mountain Lion	OSX	1
-OS X El Capitan	OSXElCapitan	1
-OS X Lion	OSXLion	1
-OS X Mavericks	OSXMavericks	2
-OS X Mountain Lion	OSXMountainLion	1
-OS X Yosemite	OSXYosemite	1
 OTC	OTC	96
 Othello	Othello	112
 other	other	108169
@@ -45386,7 +45288,7 @@ personalization	p13n	5
 P2P	P2P	1
 Pa	Pa	809
 platform as a service	paas	2
-PaaS	PaaS	1
+PaaS	PaaS	7
 Pablo	Pablo	79
 Pabst	Pabst	1
 pabulum	pabulum	1
@@ -46360,9 +46262,8 @@ PCBA	PCBA	2
 Printed Circuit Board Assembly	PCBA	1
 PCDN	PCDN	1
 PCI	PCI	27
-PCIe	PCIe	3
-PCI Express	PCIe	2
-PCI Express	PCIExpress	1
+PCIe	PCIe	7
+PCI Express	PCIExpress	4
 PCMCIA	PCMCIA	30
 pct	pct	29
 Pd	Pd	57
@@ -46963,7 +46864,6 @@ personalised	personalised	142
 personalism	personalism	42
 personalities	personalities	565
 personality	personality	2211
-personalization	personalization	5
 personalize	personalize	5
 personalized	personalized	38
 personalizes	personalizes	36
@@ -47133,7 +47033,7 @@ pfennig	pfennig	18
 Pfizer	Pfizer	5
 PGC	PGC	45
 pgSQL	PgSQL	2
-PostgreSQL	PgSQL	1
+PostgreSQL	PostgreSQL	51
 ph	ph	1177
 Phaedra	Phaedra	1
 phagocyte	phagocyte	2
@@ -47251,7 +47151,7 @@ philosophy	philosophy	2654
 philotechnical	philotechnical	2
 philtre	philtre	1
 Phipps	Phipps	71
-phishing	phishing	1
+phishing	phishing	4
 phiz	phiz	1
 phlebitis	phlebitis	7
 phlebotomy	phlebotomy	6
@@ -47391,7 +47291,7 @@ phototypesetter	phototypesetter	4
 phototypesetters	phototypesetters	3
 photovoltaic	photovoltaic	15
 photozincography	photozincography	1
-PHP	PHP	2
+PHP	PHP	5
 Hypertext Preprocessor	PHP	1
 phpBB	PhpBB	1
 PhpStorm	PhpStorm	1
@@ -48796,7 +48696,6 @@ postfree	postfree	55
 postglacial	postglacial	54
 postgraduate	postgraduate	575
 postgres	postgres	52
-PostgreSQL	PostgreSQL	51
 posthaste	posthaste	50
 PostHog	PostHog	49
 posthole	posthole	48
@@ -48959,10 +48858,9 @@ powerlessness	powerlessness	104
 PowerPack	PowerPack	8
 PowerPC	PowerPC	218
 PowerPoint	PowerPoint	13
-Microsoft PowerPoint	PowerPoint	5
 Powers	Powers	5276
 powerseller	powerseller	3
-PowerShell	PowerShell	2
+PowerShell	PowerShell	5
 powershot	powershot	1
 powwow	powwow	1
 pox	pox	62
@@ -48971,11 +48869,9 @@ PP	PP	629
 ppi	ppi	1
 ppm	ppm	97
 ppp	ppp	126
-PPPoE	PPPoE	1
+PPPoE	PPPoE	7
 PPR	PPR	10
 PPT	PPT	50
-PowerPoint	PPT	13
-Microsoft PowerPoint	PPT	1
 pptx	pptx	1
 Pr	Pr	680
 PR	PR	680
@@ -50398,7 +50294,6 @@ Prussianizes	Prussianizes	1
 pry	pry	61
 pryer	pryer	1
 prying	prying	113
-photoshop	ps	5
 PS	PS	549
 psalm	psalm	170
 psalmist	psalmist	11
@@ -50494,7 +50389,6 @@ ptr	ptr	8
 pts	pts	64
 PTT	PTT	37
 PUA	PUA	2
-Pickup Artists	PUA	1
 pub	pub	2904
 puberty	puberty	127
 pubes	pubes	8
@@ -50590,7 +50484,7 @@ Pullmanizes	Pullmanizes	6
 Pullmans	Pullmans	7
 pullout	pullout	5
 pullover	pullover	105
-pull request	pullrequest	2
+pull request	pullrequest	3
 pulls	pulls	455
 pulmonary	pulmonary	180
 pulmonate	pulmonate	3
@@ -50617,7 +50511,7 @@ pulser	pulser	6
 pulses	pulses	342
 pulsing	pulsing	94
 pulsion	pulsion	1
-Pulumi	Pulumi	1
+Pulumi	Pulumi	5
 pulverise	pulverise	3
 pulverization	pulverization	2
 pulverize	pulverize	1
@@ -50866,7 +50760,7 @@ player versus environment	pve	2
 PVE	PVE	1
 PVP	PVP	2
 Player versus Player	PVP	1
-PyCharm	PyCharm	1
+PyCharm	PyCharm	5
 Pygmalion	Pygmalion	33
 pygmean	pygmean	3
 pygmies	pygmies	27
@@ -50908,7 +50802,7 @@ Pythagoreanizes	Pythagoreanizes	4
 Pythagoreans	Pythagoreans	29
 python	python	105
 pythonic	pythonic	1
-PyTorch	PyTorch	1
+PyTorch	PyTorch	5
 PyWebIO	PyWebIO	1
 pyx	pyx	13
 pyxidium	pyxidium	2
@@ -50916,17 +50810,13 @@ pyxis	pyxis	1
 qa	qa	116
 Qatar	Qatar	85
 qbasic	qbasic	16
-qBittorrent Enhanced Edition	QBEE	1
-qBittorrent	QBit	5
 qBittorrent Enhanced Edition	QBitEE	4
-qBittorrent	QBittorrent	3
+qBittorrent	QBit	5
 qBittorrentEE	QBittorrentEE	2
-qBittorrent Enhanced Edition	QBittorrentEE	1
 qedit	qedit	1
-qBittorrent Enhanced Edition	QEE	1
 QHD	QHD	1
-QoS	QoS	2
-Quality of Service	QoS	1
+QoS	QoS	7
+Quality of Service	qos	6
 QQ	QQ	1
 QQNT	QQNT	1
 QR code	QRcode	1
@@ -51009,7 +50899,6 @@ qualitative	qualitative	470
 qualitatively	qualitatively	129
 qualities	qualities	1896
 quality	quality	12419
-Quality of Service	QualityofService	3
 qualm	qualm	25
 qualmish	qualmish	1
 quandaries	quandaries	30
@@ -51289,14 +51178,14 @@ quotients	quotients	7
 quoting	quoting	397
 qurush	qurush	1
 qwen	qwen	1
-Qwik	Qwik	1
+Qwik	Qwik	5
 R.I.P	R.I.P	1
 Rabat	Rabat	53
 rabbet	rabbet	7
 rabbi	rabbi	186
 rabbinism	rabbinism	5
 rabbit	rabbit	1097
-RabbitMQ	RabbitMQ	3
+RabbitMQ	RabbitMQ	5
 rabbits	rabbits	795
 rabble	rabble	62
 rabic	rabic	5
@@ -51532,7 +51421,7 @@ rallyingly	rallyingly	1
 Ralph	Ralph	915
 Ralston	Ralston	14
 ram	ram	769
-random-access memory	ram	2
+random-access memory	random-accessmemory	8
 RAM	RAM	769
 Ramada	Ramada	14
 Raman	Raman	134
@@ -51585,7 +51474,6 @@ Rand	Rand	85
 Randall	Randall	193
 Randolph	Randolph	231
 random	random	1414
-random-access memory	random-accessmemory	8
 randomization	randomization	26
 randomize	randomize	5
 randomized	randomized	27
@@ -51871,7 +51759,7 @@ reactivation	reactivation	18
 reactive	reactive	322
 reactively	reactively	6
 reactivity	reactivity	77
-React Native	ReactNative	4
+React Native	ReactNative	5
 reactor	reactor	610
 reactors	reactors	379
 reacts	reacts	151
@@ -52795,7 +52683,7 @@ regenerators	regenerators	6
 regent	regent	447
 regents	regents	39
 regerminate	regerminate	3
-regex	regex	2
+regex	regex	4
 regexp	regexp	1
 reggae	reggae	154
 regicidal	regicidal	30
@@ -54677,7 +54565,7 @@ Rockville	Rockville	11
 Rockwell	Rockwell	47
 rockwork	rockwork	18
 rocky	rocky	778
-Rocky Linux	RockyLinux	1
+Rocky Linux	RockyLinux	4
 rococo	rococo	81
 rod	rod	1041
 rode	rode	858
@@ -54727,7 +54615,6 @@ rollover	rollover	20
 rolls	rolls	1141
 rollway	rollway	1
 rom	rom	130
-read-only memory	rom	2
 ROM	ROM	130
 roma	roma	100
 romaine	romaine	33
@@ -54995,13 +54882,12 @@ royalty	royalty	418
 Royce	Royce	158
 Rozelle	Rozelle	1
 RPG	RPG	13
-Role-Playing Game	RPG	1
 rpm	rpm	156
 rspamd	rspamd	1
 RSS	RSS	9
 RDF Site Summary	RSS	2
 Really Simple Syndication	RSS	1
-rsync	rsync	1
+rsync	rsync	4
 rtf	rtf	9
 rtu	rtu	1
 Ru	Ru	73
@@ -55040,7 +54926,7 @@ rubrication	rubrication	1
 rubs	rubs	76
 ruby	ruby	312
 RubyMine	RubyMine	2
-Ruby on Rails	RubyonRails	1
+Ruby on Rails	RubyonRails	5
 ruck	ruck	70
 rucksack	rucksack	184
 ruckus	ruckus	8
@@ -55257,7 +55143,7 @@ rye	rye	358
 ryegrass	ryegrass	5
 saab	saab	77
 software as a service	saas	2
-SaaS	SaaS	1
+SaaS	SaaS	7
 sabbath	sabbath	220
 Sabbathize	Sabbathize	3
 Sabbathizes	Sabbathizes	2
@@ -56437,8 +56323,8 @@ scythes	scythes	32
 Scythia	Scythia	1
 SDDM	SDDM	2
 Simple Desktop Display Manager	SDDM	1
-SDK	SDK	5
-Software Development Kit	SDK	1
+SDK	SDK	7
+Software Development Kit	sdk	6
 sdlc	sdlc	1
 Se	Se	539
 sea	sea	9926
@@ -56991,7 +56877,6 @@ sepia	sepia	54
 Sepoy	Sepoy	43
 sepsis	sepsis	61
 sept	sept	149
-sept.	sept	2266
 septal	septal	8
 septangular	septangular	8
 September	September	7921
@@ -57238,8 +57123,8 @@ Seychelles	Seychelles	88
 Seymour	Seymour	250
 SFC	SFC	5
 Software Freedom Conservancy	SFC	1
-SFTP	SFTP	2
-SSH File Transfer Protocol	SFTP	1
+SFTP	SFTP	7
+SSH File Transfer Protocol	SSHFileTransferProtocol	6
 sgml	sgml	33
 shabbily	shabbily	18
 shabbiness	shabbiness	21
@@ -57272,7 +57157,6 @@ shadowiness	shadowiness	9
 shadowing	shadowing	70
 shadowless	shadowless	7
 Shadowrocket	shadowrocket	6
-Shadowrocket	Shadowrocket	5
 shadows	shadows	1180
 shadowsocks	shadowsocks	3
 shadowy	shadowy	311
@@ -57430,8 +57314,8 @@ shawm	shawm	3
 shawn	shawn	11
 Shawnee	Shawnee	1
 she	she	289409
-she'd	she'd	3
-she'll	she'll	2
+she'd	shed	5
+she'll	shell	20
 she's	she's	1
 Shea	Shea	18
 sheaf	sheaf	94
@@ -57450,7 +57334,6 @@ shebang	shebang	8
 shebeen	shebeen	2
 Sheboygan	Sheboygan	1
 shed	shed	1626
-she'd	shed	5
 shedder	shedder	4
 shedding	shedding	186
 Shedir	Shedir	2
@@ -57481,7 +57364,6 @@ Shelby	Shelby	15
 Sheldon	Sheldon	121
 shelf	shelf	1076
 shell	shell	1705
-she'll	shell	20
 shellac	shellac	27
 shellback	shellback	18
 shelled	shelled	93
@@ -58824,7 +58706,7 @@ smashingly	smashingly	2
 smashup	smashup	1
 smatter	smatter	2
 smattering	smattering	45
-SMB	SMB	1
+SMB	SMB	4
 sme	sme	1
 smear	smear	237
 smearcase	smearcase	5
@@ -58907,7 +58789,7 @@ smoulder	smoulder	21
 SMS	SMS	35
 SMT	SMT	29
 Surface Mounted Technology	SMT	1
-SMTP	SMTP	2
+SMTP	SMTP	4
 Simple Mail Transfer Protocol	SMTP	1
 Smucker	Smucker	1
 smudge	smudge	72
@@ -60235,11 +60117,10 @@ spyglass	spyglass	1
 spying	spying	181
 spyware	spyware	1
 SQL	SQL	312
-Structured Query Language	SQL	1
+Structured Query Language	sql	6
 SQLAlchemy	SQLAlchemy	1
-SQLite	SQLite	1
-SQL Server	SQLServer	2
-Microsoft SQL Server	SQLServer	1
+SQLite	SQLite	7
+SQL Server	SQLServer	5
 squab	squab	5
 squabble	squabble	59
 squabbled	squabbled	11
@@ -60334,22 +60215,20 @@ squoosh	squoosh	1
 Sr	Sr	135
 sram	sram	20
 src	src	40
-SRE	SRE	1
+SRE	SRE	7
 Sri	Sri	742
 srt	srt	1
 srv	srv	11
 SRWare Iron	SRWareIron	1
 SSCI	SSCI	1
-solid-state drive	ssd	2
 SSD	SSD	148
 ssh	ssh	34
 SSH	SSH	34
-Secure Shell	SSH	1
 sshd	sshd	1
 SSID	SSID	2
 Service Set Identifier	SSID	1
 SSL	SSL	29
-Secure Sockets Layer	SSL	1
+Secure Sockets Layer	SecureSocketsLayer	4
 sstatfarad	sstatfarad	1
 stab	stab	321
 stabbed	stabbed	559
@@ -60674,7 +60553,7 @@ stayer	stayer	15
 staying	staying	2222
 staylace	staylace	2
 stays	stays	725
-stdout	stdout	1
+stdout	stdout	4
 stead	stead	216
 steadfast	steadfast	41
 steadfastly	steadfastly	64
@@ -62511,7 +62390,6 @@ sutural	sutural	3
 suture	suture	68
 sutures	sutures	35
 SUV	SUV	2
-Sport Utility Vehicle	SUV	1
 SUVs	SUVs	1
 Suwanee	Suwanee	1
 Suzanne	Suzanne	259
@@ -62526,7 +62404,7 @@ Svetlana	Svetlana	11
 SVG	SVG	2
 Scalable Vector Graphics	SVG	1
 SVIP	SVIP	1
-SVN	SVN	2
+SVN	SVN	5
 Apache Subversion	SVN	1
 swab	swab	24
 swabber	swabber	2
@@ -62783,7 +62661,7 @@ symbolized	symbolized	119
 symbolizes	symbolizes	52
 symbolizing	symbolizing	27
 symbols	symbols	989
-Symfony	Symfony	1
+Symfony	Symfony	5
 Symington	Symington	20
 symmetric	symmetric	269
 symmetrical	symmetrical	256
@@ -63053,7 +62931,7 @@ tails	tails	425
 Tailscale	Tailscale	5
 tailspin	tailspin	8
 tailwind	tailwind	8
-Tailwind CSS	TailwindCSS	2
+Tailwind CSS	TailwindCSS	5
 tailwinds	tailwinds	1
 tainan	tainan	3
 taint	taint	62
@@ -63344,7 +63222,7 @@ taunting	taunting	97
 tauntingly	tauntingly	19
 taunts	taunts	65
 taupe	taupe	5
-Tauri	Tauri	3
+Tauri	Tauri	5
 taurine	taurine	5
 Taurus	Taurus	135
 taut	taut	283
@@ -63405,7 +63283,7 @@ tcam	tcam	1
 Tchaikovsky	Tchaikovsky	119
 TCL	TCL	1
 TCP	TCP	16
-Transmission Control Protocol	TCP	1
+Transmission Control Protocol	tcp	6
 TCP/IP	TCP/IP	180
 TDengine	TDengine	1
 Te	Te	226
@@ -63753,7 +63631,7 @@ tensions	tensions	746
 tensity	tensity	4
 tensive	tensive	3
 tensor	tensor	158
-TensorFlow	TensorFlow	1
+TensorFlow	TensorFlow	5
 tent	tent	882
 tentacle	tentacle	317
 tentacled	tentacled	13
@@ -64371,7 +64249,7 @@ thrusts	thrusts	84
 thruway	thruway	1
 thu	thu	261
 thu.	thu	2
-thurs.	thu	1
+thurs.	thurs	3
 Thuban	Thuban	1
 thud	thud	163
 thuds	thuds	17
@@ -64417,7 +64295,6 @@ Thurber	Thurber	10
 thurible	thurible	6
 thurifer	thurifer	5
 Thurman	Thurman	5
-thurs.	thurs	3
 Thursday	Thursday	2833
 Thursdays	Thursdays	126
 thus	thus	15592
@@ -64470,7 +64347,7 @@ TickTick	TickTick	1
 Ticonderoga	Ticonderoga	1
 tidal	tidal	337
 tidally	tidally	1
-TiDB	TiDB	2
+TiDB	TiDB	5
 tidbits	tidbits	1
 tiddledywinks	tiddledywinks	1
 tide	tide	1344
@@ -64751,11 +64628,11 @@ Tl	Tl	76
 too long; didn't read	tl;dr	2
 TL;DR	TL;DR	1
 TLS	TLS	16
-Transport Layer Security	TLS	1
+Transport Layer Security	tls	6
 tm	tm	89
 Tm	Tm	89
 TM	TM	89
-tmux	tmux	1
+tmux	tmux	3
 TN	TN	8
 TNT	TNT	59
 to	to	1948511
@@ -64775,7 +64652,6 @@ tobacconist	tobacconist	43
 Tobago	Tobago	73
 Toby	Toby	611
 TOC	TOC	11
-Table of Contents	TOC	1
 toccata	toccata	8
 tocsin	tocsin	18
 today	today	20047
@@ -64823,7 +64699,7 @@ tokelau	tokelau	5
 token	token	644
 TokenInsight	TokenInsight	4
 tokenization	tokenization	3
-tokenizer	tokenizer	2
+tokenizer	tokenizer	4
 tokens	tokens	247
 Tokyo	Tokyo	831
 Toland	Toland	5
@@ -65432,7 +65308,6 @@ translate	translate	451
 translated	translated	913
 translates	translates	132
 translating	translating	199
-translation	translation	1111
 translational	translational	22
 translations	translations	215
 translator	translator	165
@@ -66035,7 +65910,7 @@ tsr	tsr	24
 tsunami	tsunami	63
 Tsunematsu	Tsunematsu	1
 ttf	ttf	1
-TTS	TTS	1
+TTS	TTS	7
 tub	tub	227
 tuba	tuba	45
 tubal	tubal	15
@@ -66252,7 +66127,6 @@ tutu	tutu	26
 tuvalu	tuvalu	18
 tuxedo	tuxedo	100
 tv	tv	4975
-television	tv	7616
 TV	TV	4975
 TVBox	TVBox	1
 tvga	tvga	1
@@ -66416,9 +66290,9 @@ uBlock Origin	UBlockOrigin	1
 ubuntu	ubuntu	1
 Udall	Udall	1
 udder	udder	33
-UDP	UDP	5
-User Datagram Protocol	UDP	1
-UEFI	UEFI	2
+UDP	UDP	7
+User Datagram Protocol	udp	6
+UEFI	UEFI	4
 Unified Extensible Firmware Interface	UEFI	1
 UFO	UFO	73
 Unidentified Flying Object	UFO	1
@@ -66438,7 +66312,7 @@ UHF	UHF	9
 UI	UI	120
 UID	UID	2
 User ID	UID	1
-United Kingdom	uk	2
+United Kingdom	UnitedKingdom	12
 UK	UK	13182
 ukase	ukase	1
 Ukraine	Ukraine	676
@@ -67281,7 +67155,6 @@ Unitarians	Unitarians	12
 unitary	unitary	313
 unite	unite	350
 united	united	14877
-United Kingdom	UnitedKingdom	12
 unitedly	unitedly	11
 United States	UnitedStates	10
 United States Dollar	UnitedStatesDollar	9
@@ -67974,7 +67847,6 @@ Uruguayan	Uruguayan	22
 Uruguayans	Uruguayans	1
 urus	urus	1
 us	us	59511
-United States	us	2
 US	US	59511
 USA	USA	3808
 The United States of America	USA	1
@@ -67984,10 +67856,8 @@ usably	usably	1
 usage	usage	892
 usages	usages	104
 USB	USB	5
-Universal Serial Bus	USB	1
 USC	USC	51
 USD	USD	2
-United States Dollar	USD	1
 USDT	USDT	1
 use	use	47893
 useable	useable	14
@@ -68055,7 +67925,6 @@ utilizing	utilizing	55
 utils	utils	1
 utmost	utmost	394
 uTools	UTool	2
-uTools	UTools	1
 utopia	utopia	164
 Utopian	Utopian	163
 utopianism	utopianism	19
@@ -68081,7 +67950,7 @@ uxorious	uxorious	5
 uzbekistan	uzbekistan	131
 Uzi	Uzi	32
 V2EX	V2EX	1
-V2Ray	V2Ray	4
+V2Ray	V2Ray	5
 v2ray-core	v2ray-core	3
 v2rayA	v2rayA	2
 v2rayN	v2rayN	1
@@ -68359,7 +68228,7 @@ VBScript	VBScript	1
 vbulletin	vbulletin	1
 vc	vc	59
 VCD	VCD	2
-Video CD	VCD	1
+Video CD	VideoCD	7
 VCR	VCR	49
 version control system	vcs	2
 VCS	VCS	11
@@ -68758,7 +68627,6 @@ Vida	Vida	5
 Vidal	Vidal	52
 video	video	5028
 videocast	videocast	8
-Video CD	VideoCD	7
 videophone	videophone	9
 videos	videos	834
 videotape	videotape	65
@@ -68986,7 +68854,7 @@ visualizing	visualizing	19
 visually	visually	440
 Visual Studio	VisualStudio	3
 Microsoft Visual Studio	VisualStudio	2
-Visual Studio Code	VisualStudioCode	1
+Visual Studio Code	VisualStudioCode	5
 vita	vita	135
 vitae	vitae	81
 vital	vital	3880
@@ -69007,7 +68875,7 @@ vite	vite	11
 Vite+	Vite+	4
 VitePress	VitePress	3
 Vitess	Vitess	2
-Vitest	Vitest	1
+Vitest	Vitest	5
 vitiable	vitiable	6
 vitiate	vitiate	11
 vitiation	vitiation	4
@@ -69058,11 +68926,11 @@ vizier	vizier	20
 VLA	VLA	1
 Vladimir	Vladimir	196
 Vladivostok	Vladivostok	16
-VLAN	VLAN	2
-Virtual Local Area Network	VLAN	1
+VLAN	VLAN	7
+Virtual Local Area Network	vlan	6
 VLC	VLC	1
 VLESS	VLESS	1
-vLLM	VLLM	1
+vLLM	vLLM	5
 vlog	vlog	2
 vlogger	vlogger	1
 VLOOKUP	VLOOKUP	1
@@ -69230,7 +69098,7 @@ voyagings	voyagings	1
 voyeur	voyeur	30
 voyeurweb	voyeurweb	1
 voyuer	voyuer	1
-virtual private network	vpn	2
+virtual private network	virtualprivatenetwork	6
 VPN	VPN	11
 virtual private server	vps	2
 VPS	VPS	1
@@ -69240,13 +69108,12 @@ vs	vs	358
 vs.	vs.	31
 vsafe	vsafe	1
 VSCode	VSCode	2
-Visual Studio Code	VSCode	1
 vsnet	vsnet	1
 VTuber	VTuber	1
 vua	vua	1
 vue	vue	58
 Vue	Vue	58
-Vue.js	Vue.js	1
+Vue.js	Vue.js	7
 VuePress	VuePress	1
 Vulcan	Vulcan	127
 vulcanised	vulcanised	6
@@ -69738,7 +69605,7 @@ WC	WC	174
 WD-40	WD-40	1
 we	we	273053
 we'd	we'd	1
-we'll	we'll	1
+we'll	well	22
 we're	we're	1
 we've	we've	1
 weak	weak	2718
@@ -69805,7 +69672,7 @@ weaverbird	weaverbird	3
 weaves	weaves	60
 weaving	weaving	634
 web	web	447
-WebAssembly	WebAssembly	1
+WebAssembly	WebAssembly	7
 Webb	Webb	507
 webbed	webbed	30
 Webber	Webber	145
@@ -69820,7 +69687,7 @@ WebCore	WebCore	1
 WebDAV	WebDAV	1
 weber	weber	405
 WebGPU	WebGPU	1
-webhook	webhook	2
+webhook	webhook	3
 webhooks	webhooks	1
 WebKit	WebKit	1
 weblog	weblog	3
@@ -69837,11 +69704,11 @@ webs	webs	101
 webshots	webshots	8
 website	website	7
 websites	websites	6
-WebSocket	WebSocket	5
+WebSocket	WebSocket	7
 WebSphere	WebSphere	4
 Webster	Webster	248
 Websterville	Websterville	2
-WebStorm	WebStorm	1
+WebStorm	WebStorm	5
 WebView	WebView	1
 WeChat	WeChat	2
 WeChat Pay	WeChatPay	1
@@ -69939,7 +69806,6 @@ Weldwood	Weldwood	1
 welfare	welfare	3677
 welkin	welkin	1
 well	well	89389
-we'll	well	22
 well-heeled	well-heeled	40
 well-known	well-known	1158
 well-wisher	well-wisher	6
@@ -70028,7 +69894,6 @@ Weyerhauser	Weyerhauser	1
 weymouth	weymouth	97
 WezTerm	WezTerm	2
 Wez's Terminal Emulator	WezTerm	1
-Wget	Wget	1
 whack	whack	81
 whacked	whacked	53
 whacker	whacker	3
@@ -70061,7 +69926,7 @@ Whatley	Whatley	11
 whatnot	whatnot	30
 WhatsApp	WhatsApp	3
 whatsoever	whatsoever	738
-what the fuck	whatthefuck	1
+what the fuck	wtf	2
 wheal	wheal	30
 wheat	wheat	745
 wheaten	wheaten	5
@@ -70300,7 +70165,7 @@ why'll	why'll	3
 why's	why's	2
 why've	why've	1
 whys	whys	30
-Wi-Fi	Wi-Fi	1
+Wi-Fi	Wi-Fi	7
 Wichita	Wichita	16
 wick	wick	145
 wicked	wicked	834
@@ -70487,7 +70352,6 @@ Windows 95	windows95	23
 Windows 98	windows98	22
 Windowsill	windowsill	81
 Windows Me	WindowsMe	20
-Windows Media Player	WindowsMediaPlayer	19
 Windows Mobile	WindowsMobile	18
 Windows NT	WindowsNT	17
 Windows Phone	WindowsPhone	16
@@ -70685,7 +70549,7 @@ wizards	wizards	68
 wizen	wizen	2
 wizened	wizened	54
 wks	wks	1
-WLAN	WLAN	2
+WLAN	WLAN	7
 Wireless LAN	WLAN	1
 wma	wma	1
 wmf	wmf	1
@@ -71060,7 +70924,6 @@ ws	ws	53
 WSGI	WSGI	1
 WSL	WSL	2
 Windows Subsystem for Linux	WSL	1
-what the fuck	wtf	2
 WTF	WTF	1
 WTO	WTO	5
 Wu	Wu	100
@@ -71144,7 +71007,7 @@ xls	xls	1
 xlsx	xlsx	1
 xmas	xmas	38
 xmind	xmind	1
-XML	XML	2
+XML	XML	5
 Extensible Markup Language	XML	1
 xnip	xnip	1
 xorg	xorg	1
@@ -71515,7 +71378,7 @@ zoofilia	zoofilia	1
 zoogamy	zoogamy	3
 zoogeography	zoogeography	2
 zoography	zoography	1
-ZooKeeper	ZooKeeper	1
+ZooKeeper	ZooKeeper	5
 zoolater	zoolater	6
 zoologic	zoologic	5
 zoological	zoological	106
@@ -71667,7 +71530,6 @@ It be on.	It'be'on
 He be in.	He'be'in
 Oh my God	Oh'my'God
 Yes, I do.	Yes'I'do
-Yes, I do.	yes'i'do
 No, I don't.	no'i'don't
 Yes, I am.	yes'i'am
 No, I'm not.	no'i'm'not
@@ -71691,3 +71553,1510 @@ COFs	COFs
 MOFs	MOFs
 HOFs	HOFs
 MiKTeX	MiKTeX
+.NET	.NET	7
+.NET Core	.NETCore	7
+2FA	2FA	7
+ABAC	ABAC	7
+ABI	ABI	7
+ACID	ACID	7
+ACL	ACL	7
+AES	AES	7
+AES-128	AES-128	7
+AES-256	AES-256	7
+AES-GCM	AES-GCM	7
+ANN	ANN	7
+ARP	ARP	7
+ASN	ASN	7
+ASP.NET	ASP.NET	7
+ASP.NET Core	ASP.NETCore	7
+ASR	ASR	7
+BDD	BDD	7
+BFD	BFD	7
+BGP	BGP	7
+BOOTP	BOOTP	7
+CA	CA	7
+CAP	CAP	7
+CDP	CDP	7
+ChaCha20-Poly1305	ChaCha20-Poly1305	7
+CI	CI	7
+CI/CD	CI/CD	7
+CIDR	CIDR	7
+CSR	CSR	7
+CSRF	CSRF	7
+CVSS	CVSS	7
+DBMS	DBMS	7
+DoT	DoT	7
+DPO	DPO	7
+DSL	DSL	7
+E2E	E2E	7
+EC2	EC2	7
+ECMP	ECMP	7
+EIGRP	EIGRP	7
+ELT	ELT	7
+ETL	ETL	7
+EVPN	EVPN	7
+F#	F#	7
+FaaS	FaaS	7
+GRE	GRE	7
+HMAC	HMAC	7
+HPA	HPA	7
+HSRP	HSRP	7
+HTTP	HTTP	7
+HTTP/2	HTTP/2	7
+HTTP/3	HTTP/3	7
+HTTPS	HTTPS	7
+IaaS	IaaS	7
+IaC	IaC	7
+IAM	IAM	7
+IDS	IDS	7
+IGMP	IGMP	7
+IKE	IKE	7
+IKEv2	IKEv2	7
+IPsec	IPsec	7
+IS-IS	IS-IS	7
+JIT	JIT	7
+JWT	JWT	7
+LACP	LACP	7
+Layer 2	Layer2	7
+Layer 3	Layer3	7
+LDP	LDP	7
+LLDP	LLDP	7
+LSA	LSA	7
+LSDB	LSDB	7
+MFA	MFA	7
+MIME	MIME	7
+ML	ML	7
+MoE	MoE	7
+MTU	MTU	7
+NAT	NAT	7
+NDP	NDP	7
+Node.js	Node.js	7
+NTP	NTP	7
+Nuxt.js	Nuxt.js	7
+OAuth	OAuth	7
+OAuth 2.0	OAuth2.0	7
+OCI	OCI	7
+OIDC	OIDC	7
+OLAP	OLAP	7
+OLTP	OLTP	7
+OpenAPI	OpenAPI	7
+OpenSSH	OpenSSH	7
+OpenSSL	OpenSSL	7
+OpenVPN	OpenVPN	7
+OSPF	OSPF	7
+OSPFv2	OSPFv2	7
+OSPFv3	OSPFv3	7
+PCIe 4.0	PCIe4.0	7
+PCIe 5.0	PCIe5.0	7
+PIM	PIM	7
+PKI	PKI	7
+PPP	PPP	7
+PTP	PTP	7
+PWA	PWA	7
+RADIUS	RADIUS	7
+RAG	RAG	7
+RAID 0	RAID0	7
+RAID 1	RAID1	7
+RAID 10	RAID10	7
+RAID 5	RAID5	7
+RAID 6	RAID6	7
+RBAC	RBAC	7
+RCE	RCE	7
+RDBMS	RDBMS	7
+React.js	React.js	7
+RIP	RIP	7
+RIPv2	RIPv2	7
+RL	RL	7
+RLHF	RLHF	7
+RNN	RNN	7
+RPC	RPC	7
+RPO	RPO	7
+RSTP	RSTP	7
+RTO	RTO	7
+S3	S3	7
+SAML	SAML	7
+SCTP	SCTP	7
+SFT	SFT	7
+SHA-1	SHA-1	7
+SHA-256	SHA-256	7
+SHA-512	SHA-512	7
+SIEM	SIEM	7
+SLA	SLA	7
+SLI	SLI	7
+SLM	SLM	7
+SLO	SLO	7
+Socket.IO	Socket.IO	7
+SQLi	SQLi	7
+SSE	SSE	7
+SSG	SSG	7
+SSO	SSO	7
+SSR	SSR	7
+SSRF	SSRF	7
+STP	STP	7
+TDD	TDD	7
+TFTP	TFTP	7
+TLS 1.2	TLS1.2	7
+TLS 1.3	TLS1.3	7
+TTL	TTL	7
+USB-C	USB-C	7
+VLM	VLM	7
+VPA	VPA	7
+VPC	VPC	7
+VRRP	VRRP	7
+VXLAN	VXLAN	7
+WAF	WAF	7
+WAL	WAL	7
+WASM	WASM	7
+Wi-Fi 6	Wi-Fi6	7
+Wi-Fi 6E	Wi-Fi6E	7
+Wi-Fi 7	Wi-Fi7	7
+X.509	X.509	7
+XSS	XSS	7
+Access Control List	acl	6
+Address Resolution Protocol	arp	6
+Advanced Encryption Standard	AdvancedEncryptionStandard	6
+Application Binary Interface	ApplicationBinaryInterface	6
+Artificial General Intelligence	ArtificialGeneralIntelligence	6
+Artificial Intelligence	ai	6
+Artificial Neural Network	ann	6
+Atomicity Consistency Isolation Durability	AtomicityConsistencyIsolationDurability	6
+Attribute-Based Access Control	abac	6
+Automatic Speech Recognition	asr	6
+Autonomous System Number	AutonomousSystemNumber	6
+Behavior-Driven Development	bdd	6
+Bidirectional Forwarding Detection	bfd	6
+Bootstrap Protocol	BootstrapProtocol	6
+Border Gateway Protocol	bgp	6
+central processing unit	centralprocessingunit	6
+Certificate Authority	CertificateAuthority	6
+certificate signing request	certificatesigningrequest	6
+Change Data Capture	cdc	6
+Cisco Discovery Protocol	CiscoDiscoveryProtocol	6
+Classless Inter-Domain Routing	ClasslessInter-DomainRouting	6
+Common Vulnerability Scoring System	CommonVulnerabilityScoringSystem	6
+Consistency Availability Partition Tolerance	ConsistencyAvailabilityPartitionTolerance	6
+Continuous Delivery	cd	6
+Continuous Integration	ci	6
+Continuous Integration and Continuous Delivery	CI/CD	6
+Convolutional Neural Network	cnn	6
+Cross-Site Request Forgery	csrf	6
+Cross-Site Scripting	xss	6
+Database Management System	dbms	6
+Denial of Service	DenialofService	6
+Direct Preference Optimization	DirectPreferenceOptimization	6
+Distributed Denial of Service	DistributedDenialofService	6
+DNS over TLS	DNSoverTLS	6
+Document Object Model	DocumentObjectModel	6
+Domain-Specific Language	Domain-SpecificLanguage	6
+End-to-End	End-to-End	6
+Enhanced Interior Gateway Routing Protocol	EnhancedInteriorGatewayRoutingProtocol	6
+Equal-Cost Multi-Path	Equal-CostMulti-Path	6
+Ethernet VPN	evpn	6
+Extract Load Transform	elt	6
+Extract Transform Load	etl	6
+Function as a Service	faas	6
+Generic Routing Encapsulation	GenericRoutingEncapsulation	6
+graphics processing unit	graphicsprocessingunit	6
+Hash-Based Message Authentication Code	Hash-BasedMessageAuthenticationCode	6
+Horizontal Pod Autoscaler	hpa	6
+Hot Standby Router Protocol	HotStandbyRouterProtocol	6
+identity and access management	identityandaccessmanagement	6
+Infrastructure as a Service	iaas	6
+Infrastructure as Code	iac	6
+Integrated Development Environment	ide	6
+Inter-Process Communication	Inter-ProcessCommunication	6
+Intermediate System to Intermediate System	isis	6
+Internet Group Management Protocol	igmp	6
+Internet Key Exchange	InternetKeyExchange	6
+Internet Protocol	ip	6
+Internet Protocol Security	InternetProtocolSecurity	6
+Intrusion Detection System	IntrusionDetectionSystem	6
+Intrusion Prevention System	IntrusionPreventionSystem	6
+JSON Web Token	jwt	6
+Just-In-Time Compilation	Just-In-TimeCompilation	6
+Label Distribution Protocol	LabelDistributionProtocol	6
+Link Aggregation Control Protocol	lacp	6
+Link Layer Discovery Protocol	lldp	6
+Link State Advertisement	lsa	6
+Link State Database	lsdb	6
+local area network	localareanetwork	6
+Machine Learning	ml	6
+maximum transmission unit	maximumtransmissionunit	6
+Mixture of Experts	moe	6
+Model View Controller	ModelViewController	6
+Model View ViewModel	ModelViewViewModel	6
+Multi-Factor Authentication	mfa	6
+Multiprotocol Label Switching	mpls	6
+Multipurpose Internet Mail Extensions	MultipurposeInternetMailExtensions	6
+Neighbor Discovery Protocol	ndp	6
+Network Address Translation	nat	6
+Network Time Protocol	ntp	6
+non-volatile memory express	non-volatilememoryexpress	6
+Object-Oriented Programming	oop	6
+Object-Relational Mapping	orm	6
+Online Analytical Processing	olap	6
+Online Transaction Processing	oltp	6
+Open Authorization	oauth	6
+Open Container Initiative	oci	6
+Open Shortest Path First	ospf	6
+OpenID Connect	oidc	6
+Platform as a Service	paas	6
+Point-to-Point Protocol	ppp	6
+Point-to-Point Protocol over Ethernet	pppoe	6
+Precision Time Protocol	PrecisionTimeProtocol	6
+Progressive Web App	pwa	6
+Protocol Independent Multicast	ProtocolIndependentMulticast	6
+Public Key Infrastructure	pki	6
+random access memory	randomaccessmemory	6
+Rapid Spanning Tree Protocol	rstp	6
+recovery point objective	recoverypointobjective	6
+recovery time objective	recoverytimeobjective	6
+Recurrent Neural Network	rnn	6
+Reinforcement Learning	rl	6
+Reinforcement Learning from Human Feedback	rlhf	6
+Relational Database Management System	rdbms	6
+Remote Authentication Dial-In User Service	RemoteAuthenticationDial-InUserService	6
+Remote Code Execution	rce	6
+Remote Procedure Call	rpc	6
+retrieval augmented generation	retrievalaugmentedgeneration	6
+Retrieval-Augmented Generation	rag	6
+Role-Based Access Control	rbac	6
+Routing Information Protocol	rip	6
+Security Assertion Markup Language	SecurityAssertionMarkupLanguage	6
+Security Information and Event Management	SecurityInformationandEventManagement	6
+Server-Sent Events	sse	6
+Server-Side Rendering	ssr	6
+Server-Side Request Forgery	ssrf	6
+Service Level Agreement	sla	6
+Service Level Indicator	sli	6
+Service Level Objective	slo	6
+Simple Network Management Protocol	snmp	6
+Single Sign-On	sso	6
+Single-Page Application	spa	6
+Site Reliability Engineering	sre	6
+Small Language Model	slm	6
+Software as a Service	saas	6
+Spanning Tree Protocol	stp	6
+SQL Injection	sqli	6
+Static Site Generation	ssg	6
+Stream Control Transmission Protocol	StreamControlTransmissionProtocol	6
+Supervised Fine-Tuning	sft	6
+Test-Driven Development	tdd	6
+Text-to-Speech	tts	6
+time to live	timetolive	6
+Trivial File Transfer Protocol	TrivialFileTransferProtocol	6
+Two-Factor Authentication	2fa	6
+Vertical Pod Autoscaler	vpa	6
+Virtual Extensible LAN	vxlan	6
+Virtual Router Redundancy Protocol	vrrp	6
+Vision Language Model	vlm	6
+Web Application Firewall	waf	6
+Wide Area Network	WideAreaNetwork	6
+Wireless Local Area Network	WirelessLocalAreaNetwork	6
+Write-Ahead Log	wal	6
+Actix Web	ActixWeb	5
+AdGuard Home	AdGuardHome	5
+Airflow	Airflow	41
+Akamai	Akamai	5
+AKS	AKS	5
+Alibaba Cloud	AlibabaCloud	5
+Amazon EC2	AmazonEC2	5
+Amazon ECS	AmazonECS	5
+Amazon EKS	AmazonEKS	5
+Amazon RDS	AmazonRDS	5
+Amazon S3	AmazonS3	5
+Android Studio	AndroidStudio	5
+Angular	Angular	5
+Ant	Ant	5
+Apache APISIX	ApacheAPISIX	5
+Apache Flink	ApacheFlink	5
+Apache HTTP Server	ApacheHTTPServer	5
+APT	APT	5
+ArangoDB	ArangoDB	5
+Argo CD	ArgoCD	5
+Assembly	Assembly	5
+Astro	Astro	5
+Authelia	Authelia	5
+Authentik	Authentik	5
+AWS Lambda	AWSLambda	5
+Axum	Axum	5
+Azure	Azure	5
+Azure Functions	AzureFunctions	5
+Azure Kubernetes Service	AzureKubernetesService	5
+Azure Virtual Machines	AzureVirtualMachines	5
+Bamboo	Bamboo	5
+Bandit	Bandit	5
+Bash	Bash	5
+Bazel	Bazel	5
+BigQuery	BigQuery	5
+Bigtable	Bigtable	5
+BIND	BIND	5
+Black	Black	5
+Blazor	Blazor	5
+Bootstrap	Bootstrap	5
+Buildah	Buildah	5
+BuildKit	BuildKit	5
+Bun	Bun	5
+Bundler	Bundler	5
+Burp Suite	BurpSuite	5
+C	C	5
+Caddy	Caddy	5
+Calico	Calico	5
+Cargo	Cargo	5
+Ceph	Ceph	5
+Chef	Chef	5
+Chi	Chi	5
+Chocolatey	Chocolatey	5
+Chroma	Chroma	5
+Cilium	Cilium	5
+CircleCI	CircleCI	5
+Clang	Clang	5
+Cloud Functions	CloudFunctions	5
+Cloud Run	CloudRun	5
+Cloudflare	Cloudflare	5
+Cloudflare Tunnel	CloudflareTunnel	5
+CodeIgniter	CodeIgniter	5
+CodeQL	CodeQL	5
+Composer	Composer	5
+Conda	Conda	5
+Consul	Consul	5
+Consul Connect	ConsulConnect	5
+CoreDNS	CoreDNS	5
+Couchbase	Couchbase	5
+CouchDB	CouchDB	5
+CRI-O	CRI-O	5
+CrowdSec	CrowdSec	5
+Crystal	Crystal	5
+cuDNN	cuDNN	5
+Cypress	Cypress	5
+Dagster	Dagster	5
+Dart	Dart	5
+Databricks	Databricks	5
+Datadog	Datadog	5
+dbt	dbt	5
+Deno	Deno	5
+Dependabot	Dependabot	5
+Django	Django	5
+DNF	DNF	5
+Dnsmasq	Dnsmasq	5
+Docker	Docker	5
+Docker Compose	DockerCompose	5
+Docker Desktop	DockerDesktop	5
+Docker Engine	DockerEngine	5
+Dockerfile	Dockerfile	5
+Drone CI	DroneCI	5
+DynamoDB	DynamoDB	5
+Echo	Echo	5
+Elastic Stack	ElasticStack	5
+Elasticsearch	Elasticsearch	5
+Electron	Electron	5
+Elixir	Elixir	5
+ELK Stack	ELKStack	5
+Emacs	Emacs	5
+Entity Framework	EntityFramework	5
+Express	Express	5
+Fail2ban	Fail2ban	5
+Faiss	Faiss	5
+Fiber	Fiber	5
+Firestore	Firestore	5
+Flake8	Flake8	5
+Flannel	Flannel	5
+Flask	Flask	5
+Flutter	Flutter	5
+Flux CD	FluxCD	5
+FRP	FRP	5
+frp tunnel	frptunnel	5
+frpc	frpc	5
+frps	frps	5
+GCP	GCP	5
+Gem	Gem	5
+Gin	Gin	5
+GitLab CI	GitLabCI	5
+GKE	GKE	5
+GlusterFS	GlusterFS	5
+GnuPG	GnuPG	5
+Go	Go	5
+Go modules	Gomodules	5
+Google Cloud	GoogleCloud	5
+Google Compute Engine	GoogleComputeEngine	5
+Google Kubernetes Engine	GoogleKubernetesEngine	5
+GPG	GPG	5
+Gradle	Gradle	5
+Grafana	Grafana	5
+Groovy	Groovy	5
+Grype	Grype	5
+GTK	GTK	5
+Hapi	Hapi	5
+HAProxy	HAProxy	5
+Hashcat	Hashcat	5
+HashiCorp Vault	HashiCorpVault	5
+Headscale	Headscale	5
+Helm	Helm	5
+Hibernate	Hibernate	5
+Homebrew	Homebrew	5
+Hydra	Hydra	5
+Hyper-V	Hyper-V	5
+Insomnia	Insomnia	5
+iperf	iperf	5
+iperf3	iperf3	5
+isort	isort	5
+Istio	Istio	5
+Jasmine	Jasmine	5
+JAX	JAX	5
+Jest	Jest	5
+John the Ripper	JohntheRipper	5
+JUnit	JUnit	5
+k3s	k3s	5
+Kafka Streams	KafkaStreams	5
+Kaniko	Kaniko	5
+Keycloak	Keycloak	5
+Koa	Koa	5
+Kotlin	Kotlin	5
+kubelet	kubelet	5
+Kubernetes	Kubernetes	5
+Kustomize	Kustomize	5
+KVM	KVM	5
+Laravel	Laravel	5
+Less	Less	5
+Libreswan	Libreswan	5
+Linkerd	Linkerd	5
+Linode	Linode	5
+Lisp	Lisp	5
+LlamaIndex	LlamaIndex	5
+LLVM	LLVM	5
+Lua	Lua	5
+Make	Make	5
+Markdown	Markdown	5
+Masscan	Masscan	5
+Material UI	MaterialUI	5
+MATLAB	MATLAB	5
+Maven	Maven	5
+Memcached	Memcached	5
+Mercurial	Mercurial	5
+Meson	Meson	5
+Metasploit	Metasploit	5
+Micronaut	Micronaut	5
+Mihomo	Mihomo	5
+Milvus	Milvus	5
+Mimir	Mimir	5
+Minikube	Minikube	5
+MobX	MobX	5
+Mocha	Mocha	5
+Mosquitto	Mosquitto	5
+MTR	MTR	5
+mypy	mypy	5
+NATS	NATS	5
+Neovim	Neovim	5
+Netcat	Netcat	5
+New Relic	NewRelic	5
+Nextcloud	Nextcloud	5
+Nginx	Nginx	5
+ngrok	ngrok	5
+Nikto	Nikto	5
+Nim	Nim	5
+Ninja	Ninja	5
+Nomad	Nomad	5
+NuGet	NuGet	5
+NumPy	NumPy	5
+NUnit	NUnit	5
+Ollama	Ollama	5
+ONNX	ONNX	5
+ONNX Runtime	ONNXRuntime	5
+OpenAPI Specification	OpenAPISpecification	5
+OpenSearch	OpenSearch	5
+OpenShift	OpenShift	5
+OpenTelemetry	OpenTelemetry	5
+Oracle Cloud	OracleCloud	5
+Oracle Database	OracleDatabase	5
+OrientDB	OrientDB	5
+OSSEC	OSSEC	5
+OWASP ZAP	OWASPZAP	5
+ownCloud	ownCloud	5
+Packer	Packer	5
+Pacman	Pacman	5
+Perl	Perl	5
+Pi-hole	Pi-hole	5
+Pinecone	Pinecone	5
+Pipenv	Pipenv	5
+pipx	pipx	5
+PL/SQL	PL/SQL	5
+pnpm	pnpm	5
+Podman	Podman	5
+Poetry	Poetry	5
+Polars	Polars	5
+Postman	Postman	5
+Prettier	Prettier	5
+Protobuf	Protobuf	5
+Proxmox VE	ProxmoxVE	5
+Pulsar	Pulsar	5
+Puppet	Puppet	5
+Pylint	Pylint	5
+Pyright	Pyright	5
+Pytest	Pytest	5
+Python	Python	5
+Qdrant	Qdrant	5
+QEMU	QEMU	5
+Qt	Qt	5
+Quarkus	Quarkus	5
+R	R	5
+Racket	Racket	5
+Rancher	Rancher	5
+React	React	5
+Redis	Redis	5
+Redshift	Redshift	5
+Redux	Redux	5
+Renovate	Renovate	5
+Rocket	Rocket	5
+ROCm	ROCm	5
+Route 53	Route53	5
+Ruby	Ruby	5
+Ruff	Ruff	5
+Rust	Rust	5
+SaltStack	SaltStack	5
+Sanic	Sanic	5
+Sass	Sass	5
+Scheme	Scheme	5
+scikit-learn	scikit-learn	5
+SciPy	SciPy	5
+Scoop	Scoop	5
+ScyllaDB	ScyllaDB	5
+Security Onion	SecurityOnion	5
+Selenium	Selenium	5
+Semgrep	Semgrep	5
+Sentry	Sentry	5
+Snort	Snort	5
+Snowflake	Snowflake	5
+Snyk	Snyk	5
+Socat	Socat	5
+SoftEther	SoftEther	5
+Solidity	Solidity	5
+Solr	Solr	5
+SonarQube	SonarQube	5
+Spark	Spark	5
+Spinnaker	Spinnaker	5
+Splunk	Splunk	5
+Spring	Spring	5
+sqlmap	sqlmap	5
+strongSwan	strongSwan	5
+Subversion	Subversion	5
+Suricata	Suricata	5
+Svelte	Svelte	5
+SvelteKit	SvelteKit	5
+Swift	Swift	5
+Syft	Syft	5
+Syncthing	Syncthing	5
+Synology DSM	SynologyDSM	5
+T-SQL	T-SQL	5
+Tailscale Funnel	TailscaleFunnel	5
+tcpdump	tcpdump	5
+Tekton	Tekton	5
+Tempo	Tempo	5
+Tencent Cloud	TencentCloud	5
+Terraform	Terraform	5
+Tokio	Tokio	5
+TOML	TOML	5
+Tornado	Tornado	5
+Traefik	Traefik	5
+Transformers	Transformers	5
+Travis CI	TravisCI	5
+Trivy	Trivy	5
+TrueNAS	TrueNAS	5
+Unbound	Unbound	5
+uv	uv	5
+Vagrant	Vagrant	5
+Valkey	Valkey	5
+Vault	Vault	5
+Vim	Vim	5
+Virtual Private Cloud	VirtualPrivateCloud	5
+VirtualBox	VirtualBox	5
+VMware ESXi	VMwareESXi	5
+Vyper	Vyper	5
+Wazuh	Wazuh	5
+Weaviate	Weaviate	5
+Wireshark	Wireshark	5
+Xamarin	Xamarin	5
+Xray	Xray	5
+xUnit	xUnit	5
+YAML	YAML	5
+YARA	YARA	5
+Yarn	Yarn	5
+YugabyteDB	YugabyteDB	5
+YUM	YUM	5
+Zeek	Zeek	5
+ZeroTier	ZeroTier	5
+Zig	Zig	5
+Zipkin	Zipkin	5
+Zustand	Zustand	5
+A record	Arecord	4
+AAAA record	AAAArecord	4
+access control	accesscontrol	4
+access permission	accesspermission	4
+administrative distance	administrativedistance	4
+AH	AH	4
+Alpine Linux	AlpineLinux	4
+Android	Android	4
+anycast	anycast	4
+anycast routing	anycastrouting	4
+API gateway	APIgateway	4
+API security	APIsecurity	4
+application security	applicationsecurity	4
+AS path	ASpath	4
+asymmetric encryption	asymmetricencryption	4
+attention mechanism	attentionmechanism	4
+authoritative DNS	authoritativeDNS	4
+autonomous system	autonomoussystem	4
+awk	awk	4
+background process	backgroundprocess	4
+Bash script	Bashscript	4
+batch processing	batchprocessing	4
+batch size	batchsize	4
+BGP AS path	BGPASpath	4
+BGP community	BGPcommunity	4
+BGP extended community	BGPextendedcommunity	4
+BGP graceful restart	BGPgracefulrestart	4
+BGP large community	BGPlargecommunity	4
+BGP local preference	BGPlocalpreference	4
+BGP MED	BGPMED	4
+BGP multipath	BGPmultipath	4
+BGP neighbor	BGPneighbor	4
+BGP peer	BGPpeer	4
+BGP prefix filter	BGPprefixfilter	4
+BGP route	BGProute	4
+BGP route policy	BGProutepolicy	4
+BGP route reflector	BGProutereflector	4
+BGP routing policy	BGProutingpolicy	4
+BGP routing table	BGProutingtable	4
+BGP session	BGPsession	4
+binary log	binarylog	4
+blade server	bladeserver	4
+block device	blockdevice	4
+blue-green deployment	blue-greendeployment	4
+Bluetooth adapter	Bluetoothadapter	4
+bootloader	bootloader	4
+broadcast address	broadcastaddress	4
+brute-force attack	brute-forceattack	4
+Btrfs	Btrfs	4
+build context	buildcontext	4
+bzip2	bzip2	4
+canary deployment	canarydeployment	4
+carrier-grade NAT	carrier-gradeNAT	4
+CentOS Stream	CentOSStream	4
+certificate authentication	certificateauthentication	4
+certificate chain	certificatechain	4
+certificate pinning	certificatepinning	4
+certificate revocation	certificaterevocation	4
+CGNAT	CGNAT	4
+ChaCha20	ChaCha20	4
+chain of thought	chainofthought	4
+character device	characterdevice	4
+child process	childprocess	4
+chown	chown	4
+CIFS	CIFS	4
+client certificate	clientcertificate	4
+clock speed	clockspeed	4
+cloud security	cloudsecurity	4
+cluster autoscaler	clusterautoscaler	4
+cluster role	clusterrole	4
+cluster role binding	clusterrolebinding	4
+clustered index	clusteredindex	4
+CNAME record	CNAMErecord	4
+command injection	commandinjection	4
+command substitution	commandsubstitution	4
+Compose project	Composeproject	4
+Compose service	Composeservice	4
+composite key	compositekey	4
+computer vision	computervision	4
+connected route	connectedroute	4
+container isolation	containerisolation	4
+container log	containerlog	4
+container namespace	containernamespace	4
+container network	containernetwork	4
+container port	containerport	4
+container security	containersecurity	4
+container shell	containershell	4
+container storage	containerstorage	4
+container volume	containervolume	4
+context switch	contextswitch	4
+control plane	controlplane	4
+control plane node	controlplanenode	4
+cosine similarity	cosinesimilarity	4
+CPU core	CPUcore	4
+CPU frequency	CPUfrequency	4
+CPU inference	CPUinference	4
+CPU scheduler	CPUscheduler	4
+CPU thread	CPUthread	4
+credential stuffing	credentialstuffing	4
+CRL	CRL	4
+crontab	crontab	4
+cross-validation	cross-validation	4
+CUDA core	CUDAcore	4
+cybersecurity	cybersecurity	4
+data catalog	datacatalog	4
+data governance	datagovernance	4
+data ingestion	dataingestion	4
+data lakehouse	datalakehouse	4
+data lineage	datalineage	4
+data loader	dataloader	4
+data mart	datamart	4
+data migration	datamigration	4
+data partition	datapartition	4
+data plane	dataplane	4
+data quality	dataquality	4
+database column	databasecolumn	4
+database deadlock	databasedeadlock	4
+database row	databaserow	4
+database schema	databaseschema	4
+database table	databasetable	4
+database trigger	databasetrigger	4
+database view	databaseview	4
+DDR4	DDR4	4
+DDR5	DDR5	4
+Debian	Debian	4
+deep learning	deeplearning	4
+default gateway	defaultgateway	4
+default route	defaultroute	4
+device driver	devicedriver	4
+device mapper	devicemapper	4
+DHCP client	DHCPclient	4
+DHCP lease	DHCPlease	4
+DHCP option	DHCPoption	4
+DHCP relay	DHCPrelay	4
+DHCP reservation	DHCPreservation	4
+DHCP server	DHCPserver	4
+dictionary attack	dictionaryattack	4
+Diffie-Hellman	Diffie-Hellman	4
+Dijkstra algorithm	Dijkstraalgorithm	4
+dimensionality reduction	dimensionalityreduction	4
+directory traversal	directorytraversal	4
+dirty read	dirtyread	4
+disk partition	diskpartition	4
+distributed database	distributeddatabase	4
+dmesg	dmesg	4
+DNAT	DNAT	4
+DNS cache	DNScache	4
+DNS record	DNSrecord	4
+DNS resolver	DNSresolver	4
+DNS server	DNSserver	4
+DNS64	DNS64	4
+Docker build	Dockerbuild	4
+Docker Compose file	DockerComposefile	4
+Docker container	Dockercontainer	4
+Docker exec	Dockerexec	4
+Docker inspect	Dockerinspect	4
+Docker login	Dockerlogin	4
+Docker logout	Dockerlogout	4
+Docker proxy	Dockerproxy	4
+Docker pull	Dockerpull	4
+Docker push	Dockerpush	4
+Docker registry	Dockerregistry	4
+Docker socket	Dockersocket	4
+Docker tag	Dockertag	4
+domain socket	domainsocket	4
+dual stack	dualstack	4
+dual-stack network	dual-stacknetwork	4
+dynamic route	dynamicroute	4
+eBGP	eBGP	4
+ECDH	ECDH	4
+edge gateway	edgegateway	4
+embedding model	embeddingmodel	4
+endpoint security	endpointsecurity	4
+environment variable	environmentvariable	4
+equal-cost multipath	equal-costmultipath	4
+ESP	ESP	4
+etcd cluster	etcdcluster	4
+event stream	eventstream	4
+execute permission	executepermission	4
+exFAT	exFAT	4
+ext4	ext4	4
+FAT32	FAT32	4
+feature engineering	featureengineering	4
+feature extraction	featureextraction	4
+few-shot prompting	few-shotprompting	4
+Fibre Channel	FibreChannel	4
+file descriptor	filedescriptor	4
+file ownership	fileownership	4
+file permission	filepermission	4
+file system	filesystem	4
+find command	findcommand	4
+firewall rule	firewallrule	4
+firmware update	firmwareupdate	4
+forward proxy	forwardproxy	4
+FTPS	FTPS	4
+full table scan	fulltablescan	4
+full tunnel	fulltunnel	4
+GenAI	GenAI	4
+generative AI	generativeAI	4
+GLBP	GLBP	4
+GNU/Linux	GNU/Linux	4
+GPU inference	GPUinference	4
+gradient descent	gradientdescent	4
+graphics card	graphicscard	4
+graphics processor	graphicsprocessor	4
+GRE tunnel	GREtunnel	4
+hardware RAID	hardwareRAID	4
+hardware virtualization	hardwarevirtualization	4
+hash function	hashfunction	4
+horizontal partitioning	horizontalpartitioning	4
+host route	hostroute	4
+htop	htop	4
+HTTP header	HTTPheader	4
+HTTP keep-alive	HTTPkeep-alive	4
+HTTP method	HTTPmethod	4
+HTTP proxy	HTTPproxy	4
+HTTP request	HTTPrequest	4
+HTTP response	HTTPresponse	4
+HTTP status code	HTTPstatuscode	4
+hyperparameter	hyperparameter	4
+hyperparameter tuning	hyperparametertuning	4
+I/O scheduler	I/Oscheduler	4
+iBGP	iBGP	4
+ICMPv6	ICMPv6	4
+identity management	identitymanagement	4
+identity provider	identityprovider	4
+image digest	imagedigest	4
+image layer	imagelayer	4
+image registry	imageregistry	4
+image tag	imagetag	4
+in-memory database	in-memorydatabase	4
+incremental backup	incrementalbackup	4
+index scan	indexscan	4
+index seek	indexseek	4
+inference server	inferenceserver	4
+ingress controller	ingresscontroller	4
+init system	initsystem	4
+inode	inode	4
+instruction tuning	instructiontuning	4
+intermediate certificate	intermediatecertificate	4
+IP address	IPaddress	4
+IPv4 address	IPv4address	4
+IPv4 network	IPv4network	4
+IPv4 routing	IPv4routing	4
+IPv6 address	IPv6address	4
+IPv6 network	IPv6network	4
+IPv6 routing	IPv6routing	4
+iSCSI	iSCSI	4
+isolation level	isolationlevel	4
+journalctl	journalctl	4
+jumbo frame	jumboframe	4
+Kerberos	Kerberos	4
+kernel module	kernelmodule	4
+key exchange	keyexchange	4
+key pair	keypair	4
+key-based authentication	key-basedauthentication	4
+knowledge distillation	knowledgedistillation	4
+kube-apiserver	kube-apiserver	4
+kube-proxy	kube-proxy	4
+Kubernetes ConfigMap	KubernetesConfigMap	4
+Kubernetes cron job	Kubernetescronjob	4
+Kubernetes daemon set	Kubernetesdaemonset	4
+Kubernetes job	Kubernetesjob	4
+Kubernetes network policy	Kubernetesnetworkpolicy	4
+Kubernetes node	Kubernetesnode	4
+Kubernetes persistent volume	Kubernetespersistentvolume	4
+Kubernetes replica set	Kubernetesreplicaset	4
+Kubernetes role	Kubernetesrole	4
+Kubernetes secret	Kubernetessecret	4
+Kubernetes service account	Kubernetesserviceaccount	4
+Kubernetes stateful set	Kubernetesstatefulset	4
+Kubernetes storage class	Kubernetesstorageclass	4
+Layer 2 switching	Layer2switching	4
+Layer 3 routing	Layer3routing	4
+Layer 4 load balancer	Layer4loadbalancer	4
+Layer 7 load balancer	Layer7loadbalancer	4
+leader follower	leaderfollower	4
+learning rate	learningrate	4
+Lightweight Directory Access Protocol	LightweightDirectoryAccessProtocol	4
+link aggregation	linkaggregation	4
+link-local address	link-localaddress	4
+link-state advertisement	link-stateadvertisement	4
+link-state database	link-statedatabase	4
+link-state routing	link-staterouting	4
+Linux bridge	Linuxbridge	4
+Linux container	Linuxcontainer	4
+Linux kernel	Linuxkernel	4
+liveness probe	livenessprobe	4
+load balancer	loadbalancer	4
+load balancing	loadbalancing	4
+logical volume	logicalvolume	4
+loop device	loopdevice	4
+loopback address	loopbackaddress	4
+LoRA	LoRA	4
+loss function	lossfunction	4
+lsof	lsof	4
+LVM	LVM	4
+management plane	managementplane	4
+materialized view	materializedview	4
+MC-LAG	MC-LAG	4
+MD5	MD5	4
+mDNS	mDNS	4
+memory bandwidth	memorybandwidth	4
+memory channel	memorychannel	4
+memory mapping	memorymapping	4
+memory module	memorymodule	4
+MLAG	MLAG	4
+mmap	mmap	4
+model deployment	modeldeployment	4
+model evaluation	modelevaluation	4
+model training	modeltraining	4
+mount point	mountpoint	4
+MSTP	MSTP	4
+multi-core processor	multi-coreprocessor	4
+multi-head attention	multi-headattention	4
+multi-primary replication	multi-primaryreplication	4
+multi-stage build	multi-stagebuild	4
+multicast address	multicastaddress	4
+Multicast DNS	MulticastDNS	4
+Multiple Spanning Tree Protocol	MultipleSpanningTreeProtocol	4
+MX record	MXrecord	4
+named pipe	namedpipe	4
+NAT gateway	NATgateway	4
+NAT traversal	NATtraversal	4
+NAT64	NAT64	4
+network ACL	networkACL	4
+network adapter	networkadapter	4
+network bridge	networkbridge	4
+network card	networkcard	4
+Network File System	NetworkFileSystem	4
+network firewall	networkfirewall	4
+network function virtualization	networkfunctionvirtualization	4
+network interface	networkinterface	4
+network namespace	networknamespace	4
+network security	networksecurity	4
+neural network	neuralnetwork	4
+next hop	nexthop	4
+NFV	NFV	4
+NIC	NIC	4
+NIC bonding	NICbonding	4
+NixOS	NixOS	4
+nonclustered index	nonclusteredindex	4
+northbound API	northboundAPI	4
+NoSQL database	NoSQLdatabase	4
+NVMe SSD	NVMeSSD	4
+objective function	objectivefunction	4
+OCI image	OCIimage	4
+OCI runtime	OCIruntime	4
+OpenVPN certificate	OpenVPNcertificate	4
+OpenVPN connection	OpenVPNconnection	4
+OpenVPN profile	OpenVPNprofile	4
+OpenVPN protocol	OpenVPNprotocol	4
+OpenVPN route	OpenVPNroute	4
+OpenVPN routing	OpenVPNrouting	4
+OpenVPN tunnel	OpenVPNtunnel	4
+optimistic locking	optimisticlocking	4
+orphan process	orphanprocess	4
+OSI model	OSImodel	4
+OSPF adjacency	OSPFadjacency	4
+OSPF area	OSPFarea	4
+OSPF authentication	OSPFauthentication	4
+OSPF backbone area	OSPFbackbonearea	4
+OSPF backup designated router	OSPFbackupdesignatedrouter	4
+OSPF cost	OSPFcost	4
+OSPF dead interval	OSPFdeadinterval	4
+OSPF designated router	OSPFdesignatedrouter	4
+OSPF hello interval	OSPFhellointerval	4
+OSPF hello packet	OSPFhellopacket	4
+OSPF interface	OSPFinterface	4
+OSPF link state	OSPFlinkstate	4
+OSPF metric	OSPFmetric	4
+OSPF neighbor	OSPFneighbor	4
+OSPF network type	OSPFnetworktype	4
+OSPF passive interface	OSPFpassiveinterface	4
+OSPF route	OSPFroute	4
+OSPF route redistribution	OSPFrouteredistribution	4
+OSPF route table	OSPFroutetable	4
+OSPF router	OSPFrouter	4
+OSPF router ID	OSPFrouterID	4
+OSPF routing table	OSPFroutingtable	4
+OSPF virtual link	OSPFvirtuallink	4
+overlay network	overlaynetwork	4
+overlayfs	overlayfs	4
+packet fragmentation	packetfragmentation	4
+packet loss	packetloss	4
+page cache	pagecache	4
+parent process	parentprocess	4
+partition table	partitiontable	4
+password authentication	passwordauthentication	4
+password spraying	passwordspraying	4
+PAT	PAT	4
+patch management	patchmanagement	4
+path MTU discovery	pathMTUdiscovery	4
+path traversal	pathtraversal	4
+PATH variable	PATHvariable	4
+PCIe lane	PCIelane	4
+PEFT	PEFT	4
+perf	perf	4
+persistent volume claim	persistentvolumeclaim	4
+pessimistic locking	pessimisticlocking	4
+phantom read	phantomread	4
+PID	PID	4
+PITR	PITR	4
+point-in-time recovery	point-in-timerecovery	4
+Poly1305	Poly1305	4
+POP3	POP3	4
+port channel	portchannel	4
+power supply	powersupply	4
+prefix length	prefixlength	4
+prepared statement	preparedstatement	4
+primary replica	primaryreplica	4
+principle of least privilege	principleofleastprivilege	4
+private IP address	privateIPaddress	4
+private registry	privateregistry	4
+privilege escalation	privilegeescalation	4
+process ID	processID	4
+process pool	processpool	4
+proxy authentication	proxyauthentication	4
+proxy client	proxyclient	4
+proxy server	proxyserver	4
+PTR record	PTRrecord	4
+public IP address	publicIPaddress	4
+public registry	publicregistry	4
+QLoRA	QLoRA	4
+query plan	queryplan	4
+rack server	rackserver	4
+RAID	RAID	4
+ransomware	ransomware	4
+rate limiting	ratelimiting	4
+read committed	readcommitted	4
+read permission	readpermission	4
+read replica	readreplica	4
+read-write lock	read-writelock	4
+readiness probe	readinessprobe	4
+real-time processing	real-timeprocessing	4
+recursive DNS	recursiveDNS	4
+redo log	redolog	4
+regular expression	regularexpression	4
+repeatable read	repeatableread	4
+reranker	reranker	4
+resource limit	resourcelimit	4
+resource request	resourcerequest	4
+reverse proxy	reverseproxy	4
+role binding	rolebinding	4
+rolling deployment	rollingdeployment	4
+rolling update	rollingupdate	4
+root access	rootaccess	4
+root certificate	rootcertificate	4
+root user	rootuser	4
+rootkit	rootkit	4
+round-trip time	round-triptime	4
+route aggregation	routeaggregation	4
+route convergence	routeconvergence	4
+route policy	routepolicy	4
+route preference	routepreference	4
+route redistribution	routeredistribution	4
+route reflector	routereflector	4
+route server	routeserver	4
+route table	routetable	4
+routing metric	routingmetric	4
+routing policy	routingpolicy	4
+routing protocol	routingprotocol	4
+routing table	routingtable	4
+RSA	RSA	4
+RTT	RTT	4
+Samba	Samba	4
+SATA SSD	SATASSD	4
+scheduled task	scheduledtask	4
+schema migration	schemamigration	4
+SCP	SCP	4
+SDN	SDN	4
+secure boot	secureboot	4
+security audit	securityaudit	4
+security group	securitygroup	4
+security incident	securityincident	4
+security patch	securitypatch	4
+security policy	securitypolicy	4
+sed	sed	4
+Segment Routing	SegmentRouting	4
+self-supervised learning	self-supervisedlearning	4
+semi-supervised learning	semi-supervisedlearning	4
+serializable isolation	serializableisolation	4
+server certificate	servercertificate	4
+server hardware	serverhardware	4
+service mesh	servicemesh	4
+sharding	sharding	4
+shared memory	sharedmemory	4
+shell script	shellscript	4
+shellcode	shellcode	4
+shortest path first	shortestpathfirst	4
+sidecar proxy	sidecarproxy	4
+similarity search	similaritysearch	4
+site-to-site VPN	site-to-siteVPN	4
+SNAT	SNAT	4
+SOCKS5	SOCKS5	4
+SOCKS5 proxy	SOCKS5proxy	4
+software RAID	softwareRAID	4
+software-defined networking	software-definednetworking	4
+southbound API	southboundAPI	4
+spear phishing	spearphishing	4
+speech recognition	speechrecognition	4
+speech synthesis	speechsynthesis	4
+SPF algorithm	SPFalgorithm	4
+spinlock	spinlock	4
+split tunneling	splittunneling	4
+SQL query	SQLquery	4
+SR-MPLS	SR-MPLS	4
+SRV record	SRVrecord	4
+SRv6	SRv6	4
+SSH client	SSHclient	4
+SSH key	SSHkey	4
+SSH server	SSHserver	4
+SSH tunnel	SSHtunnel	4
+standard error	standarderror	4
+standard input	standardinput	4
+standard output	standardoutput	4
+startup probe	startupprobe	4
+stateful firewall	statefulfirewall	4
+stateless firewall	statelessfirewall	4
+static route	staticroute	4
+stderr	stderr	4
+stdin	stdin	4
+stored procedure	storedprocedure	4
+strace	strace	4
+stream processing	streamprocessing	4
+subnet mask	subnetmask	4
+summary route	summaryroute	4
+supervised learning	supervisedlearning	4
+swap space	swapspace	4
+symmetric encryption	symmetricencryption	4
+Syslog	Syslog	4
+system call	systemcall	4
+system prompt	systemprompt	4
+system service	systemservice	4
+TACACS+	TACACS+	4
+TCP/IP model	TCP/IPmodel	4
+tensor core	tensorcore	4
+test data	testdata	4
+threat modeling	threatmodeling	4
+Thunderbolt	Thunderbolt	4
+TLS certificate	TLScertificate	4
+TLS handshake	TLShandshake	4
+TLS inspection	TLSinspection	4
+TLS termination	TLStermination	4
+tmpfs	tmpfs	4
+traffic policing	trafficpolicing	4
+traffic shaping	trafficshaping	4
+training data	trainingdata	4
+training loop	trainingloop	4
+transaction isolation	transactionisolation	4
+Transformer model	Transformermodel	4
+trojan	trojan	4
+TXT record	TXTrecord	4
+Ubuntu	Ubuntu	4
+underfitting	underfitting	4
+underlay network	underlaynetwork	4
+undo log	undolog	4
+unicast	unicast	4
+unique key	uniquekey	4
+Unix socket	Unixsocket	4
+unsupervised learning	unsupervisedlearning	4
+use-after-free	use-after-free	4
+user prompt	userprompt	4
+validation data	validationdata	4
+vector search	vectorsearch	4
+vertical partitioning	verticalpartitioning	4
+virtual LAN	virtualLAN	4
+virtual memory	virtualmemory	4
+virtual network	virtualnetwork	4
+virtual router	virtualrouter	4
+virtual switch	virtualswitch	4
+VPN client	VPNclient	4
+VPN gateway	VPNgateway	4
+VPN server	VPNserver	4
+VPN tunnel	VPNtunnel	4
+VRAM	VRAM	4
+weight decay	weightdecay	4
+wget	wget	4
+Wi-Fi adapter	Wi-Fiadapter	4
+wireless adapter	wirelessadapter	4
+worker node	workernode	4
+write permission	writepermission	4
+xargs	xargs	4
+XFS	XFS	4
+xz	xz	4
+zero trust architecture	zerotrustarchitecture	4
+zero-day vulnerability	zero-dayvulnerability	4
+zero-shot prompting	zero-shotprompting	4
+ZFS	ZFS	4
+zombie process	zombieprocess	4
+access token	accesstoken	3
+ActiveMQ	ActiveMQ	3
+adapter pattern	adapterpattern	3
+API authentication	APIauthentication	3
+API authorization	APIauthorization	3
+API client	APIclient	3
+API documentation	APIdocumentation	3
+API endpoint	APIendpoint	3
+API key	APIkey	3
+API request	APIrequest	3
+API response	APIresponse	3
+API server	APIserver	3
+API token	APItoken	3
+API versioning	APIversioning	3
+application server	applicationserver	3
+asynchronous programming	asynchronousprogramming	3
+autoscaling	autoscaling	3
+B+ tree	B+tree	3
+B-tree	B-tree	3
+backend development	backenddevelopment	3
+bearer token	bearertoken	3
+BFS	BFS	3
+BGP routing protocol	BGProutingprotocol	3
+big O notation	bigOnotation	3
+binary search	binarysearch	3
+binary search tree	binarysearchtree	3
+binary tree	binarytree	3
+Bitbucket	Bitbucket	3
+Bloom filter	Bloomfilter	3
+breadth-first search	breadth-firstsearch	3
+buffer overflow	bufferoverflow	3
+bug report	bugreport	3
+bulkhead pattern	bulkheadpattern	3
+bytecode	bytecode	3
+call stack	callstack	3
+callback URL	callbackURL	3
+CAP theorem	CAPtheorem	3
+circuit breaker	circuitbreaker	3
+clean architecture	cleanarchitecture	3
+client-server architecture	client-serverarchitecture	3
+client-side rendering	client-siderendering	3
+client-side routing	client-siderouting	3
+code quality	codequality	3
+code review	codereview	3
+command line	commandline	3
+computer network	computernetwork	3
+computer science	computerscience	3
+concurrent programming	concurrentprogramming	3
+connection pool	connectionpool	3
+consensus algorithm	consensusalgorithm	3
+consumer group	consumergroup	3
+container image	containerimage	3
+container orchestration	containerorchestration	3
+container registry	containerregistry	3
+container runtime	containerruntime	3
+content type	contenttype	3
+context window	contextwindow	3
+continuous deployment	continuousdeployment	3
+core dump	coredump	3
+cursor pagination	cursorpagination	3
+data lake	datalake	3
+data pipeline	datapipeline	3
+data structure	datastructure	3
+data warehouse	datawarehouse	3
+database backup	databasebackup	3
+database index	databaseindex	3
+database migration	databasemigration	3
+database replication	databasereplication	3
+database sharding	databasesharding	3
+database system	databasesystem	3
+database transaction	databasetransaction	3
+DDD	DDD	3
+dead letter queue	deadletterqueue	3
+declarative programming	declarativeprogramming	3
+decorator pattern	decoratorpattern	3
+dependency injection	dependencyinjection	3
+depth-first search	depth-firstsearch	3
+deque	deque	3
+design pattern	designpattern	3
+DFS	DFS	3
+digital signature	digitalsignature	3
+directed graph	directedgraph	3
+disaster recovery	disasterrecovery	3
+distributed cache	distributedcache	3
+distributed consensus	distributedconsensus	3
+distributed lock	distributedlock	3
+distributed system	distributedsystem	3
+distributed tracing	distributedtracing	3
+distributed transaction	distributedtransaction	3
+DLQ	DLQ	3
+Docker daemon	Dockerdaemon	3
+Docker image	Dockerimage	3
+Docker network	Dockernetwork	3
+Docker volume	Dockervolume	3
+document database	documentdatabase	3
+domain-driven design	domain-drivendesign	3
+dynamic programming	dynamicprogramming	3
+dynamic website	dynamicwebsite	3
+E2E test	E2Etest	3
+end-to-end test	end-to-endtest	3
+event broker	eventbroker	3
+event bus	eventbus	3
+event callback	eventcallback	3
+event-driven architecture	event-drivenarchitecture	3
+event-driven programming	event-drivenprogramming	3
+eventual consistency	eventualconsistency	3
+execution plan	executionplan	3
+exponential backoff	exponentialbackoff	3
+factory pattern	factorypattern	3
+failover	failover	3
+fault tolerance	faulttolerance	3
+feature request	featurerequest	3
+Fish shell	Fishshell	3
+foreign key	foreignkey	3
+foundation model	foundationmodel	3
+frontend	frontend	3
+frontend development	frontenddevelopment	3
+full stack	fullstack	3
+full-stack development	full-stackdevelopment	3
+functional programming	functionalprogramming	3
+garbage collection	garbagecollection	3
+Git	Git	3
+Git branch	Gitbranch	3
+Git commit	Gitcommit	3
+Git hook	Githook	3
+Git merge	Gitmerge	3
+Git rebase	Gitrebase	3
+Git repository	Gitrepository	3
+Git tag	Gittag	3
+graph database	graphdatabase	3
+GraphQL mutation	GraphQLmutation	3
+GraphQL query	GraphQLquery	3
+GraphQL schema	GraphQLschema	3
+GraphQL subscription	GraphQLsubscription	3
+greedy algorithm	greedyalgorithm	3
+hash map	hashmap	3
+hash table	hashtable	3
+health check	healthcheck	3
+heap memory	heapmemory	3
+hexagonal architecture	hexagonalarchitecture	3
+high availability	highavailability	3
+horizontal scaling	horizontalscaling	3
+hypervisor	hypervisor	3
+idempotent request	idempotentrequest	3
+imperative programming	imperativeprogramming	3
+incident response	incidentresponse	3
+information security	informationsecurity	3
+integration test	integrationtest	3
+inversion of control	inversionofcontrol	3
+issue tracker	issuetracker	3
+Kafka consumer	Kafkaconsumer	3
+Kafka partition	Kafkapartition	3
+Kafka producer	Kafkaproducer	3
+Kafka topic	Kafkatopic	3
+key-value database	key-valuedatabase	3
+Kubernetes cluster	Kubernetescluster	3
+Kubernetes ingress	Kubernetesingress	3
+Kubernetes namespace	Kubernetesnamespace	3
+Kubernetes pod	Kubernetespod	3
+leader election	leaderelection	3
+least privilege	leastprivilege	3
+link-state routing protocol	link-stateroutingprotocol	3
+linked list	linkedlist	3
+linting	linting	3
+load test	loadtest	3
+long polling	longpolling	3
+machine code	machinecode	3
+max heap	maxheap	3
+memory allocation	memoryallocation	3
+memory leak	memoryleak	3
+memory management	memorymanagement	3
+message broker	messagebroker	3
+message offset	messageoffset	3
+message queue	messagequeue	3
+microservices architecture	microservicesarchitecture	3
+MIME type	MIMEtype	3
+min heap	minheap	3
+mock object	mockobject	3
+model inference	modelinference	3
+model quantization	modelquantization	3
+model serving	modelserving	3
+monolithic architecture	monolithicarchitecture	3
+multimodal model	multimodalmodel	3
+multipart form data	multipartformdata	3
+observer pattern	observerpattern	3
+offset pagination	offsetpagination	3
+open source	opensource	3
+open-source software	open-sourcesoftware	3
+operating system	operatingsystem	3
+OSPF routing protocol	OSPFroutingprotocol	3
+parallel programming	parallelprogramming	3
+path parameter	pathparameter	3
+Paxos	Paxos	3
+penetration testing	penetrationtesting	3
+performance test	performancetest	3
+primary key	primarykey	3
+priority queue	priorityqueue	3
+private key	privatekey	3
+procedural programming	proceduralprogramming	3
+prompt engineering	promptengineering	3
+proprietary software	proprietarysoftware	3
+pub/sub	pub/sub	3
+public key	publickey	3
+publish-subscribe	publish-subscribe	3
+query optimizer	queryoptimizer	3
+query parameter	queryparameter	3
+race condition	racecondition	3
+Raft	Raft	3
+rate limit	ratelimit	3
+read consistency	readconsistency	3
+Redis Streams	RedisStreams	3
+refresh token	refreshtoken	3
+regression test	regressiontest	3
+relational database	relationaldatabase	3
+release note	releasenote	3
+remote access VPN	remoteaccessVPN	3
+repository pattern	repositorypattern	3
+request body	requestbody	3
+response body	responsebody	3
+REST	REST	3
+REST API	RESTAPI	3
+RESTful API	RESTfulAPI	3
+retry policy	retrypolicy	3
+runtime environment	runtimeenvironment	3
+search algorithm	searchalgorithm	3
+security vulnerability	securityvulnerability	3
+semantic search	semanticsearch	3
+semantic versioning	semanticversioning	3
+SemVer	SemVer	3
+server-side routing	server-siderouting	3
+service definition	servicedefinition	3
+service discovery	servicediscovery	3
+service-oriented architecture	service-orientedarchitecture	3
+short polling	shortpolling	3
+singleton pattern	singletonpattern	3
+skip list	skiplist	3
+smoke test	smoketest	3
+software bug	softwarebug	3
+software development	softwaredevelopment	3
+software engineering	softwareengineering	3
+software license	softwarelicense	3
+sorting algorithm	sortingalgorithm	3
+source code	sourcecode	3
+source control	sourcecontrol	3
+space complexity	spacecomplexity	3
+stack overflow	stackoverflow	3
+stack trace	stacktrace	3
+static analysis	staticanalysis	3
+static website	staticwebsite	3
+status code	statuscode	3
+strategy pattern	strategypattern	3
+stress test	stresstest	3
+strong consistency	strongconsistency	3
+terminal emulator	terminalemulator	3
+test case	testcase	3
+test coverage	testcoverage	3
+test fixture	testfixture	3
+test suite	testsuite	3
+thread pool	threadpool	3
+threat intelligence	threatintelligence	3
+three-tier architecture	three-tierarchitecture	3
+time complexity	timecomplexity	3
+time-series database	time-seriesdatabase	3
+trie	trie	3
+undirected graph	undirectedgraph	3
+unit test	unittest	3
+vector database	vectordatabase	3
+vector embedding	vectorembedding	3
+version control	versioncontrol	3
+vertical scaling	verticalscaling	3
+virtual machine	virtualmachine	3
+vulnerability scanning	vulnerabilityscanning	3
+web application	webapplication	3
+web development	webdevelopment	3
+web middleware	webmiddleware	3
+web server	webserver	3
+webhook endpoint	webhookendpoint	3
+WebSocket client	WebSocketclient	3
+WebSocket connection	WebSocketconnection	3
+WebSocket server	WebSocketserver	3
+Windows Terminal	WindowsTerminal	3
+write consistency	writeconsistency	3
+zero trust	zerotrust	3

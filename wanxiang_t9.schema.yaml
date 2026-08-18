@@ -136,10 +136,11 @@ speller:
   algebra:
     - xform/ⅱ//  #用于Lua判断输入类型的标记
     - xform/^(.*);.*$/$1/
-    - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜüńňǹḿm̀/aaaaooooeeeeiiiiuuuuvvvvvnnnmmm/
+    - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜüńňǹ/aaaaooooeeeeiiiiuuuuvvvvvnnn/
+    - xform/ḿ/me/
+    - xform/m̀/me/
     - derive/^ng$/eng/
     - xform/^n$/en/
-    - xform/^m$/me/
     #- abbrev/^([a-z]).*/$1/
     - derive/^(.*)$/\U$1/
     #- abbrev/^([A-Z]).*/$1/
