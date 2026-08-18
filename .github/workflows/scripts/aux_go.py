@@ -51,6 +51,43 @@ def get_alignment(units, segs, u_idx, s_idx, get_aux_fn):
                 return [''] * consume_len + res
         return None
 
+def get_han_chars(word: str) -> List[str]:
+    """
+    只提取汉字。
+    β、英文、数字、符号、空格等全部忽略，不占辅助码索引。
+    """
+    return [ch for ch in word if CJK_PATTERN.fullmatch(ch)]
+
+def build_aligned_aux(word: str, pinyins: List[str], get_aux_fn) -> Optional[List[str]]:
+    """
+    优先按“汉字索引”匹配辅助码。
+
+    例如：
+        西妥昔单抗β + 5 个拼音段
+        -> 西 妥 昔 单 抗
+        -> 第 1~5 个拼音段分别对应这 5 个汉字
+
+        阿β受体 + 3 个拼音段
+        -> 阿 受 体
+        -> β 不占索引
+
+        AI绘画 + 2 个拼音段
+        -> 绘 画
+        -> AI 不占索引
+
+    如果拼音列仍然保留了英文/符号对应的段，
+    再退回原来的智能对齐逻辑兼容旧词库。
+    """
+    han_chars = get_han_chars(word)
+
+    # 新格式：拼音已经忽略非汉字，直接一一对应。
+    if len(pinyins) == len(han_chars):
+        return [get_aux_fn(ch) for ch in han_chars]
+
+    # 兼容旧格式：拼音列中还可能存在 AI / 英文等非汉字段。
+    units = tokenize_word(word)
+    return get_alignment(units, pinyins, 0, 0, get_aux_fn)
+
 def add_suffix_before_extensions(filename: str, suffix: str) -> str:
     if not suffix:
         return filename
@@ -154,16 +191,18 @@ def process_dict_file(in_file, out_file, aux_map, sep=';'):
             fout.write(raw + '\n')
             continue
 
-        pinyins = col2.split(' ') if col2 else []
+        pinyins = col2.split() if col2 else []
 
         def get_aux(ch):
             return aux_map.get(ch, '')
 
-        units = tokenize_word(han)
-        aligned_aux = get_alignment(units, pinyins, 0, 0, get_aux)
+        # 核心修改：
+        # 优先只按汉字索引匹配；非汉字完全不占位。
+        # 仅在旧格式拼音仍包含非汉字段时退回原智能对齐。
+        aligned_aux = build_aligned_aux(han, pinyins, get_aux)
 
         if aligned_aux is None:
-            warn = f"# 警告: 拼音数与字数不匹配或无法对齐（{in_file}) => {raw}"
+            warn = f"# 警告: 拼音数与汉字数不匹配或无法对齐（{in_file}) => {raw}"
             print(warn)
             fout.write(warn + '\n')
             continue
