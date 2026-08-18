@@ -125,6 +125,10 @@ function T.init(env)
 end
 
 function T.func(input, seg, env)
+    if not env.engine.context:get_option("english") then
+        return
+    end
+
     input = input or ""
 
     if input == "" or not env.eng_translator then
