@@ -5000,6 +5000,7 @@ awfully	awfully	307
 awfulness	awfulness	31
 awhile	awhile	68
 awhirl	awhirl	1
+awk	awk	1210
 awkward	awkward	1200
 awkwardly	awkwardly	291
 awkwardness	awkwardness	75
@@ -73060,3 +73061,102 @@ WebSocket server	WebSocketserver	3
 Windows Terminal	WindowsTerminal	3
 write consistency	writeconsistency	3
 zero trust	zerotrust	3
+csharp	csharp
+cpp	cpp
+fsharp	fsharp
+dotnet	dotnet
+AAAA	AAAA
+Actix	Actix
+ECS	ECS
+EKS	EKS
+RDS	RDS
+APISIX	APISIX
+aspnet	aspnet
+multipath	multipath
+carrier-grade	carrier-grade
+cri	cri
+equal-cost	equal-cost
+keep-alive	keep-alive
+link-local	link-local
+link-state	link-state
+loopback	loopback
+MX	MX
+nextjs	nextjs
+nuxtjs	nuxtjs
+round-trip	round-trip
+site-to-site	site-to-site
+software-defined	software-defined
+SPF	SPF
+stateful	stateful
+tacacs	tacacs
+vuejs	vuejs
+B+	B+
+behavior-driven	behavior-driven
+breadth-first	breadth-first
+cicd	cicd
+client-server	client-server
+command-line	command-line
+depth-first	depth-first
+domain-driven	domain-driven
+event-driven	event-driven
+microservices	microservices
+object-oriented	object-oriented
+open-source	open-source
+versioning	versioning
+service-oriented	service-oriented
+test-driven	test-driven
+three-tier	three-tier
+convolutional	convolutional
+HashiCorp	HashiCorp
+multi-factor	multi-factor
+non-volatile	non-volatile
+object-relational	object-relational
+OWASP	OWASP
+Proxmox	Proxmox
+VE	VE
+read-only	read-only
+role-based	role-based
+sign-on	sign-on
+solid-state	solid-state
+DSM	DSM
+ESXi	ESXi
+OSI	OSI
+tcpip	tcpip
+blue-green	blue-green
+bzip	bzip
+client-side	client-side
+autoscaler	autoscaler
+backoff	backoff
+few-shot	few-shot
+full-stack	full-stack
+I/O	I/O
+inter-process	inter-process
+ConfigMap	ConfigMap
+multi-head	multi-head
+multi-stage	multi-stage
+multimodal	multimodal
+multipart	multipart
+Multiprotocol	Multiprotocol
+virtualization	virtualization
+read-write	read-write
+retrieval-augmented	retrieval-augmented
+self-supervised	self-supervised
+semi-supervised	semi-supervised
+single-page	single-page
+unsupervised	unsupervised
+lakehouse	lakehouse
+nonclustered	nonclustered
+NoSQL	NoSQL
+microservice	microservice
+nodejs	nodejs
+backward-compatible	backward-compatible
+cross-platform	cross-platform
+denormalized	denormalized
+fault-tolerant	fault-tolerant
+high-availability	high-availability
+high-speed	high-speed
+low-latency	low-latency
+production-ready	production-ready
+sandboxed	sandboxed
+unmanaged	unmanaged
+untrusted	untrusted
