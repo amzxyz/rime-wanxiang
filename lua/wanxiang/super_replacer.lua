@@ -21,13 +21,6 @@ local tonumber = tonumber
 local DB_FORMAT_VERSION = "4"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
 local file_signature_cache = {}
--- derive 仅处理词典型候选；数据独立驻留内存，不进入联合 LevelDB。
-local DERIVE_WORD_TYPES = {
-    phrase = true,
-    user_phrase = true,
-    table = true,
-    user_table = true
-}
 local RECORD_SEPARATOR = " \t"
 local VALUE_SEPARATOR = "\\t"
 local VALUE_SEPARATOR_LEN = #VALUE_SEPARATOR
@@ -176,11 +169,6 @@ local function collect_build_tasks(config, ns)
         local item = list:get_at(i)
         local rule = item and item:get_map()
         if rule then
-            local mode_value = rule:get_value("mode")
-            if mode_value and mode_value:get_string() == "derive" then
-                goto continue_build_rule
-            end
-
             local value = rule:get_value("prefix")
             local prefix = value and value:get_string() or ""
             value = rule:get_value("t9_optimization")
@@ -199,7 +187,6 @@ local function collect_build_tasks(config, ns)
                 end
             end)
         end
-        ::continue_build_rule::
     end
 
     return tasks
@@ -293,87 +280,6 @@ local function parse_source_line(line)
     return key, value
 end
 
--- derive 数据：词缀<TAB>0|1|01；0 去首，1 去尾，01 两侧均可。
--- 同一 rule 的 file/files 合并成一个按字节长度降序的内存索引。
-local function load_derive_index(rule)
-    local index = {lengths = {}}
-
-    each_file_value(rule, function(file_value)
-        local path = file_value:get_string()
-        if not path or path == "" then return end
-
-        local file, close = wanxiang.load_file_with_fallback(path, "r")
-        if not file then return end
-
-        for line in file:lines() do
-            if line ~= "" and not s_match(line, "^%s*#") then
-                local affix, flag = parse_source_line(line)
-                if affix and flag then
-                    affix = s_match(affix, "^%s*(.-)%s*$")
-                    flag = s_match(flag, "^%s*([01]+)%s*$")
-                    local mode = flag == "0" and 1
-                        or flag == "1" and 2
-                        or flag == "01" and 3
-
-                    if affix and affix ~= "" and mode then
-                        local len = #affix
-                        local bucket = index[len]
-                        if not bucket then
-                            bucket = {}
-                            index[len] = bucket
-                            index.lengths[#index.lengths + 1] = len
-                        end
-                        local old = bucket[affix]
-                        bucket[affix] = old and old ~= mode and 3 or mode
-                    end
-                end
-            end
-        end
-        close()
-    end)
-
-    if #index.lengths == 0 then return nil end
-    t_sort(index.lengths, function(a, b) return a > b end)
-    return index
-end
-
--- 返回与数据库聚合值同格式的派生结果，以便直接复用 append 的后续处理。
-local function derive_text(text, index)
-    if not text or text == "" or not index then return nil end
-    -- 以词定词只处理 3 字及以上候选；2 字词交给以词定字，避免“城区 → 城”一类误派生。
-    if (utf8.len(text) or 0) <= 2 then return nil end
-
-    local text_len = #text
-    local from_prefix, from_suffix
-
-    for _, len in ipairs(index.lengths) do
-        if len < text_len then
-            local bucket = index[len]
-
-            if not from_prefix then
-                local mode = bucket[s_sub(text, 1, len)]
-                if mode == 1 or mode == 3 then
-                    from_prefix = s_sub(text, len + 1)
-                end
-            end
-
-            if not from_suffix then
-                local start_pos = text_len - len + 1
-                local mode = bucket[s_sub(text, start_pos)]
-                if mode == 2 or mode == 3 then
-                    from_suffix = s_sub(text, 1, start_pos - 1)
-                end
-            end
-
-            if from_prefix and from_suffix then break end
-        end
-    end
-
-    if from_prefix and from_suffix and from_prefix ~= from_suffix then
-        return from_prefix .. VALUE_SEPARATOR .. from_suffix
-    end
-    return from_prefix or from_suffix
-end
 
 local function fetch_aggregate(db, key)
     local prefix = key .. RECORD_SEPARATOR
@@ -893,8 +799,7 @@ function M.init(env)
                 comment_mode = comment_mode,
                 fmm = fmm,
                 preedit_delim = preedit_delim,
-                cand_type = custom_cand_type,
-                derive_index = mode == "derive" and load_derive_index(rule) or nil
+                cand_type = custom_cand_type
             })
 
             ::continue_rule::
@@ -1031,29 +936,23 @@ function M.func(input, env)
             local query_text = is_chain and current_text or cand.text
             local val
 
-            if t.mode == "derive" then
-                if DERIVE_WORD_TYPES[cand.type or ""] then
-                    val = derive_text(query_text, t.derive_index)
-                end
-            else
-                local query_key = t.prefix .. query_text
+            local query_key = t.prefix .. query_text
+            val = fetch_exact_cached(db, query_key, query_cache)
+
+            if not val and s_find(query_text, "%u") then
+                query_text = s_lower(query_text)
+                query_key = t.prefix .. query_text
                 val = fetch_exact_cached(db, query_key, query_cache)
+            end
 
-                if not val and s_find(query_text, "%u") then
-                    query_text = s_lower(query_text)
-                    query_key = t.prefix .. query_text
-                    val = fetch_exact_cached(db, query_key, query_cache)
-                end
-
-                if not val and t.fmm then
-                    local query_len = utf8.len(query_text) or 0
-                    if query_len > 1 then
-                        local seg_result = segment_convert(
-                            query_text, db, t.prefix,
-                            query_cache, fmm_offsets, fmm_parts
-                        )
-                        if seg_result ~= query_text then val = seg_result end
-                    end
+            if not val and t.fmm then
+                local query_len = utf8.len(query_text) or 0
+                if query_len > 1 then
+                    local seg_result = segment_convert(
+                        query_text, db, t.prefix,
+                        query_cache, fmm_offsets, fmm_parts
+                    )
+                    if seg_result ~= query_text then val = seg_result end
                 end
             end
 
@@ -1103,7 +1002,7 @@ function M.func(input, env)
                             end
                         end
                     end
-                elseif mode == "replace" or mode == "append" or mode == "derive" then
+                elseif mode == "replace" or mode == "append" then
                     if mode == "replace" then show_main = false end
                     while value_pos do
                         local p
