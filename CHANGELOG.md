@@ -1,5 +1,23 @@
 # Changelog
 
+## [17.5.3](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.2...v17.5.3) (2026-08-19)
+
+
+### 📚 词库更新
+
+* 词库调整 ([061c8bc](https://github.com/amzxyz/rime-wanxiang/commit/061c8bcdd8309c611b05c31b4c27f508f47d3db2))
+* 词库调整 ([b4a55d3](https://github.com/amzxyz/rime-wanxiang/commit/b4a55d324d70c2e166f72a6e8ff6855ef146658e))
+
+
+### 🐛 Bug 修复
+
+* aux脚本忽略非汉字 ([2ac583e](https://github.com/amzxyz/rime-wanxiang/commit/2ac583e9b36453f8b8b1abb9e9cc1486583ea7e5))
+* 优化转写 ([5411a46](https://github.com/amzxyz/rime-wanxiang/commit/5411a468a15116bcaa2e7f3c9861e5af6002b183))
+* 移除context:get_property等的调用避免前端ui刷新展示中英状态的提示 ([c6b8905](https://github.com/amzxyz/rime-wanxiang/commit/c6b8905662440e67e9796210d21f91443c1d5e7c))
+* 移除以词定词实现不够优雅 ([3fcb921](https://github.com/amzxyz/rime-wanxiang/commit/3fcb921d2a35d4487381d753b8b31e82e07d4102))
+* 简化数据库接入方式 ([0d6180b](https://github.com/amzxyz/rime-wanxiang/commit/0d6180bf44de5eaade4bfb3c0b1bb5956d7fd64c))
+* 超级符号优化交互 ([4ed65d2](https://github.com/amzxyz/rime-wanxiang/commit/4ed65d278d5570ff32d2f928cc393c33618d2614))
+
 ## [17.5.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.1...v17.5.2) (2026-08-18)
 
 
