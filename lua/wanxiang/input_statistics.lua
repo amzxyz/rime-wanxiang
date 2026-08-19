@@ -5,8 +5,6 @@ local wanxiang = require("wanxiang/wanxiang")
 local SOFTWARE_NAME = rime_api.get_distribution_code_name()
 local RECORD_SEPARATOR = " \t"
 local STATS_C_MAX = 2147483000
-local BATCH_INTERVAL = 5
-local MAX_PENDING_CHARACTERS = 200
 local DEFAULT_CONTINUOUS_GAP_MS = 1000
 local DEFAULT_AVERAGE_GAP_MS = 5000
 local DEFAULT_MINIMUM_AVERAGE_SESSION_MS = 1000
@@ -257,45 +255,14 @@ local function new_stats()
     }
 end
 
-local function pending_add(env, key, amount)
+local function stats_add(env, key, amount)
     local db = get_db(env)
     if env.stats_db_error or not db then return false end
-    env.pending_stats[key] = (env.pending_stats[key] or 0) + amount
-    return true
-end
-
-local function flush_pending(env)
-    if not next(env.pending_stats) then return true end
-    local db = get_db(env)
-
-    if db then
-        for key, amount in pairs(env.pending_stats) do
-            if not db_add(db, key, env.device_id, amount) then
-                db = nil
-                break
-            end
-        end
-    end
-
-    if not db then
-        env.pending_stats = {}; env.pending_characters = 0
+    if not db_add(db, key, env.device_id, amount) then
         env.stats_db_error = true
         return false
     end
-
-    env.pending_stats = {}
-    env.pending_characters = 0
-    env.last_flush_ts = os.time()
     return true
-end
-
-local function try_flush(env)
-    if next(env.pending_stats)
-        and (env.pending_characters >= MAX_PENDING_CHARACTERS
-            or os.time() - env.last_flush_ts >= BATCH_INTERVAL)
-    then
-        flush_pending(env)
-    end
 end
 
 local function reset_sample(sample)
@@ -330,9 +297,9 @@ local function finish_average(env)
     reset_sample(env.average_sample)
     if not day then return false end
     local prefix = DAY_PREFIX .. day .. "/speed_average/"
-    pending_add(env, prefix .. "characters", characters)
-    pending_add(env, prefix .. "milliseconds", milliseconds)
-    pending_add(env, prefix .. "sessions", 1)
+    stats_add(env, prefix .. "characters", characters)
+    stats_add(env, prefix .. "milliseconds", milliseconds)
+    stats_add(env, prefix .. "sessions", 1)
     return true
 end
 
@@ -347,7 +314,7 @@ local function finish_peak(env)
     )
     reset_sample(env.peak_sample)
     if not day then return false end
-    pending_add(env, string.format("%s%s/speed_peak_window_10s/%04d",
+    stats_add(env, string.format("%s%s/speed_peak_window_10s/%04d",
         DAY_PREFIX, day, peak_speed(characters, milliseconds)), 1)
     return true
 end
@@ -430,24 +397,23 @@ local function record_stats(env, characters, code_length, candidate_type)
     local timestamp_ms = monotonic_ms()
     local day = day_id()
     local prefix = DAY_PREFIX .. day .. "/"
-    if not pending_add(env, prefix .. "text/characters", characters) then return end
-    pending_add(env, prefix .. "text/commits", 1)
+    if not stats_add(env, prefix .. "text/characters", characters) then return end
+    stats_add(env, prefix .. "text/commits", 1)
 
     -- 平均编码只使用“确实取得输入编码”的配对样本。
     -- text/keystrokes 继续保留真实编码总量；新字段保证历史脏数据不会混入新口径。
     if code_length > 0 then
-        pending_add(env, prefix .. "text/keystrokes", code_length)
-        pending_add(env, prefix .. "text/code_keystrokes", code_length)
-        pending_add(env, prefix .. "text/code_characters", characters)
+        stats_add(env, prefix .. "text/keystrokes", code_length)
+        stats_add(env, prefix .. "text/code_keystrokes", code_length)
+        stats_add(env, prefix .. "text/code_characters", characters)
     end
 
-    env.pending_characters = env.pending_characters + characters
     local field = characters == 1 and "commit_length/1"
         or characters == 2 and "commit_length/2"
         or characters == 3 and "commit_length/3"
         or characters == 4 and "commit_length/4"
         or "commit_length/5_plus"
-    pending_add(env, prefix .. field, 1)
+    stats_add(env, prefix .. field, 1)
 
     if is_valid_speed_commit(env, characters, code_length) then
         commit_to_speed(env, day, timestamp_ms, characters,
@@ -719,7 +685,6 @@ end
 
 local function prepare_report(env)
     finish_stale(env, monotonic_ms())
-    flush_pending(env)
 end
 
 local function standard_report(input, env)
@@ -803,7 +768,6 @@ local function on_commit(context, env)
     local code_length = #code
 
     record_stats(env, characters, code_length, candidate_type)
-    try_flush(env)
 end
 
 local function bounded_int(config, key, default, minimum, maximum)
@@ -831,9 +795,7 @@ local function init(env)
         DEFAULT_MAX_SPEED_COMMIT_LENGTH, 1, 10)
     env.speed_history_days = bounded_int(config,
         "input_stats/speed_history_days", 30, 1, 365)
-    env.pending_stats, env.pending_characters = {}, 0
     env.stats_db_error = nil
-    env.last_flush_ts = os.time()
     env.last_observed_input = ""
     env.titles = nil
     env.average_sample = {}
@@ -859,13 +821,12 @@ end
 local function fini(env)
     finish_peak(env)
     finish_average(env)
-    flush_pending(env)
     env.last_observed_input = ""
     if env.stat_notifier then
         env.stat_notifier:disconnect()
         env.stat_notifier = nil
     end
-    env.pending_stats, env.titles = nil, nil
+    env.titles = nil
     env.average_sample, env.peak_sample = nil, nil
     release_db(env)
 end
@@ -884,7 +845,6 @@ local function translator(input, seg, env)
                 "※ 统计数据库打开失败", "⚠️")
         end
     else
-        try_flush(env)
         local history, first, second, empty_message = history_report(input, env)
         if history == false then return yield_msg(seg, first, second) end
         if history == nil then return end
