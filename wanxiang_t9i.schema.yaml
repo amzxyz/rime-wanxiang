@@ -443,11 +443,6 @@ super_replacer:
       prefix: "_s2tw_"
       files:
         - lua/data/TWVariants.txt
-    - option: true  # 默认开启以词定词
-      mode: derive
-      tags: [abc]
-      files:
-        - lua/data/derive.txt
     - option: abbrev
       mode: abbrev  # <--- 新增的简码模式
       tags: [abc]
