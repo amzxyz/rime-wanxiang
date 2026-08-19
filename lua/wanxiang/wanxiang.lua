@@ -122,8 +122,7 @@ function wanxiang.is_function_mode_active(context)
         seg:has_tag("unicode") or    -- unicode.lua 输出 Unicode 字符 U+小写字母或数字
         --seg:has_tag("punct") or      -- 标点符号 全角半角提示
         seg:has_tag("calculator") or -- super_calculator.lua V键计算器
-        seg:has_tag("shijian") or    -- shijian.lua /rq /sr 等与时间日期相关功能
-        seg:has_tag("Ndate")       -- shijian.lua N日期功能
+        seg:has_tag("shijian")       -- shijian.lua 时间日期相关功能
 end
 
 ---@param context Context | nil
@@ -140,8 +139,7 @@ function wanxiang.s2t_conversion(context)
         seg:has_tag("unicode") or    -- unicode.lua 输出 Unicode 字符 U+小写字母或数字
         seg:has_tag("punct") or      -- 标点符号 全角半角提示
         seg:has_tag("calculator") or -- super_calculator.lua V键计算器
-        seg:has_tag("shijian") or    -- shijian.lua /rq /sr 等与时间日期相关功能
-        seg:has_tag("Ndate") or      -- shijian.lua N日期功能
+        seg:has_tag("shijian") or    -- shijian.lua 时间日期相关功能
         seg:has_tag("wanxiang_reverse")
 end
 ---判断文件是否存在

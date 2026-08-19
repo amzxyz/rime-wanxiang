@@ -387,7 +387,6 @@ function M.init(env)
         env.seg_last_caret_pos = ctx.caret_pos
 
         -- C. [LetterSelector] 缓存激活状态
-        -- number / Ndate 保持原行为；
         -- punct 仅在 /数字 命令中启用字母选词，避免宽 punct 正则下
         -- /p!、/a' 等符号命令继续输入字母时被误当成候选选择键。
         env.ls_active = false
@@ -396,8 +395,13 @@ function M.init(env)
             local numeric_symbol = s
                 and s:has_tag("punct")
                 and input:match("^/%d+$") ~= nil
+            local ndate_input = s
+                and s:has_tag("shijian")
+                and #input >= 2
+                and #input <= 9
+                and input:match("^N%d+$") ~= nil
 
-            if s and (s:has_tag("number") or s:has_tag("Ndate") or numeric_symbol) then
+            if s and (s:has_tag("number") or ndate_input or numeric_symbol) then
                 env.ls_active = true
             end
         end

@@ -550,7 +550,6 @@ local function number_conversion(input, seg, env)
     local context = env.engine.context
     local segment = context.composition:back()
 
-    context:set_property("sequence_adjustment_code", trigger)
     if segment then
         segment.tags = segment.tags + Set({ "number" })
     end

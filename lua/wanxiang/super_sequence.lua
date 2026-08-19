@@ -8,7 +8,6 @@
 -- 5) 已经手动排序过的候选若再次被挤动，只更新它自己的最终位置
 -- 6) c<0 为重置墓碑；墓碑版本高于旧状态，可通过原生 UserDb 同步传播
 
--- ✨ 是给上一层滤镜传递排序上下文信息的代码，不用时便于删除
 local wanxiang = require("wanxiang/wanxiang")
 local userdb   = require("wanxiang/userdb")
 local byte     = string.byte
@@ -375,18 +374,6 @@ end
 ------------------------------------------------------------
 -- 五、排序状态
 ------------------------------------------------------------
-local seq_property = { ADJUST_KEY = "sequence_adjustment_code" }
-
-function seq_property.get(context)
-    return context:get_property(seq_property.ADJUST_KEY)
-end
-
-function seq_property.reset(context)
-    local code = seq_property.get(context)
-    if code ~= nil and code ~= "" then
-        context:set_property(seq_property.ADJUST_KEY, "")
-    end
-end
 
 local curr_state = {}
 curr_state.ADJUST_MODE = {
@@ -659,6 +646,11 @@ function P.func(key_event, env)
     local pin = seq_keys.pin
     local is_ctrl_key = code == 0xffe3 or code == 0xffe4
 
+    if wanxiang.is_function_mode_active(context) then
+        curr_state.reset()
+        return wanxiang.RIME_PROCESS_RESULTS.kNoop
+    end
+
     -- Ctrl 监听，用于开关可视化标记。
     if is_ctrl_key then
         if context.composition:empty() then
@@ -693,17 +685,9 @@ function P.func(key_event, env)
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
-    local is_function_mode = wanxiang.is_function_mode_active(context)
-    local adjust_code
+    local adjust_code = context.input:sub(1, context.caret_pos)
 
-    if is_function_mode then
-        local value = seq_property.get(context)
-        if value and value ~= "" then adjust_code = value end
-    else
-        adjust_code = context.input:sub(1, context.caret_pos)
-    end
-
-    if not is_function_mode and is_single_lowercase_letter(adjust_code) then
+    if is_single_lowercase_letter(adjust_code) then
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
@@ -758,15 +742,6 @@ function F.fini(env)
     release_sequence_state(env)
 end
 
-local function extract_adjustment_code(context, is_function_mode)
-    if is_function_mode then
-        local code = seq_property.get(context)
-        if code and code ~= "" then return code end
-        return nil
-    end
-
-    return context.input:sub(1, context.caret_pos)
-end
 
 function F.func(input, env)
     -- ✨ 宣告：排序脚本活着，包裹脚本不要自行处理。
@@ -786,17 +761,14 @@ function F.func(input, env)
     end
 
     local cache_limit = (env.page_size or 5) * 2
-    local is_function_mode = wanxiang.is_function_mode_active(context)
-    local adjustment_allowed = not (
-        is_function_mode and seq_property.get(context) == nil
-    )
 
-    if not adjustment_allowed then
+    if wanxiang.is_function_mode_active(context) then
+        curr_state.reset()
         return yield_original_list(input, has_symbol, cache_limit, page_cache)
     end
 
-    local adjust_code = extract_adjustment_code(context, is_function_mode)
-    if not adjust_code or adjust_code == "" then
+    local adjust_code = context.input:sub(1, context.caret_pos)
+    if adjust_code == "" then
         return yield_original_list(input, has_symbol, cache_limit, page_cache)
     end
 

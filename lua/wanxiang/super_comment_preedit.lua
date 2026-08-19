@@ -346,7 +346,6 @@ local function is_alpha_abbreviation(part, state)
     if lower ~= "zh" and lower ~= "ch" and lower ~= "sh" then
         return false
     end
-
     return not state.input_method_type or state.input_method_type == "pinyin"
 end
 
@@ -493,7 +492,11 @@ function ZH.func(input, env)
 
     for cand in input:iter() do
         local genuine_cand = cand:get_genuine()
-        if genuine_cand.type == "shijian" or genuine_cand.type == "compose" or genuine_cand.type == "super_sym" or genuine_cand.type == "super_emoji" then
+        if genuine_cand.type == "shijian"
+            or genuine_cand.type == "compose"
+            or genuine_cand.type == "super_sym"
+            or genuine_cand.type == "super_emoji"
+        then
             yield(genuine_cand)
             goto continue
         end
@@ -525,7 +528,7 @@ function ZH.func(input, env)
         end
         -- 进入注释处理阶段
         -- ① 辅助码注释或者声调注释
-        if initial_comment and (string.find(initial_comment, "~") or cand.type == "shijian") then
+        if initial_comment and string.find(initial_comment, "~") then
             final_comment = initial_comment
 
             -- 2. 常规的辅助码提示模式
