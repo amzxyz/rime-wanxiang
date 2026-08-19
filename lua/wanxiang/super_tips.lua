@@ -20,7 +20,6 @@ local DB_FORMAT_VERSION = "1"
 
 local DEFAULT_PRESET = "lua/data/tips_show.txt"
 local DEFAULT_USER = "lua/data/tips_user.txt"
-local db_states = {}
 
 local META_KEY = {
     version = "db_format_version",
@@ -110,23 +109,12 @@ local function load_data_from_files(files, db, disabled_types)
     return true
 end
 
--- 关闭数据库包装器；共享池只保存成功打开的实例。
-local function close_database(db)
-    if not db then return end
-    collectgarbage()
-    if db:loaded() then db:close() end
-end
-
--- 初始化或复用按 db_name 隔离的模块私有数据库。
+-- 初始化提示数据库。
+-- 直接使用普通 open()：已有数据库直接打开；数据库不存在时由底层自动创建。
+-- 不再使用 open_read_only() 做存在性探测，从而避免首次创建时产生预期内的 ERROR 日志。
 local function init_database(config)
     local db_name = config:get_string("super_tips/db_name")
     if not db_name or db_name == "" then db_name = "tips" end
-
-    local state = db_states[db_name]
-    if state then
-        state.refs = state.refs + 1
-        return state.db, db_name
-    end
 
     local disabled_types = {}
     local disabled_keys = {}
@@ -166,31 +154,21 @@ local function init_database(config)
     local db = userdb.LevelDb(db_name)
     if not db then return nil end
 
-    local signature = generate_files_signature(files)
-    local needs_rebuild = true
-
-    -- 稳定路径只读打开一次，元数据一致时直接保留句柄。
-    if db:open_read_only() then
-        local db_version = db:meta_fetch(META_KEY.version) or ""
-        local db_disabled = db:meta_fetch(META_KEY.disabled_types) or ""
-        local db_signature = db:meta_fetch(META_KEY.files_sig) or ""
-
-        needs_rebuild = db_version ~= DB_FORMAT_VERSION
-            or db_disabled ~= disabled_fingerprint
-            or db_signature ~= signature
-
-        if not needs_rebuild then
-            db_states[db_name] = {db = db, refs = 1}
-            return db, db_name
-        end
-
-        db:close()
+    if not db:loaded() and not db:open() then
+        return nil
     end
 
-    -- 仅在数据库不存在或数据变化时进入读写模式。
-    if not db:open() then
-        close_database(db)
-        return nil
+    local signature = generate_files_signature(files)
+    local db_version = db:meta_fetch(META_KEY.version) or ""
+    local db_disabled = db:meta_fetch(META_KEY.disabled_types) or ""
+    local db_signature = db:meta_fetch(META_KEY.files_sig) or ""
+
+    local needs_rebuild = db_version ~= DB_FORMAT_VERSION
+        or db_disabled ~= disabled_fingerprint
+        or db_signature ~= signature
+
+    if not needs_rebuild then
+        return db, db_name
     end
 
     local cleared
@@ -208,37 +186,21 @@ local function init_database(config)
         )
         or not db:meta_update(META_KEY.files_sig, signature)
     then
-        close_database(db)
-        return nil
-    end
-
-    db:close()
-
-    if not db:open_read_only() then
-        close_database(db)
         return nil
     end
 
     collectgarbage("collect")
-    db_states[db_name] = {db = db, refs = 1}
     return db, db_name
 end
 
--- 释放当前组件引用，并在最后一个使用者退出时关闭数据库。
+-- 当前组件只释放 Lua 引用，不主动关闭可能被其他组件共享的底层数据库。
 local function release_database(env)
-    local db_name = env.tips_db_name
-
     env.tips_db = nil
     env.tips_db_name = nil
 
-    local state = db_name and db_states[db_name]
-    if not state then return end
-
-    state.refs = state.refs - 1
-    if state.refs > 0 then return end
-
-    db_states[db_name] = nil
-    close_database(state.db)
+    -- DbAccessor 没有显式析构接口。所有局部访问器先置空，再执行一次
+    -- 完整垃圾回收，确保其先于所引用的 LevelDb 释放。
+    collectgarbage()
 end
 
 -- 按逻辑 key 查询并解析提示 value。
@@ -306,7 +268,7 @@ end
 
 local P = {}
 
--- 初始化处理器、共享数据库引用和提示更新通知器。
+-- 初始化处理器、数据库引用和提示更新通知器。
 function P.init(env)
     if env.tips_update_connection then
         env.tips_update_connection:disconnect()
@@ -326,7 +288,7 @@ function P.init(env)
         end)
 end
 
--- 断开通知器，并在最后一个同名数据库使用者退出时关闭数据库。
+-- 断开通知器并释放当前组件持有的数据库引用。
 function P.fini(env)
     if env.tips_update_connection then
         env.tips_update_connection:disconnect()

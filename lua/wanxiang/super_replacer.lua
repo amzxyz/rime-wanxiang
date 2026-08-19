@@ -20,8 +20,6 @@ local type = type
 local tonumber = tonumber
 local DB_FORMAT_VERSION = "4"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
--- 模块私有数据库池：同名数据库共享包装器和生命周期。
-local DB_POOL = {}
 local file_signature_cache = {}
 -- derive 仅处理词典型候选；数据独立驻留内存，不进入联合 LevelDB。
 local DERIVE_WORD_TYPES = {
@@ -597,34 +595,21 @@ local function connect_db(
     db_name, current_version, delimiter, tasks,
     union_sig, scheme_sigs, env_query_cache
 )
-    local entry = DB_POOL[db_name]
-    if entry then
-        if entry.db and entry.db:loaded() then
-            entry.refs = entry.refs + 1
-            return entry.db, false
-        end
-
-        DB_POOL[db_name] = nil
-    end
-
     local db = userdb.LevelDb(db_name)
     if not db then return nil end
 
-    local files_sig = generate_files_signature(tasks)
-
-    if db:open_read_only() then
-        if database_matches(
-            db, current_version, delimiter,
-            files_sig, union_sig, scheme_sigs
-        ) then
-            DB_POOL[db_name] = {db = db, refs = 1}
-            return db, false
-        end
-
-        db:close()
+    if not db:loaded() and not db:open() then
+        return nil
     end
 
-    if not db:open() then return nil end
+    local files_sig = generate_files_signature(tasks)
+
+    if database_matches(
+        db, current_version, delimiter,
+        files_sig, union_sig, scheme_sigs
+    ) then
+        return db, false
+    end
 
     local cleared
     if db.empty then
@@ -640,40 +625,21 @@ local function connect_db(
             files_sig, union_sig, scheme_sigs
         )
     then
-        db:close()
         return nil
     end
 
     clear_table(env_query_cache)
-
-    db:close()
-
-    if not db:open_read_only() then return nil end
-
-    DB_POOL[db_name] = {db = db, refs = 1}
     return db, true
 end
--- 释放当前组件引用，并在最后一个使用者退出时关闭数据库。
-local function release_db(env)
-    local db = env.db
-    local db_name = env.db_name
 
+-- 当前组件只释放 Lua 引用，不主动关闭可能被其他组件共享的底层数据库。
+local function release_db(env)
     env.db = nil
     env.db_name = nil
 
-    if not db or not db_name then return end
-
-    local entry = DB_POOL[db_name]
-    if not entry or entry.db ~= db then return end
-
-    entry.refs = entry.refs - 1
-    if entry.refs > 0 then return end
-
-    DB_POOL[db_name] = nil
+    -- DbAccessor 没有显式析构接口。所有局部访问器先置空，再执行一次
+    -- 完整垃圾回收，确保其先于所引用的 LevelDb 释放。
     collectgarbage()
-
-    if db:loaded() then db:close() end
-    entry.db = nil
 end
 
 local function fetch_fmm_bucket(db, prefix, stem, query_cache)

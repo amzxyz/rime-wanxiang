@@ -289,57 +289,28 @@ local function split_predict_line(line)
     return code, word, tail
 end
 
--- 模块私有数据库池：同名数据库共享包装器和生命周期。
-local DB_POOL = {}
-
--- 获取并引用当前方案共用的预测数据库。
+-- 每个组件只保留自己的 Lua 包装器；同名底层 UserDb 由 wanxiang/userdb.lua 复用。
 local function get_db(env)
     if env.predict_db then return env.predict_db end
 
     local config = env.engine.schema.config
     local db_name = config:get_string("user_predict/db_name") or "lua/predict"
-    local entry = DB_POOL[db_name]
+    local db = userdb.LevelDb(db_name)
+    if not db or (not db:loaded() and not db:open()) then return nil end
 
-    if entry then
-        if not entry.db or not entry.db:loaded() and not entry.db:open() then
-            DB_POOL[db_name] = nil
-            return nil
-        end
-    else
-        local db = userdb.LevelDb(db_name)
-        if not db or not db:loaded() and not db:open() then return nil end
-
-        entry = {db = db, refs = 0}
-        DB_POOL[db_name] = entry
-    end
-
-    entry.refs = entry.refs + 1
-    env.predict_db = entry.db
+    env.predict_db = db
     env.predict_db_name = db_name
-    return entry.db
+    return db
 end
 
--- 释放当前组件的数据库引用并在最后关闭数据库。
+-- 不主动 close：底层对象可能被其他组件共享，生命周期交给 userdb 弱池与 C++ 析构。
 local function release_db(env)
-    local db = env.predict_db
-    local db_name = env.predict_db_name
-
     env.predict_db = nil
     env.predict_db_name = nil
 
-    if not db or not db_name then return end
-
-    local entry = DB_POOL[db_name]
-    if not entry or entry.db ~= db then return end
-
-    entry.refs = math_max(0, entry.refs - 1)
-    if entry.refs > 0 then return end
-
-    DB_POOL[db_name] = nil
+    -- DbAccessor 没有显式析构接口。所有局部访问器先置空，再执行一次
+    -- 完整垃圾回收，确保其先于所引用的 LevelDb 释放。
     collectgarbage()
-
-    if db:loaded() then db:close() end
-    entry.db = nil
 end
 
 

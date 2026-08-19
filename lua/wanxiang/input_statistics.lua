@@ -2,9 +2,6 @@
 -- input_stats.lua：分设备统计 / 最近速度 / 峰速格式去重 / 历史查询
 local userdb = require("wanxiang/userdb")
 local wanxiang = require("wanxiang/wanxiang")
--- 模块私有数据库池：同名数据库共享包装器和生命周期。
-local DB_POOL = {}
-
 local SOFTWARE_NAME = rime_api.get_distribution_code_name()
 local RECORD_SEPARATOR = " \t"
 local STATS_C_MAX = 2147483000
@@ -117,52 +114,32 @@ local function get_device_id(config)
     return stable_device_hash((SOFTWARE_NAME or "rime") .. "|" .. user_dir)
 end
 
+-- 每个组件只保留自己的 Lua 包装器；同名底层 UserDb 由 wanxiang/userdb.lua 复用。
 local function acquire_db(env)
     if env.stats_db then return env.stats_db end
 
-    local entry = DB_POOL[env.stats_db_name]
-    if not entry then
-        local db = userdb.LevelDb(env.stats_db_name)
-        if not db or not db:loaded() and not db:open() then
-            env.stats_db_error = true
-            return nil
-        end
-        entry = {db=db, refs=0}
-        DB_POOL[env.stats_db_name] = entry
-    elseif not entry.db or not entry.db:loaded() and not entry.db:open() then
-        DB_POOL[env.stats_db_name] = nil
+    local db = userdb.LevelDb(env.stats_db_name)
+    if not db or (not db:loaded() and not db:open()) then
         env.stats_db_error = true
         return nil
     end
 
-    entry.refs = entry.refs + 1
-    env.stats_db = entry.db
+    env.stats_db = db
     env.stats_db_error = nil
-    return entry.db
+    return db
 end
 
 local function get_db(env)
     return env.stats_db or acquire_db(env)
 end
 
+-- 不主动 close：底层对象可能被其他组件共享，生命周期交给 userdb 弱池与 C++ 析构。
 local function release_db(env)
-    local db, db_name = env.stats_db, env.stats_db_name
     env.stats_db = nil
-
-    local entry = db_name and DB_POOL[db_name]
-    if not db or not entry or entry.db ~= db then return end
-
-    entry.refs = math.max(0, entry.refs - 1)
-    if entry.refs > 0 then return end
-
-    DB_POOL[db_name] = nil
 
     -- DbAccessor 没有显式析构接口。所有局部访问器先置空，再执行一次
     -- 完整垃圾回收，确保其先于所引用的 LevelDb 释放。
     collectgarbage()
-
-    if db:loaded() then db:close() end
-    entry.db = nil
 end
 
 local function make_raw_key(key, device_id)
@@ -282,7 +259,7 @@ end
 
 local function pending_add(env, key, amount)
     local db = get_db(env)
-    if env.stats_db_error or not db or not db:loaded() then return false end
+    if env.stats_db_error or not db then return false end
     env.pending_stats[key] = (env.pending_stats[key] or 0) + amount
     return true
 end
@@ -291,7 +268,7 @@ local function flush_pending(env)
     if not next(env.pending_stats) then return true end
     local db = get_db(env)
 
-    if db and db:loaded() then
+    if db then
         for key, amount in pairs(env.pending_stats) do
             if not db_add(db, key, env.device_id, amount) then
                 db = nil
@@ -515,7 +492,7 @@ local function aggregate_statistics(env, start_day, end_day, device_id,
     speed_start_day = speed_start_day or start_day
     speed_end_day = speed_end_day or end_day
     local db = get_db(env)
-    if not db or not db:loaded() then return nil end
+    if not db then return nil end
     local stats, peaks = new_stats(), {}
 
     scan_prefix(db, STATISTICS_PREFIX, device_id,
@@ -588,7 +565,7 @@ end
 
 local function migrate_database(env)
     local db = get_db(env)
-    if not db or not db:loaded() then return end
+    if not db then return end
     local additions, old_keys = {}, {}
     scan_prefix(db, "d_", nil, function(key, device_id, value, raw_key)
         old_keys[#old_keys + 1] = raw_key
