@@ -1,5 +1,18 @@
 # Changelog
 
+## [17.5.4](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.3...v17.5.4) (2026-08-19)
+
+
+### 📚 词库更新
+
+* 词库调整 ([09feb2d](https://github.com/amzxyz/rime-wanxiang/commit/09feb2d3d29bb1d58b79f23da24aba4ebfb63f65))
+
+
+### 🐛 Bug 修复
+
+* 移除t9中的超级替换中的派生模式 ([af5cc4e](https://github.com/amzxyz/rime-wanxiang/commit/af5cc4e3eed8788c5e586528dcb86c96f9317484))
+* 输入统计改成立刻写入 ([e211110](https://github.com/amzxyz/rime-wanxiang/commit/e21111089698cbf6fa7db7253eff961f0f4f5411))
+
 ## [17.5.3](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.2...v17.5.3) (2026-08-19)
 
 
