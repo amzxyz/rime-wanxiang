@@ -502,7 +502,7 @@ end
 
 local function result_count_text(total, limit)
     if limit > 0 and total > limit then
-        return total .. " 条 · 前 " .. limit
+        return total .. " 条 • 前 " .. limit
     end
     return total .. " 条"
 end
@@ -513,13 +513,13 @@ local function set_exact_prompt(context, total, limit, has_children)
         parts[#parts + 1] = ".路径"
     end
     parts[#parts + 1] = "?搜索"
-    set_segment_prompt(context, "〔" .. table.concat(parts, " · ") .. "〕")
+    set_segment_prompt(context, "〔" .. table.concat(parts, " • ") .. "〕")
 end
 
 local function set_fuzzy_prompt(context, total, limit, scope)
     local count_text = result_count_text(total, limit)
     if scope ~= "" then
-        set_segment_prompt(context, "〔" .. scope .. " · " .. count_text .. "〕")
+        set_segment_prompt(context, "〔" .. scope .. " • " .. count_text .. "〕")
     else
         set_segment_prompt(context, "〔" .. count_text .. "〕")
     end
@@ -540,7 +540,7 @@ end
 -- 无真实结果时用单个状态候选承接提示，保持候选区连续稳定。
 local function yield_state_candidate(context, segment, kind, text, comment)
     set_segment_prompt(context, "")
-    local candidate_type = "super_" .. kind .. "_hint"
+    local candidate_type = "super_" .. kind
     yield(Candidate(candidate_type, segment.start, segment._end, text, comment or ""))
 end
 
@@ -735,7 +735,7 @@ function M.func(input, segment, env)
             segment,
             query.kind,
             query.label,
-            ". 精确搜索  ·  ? 模糊搜索"
+            ".路径  •  ?搜索"
         )
         return
     end
@@ -749,7 +749,7 @@ function M.func(input, segment, env)
     if query.mode == "exact" then
         local matches = collect_prefix_matches(query.query, store)
         if #matches == 0 then
-            yield_state_candidate(context, segment, query.kind, "无匹配", "退格修改 · 可改用模糊搜索")
+            yield_state_candidate(context, segment, query.kind, "无匹配", "退格修改 • 可改用 ? 搜索")
             return
         end
 
@@ -773,7 +773,7 @@ function M.func(input, segment, env)
                 segment,
                 query.kind,
                 "模糊搜索",
-                "范围 " .. query.scope .. " · 继续输入关键词"
+                "范围 " .. query.scope .. " • 继续输入关键词"
             )
         else
             yield_state_candidate(context, segment, query.kind, "模糊搜索", "继续输入关键词")
@@ -783,7 +783,7 @@ function M.func(input, segment, env)
 
     local matches = collect_fuzzy_matches(query.query, query.scope, store)
     if #matches == 0 then
-        local comment = query.scope ~= "" and ("范围 " .. query.scope .. " · 修改关键词") or "修改关键词"
+        local comment = query.scope ~= "" and ("范围 " .. query.scope .. " • 修改关键词") or "修改关键词"
         yield_state_candidate(context, segment, query.kind, "无匹配", comment)
         return
     end
