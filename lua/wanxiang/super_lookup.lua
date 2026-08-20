@@ -1023,6 +1023,82 @@ local function check_explicit_tone_match(codes_seq, tone_filter_seq, comment_int
     return true
 end
 
+-- 获取命中类型：仅用于同长度候选内部排序，不改变原候选长度排序
+local function get_lookup_match_info(raw_data, cand_len, clean_fuma, env)
+
+    for index, source_type in ipairs(env.data_sources) do
+        local codes_seq = raw_data[source_type]
+
+        if codes_seq then
+            local is_db = source_type == "db"
+
+            -- 单字：保持原逻辑
+            if cand_len == 1 then
+                if group_match(codes_seq[1], clean_fuma) then
+                    return {
+                        source_index = index,
+                        level = 1,
+                        source = source_type,
+                        type = "single"
+                    }
+                end
+
+            else
+                -- 关键：两码完整命中某一个字，属于 single
+                -- 例如 老实说，bd 命中 实
+                for i = 1, cand_len do
+                    if match_direct_word(codes_seq, i, clean_fuma, is_db) then
+                        return {
+                            source_index = index,
+                            level = 1,
+                            source = source_type,
+                            type = "single"
+                        }
+                    end
+                end
+
+                -- 两码分别落不同字，属于 cross
+                if #clean_fuma >= 2 then
+                    for i = 1, cand_len - 1 do
+                        if
+                            match_direct_word(codes_seq, i, clean_fuma:sub(1,1), is_db)
+                            and
+                            match_direct_word(codes_seq, i + 1, clean_fuma:sub(2,2), is_db)
+                        then
+                            return {
+                                source_index = index,
+                                level = 2,
+                                source = source_type,
+                                type = "cross"
+                            }
+                        end
+                    end
+                end
+
+                -- 保留原有多字模糊匹配能力
+                local memo = {}
+                if match_fuzzy_recursive(
+                    codes_seq,
+                    1,
+                    clean_fuma,
+                    1,
+                    memo,
+                    is_db
+                ) then
+                    return {
+                        source_index = index,
+                        level = 2,
+                        source = source_type,
+                        type = "cross"
+                    }
+                end
+            end
+        end
+    end
+
+    return nil
+end
+
 -- 综合匹配判断引擎 (引导模式使用)
 local function check_explicit_match(raw_data, cand_len, clean_fuma, tone_filter_seq, apply_tone_filter, env)
     for _, source_type in ipairs(env.data_sources) do
@@ -1117,6 +1193,26 @@ local function create_direct_candidate(cand, ctx_input, pure_code, fuma)
 end
 
 -- 8. 模式分发调度控制器 (主干函数)
+-- 同一候选长度内排序，不改变原有长度优先级
+local function sort_lookup_bucket(list, match_meta)
+
+    table.sort(list, function(a, b)
+
+        local ma = match_meta[a.id] or {}
+        local mb = match_meta[b.id] or {}
+
+        if (ma.source_index or 999) ~= (mb.source_index or 999) then
+            return (ma.source_index or 999) < (mb.source_index or 999)
+        end
+
+        if (ma.level or 999) ~= (mb.level or 999) then
+            return (ma.level or 999) < (mb.level or 999)
+        end
+
+        return a.order < b.order
+    end)
+
+end
 
 -- A. 引导模式 (Explicit Mode) 控制器
 local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly_fuma, s_end)
@@ -1141,6 +1237,8 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
 
     local if_single_char_first = ctx:get_option("char_priority")
     local buckets = {}
+    local match_meta = {}
+    local match_seq = 0
     local long_word_cands = {}
     local max_len = 0
     local has_any_match = false
@@ -1198,13 +1296,30 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
             raw_data and check_explicit_match(raw_data, cand_len, clean_fuma, tone_filter_seq, apply_tone_filter, env)
         then
             has_any_match = true
+
+            local info =
+                get_lookup_match_info(
+                    raw_data,
+                    cand_len,
+                    clean_fuma,
+                    env
+                )
+
+            match_seq = match_seq + 1
+            match_meta[match_seq] = info
+
+
             if if_single_char_first and cand_len > 1 then
                 table.insert(long_word_cands, cand)
             else
                 if not buckets[cand_len] then
                     buckets[cand_len] = {}
                 end
-                table.insert(buckets[cand_len], cand)
+                table.insert(buckets[cand_len], {
+                    cand = cand,
+                    id = match_seq,
+                    order = match_seq
+                })
                 if cand_len > max_len then
                     max_len = cand_len
                 end
@@ -1214,17 +1329,23 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
         ::skip::
     end
 
+    -- 只对相同长度候选排序，保持原有长短词优先逻辑
+    for _, bucket in pairs(buckets) do
+        sort_lookup_bucket(bucket, match_meta)
+    end
+
+
     -- 输出匹配结果 (依单字优先策略不同排序输出)
     if if_single_char_first then
         if buckets[1] then
             for _, c in ipairs(buckets[1]) do
-                yield(c)
+                yield(c.cand)
             end
         end
         for l = max_len, 2, -1 do
             if buckets[l] then
                 for _, c in ipairs(buckets[l]) do
-                    yield(c)
+                    yield(c.cand)
                 end
             end
         end
@@ -1232,7 +1353,7 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
         for l = max_len, 1, -1 do
             if buckets[l] then
                 for _, c in ipairs(buckets[l]) do
-                    yield(c)
+                    yield(c.cand)
                 end
             end
         end
