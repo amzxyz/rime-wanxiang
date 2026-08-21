@@ -427,25 +427,11 @@ super_sequence:  # Lua 配置：手动排序的快捷键 super_sequence.lua，�
   reset: "Control+l"  # 重置
   pin: "Control+p"  # 置顶
 
-# 超级符号库 super_symbols（基于 typst/codex），输入 /sym.name[.mod...] 或 /sym?keyword 查找
-# 数据来源：lua/data/codex_sym.txt 和 codex_emoji.txt
-# 中文 tips 已合并到 lua/data/tips_show.txt 末尾，开启 super_tips 后即可在输入时看到
-# 模式提示：仅输入 /sym /sym. /sym? /sym/ /emoji 等前缀时，候选区显示引导提示
+
 super_symbols:
-  prefix_sym: "/sym"      # 精确前缀，配合 . 触发，如 /sym.arrow.r.double（仅当未配置 triggers 时作为回退）
-  prefix_emoji: "/emoji"    # emoji 精确前缀（仅当未配置 triggers 时作为回退）
-  # 触发定义（可 patch）：精确与模糊两种模式的 trigger 均由此列表驱动。
-  # 未配置时回退到上面的 prefix_sym / prefix_emoji。每条含 kind / exact / label / marks：
-  #   kind   类型键（对应数据表 sym / emoji，也用于 super_<kind> 候选 tag）
-  #   exact  精确前缀，后接 "." 直输（如 /sym.arrow.r）
-  #   label  模式提示语
-  #   marks  模糊搜索标记，默认 ["?", "/"]（如 /sym?arrow 与 /sym/arrow 等价）
-  # 例（custom 中覆盖以自定义或新增类型）：
-  #   super_symbols/triggers:
-  #     - { kind: sym,    exact: /sym,   label: 超级符号 }
-  #     - { kind: emoji,  exact: /emoji, label: 超级表情 }
-  #     - { kind: kaomoji, exact: /kk,   label: 颜文字, marks: ["?"] }
-  max_candidates: 30         # 模糊搜索 / 无修饰符时最大候选数
+  prefix_sym: "/sym"      # sym精确前缀，配合 . 触发，如 /sym.arrow.r.double
+  prefix_emoji: "/emoji"    # emoji 精确前缀
+  max_candidates: 30         # 最大候选数
   data_sym: "lua/data/codex_sym.txt"
   data_emoji: "lua/data/codex_emoji.txt"
 

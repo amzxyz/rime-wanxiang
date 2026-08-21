@@ -112,64 +112,25 @@ local function load_stores(env)
     return true
 end
 
-local function read_search_marks(config, path)
-    local marks = {}
-    local list = config:get_list(path .. "/marks")
-
-    if list then
-        for i = 0, list.size - 1 do
-            local mark = config:get_string(path .. "/marks/@" .. i)
-            if mark and mark ~= "" then
-                marks[#marks + 1] = mark
-            end
-        end
-    end
-
-    if #marks == 0 then
-        marks = {"?", "/"}
-    end
-
-    return marks
-end
-
 local function build_trigger_defs(config)
-    local configured = config:get_list("super_symbols/triggers")
     local trigger_defs = {}
 
-    if configured and configured.size > 0 then
-        for i = 0, configured.size - 1 do
-            local path = "super_symbols/triggers/@" .. i
-            local kind = config:get_string(path .. "/kind")
-            local exact = config:get_string(path .. "/exact")
+    local sym_prefix = config:get_string("super_symbols/prefix_sym") or "/sym"
+    local emoji_prefix = config:get_string("super_symbols/prefix_emoji") or "/emoji"
 
-            if kind and kind ~= "" and exact and exact ~= "" then
-                trigger_defs[#trigger_defs + 1] = {
-                    kind = kind,
-                    exact = exact,
-                    label = config:get_string(path .. "/label") or
-                        (kind == "emoji" and "超级表情" or "超级符号"),
-                    search_marks = read_search_marks(config, path)
-                }
-            end
-        end
-    end
+    trigger_defs[#trigger_defs + 1] = {
+        kind = "sym",
+        exact = sym_prefix,
+        label = "超级符号",
+        search_marks = {"?", "/"}
+    }
 
-    if #trigger_defs == 0 then
-        trigger_defs = {
-            {
-                kind = "sym",
-                exact = config:get_string("super_symbols/prefix_sym") or "/sym",
-                label = "超级符号",
-                search_marks = {"?", "/"}
-            },
-            {
-                kind = "emoji",
-                exact = config:get_string("super_symbols/prefix_emoji") or "/emoji",
-                label = "超级表情",
-                search_marks = {"?", "/"}
-            }
-        }
-    end
+    trigger_defs[#trigger_defs + 1] = {
+        kind = "emoji",
+        exact = emoji_prefix,
+        label = "超级表情",
+        search_marks = {"?", "/"}
+    }
 
     table.sort(trigger_defs, function(a, b)
         return #a.exact > #b.exact
@@ -644,7 +605,35 @@ local function try_autofill(env, context)
     end
 end
 
+-- 标记超级符号模式，供其他模块通过 s2t_conversion 识别
+local function update_super_symbol_tag(env, context)
+    if not context or not context.composition or context.composition:empty() then
+        return
+    end
+
+    local segment = context.composition:back()
+    if not segment then
+        return
+    end
+
+    local config = env.engine.schema.config
+    local sym_prefix = config:get_string("super_symbols/prefix_sym") or "/sym"
+    local emoji_prefix = config:get_string("super_symbols/prefix_emoji") or "/emoji"
+
+    local input = context.input or ""
+
+    if input:sub(1, #sym_prefix) == sym_prefix
+        or input:sub(1, #emoji_prefix) == emoji_prefix
+    then
+        segment.tags = segment.tags + Set({ "super_symbol" })
+    else
+        segment.tags = segment.tags - Set({ "super_symbol" })
+    end
+end
+
 local function on_context_update(env, context)
+    update_super_symbol_tag(env, context)
+
     local input = context and context.input or ""
     local previous_input = env.super_symbols_last_input
     env.super_symbols_last_input = input

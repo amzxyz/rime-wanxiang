@@ -430,15 +430,10 @@ super_tips:
     # 禁用的 tips 类型，初始化 tips 数据库的时候会直接忽略相关规则，修改部署后生效
     # 可选项为：偏旁，符号，化学式，时间，符号，组字，翻译，表情，货币，车牌, 单位
 
-# 超级符号库 super_symbols（基于 typst/codex），输入 /sym.name[.mod...] 或 /sym?keyword 查找
-# 数据来源：lua/data/codex_sym.txt 和 codex_emoji.txt
-# 中文 tips 已合并到 lua/data/tips_show.txt 末尾，开启 super_tips 后即可在输入时看到
-# 模式提示：仅输入 /sym /sym. /sym? /sym/ /emoji 等前缀时，候选区显示引导提示
 super_symbols:
-  prefix_sym: "/sym"
-  prefix_emoji: "/emoji"
-  # 模糊搜索前缀由上面前缀 + 标记派生：? 与 / 平级，如 /sym?arrow 与 /sym/arrow 等价
-  max_candidates: 30
+  prefix_sym: "/sym"      # sym精确前缀，配合 . 触发，如 /sym.arrow.r.double
+  prefix_emoji: "/emoji"    # emoji 精确前缀
+  max_candidates: 30         # 最大候选数
   data_sym: "lua/data/codex_sym.txt"
   data_emoji: "lua/data/codex_emoji.txt"
 
