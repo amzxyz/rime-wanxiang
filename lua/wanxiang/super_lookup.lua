@@ -1201,12 +1201,14 @@ local function sort_lookup_bucket(list, match_meta)
         local ma = match_meta[a.id] or {}
         local mb = match_meta[b.id] or {}
 
-        if (ma.source_index or 999) ~= (mb.source_index or 999) then
-            return (ma.source_index or 999) < (mb.source_index or 999)
+        local default_priority = math.huge
+
+        if (ma.source_index or default_priority) ~= (mb.source_index or default_priority) then
+            return (ma.source_index or default_priority) < (mb.source_index or default_priority)
         end
 
-        if (ma.level or 999) ~= (mb.level or 999) then
-            return (ma.level or 999) < (mb.level or 999)
+        if (ma.level or default_priority) ~= (mb.level or default_priority) then
+            return (ma.level or default_priority) < (mb.level or default_priority)
         end
 
         return a.order < b.order
