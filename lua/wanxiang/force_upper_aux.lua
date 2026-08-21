@@ -82,9 +82,8 @@ function ForceUpperAux.init(env)
             return
         end
         -- 遇到转换模式或功能面板时立刻放行
-        local is_special_mode = wanxiang.is_special_mode and wanxiang.is_special_mode(ctx)
-        if env.is_cycling or wanxiang.is_function_mode(ctx) or is_special_mode then 
-            return 
+        if wanxiang.is_special_mode(ctx) then 
+            return
         end
         
         if not ctx:is_composing() then 
@@ -146,14 +145,21 @@ function ForceUpperAux.func(key_event, env)
         return 2 
     end
     
-    -- 拦截转换状态
-    local is_special_mode = wanxiang.is_special_mode and wanxiang.is_special_mode(ctx)
-    if wanxiang.is_function_mode(ctx) or is_special_mode then 
-        return 2 
+    local current_key = key_event:repr()
+
+    -- BackSpace 优先解除锁定
+    if current_key == "BackSpace" and env.is_cycling then
+        if env.original_input ~= "" then ctx.input = env.original_input end
+        env.press_count = 0
+        env.is_cycling = false
+        return 1
     end
 
-    local current_key = key_event:repr()
-    
+    -- 拦截特殊模式
+    if wanxiang.is_special_mode(ctx) then 
+        return 2
+    end
+
     if current_key == env.trigger_key then
         if not ctx:is_composing() then return 2 end
         
@@ -221,9 +227,6 @@ function ForceUpperAux.func(key_event, env)
         if new_input ~= ctx.input then ctx.input = new_input end
         return 1 
         
-    elseif current_key == "BackSpace" and env.is_cycling then
-        if env.original_input ~= "" then ctx.input = env.original_input end
-        env.press_count = 0; env.is_cycling = false; return 1
     else
         env.press_count = 0; env.is_cycling = false; return 2 
     end
