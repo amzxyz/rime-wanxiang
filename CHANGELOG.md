@@ -1,5 +1,30 @@
 # Changelog
 
+## [17.5.5](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.4...v17.5.5) (2026-08-21)
+
+
+### 📚 词库更新
+
+* 词库调整 ([86357c9](https://github.com/amzxyz/rime-wanxiang/commit/86357c92dae69d1f0eda14a665899f6f4249d204))
+* 词库调整 ([e854bfb](https://github.com/amzxyz/rime-wanxiang/commit/e854bfbb865c5d0e7567e98ca38f074530e7a2a5))
+* 词库调整 ([765cc64](https://github.com/amzxyz/rime-wanxiang/commit/765cc64b5e55c218a2c6b6e49578efc8a310f756))
+* 词库调整 ([161e73d](https://github.com/amzxyz/rime-wanxiang/commit/161e73d35740f239bec99fd9a1becc8e6c607b41))
+
+
+### 🐛 Bug 修复
+
+* ci 脚本变更 ([4d1de1f](https://github.com/amzxyz/rime-wanxiang/commit/4d1de1ff11eaac8a617b17c2ec56efc180144130))
+* **super_lookup:** 优化代码 ([a6939ef](https://github.com/amzxyz/rime-wanxiang/commit/a6939efb619f69533791dd544b0cf41e77cf6599))
+* **super_lookup:** 在过滤结果中引入类型权重排序，具体看本次提交随文档的变更 ([e651c97](https://github.com/amzxyz/rime-wanxiang/commit/e651c97ebb8245fc422e6a333920caf766d36c66))
+* 优化超级符号简化前缀读取，增加tag设置，场景下不会与设置了句号锁定冲突 ([4e17353](https://github.com/amzxyz/rime-wanxiang/commit/4e17353e56150aad54d5fd3346995f43ee36c327))
+* 变更两个tag函数名称 ([9b1e8ee](https://github.com/amzxyz/rime-wanxiang/commit/9b1e8ee8a3bb98a88f6436c1fe683e8593d74dd1))
+* 变更变量后修复引用 ([976e8db](https://github.com/amzxyz/rime-wanxiang/commit/976e8dbfdf21cd2a01a00588ec7eaa4f04ad2940))
+
+
+### 🏡 杂项
+
+* 更新文档 ([2b0c652](https://github.com/amzxyz/rime-wanxiang/commit/2b0c652e8b6a6cfe01c9a01e113f2f83a3f96351))
+
 ## [17.5.4](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.3...v17.5.4) (2026-08-19)
 
 
