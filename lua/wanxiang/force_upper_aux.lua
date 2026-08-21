@@ -82,8 +82,8 @@ function ForceUpperAux.init(env)
             return
         end
         -- 遇到转换模式或功能面板时立刻放行
-        local is_special_mode = wanxiang.s2t_conversion and wanxiang.s2t_conversion(ctx)
-        if env.is_cycling or wanxiang.is_function_mode_active(ctx) or is_special_mode then 
+        local is_special_mode = wanxiang.is_special_mode and wanxiang.is_special_mode(ctx)
+        if env.is_cycling or wanxiang.is_function_mode(ctx) or is_special_mode then 
             return 
         end
         
@@ -147,8 +147,8 @@ function ForceUpperAux.func(key_event, env)
     end
     
     -- 拦截转换状态
-    local is_special_mode = wanxiang.s2t_conversion and wanxiang.s2t_conversion(ctx)
-    if wanxiang.is_function_mode_active(ctx) or is_special_mode then 
+    local is_special_mode = wanxiang.is_special_mode and wanxiang.is_special_mode(ctx)
+    if wanxiang.is_function_mode(ctx) or is_special_mode then 
         return 2 
     end
 

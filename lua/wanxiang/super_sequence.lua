@@ -646,7 +646,7 @@ function P.func(key_event, env)
     local pin = seq_keys.pin
     local is_ctrl_key = code == 0xffe3 or code == 0xffe4
 
-    if wanxiang.is_function_mode_active(context) then
+    if wanxiang.is_function_mode(context) then
         curr_state.reset()
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
@@ -762,7 +762,7 @@ function F.func(input, env)
 
     local cache_limit = (env.page_size or 5) * 2
 
-    if wanxiang.is_function_mode_active(context) then
+    if wanxiang.is_function_mode(context) then
         curr_state.reset()
         return yield_original_list(input, has_symbol, cache_limit, page_cache)
     end

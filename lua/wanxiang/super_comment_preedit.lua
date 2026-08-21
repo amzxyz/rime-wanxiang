@@ -469,7 +469,7 @@ function ZH.func(input, env)
     local is_radical_mode = wanxiang.is_in_radical_mode(env)
     local schema_id = env.engine.schema.schema_id or ""
     local is_wanxiang_pro = (schema_id == "wanxiang_pro")
-    local should_skip_candidate_comment = wanxiang.is_function_mode_active(context) or input_str == ""
+    local should_skip_candidate_comment = wanxiang.is_function_mode(context) or input_str == ""
     local is_tone_comment = env.engine.context:get_option("tone_hint")
     local is_toneless_comment = env.engine.context:get_option("toneless_hint")
     local is_comment_hint = env.engine.context:get_option("fuzhu_hint")

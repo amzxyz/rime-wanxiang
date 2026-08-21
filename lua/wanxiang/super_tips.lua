@@ -309,7 +309,7 @@ function P.func(key, env)
     if not context:get_option("super_tips")
         or not env.tips_key
         or env.tips_key ~= key:repr()
-        or wanxiang.is_function_mode_active(context)
+        or wanxiang.is_function_mode(context)
         or not env.current_tip
         or env.current_tip == ""
     then

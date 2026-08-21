@@ -624,7 +624,7 @@ local function handle_select_character(key, env, ctx)
     -- 检查配置是否存在
     if not (env.sc_first_key or env.sc_last_key) then return false end
     -- 判断是否在命令模式，如果是，则关闭以词定字，释放占用的按键/符号
-    if wanxiang.is_function_mode_active and wanxiang.is_function_mode_active(ctx) then
+    if wanxiang.is_function_mode and wanxiang.is_function_mode(ctx) then
         return false
     end
     -- 状态检查：必须在输入中或有候选菜单
@@ -719,8 +719,8 @@ local function handle_number_logic(key, env, ctx)
 
         if env.enable_tone_fallback then
             local is_func_mode = false
-            if wanxiang.is_function_mode_active then
-                is_func_mode = wanxiang.is_function_mode_active(ctx)
+            if wanxiang.is_function_mode then
+                is_func_mode = wanxiang.is_function_mode(ctx)
             end
             local is_first_cand_has_eng = false
             local cand = ctx:get_selected_candidate()

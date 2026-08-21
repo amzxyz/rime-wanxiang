@@ -221,8 +221,8 @@ local function get_active_rules(env, ctx)
     local filters = env.filters
     if not filters or #filters == 0 then return nil end
 
-    if wanxiang and wanxiang.s2t_conversion
-        and wanxiang.s2t_conversion(ctx)
+    if wanxiang and wanxiang.is_special_mode
+        and wanxiang.is_special_mode(ctx)
     then
         return nil
     end

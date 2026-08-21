@@ -110,7 +110,7 @@ end
 ---判断是否在命令模式
 ---@param context Context | nil
 ---@return boolean
-function wanxiang.is_function_mode_active(context)
+function wanxiang.is_function_mode(context)
     if not context or not context.composition or context.composition:empty() then
         return false
     end
@@ -127,7 +127,7 @@ end
 
 ---@param context Context | nil
 ---@return boolean
-function wanxiang.s2t_conversion(context)
+function wanxiang.is_special_mode(context)
     if not context or not context.composition or context.composition:empty() then
         return false
     end
