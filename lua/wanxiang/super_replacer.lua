@@ -21,6 +21,7 @@ local tonumber = tonumber
 local DB_FORMAT_VERSION = "4"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
 local file_signature_cache = {}
+local build_task_cache = {}
 local RECORD_SEPARATOR = " \t"
 local VALUE_SEPARATOR = "\\t"
 local VALUE_SEPARATOR_LEN = #VALUE_SEPARATOR
@@ -227,6 +228,12 @@ end
 
 -- 合并 default.yaml 中已启用方案的数据任务，并生成固定的方案级表头特征。
 local function merge_build_tasks(ns)
+
+    if build_task_cache[ns] then
+        local cache = build_task_cache[ns]
+        return cache.merged, cache.signatures, cache.union_sig
+    end
+
     local groups = {}
     local signatures = {}
     local schema_ids = enabled_schema_ids()
@@ -245,6 +252,7 @@ local function merge_build_tasks(ns)
 
     local merged = {}
     local seen = {}
+
     for _, group in ipairs(groups) do
         for _, task in ipairs(group.tasks) do
             local key = task_signature(task)
@@ -255,7 +263,15 @@ local function merge_build_tasks(ns)
         end
     end
 
-    return merged, signatures, digest_parts(schema_ids)
+    local union_sig = digest_parts(schema_ids)
+
+    build_task_cache[ns] = {
+        merged = merged,
+        signatures = signatures,
+        union_sig = union_sig
+    }
+
+    return merged, signatures, union_sig
 end
 
 local function next_value(value, start)
