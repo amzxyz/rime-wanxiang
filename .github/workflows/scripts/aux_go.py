@@ -4,7 +4,9 @@ import csv
 import shutil
 from typing import Dict, List, Optional
 
-CJK_PATTERN = re.compile(r'[〇\u3400-\u4DBF\u4E00-\u9FFF\U00020000-\U000323AF]')
+CJK_PATTERN = re.compile(
+    r'[〇\u2E80-\u2EFF\u2F00-\u2FDF\u3400-\u4DBF\u4E00-\u9FFF\U00020000-\U0003347F]'
+)
 
 # 非汉字到汉字的映射（数字等）
 NON_HAN_TO_HAN = {
