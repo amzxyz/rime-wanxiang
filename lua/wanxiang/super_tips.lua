@@ -136,16 +136,22 @@ local function init_database(config)
     local disabled_fingerprint = table.concat(disabled_keys, "|")
 
     local files = {}
-    local files_list = config:get_list("super_tips/files")
 
+    -- 支持数组
+    local files_list = config:get_list("super_tips/files")
     if files_list then
         for i = 0, files_list.size - 1 do
             local entry = files_list:get_value_at(i)
-            local value = entry and entry.value
-
+            local value = entry and entry:get_string()
             if value and value ~= "" then
                 files[#files + 1] = value
             end
+        end
+    else
+        -- 支持单个字符串
+        local file_str = config:get_string("super_tips/files")
+        if file_str and file_str ~= "" then
+            files[#files + 1] = file_str
         end
     end
 

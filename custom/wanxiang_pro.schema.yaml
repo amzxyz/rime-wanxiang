@@ -281,9 +281,7 @@ punctuator:
   digit_separators: ":,."  #数字分隔符
   __include: wanxiang_symbols:/symbol_table  # 从 symbols.yaml 导入配置
   __patch: wanxiang_symbols:/symbols
-# Compose 模式设置
-compose:
-  alt_send_char: true  # 左 Alt + 任意主键盘键: 将对应字符直接送入 Compose 序列(便于无小键盘用户完成合成, 如 Alt+1 把 "1" 加入序列)。右 Alt(AltGr)不受影响, 可在 custom 中设为 false 关闭。
+
 
 # 从 default 继承快捷键
 key_binder:
