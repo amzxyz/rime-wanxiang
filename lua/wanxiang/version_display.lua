@@ -5,12 +5,19 @@ local function translator(input, seg, env)
     if input == "/wx" then
         -- 判断是否为专业版
         local version_prefix = wanxiang.is_pro_scheme(env) and "增强版" or "标准版"
-        -- 候选3: 当前版本号（加上“增强版”或“标准版”前缀）
-        yield(Candidate("version", seg.start, seg._end, version_prefix  .. wanxiang.version, ""))
-        -- 候选1: GitHub 网址
-        yield(Candidate("url", seg.start, seg._end, "https://github.com/amzxyz/rime-wanxiang", ""))
-        -- 候选2: CNB 网址
-        yield(Candidate("url", seg.start, seg._end, "https://cnb.cool/amzxyz/rime-wanxiang", "")) 
+
+        -- 候选1: 当前版本号（加上“增强版”或“标准版”前缀）
+        yield(Candidate("version", seg.start, seg._end, version_prefix .. wanxiang.version, ""))
+
+        -- 候选2: GitHub 国际
+        yield(Candidate("url", seg.start, seg._end, "https://github.com/amzxyz/rime-wanxiang", "〔国际〕"))
+
+        -- 候选3: CNB 国内
+        yield(Candidate("url", seg.start, seg._end, "https://cnb.cool/amzxyz/rime-wanxiang", "〔国内〕"))
+
+        -- 候选4: 项目文档
+        yield(Candidate("url", seg.start, seg._end, "https://amzxyz.github.io/rime-wanxiang/", "〔文档〕"))
     end
 end
+
 return translator

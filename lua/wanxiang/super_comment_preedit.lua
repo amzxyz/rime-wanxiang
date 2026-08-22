@@ -496,6 +496,8 @@ function ZH.func(input, env)
             or genuine_cand.type == "compose"
             or genuine_cand.type == "super_sym"
             or genuine_cand.type == "super_emoji"
+            or genuine_cand.type == "url"
+            or genuine_cand.type == "version"
         then
             yield(genuine_cand)
             goto continue
