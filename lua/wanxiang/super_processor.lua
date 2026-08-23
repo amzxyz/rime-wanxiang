@@ -128,38 +128,15 @@ local function ulen(s)
     return #s
 end
 
--- 直接读取 Rime recognizer 的原生正则，不再转换为 Lua Pattern。
-local function load_rime_regex_patterns(config, path)
-    local patterns, seen = {}, {}
-    local map = config and config:get_map(path)
-    if not map then return patterns end
-
-    local keys = map:keys()
-    if not keys then return patterns end
-
-    for i = 1, #keys do
-        local value = map:get_value(keys[i])
-        local regex = value and value.value
-        if type(regex) == "string" and regex ~= "" and not seen[regex] then
-            -- 初始化时只编译验证一次；运行时直接走 rime_api.regex_match。
-            local ok = pcall(rime_api.regex_match, "", regex)
-            if ok then
-                seen[regex] = true
-                patterns[#patterns + 1] = regex
-            end
-        end
-    end
-    return patterns
-end
-
 -- 检查数字后是否紧跟功能编码 (KpNumber 使用)
 local function is_function_code_after_digit(env, context, digit_char)
     if not context or not digit_char or digit_char == "" then return false end
-    local s = (context.input or "") .. digit_char
+    local code = context.input or ""
+    local s = code .. digit_char
     local pats = env.kp_func_patterns
     if not pats then return false end
     for _, pat in ipairs(pats) do
-        if rime_api.regex_match(s, pat) then return true end
+        if s:match(pat) then return true end
     end
     return false
 end
@@ -308,7 +285,7 @@ function M.init(env)
     env.kp_page_size = config:get_int("menu/page_size") or 6
     local m = config:get_string("super_processor/kp_number_mode") or "select"
     env.kp_mode = (m == "auto" or m == "compose" or m == "select") and m or "select"
-    env.kp_func_patterns = load_rime_regex_patterns(config, "recognizer/patterns")
+    env.kp_func_patterns = wanxiang.load_regex_patterns(config, "recognizer/patterns")
 
     -- [LetterSelector] 字母选词状态位
     env.ls_active = false 
