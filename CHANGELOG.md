@@ -1,5 +1,19 @@
 # Changelog
 
+## [17.5.8](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.7...v17.5.8) (2026-08-23)
+
+
+### 📚 词库更新
+
+* 词库中混入罗培干扰素α-2b一词，b编码就是b，进而引发了b相关的简码塌陷 ([7de46a7](https://github.com/amzxyz/rime-wanxiang/commit/7de46a78b9047e0a5bbc2e664662053b16774853))
+* 词库调整 ([263935f](https://github.com/amzxyz/rime-wanxiang/commit/263935f8650f40f7a87e997a5ffe456858383aa6))
+
+
+### 🐛 Bug 修复
+
+* 移除按键事件中持续的小步gc ([5876960](https://github.com/amzxyz/rime-wanxiang/commit/5876960ac47f91512674f4aefa358bca664a5784))
+* 缓存前缀 ([7605a7f](https://github.com/amzxyz/rime-wanxiang/commit/7605a7f8ba4de838de1a2f7f41ac69014b1bb332))
+
 ## [17.5.7](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.6...v17.5.7) (2026-08-23)
 
 
