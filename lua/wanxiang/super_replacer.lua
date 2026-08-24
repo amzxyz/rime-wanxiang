@@ -18,18 +18,16 @@ local s_upper = string.upper
 local t_sort = table.sort
 local type = type
 local tonumber = tonumber
-local DB_FORMAT_VERSION = "4"
+local DB_FORMAT_VERSION = "5"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
-local file_signature_cache = {}
-local build_task_cache = {}
-local runtime_load_state = {}
+local file_signature_map = {}
+local build_task_map = {}
+local runtime_initialized = {}
 local RECORD_SEPARATOR = " \t"
 local VALUE_SEPARATOR = "\\t"
 local VALUE_SEPARATOR_LEN = #VALUE_SEPARATOR
 local RECORD_TAIL = "c=0 d=0 t=0"
 local CANDIDATE_LIMIT = 100
-local EXACT_CACHE_PREFIX = "\1"
-local FMM_CACHE_PREFIX = "\2"
 
 local T9_MAP = {}
 do
@@ -44,10 +42,6 @@ local wanxiang = require("wanxiang/wanxiang")
 
 local function clear_array(t)
     for i = #t, 1, -1 do t[i] = nil end
-end
-
-local function clear_table(t)
-    for key in pairs(t) do t[key] = nil end
 end
 
 -- UTF-8 辅助：复用 offsets 缓冲，避免每次 FMM 都创建新表
@@ -94,12 +88,12 @@ end
 
 -- 保留原来的头、中、尾 64 字节采样方式，仅把结果压成 ASCII 摘要。
 local function get_file_signature(path)
-    local cached = file_signature_cache[path]
+    local cached = file_signature_map[path]
     if cached then return cached end
 
     local file, close = wanxiang.load_file_with_fallback(path, "rb")
     if not file then
-        file_signature_cache[path] = "missing"
+        file_signature_map[path] = "missing"
         return "missing"
     end
 
@@ -121,7 +115,7 @@ local function get_file_signature(path)
 
     close()
     cached = digest_parts(parts)
-    file_signature_cache[path] = cached
+    file_signature_map[path] = cached
     return cached
 end
 
@@ -230,8 +224,8 @@ end
 -- 合并 default.yaml 中已启用方案的数据任务，并生成固定的方案级表头特征。
 local function merge_build_tasks(ns)
 
-    if build_task_cache[ns] then
-        local cache = build_task_cache[ns]
+    if build_task_map[ns] then
+        local cache = build_task_map[ns]
         return cache.merged, cache.signatures, cache.union_sig
     end
 
@@ -266,7 +260,7 @@ local function merge_build_tasks(ns)
 
     local union_sig = digest_parts(schema_ids)
 
-    build_task_cache[ns] = {
+    build_task_map[ns] = {
         merged = merged,
         signatures = signatures,
         union_sig = union_sig
@@ -316,16 +310,6 @@ local function fetch_aggregate(db, key)
 
     accessor = nil
     return value, raw_key
-end
-
-local function fetch_exact_cached(db, key, query_cache)
-    local cache_key = EXACT_CACHE_PREFIX .. key
-    local value = query_cache[cache_key]
-    if value ~= nil then return value or nil end
-
-    value = fetch_aggregate(db, key)
-    query_cache[cache_key] = value or false
-    return value
 end
 
 local function update_aggregate(db, key, value)
@@ -516,7 +500,7 @@ end
 -- 连接或重建联合数据库。
 local function connect_db(
     db_name, current_version, delimiter, tasks,
-    union_sig, scheme_sigs, env_query_cache
+    union_sig, scheme_sigs
 )
     local db = userdb.LevelDb(db_name)
     if not db then return nil end
@@ -526,7 +510,7 @@ local function connect_db(
     end
 
     -- 重新部署导致 Lua 状态销毁时，该标记自然丢失，再进入完整指纹校验。
-    if runtime_load_state[db_name] then
+    if runtime_initialized[db_name] then
         return db, false
     end
 
@@ -536,7 +520,7 @@ local function connect_db(
         db, current_version, delimiter,
         files_sig, union_sig, scheme_sigs
     ) then
-        runtime_load_state[db_name] = os.time()
+        runtime_initialized[db_name] = os.time()
         return db, false
     end
 
@@ -557,8 +541,7 @@ local function connect_db(
         return nil
     end
 
-    clear_table(env_query_cache)
-    runtime_load_state[db_name] = os.time()
+    runtime_initialized[db_name] = os.time()
     return db, true
 end
 
@@ -572,12 +555,8 @@ local function release_db(env)
     collectgarbage()
 end
 
-local function fetch_fmm_bucket(db, prefix, stem, query_cache)
-    local cache_key = FMM_CACHE_PREFIX .. prefix .. "\0" .. stem
-    local bucket = query_cache[cache_key]
-    if bucket then return bucket end
-
-    bucket = {}
+local function fetch_fmm_bucket(db, prefix, stem)
+    local bucket = {}
     local query_prefix = prefix .. stem
     local query_len = #query_prefix
     local prefix_len = #prefix
@@ -605,11 +584,10 @@ local function fetch_fmm_bucket(db, prefix, stem, query_cache)
     end
 
     t_sort(bucket, function(a, b) return a[3] > b[3] end)
-    query_cache[cache_key] = bucket
     return bucket
 end
 
-local function segment_convert(text, db, prefix, query_cache, offsets, result_parts)
+local function segment_convert(text, db, prefix, offsets, result_parts)
     local char_count = get_utf8_offsets(text, offsets)
     clear_array(result_parts)
 
@@ -624,7 +602,7 @@ local function segment_convert(text, db, prefix, query_cache, offsets, result_pa
         if i + 1 < char_count then
             local stem = s_sub(text, start_byte, offsets[i + 2] - 1)
 
-            for _, entry in ipairs(fetch_fmm_bucket(db, prefix, stem, query_cache)) do
+            for _, entry in ipairs(fetch_fmm_bucket(db, prefix, stem)) do
                 if s_find(text, entry[1], start_byte, true) == start_byte then
                     source = entry[1]
                     output = first_value(entry[2]) or source
@@ -636,9 +614,7 @@ local function segment_convert(text, db, prefix, query_cache, offsets, result_pa
 
         if not output and i < char_count and (char_count > 2 or i > 1) then
             local pair = s_sub(text, start_byte, offsets[i + 2] - 1)
-            local value = fetch_exact_cached(
-                db, prefix .. pair, query_cache
-            )
+            local value = fetch_aggregate(db, prefix .. pair)
             if value then
                 source = pair
                 output = first_value(value) or source
@@ -647,9 +623,7 @@ local function segment_convert(text, db, prefix, query_cache, offsets, result_pa
         end
 
         if not output then
-            local value = fetch_exact_cached(
-                db, prefix .. source, query_cache
-            )
+            local value = fetch_aggregate(db, prefix .. source)
             output = first_value(value) or source
         end
 
@@ -665,7 +639,6 @@ end
 function M.init(env)
     if env.db then release_db(env) end
 
-    env.query_cache = {}
     env.fmm_offsets = {}
     env.fmm_parts = {}
     env.shared_pending = {}
@@ -836,7 +809,7 @@ function M.init(env)
     local rebuilt
     env.db, rebuilt = connect_db(
         db_name, current_version, env.delimiter,
-        merged_tasks, union_sig, scheme_sigs, env.query_cache
+        merged_tasks, union_sig, scheme_sigs
     )
     if env.db then env.db_name = db_name end
 
@@ -847,7 +820,6 @@ function M.init(env)
 end
 
 function M.fini(env)
-    env.query_cache = nil
     env.fmm_offsets = nil
     env.fmm_parts = nil
     env.shared_pending = nil
@@ -875,14 +847,7 @@ function M.func(input, env)
     local rules = env.rules
     local comment_fmt = env.comment_format
     local is_chain = env.chain
-    local query_cache = env.query_cache
-    if not query_cache then
-        query_cache = {}
-        env.query_cache = query_cache
-    end
-
     if not ctx:is_composing() or ctx.input == "" then
-        clear_table(query_cache)
         for cand in input:iter() do yield(cand) end
         return
     end
@@ -962,12 +927,12 @@ function M.func(input, env)
             local val
 
             local query_key = t.key_prefix .. query_text
-            val = fetch_exact_cached(db, query_key, query_cache)
+            val = fetch_aggregate(db, query_key)
 
             if not val and s_find(query_text, "%u") then
                 query_text = s_lower(query_text)
                 query_key = t.key_prefix .. query_text
-                val = fetch_exact_cached(db, query_key, query_cache)
+                val = fetch_aggregate(db, query_key)
             end
 
             if not val and t.fmm then
@@ -975,7 +940,7 @@ function M.func(input, env)
                 if query_len > 1 then
                     local seg_result = segment_convert(
                         query_text, db, t.prefix,
-                        query_cache, fmm_offsets, fmm_parts
+                        fmm_offsets, fmm_parts
                     )
                     if seg_result ~= query_text then val = seg_result end
                 end
@@ -1137,11 +1102,11 @@ function M.func(input, env)
 
     if query_code ~= "" then
         for _, t in ipairs(active_abbrev_rules) do
-            local val = fetch_exact_cached(db, t.key_prefix .. query_code, query_cache)
+            local val = fetch_aggregate(db, t.key_prefix .. query_code)
 
             if not val and not query_has_upper then
                 if not upper_query then upper_query = s_upper(query_code) end
-                val = fetch_exact_cached(db, t.key_prefix .. upper_query, query_cache)
+                val = fetch_aggregate(db, t.key_prefix .. upper_query)
             end
 
             if val then
