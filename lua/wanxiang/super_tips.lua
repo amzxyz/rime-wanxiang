@@ -21,6 +21,8 @@ local DB_FORMAT_VERSION = "1"
 local DEFAULT_PRESET = "lua/data/tips_show.txt"
 local DEFAULT_USER = "lua/data/tips_user.txt"
 
+local runtime_load_state = {}
+
 local META_KEY = {
     version = "db_format_version",
     disabled_types = "disabled_types_fingerprint",
@@ -164,6 +166,10 @@ local function init_database(config)
         return nil
     end
 
+    if runtime_load_state[db_name] then
+        return db, db_name
+    end
+
     local signature = generate_files_signature(files)
     local db_version = db:meta_fetch(META_KEY.version) or ""
     local db_disabled = db:meta_fetch(META_KEY.disabled_types) or ""
@@ -174,6 +180,7 @@ local function init_database(config)
         or db_signature ~= signature
 
     if not needs_rebuild then
+        runtime_load_state[db_name] = true
         return db, db_name
     end
 
@@ -194,8 +201,7 @@ local function init_database(config)
     then
         return nil
     end
-
-    collectgarbage("collect")
+    runtime_load_state[db_name] = true
     return db, db_name
 end
 
