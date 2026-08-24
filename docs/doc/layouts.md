@@ -69,9 +69,10 @@ patch:
 
 需要使用其他布局时，将最后一行替换为对应规则即可：
 
-* 9 键：`wanxiang_algebra:/9jian`
-* 14 键：`wanxiang_algebra:/14jian`
-* 18 键：`wanxiang_algebra:/18jian`
+* 9 键：`wanxiang_algebra:/9jian`  
+* 这个需要注意九键一般不跟在别的后面因为他就是全部转写了，且有单独的方案，因此这里只是示例并不作为最终引用，需要辩证的看待和学习  
+* 14 键：`wanxiang_algebra:/14jian`  
+* 18 键：`wanxiang_algebra:/18jian`  
 
 !!! danger "特殊键盘转写必须放在拼写运算末尾"
     特殊键盘的转写引用，例如 `- wanxiang_algebra:/18jian`、`- wanxiang_algebra:/14jian` 或 `- wanxiang_algebra:/9jian`，应放在 `speller/algebra/__patch` 列表的最后。
