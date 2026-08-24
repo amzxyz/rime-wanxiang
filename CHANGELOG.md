@@ -1,5 +1,20 @@
 # Changelog
 
+## [17.5.9](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.8...v17.5.9) (2026-08-24)
+
+
+### 🐛 Bug 修复
+
+* 移除super_replacer缓存 ([0107989](https://github.com/amzxyz/rime-wanxiang/commit/0107989ec8f2d625ab00abc41f4826779fce1845))
+* 给super_replacer加了一层全局部署标记，只在加载文件后填充值，有值就直接opendb，部署后销毁无值，则启动校验，如果数据没变依然能很快完成 ([5142dbb](https://github.com/amzxyz/rime-wanxiang/commit/5142dbb3ace721f12ed0a4194b2a432964dd1497))
+* 给super_tips加了一层全局部署标记，只在加载文件后填充值，有值就直接opendb，部署后销毁无值，则启动校验，如果数据没变依然能很快完成 ([e7f08f6](https://github.com/amzxyz/rime-wanxiang/commit/e7f08f64f48076a07df265289d7beb401fd9fd34))
+
+
+### 🏡 杂项
+
+* doc update ([4459a27](https://github.com/amzxyz/rime-wanxiang/commit/4459a27e1cb0d9895890a5cfaff63c000198ba70))
+* update doc ([15243dd](https://github.com/amzxyz/rime-wanxiang/commit/15243dd3833f7fe4bd029209625d48efb0e0646d))
+
 ## [17.5.8](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.7...v17.5.8) (2026-08-23)
 
 
