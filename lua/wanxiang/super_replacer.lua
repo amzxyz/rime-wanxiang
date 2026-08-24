@@ -22,6 +22,7 @@ local DB_FORMAT_VERSION = "4"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
 local file_signature_cache = {}
 local build_task_cache = {}
+local runtime_load_state = {}
 local RECORD_SEPARATOR = " \t"
 local VALUE_SEPARATOR = "\\t"
 local VALUE_SEPARATOR_LEN = #VALUE_SEPARATOR
@@ -524,12 +525,18 @@ local function connect_db(
         return nil
     end
 
+    -- 重新部署导致 Lua 状态销毁时，该标记自然丢失，再进入完整指纹校验。
+    if runtime_load_state[db_name] then
+        return db, false
+    end
+
     local files_sig = generate_files_signature(tasks)
 
     if database_matches(
         db, current_version, delimiter,
         files_sig, union_sig, scheme_sigs
     ) then
+        runtime_load_state[db_name] = os.time()
         return db, false
     end
 
@@ -551,6 +558,7 @@ local function connect_db(
     end
 
     clear_table(env_query_cache)
+    runtime_load_state[db_name] = os.time()
     return db, true
 end
 
