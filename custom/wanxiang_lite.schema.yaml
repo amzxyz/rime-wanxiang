@@ -75,6 +75,7 @@ engine:
     - lua_translator@*wanxiang.unicode_conversion  #通过输入大写U引导，并输入Unicode编码获得汉字输出
     - lua_translator@*wanxiang.number_conversion  #数字、金额大写，通过输入大写R1234获得候选输出
     - lua_translator@*wanxiang.super_calculator  #超级计算器，Lua内查看高级用法
+    - lua_translator@*wanxiang.random_tools  #  UUID/UUID7/ULID/随机密码
     - lua_translator@*wanxiang.input_statistics  #一个输入统计的脚本，以日、周、月、年等维度的统计
     - table_translator@custom_phrase  #自定义短语 custom_phrase.txt，用于置顶自定义编码候选词
     - lua_translator@*wanxiang.super_english*T  #英文词汇表导入，限流，格式化
@@ -326,6 +327,20 @@ super_processor:
   # select_character: "[,]"                      # [ 上屏首字，] 上屏尾字（推荐）
   # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
 
+random_tools:
+  uuid: "/uuid"
+  uuid7: "/uuidq"
+  ulid: "/ulid"
+  password: "/mima"
+  password_special: "/mimas"
+  password_lengths: "6,8,10,16"
+  pin_lengths: "4,6,8,10"
+  chars:
+    upper: "ABCDEFGHJKLMNPQRSTUVWXYZ"
+    lower: "abcdefghijkmnopqrstuvwxyz"
+    digit: "23456789"
+    special: "!@#$%^&*_-+"
+    pin: "0123456789"
 
 # super_replacer处理插件 - 配置说明书
 
