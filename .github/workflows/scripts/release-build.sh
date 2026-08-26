@@ -82,6 +82,7 @@ package_schema_lite() {
     --exclude='wanxiang_pure.dict.yaml' \
     --exclude='wanxiang_pure.schema.yaml' \
     --exclude='wanxiang_pure.custom.yaml' \
+    --exclude='wanxiang.custom.yaml' \
     --exclude='wanxiang_lite.dict.yaml' \
     --exclude='wanxiang_lite.schema.yaml' \
     --include='*.yaml' --include='*.md' --include='*.jpg' --include='*.png' \
