@@ -57,6 +57,189 @@ package_schema_base() {
     "$ROOT_DIR/" "$OUT_DIR/"
 }
 
+package_schema_lite() {
+  OUT_DIR="$DIST_DIR/rime-wanxiang-lite"
+  rm -rf "$OUT_DIR"
+  mkdir -p "$OUT_DIR"
+
+  # 1) Lite 自己的 schema / dict 从 custom/ 复制到分包根目录
+  for f in \
+    wanxiang_lite.dict.yaml \
+    wanxiang_lite.schema.yaml
+  do
+    src="$CUSTOM_DIR/$f"
+    dst="$OUT_DIR/$f"
+    [[ -f "$src" ]] && cp "$src" "$dst"
+  done
+
+  # 2) custom/：复制通用配置，排除其他主方案入口文件
+  mkdir -p "$OUT_DIR/custom"
+  rsync -av --prune-empty-dirs \
+    --include='*/' \
+    --exclude='wanxiang_pro.custom.yaml' \
+    --exclude='wanxiang_pro.dict.yaml' \
+    --exclude='wanxiang_pro.schema.yaml' \
+    --exclude='wanxiang_pure.dict.yaml' \
+    --exclude='wanxiang_pure.schema.yaml' \
+    --exclude='wanxiang_pure.custom.yaml' \
+    --exclude='wanxiang_lite.dict.yaml' \
+    --exclude='wanxiang_lite.schema.yaml' \
+    --include='*.yaml' --include='*.md' --include='*.jpg' --include='*.png' \
+    --exclude='*' \
+    "$CUSTOM_DIR/" "$OUT_DIR/custom/"
+
+  # 3) 根目录 → Lite，保持与 Base 相同的完整基础文件
+  OUT_BASE="$(basename "$OUT_DIR")"
+  rsync -av --ignore-existing \
+    --exclude='/.*' \
+    --exclude='/dist/' \
+    --exclude='/docs/' \
+    --exclude='/mkdocs.yml' \
+    --exclude='/release-please-config.json' \
+    --exclude='/pro-*-fuzhu-dicts' \
+    --exclude='/CHANGELOG.md' \
+    --exclude='.yamlfmt' \
+    --exclude='/custom' \
+    --exclude='/LICENSE' \
+    --exclude='/wanxiang.dict.yaml' \
+    --exclude='/wanxiang.schema.yaml' \
+    --exclude='/wanxiang_lite.dict.yaml' \
+    --exclude='/wanxiang_lite.schema.yaml' \
+    --exclude="/$OUT_BASE" \
+    "$ROOT_DIR/" "$OUT_DIR/"
+
+  # 4) 只裁剪 Lite 不需要的 Lua 模块和 data 文件
+  rm -f \
+    "$OUT_DIR/lua/wanxiang/super_sequence.lua" \
+    "$OUT_DIR/lua/wanxiang/auto_phrase.lua" \
+    "$OUT_DIR/lua/wanxiang/charset_filter.lua" \
+    "$OUT_DIR/lua/wanxiang/user_predict.lua" \
+    "$OUT_DIR/lua/wanxiang/super_symbols.lua" \
+    "$OUT_DIR/lua/wanxiang/force_upper_aux.lua" \
+    "$OUT_DIR/lua/wanxiang/partial_commit.lua" \
+    "$OUT_DIR/lua/wanxiang/super_tips.lua"
+
+  rm -f \
+    "$OUT_DIR/lua/data/codex_emoji.txt" \
+    "$OUT_DIR/lua/data/codex_sym.txt" \
+    "$OUT_DIR/lua/data/tips_show.txt" \
+    "$OUT_DIR/lua/data/charset.reverse.bin"
+
+  # 5) Lite 词库第二列去声调并改为 *.lite.dict.yaml；en.dict.yaml 原样保留
+  python3 - "$OUT_DIR/dicts" "$OUT_DIR/wanxiang_lite.dict.yaml" <<'PY'
+from pathlib import Path
+import os
+import sys
+
+tone_map = str.maketrans({
+    "ā": "a", "á": "a", "ǎ": "a", "à": "a",
+    "ē": "e", "é": "e", "ě": "e", "è": "e",
+    "ī": "i", "í": "i", "ǐ": "i", "ì": "i", "ḿ": "me",
+    "ō": "o", "ó": "o", "ǒ": "o", "ò": "o", "ň": "en",
+    "ū": "u", "ú": "u", "ǔ": "u", "ù": "u", "ǹ": "en",
+    "ǖ": "ü", "ǘ": "ü", "ǚ": "ü", "ǜ": "ü", "ń": "en",
+})
+
+def strip_tone(text):
+    return text.replace("m̀", "me").translate(tone_map)
+
+dict_dir = Path(sys.argv[1])
+main_dict = Path(sys.argv[2])
+renamed = {}
+
+if dict_dir.is_dir():
+    paths = [
+        path for path in dict_dir.rglob("*.dict.yaml")
+        if path.name != "en.dict.yaml"
+        and not path.name.endswith(".lite.dict.yaml")
+    ]
+
+    for path in paths:
+        relative = path.relative_to(dict_dir).as_posix()
+        old_table = "dicts/" + relative[:-len(".dict.yaml")]
+
+        new_path = path.with_name(
+            path.name[:-len(".dict.yaml")] + ".lite.dict.yaml"
+        )
+        new_relative = new_path.relative_to(dict_dir).as_posix()
+        new_table = "dicts/" + new_relative[:-len(".dict.yaml")]
+        renamed[old_table] = new_table
+
+        new_name = new_path.name[:-len(".dict.yaml")]
+        temp = path.with_name(path.name + ".tmp")
+        name_done = False
+
+        with path.open("r", encoding="utf-8", newline="") as src, \
+             temp.open("w", encoding="utf-8", newline="") as dst:
+            for line in src:
+                stripped = line.lstrip()
+
+                if not name_done and stripped.startswith("name:"):
+                    eol = "\r\n" if line.endswith("\r\n") else "\n" if line.endswith("\n") else ""
+                    indent = line[:len(line) - len(stripped)]
+                    dst.write(f"{indent}name: {new_name}{eol}")
+                    name_done = True
+                    continue
+
+                first_tab = line.find("\t")
+                if first_tab < 0:
+                    dst.write(line)
+                    continue
+
+                second_tab = line.find("\t", first_tab + 1)
+                if second_tab < 0:
+                    dst.write(
+                        line[:first_tab + 1]
+                        + strip_tone(line[first_tab + 1:])
+                    )
+                else:
+                    dst.write(
+                        line[:first_tab + 1]
+                        + strip_tone(line[first_tab + 1:second_tab])
+                        + line[second_tab:]
+                    )
+
+        os.replace(temp, new_path)
+        path.unlink()
+
+
+def rewrite_imports(path):
+    if not path.is_file():
+        return
+
+    temp = path.with_name(path.name + ".tmp")
+    changed = False
+
+    with path.open("r", encoding="utf-8", newline="") as src, \
+         temp.open("w", encoding="utf-8", newline="") as dst:
+        for line in src:
+            stripped = line.lstrip()
+            if stripped.startswith("- "):
+                rest = stripped[2:]
+                table = rest.split(None, 1)[0] if rest else ""
+                replacement = renamed.get(table)
+                if replacement:
+                    line = line.replace(table, replacement, 1)
+                    changed = True
+            dst.write(line)
+
+    if changed:
+        os.replace(temp, path)
+    else:
+        temp.unlink()
+
+
+rewrite_imports(main_dict)
+
+if dict_dir.is_dir():
+    for path in dict_dir.rglob("*.lite.dict.yaml"):
+        rewrite_imports(path)
+PY
+
+  # 6) Lite 分包默认方案
+  sed -i -E 's/^([[:space:]]*)-\s*schema:\s*wanxiang\s*$/\1- schema: wanxiang_lite/' "$OUT_DIR/default.yaml"
+}
+
 package_schema_pro() {
   SCHEMA_NAME="$1"
   OUT_DIR="$2"
@@ -217,6 +400,9 @@ package_schema() {
   if [[ "$SCHEMA_NAME" == "base" ]]; then
     OUT_DIR="$DIST_DIR/rime-wanxiang-base"
     package_schema_base "$OUT_DIR"
+  elif [[ "$SCHEMA_NAME" == "lite" ]]; then
+    OUT_DIR="$DIST_DIR/rime-wanxiang-lite"
+    package_schema_lite
   elif [[ "$SCHEMA_NAME" == "pure" ]]; then
     OUT_DIR="$DIST_DIR/rime-wanxiang-pure"
     package_schema_pure
@@ -235,7 +421,7 @@ package_schema() {
   echo "✅ 完成打包: $ZIP_NAME"
 }
 
-SCHEMA_LIST=("wx" "base" "pure" "flypy" "hanxin" "moqi" "tiger" "wubi" "zrm" "shouyou" "shyplus")
+SCHEMA_LIST=("wx" "base" "lite" "pure" "flypy" "hanxin" "moqi" "tiger" "wubi" "zrm" "shouyou" "shyplus")
 
 # 如果没有传入参数，则循环 package 所有的
 if [[ -z "$SCHEMA_NAME" ]]; then

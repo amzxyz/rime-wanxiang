@@ -290,7 +290,7 @@ wanxiang.INPUT_METHOD_MARKERS = {
 -- “ⅲ”属于辅助标记，单独检测，不放入正常输入类型顺序。
 local INPUT_METHOD_MARKER_ORDER = {
     "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ", "Ⅶ", "Ⅷ",
-    "Ⅸ", "Ⅹ", "Ⅺ", "Ⅻ", "Ⅿ", "Ⅼ", "Ⅽ", "ⅱ",
+    "Ⅸ", "Ⅹ", "Ⅺ", "Ⅻ", "Ⅿ", "Ⅼ", "Ⅽ", "Ⅾ", "ⅱ",
 }
 
 local INPUT_METHOD_MD_MARKER = "ⅲ"

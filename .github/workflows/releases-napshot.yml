@@ -63,11 +63,14 @@ jobs:
             local zip_name="$2"
             if [[ -d "$src" ]]; then
               echo "Packing $src -> dist/${zip_name}"
-              (cd "$src" && zip -r -q "../../${zip_name}" . -x "renming.dict.yaml" "wuzhong.dict.yaml")
+              (cd "$src" && zip -r -q "../../${zip_name}" . \
+                -x "renming.dict.yaml" "wuzhong.dict.yaml" \
+                   "renming.lite.dict.yaml" "wuzhong.lite.dict.yaml")
             else
               echo "Warning: $src does not exist, skipped."
             fi
           }
+
           pack_dict "dist/rime-wanxiang-wx-fuzhu/dicts"      "pro-wx-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-moqi-fuzhu/dicts"    "pro-moqi-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-flypy-fuzhu/dicts"   "pro-flypy-fuzhu-dicts.zip"
@@ -78,6 +81,7 @@ jobs:
           pack_dict "dist/rime-wanxiang-shouyou-fuzhu/dicts" "pro-shouyou-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-shyplus-fuzhu/dicts" "pro-shyplus-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-base/dicts"          "base-dicts.zip"
+          pack_dict "dist/rime-wanxiang-lite/dicts"          "lite-dicts.zip"
           pack_dict "dist/rime-wanxiang-pure/dicts"          "pure-dicts.zip"
 
       # 3. 删除旧的 Nightly/Preview Release 和 Tag
@@ -144,11 +148,13 @@ jobs:
 
             #### 1️⃣ 完整方案包 (包含配置、Lua 脚本、词库等)
             - `rime-wanxiang-base.zip`: 标准版完整方案
+            - `rime-wanxiang-lite.zip`: 无声调轻量版完整方案
             - `rime-wanxiang-pure.zip`: 精简版完整方案
             - `rime-wanxiang-pro-*-fuzhu.zip`: 携带各款辅助码的 Pro 版完整方案
 
             #### 2️⃣ 独立词库包 (仅含 dicts 目录下的文件，供单独覆盖升级)
             - `base-dicts.zip`: 标准版独立词库
+            - `lite-dicts.zip`: 无声调轻量版独立词库
             - `pure-dicts.zip`: 精简版独立词库
             - `pro-*-fuzhu-dicts.zip`: 携带各款辅助码的独立词库
             - **[wanxiang-lts-zh-hans.gram](https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram)**：与词库同步更新的语法模型
@@ -164,7 +170,7 @@ jobs:
           draft: false
           prerelease: true
 
-      # 6. 为每个方案生成独立分支：wanxiang-base / wanxiang-moqi-fuzhu / ...
+      # 6. 为每个方案生成独立分支：wanxiang-base / wanxiang-lite / wanxiang-moqi-fuzhu / ...
       - name: Commit and force push per-scheme snapshots
         env:
           GIT_AUTHOR_NAME: ci-bot
@@ -174,7 +180,7 @@ jobs:
         run: |
           set -euo pipefail
           ORIG_BRANCH="$(git rev-parse --abbrev-ref HEAD || echo 'wanxiang')"
-          schemes=("base" "pure" "wx-fuzhu" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu" "shyplus-fuzhu")
+          schemes=("base" "lite" "pure" "wx-fuzhu" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu" "shyplus-fuzhu")
 
           COMMON_FILES=(
             "dicts/*.*"

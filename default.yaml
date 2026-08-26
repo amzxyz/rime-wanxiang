@@ -9,6 +9,8 @@ schema_list:
   - schema: wanxiang
 #  - schema: wanxiang_english
 #  - schema: wanxiang_t9
+#  - schema: wanxiang_t9i
+#  - schema: wanxiang_lite
 # 菜单
 menu:
   page_size: 6  # 候选词个数，不得超过6个，7890代表声调
