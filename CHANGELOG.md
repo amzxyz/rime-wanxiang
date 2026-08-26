@@ -1,5 +1,37 @@
 # Changelog
 
+## [17.6.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.9...v17.6.0) (2026-08-26)
+
+
+### ✨ 新特性
+
+* 新增万象Lite方案版本 ([fc818c1](https://github.com/amzxyz/rime-wanxiang/commit/fc818c1f7f6aa857b3857dc8293d354c9724d43f))
+* 调整脚本引用 ([7043803](https://github.com/amzxyz/rime-wanxiang/commit/704380392a046c6089dfb8521ed07f6cc184e765))
+
+
+### 📚 词库更新
+
+* 词库调整 ([264e432](https://github.com/amzxyz/rime-wanxiang/commit/264e4325f114023039b56921487c8eacaa1fe5a0))
+
+
+### 🐛 Bug 修复
+
+* lite版本release引导 ([d3d3ccc](https://github.com/amzxyz/rime-wanxiang/commit/d3d3ccc45f63aa527aad72a503d511787f583d5e))
+* update ci ([943f395](https://github.com/amzxyz/rime-wanxiang/commit/943f395914af0e2912175ce9b27274d1c3026bff))
+* update custom ([959f2af](https://github.com/amzxyz/rime-wanxiang/commit/959f2af53343684cf547767da6172a39a92489c6))
+* 优化replacer ([035b14c](https://github.com/amzxyz/rime-wanxiang/commit/035b14c8d61601a3eda9402a6f0e3a17f75f2eca))
+* 优化super_comment以支持多种方案 ([1e4fed4](https://github.com/amzxyz/rime-wanxiang/commit/1e4fed412d65183cd29ef913100f3f47e974d42c))
+* 优化统计 ([a6be127](https://github.com/amzxyz/rime-wanxiang/commit/a6be12701b90505e73277750aef44ffabf835fd6))
+* 修正tips提示 ([6bdf902](https://github.com/amzxyz/rime-wanxiang/commit/6bdf902bcfcd603325b825d66ebae0592e852f0f))
+* 修正野鹤拆 ([146600e](https://github.com/amzxyz/rime-wanxiang/commit/146600ef7fe021e42fd8800ff0acffe86388d1ad))
+* 更新正则 ([af32687](https://github.com/amzxyz/rime-wanxiang/commit/af3268791913b13711e500eaa95f7223ab727536))
+
+
+### 🏡 杂项
+
+* update doc ([4d338a2](https://github.com/amzxyz/rime-wanxiang/commit/4d338a2151a238a16313b822e5cd8fc32705f0b7))
+* 完善文档 ([227b610](https://github.com/amzxyz/rime-wanxiang/commit/227b610b112cb93b3bf3e1934e3d863284e05531))
+
 ## [17.5.9](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.8...v17.5.9) (2026-08-24)
 
 
