@@ -49,17 +49,24 @@ CHANGES=$(
   echo ""
   echo "## 下载与选型指南"
   echo ""
-  
+
   # 1. Base 区域
   echo "* **标准版 (Base)**：[下载方案](${DOWNLOAD_URL}/rime-wanxiang-base.zip)"
   echo "  * *适用人群*：纯全拼、纯双拼用户。"
   echo ""
-  # 2. Pure 区域
+
+  # 2. Lite 区域
+  echo "* **轻量版 (Lite)**：[下载方案](${DOWNLOAD_URL}/rime-wanxiang-lite.zip)"
+  echo "  * *主要区别*：无声调词库，减少部分 Lua 功能。"
+  echo ""
+
+  # 3. Pure 区域
   echo "* **精简版 (Pure)**：[下载方案](${DOWNLOAD_URL}/rime-wanxiang-pure.zip)"
   echo "  * *适用人群*：追求最小词库、仅需基础功能的用户。"
   echo "  * *适用场景*：Win7,fcitx4等低版本，不能使用lua插件的系统。"
   echo ""
-  # 3. Pro 区域
+
+  # 4. Pro 区域
   echo "* **双拼辅助码增强版 (Pro)**：均为独立完整配置包，含词库，支持任意双拼挂载，下载包等于选辅助码类型。"
   echo "  * *适用人群*：双拼+辅助码用户。"
   # 横向拼接 Pro 下载链接列表
@@ -75,12 +82,12 @@ CHANGES=$(
   done
   echo "  * *版本选择*：${pro_links}"
   echo ""
-  
-  # 4. 语法模型（并列同层级，强调必下）
+
+  # 5. 语法模型（并列同层级，强调必下）
   echo "* **大模型语法包 (必装组件)**：[点击下载语法模型](https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram)"
-  echo "  * *使用说明*：**所有版本（Base/Pro）用户均必须下载此文件**。下载后直接放入输入法用户目录根目录（与方案文件放一起），无需任何额外配置。"
+  echo "  * *使用说明*：**所有版本（Base/Lite/Pure/Pro）用户均必须下载此文件**。下载后直接放入输入法用户目录根目录（与方案文件放一起），无需任何额外配置。"
   echo ""
-  
+
   echo "---"
   echo ""
   echo "## 分发渠道与周边生态"
