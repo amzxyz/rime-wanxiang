@@ -10,14 +10,13 @@ local DEFAULT_AVERAGE_GAP_MS = 5000
 local DEFAULT_MINIMUM_AVERAGE_SESSION_MS = 1000
 local DEFAULT_MINIMUM_AVERAGE_TOTAL_MS = 15000
 local PEAK_WINDOW_MS = 10000
+local MAX_VALID_PEAK_CHARS_PER_MINUTE = 350
+local MAX_VALID_PEAK_KEYS_PER_MINUTE = 900
 local DEFAULT_MAX_SPEED_COMMIT_LENGTH = 10
 local STATISTICS_PREFIX = "statistics/"
 local DAY_PREFIX = STATISTICS_PREFIX .. "day/"
-local MIGRATION_KEY = "metadata/readable_statistics_migrated"
 local DAY_FIELDS = {
     ["text/characters"]="characters",
-    ["text/commits"]="commits",
-    ["text/keystrokes"]="keystrokes",
     ["text/code_keystrokes"]="code_keystrokes",
     ["text/code_characters"]="code_characters",
     ["commit_length/1"]="length_1",
@@ -25,16 +24,6 @@ local DAY_FIELDS = {
     ["commit_length/3"]="length_3",
     ["commit_length/4"]="length_4",
     ["commit_length/5_plus"]="length_5_plus",
-}
-local LEGACY_FIELDS = {
-    _len="text/characters",
-    _cnt="text/commits",
-    _code="text/keystrokes",
-    _l1="commit_length/1",
-    _l2="commit_length/2",
-    _l3="commit_length/3",
-    _l4="commit_length/4",
-    _l_gt4="commit_length/5_plus",
 }
 local DEFAULT_TITLES = {
     {5000000, "⌨️·天人合一"}, {1000000, "⌨️·登峰造极"},
@@ -174,21 +163,6 @@ local function parse_tail(tail)
     return to_integer(c)
 end
 
-local function db_get(db, key, device_id)
-    local raw_key = make_raw_key(key, device_id)
-    return raw_key and parse_tail(db:fetch(raw_key)) or 0
-end
-
-local function db_set(db, key, device_id, value)
-    local raw_key = make_raw_key(key, device_id)
-    return raw_key and db:update(raw_key,
-        string.format("c=%d d=0 t=0", to_integer(value))) or false
-end
-
-local function db_add(db, key, device_id, amount)
-    return db_set(db, key, device_id, db_get(db, key, device_id) + amount)
-end
-
 local function scan_prefix(db, prefix, device_id, handler)
     local accessor = db:query(prefix)
     if not accessor then return end
@@ -246,7 +220,7 @@ end
 
 local function new_stats()
     return {
-        characters=0, commits=0, keystrokes=0,
+        characters=0, commits=0,
         code_keystrokes=0, code_characters=0,
         average_characters=0, average_milliseconds=0, average_sessions=0,
         peak_speed=nil,
@@ -258,10 +232,29 @@ end
 local function stats_add(env, key, amount)
     local db = get_db(env)
     if env.stats_db_error or not db then return false end
-    if not db_add(db, key, env.device_id, amount) then
+
+    local raw_key = make_raw_key(key, env.device_id)
+    if not raw_key then return false end
+
+    -- 日期推进时清空旧日缓存；每个键第一次仍从数据库读取真实当前值。
+    local key_day = key:match("^statistics/day/(%d%d%d%d%d%d%d%d)/")
+    if key_day and (not env.write_cache_day or key_day > env.write_cache_day) then
+        env.write_cache = {}
+        env.write_cache_day = key_day
+    end
+
+    local value = env.write_cache[raw_key]
+    if value == nil then
+        value = parse_tail(db:fetch(raw_key))
+    end
+
+    value = to_integer(value + amount)
+    if not db:update(raw_key, string.format("c=%d d=0 t=0", value)) then
         env.stats_db_error = true
         return false
     end
+
+    env.write_cache[raw_key] = value
     return true
 end
 
@@ -270,6 +263,7 @@ local function reset_sample(sample)
     sample.last_activity = nil
     sample.last_commit = nil
     sample.characters = 0
+    sample.keystrokes = 0
     sample.day = nil
 end
 
@@ -278,6 +272,7 @@ local function start_sample(sample, day, timestamp_ms)
     sample.last_activity = timestamp_ms
     sample.last_commit = nil
     sample.characters = 0
+    sample.keystrokes = 0
     sample.day = day
 end
 
@@ -304,18 +299,42 @@ local function finish_average(env)
 end
 
 local function peak_speed(characters, milliseconds)
-    return math.max(0, math.min(2000,
-        math.floor(characters * 60000 / milliseconds + 0.5)))
+    return math.max(0,
+        math.floor(characters * 60000 / milliseconds + 0.5))
+end
+
+local function peak_key_speed(keystrokes, milliseconds)
+    return math.max(0,
+        math.floor(keystrokes * 60000 / milliseconds + 0.5))
 end
 
 local function finish_peak(env)
+    local peak = env.peak_sample
     local day, characters, milliseconds = sample_values(
-        env.peak_sample, PEAK_WINDOW_MS
+        peak, PEAK_WINDOW_MS
     )
-    reset_sample(env.peak_sample)
-    if not day then return false end
+    local keystrokes = peak.keystrokes or 0
+
+    -- 无论窗口最终有效还是作废，都先结束当前窗口。
+    -- 下一次输入会由 ensure_sample() 自动开启全新的峰速窗口，
+    -- 不累计异常次数，也不存在连续异常后锁死统计的状态。
+    reset_sample(peak)
+
+    if not day or keystrokes <= 0 then return false end
+
+    local char_speed = peak_speed(characters, milliseconds)
+    local key_speed = peak_key_speed(keystrokes, milliseconds)
+
+    -- 压力测试、乱按、自动化输入等异常窗口直接整体作废，
+    -- 绝不把异常值截成 350/900 后伪装成有效峰值。
+    if char_speed > MAX_VALID_PEAK_CHARS_PER_MINUTE
+        or key_speed > MAX_VALID_PEAK_KEYS_PER_MINUTE
+    then
+        return false
+    end
+
     stats_add(env, string.format("%s%s/speed_peak_window_10s/%04d",
-        DAY_PREFIX, day, peak_speed(characters, milliseconds)), 1)
+        DAY_PREFIX, day, char_speed), 1)
     return true
 end
 
@@ -361,7 +380,7 @@ local function observe_input_activity(env, input)
     env.peak_sample.last_activity = timestamp_ms
 end
 
-local function commit_to_speed(env, day, timestamp_ms, characters, allow_peak)
+local function commit_to_speed(env, day, timestamp_ms, characters, code_length, allow_peak)
     ensure_sample(env.average_sample, day, timestamp_ms, env.average_gap_ms,
         function() finish_average(env) end)
     local average = env.average_sample
@@ -376,6 +395,7 @@ local function commit_to_speed(env, day, timestamp_ms, characters, allow_peak)
         peak.last_activity = timestamp_ms
         peak.last_commit = timestamp_ms
         peak.characters = peak.characters + characters
+        peak.keystrokes = peak.keystrokes + code_length
         if peak.last_commit - peak.started >= PEAK_WINDOW_MS then finish_peak(env) end
     else
         -- user_table 等不参与峰速；当前峰值窗口一并作废，避免混合窗口失真。
@@ -398,12 +418,8 @@ local function record_stats(env, characters, code_length, candidate_type)
     local day = day_id()
     local prefix = DAY_PREFIX .. day .. "/"
     if not stats_add(env, prefix .. "text/characters", characters) then return end
-    stats_add(env, prefix .. "text/commits", 1)
-
-    -- 平均编码只使用“确实取得输入编码”的配对样本。
-    -- text/keystrokes 继续保留真实编码总量；新字段保证历史脏数据不会混入新口径。
+    -- 平均编码只记录“确实取得输入编码”的配对样本。
     if code_length > 0 then
-        stats_add(env, prefix .. "text/keystrokes", code_length)
         stats_add(env, prefix .. "text/code_keystrokes", code_length)
         stats_add(env, prefix .. "text/code_characters", characters)
     end
@@ -416,7 +432,7 @@ local function record_stats(env, characters, code_length, candidate_type)
     stats_add(env, prefix .. field, 1)
 
     if is_valid_speed_commit(env, characters, code_length) then
-        commit_to_speed(env, day, timestamp_ms, characters,
+        commit_to_speed(env, day, timestamp_ms, characters, code_length,
             candidate_type ~= "user_table")
     else
         finish_peak(env)
@@ -494,6 +510,10 @@ local function aggregate_statistics(env, start_day, end_day, device_id,
             end
         end
     end)
+
+    stats.commits = stats.length_1 + stats.length_2 + stats.length_3
+        + stats.length_4 + stats.length_5_plus
+
     local day, characters, milliseconds = sample_values(
         env.average_sample, env.minimum_average_session_ms
     )
@@ -527,51 +547,6 @@ local function aggregate_statistics(env, start_day, end_day, device_id,
     end
 
     return stats.commits > 0 and stats or nil
-end
-
-local function migrate_database(env)
-    local db = get_db(env)
-    if not db then return end
-    local additions, old_keys = {}, {}
-    scan_prefix(db, "d_", nil, function(key, device_id, value, raw_key)
-        old_keys[#old_keys + 1] = raw_key
-        local day, suffix = key:match("^d_(%d%d%d%d%d%d%d%d)(_.+)$")
-        local target = day and LEGACY_FIELDS[suffix]
-        if target and value > 0 and db_get(db, MIGRATION_KEY, device_id) == 0 then
-            local device = additions[device_id] or {}
-            additions[device_id] = device
-            local new_key = DAY_PREFIX .. day .. "/" .. target
-            device[new_key] = (device[new_key] or 0) + value
-        end
-    end)
-    scan_prefix(db, "total_", nil, function(_, _, _, raw_key)
-        old_keys[#old_keys + 1] = raw_key
-    end)
-    for device_id, values in pairs(additions) do
-        local success = true
-        for key, value in pairs(values) do
-            if value > db_get(db, key, device_id)
-                and not db_set(db, key, device_id, value)
-            then
-                success = false
-                break
-            end
-        end
-        if success then db_set(db, MIGRATION_KEY, device_id, 1) end
-    end
-    for _, raw_key in ipairs(old_keys) do db:erase(raw_key) end
-    local obsolete = {}
-    scan_prefix(db, STATISTICS_PREFIX, nil, function(key, _, _, raw_key)
-        if key:match("^statistics/day/%d%d%d%d%d%d%d%d/speed/[^/]+$")
-            or key:match("^statistics/day/%d%d%d%d%d%d%d%d/average_speed/[^/]+$")
-            or key:match("^statistics/day/%d%d%d%d%d%d%d%d/peak_speed/[^/]+$")
-            or key:match("^statistics/day/%d%d%d%d%d%d%d%d/speed_peak/")
-            or key:match("^statistics/day/%d%d%d%d%d%d%d%d/speed_peak_window/")
-            or key:match("^statistics/hour/") then
-            obsolete[#obsolete + 1] = raw_key
-        end
-    end)
-    for _, raw_key in ipairs(obsolete) do db:erase(raw_key) end
 end
 
 local function platform_info(name, version)
@@ -796,6 +771,8 @@ local function init(env)
     env.speed_history_days = bounded_int(config,
         "input_stats/speed_history_days", 30, 1, 365)
     env.stats_db_error = nil
+    env.write_cache = {}
+    env.write_cache_day = nil
     env.last_observed_input = ""
     env.titles = nil
     env.average_sample = {}
@@ -811,7 +788,7 @@ local function init(env)
         total=config:get_string("input_stats/triggers/total") or "/tj",
         history=config:get_string("input_stats/triggers/history") or "/htj",
     }
-    if acquire_db(env) then migrate_database(env) end
+    acquire_db(env)
     if env.stat_notifier then env.stat_notifier:disconnect() end
     env.stat_notifier = env.engine.context.commit_notifier:connect(
         function(context) on_commit(context, env) end
@@ -827,6 +804,8 @@ local function fini(env)
         env.stat_notifier = nil
     end
     env.titles = nil
+    env.write_cache = nil
+    env.write_cache_day = nil
     env.average_sample, env.peak_sample = nil, nil
     release_db(env)
 end
