@@ -114,16 +114,13 @@ package_schema_lite() {
     "$OUT_DIR/lua/wanxiang/super_sequence.lua" \
     "$OUT_DIR/lua/wanxiang/auto_phrase.lua" \
     "$OUT_DIR/lua/wanxiang/charset_filter.lua" \
-    "$OUT_DIR/lua/wanxiang/user_predict.lua" \
     "$OUT_DIR/lua/wanxiang/super_symbols.lua" \
     "$OUT_DIR/lua/wanxiang/force_upper_aux.lua" \
-    "$OUT_DIR/lua/wanxiang/partial_commit.lua" \
-    "$OUT_DIR/lua/wanxiang/super_tips.lua"
+    "$OUT_DIR/lua/wanxiang/partial_commit.lua"
 
   rm -f \
     "$OUT_DIR/lua/data/codex_emoji.txt" \
     "$OUT_DIR/lua/data/codex_sym.txt" \
-    "$OUT_DIR/lua/data/tips_show.txt" \
     "$OUT_DIR/lua/data/charset.reverse.bin"
 
   # 5) Lite 词库第二列去声调并改为 *.lite.dict.yaml；en.dict.yaml 原样保留
