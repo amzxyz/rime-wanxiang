@@ -76,22 +76,25 @@ function ForceUpperAux.init(env)
     env.on_update = function(ctx)
         ctx = ctx or env.engine.context
         if not ctx then return end
-        -- 非正常拼音输入时立刻放行，防止移动端键盘卡死
         local raw_in = ctx.input or ""
-        if raw_in == "" or not raw_in:match("^[a-zA-Z0-9]") then
-            return
-        end
-        -- 遇到转换模式或功能面板时立刻放行
-        if wanxiang.is_special_mode(ctx) then 
-            return
-        end
-        
-        if not ctx:is_composing() then 
+
+        -- 一个完整输入周期结束后清空本周期状态，避免上一周期的“第一印象”残留。
+        if not ctx:is_composing() or raw_in == "" then
             env.history_first = {}
             env.press_count = 0
-            env.is_cycling = false 
+            env.is_cycling = false
             env.last_cand_len = 0
-            return 
+            return
+        end
+
+        -- 非正常拼音输入时立刻放行，防止移动端键盘卡死
+        if not raw_in:match("^[a-zA-Z0-9]") then
+            return
+        end
+
+        -- 遇到转换模式或功能面板时立刻放行
+        if wanxiang.is_special_mode(ctx) then
+            return
         end
         
         local parts = get_script_text_parts(ctx)
