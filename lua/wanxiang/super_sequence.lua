@@ -22,9 +22,8 @@ local DEFAULT_SEQ_KEY = {
     pin = "Control+p",
 }
 
--- 运行时只重排前 100 个上游候选；数据库编码仍沿用旧版 500 位位置域，保证历史排序记录兼容。
-local SORT_SCAN_LIMIT = 100
-local POSITION_SPAN = 500
+local MAX_SORT_CANDIDATES = 100
+local DB_POSITION_LIMIT = 500
 local POSITION_BASE = 512
 local TOMBSTONE_SLOT = 511
 local C_MAX = 2147483000
@@ -33,32 +32,33 @@ local MAX_VERSION = math.floor((C_MAX - TOMBSTONE_SLOT) / POSITION_BASE)
 local RECORD_SEPARATOR = " \t"
 
 
--- 全局通信通道：排序器与 super_filter 共享候选锁定快照。
-_G.WanxiangSharedState = _G.WanxiangSharedState or { sorter_active = false, last_input = "", page_cache = {}, page_cache_format = "flat5" }
+-- ✨ 全局通信通道
+_G.WanxiangSharedState = _G.WanxiangSharedState or {
+    sorter_active = false,
+    last_input = "",
+    page_cache = {},
+}
 
--- page_cache 使用 flat5 纯数据：type/start/end/text/preedit，不保存 Candidate userdata。
-
-local function clear_array(t)
-    if not t then return end
-    for i = #t, 1, -1 do t[i] = nil end
+-- ✨ 防崩溃的候选词克隆函数
+local function clone_candidate(c)
+    local nc = Candidate(c.type, c.start, c._end, c.text, c.comment or "")
+    nc.preedit = c.preedit
+    return nc
 end
 
-local function append_snapshot(cache, cand)
-    local n = #cache
-    cache[n + 1] = cand.type or ""
-    cache[n + 2] = tonumber(cand.start) or 0
-    cache[n + 3] = tonumber(cand._end) or 0
-    cache[n + 4] = cand.text or ""
-    cache[n + 5] = cand.preedit or ""
+local function clear_array(t)
+    for i = #t, 1, -1 do t[i] = nil end
 end
 
 local function yield_original_list(input, has_symbol, cache_limit, page_cache)
     local top_count = 0
+
     for candidate in input:iter() do
         if not has_symbol and top_count < cache_limit then
-            append_snapshot(page_cache, candidate)
+            page_cache[#page_cache + 1] = clone_candidate(candidate)
             top_count = top_count + 1
         end
+
         yield(candidate)
     end
 end
@@ -118,9 +118,9 @@ local function decode_state(commits)
     local slot = magnitude % POSITION_BASE
 
     if commits < 0 then return version, nil, false end
-    if slot < 1 or slot > POSITION_SPAN then return version, nil, false end
+    if slot < 1 or slot > DB_POSITION_LIMIT then return version, nil, false end
 
-    local position = POSITION_SPAN + 1 - slot
+    local position = DB_POSITION_LIMIT + 1 - slot
     return version, position, true
 end
 
@@ -134,9 +134,9 @@ end
 
 local function encode_active(version, position)
     version = math.max(1, math.min(MAX_VERSION, tonumber(version) or 1))
-    position = math.max(1, math.min(POSITION_SPAN, tonumber(position) or 1))
+    position = math.max(1, math.min(DB_POSITION_LIMIT, tonumber(position) or 1))
 
-    local slot = POSITION_SPAN + 1 - position
+    local slot = DB_POSITION_LIMIT + 1 - position
     return version * POSITION_BASE + slot
 end
 
@@ -246,7 +246,7 @@ local function load_input_records(state, input)
     end
 
     local records = {}
-    local has_active = false
+    local active_count = 0
     local prefix = input .. RECORD_SEPARATOR
     local prefix_len = #prefix
     local accessor = state.db:query(prefix)
@@ -266,13 +266,12 @@ local function load_input_records(state, input)
                 records[item] = {
                     commits = commits,
                     tick = tick,
-                    tail = tail,
                     version = version,
                     position = position,
                     active = active,
                 }
 
-                if active then has_active = true end
+                if active then active_count = active_count + 1 end
             end
         end
 
@@ -281,7 +280,8 @@ local function load_input_records(state, input)
 
     cached = {
         records = records,
-        has_active = has_active,
+        active_count = active_count,
+        has_active = active_count > 0,
     }
     touch_cached_entry(state, cached)
 
@@ -289,32 +289,35 @@ local function load_input_records(state, input)
     state.cache_size = state.cache_size + 1
     trim_record_cache(state)
 
-    return records, has_active
+    return records, active_count > 0
 end
 
-local function update_cached_record(state, input, item, commits, tick, tail)
+local function update_cached_record(state, input, item, commits, tick)
     local cached = state.cache[input]
     if not cached then return end
 
     touch_cached_entry(state, cached)
+    local old_record = cached.records[item]
+    local old_active = old_record and old_record.active or false
     local version, position, active = decode_state(commits)
 
     cached.records[item] = {
         commits = commits,
         tick = tick,
-        tail = tail,
         version = version,
         position = position,
         active = active,
     }
 
-    cached.has_active = false
-    for _, record in pairs(cached.records) do
-        if record.active then
-            cached.has_active = true
-            break
+    if old_active ~= active then
+        if active then
+            cached.active_count = cached.active_count + 1
+        else
+            cached.active_count = math.max(0, cached.active_count - 1)
         end
     end
+
+    cached.has_active = cached.active_count > 0
 end
 
 local function write_active_position(state, input, item, position, records)
@@ -330,13 +333,12 @@ local function write_active_position(state, input, item, position, records)
     local tail = make_record_tail(commits, tick)
     if not tail or not state.db:update(raw_key, tail) then return false end
 
-    update_cached_record(state, input, item, commits, tick, tail)
+    update_cached_record(state, input, item, commits, tick)
     records[item] = state.cache[input]
         and state.cache[input].records[item]
         or {
             commits = commits,
             tick = tick,
-            tail = tail,
             version = version,
             position = position,
             active = true,
@@ -357,13 +359,12 @@ local function write_reset_tombstone(state, input, item, records)
     local tail = make_record_tail(commits, record.tick)
     if not tail or not state.db:update(raw_key, tail) then return false end
 
-    update_cached_record(state, input, item, commits, record.tick, tail)
+    update_cached_record(state, input, item, commits, record.tick)
     records[item] = state.cache[input]
         and state.cache[input].records[item]
         or {
             commits = commits,
             tick = record.tick,
-            tail = tail,
             version = version,
             position = nil,
             active = false,
@@ -377,122 +378,148 @@ end
 ------------------------------------------------------------
 
 local curr_state = {}
-curr_state.ADJUST_MODE = { None = -1, Reset = 0, Pin = 1, Adjust = 2 }
-curr_state.selected_phrase = nil
-curr_state.offset = 0
-curr_state.mode = curr_state.ADJUST_MODE.None
-curr_state.highlight_index = nil
-curr_state.adjust_code = nil
-curr_state.adjust_key = nil
-curr_state.dirty = false
+curr_state.ADJUST_MODE = {
+    None = -1,
+    Reset = 0,
+    Pin = 1,
+    Adjust = 2,
+}
 
--- 普通刷新只结束当前调序动作，保留锁定候选与高亮索引。
--- 这两个状态必须跨 composition refresh 存活，否则 Ctrl+j/k 后会回到首选。
+curr_state.default = {
+    selected_phrase = nil,
+    offset = 0,
+    mode = curr_state.ADJUST_MODE.None,
+    highlight_index = nil,
+    adjust_code = nil,
+    adjust_key = nil,
+    dirty = false,
+}
+
 function curr_state.reset()
     if curr_state.mode == curr_state.ADJUST_MODE.None then return end
-    curr_state.offset = 0
-    curr_state.mode = curr_state.ADJUST_MODE.None
-    curr_state.dirty = false
+    for key, value in pairs(curr_state.default) do curr_state[key] = value end
 end
 
--- 组件销毁时才彻底释放所有跨刷新状态。
-function curr_state.clear()
-    curr_state.selected_phrase = nil
-    curr_state.offset = 0
-    curr_state.mode = curr_state.ADJUST_MODE.None
-    curr_state.highlight_index = nil
-    curr_state.adjust_code = nil
-    curr_state.adjust_key = nil
-    curr_state.dirty = false
+function curr_state.is_pin_mode()
+    return curr_state.mode == curr_state.ADJUST_MODE.Pin
 end
 
-function curr_state.is_pin_mode() return curr_state.mode == curr_state.ADJUST_MODE.Pin end
-function curr_state.is_reset_mode() return curr_state.mode == curr_state.ADJUST_MODE.Reset end
-function curr_state.is_adjust_mode() return curr_state.mode == curr_state.ADJUST_MODE.Adjust end
-function curr_state.has_adjustment() return curr_state.mode ~= curr_state.ADJUST_MODE.None end
+function curr_state.is_reset_mode()
+    return curr_state.mode == curr_state.ADJUST_MODE.Reset
+end
+
+function curr_state.is_adjust_mode()
+    return curr_state.mode == curr_state.ADJUST_MODE.Adjust
+end
+
+function curr_state.has_adjustment()
+    return curr_state.mode ~= curr_state.ADJUST_MODE.None
+end
 
 ------------------------------------------------------------
 -- 六、稳定位置重建
 ------------------------------------------------------------
--- 候选元数据使用平行数组；order/fixed_indices/slots 只保存整数索引。
-local function apply_saved_positions(count, sort_keys, records)
-    if count == 0 then return {} end
+local function apply_saved_positions(entries, records)
+    local count = #entries
+    if count == 0 then return entries end
 
-    local fixed_indices = {}
-    local slots = {}
+    local fixed = {}
     local placed = {}
+    local slots = {}
 
-    for index = 1, count do
-        local record = records[sort_keys[index]]
-        if record and record.active and record.position then fixed_indices[#fixed_indices + 1] = index end
+    for _, entry in ipairs(entries) do
+        local record = records[entry.sort_key]
+
+        if record and record.active and record.position then
+            fixed[#fixed + 1] = {
+                entry = entry,
+                position = math.max(1, math.min(count, record.position)),
+                version = record.version or 0,
+                magnitude = math.abs(record.commits or 0),
+            }
+        end
     end
 
-    table.sort(fixed_indices, function(a, b)
-        local ra = records[sort_keys[a]]
-        local rb = records[sort_keys[b]]
-        local pa = math.max(1, math.min(count, ra.position))
-        local pb = math.max(1, math.min(count, rb.position))
-        if pa ~= pb then return pa < pb end
-        if (ra.version or 0) ~= (rb.version or 0) then return (ra.version or 0) > (rb.version or 0) end
-        if math.abs(ra.commits or 0) ~= math.abs(rb.commits or 0) then return math.abs(ra.commits or 0) > math.abs(rb.commits or 0) end
-        return sort_keys[a] < sort_keys[b]
+    table.sort(fixed, function(a, b)
+        if a.position ~= b.position then return a.position < b.position end
+        if a.version ~= b.version then return a.version > b.version end
+        if a.magnitude ~= b.magnitude then return a.magnitude > b.magnitude end
+        return a.entry.sort_key < b.entry.sort_key
     end)
 
     local function find_free_slot(target)
         for position = target, count do
             if not slots[position] then return position end
         end
+
         for position = target - 1, 1, -1 do
             if not slots[position] then return position end
         end
+
         return nil
     end
 
-    for _, index in ipairs(fixed_indices) do
-        local record = records[sort_keys[index]]
-        local slot = find_free_slot(math.max(1, math.min(count, record.position)))
+    for _, fixed_entry in ipairs(fixed) do
+        local slot = find_free_slot(fixed_entry.position)
+
         if slot then
-            slots[slot] = index
-            placed[index] = true
+            slots[slot] = fixed_entry.entry
+            placed[fixed_entry.entry] = true
         end
     end
 
     local raw_index = 1
+
     for position = 1, count do
         if not slots[position] then
-            while raw_index <= count and placed[raw_index] do raw_index = raw_index + 1 end
-            slots[position] = raw_index
-            placed[raw_index] = true
+            while entries[raw_index] and placed[entries[raw_index]] do
+                raw_index = raw_index + 1
+            end
+
+            slots[position] = entries[raw_index]
+            if entries[raw_index] then placed[entries[raw_index]] = true end
             raw_index = raw_index + 1
         end
+    end
+
+    for position, entry in ipairs(slots) do
+        entry.final_position = position
     end
 
     return slots
 end
 
-local function persist_index_position(state, input, raw_index, position, sort_keys, records)
-    local sort_key = sort_keys[raw_index]
-    if position == raw_index then return write_reset_tombstone(state, input, sort_key, records) end
+local function persist_entry_position(state, input, entry, position, records)
+    if position == entry.raw_position then
+        return write_reset_tombstone(state, input, entry.sort_key, records)
+    end
 
-    local record = records[sort_key]
-    if record and record.active and record.position == position then return true end
-    return write_active_position(state, input, sort_key, position, records)
+    local record = records[entry.sort_key]
+
+    if record and record.active and record.position == position then
+        return true
+    end
+
+    return write_active_position(state, input, entry.sort_key, position, records)
 end
 
-local function apply_current_adjustment(state, input, order, sort_keys, texts, records)
+local function apply_current_adjustment(state, input, entries, records)
     if not curr_state.has_adjustment() or not curr_state.dirty then return end
 
     local from_position
     local active_before = {}
+
+    -- 只记住操作前已经存在的手动排序记录。普通候选即使被挤动，
+    -- 也不会因此被写入数据库。
     for item, record in pairs(records) do
         if record.active then active_before[item] = true end
     end
 
-    for position, raw_index in ipairs(order) do
-        if texts[raw_index] == curr_state.selected_phrase then
+    for position, entry in ipairs(entries) do
+        if entry.cand.text == curr_state.selected_phrase then
             from_position = position
             curr_state.adjust_code = input
-            curr_state.adjust_key = sort_keys[raw_index]
+            curr_state.adjust_key = entry.sort_key
             break
         end
     end
@@ -502,35 +529,61 @@ local function apply_current_adjustment(state, input, order, sort_keys, texts, r
         return
     end
 
-    local selected_index = order[from_position]
-    local selected_key = sort_keys[selected_index]
+    local selected = entries[from_position]
+    local selected_key = selected.sort_key
     local to_position = from_position
 
     if curr_state.is_adjust_mode() then
-        to_position = math.max(1, math.min(#order, from_position + curr_state.offset))
+        to_position = math.max(
+            1,
+            math.min(#entries, from_position + curr_state.offset)
+        )
     elseif curr_state.is_pin_mode() then
         to_position = 1
     elseif curr_state.is_reset_mode() then
-        to_position = math.max(1, math.min(#order, selected_index))
+        to_position = math.max(
+            1,
+            math.min(#entries, selected.raw_position)
+        )
     end
 
     local moved = from_position ~= to_position
+
     if moved then
-        local raw_index = table.remove(order, from_position)
-        table.insert(order, to_position, raw_index)
+        local candidate = table.remove(entries, from_position)
+        table.insert(entries, to_position, candidate)
     end
 
     if curr_state.is_reset_mode() then
+        -- 重置只删除当前候选的手动状态。
         write_reset_tombstone(state, input, selected_key, records)
     elseif curr_state.is_pin_mode() or moved then
-        persist_index_position(state, input, selected_index, to_position, sort_keys, records)
+        -- 主动操作的候选必须保存；置顶即使当前已经在第一位，也要
+        -- 保存“保持第一位”的明确意图。
+        persist_entry_position(
+            state,
+            input,
+            selected,
+            to_position,
+            records
+        )
     end
 
-    if moved then
-        for position, raw_index in ipairs(order) do
-            local key = sort_keys[raw_index]
+    -- 同一轮同时更新最终位置，并在发生移动时修正此前已有手排记录的候选，
+    -- 避免对 entries 再做一轮完整扫描。普通候选被动让位仍不落库。
+    for position, entry in ipairs(entries) do
+        entry.final_position = position
+
+        if moved then
+            local key = entry.sort_key
             if key ~= selected_key and active_before[key] then
-                persist_index_position(state, input, raw_index, position, sort_keys, records)
+                persist_entry_position(
+                    state,
+                    input,
+                    entry,
+                    position,
+                    records
+                )
             end
         end
     end
@@ -558,7 +611,6 @@ end
 
 function P.fini(env)
     env.seq_keys = nil
-    curr_state.clear()
     release_sequence_state(env)
 end
 
@@ -673,45 +725,33 @@ local F = {}
 
 function F.init(env)
     local config = env.engine.schema.config
-    local symbol = config and (config:get_string("paired_symbols/symbol") or config:get_string("paired_symbols/trigger")) or "\\"
+    local symbol = config and (
+        config:get_string("paired_symbols/symbol")
+        or config:get_string("paired_symbols/trigger")
+    ) or "\\"
+
     env.symbol = string.sub(symbol, 1, 1)
     env.page_size = config and config:get_int("menu/page_size") or 5
-
-    local shared = _G.WanxiangSharedState
-    shared.page_cache = shared.page_cache or {}
-    clear_array(shared.page_cache)
-    shared.page_cache_format = "flat5"
-    shared.last_input = ""
-
     get_sequence_state(env, config)
 end
 
 function F.fini(env)
     env.symbol = nil
     env.page_size = nil
-
-    local shared = _G.WanxiangSharedState
-    if shared then
-        shared.sorter_active = false
-        shared.last_input = ""
-        clear_array(shared.page_cache)
-        shared.page_cache_format = "flat5"
-    end
-
-    curr_state.clear()
     release_sequence_state(env)
 end
 
+
 function F.func(input, env)
+    -- ✨ 宣告：排序脚本活着，包裹脚本不要自行处理。
     local shared = _G.WanxiangSharedState
     shared.sorter_active = true
-    shared.page_cache_format = "flat5"
-    shared.page_cache = shared.page_cache or {}
 
     local context = env.engine.context
-    local code = context.input or ""
+    local code = context.input
     local symbol = env.symbol or "\\"
-    local has_symbol = string.find(code, symbol, 1, true) ~= nil
+    local has_symbol = code
+        and string.find(code, symbol, 1, true) ~= nil
     local page_cache = shared.page_cache
 
     if not has_symbol then
@@ -726,99 +766,106 @@ function F.func(input, env)
         return yield_original_list(input, has_symbol, cache_limit, page_cache)
     end
 
-    local adjust_code = code:sub(1, context.caret_pos)
-    if adjust_code == "" then return yield_original_list(input, has_symbol, cache_limit, page_cache) end
+    local adjust_code = context.input:sub(1, context.caret_pos)
+    if adjust_code == "" then
+        return yield_original_list(input, has_symbol, cache_limit, page_cache)
+    end
 
     local state = get_sequence_state(env)
-    if not state then return yield_original_list(input, has_symbol, cache_limit, page_cache) end
+    if not state then
+        return yield_original_list(input, has_symbol, cache_limit, page_cache)
+    end
 
     local records, has_active = load_input_records(state, adjust_code)
-    local has_current_action = curr_state.has_adjustment() and curr_state.dirty
-    if not has_active and not has_current_action then return yield_original_list(input, has_symbol, cache_limit, page_cache) end
+    local has_current_action =
+        curr_state.has_adjustment() and curr_state.dirty
 
-    local texts = {}
-    local sort_keys = {}
+    if not has_active and not has_current_action then
+        return yield_original_list(input, has_symbol, cache_limit, page_cache)
+    end
+
+    local entries = {}
     local seen = {}
     local show_markers = context:get_option("_seq_show_markers")
     local iterator, iterator_state, iterator_control = input:iter()
-    local is_exhausted = false
+    local raw_position = 0
     local scanned = 0
-    local unique_count = 0
 
-    local function next_candidate()
-        if is_exhausted then return nil end
+    while scanned < MAX_SORT_CANDIDATES do
         local candidate = iterator(iterator_state, iterator_control)
         iterator_control = candidate
-        if not candidate then
-            is_exhausted = true
-            return nil
-        end
-        return candidate
-    end
-
-    -- 最多扫描前 100 个上游候选。Candidate 只停留在 Lua 调用栈多返回值中，不进入 table/env/global。
-    local function collect_sort_candidates()
-        if scanned >= SORT_SCAN_LIMIT or is_exhausted then return end
-
-        local candidate = next_candidate()
-        if not candidate then return end
-        scanned = scanned + 1
-
-        local text = candidate.text or ""
-        if seen[text] then return collect_sort_candidates() end
-
-        seen[text] = true
-        unique_count = unique_count + 1
-        texts[unique_count] = text
-        sort_keys[unique_count] = text
-        return candidate, collect_sort_candidates()
-    end
-
-    local function yield_sorted_candidates(...)
-        local ordered = apply_saved_positions(unique_count, sort_keys, records)
-        apply_current_adjustment(state, adjust_code, ordered, sort_keys, texts, records)
-
-        local bottom_count = 0
-        for position, raw_index in ipairs(ordered) do
-            local candidate = select(raw_index, ...)
-
-            if show_markers then
-                local record = records[sort_keys[raw_index]]
-                if record and record.active then
-                    local diff = position - raw_index
-                    local mark
-                    if diff > 0 then mark = "+" .. diff
-                    elseif diff < 0 then mark = tostring(diff)
-                    else mark = " ●" end
-                    candidate.comment = (candidate.comment or "") .. mark
-                end
-            end
-
-            if not has_symbol and bottom_count < cache_limit then
-                append_snapshot(page_cache, candidate)
-                bottom_count = bottom_count + 1
-            end
-
-            yield(candidate)
-        end
-
-        return bottom_count
-    end
-
-    local bottom_count = yield_sorted_candidates(collect_sort_candidates())
-
-    -- 第 101 个及之后的候选不参与排序，继续消费同一个 Translation 并保持上游顺序。
-    while not is_exhausted do
-        local candidate = next_candidate()
         if not candidate then break end
 
-        local text = candidate.text or ""
+        scanned = scanned + 1
+
+        local text = candidate.text
+
         if not seen[text] then
             seen[text] = true
+            raw_position = raw_position + 1
+
+            entries[#entries + 1] = {
+                cand = candidate,
+                phrase = text,
+                sort_key = text,
+                raw_position = raw_position,
+                final_position = raw_position,
+            }
+        end
+    end
+
+    local ordered = apply_saved_positions(entries, records)
+    apply_current_adjustment(state, adjust_code, ordered, records)
+
+    local bottom_count = 0
+
+    for position, entry in ipairs(ordered) do
+        entry.final_position = position
+        local candidate = entry.cand
+
+        if show_markers then
+            local record = records[entry.sort_key]
+
+            if record and record.active then
+                local diff = position - entry.raw_position
+                local mark
+
+                if diff > 0 then
+                    mark = "+" .. diff
+                elseif diff < 0 then
+                    mark = tostring(diff)
+                else
+                    mark = " ●"
+                end
+
+                candidate.comment = (candidate.comment or "") .. mark
+            end
+        end
+
+        if not has_symbol and bottom_count < cache_limit then
+            page_cache[#page_cache + 1] = clone_candidate(candidate)
+            bottom_count = bottom_count + 1
+        end
+
+        yield(candidate)
+    end
+
+    -- 第 101 个及之后的候选不参与排序，保持上游顺序继续惰性透传。
+    while true do
+        local candidate = iterator(iterator_state, iterator_control)
+        iterator_control = candidate
+        if not candidate then break end
+
+        local text = candidate.text
+
+        if not seen[text] then
+            seen[text] = true
+
             if not has_symbol and bottom_count < cache_limit then
-                append_snapshot(page_cache, candidate)
+                page_cache[#page_cache + 1] = clone_candidate(candidate)
                 bottom_count = bottom_count + 1
             end
+
             yield(candidate)
         end
     end

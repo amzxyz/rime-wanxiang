@@ -261,10 +261,7 @@ function AP.commit_handler(ctx, env)
     dictEntry.weight      = 1
     dictEntry.custom_code = table.concat(code_table, " ") .. " "
     env.memory:update_userdict(dictEntry, 1, "")
-
-    if raw_input == "" then
-        clear_comment_cache(env)
-    end
+    clear_comment_cache(env)
 end
 
 return AP

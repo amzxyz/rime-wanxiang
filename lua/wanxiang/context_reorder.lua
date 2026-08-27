@@ -29,7 +29,6 @@ local FILTER_SCAN_LIMIT = 100
 local MEMORY_GROUP_LIMIT = 10
 local NUMBER_CONTEXT = "#NUM"
 local DEFAULT_CLASSIFIERS = "百千万亿个多只名位口头匹条群批伙张把件台部块根颗粒滴片朵面扇顶栋座所辆艘架盏支枝杆双对副套打串束排阵堆叠摞扎杯瓶盒包份碗锅盆桶袋罐盘次场局回趟顿番遍声项宗桩款步招年月天周岁秒分刻代期届任夜季本册篇首句段卷幅节堂门帖字行米寸尺里斤两吨克升元角毛笔"
--- P / F 共用的纯 Lua 运行态。只保存字符串、数字和小型纯数据快照，不保存 Candidate。
 local CLASSIFIER_LOOKUP = {}
 local CONFIG = {
     CONTEXT_TIMEOUT_MS = 5000,
@@ -509,63 +508,59 @@ function F.init(env)
 end
 
 -- 从同一个 Translation 预读当前同编码候选组。
--- Candidate 仅存在于递归返回值 / varargs 调用栈，不进入任何 table。
--- 预读最多 100 项；即使已命中 10 个也继续排序，10 只控制是否允许新增。
-local function collect_scored_prefix(next_candidate, db, context2, context1, classifier_mode, meta_c2, meta_c1, meta_classifier, limit, target_end, started)
-    if limit <= 0 then return end
+-- Candidate 只保存在本次 Filter 调用内的局部表中，最多 100 项。
+-- 即使已命中 10 个也继续排序，10 只控制是否允许新增。
+local function collect_scored_prefix(next_candidate, db, context2, context1, classifier_mode, limit)
+    local entries = {}
+    local boundary_cand = nil
+    local target_end = nil
 
-    local cand = next_candidate()
-    if not cand then return end
+    while #entries < limit do
+        local cand = next_candidate()
+        if not cand then break end
 
-    local cand_type = cand.type or ""
-    if not started then
-        if not REORDER_TYPE_WHITELIST[cand_type] then return cand end
-        target_end = cand._end
-    elseif not REORDER_TYPE_WHITELIST[cand_type] or cand._end ~= target_end then
-        return cand
+        local cand_type = cand.type or ""
+        if #entries == 0 then
+            if not REORDER_TYPE_WHITELIST[cand_type] then
+                boundary_cand = cand
+                break
+            end
+            target_end = cand._end
+        elseif not REORDER_TYPE_WHITELIST[cand_type] or cand._end ~= target_end then
+            boundary_cand = cand
+            break
+        end
+
+        local text = cand.text or ""
+        local c2, c1 = get_context_counts(db, text, context2, context1)
+        local index = #entries + 1
+
+        entries[index] = {
+            cand = cand,
+            c2 = c2,
+            c1 = c1,
+            classifier = classifier_mode and CLASSIFIER_LOOKUP[text] or false,
+            raw_index = index,
+        }
+        remember_snapshot_candidate(text, c2 > 0 or c1 > 0)
     end
 
-    local index = #meta_c1 + 1
-    local text = cand.text or ""
-    local c2, c1 = get_context_counts(db, text, context2, context1)
-    meta_c2[index] = c2
-    meta_c1[index] = c1
-    meta_classifier[index] = classifier_mode and CLASSIFIER_LOOKUP[text] or false
-    remember_snapshot_candidate(text, c2 > 0 or c1 > 0)
-
-    return cand, collect_scored_prefix(next_candidate, db, context2, context1, classifier_mode, meta_c2, meta_c1, meta_classifier, limit - 1, target_end, true)
+    return entries, boundary_cand
 end
 
-local function yield_scored_prefix(meta_c2, meta_c1, meta_classifier, classifier_mode, ...)
-    local n = select("#", ...)
-    if n == 0 then return end
+local function sort_scored_prefix(entries, classifier_mode)
+    sort(entries, function(a, b)
+        if classifier_mode and a.classifier ~= b.classifier then
+            return a.classifier
+        end
 
-    local scored_count = #meta_c1
-    local group_count = math_min(scored_count, n)
-    if group_count == 0 then
-        for i = 1, n do local cand = select(i, ...); yield(cand) end
-        return
-    end
-
-    local order = {}
-    for i = 1, group_count do order[i] = i end
-
-    sort(order, function(a, b)
-        local ca, cb = meta_classifier[a], meta_classifier[b]
-        if classifier_mode and ca ~= cb then return ca end
-
-        local a2, b2 = meta_c2[a] or 0, meta_c2[b] or 0
-        local a1, b1 = meta_c1[a] or 0, meta_c1[b] or 0
-        local at = a2 > 0 and 2 or (a1 > 0 and 1 or 0)
-        local bt = b2 > 0 and 2 or (b1 > 0 and 1 or 0)
+        local at = a.c2 > 0 and 2 or (a.c1 > 0 and 1 or 0)
+        local bt = b.c2 > 0 and 2 or (b.c1 > 0 and 1 or 0)
         if at ~= bt then return at > bt end
-        if a2 ~= b2 then return a2 > b2 end
-        if a1 ~= b1 then return a1 > b1 end
-        return a < b
+        if a.c2 ~= b.c2 then return a.c2 > b.c2 end
+        if a.c1 ~= b.c1 then return a.c1 > b.c1 end
+        return a.raw_index < b.raw_index
     end)
-
-    for i = 1, group_count do local cand = select(order[i], ...); yield(cand) end
-    for i = group_count + 1, n do local cand = select(i, ...); yield(cand) end
 end
 
 function F.func(input, env)
@@ -623,8 +618,13 @@ function F.func(input, env)
     end
 
     begin_learning_snapshot(context2, context1)
-    local meta_c2, meta_c1, meta_classifier = {}, {}, {}
-    yield_scored_prefix(meta_c2, meta_c1, meta_classifier, do_classifier, collect_scored_prefix(next_candidate, db, context2, context1, do_classifier, meta_c2, meta_c1, meta_classifier, FILTER_SCAN_LIMIT, nil, false))
+    local entries, boundary_cand = collect_scored_prefix(
+        next_candidate, db, context2, context1, do_classifier, FILTER_SCAN_LIMIT
+    )
+    sort_scored_prefix(entries, do_classifier)
+
+    for _, entry in ipairs(entries) do yield(entry.cand) end
+    if boundary_cand then yield(boundary_cand) end
     while not exhausted do local cand = next_candidate(); if not cand then break end; yield(cand) end
 end
 

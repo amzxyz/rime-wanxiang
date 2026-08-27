@@ -114,7 +114,6 @@ local function release_eng_translator(env)
 end
 
 function T.init(env)
-    release_eng_translator(env)
     env.max_candidates = DEFAULT_MAX_CANDIDATES
 
     local config = env.engine and env.engine.schema and env.engine.schema.config

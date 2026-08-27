@@ -29,11 +29,7 @@ local VALUE_SEPARATOR_LEN = #VALUE_SEPARATOR
 local RECORD_TAIL = "c=0 d=0 t=0"
 local CANDIDATE_LIMIT = 50
 local FMM_LONG_STEM_CHARS = 4
-local FMM_MEMO_LIMIT = 128
-local FMM_MEMO_MAX_BYTES = 1024
-local FMM_MEMO_MAX_VALUE_BYTES = 2048
-local FMM_PROGRESS_MAX_BYTES = 4096
-local FMM_PROGRESS_CANDIDATES = 8
+local ABBREV_SCRATCH_RETAIN_LIMIT = 128
 local OPTION_KEYS = {"option", "options"}
 local TAG_KEYS = {"tag", "tags"}
 
@@ -50,6 +46,29 @@ local wanxiang = require("wanxiang/wanxiang")
 
 local function clear_array(t)
     for i = #t, 1, -1 do t[i] = nil end
+end
+
+local function clear_map(t)
+    for key in pairs(t) do t[key] = nil end
+end
+
+local function clear_abbrev_scratch(scratch)
+    if not scratch then return end
+    clear_map(scratch.seen)
+    clear_array(scratch.always)
+    clear_array(scratch.lazy)
+    clear_map(scratch.group_fronted)
+    clear_map(scratch.lookup)
+    clear_array(scratch.results)
+end
+
+local function finish_abbrev_scratch(env, scratch, discard)
+    if not scratch then return end
+    if discard then
+        env.abbrev_scratch = nil
+    else
+        clear_abbrev_scratch(scratch)
+    end
 end
 
 local function trim_space(text)
@@ -356,7 +375,7 @@ local function parse_source_line(line)
 end
 
 
-local function fetch_aggregate(db, key)
+local function fetch_aggregate_db(db, key)
     local prefix = key .. RECORD_SEPARATOR
     local accessor = db:query(prefix)
     if not accessor then return nil, nil end
@@ -508,7 +527,7 @@ local function rebuild(tasks, db)
 
             -- 普通任务可能在转换任务之前或之后读取；统一在这里合并。
             if written_db_keys[db_key] then
-                local old_value, old_raw_key = fetch_aggregate(db, db_key)
+                local old_value, old_raw_key = fetch_aggregate_db(db, db_key)
                 if not old_value or not old_raw_key then return false end
 
                 value = old_value .. VALUE_SEPARATOR .. value
@@ -649,76 +668,26 @@ local function release_db(env)
     collectgarbage()
 end
 
-local function new_fmm_state()
-    return {
-        memo = {},
-        memo_head = nil,
-        memo_tail = nil,
-        memo_count = 0,
-        progress = {}
-    }
+local function clear_runtime_cache(env)
+    if not env.runtime_cache_active then return end
+    env.query_cache = {}
+    env.fmm_cache = {}
+    env.runtime_cache_active = false
 end
 
-local function fmm_memo_unlink(state, node)
-    local prev = node.prev
-    local next_node = node.next
+-- 运行期缓存只保存 string / false，不保存 Candidate、DbAccessor 或 iterator。
+local function fetch_runtime_aggregate(env, db, key)
+    env.runtime_cache_active = true
 
-    if prev then prev.next = next_node else state.memo_head = next_node end
-    if next_node then next_node.prev = prev else state.memo_tail = prev end
-
-    node.prev = nil
-    node.next = nil
-end
-
-local function fmm_memo_link_head(state, node)
-    local head = state.memo_head
-    node.prev = nil
-    node.next = head
-    if head then head.prev = node else state.memo_tail = node end
-    state.memo_head = node
-end
-
-local function fmm_memo_get(state, key)
-    local node = state.memo[key]
-    if not node then return nil, false end
-
-    if state.memo_head ~= node then
-        fmm_memo_unlink(state, node)
-        fmm_memo_link_head(state, node)
+    local cache = env.query_cache
+    local cached = cache[key]
+    if cached ~= nil then
+        return cached or nil
     end
 
-    return node.value, true
-end
-
-local function fmm_memo_put(state, key, value)
-    local map = state.memo
-    local node = map[key]
-    if node then
-        node.value = value
-        if state.memo_head ~= node then
-            fmm_memo_unlink(state, node)
-            fmm_memo_link_head(state, node)
-        end
-        return
-    end
-
-    if state.memo_count >= FMM_MEMO_LIMIT then
-        node = state.memo_tail
-        if node then
-            fmm_memo_unlink(state, node)
-            map[node.key] = nil
-            node.key = key
-            node.value = value
-            map[key] = node
-            fmm_memo_link_head(state, node)
-            return
-        end
-    end
-
-    node = {key = key, value = value}
-    map[key] = node
-    fmm_memo_link_head(state, node)
-    state.memo_count = state.memo_count + 1
+    local value = fetch_aggregate_db(db, key)
+    cache[key] = value or false
+    return value
 end
 
 local function is_ascii_only(text)
@@ -744,6 +713,7 @@ local function has_multiple_utf8_chars(text)
     return len > first_len
 end
 
+-- 4 字及以上仍按当前 DB 格式做前缀扫描；完整 FMM 结果在当前 composition 内复用。
 local function fetch_fmm_longest(db, prefix, text, start_byte, stem)
     local query_prefix = prefix .. stem
     local query_len = #query_prefix
@@ -780,106 +750,25 @@ local function fetch_fmm_longest(db, prefix, text, start_byte, stem)
     return best_source, best_value
 end
 
-local function append_fmm_segment(segments, count, source_bytes, step, output)
-    local base = count * 3
-    segments[base + 1] = source_bytes
-    segments[base + 2] = step
-    segments[base + 3] = output
-    return count + 1
-end
+-- 简化 FMM：去掉 LRU、链表和 progress 状态机。
+-- 同一 prefix + 文本在一次 composition 内只计算一次完整结果。
+local function convert_sentence_fmm(text, db, rule, env, offsets, result_parts)
+    env.runtime_cache_active = true
 
-local function convert_sentence_fmm(text, db, rule, fmm_state, offsets, result_parts, candidate_rank)
     local prefix = rule.prefix
-    local memo_enabled = #text <= FMM_MEMO_MAX_BYTES
-    local memo_key
-
-    if memo_enabled then
-        memo_key = prefix .. "\0" .. text
-        local cached, hit = fmm_memo_get(fmm_state, memo_key)
-        if hit then return cached end
-    end
+    local cache_key = prefix .. "\0" .. text
+    local cached = env.fmm_cache[cache_key]
+    if cached ~= nil then return cached end
 
     if not rule.has_ascii_source and is_ascii_only(text) then
-        if memo_enabled then fmm_memo_put(fmm_state, memo_key, text) end
+        env.fmm_cache[cache_key] = text
         return text
     end
 
     local char_count = get_utf8_offsets(text, offsets)
     clear_array(result_parts)
 
-    local progress = nil
-    local work_segments = nil
-    local segment_count = 0
     local i, result_count = 1, 0
-
-    local max_source_bytes = rule.max_source_bytes or 0
-    if max_source_bytes > 0
-        and #text <= FMM_PROGRESS_MAX_BYTES
-        and candidate_rank and candidate_rank <= FMM_PROGRESS_CANDIDATES
-    then
-        local progress_map = fmm_state.progress
-        local pool = progress_map[prefix]
-        if not pool then
-            pool = {}
-            progress_map[prefix] = pool
-        end
-
-        local best_old_len = 0
-        for idx = 1, FMM_PROGRESS_CANDIDATES do
-            local entry = pool[idx]
-            local old_text = entry and entry.text or ""
-            if old_text ~= ""
-                and #old_text < #text
-                and #old_text > best_old_len
-                and s_find(text, old_text, 1, true) == 1
-            then
-                progress = entry
-                best_old_len = #old_text
-            end
-        end
-
-        if not progress then
-            local slot = candidate_rank
-            progress = pool[slot]
-            if not progress then
-                progress = {text = "", segments = {}, work = {}}
-                pool[slot] = progress
-            end
-        end
-
-        work_segments = progress.work
-        clear_array(work_segments)
-
-        local old_text = progress.text
-        if old_text ~= ""
-            and #text > #old_text
-            and s_find(text, old_text, 1, true) == 1
-        then
-            local safe_start_limit = #old_text - max_source_bytes + 1
-            if safe_start_limit >= 1 then
-                local old_segments = progress.segments
-                local old_idx = 1
-                local old_start_byte = 1
-
-                while old_idx <= #old_segments and old_start_byte <= safe_start_limit do
-                    local source_bytes = old_segments[old_idx]
-                    local step = old_segments[old_idx + 1]
-                    local output = old_segments[old_idx + 2]
-                    if not source_bytes or not step or output == nil then break end
-
-                    result_count = result_count + 1
-                    result_parts[result_count] = output
-                    segment_count = append_fmm_segment(
-                        work_segments, segment_count, source_bytes, step, output
-                    )
-
-                    old_start_byte = old_start_byte + source_bytes
-                    i = i + step
-                    old_idx = old_idx + 3
-                end
-            end
-        end
-    end
 
     while i <= char_count do
         local start_byte = offsets[i]
@@ -909,7 +798,7 @@ local function convert_sentence_fmm(text, db, rule, fmm_state, offsets, result_p
 
             if not output and i + 2 <= char_count then
                 local triple = s_sub(text, start_byte, offsets[i + 3] - 1)
-                local value = fetch_aggregate(db, prefix .. triple)
+                local value = fetch_runtime_aggregate(env, db, prefix .. triple)
                 if value then
                     source = triple
                     output = first_value(value) or source
@@ -919,7 +808,7 @@ local function convert_sentence_fmm(text, db, rule, fmm_state, offsets, result_p
 
             if not output and i + 1 <= char_count then
                 local pair = s_sub(text, start_byte, offsets[i + 2] - 1)
-                local value = fetch_aggregate(db, prefix .. pair)
+                local value = fetch_runtime_aggregate(env, db, prefix .. pair)
                 if value then
                     source = pair
                     output = first_value(value) or source
@@ -929,41 +818,37 @@ local function convert_sentence_fmm(text, db, rule, fmm_state, offsets, result_p
 
             if not output then
                 source = s_sub(text, start_byte, offsets[i + 1] - 1)
-                local value = fetch_aggregate(db, prefix .. source)
+                local value = fetch_runtime_aggregate(env, db, prefix .. source)
                 output = first_value(value) or source
             end
         end
 
         result_count = result_count + 1
         result_parts[result_count] = output
-
-        if work_segments then
-            segment_count = append_fmm_segment(
-                work_segments, segment_count, #source, step, output
-            )
-        end
-
         i = i + step
     end
 
     local result = concat(result_parts, "", 1, result_count)
-
-    if progress then
-        local old_segments = progress.segments
-        progress.segments = work_segments
-        progress.work = old_segments
-        progress.text = text
-    end
-
-    if memo_enabled and #result <= FMM_MEMO_MAX_VALUE_BYTES then
-        fmm_memo_put(fmm_state, memo_key, result)
-    end
-
+    env.fmm_cache[cache_key] = result
     return result
 end
 
 -- 模块接口
 function M.init(env)
+    if env.db then release_db(env) end
+
+    env.fmm_offsets = nil
+    env.fmm_result_parts = nil
+    env.query_cache = {}
+    env.fmm_cache = {}
+    env.runtime_cache_active = false
+    env.active_rules = {}
+    env.active_abbrev_rules = {}
+    env.result_buffer = nil
+    env.derived_text_buffer = nil
+    env.derived_comment_buffer = nil
+    env.comment_buffer = nil
+    env.abbrev_scratch = nil
     local ns = env.name_space
     ns = s_gsub(ns, "^%*", "")
     ns = string.match(ns, "([^%.]+)$") or ns
@@ -1130,9 +1015,43 @@ function M.init(env)
         merged_tasks, scheme_sigs, union_sig = nil, nil, nil
         collectgarbage("collect")
     end
+
+    local context = env.engine and env.engine.context
+    if context then
+        env.replacer_commit_connection = context.commit_notifier:connect(function()
+            clear_runtime_cache(env)
+        end)
+
+        env.replacer_update_connection = context.update_notifier:connect(function(updated_context)
+            if not updated_context:is_composing() or updated_context.input == "" then
+                clear_runtime_cache(env)
+            end
+        end)
+    end
 end
 
 function M.fini(env)
+    if env.replacer_commit_connection then
+        env.replacer_commit_connection:disconnect()
+        env.replacer_commit_connection = nil
+    end
+    if env.replacer_update_connection then
+        env.replacer_update_connection:disconnect()
+        env.replacer_update_connection = nil
+    end
+
+    env.fmm_offsets = nil
+    env.fmm_result_parts = nil
+    env.query_cache = nil
+    env.fmm_cache = nil
+    env.runtime_cache_active = nil
+    env.active_rules = nil
+    env.active_abbrev_rules = nil
+    env.result_buffer = nil
+    env.derived_text_buffer = nil
+    env.derived_comment_buffer = nil
+    env.comment_buffer = nil
+    env.abbrev_scratch = nil
     env.rules = nil
     env.delimiter = nil
     env.speller_delimiter = nil
@@ -1160,7 +1079,6 @@ function M.func(input, env)
     local rules = env.rules
     local comment_fmt = env.comment_format
     local is_chain = env.chain
-
     if not ctx:is_composing() or ctx.input == "" then
         for cand in input:iter() do yield(cand) end
         return
@@ -1175,18 +1093,21 @@ function M.func(input, env)
     local current_seg_tags = seg and seg.tags or nil
     if seg then input_code = s_sub(ctx.input, seg.start + 1, seg._end) end
 
-    -- 热路径工作集只活在本次 filter 调用中，避免跨 composition 长期挂在 env。
-    local active_rules = {}
-    local active_abbrev_rules = {}
+    local active_rules = env.active_rules or {}
+    local active_abbrev_rules = env.active_abbrev_rules or {}
+    clear_array(active_rules)
+    clear_array(active_abbrev_rules)
+    env.active_rules = active_rules
+    env.active_abbrev_rules = active_abbrev_rules
     local has_active_sentence_rule = false
 
-    for _, rule in ipairs(rules) do
-        if is_rule_active(rule, ctx, current_seg_tags) then
-            if rule.mode == "abbrev" then
-                active_abbrev_rules[#active_abbrev_rules + 1] = rule
+    for _, t in ipairs(rules) do
+        if is_rule_active(t, ctx, current_seg_tags) then
+            if t.mode == "abbrev" then
+                active_abbrev_rules[#active_abbrev_rules + 1] = t
             else
-                active_rules[#active_rules + 1] = rule
-                if rule.sentence then has_active_sentence_rule = true end
+                active_rules[#active_rules + 1] = t
+                if t.sentence then has_active_sentence_rule = true end
             end
         end
     end
@@ -1196,74 +1117,27 @@ function M.func(input, env)
         return
     end
 
-    -- FMM 缓冲与 LRU 只服务本次候选流，不再跨按键保留在 env。
     local fmm_offsets = nil
     local fmm_result_parts = nil
-    local fmm_state = nil
     if has_active_sentence_rule then
-        fmm_offsets = {}
-        fmm_result_parts = {}
-        fmm_state = new_fmm_state()
+        fmm_offsets = env.fmm_offsets or {}
+        fmm_result_parts = env.fmm_result_parts or {}
+        env.fmm_offsets = fmm_offsets
+        env.fmm_result_parts = fmm_result_parts
     end
 
-    -- 以下均为纯 Lua 字符串/数字工作区，不保存 Candidate userdata。
-    local derived_texts = {}
-    local derived_comments = {}
-    local comment_parts = {}
-    local main_specs = {}
-    local aux_specs = {}
+    local derived_texts = env.derived_text_buffer or {}
+    local derived_comments = env.derived_comment_buffer or {}
+    local comment_parts = env.comment_buffer or {}
+    local result_buffer = env.result_buffer or {}
+    clear_array(result_buffer)
+    env.result_buffer = result_buffer
+    env.derived_text_buffer = derived_texts
+    env.derived_comment_buffer = derived_comments
+    env.comment_buffer = comment_parts
 
-    -- result spec 只保存普通 Lua 字段。
-    -- kind=0: 使用当前 source Candidate，仅更新 comment；
-    -- kind=1: 按纯字段即时重建一个 Candidate。
-    local function set_original_spec(specs, index, comment)
-        local spec = specs[index]
-        if not spec then
-            spec = {}
-            specs[index] = spec
-        end
-        spec.kind = 0
-        spec.comment = comment or ""
-        return spec
-    end
-
-    local function set_new_spec(specs, index, cand_type, start_pos, end_pos,
-                                text, comment, preedit, quality)
-        local spec = specs[index]
-        if not spec then
-            spec = {}
-            specs[index] = spec
-        end
-        spec.kind = 1
-        spec.cand_type = cand_type
-        spec.start_pos = start_pos
-        spec.end_pos = end_pos
-        spec.text = text
-        spec.comment = comment or ""
-        spec.preedit = preedit
-        spec.quality = quality
-        return spec
-    end
-
-    local function materialize_spec(spec, source_cand)
-        if spec.kind == 0 then
-            source_cand.comment = spec.comment
-            return source_cand
-        end
-
-        local cand = Candidate(
-            spec.cand_type,
-            spec.start_pos,
-            spec.end_pos,
-            spec.text,
-            spec.comment
-        )
-        if spec.preedit ~= nil then cand.preedit = spec.preedit end
-        if spec.quality ~= nil then cand.quality = spec.quality end
-        return cand
-    end
-
-    local function process_rules(cand, specs, candidate_rank)
+    local function process_rules(cand, results, candidate_rank)
+        clear_array(results)
         clear_array(derived_texts)
         clear_array(derived_comments)
         clear_array(comment_parts)
@@ -1276,19 +1150,20 @@ function M.func(input, env)
 
         for _, rule in ipairs(active_rules) do
             local query_text = is_chain and current_text or cand.text
+            local val
+
             local query_key = rule.prefix .. query_text
-            local val = fetch_aggregate(db, query_key)
+            val = fetch_runtime_aggregate(env, db, query_key)
 
             if not val and s_find(query_text, "%u") then
                 query_text = s_lower(query_text)
                 query_key = rule.prefix .. query_text
-                val = fetch_aggregate(db, query_key)
+                val = fetch_runtime_aggregate(env, db, query_key)
             end
 
             if not val and rule.sentence and has_multiple_utf8_chars(query_text) then
                 local seg_result = convert_sentence_fmm(
-                    query_text, db, rule, fmm_state,
-                    fmm_offsets, fmm_result_parts, candidate_rank
+                    query_text, db, rule, env, fmm_offsets, fmm_result_parts
                 )
                 if seg_result ~= query_text then val = seg_result end
             end
@@ -1309,22 +1184,23 @@ function M.func(input, env)
                 end
 
                 local value_pos = 1
+
                 if mode == "comment" then
                     while value_pos do
-                        local part
-                        part, value_pos = next_value(val, value_pos)
-                        if part ~= "" and part ~= input_code then
-                            comment_parts[#comment_parts + 1] = part
+                        local p
+                        p, value_pos = next_value(val, value_pos)
+                        if p ~= "" and p ~= input_code then
+                            comment_parts[#comment_parts + 1] = p
                         end
                     end
                 elseif mode == "replace" and is_chain then
                     local first = true
                     while value_pos do
-                        local part
-                        part, value_pos = next_value(val, value_pos)
-                        if part ~= "" then
+                        local p
+                        p, value_pos = next_value(val, value_pos)
+                        if p ~= "" then
                             if first then
-                                current_text = part
+                                current_text = p
                                 if rule.comment_mode == "none" then
                                     current_main_comment = ""
                                 elseif rule.comment_mode == "text" then
@@ -1333,7 +1209,7 @@ function M.func(input, env)
                                 first = false
                             else
                                 pending_count = pending_count + 1
-                                derived_texts[pending_count] = part
+                                derived_texts[pending_count] = p
                                 derived_comments[pending_count] = rule_comment
                             end
                         end
@@ -1341,11 +1217,11 @@ function M.func(input, env)
                 elseif mode == "replace" or mode == "append" then
                     if mode == "replace" then show_main = false end
                     while value_pos do
-                        local part
-                        part, value_pos = next_value(val, value_pos)
-                        if part ~= "" then
+                        local p
+                        p, value_pos = next_value(val, value_pos)
+                        if p ~= "" then
                             pending_count = pending_count + 1
-                            derived_texts[pending_count] = part
+                            derived_texts[pending_count] = p
                             derived_comments[pending_count] = rule_comment
                         end
                     end
@@ -1361,14 +1237,14 @@ function M.func(input, env)
         if show_main then
             result_count = 1
             if is_chain and current_text ~= cand.text then
-                set_new_spec(
-                    specs, 1,
-                    matched_cand_type or cand.type or "kv",
-                    cand.start, cand._end, current_text, current_main_comment,
-                    cand.preedit, cand.quality
-                )
+                local final_type = matched_cand_type or cand.type or "kv"
+                local new_cand = Candidate(final_type, cand.start, cand._end, current_text, current_main_comment)
+                new_cand.preedit = cand.preedit
+                new_cand.quality = cand.quality
+                results[1] = new_cand
             else
-                set_original_spec(specs, 1, current_main_comment)
+                cand.comment = current_main_comment
+                results[1] = cand
             end
         end
 
@@ -1376,67 +1252,65 @@ function M.func(input, env)
         for i = 1, pending_count do
             local item_text = derived_texts[i]
             if not (show_main and item_text == current_text) then
+                local new_cand = Candidate(final_type, cand.start, cand._end, item_text, derived_comments[i])
+                new_cand.preedit = cand.preedit
+                new_cand.quality = cand.quality
                 result_count = result_count + 1
-                set_new_spec(
-                    specs, result_count,
-                    final_type, cand.start, cand._end,
-                    item_text, derived_comments[i], cand.preedit, cand.quality
-                )
+                results[result_count] = new_cand
             end
         end
 
-        return result_count
+        return results
     end
 
     local candidate_count = 0
     local has_regular_rules = #active_rules > 0
-
     local function process_main(cand)
         candidate_count = candidate_count + 1
-        if candidate_count > CANDIDATE_LIMIT then return nil end
 
-        if has_regular_rules then
-            return process_rules(cand, main_specs, candidate_count)
+        if candidate_count > CANDIDATE_LIMIT then
+            return nil
         end
 
-        set_original_spec(main_specs, 1, cand.comment)
-        return 1
+        if has_regular_rules then
+            return process_rules(cand, result_buffer, candidate_count)
+        end
+
+        clear_array(result_buffer)
+        result_buffer[1] = cand
+        return result_buffer
     end
 
     local yielded_texts = {}
 
-    local function yield_unique_specs(source_cand, specs, count)
-        for i = 1, count do
-            local processed_cand = materialize_spec(specs[i], source_cand)
-            local dedup_key = trim_space(processed_cand.text)
-            if not yielded_texts[dedup_key] then
-                yielded_texts[dedup_key] = true
-                yield(processed_cand)
-            end
-            processed_cand = nil
-        end
-    end
-
-    -- 无简码规则：完全不建立排序工作区，也不把 Candidate 放入任何 table。
+    -- 没有活跃简码规则时，跳过整套简码查询、排序与候选临时对象。
     if #active_abbrev_rules == 0 then
         local passthrough_tail = false
         for cand in input:iter() do
             if passthrough_tail then
                 yield(cand)
             else
-                local result_count = process_main(cand)
-                if not result_count then
+                local processed = process_main(cand)
+                if not processed then
                     passthrough_tail = true
                     yield(cand)
                 else
-                    yield_unique_specs(cand, main_specs, result_count)
+                    for _, processed_cand in ipairs(processed) do
+                        local dedup_key = trim_space(processed_cand.text)
+                        if not yielded_texts[dedup_key] then
+                            yielded_texts[dedup_key] = true
+                            yield(processed_cand)
+                        end
+                    end
                 end
             end
         end
         return
     end
 
-    -- 简码查询缓存也是本次调用局部纯数据；只有确实命中时才分配。
+    -- 简码路径先只做极少量精确查询；只有真的命中后才创建排序/去重临时表。
+    local abbrev_scratch = env.abbrev_scratch
+    clear_abbrev_scratch(abbrev_scratch)
     local seen_texts = nil
     local always_cands = nil
     local lazy_cands = nil
@@ -1449,29 +1323,42 @@ function M.func(input, env)
     local upper_query = nil
 
     if query_code ~= "" then
-        for _, rule in ipairs(active_abbrev_rules) do
-            local val = fetch_aggregate(db, rule.prefix .. query_code)
+        for _, t in ipairs(active_abbrev_rules) do
+            local val = fetch_runtime_aggregate(env, db, t.prefix .. query_code)
 
             if not val and not query_has_upper then
                 if not upper_query then upper_query = s_upper(query_code) end
-                val = fetch_aggregate(db, rule.prefix .. upper_query)
+                val = fetch_runtime_aggregate(env, db, t.prefix .. upper_query)
             end
 
             if val then
                 if not seen_texts then
-                    seen_texts = {}
-                    always_cands = {}
-                    lazy_cands = {}
+                    if not abbrev_scratch then
+                        abbrev_scratch = {
+                            seen = {},
+                            always = {},
+                            lazy = {},
+                            group_fronted = {},
+                            lookup = {},
+                            results = {}
+                        }
+                        env.abbrev_scratch = abbrev_scratch
+                    end
+
+                    seen_texts = abbrev_scratch.seen
+                    always_cands = abbrev_scratch.always
+                    lazy_cands = abbrev_scratch.lazy
                 end
 
                 local count = 0
-                local group_key = rule.prefix
+                local group_key = t.prefix
                 local value_pos = 1
+
                 while value_pos do
-                    local part
-                    part, value_pos = next_value(val, value_pos)
-                    if part ~= "" then
-                        local item_text, item_preedit = parse_item(part, rule.preedit_delim)
+                    local p
+                    p, value_pos = next_value(val, value_pos)
+                    if p ~= "" then
+                        local item_text, item_preedit = parse_item(p, t.preedit_delim)
                         if not seen_texts[item_text] then
                             seen_texts[item_text] = true
                             count = count + 1
@@ -1479,13 +1366,13 @@ function M.func(input, env)
                             local item = {
                                 text = item_text,
                                 preedit = item_preedit and item_preedit ~= "" and item_preedit or nil,
-                                cand_type = rule.cand_type or "abbrev",
+                                cand_type = t.cand_type or "abbrev",
                                 group_key = group_key
                             }
 
-                            if count <= rule.always_qty then
+                            if count <= t.always_qty then
                                 item.quality = 999
-                                item.index = rule.always_idx + count - 1
+                                item.index = t.always_idx + count - 1
                                 item.is_always = true
                                 always_cands[#always_cands + 1] = item
                             else
@@ -1505,48 +1392,42 @@ function M.func(input, env)
             if passthrough_tail then
                 yield(cand)
             else
-                local result_count = process_main(cand)
-                if not result_count then
+                local processed = process_main(cand)
+                if not processed then
                     passthrough_tail = true
                     yield(cand)
                 else
-                    yield_unique_specs(cand, main_specs, result_count)
+                    for _, processed_cand in ipairs(processed) do
+                        local dedup_key = trim_space(processed_cand.text)
+                        if not yielded_texts[dedup_key] then
+                            yielded_texts[dedup_key] = true
+                            yield(processed_cand)
+                        end
+                    end
                 end
             end
         end
+        clear_abbrev_scratch(abbrev_scratch)
         return
     end
 
+    local discard_abbrev_scratch =
+        (#always_cands + #lazy_cands) > ABBREV_SCRATCH_RETAIN_LIMIT
     local yield_count = 0
-    local group_fronted = {}
-    local abbrev_lookup = {}
+    local group_fronted = abbrev_scratch.group_fronted
+    local aux_results = abbrev_scratch.results
+    local abbrev_lookup = abbrev_scratch.lookup
+    clear_map(group_fronted)
+    clear_array(aux_results)
+    clear_map(abbrev_lookup)
 
     t_sort(always_cands, compare_abbrev_index)
+
     for _, item in ipairs(always_cands) do
         abbrev_lookup[trim_space(item.text)] = item
     end
     for _, item in ipairs(lazy_cands) do
         abbrev_lookup[trim_space(item.text)] = item
-    end
-
-    local function process_abbrev_item(item, emit)
-        local abbrev_cand = make_abbrev_candidate(item, abbrev_start, abbrev_end)
-        local count = process_rules(abbrev_cand, aux_specs, nil)
-        for i = 1, count do
-            local processed_cand = materialize_spec(aux_specs[i], abbrev_cand)
-            emit(processed_cand)
-            processed_cand = nil
-        end
-        abbrev_cand = nil
-    end
-
-    local function emit_counted_unique(cand)
-        local dedup_key = trim_space(cand.text)
-        if not yielded_texts[dedup_key] then
-            yielded_texts[dedup_key] = true
-            yield(cand)
-            yield_count = yield_count + 1
-        end
     end
 
     local abbrevs_dumped = false
@@ -1557,7 +1438,15 @@ function M.func(input, env)
         for _, item in ipairs(always_cands) do
             if not item.yielded then
                 item.yielded = true
-                process_abbrev_item(item, emit_counted_unique)
+                local processed = process_rules(make_abbrev_candidate(item, abbrev_start, abbrev_end), aux_results)
+                for _, pc in ipairs(processed) do
+                    local dedup_key = trim_space(pc.text)
+                    if not yielded_texts[dedup_key] then
+                        yielded_texts[dedup_key] = true
+                        yield(pc)
+                        yield_count = yield_count + 1
+                    end
+                end
             end
         end
 
@@ -1565,63 +1454,78 @@ function M.func(input, env)
             if not item.yielded then
                 item.yielded = true
                 if not group_fronted[item.group_key] then
-                    process_abbrev_item(item, emit_counted_unique)
+                    local processed = process_rules(make_abbrev_candidate(item, abbrev_start, abbrev_end), aux_results)
+                    for _, pc in ipairs(processed) do
+                        local dedup_key = trim_space(pc.text)
+                        if not yielded_texts[dedup_key] then
+                            yielded_texts[dedup_key] = true
+                            yield(pc)
+                            yield_count = yield_count + 1
+                        end
+                    end
                 end
             end
         end
     end
 
-    -- 预读最多 30 个候选，只用于判断后续是否存在 phrase。
-    -- Candidate 只保存在 Lua 调用栈中，不进入 table/env/global。
-    local iter_func, iter_state, iter_var = input:iter()
+    local iter_func, state, iter_var = input:iter()
+    local lookahead = {}
     local has_phrase = false
     local is_exhausted = false
 
-    local function next_raw_candidate()
-        if is_exhausted then return nil end
-
-        local cand = iter_func(iter_state, iter_var)
-        iter_var = cand
-        if not cand then
+    while #lookahead < 30 do
+        iter_var = iter_func(state, iter_var)
+        if not iter_var then
             is_exhausted = true
-            return nil
+            break
         end
-        return cand
-    end
 
-    -- 利用多返回值暂存预读 Candidate；遇到 phrase 立即停止继续预读。
-    local function collect_lookahead(n)
-        if n <= 0 or is_exhausted then return end
-
-        local cand = next_raw_candidate()
-        if not cand then return end
-
-        if (cand.type or "") == "phrase" then
+        lookahead[#lookahead + 1] = iter_var
+        if iter_var.type == "phrase" then
             has_phrase = true
-            return cand
+            break
         end
-
-        return cand, collect_lookahead(n - 1)
     end
 
+    local lookahead_index = 1
+    local function get_next_cand()
+        if lookahead_index <= #lookahead then
+            local c = lookahead[lookahead_index]
+            lookahead_index = lookahead_index + 1
+            return c
+        end
+
+        if not is_exhausted then
+            iter_var = iter_func(state, iter_var)
+            if not iter_var then is_exhausted = true end
+            return iter_var
+        end
+
+        return nil
+    end
+
+    local cand = get_next_cand()
     local next_always_ptr = 1
 
-    -- 处理一个候选；返回 false 表示后续候选全部原样直通。
-    local function process_candidate(cand)
+    while cand do
         local candidate_type = cand.type or ""
         local is_user = candidate_type == "user_phrase" or candidate_type == "user_table"
-        local is_regular = candidate_type == "phrase"
-            or (candidate_type == "table" and has_phrase)
-        local result_count = process_main(cand)
+        local is_regular = candidate_type == "phrase" or (candidate_type == "table" and has_phrase)
+        local processed_cands = process_main(cand)
 
-        if not result_count then
+        if not processed_cands then
             dump_all_abbrevs()
             yield(cand)
-            return false
+            cand = get_next_cand()
+            while cand do
+                yield(cand)
+                cand = get_next_cand()
+            end
+            finish_abbrev_scratch(env, abbrev_scratch, discard_abbrev_scratch)
+            return
         end
 
-        for i = 1, result_count do
-            local pc = materialize_spec(main_specs[i], cand)
+        for _, pc in ipairs(processed_cands) do
             local dedup_key = trim_space(pc.text)
 
             if not yielded_texts[dedup_key] then
@@ -1648,7 +1552,17 @@ function M.func(input, env)
                         elseif yield_count + 1 >= item.index then
                             item.yielded = true
                             group_fronted[item.group_key] = true
-                            process_abbrev_item(item, emit_counted_unique)
+
+                            local ac_processed = process_rules(make_abbrev_candidate(item, abbrev_start, abbrev_end), aux_results)
+                            for _, apc in ipairs(ac_processed) do
+                                local apc_key = trim_space(apc.text)
+                                if not yielded_texts[apc_key] then
+                                    yielded_texts[apc_key] = true
+                                    yield(apc)
+                                    yield_count = yield_count + 1
+                                end
+                            end
+
                             next_always_ptr = next_always_ptr + 1
                         else
                             break
@@ -1670,52 +1584,11 @@ function M.func(input, env)
                     end
                 end
             end
-
-            pc = nil
         end
 
-        return true
-    end
-
-    -- 预读候选仍按原顺序消费；尾调用让已处理 Candidate 尽快离开当前栈帧。
-    local function consume_lookahead(cand, ...)
-        if not cand then return true end
-
-        if not process_candidate(cand) then
-            local function yield_rest(rest, ...)
-                if not rest then return end
-                yield(rest)
-                return yield_rest(...)
-            end
-            yield_rest(...)
-            return false
-        end
-
-        return consume_lookahead(...)
-    end
-
-    if not consume_lookahead(collect_lookahead(30)) then
-        while true do
-            local cand = next_raw_candidate()
-            if not cand then break end
-            yield(cand)
-        end
-        return
-    end
-
-    while true do
-        local cand = next_raw_candidate()
-        if not cand then break end
-
-        if not process_candidate(cand) then
-            while true do
-                cand = next_raw_candidate()
-                if not cand then break end
-                yield(cand)
-            end
-            return
-        end
+        cand = get_next_cand()
     end
     dump_all_abbrevs()
+    finish_abbrev_scratch(env, abbrev_scratch, discard_abbrev_scratch)
 end
 return M

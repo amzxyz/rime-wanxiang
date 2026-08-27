@@ -10,7 +10,12 @@ local wanxiang = require("wanxiang/wanxiang")
 local M = {}
 
 -- 全局通信通道
-_G.WanxiangSharedState = _G.WanxiangSharedState or { sorter_active = false, last_input = "", page_cache = {} }
+_G.WanxiangSharedState = _G.WanxiangSharedState
+    or {
+        sorter_active = false,
+        last_input = "",
+        page_cache = {},
+    }
 
 -- 性能优化：本地化字符串函数
 local byte = string.byte
@@ -340,9 +345,12 @@ local function format_and_autocap(cand, env)
     end
 end
 
--- 候选锁定缓存采用扁平纯数据快照，避免 Candidate userdata 进入 table。
--- 每个候选固定占 5 个连续数组槽：type/start/end/text/preedit。
-local SNAP_STRIDE = 5
+local function clone_candidate(c)
+    local nc = Candidate(c.type, c.start, c._end, c.text, c.comment or "")
+    nc.preedit = c.preedit
+    nc.quality = c.quality
+    return nc
+end
 
 local function clear_array(t)
     if not t then return end
@@ -350,16 +358,6 @@ local function clear_array(t)
         t[i] = nil
     end
 end
-
-local function append_snapshot(cache, cand)
-    local n = #cache
-    cache[n + 1] = cand.type or ""
-    cache[n + 2] = tonumber(cand.start) or 0
-    cache[n + 3] = tonumber(cand._end) or 0
-    cache[n + 4] = cand.text or ""
-    cache[n + 5] = cand.preedit or ""
-end
-
 --  包裹映射
 local default_wrap_map = {
     -- 单字母：常用成对括号/引号（每项恰好两个字符）
@@ -560,10 +558,10 @@ function M.init(env)
 
     env.page_size = (cfg and cfg:get_int("menu/page_size")) or 5
 
-    -- 本地锁定缓存只保存扁平纯数据快照，不保存 Candidate。
+    -- 状态初始化
     env.page_cache = {}
     env.last_2code_char = nil
-
+    -- 读取全局类型符号配置
     env.cand_type_symbols = {}
     local map = cfg and cfg:get_map("super_comment/cand_type")
     if map then
@@ -594,7 +592,6 @@ function M.func(input, env)
     local ctx = env and env.engine and env.engine.context or nil
     local code = ctx and (ctx.input or "") or ""
     local comp = ctx and ctx.composition or nil
-
     -- 1. 空环境清理
     if not code or code == "" or (comp and comp:empty()) then
         env.last_2code_char = nil
@@ -609,15 +606,29 @@ function M.func(input, env)
     local code_len = #code
     local seg_len = last_seg and (last_seg._end - last_seg.start) or code_len
 
+    -- 及时清理兜数据
     if seg_len < 2 then
         env.last_2code_char = nil
     end
 
     -- 2. 探查触发符号（斜杠 \）
+    -- 包裹键必须从完整 context.input 解析，不能依赖最后一个 segment。
+    -- 手动排序刷新 composition 后，触发符号及其后缀可能被切成独立尾段；
+    -- 此时符号位于尾段首位，旧逻辑的 pos > 1 会导致 wrap_key 永远无法识别。
     local symbol = env.symbol
     local sym_len = #symbol
     local symbol_pos = symbol and sym_len > 0 and find(code, symbol, 1, true)
     local code_has_symbol = symbol_pos and symbol_pos > 1 or false
+
+    -- 连续输入两个触发符表示取消包裹；先更新状态，再清理上一轮锁定快照。
+    local is_double = (code_len >= sym_len * 2) and (sub(code, -(sym_len * 2)) == symbol .. symbol)
+    if is_double then
+        code_has_symbol = false
+    end
+
+    if not code_has_symbol then
+        clear_array(env.page_cache)
+    end
 
     local wrap_key = nil
     if code_has_symbol then
@@ -628,17 +639,7 @@ function M.func(input, env)
         end
     end
 
-    -- 连续输入两个触发符表示取消包裹；此时应先清掉上一轮锁定快照再重建。
-    local is_double = (code_len >= sym_len * 2) and (sub(code, -(sym_len * 2)) == symbol .. symbol)
-    if is_double then
-        code_has_symbol = false
-    end
-
-    if not code_has_symbol then
-        clear_array(env.page_cache)
-    end
-
-    -- 定位排序脚本是否存活并获取目标缓存。
+    -- 定位排序脚本是否存活并获取目标缓存
     local raw_code = ""
     if code_has_symbol then
         local pos = find(code, symbol, 1, true)
@@ -647,101 +648,64 @@ function M.func(input, env)
         end
     end
 
-    -- 全局通信必须保留。
-    -- 新排序器可把 shared.page_cache 写成 flat5 扁平快照；旧排序器若仍传 Candidate 数组，
-    -- 这里继续兼容读取，避免两个模块必须同时升级才能工作。
+    -- 排序脚本的缓存是最终排序结果；只要输入精确匹配且缓存非空，就应当优先使用。
+    -- 不能再按缓存数量比较，否则排序去重后数量稍少时，会错误回退到本地未排序快照。
     local target_cache = env.page_cache
-    local target_is_flat = true
     local shared = _G.WanxiangSharedState
-    if shared and shared.sorter_active and shared.last_input == raw_code and shared.page_cache and #shared.page_cache > 0 then
+    if shared.sorter_active and shared.last_input == raw_code and shared.page_cache and #shared.page_cache > 0 then
         target_cache = shared.page_cache
-        target_is_flat = shared.page_cache_format == "flat5"
     end
 
-    -- PHASE 1: 输出锁定快照。
+    -- PHASE 1: 缓存快照输出
     if code_has_symbol and target_cache and #target_cache > 0 then
-        local pr = wrap_key and env.wrap_parts[wrap_key] or nil
-        local left = pr and pr.l or ""
-        local right = pr and pr.r or ""
+        for _, c in ipairs(target_cache) do
+            local final_cand = c
 
-        if target_is_flat then
-            for i = 1, #target_cache, SNAP_STRIDE do
-                local cand_type = target_cache[i] or ""
-                local cand_start = tonumber(target_cache[i + 1]) or 0
-                local cand_end = tonumber(target_cache[i + 2]) or 0
-                local cand_text = target_cache[i + 3] or ""
-                local cand_preedit = target_cache[i + 4] or ""
+            if wrap_key then
+                local pr = env.wrap_parts[wrap_key] or { l = "", r = "" }
+                local wrapped_text = (pr.l or "") .. c.text .. (pr.r or "")
 
-                local final_text
-                local final_preedit
-                if wrap_key then
-                    final_text = left .. cand_text .. right
-                    final_preedit = cand_preedit
-                else
-                    local typed_tail = cand_end < code_len and sub(code, cand_end + 1, code_len) or ""
-                    final_text = cand_text
-                    final_preedit = cand_preedit .. typed_tail
-                end
-
-                local final_cand = Candidate(cand_type, cand_start, code_len, final_text, "")
-                final_cand.preedit = final_preedit
-                yield(final_cand)
-            end
-        else
-            -- 兼容旧版排序器的 Candidate 数组；待排序器同步改成 flat5 后即可完全消除
-            -- 全局 Candidate -> table 引用。
-            for _, c in ipairs(target_cache) do
+                -- 快照候选来自输入触发符之前；包裹后必须覆盖完整当前输入，
+                -- 否则独立尾段中的触发符和包裹键不会被候选消费。
+                final_cand = Candidate(c.type, c.start, code_len, wrapped_text, "")
+                final_cand.preedit = c.preedit or ""
+            else
+                -- 仅输入触发符、尚未形成合法包裹键时，继续锁定原候选快照，
+                -- 并把已输入的尾部附加到 preedit。
                 local cand_end = tonumber(c._end) or 0
-                local final_text
-                local final_preedit
-
-                if wrap_key then
-                    final_text = left .. (c.text or "") .. right
-                    final_preedit = c.preedit or ""
-                else
-                    local typed_tail = cand_end < code_len and sub(code, cand_end + 1, code_len) or ""
-                    final_text = c.text or ""
-                    final_preedit = (c.preedit or "") .. typed_tail
-                end
-
-                local final_cand = Candidate(c.type or "", tonumber(c.start) or 0, code_len, final_text, "")
-                final_cand.preedit = final_preedit
-                yield(final_cand)
+                local typed_tail = cand_end < code_len and sub(code, cand_end + 1, code_len) or ""
+                final_cand = Candidate(c.type, c.start, code_len, c.text, "")
+                final_cand.preedit = (c.preedit or "") .. typed_tail
             end
+
+            yield(final_cand)
         end
         return
     end
 
-    -- PHASE 2: 直通车。
+    -- PHASE 2: 直通车
     local idx = 0
     local suppress_set = {}
     local drop_sentence = false
     local wrap_limit = env.page_size * 2
+    local eager_buffer = {}
     local iterator, iterator_state, iterator_control = input:iter()
-    local is_exhausted = false
 
     local function next_candidate()
-        if is_exhausted then return nil end
         local cand = iterator(iterator_state, iterator_control)
         iterator_control = cand
-        if not cand then
-            is_exhausted = true
-            return nil
-        end
         return cand
     end
 
-    -- 预取两页必须在首个 yield 前完成，保证用户随后输入触发符时锁定快照已经完整。
-    -- Candidate 只暂存在 Lua 调用栈的多返回值中，不进入 table/env/global。
-    local function collect_eager(accepted)
-        if accepted >= wrap_limit or is_exhausted then return end
-
+    -- 先从同一个上游迭代器预取两页，确保包裹快照在首个候选 yield 前完整建立。
+    while #eager_buffer < wrap_limit do
         local cand = next_candidate()
-        if not cand then return end
+        if not cand then break end
 
         idx = idx + 1
-        local text = cand.text or ""
+        local text = cand.text
 
+        -- 首选特殊处理
         if idx == 1 then
             local has_eng = has_english_token_fast(text)
 
@@ -750,48 +714,41 @@ function M.func(input, env)
             end
 
             local cand_type = fast_type(cand)
-            if (cand_type == "table" or cand_type == "user_table" or cand_type == "fixed" or cand_type == "completion") and #text >= 4 and has_eng then
+            if (cand_type == "table" or cand_type == "user_table" or cand_type == "fixed" or cand_type == "completion")
+                and #text >= 4 and has_eng then
                 drop_sentence = true
             end
         end
 
-        if (drop_sentence and fast_type(cand) == "sentence") or suppress_set[text] then
-            -- 被抑制的候选无需留在调用栈，尾递归继续找下一项。
-            return collect_eager(accepted)
+        if not (drop_sentence and fast_type(cand) == "sentence") and not suppress_set[text] then
+            suppress_set[text] = true
+
+            local formatted_cand = format_and_autocap(cand, env)
+            if not code_has_symbol then
+                env.page_cache[#env.page_cache + 1] = clone_candidate(formatted_cand)
+            end
+
+            eager_buffer[#eager_buffer + 1] = formatted_cand
         end
-
-        suppress_set[text] = true
-        local formatted_cand = format_and_autocap(cand, env)
-
-        if not code_has_symbol then
-            append_snapshot(env.page_cache, formatted_cand)
-        end
-
-        return formatted_cand, collect_eager(accepted + 1)
     end
 
-    local function yield_eager(cand, ...)
-        if not cand then return end
+    for _, cand in ipairs(eager_buffer) do
         yield(cand)
-        return yield_eager(...)
     end
 
-    yield_eager(collect_eager(0))
-
-    -- 继续消费同一个上游 Translation。
-    while not is_exhausted do
+    -- 继续消费同一个上游迭代器，避免重新从头拉取并依赖 suppress_set 跳过前两页。
+    while true do
         local cand = next_candidate()
         if not cand then break end
 
         idx = idx + 1
-        local text = cand.text or ""
+        local text = cand.text
 
         if not (drop_sentence and fast_type(cand) == "sentence") and not suppress_set[text] then
             suppress_set[text] = true
             yield(format_and_autocap(cand, env))
         end
     end
-
     -- PHASE 3: 三码空候选兜底
     if idx == 0 and seg_len == 3 and sub(code, 1, 1) ~= "/" and not wanxiang.is_special_mode(ctx) then
         local fallback_text = env.last_2code_char
@@ -803,8 +760,8 @@ function M.func(input, env)
             end
             local end_pos = last_seg and last_seg._end or #code
             local c_type = "fallback"
-            local comment_symbol = env.cand_type_symbols[c_type] or ""
-            local nc = Candidate(c_type, start_pos, end_pos, fallback_text, comment_symbol)
+            local symbol = env.cand_type_symbols[c_type] or ""
+            local nc = Candidate(c_type, start_pos, end_pos, fallback_text, symbol)
 
             local seg_str = sub(code, start_pos + 1, end_pos)
             if #seg_str >= 3 then

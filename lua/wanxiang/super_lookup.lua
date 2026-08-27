@@ -9,91 +9,12 @@
 
 local wanxiang = require("wanxiang/wanxiang")
 
-local RECORD_STRIDE = 9
-local R_TYPE = 0
-local R_START = 1
-local R_END = 2
-local R_TEXT = 3
-local R_COMMENT = 4
-local R_QUALITY = 5
-local R_HAS_QUALITY = 6
-local R_PREEDIT = 7
-local R_GENUINE_COMMENT = 8
-
-local function clear_array(t)
-    if not t then return end
-    for i = #t, 1, -1 do
-        t[i] = nil
-    end
-end
-
 local function clear_table(t)
     if not t then return end
     for k in pairs(t) do
         t[k] = nil
     end
 end
-
--- 可排序/跨刷新保存的候选只落纯 Lua 标量，不把 Candidate userdata 放进 table。
-local function append_candidate_values(
-    records, cand_type, cand_start, cand_end, text, comment,
-    quality, has_quality, preedit, genuine_comment
-)
-    local base = #records + 1
-    records[base + R_TYPE] = cand_type or ""
-    records[base + R_START] = tonumber(cand_start) or 0
-    records[base + R_END] = tonumber(cand_end) or 0
-    records[base + R_TEXT] = text or ""
-    records[base + R_COMMENT] = comment or ""
-    records[base + R_QUALITY] = tonumber(quality) or 0
-    records[base + R_HAS_QUALITY] = has_quality and true or false
-    records[base + R_PREEDIT] = preedit or ""
-    records[base + R_GENUINE_COMMENT] = genuine_comment or ""
-    return base
-end
-
-local function append_candidate_record(records, cand)
-    local genuine_comment = ""
-    local genuine = cand:get_genuine()
-    if genuine and genuine.comment then
-        genuine_comment = genuine.comment
-    end
-    return append_candidate_values(
-        records,
-        cand.type, cand.start, cand._end, cand.text, cand.comment or "",
-        cand.quality, cand.quality ~= nil, cand.preedit or "", genuine_comment
-    )
-end
-
--- 直辅旧逻辑把候选先还原成 SimpleCandidate 再解析 comment，
--- 因而下一轮实际使用的是当时可见 comment；这里保持这一语义，同时仍只保存纯标量。
-local function append_direct_source_record(records, cand)
-    local visible_comment = cand.comment or ""
-    return append_candidate_values(
-        records,
-        cand.type, cand.start, cand._end, cand.text, visible_comment,
-        cand.quality, cand.quality ~= nil, cand.preedit or "", visible_comment
-    )
-end
-
-local function yield_candidate_record(records, base)
-    local cand = Candidate(
-        records[base + R_TYPE],
-        records[base + R_START],
-        records[base + R_END],
-        records[base + R_TEXT],
-        records[base + R_COMMENT]
-    )
-    if records[base + R_HAS_QUALITY] then
-        cand.quality = records[base + R_QUALITY]
-    end
-    local preedit = records[base + R_PREEDIT]
-    if preedit ~= "" then
-        cand.preedit = preedit
-    end
-    yield(cand)
-end
-
 
 -- 1. 基础工具函数 (UTF8处理 / 字符串 / 声调)
 local function alt_lua_punc(s)
@@ -756,15 +677,6 @@ local function build_candidate_raw_data(cand, cand_len, env)
     return build_raw_data(cand.text, genuine_comment, cand_len, env)
 end
 
-local function build_record_raw_data(records, base, cand_len, env)
-    return build_raw_data(
-        records[base + R_TEXT],
-        records[base + R_GENUINE_COMMENT],
-        cand_len,
-        env
-    )
-end
-
 -- 6. 引导模式核心逻辑 (声调翻译 / 词组及单字纠错回溯)
 local function get_syl_offset(cand, ctx)
     local syl_offset = 0
@@ -1233,47 +1145,56 @@ local function check_direct_match(raw_data, cand_len, clean_fuma, data_sources)
     return false
 end
 
-local function append_direct_candidate_record(records, source_records, base, ctx_input, pure_code, fuma)
-    local orig_preedit = source_records[base + R_PREEDIT]
-    local preedit
-    if orig_preedit and orig_preedit ~= "" then
-        preedit = orig_preedit:gsub("%s+$", "") .. " " .. fuma
-    else
-        preedit = pure_code .. " " .. fuma
-    end
-
-    local quality = source_records[base + R_QUALITY] + 100
-    return append_candidate_values(
-        records,
-        source_records[base + R_TYPE],
-        source_records[base + R_START],
-        #ctx_input,
-        source_records[base + R_TEXT],
-        source_records[base + R_COMMENT],
-        quality,
-        true,
-        preedit,
-        source_records[base + R_GENUINE_COMMENT]
-    )
+-- 直辅缓存跨 F.func() 保存，因此只存纯 Lua 快照，不保存 Candidate userdata。
+local function snapshot_direct_candidate(cand)
+    return {
+        type = cand.type,
+        start = cand.start,
+        _end = cand._end,
+        text = cand.text,
+        comment = cand.comment or "",
+        quality = cand.quality,
+        preedit = cand.preedit,
+    }
 end
 
--- 8. 模式分发调度控制器 (主干函数)
--- 同一候选长度内排序，不改变原有长度优先级
-local function sort_lookup_bucket(list, source_by_record, level_by_record, order_by_record)
+local function create_direct_candidate(saved, ctx_input, pure_code, fuma)
+    local cand = Candidate(
+        saved.type,
+        saved.start,
+        #ctx_input,
+        saved.text,
+        saved.comment or ""
+    )
+    cand.quality = (tonumber(saved.quality) or 0) + 100
+
+    local orig_preedit = saved.preedit
+    if orig_preedit and orig_preedit ~= "" then
+        cand.preedit = orig_preedit:gsub("%s+$", "") .. " " .. fuma
+    else
+        cand.preedit = pure_code .. " " .. fuma
+    end
+
+    return cand
+end
+
+-- 同一候选长度内排序，不改变原有长度优先级。
+-- 这里的 list 只在本次 handle_explicit_mode() 调用内存在，可以直接保存 Candidate。
+local function sort_lookup_bucket(list)
     table.sort(list, function(a, b)
-        local sa = source_by_record[a] or math.huge
-        local sb = source_by_record[b] or math.huge
+        local sa = a.source_index or math.huge
+        local sb = b.source_index or math.huge
         if sa ~= sb then
             return sa < sb
         end
 
-        local la = level_by_record[a] or math.huge
-        local lb = level_by_record[b] or math.huge
+        local la = a.level or math.huge
+        local lb = b.level or math.huge
         if la ~= lb then
             return la < lb
         end
 
-        return (order_by_record[a] or math.huge) < (order_by_record[b] or math.huge)
+        return a.order < b.order
     end)
 end
 
@@ -1296,13 +1217,9 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
     local apply_tone_filter = env.enable_tone and #tone_filter_seq > 0
     local if_single_char_first = ctx:get_option("char_priority")
 
-    -- 排序路径只保存纯 Lua 标量。records 为 flat9；bucket / long_word_ids 只保存 record base。
-    local records = {}
-    local source_by_record = {}
-    local level_by_record = {}
-    local order_by_record = {}
+    -- buckets / long_word_cands 只在本次调用内存在，直接保存 Candidate。
     local buckets = {}
-    local long_word_ids = {}
+    local long_word_cands = {}
     local match_seq = 0
     local max_len = 0
     local has_any_match = false
@@ -1380,20 +1297,21 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
                 get_lookup_match_info(raw_data, cand_len, clean_fuma, env)
 
             match_seq = match_seq + 1
-            local record_base = append_candidate_record(records, cand)
-            source_by_record[record_base] = source_index
-            level_by_record[record_base] = level
-            order_by_record[record_base] = match_seq
 
             if if_single_char_first and cand_len > 1 then
-                long_word_ids[#long_word_ids + 1] = record_base
+                long_word_cands[#long_word_cands + 1] = cand
             else
                 local bucket = buckets[cand_len]
                 if not bucket then
                     bucket = {}
                     buckets[cand_len] = bucket
                 end
-                bucket[#bucket + 1] = record_base
+                bucket[#bucket + 1] = {
+                    cand = cand,
+                    source_index = source_index,
+                    level = level,
+                    order = match_seq,
+                }
                 if cand_len > max_len then
                     max_len = cand_len
                 end
@@ -1404,21 +1322,21 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
     end
 
     for _, bucket in pairs(buckets) do
-        sort_lookup_bucket(bucket, source_by_record, level_by_record, order_by_record)
+        sort_lookup_bucket(bucket)
     end
 
     if if_single_char_first then
         local singles = buckets[1]
         if singles then
             for i = 1, #singles do
-                yield_candidate_record(records, singles[i])
+                yield(singles[i].cand)
             end
         end
         for l = max_len, 2, -1 do
             local bucket = buckets[l]
             if bucket then
                 for i = 1, #bucket do
-                    yield_candidate_record(records, bucket[i])
+                    yield(bucket[i].cand)
                 end
             end
         end
@@ -1427,14 +1345,14 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
             local bucket = buckets[l]
             if bucket then
                 for i = 1, #bucket do
-                    yield_candidate_record(records, bucket[i])
+                    yield(bucket[i].cand)
                 end
             end
         end
     end
 
-    for i = 1, #long_word_ids do
-        yield_candidate_record(records, long_word_ids[i])
+    for i = 1, #long_word_cands do
+        yield(long_word_cands[i])
     end
 
     -- 这是没有原 Candidate 可依附的真正新增候选，因此保留 Candidate(...)。
@@ -1464,11 +1382,11 @@ local function handle_direct_mode(input, env, ctx_input)
 
     local first_seen = false
     local mode = nil
-    local cache_records = nil
+    local cache_candidates = nil
     local cache_open = false
 
-    -- matched_records 也是 flat9，不保存 Candidate userdata。
-    local matched_records = nil
+    -- matched_cands 只在本次调用内存在，可以直接保存 Candidate。
+    local matched_cands = nil
     local matched_text_count = nil
     local clean_fuma = ""
     local fuma = ""
@@ -1482,7 +1400,7 @@ local function handle_direct_mode(input, env, ctx_input)
     local function build_matches()
         ensure_lookup_resources(env)
 
-        matched_records = {}
+        matched_cands = {}
         matched_text_count = {}
         fuma = ctx_input:sub(#base_input + 1):gsub("['%s]", "")
         clean_fuma = fuma:gsub("[7890]", "")
@@ -1491,19 +1409,14 @@ local function handle_direct_mode(input, env, ctx_input)
             return
         end
 
-        local source_records = direct_cache and direct_cache.candidates
-        if not source_records then
-            return
-        end
-
-        for base = 1, #source_records, RECORD_STRIDE do
-            local raw_data = build_record_raw_data(source_records, base, 2, env)
+        for _, saved in ipairs((direct_cache and direct_cache.candidates) or {}) do
+            -- direct_cache 是跨调用纯 Lua 快照；直接用快照文本/注释构建 raw_data，
+            -- 不为未命中的缓存项额外还原 Candidate。
+            local raw_data = build_raw_data(saved.text, saved.comment or "", 2, env)
             if raw_data and check_direct_match(raw_data, 2, clean_fuma, env.data_sources) then
-                append_direct_candidate_record(
-                    matched_records, source_records, base, ctx_input, base_input, fuma
-                )
-                local text_value = source_records[base + R_TEXT]
-                matched_text_count[text_value] = (matched_text_count[text_value] or 0) + 1
+                local ext_cand = create_direct_candidate(saved, ctx_input, base_input, fuma)
+                matched_cands[#matched_cands + 1] = ext_cand
+                matched_text_count[saved.text] = (matched_text_count[saved.text] or 0) + 1
             end
         end
     end
@@ -1521,11 +1434,11 @@ local function handle_direct_mode(input, env, ctx_input)
     end
 
     local function yield_matches()
-        if matches_yielded or not matched_records then
+        if matches_yielded or not matched_cands then
             return
         end
-        for base = 1, #matched_records, RECORD_STRIDE do
-            yield_candidate_record(matched_records, base)
+        for i = 1, #matched_cands do
+            yield(matched_cands[i])
         end
         matches_yielded = true
     end
@@ -1536,22 +1449,26 @@ local function handle_direct_mode(input, env, ctx_input)
         if not first_seen then
             first_seen = true
 
+            -- 第一位辅码只有在当前首选由两字变成三字时才启动。
             if follows_base and extra_len == 1 and direct_cache and not direct_cache.active and cand_len == 3 then
                 direct_cache.active = true
                 mode = "lookup"
                 build_matches()
+
+            -- 已经启动后，允许继续输入第二位辅码；保持原双码功能。
             elseif follows_base and extra_len >= 1 and extra_len <= 2 and direct_cache and direct_cache.active then
                 mode = "lookup"
                 build_matches()
+
+            -- 首选两字且完整吃码：建立下一轮直辅缓存。
             elseif cand_len == 2 and cand._end == #ctx_input then
                 mode = "cache"
-                cache_records = {}
+                cache_candidates = {}
                 cache_open = true
                 env.direct_cache = {
                     input = ctx_input,
-                    candidates = cache_records,
+                    candidates = cache_candidates,
                     active = false,
-                    format = "flat9",
                 }
             else
                 mode = "passthrough"
@@ -1565,13 +1482,13 @@ local function handle_direct_mode(input, env, ctx_input)
             if cache_open and cand_len == 2 then
                 local first_byte = string.byte(cand.text, 1)
                 if cand.type ~= "sentence" and (not first_byte or first_byte >= 128) and cand._end == #ctx_input then
-                    append_direct_source_record(cache_records, cand)
+                    cache_candidates[#cache_candidates + 1] = snapshot_direct_candidate(cand)
                 end
             else
                 cache_open = false
             end
             yield(cand)
-        elseif mode == "lookup" and matched_records and #matched_records > 0 then
+        elseif mode == "lookup" and matched_cands and #matched_cands > 0 then
             if #clean_fuma == 1 then
                 yield_matches()
                 if not should_skip_current(cand) then
@@ -1595,17 +1512,16 @@ local function handle_direct_mode(input, env, ctx_input)
     end
 
     if mode == "cache" then
-        if cache_records and #cache_records > 0 then
+        if cache_candidates and #cache_candidates > 0 then
             env.direct_cache = {
                 input = ctx_input,
-                candidates = cache_records,
+                candidates = cache_candidates,
                 active = false,
-                format = "flat9",
             }
         else
             env.direct_cache = nil
         end
-    elseif mode == "lookup" and matched_records and #matched_records > 0
+    elseif mode == "lookup" and matched_cands and #matched_cands > 0
         and #clean_fuma == 2 and not matches_yielded
     then
         yield_matches()
@@ -1796,9 +1712,8 @@ function f.func(input, env)
             return
         end
         local direct_cache = env.direct_cache
-        local direct_records = direct_cache and direct_cache.candidates
-        local first_start = direct_records and direct_records[1 + R_START]
-        if first_start ~= nil and first_start ~= seg.start then
+        local first_cached = direct_cache and direct_cache.candidates and direct_cache.candidates[1]
+        if first_cached and first_cached.start ~= seg.start then
             env.direct_cache = nil
             for cand in input:iter() do yield(cand) end
             return
