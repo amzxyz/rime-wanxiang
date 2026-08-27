@@ -1,5 +1,29 @@
 # Changelog
 
+## [17.7.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.6.0...v17.7.0) (2026-08-27)
+
+
+### ✨ 新特性
+
+* 新增uuid4,uuid7,ulid,随机密码 ([25251f9](https://github.com/amzxyz/rime-wanxiang/commit/25251f9f2eb0b4ead1ecd0d9e66921fcb943952c))
+
+
+### 🔥 性能优化
+
+* 优化Lua 对象生命周期与内存占用，降低长期运行内存增长风险,来自最近Windows总是与Lua似乎兼容不好有的人没事有的人觉得卡，现在也是在找原因，如果代码可以规避我们就规避一下，虽然API写起来很简约优雅，rime/librime[#405](https://github.com/amzxyz/rime-wanxiang/issues/405), rime/librime[#1105](https://github.com/amzxyz/rime-wanxiang/issues/1105)，本次将采用发布式测试，希望更多的人反馈 ([6abcd07](https://github.com/amzxyz/rime-wanxiang/commit/6abcd07da52a11eb180ac4d5fd6e5c50e7582905))
+
+
+### 🐛 Bug 修复
+
+* t9将与lite一同打包 ([be17474](https://github.com/amzxyz/rime-wanxiang/commit/be174745df5ae41447ffa3b086ca527153c08326))
+* 弹出候选预测与上下文调频功能缩减成只有上下文调频+量词调频+回退再次输入掉头，Lua实现的弹出涉及到input占用多少还是不好用，权衡之下去掉了，有需要的朋友参考以前的可以继续用 ([9e81c71](https://github.com/amzxyz/rime-wanxiang/commit/9e81c710268b2d234225552a3d285e56f738af3f))
+* 移除无效参数 ([f92ddaf](https://github.com/amzxyz/rime-wanxiang/commit/f92ddafd6482b3a432d69bdcba53d799dbcb0bb5))
+
+
+### 🏡 杂项
+
+* 更新文档 ([209b1ba](https://github.com/amzxyz/rime-wanxiang/commit/209b1ba50e2d6b8efba2cb19e8ca8550b40d4e59))
+
 ## [17.6.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.5.9...v17.6.0) (2026-08-26)
 
 
