@@ -420,13 +420,12 @@ random_tools:
   password: "/mima"
   password_special: "/mimas"
   password_lengths: "6,8,10,16"
-  pin_lengths: "4,6,8,10"
   chars:
     upper: "ABCDEFGHJKLMNPQRSTUVWXYZ"
     lower: "abcdefghijkmnopqrstuvwxyz"
     digit: "23456789"
     special: "!@#$%^&*_-+"
-    pin: "0123456789"
+
 
 super_symbols:
   prefix_sym: "/sym"      # sym精确前缀，配合 . 触发，如 /sym.arrow.r.double
