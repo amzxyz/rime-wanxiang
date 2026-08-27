@@ -50,6 +50,8 @@ package_schema_base() {
     --exclude='/release-please-config.json' \
     --exclude='/pro-*-fuzhu-dicts' \
     --exclude='/CHANGELOG.md' \
+    --exclude='/wanxiang_t9.schema.yaml' \
+    --exclude='wanxiang_t9i.schema.yaml' \
     --exclude='.yamlfmt' \
     --exclude='/custom' \
     --exclude='/LICENSE' \

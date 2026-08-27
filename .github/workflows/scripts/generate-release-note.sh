@@ -56,8 +56,8 @@ CHANGES=$(
   echo ""
 
   # 2. Lite 区域
-  echo "* **轻量版 (Lite)**：[下载方案](${DOWNLOAD_URL}/rime-wanxiang-lite.zip)"
-  echo "  * *主要区别*：无声调词库，减少部分 Lua 功能。"
+  echo "* **轻量版 (Lite)(t9)**：[下载方案](${DOWNLOAD_URL}/rime-wanxiang-lite.zip)"
+  echo "  * *主要区别*：无声调词库，减少部分 Lua 功能。t9与lite一起打包，使用无声调词库"
   echo ""
 
   # 3. Pure 区域
