@@ -76,8 +76,6 @@ function AP.is_chinese_only(text)
 end
 
 function AP.init(env)
-    -- 防止软重载/重入初始化时覆盖旧连接或旧 Memory 引用。
-    release_runtime(env)
     env.comment_cache = {}
 
     local config = env.engine.schema.config
@@ -106,6 +104,7 @@ function AP.init(env)
         end)
     end
 
+    -- 删除事件只用于清理中文造词的注释缓存。
     if env.memory then
         env._delete_conn = ctx.delete_notifier:connect(function()
             clear_comment_cache(env)

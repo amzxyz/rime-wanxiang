@@ -789,7 +789,6 @@ local function init(env)
         history=config:get_string("input_stats/triggers/history") or "/htj",
     }
     acquire_db(env)
-    if env.stat_notifier then env.stat_notifier:disconnect() end
     env.stat_notifier = env.engine.context.commit_notifier:connect(
         function(context) on_commit(context, env) end
     )

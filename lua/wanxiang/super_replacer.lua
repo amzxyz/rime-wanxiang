@@ -964,8 +964,6 @@ end
 
 -- 模块接口
 function M.init(env)
-    if env.db then release_db(env) end
-
     local ns = env.name_space
     ns = s_gsub(ns, "^%*", "")
     ns = string.match(ns, "([^%.]+)$") or ns

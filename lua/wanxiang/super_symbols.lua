@@ -684,9 +684,6 @@ local function release_runtime(env)
 end
 
 function M.init(env)
-    -- 防止软重载/重入 init 时先覆盖旧 notifier 句柄，导致旧闭包继续持有 env。
-    release_runtime(env)
-
     env.super_symbols_runtime = build_runtime(env.engine.schema.config)
     load_stores(env)
 

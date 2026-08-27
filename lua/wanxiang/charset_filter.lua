@@ -301,9 +301,6 @@ end
 
 -- 初始化过滤规则、历史缓存和选项监听。
 function M.init(env)
-    -- 防止软重载/重入初始化时覆盖旧 notifier 或 ReverseDb 引用。
-    release_runtime(env)
-
     local cfg = env.engine and env.engine.schema
         and env.engine.schema.config
 

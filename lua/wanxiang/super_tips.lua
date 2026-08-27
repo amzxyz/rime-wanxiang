@@ -282,13 +282,6 @@ local P = {}
 
 -- 初始化处理器、数据库引用和提示更新通知器。
 function P.init(env)
-    if env.tips_update_connection then
-        env.tips_update_connection:disconnect()
-        env.tips_update_connection = nil
-    end
-
-    release_database(env)
-
     local config = env.engine.schema.config
     env.tips_db, env.tips_db_name = init_database(config)
     env.tips_key = config:get_string("super_tips/tips_key")
