@@ -1,13 +1,28 @@
 -- random_tools.lua
 -- 万象随机工具：UUID4 / UUID7 / ULID / 随机密码
+-- 配置项均从 random_tools/... 读取
+
 local floor = math.floor
 local fmt = string.format
 local byte = string.byte
 local sub = string.sub
 local concat = table.concat
+local tonumber = tonumber
 
 local U32 = 4294967296
 local U16 = 65536
+
+local DEFAULT_UUID_CODE = "/uuid"
+local DEFAULT_UUID7_CODE = "/uuidq"
+local DEFAULT_ULID_CODE = "/ulid"
+local DEFAULT_PASSWORD_CODE = "/mima"
+local DEFAULT_PASSWORD_SPECIAL_CODE = "/mimas"
+
+local DEFAULT_PASSWORD_LENGTHS = { 6, 8, 10, 16 }
+local DEFAULT_UPPER = "ABCDEFGHJKLMNPQRSTUVWXYZ"
+local DEFAULT_LOWER = "abcdefghijkmnopqrstuvwxyz"
+local DEFAULT_DIGIT = "23456789"
+local DEFAULT_SPECIAL = "!@#$%^&*_-+"
 
 local function time_ms()
     if rime_api and rime_api.get_time_ms then
@@ -216,6 +231,9 @@ local function random_below(n)
 end
 
 local function random_char(chars)
+    if not chars or chars == "" then
+        return nil
+    end
     local i = random_below(#chars) + 1
     return sub(chars, i, i)
 end
@@ -298,30 +316,91 @@ local function ulid()
     return concat(out)
 end
 
--- 密码 / PIN
-local UPPER = "ABCDEFGHJKLMNPQRSTUVWXYZ"
-local LOWER = "abcdefghijkmnopqrstuvwxyz"
-local DIGIT = "23456789"
-local SPECIAL = "!@#$%^&*_-+"
-
-local ALNUM = UPPER .. LOWER .. DIGIT
-local ALNUM_SPECIAL = ALNUM .. SPECIAL
-
-local function password(length, with_special)
+local function copy_default_lengths()
     local out = {}
+    for i = 1, #DEFAULT_PASSWORD_LENGTHS do
+        out[i] = DEFAULT_PASSWORD_LENGTHS[i]
+    end
+    return out
+end
 
-    if length >= 1 then out[#out + 1] = random_char(UPPER) end
-    if length >= 2 then out[#out + 1] = random_char(LOWER) end
-    if length >= 3 then out[#out + 1] = random_char(DIGIT) end
-
-    if with_special and length >= 4 then
-        out[#out + 1] = random_char(SPECIAL)
+local function parse_password_lengths(text)
+    if not text or text == "" then
+        return copy_default_lengths()
     end
 
-    local pool = with_special and ALNUM_SPECIAL or ALNUM
+    local out = {}
+    local seen = {}
+
+    for token in text:gmatch("[^,%s]+") do
+        local n = tonumber(token)
+        if n then
+            n = floor(n)
+            if n >= 1 and n <= 256 and not seen[n] then
+                seen[n] = true
+                out[#out + 1] = n
+            end
+        end
+    end
+
+    if #out == 0 then
+        return copy_default_lengths()
+    end
+
+    return out
+end
+
+local function get_config_string(config, path, default_value, allow_empty)
+    local value = config:get_string(path)
+    if value == nil then
+        return default_value
+    end
+    if value == "" and not allow_empty then
+        return default_value
+    end
+    return value
+end
+
+local function append_required(out, chars)
+    local ch = random_char(chars)
+    if ch then
+        out[#out + 1] = ch
+        return true
+    end
+    return false
+end
+
+local function password(length, with_special, env)
+    local out = {}
+
+    local upper = env.password_upper or ""
+    local lower = env.password_lower or ""
+    local digit = env.password_digit or ""
+    local special = env.password_special or ""
+
+    -- 保持原有语义：长度允许时，优先保证大写/小写/数字；
+    -- 含符号模式再保证至少 1 个特殊字符。
+    if #out < length then append_required(out, upper) end
+    if #out < length then append_required(out, lower) end
+    if #out < length then append_required(out, digit) end
+    if with_special and #out < length then append_required(out, special) end
+
+    local pool = upper .. lower .. digit
+    if with_special then
+        pool = pool .. special
+    end
+
+    -- 配置把可用字符全部清空时，不生成无效密码候选。
+    if pool == "" then
+        return nil
+    end
 
     while #out < length do
-        out[#out + 1] = random_char(pool)
+        local ch = random_char(pool)
+        if not ch then
+            return nil
+        end
+        out[#out + 1] = ch
     end
 
     shuffle(out)
@@ -331,6 +410,10 @@ end
 local M = {}
 
 local function yield_cand(seg, text, comment, quality)
+    if not text or text == "" then
+        return
+    end
+
     local cand = Candidate("", seg.start, seg._end, text, comment or "")
     cand.quality = quality or 100
     yield(cand)
@@ -339,15 +422,56 @@ end
 function M.init(env)
     local config = env.engine.schema.config
 
-    M.uuid_code = config:get_string("random_tools/uuid") or "/uuid"
-    M.uuid7_code = config:get_string("random_tools/uuid7") or "/uuidq"
-    M.ulid_code = config:get_string("random_tools/ulid") or "/ulid"
-    M.password_code = config:get_string("random_tools/password") or "/mima"
-    M.password_special_code = config:get_string("random_tools/password_special") or "/mimas"
+    env.uuid_code = get_config_string(
+        config, "random_tools/uuid", DEFAULT_UUID_CODE, false
+    )
+    env.uuid7_code = get_config_string(
+        config, "random_tools/uuid7", DEFAULT_UUID7_CODE, false
+    )
+    env.ulid_code = get_config_string(
+        config, "random_tools/ulid", DEFAULT_ULID_CODE, false
+    )
+    env.password_code = get_config_string(
+        config, "random_tools/password", DEFAULT_PASSWORD_CODE, false
+    )
+    env.password_special_code = get_config_string(
+        config, "random_tools/password_special", DEFAULT_PASSWORD_SPECIAL_CODE, false
+    )
+
+    env.password_lengths = parse_password_lengths(
+        config:get_string("random_tools/password_lengths")
+    )
+
+    -- chars 允许显式配置为空字符串；空类不会被强制加入密码。
+    env.password_upper = get_config_string(
+        config, "random_tools/chars/upper", DEFAULT_UPPER, true
+    )
+    env.password_lower = get_config_string(
+        config, "random_tools/chars/lower", DEFAULT_LOWER, true
+    )
+    env.password_digit = get_config_string(
+        config, "random_tools/chars/digit", DEFAULT_DIGIT, true
+    )
+    env.password_special = get_config_string(
+        config, "random_tools/chars/special", DEFAULT_SPECIAL, true
+    )
 end
 
-function M.func(input, seg, _)
-    if input == M.uuid_code then
+function M.fini(env)
+    env.uuid_code = nil
+    env.uuid7_code = nil
+    env.ulid_code = nil
+    env.password_code = nil
+    env.password_special_code = nil
+    env.password_lengths = nil
+    env.password_upper = nil
+    env.password_lower = nil
+    env.password_digit = nil
+    env.password_special = nil
+end
+
+function M.func(input, seg, env)
+    if input == env.uuid_code then
         local value = uuid_v4()
 
         yield_cand(seg, value, "〔UUID v4〕", 120)
@@ -356,7 +480,7 @@ function M.func(input, seg, _)
         return
     end
 
-    if input == M.uuid7_code then
+    if input == env.uuid7_code then
         local value = uuid_v7()
 
         yield_cand(seg, value, "〔UUID v7〕", 120)
@@ -365,17 +489,19 @@ function M.func(input, seg, _)
         return
     end
 
-    if input == M.ulid_code then
+    if input == env.ulid_code then
         yield_cand(seg, ulid(), "〔ULID〕", 120)
         return
     end
 
-    if input == M.password_code then
-        local lengths = { 6, 8, 10, 16 }
-        for i, n in ipairs(lengths) do
+    if input == env.password_code then
+        local lengths = env.password_lengths or DEFAULT_PASSWORD_LENGTHS
+        for i = 1, #lengths do
+            local n = lengths[i]
+            local value = password(n, false, env)
             yield_cand(
                 seg,
-                password(n, false),
+                value,
                 fmt("〔%d 位 · 字母数字〕", n),
                 120 - i
             )
@@ -383,19 +509,20 @@ function M.func(input, seg, _)
         return
     end
 
-    if input == M.password_special_code then
-        local lengths = { 6, 8, 10, 16 }
-        for i, n in ipairs(lengths) do
+    if input == env.password_special_code then
+        local lengths = env.password_lengths or DEFAULT_PASSWORD_LENGTHS
+        for i = 1, #lengths do
+            local n = lengths[i]
+            local value = password(n, true, env)
             yield_cand(
                 seg,
-                password(n, true),
+                value,
                 fmt("〔%d 位 · 含符号〕", n),
                 120 - i
             )
         end
         return
     end
-
 end
 
 return M
