@@ -391,7 +391,7 @@ super_processor:
 
 context_reorder:
   db_name: context_reorder
-  enable_fallback_reorder: true
+  enable_fallback_reorder: false
   context_timeout: 5000
   custom_classifiers:
     - 个只名位口人头匹条群批伙多
