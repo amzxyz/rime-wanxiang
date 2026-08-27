@@ -137,11 +137,11 @@ tone_map = str.maketrans({
     "ī": "i", "í": "i", "ǐ": "i", "ì": "i", "ḿ": "me",
     "ō": "o", "ó": "o", "ǒ": "o", "ò": "o", "ň": "en",
     "ū": "u", "ú": "u", "ǔ": "u", "ù": "u", "ǹ": "en",
-    "ǖ": "ü", "ǘ": "ü", "ǚ": "ü", "ǜ": "ü", "ń": "en",
+    "ǖ": "v", "ǘ": "v", "ǚ": "v", "ǜ": "v", "ü": "v", "ń": "en",
 })
 
 def strip_tone(text):
-    return text.replace("m̀", "me").translate(tone_map).replace("üe", "ve")
+    return text.replace("m̀", "me").translate(tone_map)
 
 dict_dir = Path(sys.argv[1])
 main_dict = Path(sys.argv[2])
