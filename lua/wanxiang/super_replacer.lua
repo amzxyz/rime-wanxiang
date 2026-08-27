@@ -1086,7 +1086,6 @@ function M.func(input, env)
     local comment_fmt = env.comment_format
     local is_chain = env.chain
 
-    -- 上一轮已经 yield 完的 Candidate / 字符串不需要跨调用保留。
     clear_work_buffers(env)
 
     if not ctx:is_composing() or ctx.input == "" then
