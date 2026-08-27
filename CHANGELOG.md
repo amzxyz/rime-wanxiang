@@ -1,5 +1,24 @@
 # Changelog
 
+## [17.7.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.7.0...v17.7.1) (2026-08-27)
+
+
+### 📚 词库更新
+
+* 词库调整 ([be5f1be](https://github.com/amzxyz/rime-wanxiang/commit/be5f1be8db6f9acfb7938d13c16bb555a16c5db4))
+* 词库调整 ([5235267](https://github.com/amzxyz/rime-wanxiang/commit/5235267f0786661e4b0f1126a7e11f6324de3f76))
+
+
+### 🐛 Bug 修复
+
+* 优化正则排除斜杠 ([80873f4](https://github.com/amzxyz/rime-wanxiang/commit/80873f4fa45f306ac1a9032e72be954637591c16))
+* 修复清理顺序 ([d9a2117](https://github.com/amzxyz/rime-wanxiang/commit/d9a21177db0c4028411c3d01ab4429c0963d94db))
+* 修复随机工具配置读取 ([b715c29](https://github.com/amzxyz/rime-wanxiang/commit/b715c298a82ba2e20c3fd34ac1905822506e4d91))
+* 修改转写 ([94e5314](https://github.com/amzxyz/rime-wanxiang/commit/94e5314984f670cb5785a72f28ea837eb1f41cb1))
+* 小优化 ([984c09b](https://github.com/amzxyz/rime-wanxiang/commit/984c09bc502ab7bf5a5773801aea59dc33e8931c))
+* 小优化 ([a21a3b5](https://github.com/amzxyz/rime-wanxiang/commit/a21a3b50866cb5bc6a19bf1f306bcfea727d5f1c))
+* 测试完毕 ([9623260](https://github.com/amzxyz/rime-wanxiang/commit/9623260bcb56fa6201acacaa5271f4d5f7b18345))
+
 ## [17.7.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.6.0...v17.7.0) (2026-08-27)
 
 
