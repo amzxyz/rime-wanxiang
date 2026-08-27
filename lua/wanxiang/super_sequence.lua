@@ -736,6 +736,15 @@ function F.init(env)
 end
 
 function F.fini(env)
+    local shared = _G.WanxiangSharedState
+    if shared then
+        shared.sorter_active = false
+        shared.last_input = ""
+        if shared.page_cache then
+            clear_array(shared.page_cache)
+        end
+    end
+
     env.symbol = nil
     env.page_size = nil
     release_sequence_state(env)

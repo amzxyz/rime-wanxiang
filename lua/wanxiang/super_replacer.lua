@@ -52,6 +52,14 @@ local function clear_map(t)
     for key in pairs(t) do t[key] = nil end
 end
 
+-- 清空仅供单次 M.func 使用的工作缓冲；保留 table 本身供下轮复用。
+local function clear_work_buffers(env)
+    if env.result_buffer then clear_array(env.result_buffer) end
+    if env.derived_text_buffer then clear_array(env.derived_text_buffer) end
+    if env.derived_comment_buffer then clear_array(env.derived_comment_buffer) end
+    if env.comment_buffer then clear_array(env.comment_buffer) end
+end
+
 local function clear_abbrev_scratch(scratch)
     if not scratch then return end
     clear_map(scratch.seen)
@@ -835,8 +843,6 @@ end
 
 -- 模块接口
 function M.init(env)
-    if env.db then release_db(env) end
-
     env.fmm_offsets = nil
     env.fmm_result_parts = nil
     env.query_cache = {}
@@ -1079,6 +1085,10 @@ function M.func(input, env)
     local rules = env.rules
     local comment_fmt = env.comment_format
     local is_chain = env.chain
+
+    -- 上一轮已经 yield 完的 Candidate / 字符串不需要跨调用保留。
+    clear_work_buffers(env)
+
     if not ctx:is_composing() or ctx.input == "" then
         for cand in input:iter() do yield(cand) end
         return
@@ -1305,6 +1315,7 @@ function M.func(input, env)
                 end
             end
         end
+        clear_work_buffers(env)
         return
     end
 
@@ -1408,6 +1419,7 @@ function M.func(input, env)
             end
         end
         clear_abbrev_scratch(abbrev_scratch)
+        clear_work_buffers(env)
         return
     end
 
@@ -1522,6 +1534,7 @@ function M.func(input, env)
                 cand = get_next_cand()
             end
             finish_abbrev_scratch(env, abbrev_scratch, discard_abbrev_scratch)
+            clear_work_buffers(env)
             return
         end
 
@@ -1590,5 +1603,6 @@ function M.func(input, env)
     end
     dump_all_abbrevs()
     finish_abbrev_scratch(env, abbrev_scratch, discard_abbrev_scratch)
+    clear_work_buffers(env)
 end
 return M
