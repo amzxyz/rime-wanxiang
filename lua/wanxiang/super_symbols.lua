@@ -136,12 +136,15 @@ local function build_trigger_defs(config)
         return #a.exact > #b.exact
     end)
 
-    return trigger_defs
+    return trigger_defs, sym_prefix, emoji_prefix
 end
 
 local function build_runtime(config)
+    local trigger_defs, sym_prefix, emoji_prefix = build_trigger_defs(config)
     return {
-        trigger_defs = build_trigger_defs(config),
+        trigger_defs = trigger_defs,
+        sym_prefix = sym_prefix,
+        emoji_prefix = emoji_prefix,
         max_candidates = config:get_int("super_symbols/max_candidates") or 120
     }
 end
@@ -236,19 +239,6 @@ local function set_segment_prompt(context, text)
     end
 end
 
-local function collect_prefix_matches(query, store)
-    local matches = {}
-
-    for i = 1, #store.entries do
-        local entry = store.entries[i]
-        if starts_with(entry.name, query) then
-            matches[#matches + 1] = entry
-        end
-    end
-
-    return matches
-end
-
 local function common_prefix_pair(a, b)
     local length = math.min(#a, #b)
     local index = 1
@@ -258,30 +248,6 @@ local function common_prefix_pair(a, b)
     end
 
     return a:sub(1, index - 1)
-end
-
-local function longest_common_prefix(values)
-    if #values == 0 then
-        return ""
-    end
-
-    local common = values[1]
-    for i = 2, #values do
-        common = common_prefix_pair(common, values[i])
-        if common == "" then
-            break
-        end
-    end
-
-    return common
-end
-
-local function longest_entry_prefix(entries, name_getter)
-    local values = {}
-    for i = 1, #entries do
-        values[#values + 1] = name_getter(entries[i])
-    end
-    return longest_common_prefix(values)
 end
 
 -- 自动补全只推进当前 token；遇到“.”立即停下，把路径/模糊选择权留给用户。
@@ -336,58 +302,6 @@ local function fuzzy_text_matches(search_text, terms, plain_keyword)
     return search_text:find(plain_keyword, 1, true) ~= nil
 end
 
-local function collect_fuzzy_matches(keyword, scope, store)
-    if keyword == "" then
-        return {}
-    end
-
-    local terms, plain_keyword = fuzzy_terms(keyword)
-    local matches = {}
-
-    for i = 1, #store.entries do
-        local entry = store.entries[i]
-        local lower_scope = scope:lower()
-        if scope == "" or starts_with(entry.lower_name, lower_scope) then
-            local search_text = path_after_scope(entry.lower_name, lower_scope)
-            local matched = fuzzy_text_matches(search_text, terms, plain_keyword)
-
-            if not matched and scope == "" and entry.char == keyword then
-                matched = true
-            end
-
-            if matched then
-                matches[#matches + 1] = entry
-            end
-        end
-    end
-
-    return matches
-end
-
-local function fuzzy_rank(entry, keyword, scope)
-    local search_text = path_after_scope(entry.lower_name, scope:lower())
-    local lower_keyword = keyword:lower()
-
-    if scope == "" and entry.char == keyword then
-        return 0
-    end
-    if search_text == lower_keyword then
-        return 1
-    end
-    if starts_with(search_text, lower_keyword) then
-        return 2
-    end
-
-    local components = split_nonempty(search_text, ".")
-    for i = 1, #components do
-        if starts_with(components[i], lower_keyword) then
-            return 3
-        end
-    end
-
-    return 4
-end
-
 local function candidate_comment(entry, scope)
     if scope ~= "" then
         local relative = path_after_scope(entry.name, scope)
@@ -396,24 +310,108 @@ local function candidate_comment(entry, scope)
     return entry.name
 end
 
-local function build_items(entries, scope, ranking)
+local function component_starts_with(text, prefix)
+    local start_pos = 1
+
+    while true do
+        local dot_pos = text:find(".", start_pos, true)
+        local finish = dot_pos and (dot_pos - 1) or #text
+
+        if finish >= start_pos then
+            local component = text:sub(start_pos, finish)
+            if component ~= "" and starts_with(component, prefix) then
+                return true
+            end
+        end
+
+        if not dot_pos then
+            return false
+        end
+        start_pos = dot_pos + 1
+    end
+end
+
+-- 精确查询直接从 store 构建最终 items；不再先生成完整 matches 数组。
+local function build_exact_items(query, store)
+    local items = {}
+    local seen = {}
+    local child_prefix = query ~= "" and (query .. ".") or nil
+    local has_children = false
+
+    for i = 1, #store.entries do
+        local entry = store.entries[i]
+        if starts_with(entry.name, query) then
+            if child_prefix and not has_children and starts_with(entry.name, child_prefix) then
+                has_children = true
+            end
+
+            local comment = entry.name
+            local dedup_key = entry.char .. "\t" .. comment
+            if not seen[dedup_key] then
+                seen[dedup_key] = true
+                items[#items + 1] = {
+                    text = entry.char,
+                    comment = comment,
+                    name = entry.name,
+                    source_order = entry.source_order,
+                    rank = 0
+                }
+            end
+        end
+    end
+
+    return items, has_children
+end
+
+-- 模糊查询同样单次扫描并直接生成最终 items，避免 matches 中间数组。
+-- rank 计算复用预先 lower() 的 keyword/scope，并避免为每个候选 split 出 components 表。
+local function build_fuzzy_items(keyword, scope, store)
+    local terms, plain_keyword = fuzzy_terms(keyword)
+    local lower_keyword = keyword:lower()
+    local lower_scope = scope:lower()
+    local scope_empty = scope == ""
     local items = {}
     local seen = {}
 
-    for i = 1, #entries do
-        local entry = entries[i]
-        local comment = candidate_comment(entry, scope)
-        local dedup_key = entry.char .. "\t" .. comment
+    for i = 1, #store.entries do
+        local entry = store.entries[i]
+        if scope_empty or starts_with(entry.lower_name, lower_scope) then
+            local search_text = path_after_scope(entry.lower_name, lower_scope)
+            local matched = fuzzy_text_matches(search_text, terms, plain_keyword)
 
-        if not seen[dedup_key] then
-            seen[dedup_key] = true
-            items[#items + 1] = {
-                text = entry.char,
-                comment = comment,
-                name = entry.name,
-                source_order = entry.source_order,
-                rank = ranking and ranking(entry) or 0
-            }
+            if not matched and scope_empty and entry.char == keyword then
+                matched = true
+            end
+
+            if matched then
+                local comment = candidate_comment(entry, scope)
+                local dedup_key = entry.char .. "\t" .. comment
+
+                if not seen[dedup_key] then
+                    seen[dedup_key] = true
+
+                    local rank
+                    if scope_empty and entry.char == keyword then
+                        rank = 0
+                    elseif search_text == lower_keyword then
+                        rank = 1
+                    elseif starts_with(search_text, lower_keyword) then
+                        rank = 2
+                    elseif component_starts_with(search_text, lower_keyword) then
+                        rank = 3
+                    else
+                        rank = 4
+                    end
+
+                    items[#items + 1] = {
+                        text = entry.char,
+                        comment = comment,
+                        name = entry.name,
+                        source_order = entry.source_order,
+                        rank = rank
+                    }
+                end
+            end
         end
     end
 
@@ -444,21 +442,6 @@ local function sort_fuzzy_items(items)
         end
         return a.source_order < b.source_order
     end)
-end
-
-local function has_path_children(query, matches)
-    if query == "" then
-        return false
-    end
-
-    local child_prefix = query .. "."
-    for i = 1, #matches do
-        if starts_with(matches[i].name, child_prefix) then
-            return true
-        end
-    end
-
-    return false
 end
 
 local function result_count_text(total, limit)
@@ -510,42 +493,66 @@ local function exact_autofill_suffix(query, store)
         return ""
     end
 
-    local matches = collect_prefix_matches(query, store)
-    if #matches == 0 then
-        return ""
+    -- 自动补全只需要公共前缀；直接单次扫描，不再构造 matches / values 临时表。
+    local common
+    for i = 1, #store.entries do
+        local name = store.entries[i].name
+        if starts_with(name, query) then
+            common = common and common_prefix_pair(common, name) or name
+            if common == query then
+                break
+            end
+        end
     end
 
-    local common = longest_entry_prefix(matches, function(entry)
-        return entry.name
-    end)
+    if not common then
+        return ""
+    end
 
     return completion_suffix(query, common)
 end
 
 -- 模糊模式只有在“所有当前命中都从关键词开头”时才补全。
--- 这样不会把 contains 搜索误改成 prefix 搜索，也不会改变当前结果集合。
+-- 直接扫描 store 并增量计算公共前缀，避免 matches / relative_names 两级临时数组。
 local function fuzzy_autofill_suffix(keyword, scope, store)
     if keyword == "" or keyword:find(".", 1, true) then
         return ""
     end
 
-    local matches = collect_fuzzy_matches(keyword, scope, store)
-    if #matches == 0 then
+    local terms, plain_keyword = fuzzy_terms(keyword)
+    local lower_keyword = keyword:lower()
+    local lower_scope = scope:lower()
+    local scope_empty = scope == ""
+    local common
+    local found = false
+
+    for i = 1, #store.entries do
+        local entry = store.entries[i]
+        if scope_empty or starts_with(entry.lower_name, lower_scope) then
+            local relative = path_after_scope(entry.lower_name, lower_scope)
+            local matched = fuzzy_text_matches(relative, terms, plain_keyword)
+
+            if not matched and scope_empty and entry.char == keyword then
+                matched = true
+            end
+
+            if matched then
+                found = true
+                if not starts_with(relative, lower_keyword) then
+                    return ""
+                end
+                common = common and common_prefix_pair(common, relative) or relative
+                if common == lower_keyword then
+                    return ""
+                end
+            end
+        end
+    end
+
+    if not found or not common then
         return ""
     end
 
-    local lower_keyword = keyword:lower()
-    local relative_names = {}
-
-    for i = 1, #matches do
-        local relative = path_after_scope(matches[i].lower_name, scope:lower())
-        if not starts_with(relative, lower_keyword) then
-            return ""
-        end
-        relative_names[#relative_names + 1] = relative
-    end
-
-    local common = longest_common_prefix(relative_names)
     return completion_suffix(lower_keyword, common)
 end
 
@@ -616,10 +623,9 @@ local function update_super_symbol_tag(env, context)
         return
     end
 
-    local config = env.engine.schema.config
-    local sym_prefix = config:get_string("super_symbols/prefix_sym") or "/sym"
-    local emoji_prefix = config:get_string("super_symbols/prefix_emoji") or "/emoji"
-
+    local runtime = get_runtime(env)
+    local sym_prefix = runtime.sym_prefix
+    local emoji_prefix = runtime.emoji_prefix
     local input = context.input or ""
 
     if input:sub(1, #sym_prefix) == sym_prefix
@@ -659,16 +665,29 @@ local function on_context_update(env, context)
     try_autofill(env, context)
 end
 
-function M.init(env)
-    env.super_symbols_runtime = build_runtime(env.engine.schema.config)
+local function release_runtime(env)
+    local connection = env.super_symbols_update_connection
+    if connection and connection.disconnect then
+        pcall(function()
+            connection:disconnect()
+        end)
+    end
+
+    env.super_symbols_update_connection = nil
+    env.super_symbols_runtime = nil
     env.super_symbols_stores = nil
     env.super_symbols_loading = nil
     env.super_symbols_autofill_busy = nil
     env.super_symbols_autofill_target = nil
     env.super_symbols_autofill_suppressed_input = nil
     env.super_symbols_last_input = nil
-    env.super_symbols_update_connection = nil
+end
 
+function M.init(env)
+    -- 防止软重载/重入 init 时先覆盖旧 notifier 句柄，导致旧闭包继续持有 env。
+    release_runtime(env)
+
+    env.super_symbols_runtime = build_runtime(env.engine.schema.config)
     load_stores(env)
 
     local context = env.engine and env.engine.context
@@ -688,21 +707,7 @@ function M.init(env)
 end
 
 function M.fini(env)
-    local connection = env.super_symbols_update_connection
-    if connection and connection.disconnect then
-        pcall(function()
-            connection:disconnect()
-        end)
-    end
-
-    env.super_symbols_update_connection = nil
-    env.super_symbols_runtime = nil
-    env.super_symbols_stores = nil
-    env.super_symbols_loading = nil
-    env.super_symbols_autofill_busy = nil
-    env.super_symbols_autofill_target = nil
-    env.super_symbols_autofill_suppressed_input = nil
-    env.super_symbols_last_input = nil
+    release_runtime(env)
 end
 
 function M.func(input, segment, env)
@@ -736,19 +741,18 @@ function M.func(input, segment, env)
     end
 
     if query.mode == "exact" then
-        local matches = collect_prefix_matches(query.query, store)
-        if #matches == 0 then
+        local items, has_children = build_exact_items(query.query, store)
+        if #items == 0 then
             yield_state_candidate(context, segment, query.kind, "无匹配", "退格修改 • 可改用 ? 搜索")
             return
         end
 
-        local items = build_items(matches, "")
         sort_exact_items(items, query.query)
         set_exact_prompt(
             context,
             #items,
             runtime.max_candidates,
-            has_path_children(query.query, matches)
+            has_children
         )
         yield_items(items, store.candidate_type, segment, runtime.max_candidates)
         return
@@ -770,16 +774,13 @@ function M.func(input, segment, env)
         return
     end
 
-    local matches = collect_fuzzy_matches(query.query, query.scope, store)
-    if #matches == 0 then
+    local items = build_fuzzy_items(query.query, query.scope, store)
+    if #items == 0 then
         local comment = query.scope ~= "" and ("范围 " .. query.scope .. " • 修改关键词") or "修改关键词"
         yield_state_candidate(context, segment, query.kind, "无匹配", comment)
         return
     end
 
-    local items = build_items(matches, query.scope, function(entry)
-        return fuzzy_rank(entry, query.query, query.scope)
-    end)
     sort_fuzzy_items(items)
     set_fuzzy_prompt(context, #items, runtime.max_candidates, query.scope)
     yield_items(items, store.candidate_type, segment, runtime.max_candidates)

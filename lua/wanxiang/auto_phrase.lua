@@ -2,8 +2,35 @@
 -- 自动造词
 local AP = {}
 
--- 注释缓存：text -> comment（只给中文造词用）
-local comment_cache = {}
+local function clear_comment_cache(env)
+    local cache = env.comment_cache
+    if not cache then return end
+    for key in pairs(cache) do
+        cache[key] = nil
+    end
+end
+
+local function release_runtime(env)
+    if env._commit_conn then
+        pcall(function() env._commit_conn:disconnect() end)
+        env._commit_conn = nil
+    end
+
+    if env._delete_conn then
+        pcall(function() env._delete_conn:disconnect() end)
+        env._delete_conn = nil
+    end
+
+    if env.memory then
+        pcall(function() env.memory:disconnect() end)
+        env.memory = nil
+    end
+
+    if env.en_memory then
+        pcall(function() env.en_memory:disconnect() end)
+        env.en_memory = nil
+    end
+end
 
 -- 工具：是否纯英文（ASCII 且至少 1 个字母）
 local function is_ascii_word(text)
@@ -49,6 +76,10 @@ function AP.is_chinese_only(text)
 end
 
 function AP.init(env)
+    -- 防止软重载/重入初始化时覆盖旧连接或旧 Memory 引用。
+    release_runtime(env)
+    env.comment_cache = {}
+
     local config = env.engine.schema.config
     local ctx    = env.engine.context
 
@@ -75,42 +106,26 @@ function AP.init(env)
         end)
     end
 
-    -- 删除事件只用于清理中文造词的注释缓存。
     if env.memory then
         env._delete_conn = ctx.delete_notifier:connect(function()
-            comment_cache = {}
+            clear_comment_cache(env)
         end)
     end
 end
 
 function AP.fini(env)
-    if env._commit_conn then
-        env._commit_conn:disconnect()
-        env._commit_conn = nil
-    end
-
-    if env._delete_conn then
-        env._delete_conn:disconnect()
-        env._delete_conn = nil
-    end
-
-    if env.memory then
-        env.memory:disconnect()
-        env.memory = nil
-    end
-
-    if env.en_memory then
-        env.en_memory:disconnect()
-        env.en_memory = nil
-    end
+    release_runtime(env)
+    clear_comment_cache(env)
+    env.comment_cache = nil
 end
 
-function AP.save_comment_cache(cand, genuine)
+function AP.save_comment_cache(cand, genuine, env)
     local text = cand.text
     local comment = genuine.comment
+    local cache = env.comment_cache
 
-    if text and text ~= "" and comment and comment ~= "" then
-        comment_cache[text] = comment
+    if cache and text and text ~= "" and comment and comment ~= "" then
+        cache[text] = comment
     end
 end
 
@@ -119,11 +134,10 @@ function AP.func(input, env)
     local use_comment_cache = env.memory ~= nil  -- 只有中文造词才需要缓存注释
 
     for cand in input:iter() do
-        local genuine_cand    = cand:get_genuine()
-        local initial_comment = genuine_cand.comment
+        local genuine_cand = cand:get_genuine()
 
         if use_comment_cache then
-            AP.save_comment_cache(cand, genuine_cand)
+            AP.save_comment_cache(cand, genuine_cand, env)
         end
 
         yield(cand)
@@ -132,8 +146,10 @@ end
 
 -- 造词
 function AP.commit_handler(ctx, env)
+    local comment_cache = env.comment_cache
+
     if not ctx or not ctx.composition then
-        comment_cache = {}
+        clear_comment_cache(env)
         return
     end
 
@@ -164,7 +180,7 @@ function AP.commit_handler(ctx, env)
             end
         end
 
-        comment_cache = {}
+        clear_comment_cache(env)
         return
     end
 
@@ -172,17 +188,17 @@ function AP.commit_handler(ctx, env)
     -- ② 中文自动造词
     ---------------------------------------------------
     if not env.memory then
-        comment_cache = {}
+        clear_comment_cache(env)
         return
     end
 
     -- 基础检查
     if segments_count <= 1 or utf8.len(commit_text) <= 1 then
-        comment_cache = {}
+        clear_comment_cache(env)
         return
     end
     if not AP.is_chinese_only(commit_text) or comment_cache[commit_text] then
-        comment_cache = {}
+        clear_comment_cache(env)
         return
     end
 
@@ -201,7 +217,7 @@ function AP.commit_handler(ctx, env)
                 -- 最后一个 segment 无候选，允许跳过
                 goto continue
             else
-                comment_cache = {}
+                clear_comment_cache(env)
                 return
             end
         end
@@ -215,7 +231,7 @@ function AP.commit_handler(ctx, env)
                 -- 最后一个 segment 无编码，允许跳过
                 goto continue
             else
-                comment_cache = {}
+                clear_comment_cache(env)
                 return
             end
         end
@@ -230,14 +246,14 @@ function AP.commit_handler(ctx, env)
 
     -- 最终至少需要一个编码片段
     if #code_table == 0 then
-        comment_cache = {}
+        clear_comment_cache(env)
         return
     end
 
     -- 检查编码片段数量是否与 commit_text 的字数一致
     local total_chars = utf8.len(commit_text)
     if #code_table ~= total_chars then
-        comment_cache = {}
+        clear_comment_cache(env)
         return
     end
 
@@ -248,7 +264,7 @@ function AP.commit_handler(ctx, env)
     env.memory:update_userdict(dictEntry, 1, "")
 
     if raw_input == "" then
-        comment_cache = {}
+        clear_comment_cache(env)
     end
 end
 

@@ -31,6 +31,16 @@ local tonumber = tonumber
 local floor = math.floor
 local concat = table.concat
 
+local function clear_array(t)
+    if not t then return end
+    for i = #t, 1, -1 do t[i] = nil end
+end
+
+local function clear_table(t)
+    if not t then return end
+    for k in pairs(t) do t[k] = nil end
+end
+
 local DEFAULT_MAX_CANDIDATES = 0
 
 local function is_single_ascii_letter(input)
@@ -163,6 +173,14 @@ function T.func(input, seg, env)
 
     if limited and single_letter then
         native_limit = total_limit - injected_count
+    end
+
+    -- 单字母注入已经占满总额度时，不再创建一次完全不会消费的 Native Translation。
+    if single_letter and limited and native_limit <= 0 then
+        update_single_candidate_quality(current_candidate, opposite_candidate, nil)
+        if current_candidate then yield(current_candidate) end
+        if opposite_candidate then yield(opposite_candidate) end
+        return
     end
 
     local translation = env.eng_translator:query(input, seg)
@@ -388,15 +406,18 @@ local function find_target_in_text(text, start_pos, target_fp)
     return nil, nil
 end
 
-local function restore_sentence_spacing(cand, split_pattern, check_pattern)
+local function restore_sentence_spacing_text(cand, split_pattern, check_pattern, starts, chunks, output)
     local guide = cand.preedit or ""
+    local text = cand.text or ""
 
     if not find(guide, check_pattern) then
-        return cand
+        return text
     end
 
-    local text = cand.text
-    local starts = {}
+    clear_array(starts)
+    clear_array(chunks)
+    clear_array(output)
+
     local search_pos = 1
     local start_count = 0
 
@@ -407,7 +428,7 @@ local function restore_sentence_spacing(cand, split_pattern, check_pattern)
             local match_start, match_end = find_target_in_text(text, search_pos, target)
 
             if not match_start then
-                return cand
+                return text
             end
 
             start_count = start_count + 1
@@ -417,10 +438,9 @@ local function restore_sentence_spacing(cand, split_pattern, check_pattern)
     end
 
     if start_count == 0 then
-        return cand
+        return text
     end
 
-    local chunks = {}
     local chunk_count = 0
 
     if starts[1] > 1 then
@@ -437,8 +457,6 @@ local function restore_sentence_spacing(cand, split_pattern, check_pattern)
         chunks[chunk_count] = sub(text, current_start, chunk_end)
     end
 
-    local output = {}
-
     if chunk_count > 0 then
         output[1] = chunks[1]
     end
@@ -454,18 +472,14 @@ local function restore_sentence_spacing(cand, split_pattern, check_pattern)
         end
     end
 
-    local new_text = concat(output)
+    local new_text = concat(output, "", 1, chunk_count)
     new_text = gsub(new_text, "%s%s+", " ")
 
-    if new_text == "" or new_text == text then
-        return cand
+    if new_text == "" then
+        return text
     end
 
-    local nc = Candidate(cand.type, cand.start, cand._end, new_text, cand.comment)
-    nc.preedit = cand.preedit
-    nc.quality = cand.quality
-
-    return nc
+    return new_text
 end
 
 local function is_phrase_initial_prefix(text, input_code)
@@ -481,14 +495,17 @@ local function is_phrase_initial_prefix(text, input_code)
     return sub(initials, 1, #code) == code
 end
 
-local function apply_segment_formatting(text, input_code, input_has_upper)
+local function apply_segment_formatting(text, input_code, input_has_upper, parts)
     if not input_code or input_code == "" or not input_has_upper then return text end
-    local parts = {}
+    clear_array(parts)
+    local part_count = 0
     local p_code = 1
+
     for word in gmatch(text, "%S+") do
         local out_word = word
         local clean_word = pure(word)
         local w_len = #clean_word
+
         if w_len > 0 then
             if find(word, "[\128-\255]") then
                 local input_remain = #input_code - p_code + 1
@@ -511,28 +528,22 @@ local function apply_segment_formatting(text, input_code, input_has_upper)
                 end
             end
         end
-        parts[#parts + 1] = out_word
+
+        part_count = part_count + 1
+        parts[part_count] = out_word
     end
 
-    return concat(parts, " ")
+    return concat(parts, " ", 1, part_count)
 end
 
-local function apply_formatting(cand, code_ctx, preserve_letter_case)
-    local text = cand.text
+local function apply_formatting_text(text, code_ctx, preserve_letter_case, format_parts)
     if not text or text == "" then
-        return cand
+        return text or ""
     end
-
-    local changed = false
 
     if is_ascii_phrase_fast(text) then
         if code_ctx.input_has_upper and not preserve_letter_case then
-            local new_text = apply_segment_formatting(text, code_ctx.raw_input, code_ctx.input_has_upper)
-
-            if new_text ~= text then
-                text = new_text
-                changed = true
-            end
+            text = apply_segment_formatting(text, code_ctx.raw_input, code_ctx.input_has_upper, format_parts)
         end
 
         if code_ctx.spacing_mode and code_ctx.spacing_mode ~= "off" then
@@ -541,32 +552,20 @@ local function apply_formatting(cand, code_ctx, preserve_letter_case)
             if mode == "smart" then
                 if code_ctx.prev_is_eng and not find(text, "^%s") then
                     text = " " .. text
-                    changed = true
                 end
             elseif mode == "before" then
                 if not find(text, "^%s") then
                     text = " " .. text
-                    changed = true
                 end
             elseif mode == "after" then
                 if not find(text, "%s$") then
                     text = text .. " "
-                    changed = true
                 end
             end
         end
     end
 
-    if not changed then
-        return cand
-    end
-
-    local nc = Candidate(cand.type, cand.start, cand._end, text, cand.comment)
-
-    nc.preedit = cand.preedit
-    nc.quality = cand.quality
-
-    return nc
+    return text
 end
 
 local P = {}
@@ -633,6 +632,11 @@ function F.init(env)
     local cfg = env.engine.schema.config
     env.schema_id = env.engine.schema.schema_id
     env.memory = env.schema_id == "wanxiang_english" and {} or nil
+    -- 热路径 scratch 仅保存 Lua number/string，循环复用，避免每候选创建多张临时表。
+    env.spacing_starts = {}
+    env.spacing_chunks = {}
+    env.spacing_output = {}
+    env.format_parts = {}
     env.english_spacing_mode = "off"
     env.spacing_timeout = 0
     env.lookup_key = "`"
@@ -680,7 +684,7 @@ function F.init(env)
 
             if curr_input == "" then
                 env.comp_start_time = nil
-                if env.memory then env.memory = {} end
+                if env.memory then clear_table(env.memory) end
             elseif env.comp_start_time == nil then
                 env.comp_start_time = get_now()
             end
@@ -719,6 +723,10 @@ function F.fini(env)
         env.commit_notifier = nil
     end
     env.memory = nil
+    env.spacing_starts = nil
+    env.spacing_chunks = nil
+    env.spacing_output = nil
+    env.format_parts = nil
 end
 
 function F.func(input, env)
@@ -780,34 +788,54 @@ function F.func(input, env)
     }
 
     for cand in input:iter() do
-        local good_cand = cand
+        local original_text = cand.text or ""
+        local original_comment = cand.comment or ""
+        local final_text = original_text
 
         if env.schema_id == "wanxiang_english" then
-            good_cand = restore_sentence_spacing(cand, env.split_pattern, env.delim_check_pattern)
+            final_text = restore_sentence_spacing_text(
+                cand,
+                env.split_pattern,
+                env.delim_check_pattern,
+                env.spacing_starts,
+                env.spacing_chunks,
+                env.spacing_output
+            )
         end
 
         local preserve_single_letter_case = single_letter_input
-            and is_single_ascii_letter(good_cand.text)
-            and lower(good_cand.text) == input_lower
+            and is_single_ascii_letter(final_text)
+            and lower(final_text) == input_lower
 
         local preserve_letter_case = preserve_single_letter_case
-            or is_phrase_initial_prefix(good_cand.text, curr_input)
+            or is_phrase_initial_prefix(final_text, curr_input)
 
-        local fmt_cand = apply_formatting(good_cand, code_ctx, preserve_letter_case)
+        final_text = apply_formatting_text(
+            final_text,
+            code_ctx,
+            preserve_letter_case,
+            env.format_parts
+        )
 
-        if env.schema_id == "wanxiang_english" and fmt_cand.comment and find(fmt_cand.comment, "\226\152\175") then
-            local original_quality = fmt_cand.quality
-            local nc = Candidate(fmt_cand.type, fmt_cand.start, fmt_cand._end, fmt_cand.text, "")
+        local final_comment = original_comment
+        if env.schema_id == "wanxiang_english"
+            and final_comment ~= ""
+            and find(final_comment, "\226\152\175")
+        then
+            final_comment = ""
+        end
 
-            nc.preedit = fmt_cand.preedit
-            nc.quality = original_quality
-            fmt_cand = nc
+        local fmt_cand = cand
+        if final_text ~= original_text or final_comment ~= original_comment then
+            -- 只派生一次 ShadowCandidate：保留 genuine Phrase / 用户词典身份，
+            -- 避免 restore -> format -> comment 三段连续 Candidate(...) 重建。
+            fmt_cand = ShadowCandidate(cand, cand.type, final_text, final_comment, false)
         end
 
         has_valid_candidate = true
 
-        if env.memory and not best_candidate_saved and fmt_cand.comment ~= "~" and not env.block_derivation then
-            env.memory[curr_input] = fmt_cand.text
+        if env.memory and not best_candidate_saved and final_comment ~= "~" and not env.block_derivation then
+            env.memory[curr_input] = final_text
             best_candidate_saved = true
         end
 
@@ -848,7 +876,7 @@ function F.func(input, env)
                     output_text = curr_input
                 end
 
-                output_text = apply_segment_formatting(output_text, curr_input, input_has_upper)
+                output_text = apply_segment_formatting(output_text, curr_input, input_has_upper, env.format_parts)
                 local cand = Candidate("fallback", 0, #curr_input, output_text, "~")
                 cand.preedit = output_text
                 cand.quality = 999

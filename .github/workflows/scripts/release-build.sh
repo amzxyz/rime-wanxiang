@@ -123,7 +123,7 @@ package_schema_lite() {
     "$OUT_DIR/lua/data/codex_sym.txt" \
     "$OUT_DIR/lua/data/charset.reverse.bin"
 
-  # 5) Lite 词库第二列去声调并改为 *.lite.dict.yaml；en.dict.yaml 原样保留
+  # 5) Lite 词库第二列去声调并改为 *.lite.dict.yaml；en.dict.yaml / mixed.dict.yaml 原样保留
   python3 - "$OUT_DIR/dicts" "$OUT_DIR/wanxiang_lite.dict.yaml" <<'PY'
 from pathlib import Path
 import os
@@ -139,7 +139,7 @@ tone_map = str.maketrans({
 })
 
 def strip_tone(text):
-    return text.replace("m̀", "me").translate(tone_map)
+    return text.replace("m̀", "me").translate(tone_map).replace("üe", "ve")
 
 dict_dir = Path(sys.argv[1])
 main_dict = Path(sys.argv[2])
@@ -148,7 +148,7 @@ renamed = {}
 if dict_dir.is_dir():
     paths = [
         path for path in dict_dir.rglob("*.dict.yaml")
-        if path.name != "en.dict.yaml"
+        if path.name not in {"en.dict.yaml", "mixed.dict.yaml"}
         and not path.name.endswith(".lite.dict.yaml")
     ]
 
