@@ -1,5 +1,25 @@
 # Changelog
 
+## [17.7.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.7.1...v17.7.2) (2026-08-29)
+
+
+### 📚 词库更新
+
+* 词库调整 ([fb2c7bd](https://github.com/amzxyz/rime-wanxiang/commit/fb2c7bdfb4e797fc57980852b8c9718c0d47b91b))
+* 词库调整 ([bfa80cf](https://github.com/amzxyz/rime-wanxiang/commit/bfa80cfa8664f316c2cc8fa5e9ef1c47bb3393a8))
+* 词库调整 ([a313e25](https://github.com/amzxyz/rime-wanxiang/commit/a313e25ac2d63c1bd5c2fa03e7b566515fcbb9c9))
+* 词库调整 ([d74d6e5](https://github.com/amzxyz/rime-wanxiang/commit/d74d6e5459019b21f00075c5591954b232c34d6d))
+
+
+### 🐛 Bug 修复
+
+* 恢复lookup对翻译器的调用逻辑 ([9a3b4f9](https://github.com/amzxyz/rime-wanxiang/commit/9a3b4f9bfeb658ff25f2fb4b6d1de23988c43121))
+
+
+### 🏡 杂项
+
+* 添加AGENTS.md ([bf0456b](https://github.com/amzxyz/rime-wanxiang/commit/bf0456b19375203b79e3e1a28ce56bd5ef7ceef7))
+
 ## [17.7.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.7.0...v17.7.1) (2026-08-27)
 
 
