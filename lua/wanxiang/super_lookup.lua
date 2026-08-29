@@ -22,6 +22,8 @@ end
 local CORRECTION_CHARSET = "a"
 -- 字符集保护不可用时，单字纠错只从前 N 个词典结果中按 weight 选最好。
 local CORRECTION_LOOKUP_LIMIT = 100
+-- 保留稍靠后的正常词条，同时避免长句/简码候选爆炸。
+local EXPLICIT_SCAN_LIMIT = 100
 
 local function clear_table(t)
     if not t then return end
@@ -321,6 +323,30 @@ local function get_script_text_parts(ctx, reverse_key)
     end
 
     return parts
+end
+
+-- 判断当前物理切分中是否存在连续三个单字母简码音节。
+local function has_three_single_spans(parts)
+    if not parts or #parts < 3 then return false end
+    local run = 0
+    for i = 1, #parts do
+        if parts[i]:match("^%a$") then
+            run = run + 1
+            if run >= 3 then return true end
+        else
+            run = 0
+        end
+    end
+    return false
+end
+
+-- 长句/简码仅反查前一批候选；真正单字查询不限制。
+local function explicit_scan_limit(env, pure_code)
+    local parts = pure_code == env.history_input and env.history_parts or nil
+    if parts and #parts == 1 then return nil end
+    local code_len = #(pure_code or ""):gsub("['%s]", "")
+    if (parts and has_three_single_spans(parts)) or code_len > 6 then return EXPLICIT_SCAN_LIMIT end
+    return nil
 end
 
 -- 3. 数据库反查与展开算法 (Algebra/Projection)
@@ -1225,6 +1251,34 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
     local is_first_cand = true
     local raw_scratch = {}
     local fuzzy_memo = {}
+    local scan_limit = explicit_scan_limit(env, pure_code)
+    local scanned = 0
+    local flushed = false
+    local passthrough_started = false
+
+    local function yield_collected()
+        if flushed then return end
+        flushed = true
+
+        if buckets then
+            for _, bucket in pairs(buckets) do table.sort(bucket, lookup_item_less) end
+            if if_single_char_first then
+                local singles = buckets[1]
+                if singles then for i = 1, #singles do yield(singles[i].cand) end end
+                for l = max_len, 2, -1 do
+                    local bucket = buckets[l]
+                    if bucket then for i = 1, #bucket do yield(bucket[i].cand) end end
+                end
+            else
+                for l = max_len, 1, -1 do
+                    local bucket = buckets[l]
+                    if bucket then for i = 1, #bucket do yield(bucket[i].cand) end end
+                end
+            end
+        end
+
+        if long_words then for i = 1, #long_words do yield(long_words[i]) end end
+    end
 
     local syllables
     if pure_code == env.history_input and env.history_parts and #env.history_parts > 0 then
@@ -1234,6 +1288,14 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
     end
 
     for cand in input:iter() do
+        scanned = scanned + 1
+        if scan_limit and scanned > scan_limit then
+            passthrough_started = true
+            yield_collected()
+            yield(cand)
+            goto skip
+        end
+
         local cand_len = get_utf8_len(cand.text)
 
         -- 内部 Translator 只用于首候选纠错。
@@ -1304,29 +1366,13 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
         ::skip::
     end
 
-    if buckets then
-        for _, bucket in pairs(buckets) do table.sort(bucket, lookup_item_less) end
+    yield_collected()
 
-        if if_single_char_first then
-            local singles = buckets[1]
-            if singles then for i = 1, #singles do yield(singles[i].cand) end end
-            for l = max_len, 2, -1 do
-                local bucket = buckets[l]
-                if bucket then for i = 1, #bucket do yield(bucket[i].cand) end end
-            end
-        else
-            for l = max_len, 1, -1 do
-                local bucket = buckets[l]
-                if bucket then for i = 1, #bucket do yield(bucket[i].cand) end end
-            end
-        end
-    end
-
-    if long_words then for i = 1, #long_words do yield(long_words[i]) end end
-
+    -- 这是没有原 Candidate 可依附的真正新增候选，因此保留 Candidate(...)。
     if
         not sentence_kept
         and not filtered_match_found
+        and not passthrough_started
         and apply_tone_filter
         and #clean_fuma > 0
         and env.has_db
@@ -1589,7 +1635,7 @@ function f.init(env)
     -- 双轨缓存系统
     env.history_parts = {}
     env.history_input = ""
-    -- 专为引导模式(Explicit)的监听器，用于在敲击反查引导符前，保留完美的拼音切分案底
+    -- 提前保存物理切分，供 explicit 判断简码/长句。
     env.update_conn = env.engine.context.update_notifier:connect(function(ctx)
         if not ctx:is_composing() then
             env.history_parts = {}
