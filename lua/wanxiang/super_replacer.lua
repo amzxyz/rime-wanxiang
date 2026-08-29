@@ -18,7 +18,7 @@ local s_upper = string.upper
 local t_sort = table.sort
 local type = type
 local tonumber = tonumber
-local DB_FORMAT_VERSION = "6"
+local DB_FORMAT_VERSION = "7"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
 local file_signature_map = {}
 local build_task_map = {}
@@ -58,6 +58,7 @@ local function clear_work_buffers(env)
     if env.derived_text_buffer then clear_array(env.derived_text_buffer) end
     if env.derived_comment_buffer then clear_array(env.derived_comment_buffer) end
     if env.comment_buffer then clear_array(env.comment_buffer) end
+    if env.yielded_texts then clear_map(env.yielded_texts) end
 end
 
 local function clear_abbrev_scratch(scratch)
@@ -444,13 +445,24 @@ local function rebuild(tasks, db)
     local function update_prefix_profile(prefix, key)
         local profile = prefix_profiles[prefix]
         if not profile then
-            profile = {max_source_bytes = 0, has_ascii_source = false}
+            profile = {
+                max_source_bytes = 0,
+                min_source_bytes = nil,
+                single_char_only = true,
+                has_ascii_source = false
+            }
             prefix_profiles[prefix] = profile
         end
 
         local key_bytes = #key
         if key_bytes > profile.max_source_bytes then
             profile.max_source_bytes = key_bytes
+        end
+        if not profile.min_source_bytes or key_bytes < profile.min_source_bytes then
+            profile.min_source_bytes = key_bytes
+        end
+        if profile.single_char_only and (utf8.len(key) or 0) ~= 1 then
+            profile.single_char_only = false
         end
 
         local first = key_bytes > 0 and s_byte(key, 1) or nil
@@ -603,6 +615,14 @@ local function update_metadata(
             if not db:meta_update(
                     "_replacer_max_bytes/" .. prefix,
                     tostring(profile.max_source_bytes or 0)
+                )
+                or not db:meta_update(
+                    "_replacer_min_bytes/" .. prefix,
+                    tostring(profile.min_source_bytes or 0)
+                )
+                or not db:meta_update(
+                    "_replacer_single_char/" .. prefix,
+                    profile.single_char_only and "1" or "0"
                 )
                 or not db:meta_update(
                     "_replacer_has_ascii/" .. prefix,
@@ -788,6 +808,10 @@ local function convert_sentence_fmm(text, db, rule, env, offsets, result_parts)
         if first_byte and first_byte < 128 and not rule.has_ascii_source then
             source = s_sub(text, start_byte, offsets[i + 1] - 1)
             output = source
+        elseif rule.single_char_only then
+            source = s_sub(text, start_byte, offsets[i + 1] - 1)
+            local value = fetch_runtime_aggregate(env, db, prefix .. source)
+            output = first_value(value) or source
         else
             if i + FMM_LONG_STEM_CHARS - 1 <= char_count then
                 local stem = s_sub(
@@ -854,6 +878,7 @@ function M.init(env)
     env.derived_text_buffer = nil
     env.derived_comment_buffer = nil
     env.comment_buffer = nil
+    env.yielded_texts = nil
     env.abbrev_scratch = nil
     local ns = env.name_space
     ns = s_gsub(ns, "^%*", "")
@@ -1006,14 +1031,29 @@ function M.init(env)
     if env.db then
         env.db_name = db_name
 
+        local profiles = {}
         for _, t in ipairs(env.rules) do
-            if t.sentence then
-                t.max_source_bytes = tonumber(
-                    env.db:meta_fetch("_replacer_max_bytes/" .. t.prefix)
-                ) or 0
-                t.has_ascii_source =
-                    (env.db:meta_fetch("_replacer_has_ascii/" .. t.prefix) or "") == "1"
+            local profile = profiles[t.prefix]
+            if not profile then
+                profile = {
+                    min_source_bytes = tonumber(
+                        env.db:meta_fetch("_replacer_min_bytes/" .. t.prefix)
+                    ) or 0,
+                    max_source_bytes = tonumber(
+                        env.db:meta_fetch("_replacer_max_bytes/" .. t.prefix)
+                    ) or 0,
+                    single_char_only =
+                        (env.db:meta_fetch("_replacer_single_char/" .. t.prefix) or "") == "1",
+                    has_ascii_source =
+                        (env.db:meta_fetch("_replacer_has_ascii/" .. t.prefix) or "") == "1"
+                }
+                profiles[t.prefix] = profile
             end
+
+            t.min_source_bytes = profile.min_source_bytes
+            t.max_source_bytes = profile.max_source_bytes
+            t.single_char_only = profile.single_char_only
+            t.has_ascii_source = profile.has_ascii_source
         end
     end
 
@@ -1057,6 +1097,7 @@ function M.fini(env)
     env.derived_text_buffer = nil
     env.derived_comment_buffer = nil
     env.comment_buffer = nil
+    env.yielded_texts = nil
     env.abbrev_scratch = nil
     env.rules = nil
     env.delimiter = nil
@@ -1110,7 +1151,8 @@ function M.func(input, env)
     env.active_abbrev_rules = active_abbrev_rules
     local has_active_sentence_rule = false
 
-    for _, t in ipairs(rules) do
+    for i = 1, #rules do
+        local t = rules[i]
         if is_rule_active(t, ctx, current_seg_tags) then
             if t.mode == "abbrev" then
                 active_abbrev_rules[#active_abbrev_rules + 1] = t
@@ -1139,42 +1181,94 @@ function M.func(input, env)
     local derived_comments = env.derived_comment_buffer or {}
     local comment_parts = env.comment_buffer or {}
     local result_buffer = env.result_buffer or {}
-    clear_array(result_buffer)
     env.result_buffer = result_buffer
     env.derived_text_buffer = derived_texts
     env.derived_comment_buffer = derived_comments
     env.comment_buffer = comment_parts
 
-    local function process_rules(cand, results, candidate_rank)
+    local function process_rules(cand, results)
         clear_array(results)
         clear_array(derived_texts)
         clear_array(derived_comments)
         clear_array(comment_parts)
 
-        local current_text = cand.text
+        local original_text = cand.text
+        local original_comment = cand.comment
+        local current_text = original_text
         local show_main = true
-        local current_main_comment = cand.comment
+        local current_main_comment = original_comment
         local matched_cand_type = nil
         local pending_count = 0
+        local cand_has_upper = nil
+        local cand_lower_text = nil
 
-        for _, rule in ipairs(active_rules) do
-            local query_text = is_chain and current_text or cand.text
+        for i = 1, #active_rules do
+            local rule = active_rules[i]
+            local query_text = is_chain and current_text or original_text
             local val
+            local is_multi = nil
+            local exact_allowed = true
 
-            local query_key = rule.prefix .. query_text
-            val = fetch_runtime_aggregate(env, db, query_key)
-
-            if not val and s_find(query_text, "%u") then
-                query_text = s_lower(query_text)
-                query_key = rule.prefix .. query_text
-                val = fetch_runtime_aggregate(env, db, query_key)
+            if rule.single_char_only then
+                is_multi = has_multiple_utf8_chars(query_text)
+                if is_multi then exact_allowed = false end
             end
 
-            if not val and rule.sentence and has_multiple_utf8_chars(query_text) then
-                local seg_result = convert_sentence_fmm(
-                    query_text, db, rule, env, fmm_offsets, fmm_result_parts
-                )
-                if seg_result ~= query_text then val = seg_result end
+            if exact_allowed then
+                local query_key = rule.prefix .. query_text
+                val = fetch_runtime_aggregate(env, db, query_key)
+
+                if not val then
+                    local has_upper
+                    if is_chain then
+                        has_upper = s_find(query_text, "%u") ~= nil
+                    else
+                        if cand_has_upper == nil then
+                            cand_has_upper = s_find(original_text, "%u") ~= nil
+                        end
+                        has_upper = cand_has_upper
+                    end
+
+                    if has_upper then
+                        if is_chain then
+                            query_text = s_lower(query_text)
+                        else
+                            if not cand_lower_text then cand_lower_text = s_lower(original_text) end
+                            query_text = cand_lower_text
+                        end
+                        query_key = rule.prefix .. query_text
+                        val = fetch_runtime_aggregate(env, db, query_key)
+                    end
+                end
+            elseif rule.sentence then
+                local has_upper
+                if is_chain then
+                    has_upper = s_find(query_text, "%u") ~= nil
+                else
+                    if cand_has_upper == nil then
+                        cand_has_upper = s_find(original_text, "%u") ~= nil
+                    end
+                    has_upper = cand_has_upper
+                end
+
+                if has_upper then
+                    if is_chain then
+                        query_text = s_lower(query_text)
+                    else
+                        if not cand_lower_text then cand_lower_text = s_lower(original_text) end
+                        query_text = cand_lower_text
+                    end
+                end
+            end
+
+            if not val and rule.sentence then
+                if is_multi == nil then is_multi = has_multiple_utf8_chars(query_text) end
+                if is_multi then
+                    local seg_result = convert_sentence_fmm(
+                        query_text, db, rule, env, fmm_offsets, fmm_result_parts
+                    )
+                    if seg_result ~= query_text then val = seg_result end
+                end
             end
 
             if val then
@@ -1183,9 +1277,9 @@ function M.func(input, env)
                 local mode = rule.mode
                 local rule_comment = ""
                 if rule.comment_mode == "text" then
-                    rule_comment = cand.text
+                    rule_comment = original_text
                 elseif rule.comment_mode == "comment" then
-                    rule_comment = cand.comment
+                    rule_comment = original_comment
                 end
 
                 if mode ~= "comment" and rule_comment ~= "" then
@@ -1213,7 +1307,7 @@ function M.func(input, env)
                                 if rule.comment_mode == "none" then
                                     current_main_comment = ""
                                 elseif rule.comment_mode == "text" then
-                                    current_main_comment = cand.text
+                                    current_main_comment = original_text
                                 end
                                 first = false
                             else
@@ -1245,7 +1339,7 @@ function M.func(input, env)
         local result_count = 0
         if show_main then
             result_count = 1
-            if is_chain and current_text ~= cand.text then
+            if is_chain and current_text ~= original_text then
                 local final_type = matched_cand_type or cand.type or "kv"
                 local new_cand = Candidate(final_type, cand.start, cand._end, current_text, current_main_comment)
                 new_cand.preedit = cand.preedit
@@ -1282,7 +1376,7 @@ function M.func(input, env)
         end
 
         if has_regular_rules then
-            return process_rules(cand, result_buffer, candidate_count)
+            return process_rules(cand, result_buffer)
         end
 
         clear_array(result_buffer)
@@ -1290,7 +1384,8 @@ function M.func(input, env)
         return result_buffer
     end
 
-    local yielded_texts = {}
+    local yielded_texts = env.yielded_texts or {}
+    env.yielded_texts = yielded_texts
 
     -- 没有活跃简码规则时，跳过整套简码查询、排序与候选临时对象。
     if #active_abbrev_rules == 0 then
@@ -1304,7 +1399,8 @@ function M.func(input, env)
                     passthrough_tail = true
                     yield(cand)
                 else
-                    for _, processed_cand in ipairs(processed) do
+                    for i = 1, #processed do
+                        local processed_cand = processed[i]
                         local dedup_key = trim_space(processed_cand.text)
                         if not yielded_texts[dedup_key] then
                             yielded_texts[dedup_key] = true
@@ -1333,12 +1429,25 @@ function M.func(input, env)
     local upper_query = nil
 
     if query_code ~= "" then
-        for _, t in ipairs(active_abbrev_rules) do
-            local val = fetch_runtime_aggregate(env, db, t.prefix .. query_code)
+        local query_len = #query_code
+        for i = 1, #active_abbrev_rules do
+            local t = active_abbrev_rules[i]
+            local min_len = t.min_source_bytes or 0
+            local max_len = t.max_source_bytes or 0
+            local length_allowed =
+                (min_len == 0 or query_len >= min_len)
+                and (max_len == 0 or query_len <= max_len)
+            local val
 
-            if not val and not query_has_upper then
-                if not upper_query then upper_query = s_upper(query_code) end
-                val = fetch_runtime_aggregate(env, db, t.prefix .. upper_query)
+            if length_allowed then
+                val = fetch_runtime_aggregate(env, db, t.prefix .. query_code)
+
+                if not val and not query_has_upper then
+                    if not upper_query then upper_query = s_upper(query_code) end
+                    if upper_query ~= query_code then
+                        val = fetch_runtime_aggregate(env, db, t.prefix .. upper_query)
+                    end
+                end
             end
 
             if val then
@@ -1407,7 +1516,8 @@ function M.func(input, env)
                     passthrough_tail = true
                     yield(cand)
                 else
-                    for _, processed_cand in ipairs(processed) do
+                    for i = 1, #processed do
+                        local processed_cand = processed[i]
                         local dedup_key = trim_space(processed_cand.text)
                         if not yielded_texts[dedup_key] then
                             yielded_texts[dedup_key] = true
@@ -1434,10 +1544,12 @@ function M.func(input, env)
 
     t_sort(always_cands, compare_abbrev_index)
 
-    for _, item in ipairs(always_cands) do
+    for i = 1, #always_cands do
+        local item = always_cands[i]
         abbrev_lookup[trim_space(item.text)] = item
     end
-    for _, item in ipairs(lazy_cands) do
+    for i = 1, #lazy_cands do
+        local item = lazy_cands[i]
         abbrev_lookup[trim_space(item.text)] = item
     end
 
@@ -1450,7 +1562,8 @@ function M.func(input, env)
             if not item.yielded then
                 item.yielded = true
                 local processed = process_rules(make_abbrev_candidate(item, abbrev_start, abbrev_end), aux_results)
-                for _, pc in ipairs(processed) do
+                for i = 1, #processed do
+                    local pc = processed[i]
                     local dedup_key = trim_space(pc.text)
                     if not yielded_texts[dedup_key] then
                         yielded_texts[dedup_key] = true
@@ -1466,7 +1579,8 @@ function M.func(input, env)
                 item.yielded = true
                 if not group_fronted[item.group_key] then
                     local processed = process_rules(make_abbrev_candidate(item, abbrev_start, abbrev_end), aux_results)
-                    for _, pc in ipairs(processed) do
+                    for i = 1, #processed do
+                        local pc = processed[i]
                         local dedup_key = trim_space(pc.text)
                         if not yielded_texts[dedup_key] then
                             yielded_texts[dedup_key] = true
@@ -1537,7 +1651,8 @@ function M.func(input, env)
             return
         end
 
-        for _, pc in ipairs(processed_cands) do
+        for i = 1, #processed_cands do
+            local pc = processed_cands[i]
             local dedup_key = trim_space(pc.text)
 
             if not yielded_texts[dedup_key] then
@@ -1566,7 +1681,8 @@ function M.func(input, env)
                             group_fronted[item.group_key] = true
 
                             local ac_processed = process_rules(make_abbrev_candidate(item, abbrev_start, abbrev_end), aux_results)
-                            for _, apc in ipairs(ac_processed) do
+                            for i = 1, #ac_processed do
+                                local apc = ac_processed[i]
                                 local apc_key = trim_space(apc.text)
                                 if not yielded_texts[apc_key] then
                                     yielded_texts[apc_key] = true
