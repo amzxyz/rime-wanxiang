@@ -9,13 +9,6 @@
 
 local wanxiang = require("wanxiang/wanxiang")
 
-local function clear_table(t)
-    if not t then return end
-    for k in pairs(t) do
-        t[k] = nil
-    end
-end
-
 -- 1. 基础工具函数 (UTF8处理 / 字符串 / 声调)
 local function alt_lua_punc(s)
     if not s then
@@ -625,22 +618,31 @@ local function ensure_db_cache_entry(env, char_str, need_xlit)
     return entry
 end
 
-local function build_raw_data(cand_text, comment_text, cand_len, env)
+local function build_candidate_raw_data(cand, cand_len, env)
     local raw_data = {}
     local comment_cache = env._comment_cache
+    local cand_text = cand.text
 
-    if env.has_comment and comment_text and comment_text ~= "" then
-        local cache_key = cand_text .. "_" .. comment_text
-        local parsed_comment = comment_cache[cache_key]
-        if parsed_comment == nil then
-            parsed_comment = parse_comment_codes(comment_text, env.comment_split_ptrn, cand_len, env.enable_tone)
-                or false
-            comment_cache[cache_key] = parsed_comment
-            env.cache_size = env.cache_size + 1
+    if env.has_comment then
+        local genuine = cand:get_genuine()
+        local comment_text = ""
+        if genuine and genuine.comment then
+            comment_text = genuine.comment
         end
-        if parsed_comment then
-            raw_data.aux = parsed_comment
-            raw_data._comment_internal = parsed_comment
+
+        if comment_text ~= "" then
+            local cache_key = cand_text .. "_" .. comment_text
+            local parsed_comment = comment_cache[cache_key]
+            if parsed_comment == nil then
+                parsed_comment = parse_comment_codes(comment_text, env.comment_split_ptrn, cand_len, env.enable_tone)
+                    or false
+                comment_cache[cache_key] = parsed_comment
+                env.cache_size = env.cache_size + 1
+            end
+            if parsed_comment then
+                raw_data.aux = parsed_comment
+                raw_data._comment_internal = parsed_comment
+            end
         end
     end
 
@@ -664,17 +666,6 @@ local function build_raw_data(cand_text, comment_text, cand_len, env)
     end
 
     return raw_data
-end
-
-local function build_candidate_raw_data(cand, cand_len, env)
-    local genuine_comment = ""
-    if env.has_comment then
-        local genuine = cand:get_genuine()
-        if genuine and genuine.comment then
-            genuine_comment = genuine.comment
-        end
-    end
-    return build_raw_data(cand.text, genuine_comment, cand_len, env)
 end
 
 -- 6. 引导模式核心逻辑 (声调翻译 / 词组及单字纠错回溯)
@@ -712,29 +703,29 @@ local function attempt_pure_tone_translation(cand, env, syllables, tone_filter_s
             if #syl > 2 then
                 syl = string.sub(syl, 1, 2)
             end
-            pure_pinyin_parts[#pure_pinyin_parts + 1] = syl .. tone_filter_seq[k]
+            table.insert(pure_pinyin_parts, syl .. tone_filter_seq[k])
         end
     end
 
-    if #pure_pinyin_parts ~= tone_len then
-        return nil
+    if #pure_pinyin_parts == tone_len then
+        local query_str = table.concat(pure_pinyin_parts, "")
+        local seg_trans = Segment(0, #query_str)
+        seg_trans.tags = Set({ "abc" })
+
+        local ok, translation = pcall(function()
+            return env.main_translator:query(query_str, seg_trans)
+        end)
+
+        if ok and translation then
+            for c in translation:iter() do
+                local custom_cand = Candidate(cand.type, cand.start, cand._end, c.text, c.comment)
+                custom_cand.quality = c.quality
+                custom_cand.preedit = cand.preedit
+                return custom_cand
+            end
+        end
     end
 
-    local query_str = table.concat(pure_pinyin_parts, "")
-    local seg_trans = Segment(0, #query_str)
-    seg_trans.tags = Set({ "abc" })
-
-    local ok, translation = pcall(function()
-        return env.main_translator:query(query_str, seg_trans)
-    end)
-    if not ok or not translation then
-        return nil
-    end
-
-    -- 只把纯标量带出 Native Translation 生命周期；caller 随后立即生成最终候选。
-    for c in translation:iter() do
-        return c.text, c.comment or "", c.quality
-    end
     return nil
 end
 
@@ -1001,7 +992,14 @@ local function attempt_phrase_correction(cand, cand_len, env, syllables, fuma_ch
     end
 
     if match_count == #fuma_chunks then
-        return current_text
+        if current_text ~= cand.text then
+            local fixed_cand = Candidate(cand.type, cand.start, cand._end, current_text, cand.comment or "")
+            fixed_cand.quality = cand.quality
+            fixed_cand.preedit = cand.preedit
+            return fixed_cand
+        else
+            return cand
+        end
     end
 
     return nil
@@ -1027,43 +1025,78 @@ end
 
 -- 获取命中类型：仅用于同长度候选内部排序，不改变原候选长度排序
 local function get_lookup_match_info(raw_data, cand_len, clean_fuma, env)
+
     for index, source_type in ipairs(env.data_sources) do
         local codes_seq = raw_data[source_type]
 
         if codes_seq then
             local is_db = source_type == "db"
 
+            -- 单字：保持原逻辑
             if cand_len == 1 then
                 if group_match(codes_seq[1], clean_fuma) then
-                    return index, 1
+                    return {
+                        source_index = index,
+                        level = 1,
+                        source = source_type,
+                        type = "single"
+                    }
                 end
+
             else
+                -- 关键：两码完整命中某一个字，属于 single
+                -- 例如 老实说，bd 命中 实
                 for i = 1, cand_len do
                     if match_direct_word(codes_seq, i, clean_fuma, is_db) then
-                        return index, 1
+                        return {
+                            source_index = index,
+                            level = 1,
+                            source = source_type,
+                            type = "single"
+                        }
                     end
                 end
 
+                -- 两码分别落不同字，属于 cross
                 if #clean_fuma >= 2 then
                     for i = 1, cand_len - 1 do
                         if
-                            match_direct_word(codes_seq, i, clean_fuma:sub(1, 1), is_db)
-                            and match_direct_word(codes_seq, i + 1, clean_fuma:sub(2, 2), is_db)
+                            match_direct_word(codes_seq, i, clean_fuma:sub(1,1), is_db)
+                            and
+                            match_direct_word(codes_seq, i + 1, clean_fuma:sub(2,2), is_db)
                         then
-                            return index, 2
+                            return {
+                                source_index = index,
+                                level = 2,
+                                source = source_type,
+                                type = "cross"
+                            }
                         end
                     end
                 end
 
+                -- 保留原有多字模糊匹配能力
                 local memo = {}
-                if match_fuzzy_recursive(codes_seq, 1, clean_fuma, 1, memo, is_db) then
-                    return index, 2
+                if match_fuzzy_recursive(
+                    codes_seq,
+                    1,
+                    clean_fuma,
+                    1,
+                    memo,
+                    is_db
+                ) then
+                    return {
+                        source_index = index,
+                        level = 2,
+                        source = source_type,
+                        type = "cross"
+                    }
                 end
             end
         end
     end
 
-    return math.huge, math.huge
+    return nil
 end
 
 -- 综合匹配判断引擎 (引导模式使用)
@@ -1145,57 +1178,42 @@ local function check_direct_match(raw_data, cand_len, clean_fuma, data_sources)
     return false
 end
 
--- 直辅缓存跨 F.func() 保存，因此只存纯 Lua 快照，不保存 Candidate userdata。
-local function snapshot_direct_candidate(cand)
-    return {
-        type = cand.type,
-        start = cand.start,
-        _end = cand._end,
-        text = cand.text,
-        comment = cand.comment or "",
-        quality = cand.quality,
-        preedit = cand.preedit,
-    }
-end
+local function create_direct_candidate(cand, ctx_input, pure_code, fuma)
+    local ext_cand = Candidate(cand.type, cand.start, #ctx_input, cand.text, cand.comment)
+    ext_cand.quality = cand.quality + 100
+    local orig_preedit = cand.preedit
 
-local function create_direct_candidate(saved, ctx_input, pure_code, fuma)
-    local cand = Candidate(
-        saved.type,
-        saved.start,
-        #ctx_input,
-        saved.text,
-        saved.comment or ""
-    )
-    cand.quality = (tonumber(saved.quality) or 0) + 100
-
-    local orig_preedit = saved.preedit
     if orig_preedit and orig_preedit ~= "" then
-        cand.preedit = orig_preedit:gsub("%s+$", "") .. " " .. fuma
+        ext_cand.preedit = orig_preedit:gsub("%s+$", "") .. " " .. fuma
     else
-        cand.preedit = pure_code .. " " .. fuma
+        ext_cand.preedit = pure_code .. " " .. fuma
     end
 
-    return cand
+    return ext_cand
 end
 
--- 同一候选长度内排序，不改变原有长度优先级。
--- 这里的 list 只在本次 handle_explicit_mode() 调用内存在，可以直接保存 Candidate。
-local function sort_lookup_bucket(list)
+-- 8. 模式分发调度控制器 (主干函数)
+-- 同一候选长度内排序，不改变原有长度优先级
+local function sort_lookup_bucket(list, match_meta)
+
     table.sort(list, function(a, b)
-        local sa = a.source_index or math.huge
-        local sb = b.source_index or math.huge
-        if sa ~= sb then
-            return sa < sb
+
+        local ma = match_meta[a.id] or {}
+        local mb = match_meta[b.id] or {}
+
+        local default_priority = math.huge
+
+        if (ma.source_index or default_priority) ~= (mb.source_index or default_priority) then
+            return (ma.source_index or default_priority) < (mb.source_index or default_priority)
         end
 
-        local la = a.level or math.huge
-        local lb = b.level or math.huge
-        if la ~= lb then
-            return la < lb
+        if (ma.level or default_priority) ~= (mb.level or default_priority) then
+            return (ma.level or default_priority) < (mb.level or default_priority)
         end
 
         return a.order < b.order
     end)
+
 end
 
 -- A. 引导模式 (Explicit Mode) 控制器
@@ -1214,17 +1232,21 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
 
     local ctx = env.engine.context
     local clean_fuma, tone_filter_seq, fuma_chunks = parse_fuma_rules(explicitly_fuma)
-    local apply_tone_filter = env.enable_tone and #tone_filter_seq > 0
-    local if_single_char_first = ctx:get_option("char_priority")
+    local apply_tone_filter = false
+    if env.enable_tone and #tone_filter_seq > 0 then
+        apply_tone_filter = true
+    end
 
-    -- buckets / long_word_cands 只在本次调用内存在，直接保存 Candidate。
+    local if_single_char_first = ctx:get_option("char_priority")
     local buckets = {}
-    local long_word_cands = {}
+    local match_meta = {}
     local match_seq = 0
+    local long_word_cands = {}
     local max_len = 0
     local has_any_match = false
     local is_first_cand = true
 
+    -- 获取输入音节片段；历史切分只读不改，直接复用原表。
     local syllables
     if pure_code == env.history_input and env.history_parts and #env.history_parts > 0 then
         syllables = env.history_parts
@@ -1235,25 +1257,16 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
     for cand in input:iter() do
         local cand_len = get_utf8_len(cand.text)
 
-        -- 内部 Translator 只用于首候选纠错，并且在 yield 前只带出纯标量。
+        -- 首个候选修正：纯声调翻译与多字纠错
         if is_first_cand then
             is_first_cand = false
             local syl_offset = get_syl_offset(cand, ctx)
 
             if apply_tone_filter and clean_fuma == "" then
                 local current_syl_count = #syllables - syl_offset
-                local tone_text, tone_comment, tone_quality =
-                    attempt_pure_tone_translation(
-                        cand, env, syllables, tone_filter_seq, current_syl_count, syl_offset
-                    )
-                if tone_text then
-                    local tone_cand = Candidate(
-                        cand.type, cand.start, cand._end, tone_text, tone_comment
-                    )
-                    if tone_quality ~= nil then
-                        tone_cand.quality = tone_quality
-                    end
-                    tone_cand.preedit = cand.preedit
+                local tone_cand =
+                    attempt_pure_tone_translation(cand, env, syllables, tone_filter_seq, current_syl_count, syl_offset)
+                if tone_cand then
                     yield(tone_cand)
                     goto skip
                 end
@@ -1263,21 +1276,15 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
                 ((cand.type == "sentence" and cand_len > 1) or (cand.type == "phrase" and cand_len > 3))
                 and #syllables >= (cand_len + syl_offset)
             then
-                local corrected_text =
-                    attempt_phrase_correction(cand, cand_len, env, syllables, fuma_chunks, syl_offset)
-                if corrected_text then
-                    if corrected_text == cand.text then
-                        yield(cand)
-                    else
-                        yield(ShadowCandidate(
-                            cand, cand.type, corrected_text, cand.comment or "", false
-                        ))
-                    end
+                local corr_cand = attempt_phrase_correction(cand, cand_len, env, syllables, fuma_chunks, syl_offset)
+                if corr_cand then
+                    yield(corr_cand)
                     goto skip
                 end
             end
         end
 
+        -- 数据校验与匹配判定
         if cand.type == "sentence" or not cand_len or cand_len == 0 then
             goto skip
         end
@@ -1286,32 +1293,35 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
         end
 
         local raw_data = build_candidate_raw_data(cand, cand_len, env)
+
         if
-            raw_data
-            and check_explicit_match(
-                raw_data, cand_len, clean_fuma, tone_filter_seq, apply_tone_filter, env
-            )
+            raw_data and check_explicit_match(raw_data, cand_len, clean_fuma, tone_filter_seq, apply_tone_filter, env)
         then
             has_any_match = true
-            local source_index, level =
-                get_lookup_match_info(raw_data, cand_len, clean_fuma, env)
+
+            local info =
+                get_lookup_match_info(
+                    raw_data,
+                    cand_len,
+                    clean_fuma,
+                    env
+                )
 
             match_seq = match_seq + 1
+            match_meta[match_seq] = info
+
 
             if if_single_char_first and cand_len > 1 then
-                long_word_cands[#long_word_cands + 1] = cand
+                table.insert(long_word_cands, cand)
             else
-                local bucket = buckets[cand_len]
-                if not bucket then
-                    bucket = {}
-                    buckets[cand_len] = bucket
+                if not buckets[cand_len] then
+                    buckets[cand_len] = {}
                 end
-                bucket[#bucket + 1] = {
+                table.insert(buckets[cand_len], {
                     cand = cand,
-                    source_index = source_index,
-                    level = level,
-                    order = match_seq,
-                }
+                    id = match_seq,
+                    order = match_seq
+                })
                 if cand_len > max_len then
                     max_len = cand_len
                 end
@@ -1321,41 +1331,41 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
         ::skip::
     end
 
+    -- 只对相同长度候选排序，保持原有长短词优先逻辑
     for _, bucket in pairs(buckets) do
-        sort_lookup_bucket(bucket)
+        sort_lookup_bucket(bucket, match_meta)
     end
 
+
+    -- 输出匹配结果 (依单字优先策略不同排序输出)
     if if_single_char_first then
-        local singles = buckets[1]
-        if singles then
-            for i = 1, #singles do
-                yield(singles[i].cand)
+        if buckets[1] then
+            for _, c in ipairs(buckets[1]) do
+                yield(c.cand)
             end
         end
         for l = max_len, 2, -1 do
-            local bucket = buckets[l]
-            if bucket then
-                for i = 1, #bucket do
-                    yield(bucket[i].cand)
+            if buckets[l] then
+                for _, c in ipairs(buckets[l]) do
+                    yield(c.cand)
                 end
             end
         end
     else
         for l = max_len, 1, -1 do
-            local bucket = buckets[l]
-            if bucket then
-                for i = 1, #bucket do
-                    yield(bucket[i].cand)
+            if buckets[l] then
+                for _, c in ipairs(buckets[l]) do
+                    yield(c.cand)
                 end
             end
         end
     end
 
-    for i = 1, #long_word_cands do
-        yield(long_word_cands[i])
+    for _, c in ipairs(long_word_cands) do
+        yield(c)
     end
 
-    -- 这是没有原 Candidate 可依附的真正新增候选，因此保留 Candidate(...)。
+    -- 兜底：如果完全没有匹配且包含声调过滤，则生成影候选
     if not has_any_match and apply_tone_filter and #clean_fuma > 0 and env.has_db and env.db_table then
         for _, db_obj in ipairs(env.db_table) do
             local res_str = db_obj:lookup(clean_fuma)
@@ -1371,6 +1381,29 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
 end
 
 -- B. 动态直辅模式 (direct Mode) 控制器
+local function snapshot_direct_candidate(cand)
+    return {
+        type = cand.type,
+        start = cand.start,
+        _end = cand._end,
+        text = cand.text,
+        comment = cand.comment or "",
+        quality = cand.quality,
+        preedit = cand.preedit,
+    }
+end
+
+local function restore_direct_candidate(saved)
+    local cand = Candidate(saved.type, saved.start, saved._end, saved.text, saved.comment or "")
+    if saved.quality ~= nil then
+        cand.quality = saved.quality
+    end
+    if saved.preedit and saved.preedit ~= "" then
+        cand.preedit = saved.preedit
+    end
+    return cand
+end
+
 local function handle_direct_mode(input, env, ctx_input)
     local direct_cache = env.direct_cache
     local base_input = direct_cache and direct_cache.input or ""
@@ -1385,7 +1418,6 @@ local function handle_direct_mode(input, env, ctx_input)
     local cache_candidates = nil
     local cache_open = false
 
-    -- matched_cands 只在本次调用内存在，可以直接保存 Candidate。
     local matched_cands = nil
     local matched_text_count = nil
     local clean_fuma = ""
@@ -1409,12 +1441,11 @@ local function handle_direct_mode(input, env, ctx_input)
             return
         end
 
-        for _, saved in ipairs((direct_cache and direct_cache.candidates) or {}) do
-            -- direct_cache 是跨调用纯 Lua 快照；直接用快照文本/注释构建 raw_data，
-            -- 不为未命中的缓存项额外还原 Candidate。
-            local raw_data = build_raw_data(saved.text, saved.comment or "", 2, env)
+        for _, saved in ipairs(direct_cache.candidates or {}) do
+            local cached_cand = restore_direct_candidate(saved)
+            local raw_data = build_candidate_raw_data(cached_cand, 2, env)
             if raw_data and check_direct_match(raw_data, 2, clean_fuma, env.data_sources) then
-                local ext_cand = create_direct_candidate(saved, ctx_input, base_input, fuma)
+                local ext_cand = create_direct_candidate(cached_cand, ctx_input, base_input, fuma)
                 matched_cands[#matched_cands + 1] = ext_cand
                 matched_text_count[saved.text] = (matched_text_count[saved.text] or 0) + 1
             end
@@ -1437,8 +1468,8 @@ local function handle_direct_mode(input, env, ctx_input)
         if matches_yielded or not matched_cands then
             return
         end
-        for i = 1, #matched_cands do
-            yield(matched_cands[i])
+        for _, cand in ipairs(matched_cands) do
+            yield(cand)
         end
         matches_yielded = true
     end
@@ -1521,9 +1552,7 @@ local function handle_direct_mode(input, env, ctx_input)
         else
             env.direct_cache = nil
         end
-    elseif mode == "lookup" and matched_cands and #matched_cands > 0
-        and #clean_fuma == 2 and not matches_yielded
-    then
+    elseif mode == "lookup" and matched_cands and #matched_cands > 0 and #clean_fuma == 2 and not matches_yielded then
         yield_matches()
     end
 end
@@ -1686,8 +1715,8 @@ function f.func(input, env)
     end
 
     if env.cache_size > 2000 then
-        clear_table(env._db_cache)
-        clear_table(env._comment_cache)
+        env._db_cache = {}
+        env._comment_cache = {}
         env.cache_size = 0
     end
 
@@ -1725,23 +1754,13 @@ end
 function f.fini(env)
     if env.update_conn then
         env.update_conn:disconnect()
-        env.update_conn = nil
     end
     if env.notifier then
         env.notifier:disconnect()
-        env.notifier = nil
     end
     if env.mem then
         env.mem:disconnect()
-        env.mem = nil
     end
-
-    if env.main_translator and env.main_translator.disconnect then
-        pcall(function()
-            env.main_translator:disconnect()
-        end)
-    end
-    env.main_translator = nil
 
     env.db_names = nil
     env.db_table = nil
@@ -1749,12 +1768,9 @@ function f.fini(env)
     env.xlit_projection = nil
     env._db_cache = nil
     env._comment_cache = nil
-    env.cache_size = nil
     env.history_parts = nil
-    env.history_input = nil
     env.direct_cache = nil
-    env.data_sources = nil
-    env.tag = nil
+
     collectgarbage("collect")
 end
 return f
