@@ -12,6 +12,11 @@
 local wanxiang = require("wanxiang/wanxiang")
 local M = {}
 
+-- 借 wanxiang 共享 charset_filter 运行态
+local runtimes = wanxiang._cf_envs or setmetatable({}, { __mode = "v" })
+wanxiang._cf_envs = runtimes
+local masks = {}
+
 local sub = string.sub
 local byte = string.byte
 local match = string.match
@@ -55,6 +60,16 @@ local function str_to_mask(s)
     local mask = 0
     for i = 1, #s do
         mask = bit_bor(mask, bit_lshift(1, bit_band(byte(s, i), 0x3F)))
+    end
+    return mask
+end
+
+local function get_base_mask(base)
+    base = base or "a"
+    local mask = masks[base]
+    if mask == nil then
+        mask = str_to_mask(base)
+        masks[base] = mask
     end
     return mask
 end
@@ -257,6 +272,56 @@ local function get_active_rules(env, ctx)
     return #active > 0 and active or nil
 end
 
+-- 给其它组件生成一个本轮只读 checker。
+-- checker 复用 charset_filter 的 db_memo；addlist 放行，blacklist 一票否决，base 当前由调用方传入 "a"。
+function M.make_checker(schema_id, ctx, base)
+    local env = schema_id and runtimes[schema_id]
+    if not env or not env.db_memo then return nil end
+
+    local active_rules = get_active_rules(env, ctx)
+    local base_mask = get_base_mask(base)
+
+    -- base 字符集依赖 charset.reverse.bin；数据库不可用时返回 nil，
+    -- 由调用方降级处理，避免把所有汉字误判为非法。
+    if base_mask ~= 0 and not get_charset_db(env) then
+        return nil
+    end
+
+    return function(codepoint)
+        if not codepoint then
+            return true
+        end
+
+        local char = utf8_char(codepoint)
+        if not wanxiang.IsChineseCharacter(char) then
+            return true
+        end
+
+        if active_rules then
+            local added = false
+            for i = 1, #active_rules do
+                local rule = active_rules[i]
+                if rule.ban[codepoint] then
+                    return false
+                end
+                if rule.add[codepoint] then
+                    added = true
+                end
+            end
+            if added then
+                return true
+            end
+        end
+
+        if base_mask == 0 then
+            return true
+        end
+
+        local mask = get_char_mask(env, codepoint)
+        return mask ~= 0 and bit_band(mask, base_mask) ~= 0
+    end
+end
+
 -- 排除 table 类候选和补全候选，不允许它们写入兜底历史。
 local function can_record_history(cand)
     local cand_type = cand and cand.type or ""
@@ -314,6 +379,9 @@ function M.init(env)
 
     if cfg then env.filters = load_rules(cfg) end
 
+    env.schema_id = env.engine and env.engine.schema and env.engine.schema.schema_id or nil
+    if env.schema_id then runtimes[env.schema_id] = env end
+
     env.opt_update_conn =
         env.engine.context.option_update_notifier:connect(
             function(ctx, name)
@@ -334,6 +402,9 @@ end
 -- 断开选项监听并释放数据库和缓存引用。
 function M.fini(env)
     release_runtime(env)
+
+    if env.schema_id and runtimes[env.schema_id] == env then runtimes[env.schema_id] = nil end
+    env.schema_id = nil
 
     env.charset_db_checked = nil
     env.db_memo = nil
@@ -423,13 +494,7 @@ function M.func(input, env)
             local fallback = get_previous_history(env, code, text_len)
 
             if fallback then
-                local replacement = Candidate(
-                    "fallback",
-                    cand.start,
-                    cand._end,
-                    fallback.text,
-                    cand.comment or ""
-                )
+                local replacement = Candidate("fallback", cand.start, cand._end, fallback.text, cand.comment or "")
                 replacement.preedit = build_fallback_preedit(fallback, code)
 
                 local fallback_len, fallback_valid =
