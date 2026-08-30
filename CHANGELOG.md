@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.9.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.0...v17.9.1) (2026-08-30)
+
+
+### 🐛 Bug 修复
+
+* super_replacer调用中新增lite版本 ([c7d2201](https://github.com/amzxyz/rime-wanxiang/commit/c7d2201109bf432643001edd1d04312155715783))
+
 ## [17.9.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.8.2...v17.9.0) (2026-08-30)
 
 
