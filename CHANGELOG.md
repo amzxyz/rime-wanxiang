@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.8.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.8.0...v17.8.1) (2026-08-30)
+
+
+### 🐛 Bug 修复
+
+* 修复上下文调频删词动作干扰原生删词 ([d06f659](https://github.com/amzxyz/rime-wanxiang/commit/d06f65962276a12f15a0583b7bb5a0ac9fea0d14))
+
 ## [17.8.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.7.2...v17.8.0) (2026-08-30)
 
 
