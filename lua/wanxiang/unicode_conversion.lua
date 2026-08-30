@@ -12,6 +12,12 @@ local T = {}
 local MAX_CODEPOINT = 0x10FFFF
 local DEFAULT_HOTKEY = "Control+u"
 
+-- 多码点快捷查询内部协议：
+-- Unicode 最大合法码点为 0x10FFFF，因此 0x110000 可安全作为保留标记。
+-- 标记后的每个码点固定使用 6 位十六进制，整个输入仍满足 ^U[a-f0-9]+。
+local SEQUENCE_MARKER = "110000"
+local SEQUENCE_WIDTH = 6
+
 local DIGIT_VALUES = {}
 for i = 0, 9 do
     DIGIT_VALUES[string.char(0x30 + i)] = i
@@ -258,6 +264,41 @@ local function codepoints(text)
     end
 
     return result
+end
+
+local function encode_codepoint_sequence(points)
+    local parts = { SEQUENCE_MARKER }
+
+    for i = 1, #points do
+        local cp = points[i]
+        if not is_valid_scalar(cp) then return nil end
+        parts[#parts + 1] = string.format("%06x", cp)
+    end
+
+    return table.concat(parts)
+end
+
+local function decode_codepoint_sequence(payload)
+    if payload:sub(1, #SEQUENCE_MARKER) ~= SEQUENCE_MARKER then return nil end
+
+    local encoded = payload:sub(#SEQUENCE_MARKER + 1)
+    if encoded == "" or #encoded % SEQUENCE_WIDTH ~= 0 then return nil end
+
+    local points = {}
+    for i = 1, #encoded, SEQUENCE_WIDTH do
+        local cp = parse_base_integer(encoded:sub(i, i + SEQUENCE_WIDTH - 1), 16)
+        if not is_valid_scalar(cp) then return nil end
+        points[#points + 1] = cp
+    end
+
+    if #points < 2 then return nil end
+
+    local chars = {}
+    for i = 1, #points do
+        chars[i] = utf8.char(points[i])
+    end
+
+    return table.concat(chars), points
 end
 
 local function join_codepoints(points, formatter, separator)
@@ -517,23 +558,30 @@ function P.func(key, env)
     end
 
     local text = cand and cand.text or ""
-
-    -- 没有菜单候选时，允许直接查询当前完整输入本身（仅限单个 Unicode 码点）。
-    if text == "" and utf8.len(full_input) == 1 then
-        text = full_input
-    end
-
-    if utf8.len(text) ~= 1 then
+    if text == "" then
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
-    local cp = utf8.codepoint(text)
-    if not is_valid_scalar(cp) then
+    local points = codepoints(text)
+    if not points or #points == 0 then
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
+    end
+
+    local payload
+    if #points == 1 then
+        if not is_valid_scalar(points[1]) then
+            return wanxiang.RIME_PROCESS_RESULTS.kNoop
+        end
+        payload = string.format("%x", points[1])
+    else
+        payload = encode_codepoint_sequence(points)
+        if not payload then
+            return wanxiang.RIME_PROCESS_RESULTS.kNoop
+        end
     end
 
     env.unicode_prev_input = full_input
-    context.input = get_unicode_trigger(env) .. string.format("%x", cp)
+    context.input = get_unicode_trigger(env) .. payload
     return wanxiang.RIME_PROCESS_RESULTS.kAccepted
 end
 
@@ -568,6 +616,22 @@ function T.func(input, seg, env)
         local code = payload:sub(2)
         if code ~= "" then
             yield_dictionary_conversion(code, seg, env)
+        end
+        return
+    end
+
+    local sequence_text, sequence_points = decode_codepoint_sequence(payload)
+    if sequence_text then
+        local preedit = join_codepoints(sequence_points, format_u_plus)
+        local original = Candidate("unicode", seg.start, seg._end, sequence_text, "〔字符序列〕")
+        original.preedit = preedit
+        yield(original)
+
+        local candidates = build_text_candidates(sequence_text)
+        for _, item in ipairs(candidates) do
+            local cand = Candidate("unicode", seg.start, seg._end, item[1], item[2])
+            cand.preedit = preedit
+            yield(cand)
         end
         return
     end
