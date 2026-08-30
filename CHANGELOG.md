@@ -1,5 +1,29 @@
 # Changelog
 
+## [17.9.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.8.2...v17.9.0) (2026-08-30)
+
+
+### ✨ 新特性
+
+* 新增Unicode反查，在正常输入汉字、反查汉字、/sym输入超级符号、表情等候选上按下ctrl+u跳转到U模式查询，重新按下快捷键可跳转回去 ([52191bd](https://github.com/amzxyz/rime-wanxiang/commit/52191bda74a628647480465567ceaacd46b9b0ac))
+
+
+### 📚 词库更新
+
+* 词库调整 ([fb7d749](https://github.com/amzxyz/rime-wanxiang/commit/fb7d74992528131c5771e3bea74290419accbf70))
+
+
+### 🐛 Bug 修复
+
+* 支持多码点字符 ([a11b614](https://github.com/amzxyz/rime-wanxiang/commit/a11b61469a7e49189e20504f34dadaca0a15ad55))
+* 移除九键多余的编码 ([dc4306a](https://github.com/amzxyz/rime-wanxiang/commit/dc4306a9c3c8467cfee3c0a1236dd9a828e9eb1f))
+* 给九键注释处新增一条删除辅助码的正则，避免有人配置辅助码类型的词库用于九键输入而不可用 ([c9db01a](https://github.com/amzxyz/rime-wanxiang/commit/c9db01acf07d3ae4fadc55183acaf6a0d125b944))
+
+
+### 🏡 杂项
+
+* 更新文档 ([67306e1](https://github.com/amzxyz/rime-wanxiang/commit/67306e1c60eb004c0ad4e0839634cd9a3613b46c))
+
 ## [17.8.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.8.1...v17.8.2) (2026-08-30)
 
 
