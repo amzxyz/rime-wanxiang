@@ -181,7 +181,8 @@ local function update_memory_record(db, before, after, code, word)
 end
 
 -- 原生删词事件同步到上下文数据库。
--- 不监听 Ctrl+Del / Shift+Del；PC 快捷键和移动端 UI 都由 delete_notifier 统一触发。
+-- 不监听、不接管 Ctrl+Del / Shift+Del；PC 快捷键和移动端 UI 都由 delete_notifier 统一触发。
+-- delete_cb 只同步 DB 并设置延迟刷新标记；真正刷新放到下一次 processor 事件。
 -- 使用负 c 墓碑而不是 erase，保留 UserDb 同步时的删除语义。
 local function mark_record_deleted(db, code, word)
     if not db or not code or code == "" or not word or word == "" then return false end
@@ -329,7 +330,7 @@ local P = {}
 
 function P.init(env)
     load_config(env)
-    env.delete_refreshing = nil
+    env.need_delete_refresh = false
     if not get_db(env) then return end
 
     env.is_t9 = wanxiang.get_input_method_type and wanxiang.get_input_method_type(env) == "t9" or false
@@ -428,38 +429,46 @@ function P.init(env)
     end
 
     env.delete_cb = function(ctx)
-        local comp = ctx.composition
-        if not comp or comp:empty() then return end
-
-        local seg = comp:back()
-        if not seg then return end
-        local cand = seg:get_candidate_at(seg.selected_index)
-        if not cand or not REORDER_TYPE_WHITELIST[cand.type or ""] then return end
-
-        local word = cand.text or ""
-        if word == "" then return end
-
-        local db = get_db(env)
-        if not db then return end
-
-        if context_state.after_number then
-            -- 数字后的量词记忆只有 1-Gram 数字上下文。
-            mark_record_deleted(db, ONE_PREFIX .. NUMBER_CONTEXT, word)
-        else
-            local context1 = context_state.prev1
-            local context2 = context_state.prev2
-            if context1 then
-                mark_record_deleted(db, ONE_PREFIX .. context1, word)
-                if context2 then mark_record_deleted(db, TWO_PREFIX .. context2 .. KEY_SEP .. context1, word) end
-            end
+        -- delete_notifier 仍处于原生删词链内部：
+        -- 这里只记录“稍后刷新”，绝不直接修改 Context / Composition。
+        -- 无论本脚本自己的 DB 同步是否成功，都不能影响 Rime 原生删词链。
+        if ctx and ctx:is_composing() then
+            env.need_delete_refresh = true
         end
 
+        local ok, err = pcall(function()
+            -- DeleteCandidate() 在触发 delete_notifier 前已经设置 selected_index，
+            -- 直接读取当前选中候选即可，不需要手动操作 composition。
+            local cand = ctx and ctx:get_selected_candidate() or nil
+            if not cand or not REORDER_TYPE_WHITELIST[cand.type or ""] then return end
+
+            local word = cand.text or ""
+            if word == "" then return end
+
+            local db = get_db(env)
+            if not db then return end
+
+            if context_state.after_number then
+                -- 数字后的量词记忆只有 1-Gram 数字上下文。
+                mark_record_deleted(db, ONE_PREFIX .. NUMBER_CONTEXT, word)
+            else
+                local context1 = context_state.prev1
+                local context2 = context_state.prev2
+                if context1 then
+                    mark_record_deleted(db, ONE_PREFIX .. context1, word)
+                    if context2 then
+                        mark_record_deleted(db, TWO_PREFIX .. context2 .. KEY_SEP .. context1, word)
+                    end
+                end
+            end
+        end)
+
+        -- 当前候选流已经发生删除事件，本轮学习快照作废；
+        -- 下一次 refresh 后 F 会按新候选重新建立。
         clear_learning_snapshot()
 
-        if not env.delete_refreshing and ctx:is_composing() then
-            env.delete_refreshing = true
-            pcall(function() ctx:refresh_non_confirmed_composition() end)
-            env.delete_refreshing = nil
+        if not ok then
+            log.error("context_reorder delete sync error: " .. tostring(err))
         end
     end
 
@@ -468,10 +477,23 @@ function P.init(env)
 end
 
 function P.func(key, env)
+    local ctx = env.engine.context
+
+    -- 原生删词已经完成后，再在下一次按键事件里刷新当前 composition。
+    -- PC 上通常下一事件就是 Ctrl/Del 的 release，因此刷新几乎立即发生，
+    -- 但已经完全退出 delete_notifier 分发链。
+    if env.need_delete_refresh then
+        env.need_delete_refresh = false
+        if ctx and ctx:is_composing() then
+            pcall(function()
+                ctx:refresh_non_confirmed_composition()
+            end)
+        end
+    end
+
     if key:release() then return 2 end
 
     local repr = key:repr()
-    local ctx = env.engine.context
     local is_composing = ctx:is_composing()
     local is_backspace = repr == "BackSpace"
     local has_modifier = not is_backspace and (s_find(repr, "Shift", 1, true) or s_find(repr, "Control", 1, true) or s_find(repr, "Alt", 1, true))
@@ -508,7 +530,7 @@ function P.fini(env)
 
     env.commit_cb = nil
     env.delete_cb = nil
-    env.delete_refreshing = nil
+    env.need_delete_refresh = nil
     env.undo_before = nil
     env.undo_after = nil
     env.undo_prev2 = nil
