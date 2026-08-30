@@ -272,7 +272,10 @@ key_binder:
     #- { match: "^.*`$", accept: "`", send_sequence: '{BackSpace}{Home}{`}{`}{End}' }基础版暂时取消这个功能，
     #斜杠被占用引导符号，因此输入本身设置为双击
     - {match: "^/$", accept: "/", send_sequence: '{space}'}
-
+    #按下快捷键将开关切换到对应状态再发送快捷键，最终执行快捷键所对应的操作
+    - {accept: Shift+Return, send_sequence: '{option:tone_display=true}{Shift+Return}{option:tone_display=false}'}
+    # 有时候担忧回车上编码导致将消息发送出去，现在你可以通过右侧shit完成上编码并切换回来中文
+    - {accept: Shift_R, send_sequence: '{Shift_R}{Release+Shift_R}{option:ascii_mode=false}'}
 
 editor:
   bindings:
