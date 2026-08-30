@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.8.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.8.1...v17.8.2) (2026-08-30)
+
+
+### 🐛 Bug 修复
+
+* 移除shift按下的快捷键设置干扰作为修饰键 ([ca572be](https://github.com/amzxyz/rime-wanxiang/commit/ca572be681be8b5f9c46baf976bb89dfd081e999))
+
 ## [17.8.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.8.0...v17.8.1) (2026-08-30)
 
 
