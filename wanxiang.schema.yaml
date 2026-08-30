@@ -55,6 +55,7 @@ switches:
 engine:
   processors:
     - lua_processor@*wanxiang.super_processor  #KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
+    - lua_processor@*wanxiang.unicode_conversion*P  # 通过ctrl+u快捷键捕获当前高亮候选转换查询unicode，重复按下可还原
     - lua_processor@*wanxiang.context_reorder*P  #靠自己养的专属上下文调频工具
     - lua_processor@*wanxiang.super_english*P  #英文只能加空格捕获按键操作
     - lua_processor@*wanxiang.partial_commit  #通过ctrl+1~0局部提交10个字以内的句子的前几个字（一般为正确的前几个）使用时要遵循合理的分词结构能促进后续编码打出正确的词汇
@@ -83,7 +84,7 @@ engine:
     - lua_translator@*wanxiang.version_display  #输入'/wx'，显示万象项目网址和当前版本号
     - lua_translator@*wanxiang.set_schema  #输入'/zrm'，快速切换为自然码双拼， /flypy→小鹤双拼 /mspy→微软双拼 /zrm→自然码 /sogou→搜狗双拼 /abc→智能ABC /ziguang→紫光双拼 /pyjj→拼音加加 /gbpy→国标双拼 /lxsq→乱序17 /pinyin→全拼
     - lua_translator@*wanxiang.shijian  #农历、日期、节气、节日、时间、周、问候模板等等，触发清单看下文
-    - lua_translator@*wanxiang.unicode_conversion  #通过输入大写U引导，并输入Unicode编码获得汉字输出
+    - lua_translator@*wanxiang.unicode_conversion*T  #通过输入大写U引导，并输入Unicode编码获得汉字输出
     - lua_translator@*wanxiang.number_conversion  #数字、金额大写，通过输入大写R1234获得候选输出
     - lua_translator@*wanxiang.super_calculator  #超级计算器，Lua内查看高级用法
     - lua_translator@*wanxiang.random_tools  #  UUID/UUID7/ULID/随机密码
@@ -380,6 +381,9 @@ super_processor:
   # 下面这些写法都支持：
   # select_character: "[,]"                      # [ 上屏首字，] 上屏尾字（推荐）
   # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
+
+unicode:
+  key: Control+u
 
 context_reorder:
   db_name: context_reorder

@@ -1,9 +1,16 @@
 -- @amzxyz  https://github.com/amzxyz/rime-wanxiang
 -- 万象拼音
+-- Unicode 双向工具：
+-- P（Processor）：通过可配置快捷键将当前选中的单字符候选切换为 Uxxxx 输入，再次触发可返回原始 input。
+-- T（Translator）：解析 U 输入并生成字符、码点及各种编码表示。
 
-local unicode_conversion = {}
+local wanxiang = require("wanxiang/wanxiang")
+
+local P = {}
+local T = {}
 
 local MAX_CODEPOINT = 0x10FFFF
+local DEFAULT_HOTKEY = "Control+u"
 
 local DIGIT_VALUES = {}
 for i = 0, 9 do
@@ -436,18 +443,116 @@ local function yield_dictionary_conversion(code, seg, env)
     end
 end
 
-function unicode_conversion.init(env)
+-- ----------------------
+-- P：当前候选字符 -> Uxxxx
+-- ----------------------
+
+local function has_unicode_prefix(input, env)
+    local trigger = get_unicode_trigger(env)
+    return trigger ~= "" and input:sub(1, #trigger) == trigger
+end
+
+function P.init(env)
+    local config = env.engine.schema.config
+    local key = config:get_string("unicode/key")
+    if not key or key == "" then key = DEFAULT_HOTKEY end
+
+    env.unicode_key = KeyEvent(key)
+    env.unicode_prev_input = nil
+    env.unicode_update_connection = env.engine.context.update_notifier:connect(function(context)
+        if env.unicode_prev_input ~= nil and not has_unicode_prefix(context.input or "", env) then
+            env.unicode_prev_input = nil
+        end
+    end)
+end
+
+function P.fini(env)
+    if env.unicode_update_connection then
+        env.unicode_update_connection:disconnect()
+        env.unicode_update_connection = nil
+    end
+
+    env.unicode_key = nil
+    env.unicode_prev_input = nil
+end
+
+function P.func(key, env)
+    if key:release() or not env.unicode_key or not key:eq(env.unicode_key) then
+        return wanxiang.RIME_PROCESS_RESULTS.kNoop
+    end
+
+    local context = env.engine.context
+
+    -- 必须直接保存完整 context.input；不能从当前 segment / preedit 反推。
+    -- recognizer / segmentor 即使消费了反查前缀（如 `yuif 的 `），
+    -- context.input 仍是需要恢复的完整原始输入。
+    local full_input = context.input or ""
+
+    -- 只有快捷键创建的 U 会话才有返回点；U 内部继续编辑仍保留该返回点。
+    if env.unicode_prev_input ~= nil and has_unicode_prefix(full_input, env) then
+        local prev_input = env.unicode_prev_input
+        env.unicode_prev_input = nil
+        context.input = prev_input
+        return wanxiang.RIME_PROCESS_RESULTS.kAccepted
+    end
+
+    -- 用户手动输入 U... 时不制造虚假的返回点。
+    if has_unicode_prefix(full_input, env) then
+        return wanxiang.RIME_PROCESS_RESULTS.kNoop
+    end
+
+    -- 普通候选优先直接取 Context 当前候选。
+    local cand = context:get_selected_candidate()
+
+    -- punct / 符号菜单可能只有“高亮索引”而没有 selected candidate，
+    -- 因此直接按当前 Segment.selected_index 从 Menu 取候选。
+    if not cand then
+        local current_seg = context.composition:back()
+        local menu = current_seg and current_seg.menu or nil
+        if menu and not menu:empty() then
+            local index = tonumber(current_seg.selected_index) or 0
+            menu:prepare(index + 1)
+            cand = menu:get_candidate_at(index)
+        end
+    end
+
+    local text = cand and cand.text or ""
+
+    -- 没有菜单候选时，允许直接查询当前完整输入本身（仅限单个 Unicode 码点）。
+    if text == "" and utf8.len(full_input) == 1 then
+        text = full_input
+    end
+
+    if utf8.len(text) ~= 1 then
+        return wanxiang.RIME_PROCESS_RESULTS.kNoop
+    end
+
+    local cp = utf8.codepoint(text)
+    if not is_valid_scalar(cp) then
+        return wanxiang.RIME_PROCESS_RESULTS.kNoop
+    end
+
+    env.unicode_prev_input = full_input
+    context.input = get_unicode_trigger(env) .. string.format("%x", cp)
+    return wanxiang.RIME_PROCESS_RESULTS.kAccepted
+end
+
+-- ----------------------
+-- T：U 输入 -> Unicode 候选
+-- ----------------------
+
+function T.init(env)
     env.unicode_memory = Memory(env.engine, env.engine.schema)
 end
 
-function unicode_conversion.fini(env)
+function T.fini(env)
     if env.unicode_memory then
         env.unicode_memory:disconnect()
         env.unicode_memory = nil
     end
 end
 
-function unicode_conversion.func(input, seg, env)
+function T.func(input, seg, env)
     local payload = extract_payload(input, seg, env)
     if payload == nil then
         return
@@ -455,13 +560,7 @@ function unicode_conversion.func(input, seg, env)
 
     local hint_text, hint_comment = get_prefix_hint(payload)
     if hint_text then
-        yield(Candidate(
-            "unicode",
-            seg.start,
-            seg._end,
-            hint_text,
-            hint_comment
-        ))
+        yield(Candidate("unicode", seg.start, seg._end, hint_text, hint_comment))
         return
     end
 
@@ -485,43 +584,19 @@ function unicode_conversion.func(input, seg, env)
     )
 
     if cp > MAX_CODEPOINT then
-        yield(Candidate(
-            "unicode",
-            seg.start,
-            seg._end,
-            "数值超限！",
-            "〔错误〕"
-        ))
+        yield(Candidate("unicode", seg.start, seg._end, "数值超限！", "〔错误〕"))
 
         if decimal_alternative then
-            yield(Candidate(
-                "unicode",
-                seg.start,
-                seg._end,
-                decimal_alternative,
-                "〔字符·十进〕"
-            ))
+            yield(Candidate("unicode", seg.start, seg._end, decimal_alternative, "〔字符·十进〕"))
         end
         return
     end
 
     if cp >= 0xD800 and cp <= 0xDFFF then
-        yield(Candidate(
-            "unicode",
-            seg.start,
-            seg._end,
-            "代理区字符无效！",
-            "〔错误〕"
-        ))
+        yield(Candidate("unicode", seg.start, seg._end, "代理区字符无效！", "〔错误〕"))
 
         if decimal_alternative then
-            yield(Candidate(
-                "unicode",
-                seg.start,
-                seg._end,
-                decimal_alternative,
-                "〔字符·十进〕"
-            ))
+            yield(Candidate("unicode", seg.start, seg._end, decimal_alternative, "〔字符·十进〕"))
         end
         return
     end
@@ -535,14 +610,8 @@ function unicode_conversion.func(input, seg, env)
     insert_alternative_character(candidates, decimal_alternative)
 
     for _, item in ipairs(candidates) do
-        yield(Candidate(
-            "unicode",
-            seg.start,
-            seg._end,
-            item[1],
-            item[2]
-        ))
+        yield(Candidate("unicode", seg.start, seg._end, item[1], item[2]))
     end
 end
 
-return unicode_conversion
+return { P = P, T = T }
