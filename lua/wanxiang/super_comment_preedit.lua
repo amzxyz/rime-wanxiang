@@ -45,6 +45,14 @@ local function normalize_comment_delimiter(comment, delimiter_pattern)
     return (comment:gsub(delimiter_pattern, " "))
 end
 
+-- 只判断 UTF-8 字符数是否未超过上限。
+local function utf8_within(text, limit)
+    if not text or text == "" then return true end
+    if not limit or limit < 1 then return false end
+    local pos = utf8.offset(text, limit + 1)
+    return not pos or pos > #text
+end
+
 -- ----------------------
 -- # 错音错字提示模块
 -- ----------------------
@@ -495,6 +503,11 @@ end
 
 function ZH.func(input, env)
     local context = env.engine.context
+    local settings = env.settings
+    local has_tone = env.has_tone
+    local has_aux = env.has_aux
+    local is_t9 = env.is_t9
+    local is_pro = env.is_pro
     local input_str = context.input or ""
     local is_radical_mode = wanxiang.is_in_radical_mode(env)
     local skip_comment = input_str == "" or wanxiang.is_function_mode(context)
@@ -502,30 +515,30 @@ function ZH.func(input, env)
     local preedit_state = nil
     if not is_radical_mode then
         local is_full_pinyin = context:get_option("full_pinyin")
-        local is_tone_display = env.has_tone and context:get_option("tone_display") or false
+        local is_tone_display = has_tone and context:get_option("tone_display") or false
 
         if is_full_pinyin or is_tone_display then
             preedit_state = {
-                is_t9 = env.is_t9,
-                is_pro = env.is_pro,
-                has_tone = env.has_tone,
-                has_aux = env.has_aux,
+                is_t9 = is_t9,
+                is_pro = is_pro,
+                has_tone = has_tone,
+                has_aux = has_aux,
                 input_method_type = env.input_method_type,
                 is_full_pinyin = is_full_pinyin,
-                tone_isolate = env.settings.tone_isolate,
-                convert_abbrev_preedit = env.settings.convert_abbrev_preedit,
-                auto_delimiter = env.settings.auto_delimiter,
-                manual_delimiter = env.settings.manual_delimiter,
-                comment_split_pattern = env.settings.comment_split_pattern,
+                tone_isolate = settings.tone_isolate,
+                convert_abbrev_preedit = settings.convert_abbrev_preedit,
+                auto_delimiter = settings.auto_delimiter,
+                manual_delimiter = settings.manual_delimiter,
+                comment_split_pattern = settings.comment_split_pattern,
             }
         end
     end
 
     local comment_mode = COMMENT_CLEAR
     if not skip_comment and not is_radical_mode then
-        if env.has_aux and context:get_option("fuzhu_hint") then
+        if has_aux and context:get_option("fuzhu_hint") then
             comment_mode = COMMENT_AUX
-        elseif env.has_tone then
+        elseif has_tone then
             if context:get_option("tone_hint") then
                 comment_mode = COMMENT_TONE
             elseif context:get_option("toneless_hint") then
@@ -536,14 +549,19 @@ function ZH.func(input, env)
         end
     end
 
+    local candidate_length = settings.candidate_length
+    local comment_split_pattern = settings.comment_split_pattern
+    local comment_delimiter_pattern = settings.comment_delimiter_pattern
+
     for cand in input:iter() do
         local genuine_cand = cand:get_genuine()
-        if genuine_cand.type == "shijian"
-            or genuine_cand.type == "compose"
-            or genuine_cand.type == "super_sym"
-            or genuine_cand.type == "super_emoji"
-            or genuine_cand.type == "url"
-            or genuine_cand.type == "version"
+        local cand_type = genuine_cand.type
+        if cand_type == "shijian"
+            or cand_type == "compose"
+            or cand_type == "super_sym"
+            or cand_type == "super_emoji"
+            or cand_type == "url"
+            or cand_type == "version"
         then
             yield(genuine_cand)
             goto continue
@@ -562,15 +580,15 @@ function ZH.func(input, env)
             goto continue
         end
 
-        if not env.is_t9 then
-            if env.has_aux then apply_aux_preedit(env, genuine_cand) end
-            if env.has_tone then apply_tone_digits(env, genuine_cand) end
+        if not is_t9 then
+            if has_aux then apply_aux_preedit(env, genuine_cand) end
+            if has_tone then apply_tone_digits(env, genuine_cand) end
         end
 
         if is_radical_mode then
             genuine_cand.comment = normalize_comment_delimiter(
                 get_az_comment(cand, env, initial_comment),
-                env.settings.comment_delimiter_pattern
+                comment_delimiter_pattern
             )
             yield(genuine_cand)
             goto continue
@@ -580,22 +598,22 @@ function ZH.func(input, env)
         if initial_comment and initial_comment:find("~", 1, true) then
             final_comment = initial_comment
         elseif comment_mode ~= COMMENT_CLEAR
-            and (utf8.len(cand.text or "") or 0) <= env.settings.candidate_length
+            and utf8_within(cand.text, candidate_length)
         then
             if comment_mode == COMMENT_AUX then
                 final_comment = get_aux_comment(env, initial_comment)
             elseif comment_mode == COMMENT_TONE then
-                if env.has_aux then
+                if has_aux then
                     final_comment = strip_aux_comment(
-                        initial_comment, env.settings.comment_split_pattern
+                        initial_comment, comment_split_pattern
                     )
                 else
                     final_comment = initial_comment or ""
                 end
             elseif comment_mode == COMMENT_TONELESS then
-                if env.has_aux then
+                if has_aux then
                     final_comment = remove_pinyin_tone(strip_aux_comment(
-                        initial_comment, env.settings.comment_split_pattern
+                        initial_comment, comment_split_pattern
                     ))
                 else
                     final_comment = remove_pinyin_tone(initial_comment or "")
@@ -615,7 +633,7 @@ function ZH.func(input, env)
         end
 
         final_comment = normalize_comment_delimiter(
-            final_comment, env.settings.comment_delimiter_pattern
+            final_comment, comment_delimiter_pattern
         )
 
         if final_comment ~= initial_comment then

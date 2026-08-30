@@ -25,7 +25,7 @@ local ONE_PREFIX = "1" .. KEY_SEP
 local TWO_PREFIX = "2" .. KEY_SEP
 local RECORD_SEPARATOR = " \t"
 local C_MAX = 2147483000
-local FILTER_SCAN_LIMIT = 100
+local FILTER_SCAN_LIMIT = 50
 local MEMORY_GROUP_LIMIT = 10
 local NUMBER_CONTEXT = "#NUM"
 local DEFAULT_CLASSIFIERS = "百千万亿个多只名位口头匹条群批伙张把件台部块根颗粒滴片朵面扇顶栋座所辆艘架盏支枝杆双对副套打串束排阵堆叠摞扎杯瓶盒包份碗锅盆桶袋罐盘次场局回趟顿番遍声项宗桩款步招年月天周岁秒分刻代期届任夜季本册篇首句段卷幅节堂门帖字行米寸尺里斤两吨克升元角毛笔"
@@ -245,15 +245,22 @@ end
 
 -- 读取某个候选在当前上下文中的 2-Gram / 1-Gram 次数。
 -- 只做精确 fetch，不再扫描某个上文的全部历史分支。
-local function get_context_counts(db, text, context2, context1)
-    if not db or not text or text == "" or not context1 then return 0, 0 end
+local function get_context_counts_by_code(db, text, code2, code1)
+    if not db or not text or text == "" or not code1 then return 0, 0 end
 
-    local c1 = select(1, fetch_record(db, ONE_PREFIX .. context1, text))
+    local c1 = select(1, fetch_record(db, code1, text))
     local c2 = 0
-    if context2 then c2 = select(1, fetch_record(db, TWO_PREFIX .. context2 .. KEY_SEP .. context1, text)) end
+    if code2 then c2 = select(1, fetch_record(db, code2, text)) end
     if c1 < 0 then c1 = 0 end
     if c2 < 0 then c2 = 0 end
     return c2, c1
+end
+
+local function get_context_counts(db, text, context2, context1)
+    if not context1 then return 0, 0 end
+    local code1 = ONE_PREFIX .. context1
+    local code2 = context2 and (TWO_PREFIX .. context2 .. KEY_SEP .. context1) or nil
+    return get_context_counts_by_code(db, text, code2, code1)
 end
 
 -- F 每轮只保存“当前同编码候选组”中已经存在记忆的词。
@@ -367,7 +374,7 @@ function P.init(env)
                     and context_state.learn_context2 == context2
                 local already_known = snapshot_matches and context_state.learn_known[text] or false
 
-                -- 即使候选位于本轮 100 项预读之外，已有记忆也必须继续 c+1。
+                -- 即使候选位于本轮 50 项预读之外，已有记忆也必须继续 c+1。
                 if not already_known then
                     local c2, c1 = get_context_counts(db, text, context2, context1)
                     already_known = c2 > 0 or c1 > 0
@@ -507,13 +514,44 @@ function F.init(env)
     load_config(env)
 end
 
+local function make_candidate_reader(input)
+    local iterator, iterator_state, iterator_control = input:iter()
+    local exhausted = false
+
+    return function()
+        if exhausted then return nil end
+        local cand = iterator(iterator_state, iterator_control)
+        iterator_control = cand
+        if not cand then exhausted = true end
+        return cand
+    end
+end
+
+-- 与 lookup 一致：句子型首选固定在排序池之外。
+local function protect_first_candidate(cand)
+    if not cand then return false end
+    local cand_type = cand.type or ""
+    local text = cand.text or ""
+    if cand_type == "sentence" then
+        return utf8.offset(text, 2) ~= nil
+    end
+    if cand_type == "phrase" or cand_type == "user_phrase" then
+        return utf8.offset(text, 4) ~= nil
+    end
+    return false
+end
+
 -- 从同一个 Translation 预读当前同编码候选组。
--- Candidate 只保存在本次 Filter 调用内的局部表中，最多 100 项。
+-- Candidate 只保存在本次 Filter 调用内的局部表中，最多 50 项。
 -- 即使已命中 10 个也继续排序，10 只控制是否允许新增。
-local function collect_scored_prefix(next_candidate, db, context2, context1, classifier_mode, limit)
+local function collect_scored_prefix(next_candidate, db, code2, code1, classifier_mode, limit, target_end)
     local entries = {}
     local boundary_cand = nil
-    local target_end = nil
+    local first_classifier = nil
+    local first_tier = nil
+    local first_c2 = nil
+    local first_c1 = nil
+    local needs_sort = false
 
     while #entries < limit do
         local cand = next_candidate()
@@ -521,31 +559,50 @@ local function collect_scored_prefix(next_candidate, db, context2, context1, cla
 
         local cand_type = cand.type or ""
         if #entries == 0 then
-            if not REORDER_TYPE_WHITELIST[cand_type] then
+            if not REORDER_TYPE_WHITELIST[cand_type]
+                or (target_end ~= nil and cand._end ~= target_end)
+            then
                 boundary_cand = cand
                 break
             end
-            target_end = cand._end
+            if target_end == nil then target_end = cand._end end
         elseif not REORDER_TYPE_WHITELIST[cand_type] or cand._end ~= target_end then
             boundary_cand = cand
             break
         end
 
         local text = cand.text or ""
-        local c2, c1 = get_context_counts(db, text, context2, context1)
+        local c2, c1 = get_context_counts_by_code(db, text, code2, code1)
+        local classifier = classifier_mode and CLASSIFIER_LOOKUP[text] or false
+        local tier = c2 > 0 and 2 or (c1 > 0 and 1 or 0)
         local index = #entries + 1
+
+        if index == 1 then
+            first_classifier = classifier
+            first_tier = tier
+            first_c2 = c2
+            first_c1 = c1
+        elseif not needs_sort and (
+            classifier ~= first_classifier
+            or tier ~= first_tier
+            or c2 ~= first_c2
+            or c1 ~= first_c1
+        ) then
+            needs_sort = true
+        end
 
         entries[index] = {
             cand = cand,
             c2 = c2,
             c1 = c1,
-            classifier = classifier_mode and CLASSIFIER_LOOKUP[text] or false,
+            classifier = classifier,
+            tier = tier,
             raw_index = index,
         }
         remember_snapshot_candidate(text, c2 > 0 or c1 > 0)
     end
 
-    return entries, boundary_cand
+    return entries, boundary_cand, needs_sort
 end
 
 local function sort_scored_prefix(entries, classifier_mode)
@@ -553,10 +610,7 @@ local function sort_scored_prefix(entries, classifier_mode)
         if classifier_mode and a.classifier ~= b.classifier then
             return a.classifier
         end
-
-        local at = a.c2 > 0 and 2 or (a.c1 > 0 and 1 or 0)
-        local bt = b.c2 > 0 and 2 or (b.c1 > 0 and 1 or 0)
-        if at ~= bt then return at > bt end
+        if a.tier ~= b.tier then return a.tier > b.tier end
         if a.c2 ~= b.c2 then return a.c2 > b.c2 end
         if a.c1 ~= b.c1 then return a.c1 > b.c1 end
         return a.raw_index < b.raw_index
@@ -583,19 +637,10 @@ function F.func(input, env)
     local context2 = do_classifier and nil or context_state.prev2
     local do_context = context1 ~= nil
 
-    local iterator, iterator_state, iterator_control = input:iter()
-    local exhausted = false
-    local function next_candidate()
-        if exhausted then return nil end
-        local cand = iterator(iterator_state, iterator_control)
-        iterator_control = cand
-        if not cand then exhausted = true end
-        return cand
-    end
-
     -- 回头码优先级最高：只交换前两个同段合法候选，不建立任何 Candidate 缓存。
     if do_fallback then
         clear_learning_snapshot()
+        local next_candidate = make_candidate_reader(input)
         local c1 = next_candidate()
         if not c1 then return end
         local c2 = next_candidate()
@@ -617,15 +662,48 @@ function F.func(input, env)
         return
     end
 
+    local next_candidate = make_candidate_reader(input)
+    local code1 = ONE_PREFIX .. context1
+    local code2 = context2 and (TWO_PREFIX .. context2 .. KEY_SEP .. context1) or nil
     begin_learning_snapshot(context2, context1)
-    local entries, boundary_cand = collect_scored_prefix(
-        next_candidate, db, context2, context1, do_classifier, FILTER_SCAN_LIMIT
-    )
-    sort_scored_prefix(entries, do_classifier)
 
-    for _, entry in ipairs(entries) do yield(entry.cand) end
+    local first = next_candidate()
+    if not first then return end
+
+    local protected_first = protect_first_candidate(first)
+    local scan_limit = FILTER_SCAN_LIMIT
+    local target_end = nil
+
+    if protected_first then
+        if REORDER_TYPE_WHITELIST[first.type or ""] then
+            local text = first.text or ""
+            local c2, c1 = get_context_counts_by_code(db, text, code2, code1)
+            remember_snapshot_candidate(text, c2 > 0 or c1 > 0)
+        end
+        target_end = first._end
+        scan_limit = scan_limit - 1
+        yield(first)
+    else
+        local pending = first
+        local upstream = next_candidate
+        next_candidate = function()
+            if pending then
+                local cand = pending
+                pending = nil
+                return cand
+            end
+            return upstream()
+        end
+    end
+
+    local entries, boundary_cand, needs_sort = collect_scored_prefix(
+        next_candidate, db, code2, code1, do_classifier, scan_limit, target_end
+    )
+    if needs_sort then sort_scored_prefix(entries, do_classifier) end
+
+    for i = 1, #entries do yield(entries[i].cand) end
     if boundary_cand then yield(boundary_cand) end
-    while not exhausted do local cand = next_candidate(); if not cand then break end; yield(cand) end
+    while true do local cand = next_candidate(); if not cand then break end; yield(cand) end
 end
 
 function F.fini(env)
