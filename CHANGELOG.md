@@ -1,5 +1,21 @@
 # Changelog
 
+## [17.8.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.7.2...v17.8.0) (2026-08-30)
+
+
+### ✨ 新特性
+
+* key_binder新增option状态扩展，现在可以在声调没开的状态下按下原有preedit上屏快捷键切换状态后发送原有内容，默认整成了上屏声调，有上屏其他类型的需求的如果感觉到占用了快捷键可以将其设置为ctrl+y这种类型也是可以的 ([515fad1](https://github.com/amzxyz/rime-wanxiang/commit/515fad12e9e451df326eaeb3a6a13f47ce63cf5c))
+
+
+### 🐛 Bug 修复
+
+* replacer小探索性優化 ([782ef14](https://github.com/amzxyz/rime-wanxiang/commit/782ef140b8adefced01d844961dfe8f56320cb8b))
+* 上下文调频中排序不变不增加c ([cccf9c6](https://github.com/amzxyz/rime-wanxiang/commit/cccf9c6298f081e02eb55faf1acfa34c7fab7b00))
+* 优化lookup修改句子的查询范围使用字符集过滤进行范围控制可更高效排除生僻字，从而减小句子修改的相同辅助码的碰撞概率 ([f6fe650](https://github.com/amzxyz/rime-wanxiang/commit/f6fe65003d210ca6548acc18d8ebeb8eb65f9286))
+* 优化lookup在简码形态下被触发和在编码大于6杯触发只看前100,这些场景下不再关心更靠后的生僻字 ([608e9dc](https://github.com/amzxyz/rime-wanxiang/commit/608e9dc95291a0248e037488e3d658b743509d20))
+* 插件小探索性優化 ([ab083bb](https://github.com/amzxyz/rime-wanxiang/commit/ab083bbbb2c2ef8988f28356d6a96fed2aaf20d1))
+
 ## [17.7.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.7.1...v17.7.2) (2026-08-29)
 
 
