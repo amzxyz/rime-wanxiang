@@ -1,37 +1,6 @@
 -- 正则按键绑定处理器
--- 本处理器在 Rime 标准库的按键绑定处理器（key_binder）的基础上，
--- 增加了用正则表达式判断当前输入编码的功能。
---
--- send_sequence 不再只是“按键序列”，而是“按顺序执行的动作序列”。
---
--- 支持两类动作：
---
--- 1. 普通按键
---    {Shift+Return}
---    {BackSpace}
---    {Shift_R}
---
--- 2. option 动作
---    {option:ascii_mode=true}     设置为 true
---    {option:ascii_mode=false}    设置为 false
---    {option:ascii_mode=toggle}   当前状态取反
---
--- 动作严格按书写顺序执行，例如：
---
---   send_sequence: '{option:ascii_mode=true}{Shift_R}'
---   = 先设置 ascii_mode=true，再发送 Shift_R
---
---   send_sequence: '{Shift_R}{option:ascii_mode=true}'
---   = 先发送 Shift_R，再设置 ascii_mode=true
---
---   send_sequence: '{option:tone_display=true}{Shift+Return}{option:tone_display=false}'
---   = 开启 tone_display → Shift+Return → 关闭 tone_display
---
---   send_sequence: '{option:charset_filter=toggle}'
---   = 翻转 charset_filter
---
--- 没有 send_sequence 的绑定会被本处理器忽略，
--- 继续交给原生 key_binder。
+-- 在原生 key_binder 基础上增加输入编码正则匹配与混合动作序列。
+-- option 动作会在切换后恢复原高亮位置，避免候选刷新后跳回首选。
 
 local wanxiang = require("wanxiang/wanxiang")
 
@@ -226,6 +195,38 @@ function this.init(env)
     end
 end
 
+---切换 option，并恢复切换前的高亮位置。
+---@param context Context
+---@param name string
+---@param value boolean|string
+local function set_option_preserve_highlight(context, name, value)
+    local highlight_index = nil
+
+    if context.composition and not context.composition:empty() then
+        local segment = context.composition:back()
+        if segment then
+            highlight_index = segment.selected_index
+        end
+    end
+
+    if value == "toggle" then
+        context:set_option(name, not context:get_option(name))
+    else
+        context:set_option(name, value)
+    end
+
+    if highlight_index ~= nil
+        and highlight_index >= 0
+        and context.refresh_non_confirmed_composition
+    then
+        context:refresh_non_confirmed_composition()
+
+        if context.highlight and context:has_menu() then
+            context:highlight(highlight_index)
+        end
+    end
+end
+
 ---执行 send_sequence 中的动作
 ---@param binding Binding
 ---@param env KeyBinderEnv
@@ -239,17 +240,11 @@ local function execute_actions(binding, env)
         elseif action.type == "option" then
             local context = env.engine.context
             if context then
-                if action.value == "toggle" then
-                    context:set_option(
-                        action.name,
-                        not context:get_option(action.name)
-                    )
-                else
-                    context:set_option(
-                        action.name,
-                        action.value
-                    )
-                end
+                set_option_preserve_highlight(
+                    context,
+                    action.name,
+                    action.value
+                )
             end
         end
     end
