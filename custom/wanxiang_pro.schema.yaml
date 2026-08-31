@@ -37,8 +37,8 @@ switches:
     reset: 1
   - name: super_tips  #开启后在输入编码后面的提示区显示实时的提示数据，受tips数据库影响，表情、翻译、车牌、符号等对应关系数据，并可实现句号上屏，不开启则默认，影响的是segment.prompt参数，归属：super_tips.lua
     states: [提示关, 提示开]
-  - name: prediction
-    states: [预测关, 预测开]  # 这个名称能用于插件也能用于万象的lua实现，用来开启关闭预测功能
+  - name: context_reorder
+    states: [上下文关, 上下文开]  # 上下文调频开关
   - options: [raw_input, tone_display, full_pinyin]  #开启后在输入编码的位置实时转换为带声调全拼或者不带声调全拼，不开启则采用系统配置原始编码，影响的是preedit_format,归属：super_preedit.lua
     states: [原编码, 有声调, 无声调]
     #    reset: 2     #对于开关组从0开始数，第几个就reset几可设为默认
