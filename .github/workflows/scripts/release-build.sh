@@ -50,8 +50,6 @@ package_schema_base() {
     --exclude='/release-please-config.json' \
     --exclude='/pro-*-fuzhu-dicts' \
     --exclude='/CHANGELOG.md' \
-    --exclude='/wanxiang_t9.schema.yaml' \
-    --exclude='wanxiang_t9i.schema.yaml' \
     --exclude='.yamlfmt' \
     --exclude='/custom' \
     --exclude='/LICENSE' \
@@ -110,6 +108,63 @@ package_schema_lite() {
     --exclude='/wanxiang_lite.schema.yaml' \
     --exclude="/$OUT_BASE" \
     "$ROOT_DIR/" "$OUT_DIR/"
+
+  # 3.1) Lite 内的 T9/T9i：三态开关组裁成两态布尔开关
+  python3 - \
+    "$OUT_DIR/wanxiang_t9.schema.yaml" \
+    "$OUT_DIR/wanxiang_t9i.schema.yaml" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+for file_name in sys.argv[1:]:
+    path = Path(file_name)
+
+    if not path.is_file():
+        raise SystemExit(f"错误: T9/T9i schema 不存在: {path}")
+
+    text = path.read_text(encoding="utf-8")
+
+    # 预编辑：三态互斥组 -> full_pinyin 单布尔开关
+    pattern = re.compile(
+        r'(?m)^(\s*)-\s*options:\s*\[raw_input,\s*tone_display,\s*full_pinyin\].*\n'
+        r'\1\s*states:\s*\[原编码,\s*有声调,\s*无声调\]\s*\n'
+        r'\1\s*reset:\s*2\b.*$'
+    )
+    text, count = pattern.subn(
+        lambda m: (
+            f"{m.group(1)}- name: full_pinyin  # T9/T9i：原编码 / 转全拼\n"
+            f"{m.group(1)}  states: [原编码, 转全拼]\n"
+            f"{m.group(1)}  reset: 1"
+        ),
+        text,
+        count=1,
+    )
+    if count != 1:
+        raise SystemExit(
+            f"错误: {path.name} 未唯一匹配预编辑开关组: {count}"
+        )
+
+    # 候选注释：三态互斥组 -> toneless_hint 单布尔开关
+    pattern = re.compile(
+        r'(?m)^(\s*)-\s*options:\s*\[comment_off,\s*tone_hint,\s*toneless_hint\].*\n'
+        r'\1\s*states:\s*\[注释关,\s*有声调,\s*无声调\]\s*$'
+    )
+    text, count = pattern.subn(
+        lambda m: (
+            f"{m.group(1)}- name: toneless_hint  # T9/T9i：注释关 / 注释开\n"
+            f"{m.group(1)}  states: [注释关, 注释开]"
+        ),
+        text,
+        count=1,
+    )
+    if count != 1:
+        raise SystemExit(
+            f"错误: {path.name} 未唯一匹配注释开关组: {count}"
+        )
+
+    path.write_text(text, encoding="utf-8")
+PY
 
   # 4) 只裁剪 Lite 不需要的 Lua 模块和 data 文件
   rm -f \
