@@ -1,5 +1,21 @@
 # Changelog
 
+## [17.9.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.1...v17.9.2) (2026-08-31)
+
+
+### 📚 词库更新
+
+* 深化emoji ([657f793](https://github.com/amzxyz/rime-wanxiang/commit/657f7933fb667a222643e1fa6f846a94f15fe52d))
+* 词库调整 ([36d4770](https://github.com/amzxyz/rime-wanxiang/commit/36d47704cc24ca4b3b88ce4c8d9e79bcb6500723))
+
+
+### 🐛 Bug 修复
+
+* 动作里面包含option时锁定当前高亮在动作后恢复高亮位置 ([7f9bbac](https://github.com/amzxyz/rime-wanxiang/commit/7f9bbac8201e59c3bc11583ea1aae66a2d9e24c5))
+* 给上下文调频增加开关 ([425764d](https://github.com/amzxyz/rime-wanxiang/commit/425764dcf1f55c691f11add1fab7207f954bfd49))
+* 自动化打包t9时跟随lite版本的将简化开关 ([b0b9f23](https://github.com/amzxyz/rime-wanxiang/commit/b0b9f234aac0acb1b93232ca35003a517974b5d9))
+* 补充librime.lua接口描述 ([3a91ff5](https://github.com/amzxyz/rime-wanxiang/commit/3a91ff5094454a412517651a3c9b0d7bf7be3191))
+
 ## [17.9.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.0...v17.9.1) (2026-08-30)
 
 
