@@ -3,7 +3,8 @@
 -- from https://github.com/hchunhui/librime-lua/blob/master/contrib/librime.lua
 -- Copyright (c) 2021, librime-lua Developers
 -- This software is licensed under the BSD-3-Clause license.
--- Last Change: LTS
+-- Last Change: 2026-08-31
+
 ---@meta rime
 
 --- 全局对象
@@ -17,7 +18,10 @@
 ---@field get_distribution_code_name fun(): string
 ---@field get_distribution_version fun(): string
 ---@field get_user_id fun(): string
+--- 获取毫秒级时间值，适合双击判断、超时、输入间隔和性能统计。
+--- 兼容旧版插件时可先判断：rime_api and rime_api.get_time_ms and rime_api.get_time_ms() or os.time() * 1000
 ---@field get_time_ms fun(): number
+--- 使用 librime 的正则实现判断输入；
 ---@field regex_match fun(input: string, pattern: string): boolean
 ---@field regex_search fun(input: string, pattern: string): string[] | nil
 ---@field regex_replace fun(input: string, pattern: string, fmt: string): string
@@ -99,6 +103,7 @@ function Set(values) end
 ---@field schema Schema
 ---@field context Context
 ---@field active_engine Engine
+--- 将一个 KeyEvent 重新送入引擎；返回是否被处理器接受。
 ---@field process_key fun(self: self, key_event: KeyEvent): boolean
 ---@field compose fun(self: self, ctx: Context)
 ---@field commit_text fun(self: self, text: string)
@@ -106,6 +111,7 @@ function Set(values) end
 
 ---@class Context
 ---@field composition Composition
+--- 当前原始输入。caret_pos、Segment 起止位置均以该字符串的位置计。
 ---@field input string
 ---@field caret_pos integer
 ---@field commit_notifier Notifier
@@ -122,12 +128,16 @@ function Set(values) end
 ---@field get_preedit fun(self: self): Preedit
 ---@field is_composing fun(self: self): boolean
 ---@field has_menu fun(self: self): boolean
----@field get_selected_candidate fun(self: self): Candidate
+--- 无可选候选时可能返回 nil。
+---@field get_selected_candidate fun(self: self): Candidate|nil
 ---@field push_input fun(self: self, text: string)
 ---@field pop_input fun(self: self, len: integer): boolean
 ---@field delete_input fun(self: self, len: integer): boolean
 ---@field clear fun(self: self)
+--- 选中并确认当前段候选；候选下标从 0 开始。
 ---@field select fun(self: self, index: integer): boolean
+--- 只移动高亮，不确认候选；候选下标从 0 开始。
+--- option 切换导致候选重算时，可先保存 Segment.selected_index，再 refresh 后用 highlight 恢复。
 ---@field highlight fun(self: self, index: integer): boolean
 ---@field confirm_current_selection fun(self: self): boolean
 ---@field delete_current_selection fun(self: self): boolean
@@ -135,13 +145,19 @@ function Set(values) end
 ---@field reopen_previous_selection fun(self: self): boolean
 ---@field clear_previous_segment fun(self: self): boolean
 ---@field reopen_previous_segment fun(self: self): boolean
+--- 清除当前未确认部分，已确认段保留。
 ---@field clear_non_confirmed_composition fun(self: self): boolean
+--- 重新翻译当前未确认部分，用于 option、外部状态或候选来源发生变化后刷新候选。
 ---@field refresh_non_confirmed_composition fun(self: self): boolean
+--- 修改 option；引擎在正在组词时会触发未确认候选刷新。
 ---@field set_option fun(self: self, name: string, value: boolean)
 ---@field get_option fun(self: self, name: string): boolean
 ---@field set_property fun(self: self, key: string, value: string)
 ---@field get_property fun(self: self, key: string): string
 ---@field clear_transient_options fun(self: self)
+--- 注意：Context 没有 get_candidate(index) 接口。
+--- 按下标取候选应使用 context.composition:back():get_candidate_at(index)
+--- 或 segment.menu:get_candidate_at(index)。
 
 ---@class Preedit
 ---@field text string
@@ -151,9 +167,10 @@ function Set(values) end
 
 ---@class Composition
 ---@field empty fun(self: self): boolean
----@field back fun(self: self): Segment
+--- 空 composition 返回 nil。
+---@field back fun(self: self): Segment|nil
 ---@field pop_back fun(self: self)
----@field push_back fun(self: self)
+---@field push_back fun(self: self, segment: Segment)
 ---@field has_finished_composition fun(self: self): boolean
 ---@field get_prompt fun(self: self): string
 ---@field toSegmentation fun(self: self): Segmentation
@@ -175,25 +192,31 @@ function Set(values) end
 ---@field get_current_segment_length fun(self: self): integer
 ---@field get_confirmed_position fun(self: self): integer
 ---@field get_segments fun(self: self): Segment[]
----@field get_at fun(self: self, index: integer): Segment
+--- 获取指定 Segment：非负下标从 0 开始，也支持 -1 表示最后一段；越界返回 nil。
+---@field get_at fun(self: self, index: integer): Segment|nil
 
 ---@class Segment
 ---@field status SegmentType
+--- start/_start 与 _end 是原始输入中的区间位置，_end 为区间末端。
 ---@field start integer
 ---@field _start integer
 ---@field _end integer
 ---@field length integer
 ---@field tags Set
----@field menu Menu
+--- 当前段没有候选菜单时可能为 nil。
+---@field menu Menu|nil
+--- 当前高亮候选下标，从 0 开始。
 ---@field selected_index integer
 ---@field prompt string
 ---@field clear fun(self: self)
 ---@field close fun(self: self)
 ---@field reopen fun(self: self, caret_pos: integer)
 ---@field has_tag fun(self: self, tag: string): boolean
----@field get_candidate_at fun(self: self, index: integer): Candidate
----@field get_selected_candidate fun(self: self): Candidate
+--- 按 0 起始下标获取候选；越界返回 nil。
+---@field get_candidate_at fun(self: self, index: integer): Candidate|nil
+---@field get_selected_candidate fun(self: self): Candidate|nil
 ---@field active_text fun(self: self, text: string): string
+--- 返回该段用于物理切分的 spans
 ---@field spans fun(self: self): Spans
 
 ---@param start_pos integer
@@ -204,7 +227,9 @@ function Segment(start_pos, end_pos) end
 ---@class Spans
 ---@field _start integer
 ---@field _end integer
+--- 当前绑定通常将 count、vertices 暴露为属性；兼容旧环境时可用 type(...) 判断是否为函数。
 ---@field count integer
+--- 切分顶点位置；用于按原始 input 的位置恢复物理音节边界。
 ---@field vertices integer[]
 ---@field add_span fun(self: self, start: integer, end: integer)
 ---@field add_spans fun(self: self, spans: Spans)
@@ -273,6 +298,7 @@ function ConfigMap() end
 ---@field type ConfigType
 ---@field size integer
 ---@field element ConfigItem
+--- ConfigList 下标从 0 开始。
 ---@field get_at fun(self: self, index: integer): ConfigItem|nil
 ---@field get_value_at fun(self: self, index: integer): ConfigValue|nil
 ---@field set_at fun(self: self, index: integer, item: ConfigItem): boolean
@@ -343,6 +369,7 @@ function KeySequence(repr) end
 
 ---@class Candidate
 ---@field type string
+--- 候选覆盖的原始输入区间；start/_start 起点，_end 终点。
 ---@field start integer
 ---@field _start integer
 ---@field _end integer
@@ -433,7 +460,9 @@ function Phrase(memory, type, start, _end, entry) end
 
 ---@class Menu
 ---@field add_translation fun(self: self, translation: Translation)
+--- 预取至少 candidate_count 个候选，并返回实际准备数量。
 ---@field prepare fun(self: self, candidate_count: integer): integer
+--- 候选下标从 0 开始；越界返回 nil。
 ---@field get_candidate_at fun(self: self, i: integer): Candidate|nil
 ---@field candidate_count fun(self: self): integer
 ---@field empty fun(self: self): boolean
@@ -474,6 +503,7 @@ function Opencc(filename) end
 ---@field size integer
 ---@field iter fun(self: self): fun(): DictEntry|nil
 
+--- 直接读取 .reverse.bin 数据文件；参数是文件路径/文件名。
 ---@class ReverseDb
 ---@field lookup fun(self: self, key: string): string
 
@@ -481,6 +511,7 @@ function Opencc(filename) end
 ---@return ReverseDb
 function ReverseDb(file_name) end
 
+--- 按 Rime 词典名称建立反查；参数是 dictionary 名称，不是 .reverse.bin 路径。
 ---@class ReverseLookup
 ---@field lookup fun(self: self, key: string): string
 ---@field lookup_stems fun(self: self, key: string): string
@@ -514,12 +545,18 @@ function DictEntry() end
 ---@return Code
 function Code() end
 
+---@alias TranslationIterator fun(state: Translation): Candidate|nil
+
 ---@class Translation
 ---@field exhausted boolean
----@field iter fun(self: self): fun(): Candidate|nil
+--- 返回 iterator 与当前 Translation 状态。
+--- 可直接 `for cand in translation:iter() do ... end`，
+--- 也可 `local next_cand, state = translation:iter()` 后手动逐个读取。
+---@field iter fun(self: self): TranslationIterator, Translation
 
 function Translation() end
 
+--- 访问词典/用户词典的运行时对象；长期持有时应在 fini 中 disconnect()。
 ---@class Memory
 ---@field lang_name string
 ---@field dict Dictionary
@@ -553,6 +590,7 @@ function Memory(engine, schema, namespace) end
 ---@return Projection
 function Projection() end
 
+--- 动态创建 Rime 原生组件。namespace 对应 schema 配置节点，klass 为组件类型名。
 ---@class Component
 ---@field Processor fun(engine: Engine, namespace: string, klass: string): Processor
 ---@field Translator fun(engine: Engine, namespace: string, klass: string): Translator
@@ -572,7 +610,7 @@ Component = {}
 
 ---@class Translator
 ---@field name_space string
----@field query fun(self: self, input: string, segment: Segment): Translation
+---@field query fun(self: self, input: string, segment: Segment): Translation|nil
 
 ---@class ScriptTranslator
 ---@field name_space string
@@ -593,7 +631,7 @@ Component = {}
 ---@field dict Dictionary
 ---@field user_dict UserDictionary
 ---@field translator Translator
----@field query fun(self: self, input: string, segment: Segment): Translation
+---@field query fun(self: self, input: string, segment: Segment): Translation|nil
 ---@field start_session fun(self: self): boolean
 ---@field finish_session fun(self: self): boolean
 ---@field discard_session fun(self: self): boolean
@@ -625,7 +663,7 @@ Component = {}
 ---@field dict Dictionary
 ---@field user_dict UserDictionary
 ---@field translator Translator
----@field query fun(self: self, input: string, segment: Segment): Translation
+---@field query fun(self: self, input: string, segment: Segment): Translation|nil
 ---@field start_session fun(self: self): boolean
 ---@field finish_session fun(self: self): boolean
 ---@field discard_session fun(self: self): boolean
@@ -639,17 +677,18 @@ Component = {}
 ---@field name_space string
 ---@field apply fun(self: self, translation: Translation): Translation
 
+--- connect() 返回 Connection；组件持有连接时应在 fini/release 中 disconnect()。
 ---@class Notifier
 ---@field connect fun(self: self, f: fun(ctx: Context), group: integer|nil): Connection
 
 ---@class OptionUpdateNotifier: Notifier
----@field connect fun(self: self, f: fun(ctx: Context, name: string), group:integer|nil): function[]
+---@field connect fun(self: self, f: fun(ctx: Context, name: string), group: integer|nil): Connection
 
 ---@class PropertyUpdateNotifier: Notifier
----@field connect fun(self: self, f: fun(ctx: Context, name: string), group:integer|nil): function[]
+---@field connect fun(self: self, f: fun(ctx: Context, name: string), group: integer|nil): Connection
 
 ---@class KeyEventNotifier: Notifier
----@field connect fun(self: self, f: fun(ctx: Context, key: string), group:integer|nil): function[]
+---@field connect fun(self: self, f: fun(ctx: Context, key: KeyEvent), group: integer|nil): Connection
 
 ---@class Connection
 ---@field disconnect fun(self: self)
@@ -687,8 +726,10 @@ function Switcher(engine) end
 ---@class DbAccessor
 ---@field reset fun(self: self): boolean
 ---@field jump fun(self: self, prefix: string): boolean
+--- 遍历 query() 结果，迭代返回 key, value。
 ---@field iter fun(self: self): fun(): (string, string) | nil
 
+--- UserDb/LevelDb 使用前应确认 loaded()，未加载时调用 open()；不用时可 close()。
 ---@class UserDb
 ---@field _loaded boolean
 ---@field read_only boolean
