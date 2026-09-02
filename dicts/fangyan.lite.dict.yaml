@@ -1,0 +1,350 @@
+# rime dictionary
+# encoding: utf-8
+#https://github.com/amzxyz/RIME-LMDG
+# ------- 方言-------
+# 词库维护中避免当成烂词删除，独立维护，以明确用途
+---
+name: fangyan.lite
+version: "LTS"
+sort: by_weight
+...
+#北方方言-晋方言-大包片-大同小片
+红话	hong hua
+勾留	gou liu
+呱嗒	gua da
+喜人	xi ren
+各闹	ge nao
+失笑	shi xiao
+紧巴	jin ba
+营生	ying sheng
+呐心	na xin
+耨呐心	nou na xin
+不记明	bu ji ming
+片呢哇	pian ne wa
+胡嚼	hu jue
+嫌吱	xian zhi
+各揪	ge jiu
+疙塌	ge ta
+磋着	cuo zhe
+溶噶	rong ga
+乃心	nai xin
+噶切	ga qie
+切吧	qie ba
+各乐儿	ge le er
+山各拉	shan ge la
+滚略	gun lve
+尿兴	niao xing
+愣求噶	leng qiu ga
+成色	cheng se
+各泡	ge pao
+玉茭	yu jiao
+那糕	na gao
+汪汪	wang wang
+傀儡	kui lei
+合烙	he lao
+抓恰	zhua qia
+圪揪	ge jiu
+寡气	gua qi
+塌锅了	ta guo le
+咋底	za di
+甚么老过	shen me lao guo
+圪促打蛋	ge cu da dan
+逼兜	bi dou
+耐心	nai xin
+周割	zhou ge
+盖握	gai wo
+能带	neng dai
+崩楼	beng lou
+扑灯牛子	pu deng niu zi
+黑楞儿	hei leng er
+岗岗	gang gang
+子背	zi bei
+胡子	hu zi
+结壳子	jie ke zi
+个圈儿头	ge quan er tou
+个生儿	ge sheng er
+兜儿	dou er
+不逮子	bu dai zi
+不逮儿	bu dai er
+个闹	ge nao
+家巴巧儿	jia ba qiao er
+狗娃儿	gou wa er
+猫娃儿	mao wa er
+鸡娃儿	ji wa er
+屎介	shi jie
+个督	ge du
+条出	tiao chu
+方祖货	fang zu huo
+收收	shou shou
+铁千	tie qian
+特拉板儿	te la ban er
+黑朗子	hei lang zi
+莫坡	mo po
+眼扎毛	yan zha mao
+个拜	ge bai
+个涝指窝儿	ge lao zhi wo er
+溜天	liu tian
+摆咧	bai lie
+爬长	pa chang
+等当	deng dang
+不辣	bu la
+抬郭	tai guo
+处不下起	chu bu xia qi
+个对	ge dui
+颤达	chan da
+忽颤	hu chan
+叼夺	diao duo
+勿略	wu lve
+戳鬼	chuo gui
+戳楼子	chuo lou zi
+定每	ding mei
+导年	dao nian
+捏扁	nie bian
+摊霍	tan huo
+忽颠	hu dian
+个塔	ge ta
+个嚼	ge jue
+如节	ru jie
+绕节	rao jie
+忽抖	hu dou
+抖达	dou da
+个纠	ge jiu
+窝缺	wo que
+十翻	shi fan
+叫忽	jiao hu
+折楞	zhe leng
+宁迷	ning mi
+老色	lao se
+老郭	lao guo
+丑念	chou nian
+虎擦	hu ca
+炸霍	zha huo
+忽炸	hu zha
+个抽	ge chou
+揪决	jiu jue
+忽沙	hu sha
+尿西	niao xi
+瓜达	gua da
+旅忽	lv hu
+个绕	ge rao
+忽绕	hu rao
+糙决	cao jue
+个支	ge zhi
+黑兰	hei lan
+戳达	chuo da
+个刀	ge dao
+导心	dao xin
+擦牛	ca niu
+摸捞	mo lao
+没辣	mei la
+拿念	na nian
+个折	ge zhe
+对达	dui da
+失溜二眼	shi liu er yan
+瞎眉触眼	xia mei chu yan
+颠毛颤眼	dian mao chan yan
+求眉杏眼	qiu mei xing yan
+瓷眉杏眼	ci mei xing yan
+囊眉凤眼	nang mei feng yan
+光眉俊眼	guang mei jun yan
+舒眉展眼	shu mei zhan yan
+灰眉触眼	hui mei chu yan
+假眉惺眼	jia mei xing yan
+胖眉肿眼	pang mei zhong yan
+急眉霸眼	ji mei ba yan
+猴眉洼眼	hou mei wa yan
+立眉霸眼	li mei ba yan
+黑眉洼眼	hei mei wa yan
+骚眉垃眼	sao mei la yan
+丢眉扯眼	diu mei che yan
+死眉羊眼	si mei yang yan
+贼眉鼠眼	zei mei shu yan
+土眉混眼	tu mei hun yan
+秃眉少眼	tu mei shao yan
+鬼眉六眼	gui mei liu yan
+揇眉塌眼	nan mei ta yan
+没眉晃眼	mei mei huang yan
+瓷八瓦观	ci ba wa guan
+活眼转色	huo yan zhuan se
+恼眉恨眼	nao mei hen yan
+喜眉笑眼	xi mei xiao yan
+慈眉善眼	ci mei shan yan
+夹疯楞症	jia feng leng zheng
+愣七砍八	leng qi kan ba
+陈里圪色	chen li ge se
+精说白道	jing shuo bai dao
+跌东舀西	die dong yao xi
+仄愣散偏	ze leng san pian
+毛反带乱	mao fan dai luan
+打架各厌	da jia ge yan
+成色懒气	cheng se lan qi
+劈头盖脸	pi tou gai lian
+阴七阳八	yin qi yang ba
+鬼忽零丁	gui hu ling ding
+张巴盖九	zhang ba gai jiu
+游出摆进	you chu bai jin
+撩猫戏狗	liao mao xi gou
+白皮泛脸	bai pi fan lian
+平不呀查	ping bu ya cha
+虚棱凳架	xu leng deng jia
+龇牙打调	zi ya da diao
+吐天洼地	tu tian wa di
+打牙讪嘴	da ya shan zui
+嘴尖毛长	zui jian mao chang
+闪深踏浅	shan shen ta qian
+横搅顺说	heng jiao shun shuo
+成里八色	cheng li ba se
+变眉失脸	bian mei shi lian
+歪三仄愣	wai san ze leng
+哇叽吵闹	wa ji chao nao
+鬼七裂八	gui qi lie ba
+云山雾罩	yun shan wu zhao
+磨鼻蹭痒	mo bi ceng yang
+寡鼻六说	gua bi liu shuo
+多鼻咳嗽	duo bi ke sou
+油鼻圪嚼	you bi ge jue
+阴言鬼语	yin yan gui yu
+五眉三道	wu mei san dao
+呛查古东	qiang cha gu dong
+聋七坎症	long qi kan zheng
+穷打急闹	qiong da ji nao
+穷急生风	qiong ji sheng feng
+牵粗把细	qian cu ba xi
+跌皮弄垮	die pi nong kua
+斗打神散	dou da shen san
+拿龙捉虎	na long zhuo hu
+忙慌什乱	mang huang shi luan
+飘游浪荡	piao you lang dang
+扭头不垒	niu tou bu lei
+拍大来小	pai da lai xiao
+支天了地	zhi tian le di
+神头鬼脸	shen tou gui lian
+扒头上脸	ba tou shang lian
+白不理正	bai bu li zheng
+本不牙叉	ben bu ya cha
+不由分水	bu you fen shui
+大口马牙	da kou ma ya
+点着吹美	dian zhao chui mei
+厾几厾达	du ji du da
+鬼声夜气	gui sheng ye qi
+憨吃愣害	han chi leng hai
+哼五喝六	heng wu he liu
+胡支也扯	hu zhi ye che
+急刁瓦抢	ji diao wa qiang
+尖言诈语	jian yan zha yu
+讲经说法	jiang jing shuo fa
+扇扇达达	shan shan da da
+私由作翻	si you zuo fan
+跌跟抢头	die gen qiang tou
+横躺竖卧	heng tang shu wo
+精七明八	jing qi ming ba
+油腔滑调	you qiang hua diao
+日祖王朝	ri zu wang chao
+圪朽打蛋	ge xiu da dan
+瘦马圪连	shou ma ge lian
+圪思圪忍	ge si ge ren
+圪折摆势	ge zhe bai shi
+忽松咬沓	hu song yao da
+豁沟打牙	huo gou da ya
+死松破肚	si song po du
+冷清客气	leng qing ke qi
+翻鼻麻叶	fan bi ma ye
+软鸡圪能	ruan ji ge neng
+迷糊打蛋	mi hu da dan
+死求一记	si qiu yi ji
+秃嘴笨舌	tu zui ben she
+四大不挨	si da bu ai
+讨吃乱鬼	tao chi luan gui
+十龇赖害	shi zi lai hai
+软腰裂垮	ruan yao lie kua
+圪连前蛋	ge lian qian dan
+圪叽散塌	ge ji san ta
+窝叽圪囊	wo ji ge nang
+孤独流细	gu du liu xi
+小家瓦气	xiao jia wa qi
+翻里折外	fan li zhe wai
+酸文假醋	suan wen jia cu
+浮皮了草	fu pi le cao
+小眼簿皮	xiao yan bu pi
+圪抽圪扯	ge chou ge che
+粘几糊察	zhan ji hu cha
+眯连忽都	mi lian hu dou
+圪列圪八	ge lie ge ba
+死精圪韧	si jing ge ren
+爽前褪后	shuang qian tui hou
+推前爽后	tui qian shuang hou
+眉毛眼扎	mei mao yan zha
+拉汤沫线	la tang mo xian
+没捉没拿	mei zhuo mei na
+拉巴扯叶	la ba che ye
+抽柚抽柚	chou you chou you
+错前摸后	cuo qian mo hou
+打杂烙毛	da za lao mao
+#北方方言-西南官话
+㮟㮟角角	ka ka jiao jiao
+日白	ri bai	3
+厮儿	si er	54
+鼁蟆	qu ma
+鼁蟆儿	qu ma er
+耳矢	er shi
+𢱟耳矢	chan er shi
+𬲹𬲹	mang mang
+#吴方言
+交春	jiao chun
+交秋	jiao qiu
+借手	jie shou
+济手	ji shou
+顺手	shun shou
+借眼	jie yan
+济眼	ji yan
+顺眼	shun yan
+借脚	jie jiao
+济脚	ji jiao
+顺脚	shun jiao
+借手面	jie shou mian
+济手面	ji shou mian
+顺手面	shun shou mian
+姆妈	mu ma
+阿姆	a mu
+娘妗	niang jin
+老嬬	lao ru
+老嬬儿	lao ru er
+木卵	mu luan
+呆大	dai da
+呆大头	dai da tou
+戆大	gang da
+青𬲼	qing ye
+菜蕻	cai hong
+上蕻	shang hong
+树蕻	shu hong
+坞堂	wu tang
+楐排	jie pai
+楐棚	jie peng
+忖忖	cun cun
+小揢	xiao ke
+剩落来	sheng luo lai
+望相	wang xiang
+样个	yang ge
+#湘方言
+娭毑	ai jie
+撩撇	liao pie
+了难	liao nan
+恰得苦	qia de ku
+恰点酒	qia dian jiu
+恰点东西	qia dian dong xi
+#粤方言
+饱咗	bao zuo
+睇戏	di xi
+埋数	mai shu
+闹热	nao re
+恰酒	qia jiu
+唔该	wu gai
+正嘢	zheng ye
+系哩度	xi li du
+到屋企	dao wu qi
+掂过碌蔗	dian guo lu zhe
+裹筋	guo jin
+便靓正	bian liang zheng
+唔够靓仔	wu gou liang zai
+最靓嘅猪腩肉	zui liang kai zhu nan rou
+都睇唔清	dou di wu qing

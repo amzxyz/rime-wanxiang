@@ -1,0 +1,4896 @@
+# Rime dictionary
+# encoding: utf-8
+#https://github.com/amzxyz/RIME-LMDG
+#兼容词库，对于多字词汇两种读音的场景，手动维护到本表以及一些其他的杂项
+---
+name: duoyin.lite
+version: "LTS"
+sort: by_weight
+...
+自己打的	zi ji da de	80
+怎么打的	zen me da de	49
+谁都不会服谁	shei dou bu hui fu shei	1
+调来调去	tiao lai tiao qu	1122
+不会服谁	bu hui fu shei	29
+还给他们	hai gei ta men	142
+很得劲	hen de jin	121
+真得劲	zhen de jin	322
+可得劲儿	ke de jin er	178
+乐山乐水	yao shan yao shui	12
+伤着了	shang zhe le	130
+一场	yi chang	17575
+事了	shi liao	337
+会得	hui de	554
+越长越	yue zhang yue	211
+哦哦	o o	1080
+吱吱	zi zi	100
+度量	du liang	100
+得了	de liao	203
+当天	dang tian	539
+当月	dang yue	449
+同行的	tong hang de	198
+中鱼	zhong yu	100
+中鱼率	zhong yu lv	392
+露骨	lou gu	1048
+发卡	fa qia	1036
+作料	zuo liao	62
+流鼻血	liu bi xue	155
+大都会	da dou hui	76
+包宿	bao xiu	113
+结了	jie le	1235
+结出	jie chu	848
+经常流鼻血	jing chang liu bi xue	10
+抽空	chou kong	2528
+调到了	diao dao le	95
+着了	zhao le	522
+那天	nei tian	1053
+坐骑	zuo ji	796
+曾参	zeng shen	32
+乐和	yue he	1782
+乐考	le kao	329
+乐考	yue kao	1020
+求得	qiu de	2702
+一来	yi lai	11920
+呦呵	yo he	1930
+不落	bu la	1395
+并着手	bing zhe shou	98
+一战	yi zhan	2136
+一战前	yi zhan qian	714
+一战中	yi zhan zhong	858
+一战时	yi zhan shi	202
+一战后	yi zhan hou	871
+不了吧	bu liao ba	810
+不了吧	bu le ba	703
+干了	gan le	1106
+裁缝	cai feng	456
+轻薄	qing bao	9145
+强人	qiang ren	855
+天雨	tian yu	264
+逮着	dai zhe	31
+临了	lin liao	411
+临了了	lin liao le	143
+空着	kong zhe	2177
+大夫们	da fu men	194
+校本	xiao ben	868
+特调	te diao	500
+你行	ni hang	207
+我行	wo hang	350
+咱家	za jia	768
+咱家的	za jia de	118
+得叫	dei jiao	401
+得从	dei cong	518
+成角	cheng jue	29
+打的	da de	13883
+实在	shi zai	440
+长有	zhang you	898
+识记	shi ji	14489
+血条	xie tiao	14379
+冲卡	chong qia	311
+干吗	gan ma	412
+干吗	gan ma	382
+多少	duo shao	157648
+当了	dang le	11666
+星星	xing xing	3144
+盛放	sheng fang	1197
+愿为	yuan wei	1056
+东西	dong xi	1687
+捏坏	nie pei	120
+糁馆	sa guan	88
+糁面	sa mian	83
+糁粥	sa zhou	94
+糁汤	sa tang	215
+吃子	chi zi	1712
+倾倒	qing dao	2001
+教授	jiao shou	1068
+褪去	tun qu	340
+一简	yi jian	9766
+散发	san fa	393
+好事	hao shi	2155
+勒脚	le jiao	1303
+调了	tiao le	3948
+支着	zhi zhao	500
+一朝	yi chao	95
+特勒	te lei	310
+大汗	da han	1558
+指甲	zhi jia	4670
+好色	hao se	1706
+一本	yi ben	5395
+一线	yi xian	183
+一级	yi ji	6576
+一级伤残	yi ji shang can	516
+普通话一级	pu tong hua yi ji	1
+一级字表	yi ji zi biao	32
+降了吧	xiang le ba	253
+降了没	xiang le mei	194
+对不了	dui bu liao	704
+玉米糁粥	yu mi sa zhou	322
+玉米糁汤	yu mi sa tang	298
+玉米糁面	yu mi sa mian	97
+玉米糁饼	yu mi sa bing	182
+落子无悔	lao zi wu hui	37
+落子不悔	lao zi bu hui	426
+落子布局	lao zi bu ju	32
+长虫子	chang chong zi	146
+也不长	ye bu zhang	547
+出血线	chu xue xian	261
+出血	chu xue	6149
+逻辑	luo ji	4689
+此行	ci hang	1292
+上头	shang tou	101
+长虫	zhang chong	377
+落子	lao zi	2847
+卡住	ka zhu	442
+本事	ben shi	2337
+还上了	huan shang le	1813
+她穿着	ta chuan zhuo	394
+他穿着	ta chuan zhuo	416
+一定还	yi ding huan	531
+将进酒	jiang jin jiu	169
+调了吧	tiao le ba	354
+他调了	ta tiao le	579
+我调了	wo tiao le	822
+又调了	you tiao le	606
+将棋手	jiang qi shou	336
+将棋盘	jiang qi pan	529
+将棋子	jiang qi zi	745
+这谁了	zhe shei le	108
+有为	you wei	1385
+这一	zhe yi	115
+这一	zhe yi	145
+炸焦	zha jiao	696
+炸点	zha dian	691
+炸好	zha hao	1141
+炸成	zha cheng	142
+炸起	zha qi	720
+炸着	zha zhe	89
+炸起了	zha qi le	295
+炸起来	zha qi lai	111
+炸好的	zha hao de	146
+炸成了	zha cheng le	628
+炸过了	zha guo le	359
+炸出了	zha chu le	650
+炸过吧	zha guo ba	218
+炸出来了	zha chu lai le	583
+香炸	xiang zha	776
+还上	huan shang	3527
+重重	zhong zhong	3624
+还得了	huan de liao	556
+尽量	jin liang	355
+背上	bei shang	5496
+调至	diao zhi	469
+重装	zhong zhuang	817
+孙子	sun zi	13079
+老子	lao zi	2877
+和乐	he yue	214
+落在	la zai	10369
+得往	dei wang	482
+落在这	la zai zhe	307
+还不完	huan bu wan	4
+漯河	ta he	107
+重刻	chong ke	970
+咳咳	ke ke	2142
+编辑	bian ji	1144
+播种	bo zhong	151
+密钥	mi yue	452
+糖色	tang shai	369
+又得	you dei	4202
+拂过	bi guo	406
+粘着	zhan zhe	1677
+当时	dang shi	1103
+当日	dang ri	7440
+当年	dang nian	170745
+当头	dang tou	824
+铁骑	tie qi	1298
+垫圈	dian juan	285
+大黄	dai huang	209
+调调	tiao tiao	779
+明朝	ming zhao	754
+没入	mo ru	321
+说客	shuo ke	1383
+高中	gao zhong	61159
+高中了	gao zhong le	862
+正中了	zheng zhong le	574
+没入了	mo ru le	156
+卡在	qia zai	6149
+卡在了	qia zai le	161
+睡着觉	shui zhe jiao	136
+他卡在	ta ka zai	344
+我卡在	wo ka zai	444
+还不还	huan bu huan	331
+忒过瘾	tei guo yin	80
+忒好吃	tei hao chi	140
+忒好看	tei hao kan	60
+忒好了	tei hao le	130
+忒看的	tei kan de	90
+忒可爱	tei ke ai	110
+忒快了	tei kuai le	150
+忒冷了	tei leng le	90
+忒麻烦	tei ma fan	100
+忒慢了	tei man le	80
+忒美了	tei mei le	90
+忒难看	tei nan kan	90
+忒牛逼	tei niu bi	90
+忒便宜	tei pian yi	70
+忒强了	tei qiang le	90
+忒少了	tei shao le	180
+忒甜了	tei tian le	40
+忒喜欢	tei xi huan	110
+忒吓人	tei xia ren	100
+忒小了	tei xiao le	150
+忒有才	tei you cai	100
+忒早了	tei zao le	70
+忒长了	tei zhang le	60
+没落到	mei luo dao	220
+没落地	mo luo de	310
+血债血还	xue zhai xie huan
+血债血偿	xue zhai xie chang
+难兄难弟	nan xiong nan di	717
+卡在那里	qia zai na li	39
+卡在哪里	qia zai na li	32
+就卡在那里了	jiu qia zai na li le	1
+碍着您了	ai zhao nin le
+忒矮了吧	tei ai le ba	43
+忒白了吧	tei bai le ba	60
+忒薄了吧	tei bao le ba	60
+忒不方便	tei bu fang bian	11
+忒不给力	tei bu gei li	11
+忒不好看	tei bu hao kan	3
+忒不好走	tei bu hao zou	60
+忒不讲究	tei bu jiang jiu	13
+忒不靠谱	tei bu kao pu	24
+忒不容易	tei bu rong yi	11
+忒不是人	tei bu shi ren	32
+忒不听话	tei bu ting hua	5
+忒不喜欢	tei bu xi huan	1
+忒不要脸	tei bu yao lian	14
+忒丑了吧	tei chou le ba	142
+忒长了吧	tei chang le ba	60
+忒大了吧	tei da le ba	23
+忒短了吧	tei duan le ba	115
+忒对不起	tei dui bu qi	128
+忒多了吧	tei duo le ba	295
+忒高了吧	tei gao le ba	1
+忒贵了吧	tei gui le ba	250
+忒好了吧	tei hao le ba	60
+忒黑了吧	tei hei le ba	60
+忒黑了点	tei hei le dian	7
+忒红了吧	tei hong le ba	60
+忒厚了吧	tei hou le ba	115
+忒坏了吧	tei huai le ba	43
+忒黄了吧	tei huang le ba	60
+忒贱了吧	tei jian le ba	60
+忒近了吧	tei jin le ba	41
+忒旧了吧	tei jiu le ba	60
+忒苦了吧	tei ku le ba	60
+忒宽了吧	tei kuan le ba	60
+忒懒了吧	tei lan le ba	60
+忒蓝了吧	tei lan le ba	60
+忒浪漫了	tei lang man le	10
+忒冷了吧	tei leng le ba	60
+忒厉害了	tei li hai le	18
+忒绿了吧	tei lv le ba	60
+忒没出息	tei mei chu xi	1
+忒美了吧	tei mei le ba	60
+忒没意思	tei mei yi si	11
+忒木勒哥	tei mu le ge	6
+忒便宜了	tei pian yi le	64
+忒浅了吧	tei qian le ba	60
+忒强了吧	tei qiang le ba	60
+忒轻了吧	tei qing le ba	60
+忒软了吧	tei ruan le ba	60
+忒弱了吧	tei ruo le ba	60
+忒少了吧	tei shao le ba	60
+忒深了吧	tei shen le ba	60
+忒他妈的	tei ta ma de	5
+忒甜了吧	tei tian le ba	60
+忒小了吧	tei xiao le ba	60
+忒新了吧	tei xin le ba	60
+忒硬了吧	tei ying le ba	2
+忒有意思	tei you yi si	12
+忒远了吧	tei yuan le ba	60
+忒脏了吧	tei zang le ba	60
+忒窄了吧	tei zhai le ba	60
+忒长了吧	tei zhang le ba	60
+忒重了吧	tei zhong le ba	60
+没收	mei shou	236
+暴晒	pu shai	234
+大王	dai wang	226
+教会	jiao hui	1546
+爱教	ai jiao	64
+不教	bu jiao	1869
+回调	hui diao	5725
+回调函数	hui diao han shu	265
+结果	jie guo	374
+看不了	kan bu le	260
+卡住	qia zhu	3355
+睡着	shui zhe	664
+没地	mo di
+办不了	ban bu le	1213
+报不了	bao bu le	180
+软弹	ruan tan	55
+露出	lu chu	883
+丁丁	zheng zheng	274
+没看着	mei kan zhao	140
+下不了	xia bu liao	295
+有多重	you duo chong	250
+多重	duo zhong	36513
+不干	bu gan	4362
+大夫	da fu	1191
+薄膜	bo mo	858
+没过了	mo guo le
+没过我	mo guo wo
+没过线	mo guo xian
+没过	mo guo	1291
+摩挲	mo suo	14040
+公差	gong cha	853
+好高	hao gao	497
+好强	hao qiang	2692
+攒个	cuan ge	390
+攒个	zan ge	921
+背着	bei zhe	1323
+外传	wai chuan	3753
+长点儿	chang dian er	290
+长点儿	zhang dian er	264
+有的行	you de hang	230
+就得到	jiu dei dao	1204
+就得到	jiu de dao	500
+调回来	tiao hui lai	284
+调回了	tiao hui le	385
+调回去	tiao hui qu	120
+长了	chang le	5826
+哀乐	ai le	1445
+炸锅	zha guo	662
+调回	tiao hui	381
+掉色	diao se	550
+掉色	diao shai	550
+大方	da fang	469
+落魄	luo tuo	3091
+落魄	luo bo	984
+沉甸甸	chen dian dian	1147
+沉甸甸	chen dian dian	1117
+热腾腾	re teng teng	142
+热腾腾	re teng teng	112
+大爷	da ye	2020
+兄弟	xiong di	41923
+姑父	gu fu	1166
+女婿	nv xu	1492
+得说	dei shuo	400
+朝阳	zhao yang	17711
+朝阳	chao yang	2920
+单行	dan xing	4473
+单行	dan hang	2600
+串行	chuan xing	679
+串行	chuan hang	679
+同行	tong hang	28559
+同行	tong xing	2409
+多行	duo xing	1154
+多行	duo hang	1490
+不了了	bu liao liao	1622
+不了了	bu liao le	1081
+爿字旁	chuang zi pang
+爿字旁	pan zi pang
+肚子	du zi	13420
+肚子	du zi	597
+落了	la le	6074
+落了	luo le	4731
+迫降	po xiang	290
+迫降	po jiang	3918
+浅浅	jian jian	927
+浅浅	qian qian	447
+不了	bu liao	45439
+不了	bu le	45437
+着人	zhuo ren	149
+闲着	xian zhao	555
+琢磨	zuo mo	13214
+琢磨	zhuo mo	13214
+线长	xian zhang	192
+看好	kan hao	18643
+看着	kan zhe	2226
+好这口	hao zhe kou	490
+好这口	hao zhei kou	490
+不得	bu de	25935
+不得	bu dei	320
+调对了	tiao dui le	310
+调对了	diao dui le	624
+转来转去	zhuan lai zhuan qu	60
+转来转去	zhuan lai zhuan qu	25
+得了	de liao	610
+得了	de le	2610
+赢得了	ying de liao
+得是	de shi	707
+得是	dei shi	410
+还回	huan hui	302
+还回	hai hui	218
+看好他	kan hao ta	400
+看好他	kan hao ta	400
+深藏不露	shen cang bu lou	56
+还回去吧	huan hui qu ba	26
+还回去吧	hai hui qu ba	26
+还回去吗	huan hui qu ma	25
+还回去吗	hai hui qu ma	25
+还回来吗	hai hui lai ma	18
+还回来吗	huan hui lai ma	2
+还回来了	huan hui lai le	37
+还回来了	hai hui lai le	26
+还回来啊	huan hui lai a	8
+还回来啊	hai hui lai a	17
+还回来吧	huan hui lai ba	7
+还回来吧	hai hui lai ba	9
+还回去	huan hui qu	102
+还回去	hai hui qu	1201
+还回来	huan hui lai	794
+还回来	hai hui lai	733
+还给那	hai gei na	90
+还给你	hai gei ni	250
+还给谁	hai gei shui	50
+还给他	hai gei ta	250
+还给她	hai gei ta	230
+还给我	hai gei wo	290
+还给这	hai gei zhe	110
+你还给	ni hai gei	140
+他还给	ta hai gei	130
+我还给	wo hai gei	898
+还给你钱	hai gei ni qian	22
+还给她过	hai gei ta guo	7
+还给她们	hai gei ta men	30
+什么时候还	shen me shi hou huan	1
+下次一定还	xia ci yi ding huan	1
+还都	huan du	95
+还都	hai dou	2580
+重载	zhong zai	472
+重载	chong zai	808
+把子	ba zi	754
+罢了	ba le	2230
+总长	zong chang	3710
+总长	zong zhang	450
+罢了	ba liao	650
+白庙	bai miao	1436
+便宜	bian yi	4491
+不长	bu chang	2032
+不为	bu wei	2388
+不为	bu wei	2418
+不长	bu zhang	1334
+长的	chang de	14363
+咳痰	ka tan	51
+委屈	wei qu	136
+精神	jing shen	1147
+朴树	po shu	2837
+干将	gan jiang
+长不长	chang bu chang	408
+长头发	chang tou fa	645
+长头发	zhang tou fa	500
+长尾巴	chang wei ba	108
+长尾巴	zhang wei ba	400
+长细纹	chang xi wen	20
+长细纹	zhang xi wen	250
+长羽毛	chang yu mao	250
+长羽毛	zhang yu mao	11
+区队长	qu dui zhang	280
+会落下	hui la xia	470
+落下了	la xia le	120
+他落下	ta la xia	588
+我落下	wo la xia	511
+已落下	yi la xia	110
+落下的	la xia de	312
+落下一个	la xia yi ge	1
+落下一个人	la xia yi ge ren	1
+不要落下	bu yao la xia	33
+不要落下	bu yao lao xia	33
+落下的功课	la xia de gong ke	1
+落下的课程	la xia de ke cheng	1
+已经落下了	yi jing la xia le	1
+谁认得	shei ren de	444
+干爽了	gan shuang le	358
+一点	yi dian	1087
+汤汤	tang tang	164
+贴吧	tie ba	19915
+找着	zhao zhe	830
+再长	zai chang	333
+行道	hang dao	1394
+重读	zhong du	2836
+一专	yi zhuan	180
+磨豆腐	mo dou fu	55
+颜色差	yan se cha	758
+冷战	leng zhan	4039
+打冷战	da leng zhan	73
+打个冷战	da ge leng zhan	358
+打了个冷战	da le ge leng zhan	1
+重活	chong huo	609
+重天	chong tian	459
+穿着	chuan zhuo	640
+穿着清凉	chuan zhe qing liang	23
+赶场	gan chang	126
+调配	diao pei	690
+更为	geng wei	1313
+更为	geng wei	143
+行长	hang zhang	470
+见长	jian chang	851
+见长	jian zhang	428
+落下	la xia	10762
+累累	lei lei	98
+累累	lei lei	68
+落下	luo xia	10764
+略长	lve chang	450
+掠夺	lve duo	988
+掠夺	lve duo	958
+略长	lve zhang	180
+美的	mei di	20709
+命中	ming zhong	6999
+命中	ming zhong	5760
+年长	nian chang	1450
+年长	nian zhang	2520
+便宜	pian yi	3423
+大都	da du		350
+数次	shu ci	6083
+数次	shuo ci	5006
+随行	sui hang	550
+随行	sui xing	497
+所长	suo chang	3222
+所长	suo zhang	2790
+调配	tiao pei	620
+调为	tiao wei	5995
+都为	dou wei	999
+我为	wo wei	2042
+我为	wo wei	1612
+五行	wu hang	3367
+五行	wu xing	3367
+相称	xiang chen	827
+相称	xiang cheng	217
+血晕	xie yun	725
+血晕	xue yun	1769
+一行	yi hang	170
+一通	yi tong	2205
+一通	yi tong	2175
+一行	yi xing	5558
+越长	yue chang	2270
+越长	yue zhang	3972
+炸鱼	zha yu	2636
+炸鱼	zha yu	2606
+喜乐	xi yue	111
+长的	zhang de	1583
+长牙	zhang ya	293
+长牙	chang ya	382
+长芽	chang ya	352
+重活	zhong huo	1859
+重活	chong huo	639
+按这	an zhei	400
+把这	ba zhei	650
+被这	bei zhei	530
+比这	bi zhei	600
+从这	cong zhei	620
+但这	dan zhei	770
+到这	dao zhei	620
+对这	dui zhei	650
+而这	er zhei	720
+放这	fang zhei	400
+干这	gan zhei	460
+搁这	ge zhei	350
+跟这	gen zhei	480
+管这	guan zhei	370
+将这	jiang zhei	600
+就这	jiu zhei	640
+看这	kan zhei	650
+靠这	kao zhei	460
+来这	lai zhei	670
+离这	li zhei	450
+没这	mei zhei	470
+那这	na zhei	560
+你这	ni zhei	660
+您这	nin zhei	510
+瞧这	qiao zhei	460
+让这	rang zhei	550
+送这	song zhei	340
+他这	ta zhei	630
+她这	ta zhei	520
+为这	wei zhei	560
+问这	wen zhei	600
+我这	wo zhei	690
+用这	yong zhei	560
+在这	zai zhei	800
+咱这	zan zhei	470
+照这	zhao zhei	390
+这爱	zhei ai	360
+这把	zhei ba	590
+这般	zhei ban	560
+这版	zhei ban	530
+这班	zhei ban	420
+这半	zhei ban	360
+这帮	zhei bang	580
+这包	zhei bao	430
+这杯	zhei bei	500
+这本	zhei ben	760
+这笔	zhei bi	620
+这比	zhei bi	580
+这边	zhei bian	730
+这便	zhei bian	450
+这表	zhei biao	410
+这并	zhei bing	620
+这病	zhei bing	490
+这饼	zhei bing	360
+这柄	zhei bing	330
+这波	zhei bo	600
+这拨	zhei bo	350
+这部	zhei bu	780
+这不	zhei bu	670
+这步	zhei bu	500
+这才	zhei cai	600
+这菜	zhei cai	540
+这餐	zhei can	460
+这册	zhei ce	350
+这侧	zhei ce	310
+这层	zhei ceng	560
+这茬	zhei cha	420
+这茶	zhei cha	390
+这场	zhei chang	730
+这车	zhei che	590
+这城	zhei cheng	330
+这处	zhei chu	530
+这出	zhei chu	450
+这串	zhei chuan	440
+这船	zhei chuan	330
+这次	zhei ci	810
+这词	zhei ci	510
+这从	zhei cong	520
+这村	zhei cun	360
+这大	zhei da	500
+这代	zhei dai	510
+这袋	zhei dai	350
+这单	zhei dan	470
+这档	zhei dang	510
+这道	zhei dao	630
+这倒	zhei dao	470
+这到	zhei dao	420
+这刀	zhei dao	350
+这得	zhei de	510
+这等	zhei deng	540
+这灯	zhei deng	320
+这地	zhei di	460
+这点	zhei dian	750
+这店	zhei dian	590
+这碟	zhei die	340
+这顶	zhei ding	450
+这栋	zhei dong	540
+这都	zhei dou	620
+这段	zhei duan	770
+这端	zhei duan	330
+这对	zhei dui	710
+这堆	zhei dui	450
+这队	zhei dui	390
+这顿	zhei dun	550
+这多	zhei duo	470
+这朵	zhei duo	440
+这儿	zhei er	650
+这番	zhei fan	540
+这饭	zhei fan	430
+这方	zhei fang	440
+这房	zhei fang	330
+这份	zhei fen	730
+这粉	zhei fen	300
+这封	zhei feng	580
+这风	zhei feng	350
+这幅	zhei fu	600
+这副	zhei fu	510
+这该	zhei gai	430
+这杆	zhei gan	330
+这个	zhei ge	960
+这歌	zhei ge	490
+这哥	zhei ge	390
+这给	zhei gei	560
+这跟	zhei gen	620
+这根	zhei gen	540
+这更	zhei geng	500
+这狗	zhei gou	440
+这股	zhei gu	580
+这瓜	zhei gua	320
+这关	zhei guan	470
+这罐	zhei guan	330
+这光	zhei guang	320
+这鬼	zhei gui	360
+这锅	zhei guo	500
+这还	zhei hai	570
+这好	zhei hao	430
+这号	zhei hao	410
+这和	zhei he	660
+这盒	zhei he	400
+这很	zhei hen	570
+这户	zhei hu	440
+这壶	zhei hu	340
+这话	zhei hua	630
+这花	zhei hua	400
+这画	zhei hua	370
+这会	zhei hui	620
+这回	zhei hui	620
+这婚	zhei hun	400
+这货	zhei huo	640
+这活	zhei huo	440
+这伙	zhei huo	390
+这火	zhei huo	350
+这几	zhei ji	550
+这集	zhei ji	520
+这既	zhei ji	500
+这季	zhei ji	470
+这鸡	zhei ji	380
+这记	zhei ji	370
+这家	zhei jia	850
+这架	zhei jia	530
+这价	zhei jia	470
+这件	zhei jian	680
+这间	zhei jian	620
+这将	zhei jiang	750
+这叫	zhei jiao	630
+这脚	zhei jiao	340
+这届	zhei jie	570
+这节	zhei jie	420
+这就	zhei jiu	760
+这酒	zhei jiu	450
+这句	zhei ju	640
+这局	zhei ju	480
+这剧	zhei ju	480
+这具	zhei ju	450
+这卷	zhei juan	350
+这卡	zhei ka	440
+这看	zhei kan	380
+这颗	zhei ke	640
+这可	zhei ke	610
+这棵	zhei ke	480
+这科	zhei ke	420
+这课	zhei ke	410
+这刻	zhei ke	320
+这口	zhei kou	530
+这块	zhei kuai	670
+这款	zhei kuan	810
+这来	zhei lai	410
+这类	zhei lei	760
+这里	zhei li	850
+这粒	zhei li	440
+这俩	zhei lia	600
+这脸	zhei lian	420
+这连	zhei lian	350
+这两	zhei liang	640
+这辆	zhei liang	610
+这列	zhei lie	410
+这令	zhei ling	530
+这楼	zhei lou	390
+这路	zhei lu	430
+这轮	zhei lun	570
+这码	zhei ma	340
+这猫	zhei mao	400
+这么	zhei me	830
+这枚	zhei mei	560
+这门	zhei men	610
+这米	zhei mi	360
+这面	zhei mian	520
+这名	zhei ming	680
+这幕	zhei mu	400
+这哪	zhei na	380
+这能	zhei neng	520
+这年	zhei nian	610
+这鸟	zhei niao	350
+这怕	zhei pa	250
+这排	zhei pai	360
+这盘	zhei pan	520
+这盆	zhei pen	420
+这批	zhei pi	640
+这匹	zhei pi	420
+这篇	zhei pian	780
+这片	zhei pian	610
+这票	zhei piao	410
+这瓶	zhei ping	510
+这起	zhei qi	650
+这期	zhei qi	580
+这钱	zhei qian	550
+这枪	zhei qiang	390
+这桥	zhei qiao	320
+这球	zhei qiu	470
+这区	zhei qu	380
+这曲	zhei qu	350
+这全	zhei quan	360
+这圈	zhei quan	340
+这券	zhei quan	300
+这却	zhei que	450
+这确	zhei que	300
+这群	zhei qun	640
+这让	zhei rang	680
+这人	zhei ren	600
+这日	zhei ri	390
+这肉	zhei rou	420
+这啥	zhei sha	390
+这扇	zhei shan	480
+这山	zhei shan	380
+这身	zhei shen	510
+这声	zhei sheng	350
+这是	zhei shi	900
+这时	zhei shi	710
+这事	zhei shi	680
+这使	zhei shi	550
+这诗	zhei shi	390
+这首	zhei shou	640
+这手	zhei shou	420
+这书	zhei shu	690
+这束	zhei shu	370
+这树	zhei shu	360
+这双	zhei shuang	540
+这水	zhei shui	430
+这谁	zhei shui	410
+这说	zhei shuo	380
+这厮	zhei si	460
+这艘	zhei sou	560
+这算	zhei suan	560
+这所	zhei suo	620
+这台	zhei tai	640
+这太	zhei tai	460
+这摊	zhei tan	320
+这趟	zhei tang	520
+这汤	zhei tang	450
+这堂	zhei tang	360
+这套	zhei tao	700
+这题	zhei ti	600
+这天	zhei tian	620
+这条	zhei tiao	720
+这贴	zhei tie	400
+这挺	zhei ting	360
+这同	zhei tong	390
+这通	zhei tong	340
+这桶	zhei tong	320
+这头	zhei tou	540
+这图	zhei tu	520
+这团	zhei tuan	410
+这腿	zhei tui	380
+这娃	zhei wa	390
+这碗	zhei wan	530
+这晚	zhei wan	370
+这位	zhei wei	750
+这为	zhei wei	580
+这味	zhei wei	420
+这窝	zhei wo	250
+这屋	zhei wu	320
+这戏	zhei xi	400
+这下	zhei xia	620
+这虾	zhei xia	330
+这线	zhei xian	310
+这项	zhei xiang	730
+这像	zhei xiang	430
+这厢	zhei xiang	400
+这些	zhei xie	900
+这鞋	zhei xie	430
+这心	zhei xin	350
+这行	zhei xing	580
+这样	zhei yang	870
+这要	zhei yao	550
+这药	zhei yao	440
+这也	zhei ye	780
+这页	zhei ye	410
+这夜	zhei ye	330
+这一	zhei yi	810
+这已	zhei yi	430
+这又	zhei you	560
+这有	zhei you	510
+这油	zhei you	330
+这与	zhei yu	680
+这鱼	zhei yu	470
+这雨	zhei yu	410
+这在	zhei zai	690
+这则	zhei ze	610
+这站	zhei zhan	370
+这张	zhei zhang	750
+这章	zhei zhang	410
+这仗	zhei zhang	360
+这招	zhei zhao	570
+这真	zhei zhen	440
+这阵	zhei zhen	370
+这只	zhei zhi	700
+这支	zhei zhi	620
+这纸	zhei zhi	350
+这枝	zhei zhi	320
+这种	zhei zhong	890
+这周	zhei zhou	590
+这株	zhei zhu	430
+这注	zhei zhu	360
+这桩	zhei zhuang	480
+这幢	zhei zhuang	450
+这桌	zhei zhuo	510
+这字	zhei zi	420
+这宗	zhei zong	460
+这组	zhei zu	610
+这罪	zhei zui	330
+这尊	zhei zun	510
+这座	zhei zuo	710
+在不了	zai bu le	439
+啊这是	a zhei shi	520
+啊这些	a zhei xie	500
+爱这个	ai zhei ge	490
+爱这些	ai zhei xie	270
+爱这样	ai zhei yang	310
+按这个	an zhei ge	530
+俺这个	an zhei ge	350
+按这里	an zhei li	280
+俺这里	an zhei li	240
+按这样	an zhei yang	330
+按这种	an zhei zhong	400
+把这次	ba zhei ci	410
+把这段	ba zhei duan	500
+把这个	ba zhei ge	690
+把这集	ba zhei ji	200
+把这类	ba zhei lei	370
+把这里	ba zhei li	480
+把这两	ba zhei liang	390
+把这项	ba zhei xiang	420
+把这些	ba zhei xie	660
+把这种	ba zhei zhong	570
+白这样	bai zhei yang	220
+办这样	ban zhei yang	270
+被这个	bei zhei ge	570
+被这些	bei zhei xie	500
+被这样	bei zhei yang	480
+被这种	bei zhei zhong	490
+比这个	bi zhei ge	590
+比这里	bi zhei li	490
+表这样	biao zhei yang	260
+别这样	bie zhei yang	450
+别这种	bie zhei zhong	100
+不这样	bu zhei yang	480
+才这点	cai zhei dian	210
+猜这个	cai zhei ge	290
+才这样	cai zhei yang	450
+唱这歌	chang zhei ge	300
+朝这边	chao zhei bian	280
+趁这个	chen zhei ge	450
+趁这时	chen zhei shi	170
+成这样	cheng zhei yang	600
+成这种	cheng zhei zhong	340
+吃这个	chi zhei ge	620
+吃这类	chi zhei lei	370
+吃这里	chi zhei li	410
+吃这套	chi zhei tao	320
+持这样	chi zhei yang	270
+持这种	chi zhei zhong	420
+穿这个	chuan zhei ge	410
+穿这件	chuan zhei jian	390
+次这样	ci zhei yang	340
+从这个	cong zhei ge	680
+从这里	cong zhei li	640
+打这个	da zhei ge	440
+打这里	da zhei li	220
+带这里	dai zhei li	250
+但这次	dan zhei ci	590
+但这都	dan zhei dou	370
+但这会	dan zhei hui	320
+但这些	dan zhei xie	670
+但这种	dan zhei zhong	650
+当这个	dang zhei ge	520
+到这边	dao zhei bian	520
+到这点	dao zhei dian	400
+到这个	dao zhei ge	670
+到这来	dao zhei lai	460
+到这里	dao zhei li	710
+到这时	dao zhei shi	400
+得这样	de zhei yang	390
+等这些	deng zhei xie	720
+点这个	dian zhei ge	560
+点这里	dian zhei li	520
+点这样	dian zhei yang	400
+定这个	ding zhei ge	340
+都这个	dou zhei ge	450
+都这样	dou zhei yang	610
+都这种	dou zhei zhong	310
+对这帮	dui zhei bang	250
+对这次	dui zhei ci	510
+对这个	dui zhei ge	720
+对这里	dui zhei li	510
+对这没	dui zhei mei	70
+对这种	dui zhei zhong	630
+多这里	duo zhei li	360
+而这次	er zhei ci	560
+而这个	er zhei ge	670
+而这里	er zhei li	500
+而这时	er zhei shi	480
+而这些	er zhei xie	690
+而这样	er zhei yang	480
+而这种	er zhei zhong	640
+发这个	fa zhei ge	520
+发这条	fa zhei tiao	370
+发这种	fa zhei zhong	400
+犯这种	fan zhei zhong	400
+放这吧	fang zhei ba	190
+放这个	fang zhei ge	380
+放这里	fang zhei li	380
+放这首	fang zhei shou	160
+干这个	gan zhei ge	500
+干这活	gan zhei huo	300
+敢这样	gan zhei yang	400
+搞这个	gao zhei ge	460
+搞这些	gao zhei xie	430
+搞这种	gao zhei zhong	420
+给这边	gei zhei bian	160
+给这类	gei zhei lei	300
+给这里	gei zhei li	340
+给这些	gei zhei xie	510
+跟这个	gen zhei ge	550
+管这个	guan zhei ge	430
+光这样	guang zhei yang	300
+过这样	guo zhei yang	520
+还这样	hai zhei yang	470
+还这种	hai zhei zhong	310
+好这里	hao zhei li	320
+和这种	he zhei zhong	500
+画这个	hua zhei ge	340
+换这个	huan zhei ge	380
+会这样	hui zhei yang	570
+会这种	hui zhei zhong	280
+将这个	jiang zhei ge	600
+讲这个	jiang zhei ge	510
+讲这话	jiang zhei hua	250
+将这些	jiang zhei xie	670
+讲这些	jiang zhei xie	610
+讲这种	jiang zhei zhong	390
+叫这个	jiao zhei ge	540
+借这个	jie zhei ge	500
+进这个	jin zhei ge	440
+就这啊	jiu zhei a	160
+就这吧	jiu zhei ba	310
+就这般	jiu zhei ban	270
+就这大	jiu zhei da	100
+就这的	jiu zhei de	210
+就这点	jiu zhei dian	500
+就这个	jiu zhei ge	610
+就这话	jiu zhei hua	130
+就这家	jiu zhei jia	510
+就这来	jiu zhei lai	160
+就这俩	jiu zhei lia	280
+就这仨	jiu zhei sa	180
+就这些	jiu zhei xie	540
+就这样	jiu zhei yang	750
+就这种	jiu zhei zhong	490
+据这位	ju zhei wei	370
+开这个	kai zhei ge	480
+看这个	kan zhei ge	640
+看这里	kan zhei li	570
+看这样	kan zhei yang	420
+靠这个	kao zhei ge	520
+考这个	kao zhei ge	420
+考这里	kao zhei li	150
+可这次	ke zhei ci	430
+可这钱	ke zhei qian	190
+可这种	ke zhei zhong	410
+快这里	kuai zhei li	140
+来这吧	lai zhei ba	310
+来这边	lai zhei bian	590
+来这点	lai zhei dian	270
+来这个	lai zhei ge	550
+来这里	lai zhei li	770
+来这套	lai zhei tao	290
+老这个	lao zhei ge	260
+老这样	lao zhei yang	350
+老这种	lao zhei zhong	160
+累这样	lei zhei yang	130
+离这里	li zhei li	480
+连这个	lian zhei ge	500
+聊这个	liao zhei ge	410
+聊这事	liao zhei shi	200
+码这篇	ma zhei pian	170
+买这个	mai zhei ge	600
+买这件	mai zhei jian	310
+买这些	mai zhei xie	460
+卖这些	mai zhei xie	340
+毛这种	mao zhei zhong	210
+没这店	mei zhei dian	300
+没这个	mei zhei ge	530
+美这里	mei zhei li	190
+没这命	mei zhei ming	140
+没这样	mei zhei yang	330
+没这种	mei zhei zhong	400
+莫这样	mo zhei yang	110
+那这不	na zhei bu	150
+那这个	na zhei ge	580
+拿这个	na zhei ge	520
+那这会	na zhei hui	120
+那这就	na zhei jiu	380
+那这些	na zhei xie	490
+拿这些	na zhei xie	430
+闹这个	nao zhei ge	200
+嫩这个	nen zhei ge	240
+嫩这是	nen zhei shi	170
+能这样	neng zhei yang	500
+你这般	ni zhei ban	260
+你这边	ni zhei bian	430
+你这不	ni zhei bu	350
+你这次	ni zhei ci	420
+你这的	ni zhei de	250
+你这都	ni zhei dou	290
+你这份	ni zhei fen	290
+你这个	ni zhei ge	650
+你这会	ni zhei hui	190
+你这来	ni zhei lai	210
+你这里	ni zhei li	470
+你这面	ni zhei mian	120
+你这年	ni zhei nian	240
+你这人	ni zhei ren	420
+你这是	ni zhei shi	570
+你这时	ni zhei shi	300
+你这算	ni zhei suan	280
+你这天	ni zhei tian	160
+你这图	ni zhei tu	200
+你这娃	ni zhei wa	170
+你这下	ni zhei xia	200
+你这些	ni zhei xie	410
+你这样	ni zhei yang	580
+你这也	ni zhei ye	330
+你这种	ni zhei zhong	540
+您这边	nin zhei bian	300
+您这个	nin zhei ge	440
+您这是	nin zhei shi	430
+弄这个	nong zhei ge	380
+喔这样	o zhei yang	190
+配这个	pei zhei ge	390
+气这样	qi zhei yang	190
+钱这是	qian zhei shi	410
+去这里	qu zhei li	590
+却这样	que zhei yang	200
+让这个	rang zhei ge	610
+让这颗	rang zhei ke	260
+让这些	rang zhei xie	570
+让这种	rang zhei zhong	480
+人这会	ren zhei hui	150
+人这样	ren zhei yang	470
+上这来	shang zhei lai	340
+上这类	shang zhei lei	350
+上这里	shang zhei li	440
+是这吧	shi zhei ba	300
+是这不	shi zhei bu	260
+是这的	shi zhei de	410
+是这个	shi zhei ge	710
+是这话	shi zhei hua	170
+是这吗	shi zhei ma	350
+使这些	shi zhei xie	480
+是这样	shi zhei yang	740
+是这种	shi zhei zhong	610
+耍这个	shua zhei ge	160
+耍这些	shua zhei xie	220
+睡这里	shui zhei li	170
+说这多	shuo zhei duo	210
+说这个	shuo zhei ge	680
+说这话	shuo zhei hua	540
+说这里	shuo zhei li	560
+说这事	shuo zhei shi	450
+说这些	shuo zhei xie	600
+说这种	shuo zhei zhong	560
+似这般	si zhei ban	300
+他这般	ta zhei ban	270
+她这般	ta zhei ban	220
+他这个	ta zhei ge	540
+她这会	ta zhei hui	130
+他这人	ta zhei ren	350
+她这样	ta zhei yang	490
+他这种	ta zhei zhong	490
+特这个	te zhei ge	290
+特这是	te zhei shi	170
+特这样	te zhei yang	200
+提这个	ti zhei ge	610
+填这个	tian zhei ge	310
+听这边	ting zhei bian	160
+听这歌	ting zhei ge	310
+听这句	ting zhei ju	110
+听这首	ting zhei shou	360
+玩这个	wan zhei ge	540
+玩这套	wan zhei tao	290
+玩这些	wan zhei xie	390
+往这走	wang zhei zou	180
+为这个	wei zhei ge	600
+为这事	wei zhei shi	460
+为这些	wei zhei xie	560
+问这里	wen zhei li	280
+我这般	wo zhei ban	300
+我这边	wo zhei bian	560
+我这才	wo zhei cai	420
+我这次	wo zhei ci	520
+我这大	wo zhei da	230
+我这得	wo zhei de	140
+我这段	wo zhei duan	510
+我这份	wo zhei fen	320
+我这分	wo zhei fen	210
+我这个	wo zhei ge	680
+我这和	wo zhei he	80
+我这回	wo zhei hui	300
+我这会	wo zhei hui	230
+我这间	wo zhei jian	180
+我这叫	wo zhei jiao	320
+我这就	wo zhei jiu	420
+我这块	wo zhei kuai	300
+我这来	wo zhei lai	300
+我这里	wo zhei li	640
+我这面	wo zhei mian	170
+我这拿	wo zhei na	120
+我这年	wo zhei nian	320
+我这盘	wo zhei pan	200
+我这人	wo zhei ren	550
+我这是	wo zhei shi	550
+我这时	wo zhei shi	340
+我这手	wo zhei shou	210
+我这书	wo zhei shu	230
+我这套	wo zhei tao	320
+我这天	wo zhei tian	260
+我这下	wo zhei xia	250
+我这样	wo zhei yang	590
+我这有	wo zhei you	380
+我这正	wo zhei zheng	200
+我这种	wo zhei zhong	620
+我这周	wo zhei zhou	330
+我这组	wo zhei zu	140
+下这个	xia zhei ge	580
+下这里	xia zhei li	350
+先这样	xian zhei yang	390
+向这边	xiang zhei bian	290
+像这个	xiang zhei ge	450
+向这里	xiang zhei li	300
+向这些	xiang zhei xie	460
+想这些	xiang zhei xie	420
+像这样	xiang zhei yang	600
+像这种	xiang zhei zhong	580
+小这类	xiao zhei lei	140
+写这段	xie zhei duan	380
+写这个	xie zhei ge	550
+写这篇	xie zhei pian	540
+写这些	xie zhei xie	460
+熊这个	xiong zhei ge	210
+选这个	xuan zhei ge	500
+选这种	xuan zhei zhong	360
+学这个	xue zhei ge	510
+呀这里	ya zhei li	300
+演这种	yan zhei zhong	320
+要这样	yao zhei yang	530
+也这样	ye zhei yang	550
+以这份	yi zhei fen	190
+以这个	yi zhei ge	550
+以这样	yi zhei yang	440
+以这种	yi zhei zhong	560
+用这个	yong zhei ge	650
+用这颗	yong zhei ke	170
+用这样	yong zhei yang	470
+用这种	yong zhei zhong	620
+有这大	you zhei da	190
+有这的	you zhei de	270
+有这多	you zhei duo	220
+有这个	you zhei ge	660
+有这好	you zhei hao	210
+有这话	you zhei hua	110
+有这空	you zhei kong	160
+有这钱	you zhei qian	360
+有这事	you zhei shi	360
+有这些	you zhei xie	180
+由这些	you zhei xie	140
+有这样	you zhei yang	670
+有这种	you zhei zhong	660
+与这些	yu zhei xie	570
+咋这样	za zhei yang	270
+再这里	zai zhei li	400
+再这样	zai zhei yang	530
+咱这个	zan zhei ge	300
+咱这里	zan zhei li	260
+咱这些	zan zhei xie	240
+早这里	zao zhei li	170
+则这个	ze zhei ge	420
+站这边	zhan zhei bian	210
+站这里	zhan zhei li	290
+照这个	zhao zhei ge	460
+找这个	zhao zhei ge	460
+照这样	zhao zhei yang	450
+这爱情	zhei ai qing	300
+这安静	zhei an jing	180
+这案子	zhei an zi	370
+这把刀	zhei ba dao	430
+这八卦	zhei ba gua	180
+这把剑	zhei ba jian	420
+这把你	zhei ba ni	140
+这八年	zhei ba nian	360
+这把枪	zhei ba qiang	430
+这八天	zhei ba tian	200
+这版本	zhei ban ben	420
+这班车	zhei ban che	340
+这半年	zhei ban nian	510
+这班人	zhei ban ren	270
+这般人	zhei ban ren	190
+这半天	zhei ban tian	280
+这半夜	zhei ban ye	150
+这帮人	zhei bang ren	550
+这帮子	zhei bang zi	370
+这杯茶	zhei bei cha	330
+这背后	zhei bei hou	540
+这杯酒	zhei bei jiu	410
+这辈人	zhei bei ren	330
+这杯水	zhei bei shui	350
+这辈子	zhei bei zi	630
+这本来	zhei ben lai	510
+这本身	zhei ben shen	550
+这本书	zhei ben shu	870
+这壁画	zhei bi hua	150
+这比那	zhei bi na	150
+这笔钱	zhei bi qian	620
+这逼样	zhei bi yang	250
+这笔债	zhei bi zhai	280
+这笔账	zhei bi zhang	440
+这边好	zhei bian hao	300
+这编辑	zhei bian ji	240
+这边来	zhei bian lai	450
+这边买	zhei bian mai	380
+这边请	zhei bian qing	320
+这便是	zhei bian shi	580
+这边是	zhei bian shi	490
+这边厢	zhei bian xiang	380
+这边有	zhei bian you	470
+这边走	zhei bian zou	350
+这表明	zhei biao ming	610
+这表情	zhei biao qing	400
+这标题	zhei biao ti	360
+这病毒	zhei bing du	280
+这并非	zhei bing fei	540
+这柄剑	zhei bing jian	240
+这波亏	zhei bo kui	30
+这拨人	zhei bo ren	350
+这不比	zhei bu bi	340
+这不带	zhei bu dai	130
+这不但	zhei bu dan	460
+这不对	zhei bu dui	340
+这部队	zhei bu dui	140
+这部分	zhei bu fen	660
+这不敢	zhei bu gan	190
+这不关	zhei bu guan	310
+这不好	zhei bu hao	450
+这不会	zhei bu hui	410
+这部机	zhei bu ji	280
+这不叫	zhei bu jiao	460
+这不仅	zhei bu jin	630
+这不就	zhei bu jiu	490
+这部剧	zhei bu ju	630
+这不能	zhei bu neng	500
+这不去	zhei bu qu	180
+这不是	zhei bu shi	750
+这部书	zhei bu shu	530
+这不说	zhei bu shuo	220
+这不算	zhei bu suan	470
+这不太	zhei bu tai	370
+这部位	zhei bu wei	310
+这部戏	zhei bu xi	540
+这不行	zhei bu xing	380
+这才敢	zhei cai gan	230
+这才刚	zhei cai gang	330
+这才好	zhei cai hao	150
+这才回	zhei cai hui	110
+这才叫	zhei cai jiao	530
+这才能	zhei cai neng	430
+这菜鸟	zhei cai niao	200
+这才是	zhei cai shi	710
+这操行	zhei cao xing	220
+这操作	zhei cao zuo	350
+这场火	zhei chang huo	240
+这场球	zhei chang qiu	490
+这场雪	zhei chang xue	310
+这场雨	zhei chang yu	420
+这场仗	zhei chang zhang	380
+这程度	zhei cheng du	320
+这成绩	zhei cheng ji	350
+这城里	zhei cheng li	190
+这城市	zhei cheng shi	410
+这充分	zhei chong fen	480
+这出剧	zhei chu ju	280
+这出戏	zhei chu xi	420
+这次不	zhei ci bu	420
+这次的	zhei ci de	700
+这次第	zhei ci di	310
+这次来	zhei ci lai	530
+这次拿	zhei ci na	250
+这次呢	zhei ci ne	310
+这次你	zhei ci ni	380
+这次您	zhei ci nin	200
+这次去	zhei ci qu	580
+这次是	zhei ci shi	620
+这次我	zhei ci wo	540
+这次在	zhei ci zai	530
+这村子	zhei cun zi	240
+这答案	zhei da an	450
+这大概	zhei da gai	550
+这大哥	zhei da ge	350
+这大姐	zhei da jie	280
+这大妈	zhei da ma	260
+这大叔	zhei da shu	300
+这大树	zhei da shu	130
+这大雪	zhei da xue	130
+这大爷	zhei da ye	290
+这大雨	zhei da yu	240
+这代表	zhei dai biao	490
+这代码	zhei dai ma	290
+这代人	zhei dai ren	510
+这呆着	zhei dai zhe	210
+这当口	zhei dang kou	270
+这当然	zhei dang ran	550
+这当中	zhei dang zhong	500
+这道菜	zhei dao cai	680
+这到底	zhei dao di	570
+这道关	zhei dao guan	260
+这道坎	zhei dao kan	430
+这捣乱	zhei dao luan	110
+这倒是	zhei dao shi	480
+这道汤	zhei dao tang	390
+这道题	zhei dao ti	610
+这导致	zhei dao zhi	580
+这得看	zhei de kan	420
+这得是	zhei de shi	350
+这的是	zhei de shi	320
+这等你	zhei deng ni	220
+这等人	zhei deng ren	250
+这等事	zhei deng shi	320
+这等于	zhei deng yu	440
+这地方	zhei di fang	590
+这的确	zhei di que	510
+这地铁	zhei di tie	230
+这地图	zhei di tu	300
+这电脑	zhei dian nao	370
+这点钱	zhei dian qian	530
+这点去	zhei dian qu	260
+这点上	zhei dian shang	500
+这点血	zhei dian xue	120
+这点雪	zhei dian xue	110
+这电影	zhei dian ying	490
+这点子	zhei dian zi	290
+这东东	zhei dong dong	420
+这东西	zhei dong xi	680
+这都被	zhei dou bei	300
+这都不	zhei dou bu	490
+这都快	zhei dou kuai	320
+这都没	zhei dou mei	350
+这都能	zhei dou neng	440
+这都是	zhei dou shi	670
+这都算	zhei dou suan	340
+这都些	zhei dou xie	100
+这都信	zhei dou xin	160
+这都行	zhei dou xing	280
+这都要	zhei dou yao	390
+这都有	zhei dou you	370
+这犊子	zhei du zi	140
+这段话	zhei duan hua	660
+这段情	zhei duan qing	350
+这段字	zhei duan zi	230
+这对我	zhei dui wo	450
+这队伍	zhei dui wu	290
+这对于	zhei dui yu	680
+这对子	zhei dui zi	180
+这顿饭	zhei dun fan	570
+这多好	zhei duo hao	250
+这朵花	zhei duo hua	390
+这多年	zhei duo nian	380
+这多钱	zhei duo qian	190
+这多人	zhei duo ren	310
+这多天	zhei duo tian	310
+这多字	zhei duo zi	130
+这二货	zhei er huo	330
+这二年	zhei er nian	310
+这二天	zhei er tian	310
+这二位	zhei er wei	430
+这二者	zhei er zhe	480
+这二字	zhei er zi	280
+这番话	zhei fan hua	500
+这翻译	zhei fan yi	370
+这反映	zhei fan ying	370
+这方法	zhei fang fa	470
+这方面	zhei fang mian	670
+这房子	zhei fang zi	490
+这份爱	zhei fen ai	470
+这份表	zhei fen biao	240
+这份工	zhei fen gong	310
+这分明	zhei fen ming	460
+这份情	zhei fen qing	330
+这份上	zhei fen shang	410
+这氛围	zhei fen wei	280
+这分钟	zhei fen zhong	440
+这封信	zhei feng xin	550
+这副本	zhei fu ben	200
+这幅画	zhei fu hua	630
+这附近	zhei fu jin	570
+这幅图	zhei fu tu	480
+这复杂	zhei fu za	250
+这嘎达	zhei ga da	250
+这感觉	zhei gan jue	510
+这杆枪	zhei gan qiang	180
+这岗位	zhei gang wei	280
+这搞得	zhei gao de	190
+这高的	zhei gao de	150
+这高级	zhei gao ji	190
+这高兴	zhei gao xing	110
+这个啊	zhei ge a	470
+这个吧	zhei ge ba	530
+这个摆	zhei ge bai	160
+这个班	zhei ge ban	470
+这个板	zhei ge ban	280
+这个本	zhei ge ben	430
+这个逼	zhei ge bi	400
+这个表	zhei ge biao	460
+这个标	zhei ge biao	310
+这个别	zhei ge bie	260
+这个兵	zhei ge bing	260
+这个不	zhei ge bu	560
+这个厂	zhei ge chang	360
+这个场	zhei ge chang	340
+这个城	zhei ge cheng	310
+这个仇	zhei ge chou	260
+这个船	zhei ge chuan	290
+这个词	zhei ge ci	710
+这疙瘩	zhei ge da	250
+这个单	zhei ge dan	370
+这个蛋	zhei ge dan	340
+这个岛	zhei ge dao	430
+这个的	zhei ge de	640
+这个灯	zhei ge deng	400
+这个底	zhei ge di	310
+这个店	zhei ge dian	670
+这个点	zhei ge dian	570
+这个度	zhei ge du	440
+这个队	zhei ge dui	400
+这个分	zhei ge fen	430
+这个符	zhei ge fu	200
+这个歌	zhei ge ge	400
+这个给	zhei ge gei	400
+这个梗	zhei ge geng	510
+这个股	zhei ge gu	350
+这个瓜	zhei ge gua	320
+这个锅	zhei ge guo	530
+这个国	zhei ge guo	340
+这个还	zhei ge hai	520
+这个函	zhei ge han	190
+这个好	zhei ge hao	550
+这个号	zhei ge hao	500
+这个和	zhei ge he	570
+这个很	zhei ge hen	540
+这个灰	zhei ge hui	200
+这个货	zhei ge huo	390
+这个价	zhei ge jia	640
+这个家	zhei ge jia	550
+这个键	zhei ge jian	400
+这个奖	zhei ge jiang	490
+这个叫	zhei ge jiao	530
+这个节	zhei ge jie	460
+这个井	zhei ge jing	270
+这个就	zhei ge jiu	600
+这个酒	zhei ge jiu	400
+这个剧	zhei ge ju	480
+这个局	zhei ge ju	420
+这个卡	zhei ge ka	470
+这个坎	zhei ge kan	440
+这个课	zhei ge ke	430
+这个坑	zhei ge keng	480
+这个款	zhei ge kuan	380
+这个框	zhei ge kuang	300
+这个啦	zhei ge la	410
+这个来	zhei ge lai	460
+这个雷	zhei ge lei	290
+这个冷	zhei ge leng	390
+这个理	zhei ge li	410
+这个列	zhei ge lie	210
+这个龙	zhei ge long	260
+这个楼	zhei ge lou	400
+这个嘛	zhei ge ma	480
+这个吗	zhei ge ma	460
+这个忙	zhei ge mang	400
+这哥们	zhei ge men	550
+这个门	zhei ge men	420
+这个梦	zhei ge meng	490
+这个南	zhei ge nan	190
+这个呢	zhei ge ne	480
+这个能	zhei ge neng	450
+这个你	zhei ge ni	480
+这个捏	zhei ge nie	170
+这个哦	zhei ge o	360
+这个片	zhei ge pian	360
+这个钱	zhei ge qian	580
+这个签	zhei ge qian	240
+这个秋	zhei ge qiu	270
+这个群	zhei ge qun	450
+这个人	zhei ge ren	730
+这个骚	zhei ge sao	210
+这歌声	zhei ge sheng	270
+这个是	zhei ge shi	720
+这个事	zhei ge shi	620
+这个书	zhei ge shu	570
+这个数	zhei ge shu	530
+这个怂	zhei ge song	150
+这个算	zhei ge suan	490
+这个挺	zhei ge ting	450
+这个图	zhei ge tu	540
+这个娃	zhei ge wa	300
+这个哇	zhei ge wa	220
+这个外	zhei ge wai	340
+这个网	zhei ge wang	410
+这个我	zhei ge wo	610
+这个夏	zhei ge xia	250
+这个邪	zhei ge xie	370
+这个鞋	zhei ge xie	350
+这个星	zhei ge xing	320
+这个雪	zhei ge xue	200
+这个要	zhei ge yao	560
+这个药	zhei ge yao	500
+这个也	zhei ge ye	590
+这个夜	zhei ge ye	240
+这个有	zhei ge you	520
+这个院	zhei ge yuan	270
+这个月	zhei ge yue	630
+这个早	zhei ge zao	280
+这个站	zhei ge zhan	400
+这个真	zhei ge zhen	480
+这个证	zhei ge zheng	460
+这个值	zhei ge zhi	490
+这个周	zhei ge zhou	330
+这个字	zhei ge zi	600
+这个总	zhei ge zong	340
+这个组	zhei ge zu	390
+这给你	zhei gei ni	250
+这给我	zhei gei wo	380
+这根本	zhei gen ben	540
+这根刺	zhei gen ci	260
+这根梁	zhei gen liang	170
+这跟我	zhei gen wo	390
+这根弦	zhei gen xian	420
+这根线	zhei gen xian	360
+这功夫	zhei gong fu	390
+这功能	zhei gong neng	440
+这公司	zhei gong si	450
+这狗的	zhei gou de	140
+这股火	zhei gu huo	170
+这估计	zhei gu ji	390
+这股劲	zhei gu jin	280
+这姑娘	zhei gu niang	530
+这关心	zhei guan xin	110
+这管子	zhei guan zi	140
+这光景	zhei guang jing	210
+这闺女	zhei gui nv	270
+这规则	zhei gui ze	290
+这哈哈	zhei ha ha	240
+这还不	zhei hai bu	520
+这还好	zhei hai hao	280
+这还叫	zhei hai jiao	370
+这还没	zhei hai mei	400
+这海上	zhei hai shang	130
+这还是	zhei hai shi	610
+这还要	zhei hai yao	390
+这还用	zhei hai yong	400
+这还有	zhei hai you	420
+这还真	zhei hai zhen	430
+这孩子	zhei hai zi	600
+这行情	zhei hang qing	300
+这行业	zhei hang ye	460
+这好啊	zhei hao a	200
+这好比	zhei hao bi	410
+这好的	zhei hao de	260
+这号人	zhei hao ren	330
+这好事	zhei hao shi	350
+这好像	zhei hao xiang	480
+这和爱	zhei he ai	140
+这合理	zhei he li	260
+这和你	zhei he ni	370
+这黑人	zhei hei ren	200
+这黑夜	zhei hei ye	160
+这很好	zhei hen hao	450
+这很难	zhei hen nan	440
+这横山	zhei heng shan	10
+这后来	zhei hou lai	320
+这后生	zhei hou sheng	200
+这胡子	zhei hu zi	210
+这话里	zhei hua li	200
+这话题	zhei hua ti	420
+这环境	zhei huan jing	450
+这会都	zhei hui dou	180
+这回跟	zhei hui gen	180
+这会还	zhei hui hai	210
+这回好	zhei hui hao	140
+这回呢	zhei hui ne	180
+这回却	zhei hui que	250
+这回事	zhei hui shi	560
+这会使	zhei hui shi	490
+这回我	zhei hui wo	370
+这回忆	zhei hui yi	220
+这会在	zhei hui zai	340
+这徽章	zhei hui zhang	130
+这会正	zhei hui zheng	200
+这会子	zhei hui zi	320
+这回子	zhei hui zi	150
+这回做	zhei hui zuo	120
+这婚事	zhei hun shi	200
+这活动	zhei huo dong	410
+这伙计	zhei huo ji	240
+这伙人	zhei huo ren	420
+这或许	zhei huo xu	580
+这几把	zhei ji ba	250
+这鸡巴	zhei ji ba	170
+这基本	zhei ji ben	450
+这几本	zhei ji ben	450
+这几笔	zhei ji bi	240
+这几波	zhei ji bo	220
+这几部	zhei ji bu	450
+这几场	zhei ji chang	390
+这几处	zhei ji chu	340
+这几次	zhei ji ci	460
+这几点	zhei ji dian	550
+这激动	zhei ji dong	180
+这季度	zhei ji du	220
+这几段	zhei ji duan	340
+这几对	zhei ji dui	260
+这几份	zhei ji fen	250
+这几个	zhei ji ge	700
+这几行	zhei ji hang	240
+这几家	zhei ji jia	530
+这季节	zhei ji jie	380
+这几届	zhei ji jie	270
+这几句	zhei ji ju	450
+这几颗	zhei ji ke	270
+这几块	zhei ji kuai	370
+这几款	zhei ji kuan	550
+这几类	zhei ji lei	470
+这几辆	zhei ji liang	280
+这几名	zhei ji ming	380
+这几年	zhei ji nian	710
+这几篇	zhei ji pian	360
+这几日	zhei ji ri	500
+这既是	zhei ji shi	510
+这几首	zhei ji shou	380
+这几套	zhei ji tao	320
+这几天	zhei ji tian	720
+这几晚	zhei ji wan	180
+这几位	zhei ji wei	530
+这几项	zhei ji xiang	460
+这几张	zhei ji zhang	490
+这几只	zhei ji zhi	420
+这几种	zhei ji zhong	580
+这家厂	zhei jia chang	270
+这家店	zhei jia dian	840
+这家伙	zhei jia huo	570
+这家你	zhei jia ni	230
+这家人	zhei jia ren	500
+这家是	zhei jia shi	620
+这家子	zhei jia zi	280
+这简单	zhei jian dan	340
+这件事	zhei jian shi	770
+这简直	zhei jian zhi	540
+这将是	zhei jiang shi	590
+这将有	zhei jiang you	150
+这叫爱	zhei jiao ai	190
+这阶段	zhei jie duan	430
+这节课	zhei jie ke	470
+这姐们	zhei jie men	320
+这节目	zhei jie mu	460
+这节奏	zhei jie zou	360
+这仅是	zhei jin shi	430
+这经济	zhei jing ji	240
+这精神	zhei jing shen	290
+这就不	zhei jiu bu	460
+这就带	zhei jiu dai	290
+这就到	zhei jiu dao	210
+这就得	zhei jiu dei	380
+这就对	zhei jiu dui	400
+这就该	zhei jiu gai	200
+这就跟	zhei jiu gen	470
+这就好	zhei jiu hao	420
+这就和	zhei jiu he	450
+这就会	zhei jiu hui	400
+这就叫	zhei jiu jiao	530
+这究竟	zhei jiu jing	490
+这就来	zhei jiu lai	350
+这就去	zhei jiu qu	300
+这就是	zhei jiu shi	820
+这就使	zhei jiu shi	450
+这就算	zhei jiu suan	410
+这就太	zhei jiu tai	280
+这就完	zhei jiu wan	210
+这就要	zhei jiu yao	510
+这就有	zhei jiu you	370
+这句好	zhei ju hao	200
+这句话	zhei ju hua	790
+这局面	zhei ju mian	290
+这绝不	zhei jue bu	370
+这看似	zhei kan si	460
+这靠谱	zhei kao pu	130
+这可能	zhei ke neng	730
+这可是	zhei ke shi	620
+这棵树	zhei ke shu	480
+这颗糖	zhei ke tang	250
+这颗星	zhei ke xing	370
+这可以	zhei ke yi	760
+这可真	zhei ke zhen	400
+这肯定	zhei ken ding	470
+这坑爹	zhei keng die	220
+这恐怖	zhei kong bu	210
+这恐怕	zhei kong pa	510
+这口锅	zhei kou guo	380
+这口气	zhei kou qi	470
+这口音	zhei kou yin	210
+这裤子	zhei ku zi	320
+这夸张	zhei kua zhang	110
+这块布	zhei kuai bu	290
+这块地	zhei kuai di	480
+这块料	zhei kuai liao	360
+这块钱	zhei kuai qian	430
+这块肉	zhei kuai rou	350
+这款琴	zhei kuan qin	260
+这老大	zhei lao da	200
+这老哥	zhei lao ge	330
+这老汉	zhei lao han	170
+这老头	zhei lao tou	390
+这老些	zhei lao xie	170
+这类词	zhei lei ci	150
+这类人	zhei lei ren	600
+这里啊	zhei li a	420
+这里吧	zhei li ba	520
+这里边	zhei li bian	480
+这里曾	zhei li ceng	420
+这里的	zhei li de	850
+这里等	zhei li deng	360
+这里过	zhei li guo	320
+这厉害	zhei li hai	140
+这里好	zhei li hao	420
+这里会	zhei li hui	460
+这里建	zhei li jian	280
+这里将	zhei li jiang	470
+这里就	zhei li jiu	640
+这里来	zhei li lai	510
+这里连	zhei li lian	350
+这里吗	zhei li ma	390
+这里买	zhei li mai	570
+这里没	zhei li mei	460
+这里面	zhei li mian	670
+这里木	zhei li mu	160
+这里那	zhei li na	310
+这里能	zhei li neng	430
+这里是	zhei li shi	720
+这里耍	zhei li shua	150
+这里我	zhei li wo	600
+这里雪	zhei li xue	150
+这里也	zhei li ye	610
+这里有	zhei li you	710
+这理由	zhei li you	350
+这里找	zhei li zhao	380
+这里住	zhei li zhu	380
+这俩地	zhei lia di	220
+这俩队	zhei lia dui	200
+这俩个	zhei lia ge	360
+这俩人	zhei lia ren	480
+这俩事	zhei lia shi	190
+这两把	zhei liang ba	340
+这两本	zhei liang ben	500
+这两部	zhei liang bu	560
+这辆车	zhei liang che	610
+这两处	zhei liang chu	440
+这两次	zhei liang ci	510
+这两大	zhei liang da	540
+这两点	zhei liang dian	580
+这两份	zhei liang fen	450
+这两个	zhei liang ge	780
+这两根	zhei liang gen	340
+这两行	zhei liang hang	270
+这两家	zhei liang jia	590
+这两件	zhei liang jian	490
+这两间	zhei liang jian	320
+这两句	zhei liang ju	500
+这两颗	zhei liang ke	430
+这两口	zhei liang kou	230
+这两块	zhei liang kuai	460
+这两款	zhei liang kuan	620
+这两名	zhei liang ming	490
+这两年	zhei liang nian	680
+这两批	zhei liang pi	280
+这两票	zhei liang piao	160
+这两人	zhei liang ren	530
+这两日	zhei liang ri	410
+这两首	zhei liang shou	420
+这两双	zhei liang shuang	260
+这两台	zhei liang tai	430
+这两天	zhei liang tian	700
+这两条	zhei liang tiao	550
+这两晚	zhei liang wan	160
+这两位	zhei liang wei	600
+这两项	zhei liang xiang	550
+这两页	zhei liang ye	270
+这两张	zhei liang zhang	510
+这两者	zhei liang zhe	600
+这两只	zhei liang zhi	490
+这两种	zhei liang zhong	700
+这六点	zhei liu dian	310
+这六个	zhei liu ge	470
+这六年	zhei liu nian	360
+这六人	zhei liu ren	260
+这六所	zhei liu suo	240
+这路子	zhei lu zi	240
+这轮回	zhei lun hui	140
+这逻辑	zhei luo ji	420
+这买卖	zhei mai mai	340
+这貌似	zhei mao si	380
+这美人	zhei mei ren	160
+这没啥	zhei mei sha	360
+这每天	zhei mei tian	290
+这没用	zhei mei yong	220
+这没有	zhei mei you	500
+这妹子	zhei mei zi	450
+这门课	zhei men ke	590
+这门口	zhei men kou	280
+这门子	zhei men zi	240
+这面墙	zhei mian qiang	380
+这明显	zhei ming xian	460
+这名字	zhei ming zi	550
+这魔鬼	zhei mo gui	210
+这那的	zhei na de	310
+这哪是	zhei na shi	460
+这哪行	zhei na xing	220
+这难道	zhei nan dao	550
+这男的	zhei nan de	480
+这男人	zhei nan ren	450
+这脑袋	zhei nao dai	240
+这能力	zhei neng li	370
+这能让	zhei neng rang	400
+这能忍	zhei neng ren	260
+这你就	zhei ni jiu	380
+这你妈	zhei ni ma	200
+这年代	zhei nian dai	370
+这年纪	zhei nian ji	350
+这年轻	zhei nian qing	240
+这年头	zhei nian tou	600
+这年月	zhei nian yue	390
+这女的	zhei nv de	470
+这女人	zhei nv ren	460
+这女娃	zhei nv wa	210
+这女子	zhei nv zi	360
+这牌子	zhei pai zi	480
+这盘是	zhei pan shi	240
+这匹马	zhei pi ma	390
+这片海	zhei pian hai	340
+这片湖	zhei pian hu	220
+这篇文	zhei pian wen	440
+这便宜	zhei pian yi	330
+这片子	zhei pian zi	500
+这票的	zhei piao de	260
+这破店	zhei po dian	220
+这破乎	zhei po hu	260
+这婆娘	zhei po niang	210
+这气场	zhei qi chang	320
+这岂非	zhei qi fei	260
+这七个	zhei qi ge	440
+这期间	zhei qi jian	610
+这其间	zhei qi jian	360
+这七款	zhei qi kuan	170
+这七人	zhei qi ren	230
+这其中	zhei qi zhong	650
+这恰恰	zhei qia qia	450
+这情怀	zhei qing huai	250
+这情况	zhei qing kuang	490
+这区区	zhei qu qu	330
+这泉水	zhei quan shui	190
+这群狗	zhei qun gou	220
+这群里	zhei qun li	190
+这群人	zhei qun ren	550
+这让她	zhei rang ta	470
+这让我	zhei rang wo	630
+这人生	zhei ren sheng	380
+这日子	zhei ri zi	470
+这软件	zhei ruan jian	370
+这仨人	zhei sa ren	280
+这三大	zhei san da	540
+这三对	zhei san dui	270
+这三份	zhei san fen	320
+这三个	zhei san ge	690
+这三国	zhei san guo	330
+这三家	zhei san jia	510
+这三类	zhei san lei	480
+这三名	zhei san ming	410
+这三年	zhei san nian	510
+这三人	zhei san ren	470
+这三天	zhei san tian	460
+这三条	zhei san tiao	470
+这三位	zhei san wei	510
+这三项	zhei san xiang	470
+这三只	zhei san zhi	400
+这三种	zhei san zhong	610
+这傻逼	zhei sha bi	370
+这社会	zhei she hui	430
+这神秘	zhei shen mi	250
+这深夜	zhei shen ye	180
+这身子	zhei shen zi	170
+这生活	zhei sheng huo	360
+这盛世	zhei sheng shi	380
+这声音	zhei sheng yin	440
+这事啊	zhei shi a	310
+这是爱	zhei shi ai	370
+这是把	zhei shi ba	410
+这事吧	zhei shi ba	370
+这是病	zhei shi bing	440
+这是从	zhei shi cong	510
+这时代	zhei shi dai	360
+这是带	zhei shi dai	280
+这世代	zhei shi dai	230
+这世道	zhei shi dao	440
+这使得	zhei shi de	690
+这是第	zhei shi di	440
+这事都	zhei shi dou	320
+这是对	zhei shi dui	600
+这是非	zhei shi fei	330
+这是否	zhei shi fou	580
+这是个	zhei shi ge	700
+这是给	zhei shi gei	470
+这是跟	zhei shi gen	380
+这时光	zhei shi guang	290
+这是很	zhei shi hen	570
+这时候	zhei shi hou	700
+这是家	zhei shi jia	490
+这世间	zhei shi jian	510
+这时间	zhei shi jian	460
+这世界	zhei shi jie	600
+这时就	zhei shi jiu	520
+这是嘛	zhei shi ma	230
+这是没	zhei shi mei	400
+这是梦	zhei shi meng	280
+这是命	zhei shi ming	300
+这是哪	zhei shi na	440
+这时你	zhei shi ni	560
+这是你	zhei shi ni	560
+这十年	zhei shi nian	510
+这是怕	zhei shi pa	280
+这视频	zhei shi pin	430
+这时期	zhei shi qi	430
+这事情	zhei shi qing	520
+这事请	zhei shi qing	130
+这是啥	zhei shi sha	500
+这世上	zhei shi shang	590
+这是神	zhei shi shen	330
+这是谁	zhei shi shui	480
+这是他	zhei shi ta	620
+这是她	zhei shi ta	560
+这是我	zhei shi wo	740
+这使我	zhei shi wo	430
+这实习	zhei shi xi	110
+这是想	zhei shi xiang	370
+这是些	zhei shi xie	280
+这是由	zhei shi you	550
+这是咋	zhei shi za	280
+这是在	zhei shi zai	630
+这是正	zhei shi zheng	270
+这首词	zhei shou ci	480
+这首歌	zhei shou ge	710
+这手机	zhei shou ji	480
+这首诗	zhei shou shi	590
+这手速	zhei shou su	200
+这舒服	zhei shu fu	230
+这数字	zhei shu zi	390
+这双手	zhei shuang shou	350
+这双鞋	zhei shuang xie	500
+这谁啊	zhei shui a	300
+这谁呀	zhei shui ya	210
+这说的	zhei shuo de	420
+这说明	zhei shuo ming	650
+这四个	zhei si ge	600
+这似乎	zhei si hu	550
+这四名	zhei si ming	350
+这四年	zhei si nian	480
+这四天	zhei si tian	330
+这艘船	zhei sou chuan	490
+这速度	zhei su du	460
+这算不	zhei suan bu	170
+这算是	zhei suan shi	580
+这酸爽	zhei suan shuang	410
+这岁数	zhei sui shu	320
+这孙子	zhei sun zi	400
+这他妈	zhei ta ma	450
+这台风	zhei tai feng	230
+这台机	zhei tai ji	350
+这太阳	zhei tai yang	230
+这堂课	zhei tang ke	420
+这套房	zhei tao fang	420
+这套书	zhei tao shu	660
+这体格	zhei ti ge	240
+这题目	zhei ti mu	450
+这题选	zhei ti xuan	220
+这天气	zhei tian qi	460
+这天色	zhei tian se	170
+这天下	zhei tian xia	370
+这条虫	zhei tiao chong	110
+这条船	zhei tiao chuan	380
+这条狗	zhei tiao gou	400
+这条河	zhei tiao he	450
+这条件	zhei tiao jian	390
+这条街	zhei tiao jie	560
+这条龙	zhei tiao long	340
+这条路	zhei tiao lu	650
+这条命	zhei tiao ming	410
+这条线	zhei tiao xian	540
+这挺好	zhei ting hao	250
+这头猪	zhei tou zhu	350
+这推理	zhei tui li	130
+这娃娃	zhei wa wa	240
+这碗饭	zhei wan fan	450
+这碗酒	zhei wan jiu	260
+这完全	zhei wan quan	550
+这万是	zhei wan shi	340
+这玩玩	zhei wan wan	200
+这玩意	zhei wan yi	630
+这万一	zhei wan yi	260
+这玩应	zhei wan ying	220
+这碗粥	zhei wan zhou	280
+这网络	zhei wang luo	260
+这网速	zhei wang su	200
+这未必	zhei wei bi	340
+这胃口	zhei wei kou	200
+这位老	zhei wei lao	450
+这位是	zhei wei shi	440
+这味药	zhei wei yao	300
+这位爷	zhei wei ye	360
+这问题	zhei wen ti	620
+这我就	zhei wo jiu	420
+这五个	zhei wu ge	550
+这五家	zhei wu jia	360
+这五年	zhei wu nian	440
+这五人	zhei wu ren	320
+这无疑	zhei wu yi	580
+这五种	zhei wu zhong	460
+这习惯	zhei xi guan	360
+这喜欢	zhei xi huan	270
+这系列	zhei xi lie	480
+这系统	zhei xi tong	360
+这下看	zhei xia kan	190
+这下面	zhei xia mian	360
+这下去	zhei xia qu	150
+这下子	zhei xia zi	440
+这先生	zhei xian sheng	200
+这小哥	zhei xiao ge	330
+这小孩	zhei xiao hai	410
+这小伙	zhei xiao huo	350
+这潇洒	zhei xiao sa	130
+这小样	zhei xiao yang	160
+这小子	zhei xiao zi	510
+这些表	zhei xie biao	340
+这些厂	zhei xie chang	240
+这些场	zhei xie chang	230
+这些车	zhei xie che	500
+这些词	zhei xie ci	530
+这些点	zhei xie dian	460
+这些都	zhei xie dou	710
+这些队	zhei xie dui	220
+这些个	zhei xie ge	520
+这些歌	zhei xie ge	460
+这些狗	zhei xie gou	370
+这些股	zhei xie gu	400
+这些哈	zhei xie ha	180
+这些好	zhei xie hao	370
+这些话	zhei xie hua	590
+这些货	zhei xie huo	340
+这些课	zhei xie ke	410
+这些料	zhei xie liao	290
+这些吗	zhei xie ma	430
+这些年	zhei xie nian	680
+这些票	zhei xie piao	330
+这些钱	zhei xie qian	600
+这些群	zhei xie qun	330
+这些人	zhei xie ren	720
+这些是	zhei xie shi	600
+这些事	zhei xie shi	600
+这些时	zhei xie shi	380
+这些书	zhei xie shu	560
+这些数	zhei xie shu	320
+这些天	zhei xie tian	560
+这些娃	zhei xie wa	210
+这些项	zhei xie xiang	280
+这些字	zhei xie zi	470
+这鞋子	zhei xie zi	360
+这些子	zhei xie zi	310
+这辛苦	zhei xin ku	170
+这心情	zhei xin qing	300
+这心思	zhei xin si	290
+这心态	zhei xin tai	310
+这型号	zhei xing hao	290
+这星期	zhei xing qi	380
+这形势	zhei xing shi	240
+这兄弟	zhei xiong di	380
+这熊样	zhei xiong yang	280
+这需要	zhei xu yao	670
+这学期	zhei xue qi	560
+这学校	zhei xue xiao	440
+这丫头	zhei ya tou	380
+这颜色	zhei yan se	410
+这言语	zhei yan yu	120
+这颜值	zhei yan zhi	390
+这严重	zhei yan zhong	390
+这样啊	zhei yang a	560
+这样爱	zhei yang ai	350
+这样吧	zhei yang ba	600
+这样办	zhei yang ban	310
+这样才	zhei yang cai	670
+这样穿	zhei yang chuan	490
+这样打	zhei yang da	410
+这样哒	zhei yang da	320
+这样的	zhei yang de	920
+这样滴	zhei yang di	460
+这样地	zhei yang di	390
+这样对	zhei yang dui	590
+这样额	zhei yang e	250
+这样干	zhei yang gan	410
+这样搞	zhei yang gao	430
+这样怪	zhei yang guai	230
+这样和	zhei yang he	450
+这样合	zhei yang he	210
+这样很	zhei yang hen	490
+这样会	zhei yang hui	600
+这样叫	zhei yang jiao	410
+这样就	zhei yang jiu	680
+这样坑	zhei yang keng	270
+这样快	zhei yang kuai	340
+这样啦	zhei yang la	450
+这样来	zhei yang lai	480
+这样类	zhei yang lei	170
+这样聊	zhei yang liao	220
+这样吗	zhei yang ma	570
+这样嘛	zhei yang ma	420
+这样能	zhei yang neng	530
+这样哦	zhei yang o	360
+这样噢	zhei yang o	170
+这样喔	zhei yang o	170
+这样怕	zhei yang pa	220
+这样排	zhei yang pai	260
+这样撒	zhei yang sa	160
+这样三	zhei yang san	260
+这样事	zhei yang shi	300
+这样说	zhei yang shuo	650
+这样算	zhei yang suan	490
+这样所	zhei yang suo	300
+这样天	zhei yang tian	260
+这样填	zhei yang tian	200
+这样玩	zhei yang wan	480
+这样晚	zhei yang wan	170
+这样问	zhei yang wen	490
+这样我	zhei yang wo	590
+这样想	zhei yang xiang	580
+这样写	zhei yang xie	530
+这样学	zhei yang xue	380
+这样呀	zhei yang ya	380
+这样也	zhei yang ye	580
+这样耶	zhei yang ye	120
+这样有	zhei yang you	500
+这样在	zhei yang zai	580
+这样装	zhei yang zhuang	340
+这样子	zhei yang zi	640
+这样紫	zhei yang zi	170
+这样走	zhei yang zou	420
+这样做	zhei yang zuo	720
+这要看	zhei yao kan	520
+这要求	zhei yao qiu	490
+这也不	zhei ye bu	490
+这也成	zhei ye cheng	350
+这也带	zhei ye dai	190
+这也得	zhei ye de	320
+这也跟	zhei ye gen	380
+这也叫	zhei ye jiao	470
+这也就	zhei ye jiu	580
+这页面	zhei ye mian	210
+这也能	zhei ye neng	460
+这也让	zhei ye rang	570
+这也是	zhei ye shi	800
+这也算	zhei ye suan	530
+这也太	zhei ye tai	510
+这也忒	zhei ye te	300
+这也行	zhei ye xing	360
+这也许	zhei ye xu	540
+这也要	zhei ye yao	390
+这一把	zhei yi ba	370
+这一拜	zhei yi bai	200
+这一版	zhei yi ban	500
+这一般	zhei yi ban	420
+这一半	zhei yi ban	340
+这一辈	zhei yi bei	430
+这一杯	zhei yi bei	380
+这一本	zhei yi ben	570
+这一笔	zhei yi bi	410
+这一边	zhei yi bian	470
+这一别	zhei yi bie	330
+这一波	zhei yi bo	550
+这一步	zhei yi bu	640
+这一部	zhei yi bu	510
+这一层	zhei yi ceng	510
+这一茬	zhei yi cha	300
+这一场	zhei yi chang	540
+这一出	zhei yi chu	410
+这一处	zhei yi chu	390
+这一串	zhei yi chuan	390
+这一次	zhei yi ci	700
+这一代	zhei yi dai	600
+这一带	zhei yi dai	540
+这一刀	zhei yi dao	360
+这一点	zhei yi dian	780
+这一定	zhei yi ding	490
+这一栋	zhei yi dong	250
+这一动	zhei yi dong	220
+这一段	zhei yi duan	630
+这一对	zhei yi dui	510
+这一堆	zhei yi dui	410
+这一发	zhei yi fa	280
+这一番	zhei yi fan	420
+这一方	zhei yi fang	420
+这一份	zhei yi fen	500
+这一分	zhei yi fen	350
+这衣服	zhei yi fu	440
+这一搞	zhei yi gao	180
+这一稿	zhei yi gao	160
+这一个	zhei yi ge	630
+这一挂	zhei yi gua	220
+这一关	zhei yi guan	500
+这一跪	zhei yi gui	290
+这一锅	zhei yi guo	380
+这一行	zhei yi hang	560
+这一号	zhei yi hao	220
+这以后	zhei yi hou	440
+这一环	zhei yi huan	360
+这一回	zhei yi hui	470
+这一季	zhei yi ji	550
+这一集	zhei yi ji	510
+这一级	zhei yi ji	400
+这一件	zhei yi jian	420
+这一剑	zhei yi jian	290
+这一届	zhei yi jie	510
+这一节	zhei yi jie	430
+这一劫	zhei yi jie	370
+这一截	zhei yi jie	240
+这已经	zhei yi jing	600
+这一句	zhei yi ju	540
+这一局	zhei yi ju	430
+这一看	zhei yi kan	410
+这一刻	zhei yi ke	600
+这一课	zhei yi ke	420
+这一颗	zhei yi ke	350
+这一块	zhei yi kuai	630
+这一款	zhei yi kuan	580
+这一来	zhei yi lai	350
+这一类	zhei yi lei	620
+这一路	zhei yi lu	540
+这一轮	zhei yi lun	590
+这一面	zhei yi mian	460
+这一秒	zhei yi miao	410
+这一幕	zhei yi mu	610
+这一年	zhei yi nian	660
+这一弄	zhei yi nong	170
+这一排	zhei yi pai	380
+这一批	zhei yi pi	490
+这一片	zhei yi pian	520
+这一篇	zhei yi pian	490
+这一票	zhei yi piao	370
+这一瓶	zhei yi ping	350
+这一期	zhei yi qi	530
+这一切	zhei yi qie	690
+这一去	zhei yi qu	380
+这一曲	zhei yi qu	320
+这一日	zhei yi ri	380
+这一身	zhei yi shen	480
+这一生	zhei yi sheng	580
+这已是	zhei yi shi	500
+这一世	zhei yi shi	450
+这一事	zhei yi shi	290
+这一首	zhei yi shou	430
+这一手	zhei yi shou	420
+这意思	zhei yi si	430
+这一台	zhei yi tai	350
+这一趟	zhei yi tang	440
+这一套	zhei yi tao	590
+这一天	zhei yi tian	670
+这一跳	zhei yi tiao	300
+这一通	zhei yi tong	320
+这一头	zhei yi tou	390
+这一碗	zhei yi wan	420
+这一晚	zhei yi wan	390
+这一网	zhei yi wang	180
+这意味	zhei yi wei	440
+这一位	zhei yi wei	430
+这一吻	zhei yi wen	310
+这一窝	zhei yi wo	220
+这一物	zhei yi wu	260
+这一下	zhei yi xia	450
+这一项	zhei yi xiang	570
+这一向	zhei yi xiang	240
+这一些	zhei yi xie	450
+这一夜	zhei yi ye	440
+这一页	zhei yi ye	440
+这一战	zhei yi zhan	440
+这一站	zhei yi zhan	410
+这一张	zhei yi zhang	490
+这一章	zhei yi zhang	480
+这一仗	zhei yi zhang	430
+这一掌	zhei yi zhang	270
+这一招	zhei yi zhao	540
+这一阵	zhei yi zhen	370
+这一帧	zhei yi zhen	240
+这一支	zhei yi zhi	430
+这一只	zhei yi zhi	400
+这一种	zhei yi zhong	540
+这一周	zhei yi zhou	520
+这一株	zhei yi zhu	220
+这一转	zhei yi zhuan	300
+这一字	zhei yi zi	250
+这一宗	zhei yi zong	220
+这一座	zhei yi zuo	370
+这应该	zhei ying gai	610
+这又不	zhei you bu	350
+这有个	zhei you ge	400
+这又没	zhei you mei	170
+这有钱	zhei you qian	190
+这有啥	zhei you sha	430
+这又是	zhei you shi	570
+这游戏	zhei you xi	590
+这悠闲	zhei you xian	130
+这语气	zhei yu qi	280
+这咋还	zhei za hai	210
+这在哪	zhei zai na	170
+这渣男	zhei zha nan	190
+这张车	zhei zhang che	80
+这张床	zhei zhang chuang	340
+这张单	zhei zhang dan	280
+这张的	zhei zhang de	410
+这张好	zhei zhang hao	260
+这张脸	zhei zhang lian	470
+这张牌	zhei zhang pai	460
+这张图	zhei zhang tu	650
+着这座	zhe zhei zuo	380
+这阵容	zhei zhen rong	360
+这真是	zhei zhen shi	590
+这阵子	zhei zhen zi	440
+这正如	zhei zheng ru	380
+这正是	zhei zheng shi	610
+这之间	zhei zhi jian	420
+这之类	zhei zhi lei	180
+这只猫	zhei zhi mao	490
+这只能	zhei zhi neng	460
+这只鸟	zhei zhi niao	370
+这只票	zhei zhi piao	300
+这之前	zhei zhi qian	500
+这智商	zhei zhi shang	400
+这只是	zhei zhi shi	700
+这只要	zhei zhi yao	270
+这只鹰	zhei zhi ying	280
+这只猪	zhei zhi zhu	300
+这种啊	zhei zhong a	280
+这种爱	zhei zhong ai	460
+这种表	zhei zhong biao	290
+这种病	zhei zhong bing	570
+这种车	zhei zhong che	460
+这种虫	zhei zhong chong	330
+这种船	zhei zhong chuan	290
+这种词	zhei zhong ci	150
+这种单	zhei zhong dan	330
+这种的	zhei zhong de	560
+这种地	zhei zhong di	300
+这种店	zhei zhong dian	540
+这种点	zhei zhong dian	260
+这种多	zhei zhong duo	350
+这种房	zhei zhong fang	270
+这种该	zhei zhong gai	230
+这种给	zhei zhong gei	310
+这种梗	zhei zhong geng	320
+这种话	zhei zhong hua	570
+这种花	zhei zhong hua	420
+这中间	zhei zhong jian	550
+这种讲	zhei zhong jiang	250
+这种课	zhei zhong ke	360
+这种啦	zhei zhong la	220
+这种嘛	zhei zhong ma	280
+这种猫	zhei zhong mao	310
+这种美	zhei zhong mei	410
+这种呢	zhei zhong ne	300
+这种枪	zhei zhong qiang	300
+这种人	zhei zhong ren	660
+这种事	zhei zhong shi	660
+这种鞋	zhei zhong xie	360
+这种药	zhei zhong yao	470
+这周二	zhei zhou er	270
+这周还	zhei zhou hai	230
+这周六	zhei zhou liu	390
+这周末	zhei zhou mo	490
+这周内	zhei zhou na	240
+这周日	zhei zhou ri	340
+这周三	zhei zhou san	290
+这周四	zhei zhou si	280
+这周天	zhei zhou tian	170
+这周五	zhei zhou wu	380
+这主播	zhei zhu bo	190
+这主意	zhei zhu yi	350
+这专业	zhei zhuan ye	420
+这幢楼	zhei zhuang lou	410
+这姿势	zhei zi shi	390
+这滋味	zhei zi wei	340
+这最后	zhei zui hou	470
+这最终	zhei zui zhong	410
+这座城	zhei zuo cheng	460
+这座岛	zhei zuo dao	350
+这作者	zhei zuo zhe	350
+真这样	zhen zhei yang	330
+整这些	zheng zhei xie	310
+装这种	zhuang zhei zhong	260
+总这样	zong zhei yang	380
+走这边	zou zhei bian	260
+走这个	zou zhei ge	400
+做这个	zuo zhei ge	610
+做这事	zuo zhei shi	380
+做这些	zuo zhei xie	540
+做这种	zuo zhei zhong	520
+谙熟	an shou	1
+半熟	ban shou	98
+保熟	bao shou	481
+背熟	bei shou	318
+变熟	bian shou	937
+不熟	bu shou	3674
+常熟	chang shou	1006
+炒熟	chao shou	158
+成熟	cheng shou	19557
+初熟	chu shou	2315
+纯熟	chun shou	794
+醇熟	chun shou	764
+催熟	cui shou	1888
+大熟	da shou	384
+蛋熟	dan shou	1010
+读熟	du shou	359
+炖熟	dun shou	862
+耳熟	er shou	754
+腐熟	fu shou	608
+刚熟	gang shou	1948
+搞熟	gao shou	333
+瓜熟	gua shou	51
+过熟	guo shou	500
+果熟	guo shou	470
+很熟	hen shou	2095
+湖熟	hu shou	924
+混熟	hun shou	460
+记熟	ji shou	490
+即熟	ji shou	460
+较熟	jiao shou	1038
+精熟	jing shou	1643
+烤熟	kao shou	1040
+快熟	kuai shou	9610
+烂熟	lan shou	171
+老熟	lao shou	4925
+脸熟	lian shou	4563
+练熟	lian shou	4533
+两熟	liang shou	3308
+蛮熟	man shou	526
+没熟	mei shou	206
+面熟	mian shou	688
+摸熟	mo shou	821
+轻熟	qing shou	198
+全熟	quan shou	2020
+稔熟	ren shou	1150
+软熟	ruan shou	380
+杀熟	sha shou	12147
+烧熟	shao shou	255
+生熟	sheng shou	120
+手熟	shou shou	319
+熟啊	shou a	460
+熟谙	shou an	192
+熟背	shou bei	1581
+熟菜	shou cai	869
+熟茶	shou cha	158
+熟成	shou cheng	396
+熟词	shou ci	641
+熟的	shou de	2849
+熟得	shou de	2819
+熟地	shou di	68
+熟点	shou dian	318
+熟读	shou du	10272
+熟度	shou du	10242
+熟饭	shou fan	42
+熟果	shou guo	673
+熟后	shou hou	1043
+熟化	shou hua	296
+熟记	shou ji	1743
+熟筋	shou jin	500
+熟客	shou ke	239
+熟烂	shou lan	146
+熟了	shou le	5194
+熟练	shou lian	1173
+熟脸	shou lian	1203
+熟料	shou liao	450
+熟路	shou lu	1177
+熟络	shou luo	205
+熟虑	shou lv	1147
+熟女	shou nv	520
+熟皮	shou pi	3895
+熟普	shou pu	822
+熟人	shou ren	792
+熟稔	shou ren	762
+熟肉	shou rou	2287
+熟食	shou shi	3615
+熟识	shou shi	3585
+熟时	shou shi	3555
+熟手	shou shou	349
+熟水	shou shui	2510
+熟铁	shou tie	632
+熟透	shou tou	8313
+熟悉	shou xi	268
+熟习	shou xi	238
+熟虾	shou xia	1696
+熟用	shou yong	853
+熟油	shou you	189
+熟语	shou yu	469
+熟知	shou zhi	1184
+熟制	shou zhi	1154
+睡熟	shui shou	2974
+太熟	tai shou	2861
+挺熟	ting shou	776
+晚熟	wan shou	189
+玩熟	wan shou	159
+完熟	wan shou	129
+未熟	wei shou	318
+我熟	wo shou	399
+娴熟	xian shou	340
+相熟	xiang shou	707
+眼熟	yan shou	751
+一熟	yi shou	478
+用熟	yong shou	12213
+圆熟	yuan shou	230
+再熟	zai shou	2104
+早熟	zao shou	11647
+炸熟	zha shou	208
+蒸熟	zheng shou	4262
+至熟	zhi shou	1699
+煮熟	zhu shou	1960
+最熟	zui shou	2080
+难煮熟	nan zhu shou	272
+八成熟	ba cheng shou	230
+八分熟	ba fen shou	565
+把熟睡	ba shou shui	100
+把蒸熟	ba zheng shou	100
+把煮熟	ba zhu shou	140
+半成熟	ban cheng shou	130
+扮成熟	ban cheng shou	100
+半生熟	ban sheng shou	170
+半熟蛋	ban shou dan	180
+半熟的	ban shou de	210
+半熟练	ban shou lian	120
+半熟人	ban shou ren	1395
+半熟时	ban shou shi	50
+被催熟	bei cui shou	390
+被烤熟	bei kao shou	140
+背熟了	bei shou le	655
+被煮熟	bei zhu shou	120
+比较熟	bi jiao shou	938
+变成熟	bian cheng shou	190
+并不熟	bing bu shou	160
+不成熟	bu cheng shou	310
+不催熟	bu cui shou	80
+不熟啊	bu shou a	130
+不熟吧	bu shou ba	272
+不熟练	bu shou lian	822
+不熟悉	bu shou xi	320
+不太熟	bu tai shou	4
+不娴熟	bu xian shou	462
+不眼熟	bu yan shou	20
+菜熟了	cai shou le	588
+常熟的	chang shou de	190
+常熟话	chang shou hua	155
+常熟路	chang shou lu	11
+常熟人	chang shou ren	170
+常熟市	chang shou shi	223
+常熟县	chang shou xian	180
+常熟有	chang shou you	60
+常熟站	chang shou zhan	80
+炒不熟	chao bu shou	130
+炒熟后	chao shou hou	220
+炒熟了	chao shou le	160
+成熟啊	cheng shou a	372
+成熟吧	cheng shou ba	412
+成熟的	cheng shou de	420
+成熟点	cheng shou dian	190
+成熟度	cheng shou du	1979
+成熟范	cheng shou fan	50
+成熟风	cheng shou feng	140
+成熟感	cheng shou gan	170
+成熟好	cheng shou hao	70
+成熟很	cheng shou hen	120
+成熟后	cheng shou hou	260
+成熟化	cheng shou hua	180
+成熟季	cheng shou ji	120
+成熟了	cheng shou le	1822
+成熟脸	cheng shou lian	60
+成熟林	cheng shou lin	70
+成熟美	cheng shou mei	140
+成熟蜜	cheng shou mi	150
+成熟男	cheng shou nan	170
+成熟女	cheng shou nv	150
+成熟期	cheng shou qi	260
+成熟前	cheng shou qian	272
+成熟区	cheng shou qu	100
+成熟人	cheng shou ren	39
+成熟乳	cheng shou ru	120
+成熟时	cheng shou shi	430
+成熟体	cheng shou ti	90
+成熟些	cheng shou xie	170
+成熟性	cheng shou xing	240
+成熟型	cheng shou xing	190
+成熟早	cheng shou zao	130
+成熟中	cheng shou zhong	150
+吃熟食	chi shou shi	170
+初熟的	chu shou de	1272
+从熟睡	cong shou shui	50
+从熟悉	cong shou xi	30
+催熟剂	cui shou ji	190
+大家熟	da jia shou	90
+到常熟	dao chang shou	240
+的熟了	de shou le	177
+等熟了	deng shou le	277
+地不熟	di bu shou	480
+东京熟	dong jing shou	50
+都不熟	dou bu shou	240
+都成熟	dou cheng shou	150
+都熟了	dou shou le	117
+都熟悉	dou shou xi	210
+都早熟	dou zao shou	80
+多熟了	duo shou le	794
+多熟期	duo shou qi	230
+多熟悉	duo shou xi	170
+二回熟	er hui shou	160
+耳熟啊	er shou a	140
+耳熟吧	er shou ba	304
+耳熟了	er shou le	140
+非常熟	fei chang shou	637
+分熟吧	fen shou ba	356
+分熟了	fen shou le	2874
+干熟么	gan shou me	80
+搞熟了	gao shou le	804
+更成熟	geng cheng shou	240
+更熟练	geng shou lian	170
+更熟悉	geng shou xi	220
+够成熟	gou cheng shou	130
+过熟的	guo shou de	140
+过熟了	guo shou le	170
+果熟期	guo shou qi	120
+过熟期	guo shou qi	80
+还不熟	hai bu shou	161
+还算熟	hai suan shou	100
+好成熟	hao cheng shou	70
+好耳熟	hao er shou	120
+好面熟	hao mian shou	140
+好熟悉	hao shou xi	190
+好眼熟	hao yan shou	190
+很成熟	hen cheng shou	250
+很纯熟	hen chun shou	230
+很耳熟	hen er shou	190
+很面熟	hen mian shou	150
+很熟啊	hen shou a	140
+很熟吧	hen shou ba	130
+很熟但	hen shou dan	300
+很熟很	hen shou hen	350
+很熟了	hen shou le	240
+很熟练	hen shou lian	416
+很熟络	hen shou luo	300
+很熟稔	hen shou ren	340
+很熟识	hen shou shi	484
+很熟悉	hen shou xi	290
+很娴熟	hen xian shou	754
+很眼熟	hen yan shou	80
+很早熟	hen zao shou	180
+后熟期	hou shou qi	80
+回常熟	hui chang shou	7
+会熟练	hui shou lian	750
+混脸熟	hun lian shou	170
+混熟吧	hun shou ba	180
+混熟了	hun shou le	170
+混眼熟	hun yan shou	100
+几成熟	ji cheng shou	190
+几分熟	ji fen shou	260
+记熟了	ji shou le	570
+将熟时	jiang shou shi	421
+将熟睡	jiang shou shui	240
+将蒸熟	jiang zheng shou	516
+将煮熟	jiang zhu shou	376
+较成熟	jiao cheng shou	180
+九成熟	jiu cheng shou	170
+九分熟	jiu fen shou	1078
+就熟了	jiu shou le	621
+就熟时	jiu shou shi	310
+就熟悉	jiu shou xi	150
+看熟了	kan shou le	367
+烤熟后	kao shou hou	200
+烤熟了	kao shou le	160
+可成熟	ke cheng shou	988
+可熟了	ke shou le	90
+可熟悉	ke shou xi	130
+快熟了	kuai shou le	493
+快熟面	kuai shou mian	100
+快熟时	kuai shou shi	650
+来常熟	lai chang shou	240
+来熟了	lai shou le	458
+烂熟时	lan shou shi	480
+老熟客	lao shou ke	140
+老熟人	lao shou ren	210
+脸熟吧	lian shou ba	462
+脸熟了	lian shou le	420
+练熟了	lian shou le	390
+两次熟	liang ci shou	50
+六分熟	liu fen shou	160
+路不熟	lu bu shou	160
+卖熟食	mai shou shi	95
+没炒熟	mei chao shou	90
+没成熟	mei cheng shou	130
+没烤熟	mei kao shou	440
+没烧熟	mei shao shou	70
+没熟吧	mei shou ba	80
+没熟就	mei shou jiu	50
+美熟女	mei shou nv	180
+没熟人	mei shou ren	500
+没熟似	mei shou si	230
+没熟透	mei shou tou	60
+没有熟	mei you shou	108
+没蒸熟	mei zheng shou	120
+没煮熟	mei zhu shou	110
+面熟吧	mian shou ba	190
+摸熟了	mo shou le	689
+能成熟	neng cheng shou	3863
+能熟练	neng shou lian	240
+你不熟	ni bu shou	477
+你成熟	ni cheng shou	718
+你很熟	ni hen shou	488
+你熟练	ni shou lian	370
+你熟人	ni shou ren	100
+你熟睡	ni shou shui	160
+你熟悉	ni shou xi	200
+你熟知	ni shou zhi	578
+你眼熟	ni yan shou	180
+你最熟	ni zui shou	466
+您熟悉	nin shou xi	170
+弄熟了	nong shou le	170
+偏成熟	pian cheng shou	170
+七成熟	qi cheng shou	150
+七分熟	qi fen shou	50
+情况熟	qing kuang shou	90
+轻熟风	qing shou feng	150
+轻熟感	qing shou gan	80
+轻熟龄	qing shou ling	140
+轻熟男	qing shou nan	130
+轻熟女	qing shou nv	220
+去常熟	qu chang shou	434
+去熟悉	qu shou xi	180
+全熟吧	quan shou ba	180
+全熟了	quan shou le	552
+人不熟	ren bu shou	100
+人熟人	ren shou ren	40
+容易熟	rong yi shou	547
+三分熟	san fen shou	628
+烧熟了	shao shou le	502
+生变熟	sheng bian shou	90
+生吃熟	sheng chi shou	160
+生熟地	sheng shou di	160
+是常熟	shi chang shou	130
+十成熟	shi cheng shou	130
+十分熟	shi fen shou	130
+是熟么	shi shou me	100
+熟不熟	shou bu shou	224
+熟菜油	shou cai you	150
+熟吃好	shou chi hao	130
+熟大黄	shou dai huang	70
+熟蛋黄	shou dan huang	150
+熟当时	shou dang shi	629
+熟的吧	shou de ba	283
+熟得快	shou de kuai	14
+熟的了	shou de le	356
+熟地黄	shou di huang	210
+熟读了	shou du le	448
+熟归熟	shou gui shou	110
+熟过头	shou guo tou	150
+熟花生	shou hua sheng	295
+熟火腿	shou huo tui	170
+熟鸡蛋	shou ji dan	484
+熟客吧	shou ke ba	218
+熟烂时	shou lan shi	70
+熟了吧	shou le ba	94
+熟了后	shou le hou	170
+熟了吗	shou le ma	42
+熟了么	shou le me	80
+熟了没	shou le mei	11
+熟梨糕	shou li gao	120
+熟练啊	shou lian a	140
+熟练吧	shou lian ba	277
+熟练地	shou lian de	1593
+熟练的	shou lian de	1563
+熟练度	shou lian du	260
+熟练工	shou lian gong	210
+熟练后	shou lian hou	210
+熟练活	shou lian huo	10
+熟练了	shou lian le	1010
+熟练那	shou lian na	60
+熟练时	shou lian shi	444
+熟练性	shou lian xing	315
+熟练于	shou lian yu	606
+熟练者	shou lian zhe	140
+熟龄肌	shou ling ji	367
+熟络了	shou luo le	488
+熟没熟	shou mei shou	29
+熟米饭	shou mi fan	180
+熟面孔	shou mian kong	200
+熟牛排	shou niu pai	160
+熟牛肉	shou niu rou	858
+熟女网	shou nv wang	170
+熟女系	shou nv xi	130
+熟螃蟹	shou pang xie	100
+熟朋友	shou peng you	110
+熟苹果	shou ping guo	430
+熟起来	shou qi lai	1672
+熟人啊	shou ren a	130
+熟人吧	shou ren ba	264
+熟人带	shou ren dai	150
+熟人多	shou ren duo	140
+熟人间	shou ren jian	552
+熟稔了	shou ren le	502
+熟人了	shou ren le	472
+熟人们	shou ren men	660
+熟人圈	shou ren quan	160
+熟三七	shou san qi	100
+树上熟	shu shang shou	80
+熟食吧	shou shi ba	20
+熟食店	shou shi dian	67
+熟石膏	shou shi gao	596
+熟食柜	shou shi gui	80
+熟石灰	shou shi hui	170
+熟识了	shou shi le	408
+熟食类	shou shi lei	416
+熟食品	shou shi pin	574
+熟食区	shou shi qu	180
+熟熟的	shou shou de	485
+熟睡的	shou shui de	290
+熟睡了	shou shui le	150
+熟睡时	shou shui shi	80
+熟睡中	shou shui zhong	220
+熟铜棍	shou tong gun	70
+熟桐油	shou tong you	80
+熟透后	shou tou hou	190
+熟透了	shou tou le	210
+熟透时	shou tou shi	250
+熟悉啊	shou xi a	180
+熟悉吧	shou xi ba	120
+熟悉不	shou xi bu	170
+熟悉的	shou xi de	583
+熟悉度	shou xi du	210
+熟悉感	shou xi gan	210
+熟悉很	shou xi hen	80
+熟悉后	shou xi hou	200
+熟悉了	shou xi le	340
+熟悉吗	shou xi ma	180
+熟悉你	shou xi ni	170
+熟悉人	shou xi ren	120
+熟悉时	shou xi shi	120
+熟悉他	shou xi ta	170
+熟悉下	shou xi xia	180
+熟一个	shou yi ge	240
+熟一些	shou yi xie	560
+熟语料	shou yu liao	760
+熟玉米	shou yu mi	552
+熟知的	shou zhi de	1168
+熟芝麻	shou zhi ma	210
+熟制品	shou zhi pin	110
+熟猪油	shou zhu you	210
+睡不熟	shui bu shou	100
+睡熟了	shui shou le	336
+四书熟	si shu shou	20
+所熟悉	suo shou xi	220
+所熟知	suo shou zhi	290
+他不熟	ta bu shou	20
+他成熟	ta cheng shou	704
+他很熟	ta hen shou	434
+他混熟	ta hun shou	80
+他熟读	ta shou du	570
+他熟练	ta shou lian	542
+他熟络	ta shou luo	90
+他熟稔	ta shou ren	390
+他熟识	ta shou shi	808
+他熟睡	ta shou shui	160
+他熟悉	ta shou xi	120
+他熟知	ta shou zhi	848
+他睡熟	ta shui shou	250
+他太熟	ta tai shou	321
+他娴熟	ta xian shou	120
+他相熟	ta xiang shou	321
+他眼熟	ta yan shou	120
+他早熟	ta zao shou	624
+太成熟	tai cheng shou	200
+太熟了	tai shou le	416
+太熟练	tai shou lian	150
+太熟悉	tai shou xi	250
+太早熟	tai zao shou	110
+烫熟后	tang shou hou	170
+烫熟了	tang shou le	524
+特眼熟	te yan shou	80
+挺成熟	ting cheng shou	140
+托熟人	tuo shou ren	160
+晚熟的	wan shou de	150
+玩熟了	wan shou le	180
+晚熟期	wan shou qi	169
+喂不熟	wei bu shou	120
+未成熟	wei cheng shou	220
+未熟的	wei shou de	1478
+未熟透	wei shou tou	170
+未煮熟	wei zhu shou	210
+我不熟	wo bu shou	511
+我成熟	wo cheng shou	745
+我都熟	wo dou shou	642
+我很熟	wo hen shou	786
+我们熟	wo men shou	478
+我熟得	wo shou de	80
+我熟的	wo shou de	70
+我熟练	wo shou lian	462
+我熟识	wo shou shi	242
+我熟睡	wo shou shui	110
+我熟悉	wo shou xi	349
+我熟知	wo shou zhi	686
+我睡熟	wo shui shou	90
+我相熟	wo xiang shou	848
+我眼熟	wo yan shou	110
+我早熟	wo zao shou	588
+五成熟	wu cheng shou	200
+五分熟	wu fen shou	220
+显成熟	xian cheng shou	150
+娴熟地	xian shou di	200
+娴熟了	xian shou le	560
+先熟悉	xian shou xi	200
+相熟了	xiang shou le	1200
+小成熟	xiao cheng shou	90
+性成熟	xing cheng shou	230
+性早熟	xing zao shou	250
+眼熟啊	yan shou a	140
+眼熟吧	yan shou ba	170
+眼熟了	yan shou le	76
+眼熟吗	yan shou ma	170
+养不熟	yang bu shou	140
+也不熟	ye bu shou	830
+也熟了	ye shou le	606
+也熟悉	ye shou xi	470
+烫熟	tang shou	990
+已成熟	yi cheng shou	190
+一锅熟	yi guo shou	100
+异熟果	yi shou guo	130
+异熟识	yi shou shi	2274
+用熟了	yong shou le	180
+又不熟	you bu shou	160
+有熟人	you shou ren	286
+园梅熟	yuan mei shou	10
+在常熟	zai chang shou	668
+在成熟	zai cheng shou	250
+再成熟	zai cheng shou	150
+再熟了	zai shou le	480
+再熟悉	zai shou xi	250
+早成熟	zao cheng shou	100
+早熟吧	zao shou ba	190
+早熟的	zao shou de	220
+早熟禾	zao shou he	200
+早熟梨	zao shou li	100
+早熟性	zao shou xing	110
+这么熟	zhe me shou	812
+真不熟	zhen bu shou	90
+蒸不熟	zheng bu shou	120
+蒸熟的	zheng shou de	240
+蒸熟后	zheng shou hou	230
+蒸熟了	zheng shou le	583
+中晚熟	zhong wan shou	110
+中早熟	zhong zao shou	50
+煮不熟	zhu bu shou	210
+煮熟后	zhu shou hou	290
+煮熟了	zhu shou le	475
+煮熟时	zhu shou shi	340
+装成熟	zhuang cheng shou	140
+自来熟	zi lai shou	210
+自然熟	zi ran shou	416
+最成熟	zui cheng shou	40
+最熟的	zui shou de	160
+最熟悉	zui shou xi	230
+做熟了	zuo shou le	100
+爱谁	ai shei	420
+把谁	ba shei	380
+帮谁	bang shei	340
+被谁	bei shei	500
+比谁	bi shei	560
+吃谁	chi shei	300
+打谁	da shei	410
+带谁	dai shei	300
+到谁	dao shei	370
+等谁	deng shei	330
+对谁	dui shei	490
+放谁	fang shei	280
+服谁	fu shei	350
+该谁	gai shei	360
+给谁	gei shei	560
+跟谁	gen shei	570
+怪谁	guai shei	440
+归谁	gui shei	440
+和谁	he shei	570
+恨谁	hen shei	310
+换谁	huan shei	420
+见谁	jian shei	410
+叫谁	jiao shei	330
+看谁	kan shei	570
+靠谁	kao shei	370
+可谁	ke shei	410
+坑谁	keng shei	310
+赖谁	lai shei	250
+骂谁	ma shei	350
+没谁	mei shei	410
+蒙谁	meng shei	200
+那谁	na shei	490
+怕谁	pa shei	310
+陪谁	pei shei	260
+娶谁	qu shei	280
+让谁	rang shei	450
+惹谁	re shei	310
+任谁	ren shei	420
+是谁	shi shei	760
+谁啊	shei a	510
+谁把	shei ba	470
+谁不	shei bu	540
+谁曾	shei ceng	340
+谁吃	shei chi	390
+谁出	shei chu	380
+谁错	shei cuo	290
+谁带	shei dai	340
+谁当	shei dang	420
+谁的	shei de	680
+谁等	shei deng	240
+谁定	shei ding	240
+谁懂	shei dong	400
+谁都	shei dou	690
+谁对	shei dui	470
+谁负	shei fu	300
+谁改	shei gai	210
+谁敢	shei gan	570
+谁干	shei gan	350
+谁高	shei gao	400
+谁给	shei gei	530
+谁跟	shei gen	360
+谁管	shei guan	420
+谁还	shei hai	560
+谁喊	shei han	280
+谁好	shei hao	460
+谁坏	shei huai	380
+谁会	shei hui	630
+谁家	shei jia	550
+谁将	shei jiang	520
+谁叫	shei jiao	550
+谁教	shei jiao	340
+谁接	shei jie	290
+谁就	shei jiu	570
+谁开	shei kai	340
+谁看	shei kan	410
+谁肯	shei ken	350
+谁快	shei kuai	350
+谁来	shei lai	640
+谁料	shei liao	470
+谁买	shei mai	480
+谁卖	shei mai	290
+谁拿	shei na	380
+谁呢	shei ne	550
+谁能	shei neng	720
+谁哦	shei o	240
+谁怕	shei pa	370
+谁去	shei qu	510
+谁让	shei rang	590
+谁人	shei ren	500
+谁傻	shei sha	330
+谁上	shei shang	370
+谁是	shei shi	680
+谁输	shei shu	430
+谁谁	shei shei	540
+谁说	shei shuo	640
+谁送	shei song	290
+谁玩	shei wan	330
+谁问	shei wen	300
+谁无	shei wu	300
+谁先	shei xian	540
+谁想	shei xiang	500
+谁信	shei xin	410
+谁选	shei xuan	240
+谁呀	shei ya	430
+谁演	shei yan	360
+谁养	shei yang	300
+谁要	shei yao	530
+谁也	shei ye	670
+谁赢	shei ying	470
+谁用	shei yong	510
+谁有	shei you	630
+谁又	shei you	550
+谁与	shei yu	400
+谁在	shei zai	580
+谁再	shei zai	420
+谁真	shei zhen	300
+谁知	shei zhi	600
+谁最	shei zui	540
+谁做	shei zuo	450
+说谁	shuo shei	500
+送谁	song shei	300
+挑谁	tiao shei	220
+听谁	ting shei	330
+为谁	wei shei	530
+问谁	wen shei	460
+向谁	xiang shei	470
+像谁	xiang shei	400
+笑谁	xiao shei	240
+选谁	xuan shei	470
+用谁	yong shei	370
+有谁	you shei	630
+由谁	you shei	500
+与谁	yu shei	460
+怨谁	yuan shei	350
+找谁	zhao shei	530
+招谁	zhao shei	280
+这谁	zhe shei	410
+指谁	zhi shei	300
+追谁	zhui shei	300
+啊有谁	a you shei	340
+爱过谁	ai guo shei	300
+爱看谁	ai kan shei	210
+爱上谁	ai shang shei	340
+爱谁啊	ai shei a	110
+爱谁谁	ai shei shei	420
+爱着谁	ai zhe shei	280
+把谁谁	ba shei shei	110
+帮助谁	bang zhu shei	260
+比谁差	bi shei cha	270
+比谁都	bi shei dou	510
+不到谁	bu dao shei	170
+不管谁	bu guan shei	450
+不过谁	bu guo shei	360
+不能谁	bu neng shei	200
+不是谁	bu shi shei	470
+不为谁	bu wei shei	340
+不知谁	bu zhi shei	400
+不准谁	bu zhun shei	110
+猜猜谁	cai cai shei	310
+传给谁	chuan gei shei	230
+打给谁	da gei shei	280
+代表谁	dai biao shei	290
+但谁也	dan shei ye	440
+到底谁	dao di shei	550
+到谁了	dao shei le	310
+爹是谁	die shi shei	240
+都是谁	dou shi shei	450
+都谁啊	dou shei a	140
+都有谁	dou you shei	480
+对谁都	dui shei dou	470
+对谁说	dui shei shuo	280
+发给谁	fa gei shei	310
+放到谁	fang dao shei	170
+分给谁	fen gei shei	250
+分跟谁	fen gen shei	160
+扶持谁	fu chi shei	260
+付给谁	fu gei shei	140
+该给谁	gai gei shei	270
+该怪谁	gai guai shei	260
+该归谁	gai gui shei	240
+该是谁	gai shi shei	170
+该谁出	gai shei chu	160
+该信谁	gai xin shei	340
+该选谁	gai xuan shei	310
+该由谁	gai you shei	400
+该找谁	gai zhao shei	400
+干掉谁	gan diao shei	240
+告诉谁	gao su shei	230
+给谁啊	gei shei a	210
+给谁了	gei shei le	350
+给谁买	gei shei mai	170
+给谁说	gei shei shuo	160
+跟谁啊	gen shei a	200
+跟谁打	gen shei da	210
+跟谁都	gen shei dou	380
+跟谁过	gen shei guo	290
+跟谁急	gen shei ji	400
+跟谁去	gen shei qu	330
+跟谁睡	gen shei shui	310
+跟谁谈	gen shei tan	170
+跟谁玩	gen shei wan	250
+跟谁姓	gen shei xing	320
+跟谁也	gen shei ye	160
+跟谁走	gen shei zou	290
+跟着谁	gen zhe shei	260
+更像谁	geng xiang shei	130
+勾引谁	gou yin shei	190
+关于谁	guan yu shei	280
+归谁管	gui shei guan	340
+还是谁	hai shi shei	350
+还有谁	hai you shei	540
+和那谁	he na shei	240
+和谁啊	he shei a	190
+和谁家	he shei jia	150
+和谁了	he shei le	150
+和谁去	he shei qu	300
+和谁说	he shei shuo	270
+怀疑谁	huai yi shei	140
+还给谁	huan gei shei	110
+会是谁	hui shi shei	450
+会选谁	hui xuan shei	290
+会有谁	hui you shei	300
+几个谁	ji ge shei	150
+寄给谁	ji gei shei	200
+嫁给谁	jia gei shei	380
+见到谁	jian dao shei	300
+见过谁	jian guo shei	320
+见了谁	jian le shei	240
+交给谁	jiao gei shei	350
+介是谁	jie shi shei	210
+究竟谁	jiu jing shei	480
+就看谁	jiu kan shei	390
+就是谁	jiu shi shei	420
+看到谁	kan dao shei	380
+看好谁	kan hao shei	360
+看见谁	kan jian shei	300
+看看谁	kan kan shei	450
+看上谁	kan shang shei	230
+看是谁	kan shi shei	330
+看谁快	kan shei kuai	200
+可谁曾	ke shei ceng	200
+可谁想	ke shei xiang	230
+可谁有	ke shei you	70
+可谁知	ke shei zhi	390
+坑谁呢	keng shei ne	190
+离开谁	li kai shei	310
+联系谁	lian xi shei	310
+留给谁	liu gei shei	230
+轮到谁	lun dao shei	270
+落谁家	luo shei jia	330
+买的谁	mai de shei	160
+没谁了	mei shei le	480
+没有谁	mei you shei	550
+模仿谁	mo fang shei	290
+那个谁	na ge shei	430
+那是谁	na shi shei	360
+那谁谁	na shei shei	380
+内小谁	nei xiao shei	110
+能怪谁	neng guai shei	360
+能有谁	neng you shei	250
+你爱谁	ni ai shei	300
+你跟谁	ni gen shei	340
+你和谁	ni he shei	390
+你救谁	ni jiu shei	280
+你看谁	ni kan shei	290
+你俩谁	ni lia shei	230
+你骂谁	ni ma shei	220
+你是谁	ni shi shei	540
+你谁啊	ni shei a	380
+你谁来	ni shei lai	90
+你谁呀	ni shei ya	240
+你谁也	ni shei ye	240
+你说谁	ni shuo shei	360
+你听谁	ni ting shei	180
+你问谁	ni wen shei	210
+你选谁	ni xuan shei	380
+你站谁	ni zhan shei	140
+你找谁	ni zhao shei	330
+您是谁	nin shi shei	250
+弄死谁	nong si shei	200
+怕过谁	pa guo shei	300
+骗谁呢	pian shei ne	330
+偏向谁	pian xiang shei	280
+凭谁问	ping shei wen	280
+欺负谁	qi fu shei	270
+气死谁	qi si shei	200
+取代谁	qu dai shei	250
+去谁家	qu shei jia	280
+饶过谁	rao guo shei	380
+惹了谁	re le shei	280
+惹谁了	re shei le	290
+人是谁	ren shi shei	510
+认识谁	ren shi shei	360
+任谁都	ren shei dou	410
+任谁看	ren shei kan	190
+人问谁	ren wen shei	160
+杀了谁	sha le shei	250
+是个谁	shi ge shei	180
+适合谁	shi he shei	280
+是谁啊	shi shei a	500
+是谁吧	shi shei ba	360
+是谁的	shi shei de	560
+是谁家	shi shei jia	360
+是谁教	shi shei jiao	220
+是谁来	shi shei lai	350
+是谁了	shi shei le	450
+是谁吗	shi shei ma	470
+是谁呢	shi shei ne	530
+是谁让	shi shei rang	330
+是谁人	shi shei ren	190
+是谁偷	shi shei tou	180
+是谁先	shi shei xian	380
+是谁呀	shi shei ya	400
+是谁也	shi shei ye	420
+是谁在	shi shei zai	490
+属于谁	shu yu shei	380
+谁爱你	shei ai ni	180
+谁爱谁	shei ai shei	300
+谁爱我	shei ai wo	230
+谁把你	shei ba ni	280
+谁霸气	shei ba qi	150
+谁伴我	shei ban wo	260
+谁帮你	shei bang ni	260
+谁帮谁	shei bang shei	170
+谁帮我	shei bang wo	430
+谁保护	shei bao hu	270
+谁背锅	shei bei guo	220
+谁比和	shei bi he	160
+谁比较	shei bi jiao	410
+谁不爱	shei bu ai	400
+谁不曾	shei bu ceng	320
+谁不懂	shei bu dong	270
+谁不对	shei bu dui	150
+谁不服	shei bu fu	320
+谁不好	shei bu hao	340
+谁不会	shei bu hui	440
+谁不来	shei bu lai	190
+谁不怕	shei bu pa	250
+谁不去	shei bu qu	220
+谁不是	shei bu shi	470
+谁不说	shei bu shuo	300
+谁不想	shei bu xiang	510
+谁不信	shei bu xin	230
+谁不行	shei bu xing	230
+谁不要	shei bu yao	270
+谁不愿	shei bu yuan	260
+谁不在	shei bu zai	240
+谁不知	shei bu zhi	290
+谁才是	shei cai shi	530
+谁曾见	shei ceng jian	150
+谁曾想	shei ceng xiang	400
+谁唱的	shei chang de	380
+谁唱歌	shei chang ge	180
+谁承担	shei cheng dan	350
+谁承想	shei cheng xiang	310
+谁吃亏	shei chi kui	310
+谁吃谁	shei chi shei	370
+谁出的	shei chu de	340
+谁出轨	shei chu gui	200
+谁出来	shei chu lai	260
+谁出钱	shei chu qian	350
+谁出去	shei chu qu	210
+谁出资	shei chu zi	180
+谁聪明	shei cong ming	230
+谁错了	shei cuo le	330
+谁打的	shei da de	310
+谁打你	shei da ni	190
+谁打谁	shei da shei	330
+谁打我	shei da wo	290
+谁带来	shei dai lai	170
+谁带你	shei dai ni	170
+谁带我	shei dai wo	230
+谁带走	shei dai zou	100
+谁担责	shei dan ze	320
+谁当家	shei dang jia	240
+谁到了	shei dao le	170
+谁倒霉	shei dao mei	380
+谁的啊	shei de a	270
+谁的爱	shei de ai	230
+谁的车	shei de che	290
+谁的错	shei de cuo	380
+谁的大	shei de da	180
+谁的歌	shei de ge	320
+谁的光	shei de guang	220
+谁的锅	shei de guo	250
+谁的号	shei de hao	150
+谁的话	shei de hua	360
+谁的家	shei de jia	320
+谁的脚	shei de jiao	220
+谁的了	shei de le	230
+谁的脸	shei de lian	350
+谁的梦	shei de meng	210
+谁的钱	shei de qian	420
+谁的群	shei de qun	150
+谁的人	shei de ren	230
+谁的事	shei de shi	220
+谁的手	shei de shou	320
+谁的谁	shei de shei	320
+谁的心	shei de xin	340
+谁的呀	shei de ya	250
+谁的眼	shei de yan	180
+谁第一	shei di yi	300
+谁掉的	shei diao de	130
+谁订的	shei ding de	160
+谁懂啊	shei dong a	220
+谁懂得	shei dong de	240
+谁动了	shei dong le	420
+谁懂我	shei dong wo	180
+谁都爱	shei dou ai	270
+谁都不	shei dou bu	560
+谁都懂	shei dou dong	380
+谁都会	shei dou hui	510
+谁都能	shei dou neng	520
+谁都怕	shei dou pa	320
+谁都去	shei dou qu	100
+谁都是	shei dou shi	440
+谁都想	shei dou xiang	470
+谁都行	shei dou xing	290
+谁都有	shei dou you	490
+谁都在	shei dou zai	270
+谁对谁	shei dui shei	520
+谁儿子	shei er zi	130
+谁发的	shei fa de	290
+谁发明	shei fa ming	360
+谁发现	shei fa xian	230
+谁放在	shei fang zai	70
+谁付费	shei fu fei	230
+谁付钱	shei fu qian	290
+谁服务	shei fu wu	270
+谁负责	shei fu ze	490
+谁改的	shei gai de	330
+谁敢把	shei gan ba	230
+谁敢不	shei gan bu	250
+谁干的	shei gan de	420
+谁干净	shei gan jing	70
+谁敢拦	shei gan lan	170
+谁敢娶	shei gan qu	240
+谁敢惹	shei gan re	270
+谁敢上	shei gan shang	150
+谁告诉	shei gao su	400
+谁高兴	shei gao xing	240
+谁给了	shei gei le	280
+谁给你	shei gei ni	410
+谁给谁	shei gei shei	310
+谁给说	shei gei shuo	110
+谁给我	shei gei wo	460
+谁给咱	shei gei zan	150
+谁跟你	shei gen ni	390
+谁跟谁	shei gen shei	370
+谁跟他	shei gen ta	300
+谁跟我	shei gen wo	380
+谁更	shei geng	339
+谁更爱	shei geng ai	250
+谁更惨	shei geng can	250
+谁更大	shei geng da	290
+谁更好	shei geng hao	410
+谁更狠	shei geng hen	150
+谁更红	shei geng hong	260
+谁更快	shei geng kuai	260
+谁更美	shei geng mei	370
+谁更牛	shei geng niu	290
+谁更强	shei geng qiang	440
+谁更帅	shei geng shuai	320
+谁更像	shei geng xiang	270
+谁公开	shei gong kai	180
+谁共我	shei gong wo	210
+谁管理	shei guan li	260
+谁管你	shei guan ni	400
+谁管钱	shei guan qian	300
+谁管他	shei guan ta	180
+谁规定	shei gui ding	400
+谁过来	shei guo lai	230
+谁还敢	shei hai gan	480
+谁还管	shei hai guan	320
+谁还会	shei hai hui	480
+谁还没	shei hai mei	430
+谁还能	shei hai neng	420
+谁害怕	shei hai pa	210
+谁还去	shei hai qu	360
+谁还要	shei hai yao	310
+谁还用	shei hai yong	310
+谁还有	shei hai you	400
+谁还在	shei hai zai	310
+谁好看	shei hao kan	290
+谁好像	shei hao xiang	160
+谁和你	shei he ni	320
+谁和我	shei he wo	340
+谁画的	shei hua de	310
+谁花钱	shei hua qian	240
+谁会得	shei hui de	100
+谁会跟	shei hui gen	250
+谁会来	shei hui lai	330
+谁回来	shei hui lai	170
+谁会买	shei hui mai	340
+谁会去	shei hui qu	410
+谁会想	shei hui xiang	310
+谁会信	shei hui xin	250
+谁记得	shei ji de	320
+谁家里	shei jia li	330
+谁家去	shei jia qu	110
+谁家有	shei jia you	370
+谁家做	shei jia zuo	190
+谁建的	shei jian de	170
+谁监管	shei jian guan	300
+谁见过	shei jian guo	410
+谁见了	shei jian le	380
+谁讲的	shei jiang de	270
+谁教的	shei jiao de	260
+谁叫你	shei jiao ni	430
+谁教你	shei jiao ni	250
+谁叫他	shei jiao ta	370
+谁教他	shei jiao ta	30
+谁叫我	shei jiao wo	450
+谁教我	shei jiao wo	310
+谁接的	shei jie de	180
+谁结婚	shei jie hun	280
+谁借我	shei jie wo	260
+谁进的	shei jin de	240
+谁就能	shei jiu neng	470
+谁就是	shei jiu shi	480
+谁举报	shei ju bao	310
+谁举证	shei ju zheng	400
+谁开车	shei kai che	220
+谁开的	shei kai de	270
+谁开发	shei kai fa	270
+谁看到	shei kan dao	350
+谁看的	shei kan de	320
+谁看过	shei kan guo	380
+谁看了	shei kan le	380
+谁看你	shei kan ni	220
+谁看谁	shei kan shei	380
+谁可比	shei ke bi	210
+谁可以	shei ke yi	530
+谁坑谁	shei keng shei	160
+谁来帮	shei lai bang	330
+谁来出	shei lai chu	280
+谁来打	shei lai da	190
+谁来带	shei lai dai	230
+谁来的	shei lai de	230
+谁来扶	shei lai fu	250
+谁来干	shei lai gan	250
+谁来管	shei lai guan	390
+谁来讲	shei lai jiang	200
+谁来教	shei lai jiao	270
+谁来接	shei lai jie	260
+谁来看	shei lai kan	180
+谁来了	shei lai le	310
+谁来买	shei lai mai	270
+谁来赔	shei lai pei	300
+谁来陪	shei lai pei	200
+谁来收	shei lai shou	130
+谁来问	shei lai wen	160
+谁来演	shei lai yan	350
+谁来养	shei lai yang	230
+谁来找	shei lai zhao	180
+谁来着	shei lai zhe	290
+谁来做	shei lai zuo	390
+谁了么	shei le me	150
+谁了呢	shei le ne	200
+谁乐意	shei le yi	270
+谁厉害	shei li hai	430
+谁理你	shei li ni	280
+谁了解	shei liao jie	380
+谁骂谁	shei ma shei	240
+谁买单	shei mai dan	360
+谁买的	shei mai de	310
+谁买了	shei mai le	340
+谁没点	shei mei dian	270
+谁没事	shei mei shi	400
+谁每天	shei mei tian	230
+谁没有	shei mei you	490
+谁明白	shei ming bai	310
+谁拿的	shei na de	230
+谁哪个	shei na ge	210
+谁拿了	shei na le	360
+谁能把	shei neng ba	410
+谁能保	shei neng bao	110
+谁能比	shei neng bi	340
+谁能吃	shei neng chi	180
+谁能带	shei neng dai	190
+谁能敌	shei neng di	230
+谁能懂	shei neng dong	320
+谁能干	shei neng gan	170
+谁能给	shei neng gei	480
+谁能管	shei neng guan	190
+谁能及	shei neng ji	150
+谁能记	shei neng ji	30
+谁能接	shei neng jie	120
+谁能说	shei neng shuo	410
+谁能向	shei neng xiang	150
+谁能知	shei neng zhi	180
+谁能做	shei neng zuo	310
+谁尼玛	shei ni ma	320
+谁怕谁	shei pa shei	410
+谁拍的	shei pai de	330
+谁排的	shei pai de	130
+谁陪你	shei pei ni	250
+谁陪我	shei pei wo	300
+谁批准	shei pi zhun	200
+谁漂亮	shei piao liang	280
+谁破坏	shei po huai	250
+谁欺负	shei qi fu	270
+谁欠谁	shei qian shei	300
+谁签字	shei qian zi	280
+谁清楚	shei qing chu	250
+谁请客	shei qing ke	320
+谁去接	shei qu jie	160
+谁去呢	shei qu ne	220
+谁娶谁	shei qu shei	220
+谁去做	shei qu zuo	280
+谁让你	shei rang ni	500
+谁让您	shei rang nin	130
+谁让谁	shei rang shei	220
+谁让他	shei rang ta	400
+谁让她	shei rang ta	330
+谁让我	shei rang wo	490
+谁人能	shei ren neng	290
+谁认识	shei ren shi	400
+谁人识	shei ren shi	260
+谁人知	shei ren zhi	320
+谁扔的	shei reng de	240
+谁杀谁	shei sha shei	240
+谁上班	shei shang ban	140
+谁审核	shei shen he	250
+谁生病	shei sheng bing	210
+谁生日	shei sheng ri	210
+谁是爹	shei shi die	190
+谁是狗	shei shi gou	280
+谁是谁	shei shi shei	470
+谁是我	shei shi wo	270
+谁使用	shei shi yong	280
+谁是主	shei shi zhu	230
+谁是猪	shei shi zhu	180
+谁收藏	shei shou cang	130
+谁手机	shei shou ji	170
+谁受益	shei shou yi	380
+谁输了	shei shu le	340
+谁谁是	shei shei shi	240
+谁谁谁	shei shei shei	520
+谁说到	shei shuo dao	80
+谁说的	shei shuo de	500
+谁说过	shei shuo guo	370
+谁说话	shei shuo hua	340
+谁说谎	shei shuo huang	140
+谁说来	shei shuo lai	90
+谁说你	shei shuo ni	270
+谁说女	shei shuo nv	210
+谁说我	shei shuo wo	380
+谁送的	shei song de	330
+谁送我	shei song wo	310
+谁他妈	shei ta ma	420
+谁掏钱	shei tao qian	270
+谁提的	shei ti de	290
+谁提供	shei ti gong	310
+谁听谁	shei ting shei	240
+谁同意	shei tong yi	200
+谁统一	shei tong yi	170
+谁投资	shei tou zi	290
+谁玩过	shei wan guo	280
+谁玩谁	shei wan shei	280
+谁为你	shei wei ni	290
+谁为谁	shei wei shei	280
+谁为我	shei wei wo	250
+谁维修	shei wei xiu	130
+谁为主	shei wei zhu	230
+谁问的	shei wen de	230
+谁污染	shei wu ran	320
+谁侮辱	shei wu ru	160
+谁稀罕	shei xi han	340
+谁喜欢	shei xi huan	400
+谁洗碗	shei xi wan	290
+谁先到	shei xian dao	280
+谁先来	shei xian lai	250
+谁先上	shei xian shang	250
+谁先说	shei xian shuo	210
+谁先死	shei xian si	310
+谁先走	shei xian zou	270
+谁相伴	shei xiang ban	130
+谁想到	shei xiang dao	440
+谁想的	shei xiang de	260
+谁想干	shei xiang gan	140
+谁想看	shei xiang kan	240
+谁想买	shei xiang mai	210
+谁像你	shei xiang ni	210
+谁想去	shei xiang qu	260
+谁像谁	shei xiang shei	290
+谁相信	shei xiang xin	290
+谁想要	shei xiang yao	360
+谁晓得	shei xiao de	350
+谁写的	shei xie de	430
+谁信啊	shei xin a	350
+谁信道	shei xin dao	160
+谁信呐	shei xin na	170
+谁信呢	shei xin ne	260
+谁信呀	shei xin ya	170
+谁需要	shei xu yao	360
+谁学得	shei xue de	50
+谁呀我	shei ya wo	220
+谁演的	shei yan de	330
+谁要的	shei yao de	260
+谁要和	shei yao he	200
+谁要看	shei yao kan	260
+谁要来	shei yao lai	250
+谁要买	shei yao mai	220
+谁要是	shei yao shi	480
+谁也不	shei ye bu	580
+谁也会	shei ye hui	160
+谁也没	shei ye mei	500
+谁也能	shei ye neng	120
+谁也是	shei ye shi	200
+谁也想	shei ye xiang	180
+谁也有	shei ye you	170
+谁一个	shei yi ge	300
+谁一起	shei yi qi	280
+谁一天	shei yi tian	160
+谁赢了	shei ying le	390
+谁影响	shei ying xiang	220
+谁用过	shei yong guo	460
+谁拥有	shei yong you	410
+谁有病	shei you bing	230
+谁有发	shei you fa	140
+谁有空	shei you kong	350
+谁有理	shei you li	320
+谁又能	shei you neng	480
+谁有钱	shei you qian	350
+谁与共	shei yu gong	280
+谁与谁	shei yu shei	290
+谁愿意	shei yuan yi	530
+谁允许	shei yun xu	310
+谁再敢	shei zai gan	260
+谁在家	shei zai jia	200
+谁在叫	shei zai jiao	150
+谁在看	shei zai kan	230
+谁在买	shei zai mai	330
+谁在卖	shei zai mai	220
+谁在那	shei zai na	230
+谁在说	shei zai shuo	280
+谁在玩	shei zai wan	230
+谁在线	shei zai xian	90
+谁在意	shei zai yi	290
+谁在用	shei zai yong	310
+谁照顾	shei zhao gu	290
+谁找你	shei zhao ni	180
+谁挣钱	shei zheng qian	220
+谁值班	shei zhi ban	120
+谁知此	shei zhi ci	170
+谁知道	shei zhi dao	710
+谁值得	shei zhi de	250
+谁制定	shei zhi ding	180
+谁执法	shei zhi fa	280
+谁之过	shei zhi guo	410
+谁知过	shei zhi guo	70
+谁治理	shei zhi li	320
+谁知是	shei zhi shi	300
+谁知我	shei zhi wo	280
+谁知有	shei zhi you	160
+谁之责	shei zhi ze	210
+谁重要	shei zhong yao	280
+谁主导	shei zhu dao	370
+谁主动	shei zhu dong	300
+谁主管	shei zhu guan	370
+谁主张	shei zhu zhang	390
+谁追谁	shei zhui shei	300
+谁走了	shei zou le	240
+谁组队	shei zu dui	170
+谁组织	shei zu zhi	220
+谁最惨	shei zui can	170
+谁最丑	shei zui chou	170
+谁最大	shei zui da	230
+谁最高	shei zui gao	260
+谁最好	shei zui hao	300
+谁最红	shei zui hong	210
+谁最快	shei zui kuai	210
+谁最美	shei zui mei	330
+谁最能	shei zui neng	280
+谁最牛	shei zui niu	270
+谁最强	shei zui qiang	360
+谁最帅	shei zui shuai	310
+谁做的	shei zuo de	410
+谁做饭	shei zuo fan	280
+谁做主	shei zuo zhu	370
+说的谁	shuo de shei	240
+说谁的	shuo shei de	270
+说谁了	shuo shei le	200
+说谁呢	shuo shei ne	310
+思念谁	si nian shei	260
+送给谁	song gei shei	350
+算谁的	suan shei de	370
+所以谁	suo yi shei	380
+他是谁	ta shi shei	490
+她是谁	ta shi shei	450
+淘汰谁	tao tai shei	240
+讨厌谁	tao yan shei	340
+听谁的	ting shei de	440
+听谁说	ting shei shuo	330
+投给谁	tou gei shei	330
+投靠谁	tou kao shei	210
+忘记谁	wang ji shei	210
+忘了谁	wang le shei	280
+为了谁	wei le shei	430
+为谁开	wei shei kai	260
+为谁留	wei shei liu	160
+为谁落	wei shei luo	180
+为谁忙	wei shei mang	240
+为谁去	wei shei qu	90
+问是谁	wen shi shei	350
+问谁来	wen shei lai	90
+问谁能	wen shei neng	220
+问谁是	wen shei shi	320
+问谁在	wen shei zai	180
+问有谁	wen you shei	270
+我爱谁	wo ai shei	200
+我和谁	wo he shei	300
+我骂谁	wo ma shei	160
+我怕谁	wo pa shei	340
+我是谁	wo shi shei	550
+我问谁	wo wen shei	240
+我像谁	wo xiang shei	120
+无论谁	wu lun shei	450
+喜欢谁	xi huan shei	460
+吓唬谁	xia hu shei	220
+先救谁	xian jiu shei	380
+想起谁	xiang qi shei	340
+像是谁	xiang shi shei	190
+想谁的	xiang shei de	100
+想谁呢	xiang shei ne	90
+向谁说	xiang shei shuo	230
+向谁诉	xiang shei su	210
+相信谁	xiang xin shei	380
+想要谁	xiang yao shei	190
+想着谁	xiang zhe shei	250
+写给谁	xie gei shei	310
+需要谁	xu yao shei	250
+选择谁	xuan ze shei	440
+也没谁	ye mei shei	300
+依靠谁	yi kao shei	320
+依赖谁	yi lai shei	190
+因为谁	yin wei shei	420
+用谁的	yong shei de	310
+又被谁	you bei shei	220
+又是谁	you shi shei	470
+有谁把	you shei ba	180
+有谁家	you shei jia	200
+有谁看	you shei kan	240
+由谁来	you shei lai	470
+有谁来	you shei lai	310
+有谁怜	you shei lian	280
+优谁劣	you shei lie	10
+有谁呢	you shei ne	300
+有谁能	you shei neng	540
+又谁能	you shei neng	160
+有谁是	you shei shi	310
+有谁问	you shei wen	30
+有谁也	you shei ye	150
+有谁知	you shei zhi	350
+又谁知	you shei zhi	240
+又有谁	you you shei	460
+遇到谁	yu dao shei	320
+遇见谁	yu jian shei	350
+与谁共	yu shei gong	170
+与谁同	yu shei tong	240
+在等谁	zai deng shei	280
+在和谁	zai he shei	260
+在乎谁	zai hu shei	290
+在谁家	zai shei jia	270
+怎么谁	zen me shei	180
+照顾谁	zhao gu shei	200
+找谁啊	zhao shei a	290
+找谁帮	zhao shei bang	50
+招谁了	zhao shei le	190
+找谁呀	zhao shei ya	190
+找谁做	zhao shei zuo	250
+这是谁	zhe shi shei	480
+这谁啊	zhe shei a	300
+这谁呀	zhe shei ya	210
+针对谁	zhen dui shei	440
+支持谁	zhi chi shei	390
+知道谁	zhi dao shei	440
+指望谁	zhi wang shei	310
+只有谁	zhi you shei	320
+转给谁	zhuan gei shei	190
+资料谁	zi liao shei	210
+最后谁	zui hou shei	400
+爱谁谁吧	ai shei shei ba	29
+暗恋过谁	an lian guo shei	1
+白云谁侣	bai yun shei lv	1
+被谁抛弃	bei shei pao qi	33
+被谁杀了	bei shei sha le	14
+被谁调戏	bei shei tiao xi	1
+比谁都多	bi shei dou duo	35
+比谁都快	bi shei dou kuai	47
+变成了谁	bian cheng le shei	23
+不比谁弱	bu bi shei ruo	6
+不嘲笑谁	bu chao xiao shei	1
+不怀疑谁	bu huai yi shei	1
+不知道谁	bu zhi dao shei	60
+猜我是谁	cai wo shi shei	31
+曾共谁倚	ceng gong shei yi	1
+唱给谁听	chang gei shei ting	19
+出自谁手	chu zi shei shou	31
+此恨谁知	ci hen shei zhi	6
+此情谁会	ci qing shei hui	1
+此情谁托	ci qing shei tuo	1
+逮谁咬谁	dai shei yao shei	23
+但谁曾想	dan shei ceng xiang	15
+当年谁种	dang nian shei zhong	1
+当是谁呢	dang shi shei ne	1
+到底投谁	dao di tou shei	1
+的你和谁	de ni he shei	9
+得罪了谁	de zui le shei	36
+都谁能来	dou shei neng lai	1
+都谁在啊	dou shei zai a	1
+都有谁了	dou you shei le	1
+都有谁去	dou you shei qu	8
+都有谁在	dou you shei zai	1
+都有些谁	dou you xie shei	15
+对不起谁	dui bu qi shei	42
+对谁都好	dui shei dou hao	40
+蛾眉谁妒	e mei shei du	1
+发给谁了	fa gei shei le	1
+翻谁牌子	fan shei pai zi	4
+飞傍谁家	fei bang shei jia	1
+非谁不可	fei shei bu ke	26
+飞向谁家	fei xiang shei jia	11
+分不出谁	fen bu chu shei	22
+分付他谁	fen fu ta shei	1
+夫谁畏惧	fu shei wei ju	6
+该归谁管	gai gui shei guan	17
+该相信谁	gai xiang xin shei	38
+给别人谁	gei bie ren shei	4
+给谁看呢	gei shei kan ne	41
+给谁买呢	gei shei mai ne	1
+跟谁赌气	gen shei du qi	14
+跟谁俩呢	gen shei lia ne	22
+跟谁聊呢	gen shei liao ne	8
+跟谁有仇	gen shei you chou	29
+更为谁羞	geng wei shei xiu	6
+更喜欢谁	geng xi huan shei	46
+更有谁知	geng you shei zhi	1
+共谁同航	gong shei tong hang	28
+关心过谁	guan xin guo shei	1
+归谁管啊	gui shei guan a	6
+哈谁知道	ha shei zhi dao	16
+还有那谁	hai you na shei	21
+还有谁了	hai you shei le	14
+还有谁去	hai you shei qu	25
+还有谁在	hai you shei zai	1
+孩子像谁	hai zi xiang shei	17
+和谁交往	he shei jiao wang	26
+和谁结婚	he shei jie hun	42
+和谁聊了	he shei liao le	24
+和谁聊呢	he shei liao ne	1
+和谁聊天	he shei liao tian	29
+和谁去的	he shei qu de	20
+和谁去了	he shei qu le	12
+和谁玩呢	he shei wan ne	1
+和谁一起	he shei yi qi	51
+和谁在家	he shei zai jia	1
+和谁在聊	he shei zai liao	1
+花落谁家	hua luo shei jia	58
+会是谁呢	hui shi shei ne	48
+会选择谁	hui xuan ze shei	38
+寂寞谁同	ji mo shei tong	1
+见谁秒谁	jian shei miao shei	23
+解组谁逼	jie zu shei bi	13
+今倩谁温	jin qian shei wen	6
+今谁存者	jin shei cun zhe	8
+就给谁吃	jiu gei shei chi	9
+就卖给谁	jiu mai gei shei	22
+绝艳谁怜	jue yan shei lian	4
+君谁与守	jun shei yu shou	1
+开口谁亲	kai kou shei qin	22
+看不出谁	kan bu chu shei	26
+看不惯谁	kan bu guan shei	28
+看不起谁	kan bu qi shei	34
+看不清谁	kan bu qing shei	16
+看出来谁	kan chu lai shei	30
+看得起谁	kan de qi shei	21
+看看谁先	kan kan shei xian	1
+看看谁硬	kan kan shei ying	1
+看谁都像	kan shei dou xiang	34
+看谁先得	kan shei xian de	1
+看谁先死	kan shei xian si	1
+可谁想到	ke shei xiang dao	28
+可谁知道	ke shei zhi dao	42
+离不开谁	li bu kai shei	1
+帘影谁摇	lian ying shei yao	6
+鹿死谁手	lu si shei shou	296
+卖给了谁	mai gei le shei	30
+卖给谁了	mai gei shei le	1
+满庭谁扫	man ting shei sao	1
+没看好谁	mei kan hao shei	1
+明年谁健	ming nian shei jian	6
+名之者谁	ming zhi zhe shei	14
+莫敢谁何	mo gan shei he	13
+莫之谁何	mo zhi shei he	1
+那个谁谁	na ge shei shei	39
+那是谁的	na shi shei de	1
+那是谁了	na shi shei le	11
+那谁到了	na shei dao le	1
+那谁谁谁	na shei shei shei	45
+那谁知道	na shei zhi dao	28
+能代表谁	neng dai biao shei	16
+你猜是谁	ni cai shi shei	28
+你跟谁过	ni gen shei guo	1
+你跟谁俩	ni gen shei lia	9
+你管他谁	ni guan ta shei	1
+你和谁过	ni he shei guo	1
+你觉得谁	ni jue de shei	46
+你看好谁	ni kan hao shei	34
+你骂谁的	ni ma shei de	1
+你买的谁	ni mai de shei	1
+你买了谁	ni mai le shei	1
+你们俩谁	ni men lia shei	22
+你能对谁	ni neng dui shei	1
+你认识谁	ni ren shi shei	27
+你是谁啦	ni shi shei la	4
+你是谁了	ni shi shei le	28
+你是谁么	ni shi shei me	4
+你是谁呀	ni shi shei ya	36
+你谁啊你	ni shei a ni	28
+你谁都怕	ni shei dou pa	1
+你谁一个	ni shei yi ge	1
+你说谁的	ni shuo shei de	1
+你为了谁	ni wei le shei	17
+你稀罕谁	ni xi han shei	1
+你喜欢谁	ni xi huan shei	42
+你先救谁	ni xian jiu shei	44
+你想要谁	ni xiang yao shei	17
+你又是谁	ni you shi shei	30
+你遇见谁	ni yu jian shei	43
+你在想谁	ni zai xiang shei	9
+你找谁呀	ni zhao shei ya	13
+你支持谁	ni zhi chi shei	35
+你知道谁	ni zhi dao shei	30
+哦那个谁	o na ge shei	11
+凭谁妙笔	ping shei miao bi	1
+其谁从焉	qi shei cong yan	9
+其谁知之	qi shei zhi zhi	4
+倩谁摘取	qian shei zhai qu	1
+瞧不起谁	qiao bu qi shei	35
+清韵谁敲	qing yun shei qiao	4
+认不出谁	ren bu chu shei	8
+人谁无过	ren shei wu guo	33
+人在谁边	ren zai shei bian	12
+舍你其谁	she ni qi shei	1
+舍他其谁	she ta qi shei	25
+舍我复谁	she wo fu shei	1
+舍我其谁	she wo qi shei	54
+生父是谁	sheng fu shi shei	27
+生母是谁	sheng mu shi shei	24
+师父是谁	shi fu shi shei	23
+是输给谁	shi shu gei shei	1
+是谁的错	shi shei de cuo	46
+是谁的锅	shi shei de guo	31
+是谁照的	shi shei zhao de	13
+书谁看过	shu shei kan guo	1
+谁伴孤吟	shei ban gu yin	1
+谁帮帮我	shei bang bang wo	41
+谁帮我收	shei bang wo shou	1
+谁帮我找	shei bang wo zhao	21
+谁比得上	shei bi de shang	26
+谁比较好	shei bi jiao hao	29
+谁比谁强	shei bi shei qiang	31
+谁比我帅	shei bi wo shuai	1
+谁不爱呢	shei bu ai ne	43
+谁不懂啊	shei bu dong a	21
+谁不会啊	shei bu hui a	39
+谁不理你	shei bu li ni	1
+谁不欠谁	shei bu qian shei	1
+谁不是的	shei bu shi de	8
+谁不是有	shei bu shi you	1
+谁不信呢	shei bu xin ne	1
+谁不要脸	shei bu yao lian	1
+谁不着觉	shei bu zhuo jue	8
+谁曾想到	shei ceng xiang dao	36
+谁曾想过	shei ceng xiang guo	22
+谁唱的了	shei chang de le	13
+谁吃的饭	shei chi de fan	1
+谁处对象	shei chu dui xiang	11
+谁传道之	shei chuan dao zhi	19
+谁穿谁美	shei chuan shei mei	15
+谁打开的	shei da kai de	8
+谁搭理你	shei da li ni	21
+谁大谁小	shei da shei xiao	37
+谁带孩子	shei dai hai zi	26
+谁的爱情	shei de ai qing	25
+谁的车身	shei de che shen	1
+谁的初吻	shei de chu wen	1
+谁的蛋糕	shei de dan gao	25
+谁的地方	shei de di fang	1
+谁的电话	shei de dian hua	34
+谁的电脑	shei de dian nao	1
+谁的儿子	shei de er zi	33
+谁的房子	shei de fang zi	21
+谁的粉丝	shei de fen si	38
+谁的父母	shei de fu mu	28
+谁的功劳	shei de gong lao	31
+谁的故事	shei de gu shi	35
+谁的孩子	shei de hai zi	42
+谁的好啊	shei de hao a	1
+谁的好看	shei de hao kan	13
+谁的历史	shei de li shi	37
+谁的妈妈	shei de ma ma	21
+谁的名片	shei de ming pian	1
+谁的名字	shei de ming zi	46
+谁的女儿	shei de nv er	29
+谁的皮肤	shei de pi fu	20
+谁的妻子	shei de qi zi	21
+谁的青春	shei de qing chun	56
+谁的人生	shei de ren sheng	43
+谁的身体	shei de shen ti	26
+谁的生活	shei de sheng huo	38
+谁的声音	shei de sheng yin	34
+谁的手机	shei de shou ji	35
+谁的手里	shei de shou li	37
+谁的问题	shei de wen ti	52
+谁的眼睛	shei de yan jing	26
+谁的眼泪	shei de yan lei	32
+谁的造型	shei de zao xing	21
+谁的最好	shei de zui hao	15
+谁顶得住	shei ding de zhu	29
+谁懂我心	shei dong wo xin	1
+谁都不服	shei dou bu fu	32
+谁都不理	shei dou bu li	35
+谁都不傻	shei dou bu sha	36
+谁都认识	shei dou ren shi	30
+谁多谁少	shei duo shei shao	36
+谁饿肚子	shei e du zi	1
+谁发明的	shei fa ming de	1
+谁负得起	shei fu de qi	1
+谁负刚肠	shei fu gang chang	1
+谁负了谁	shei fu le shei	19
+谁负责啊	shei fu ze a	26
+谁该负责	shei gai fu ze	32
+谁敢不服	shei gan bu fu	30
+谁敢挡关	shei gan dang guan	4
+谁干得好	shei gan de hao	19
+谁敢动我	shei gan dong wo	28
+谁搞的鬼	shei gao de gui	21
+谁告你的	shei gao ni de	1
+谁告诉你	shei gao su ni	54
+谁告诉我	shei gao su wo	54
+谁个不晓	shei ge bu xiao	1
+谁给的啊	shei gei de a	4
+谁给了你	shei gei le ni	24
+谁跟谁呀	shei gen shei ya	13
+谁更出色	shei geng chu se	29
+谁更聪明	shei geng cong ming	34
+谁更好看	shei geng hao kan	34
+谁更合适	shei geng he shi	29
+谁更可爱	shei geng ke ai	23
+谁更漂亮	shei geng piao liang	36
+谁更容易	shei geng rong yi	34
+谁更适合	shei geng shi he	47
+谁更帅呢	shei geng shuai ne	6
+谁更伟大	shei geng wei da	41
+谁更无聊	shei geng wu liao	4
+谁更有钱	shei geng you qian	31
+谁更优秀	shei geng you xiu	38
+谁更重要	shei geng zhong yao	41
+谁攻谁受	shei gong shei shou	25
+谁管得着	shei guan de zhao	20
+谁规定的	shei gui ding de	42
+谁还打牌	shei hai da pai	1
+谁还以为	shei hai yi wei	4
+谁和你在	shei he ni zai	1
+谁和我开	shei he wo kai	1
+谁和我约	shei he wo yue	1
+谁会搭理	shei hui da li	9
+谁毁谁誉	shei hui shei yu	6
+谁寄相思	shei ji xiang si	1
+谁家璧人	shei jia bi ren	1
+谁家的狗	shei jia de gou	33
+谁家的了	shei jia de le	20
+谁家姝丽	shei jia shu li	1
+谁家小院	shei jia xiao yuan	4
+谁家种的	shei jia zhong de	4
+谁讲过我	shei jiang guo wo	1
+谁教你的	shei jiao ni de	1
+谁叫你手	shei jiao ni shou	1
+谁结婚呢	shei jie hun ne	1
+谁就指挥	shei jiu zhi hui	1
+谁开的房	shei kai de fang	1
+谁扛得住	shei kang de zhu	20
+谁可知道	shei ke zhi dao	1
+谁坑你了	shei keng ni le	4
+谁来接班	shei lai jie ban	26
+谁来救我	shei lai jiu wo	26
+谁来主宰	shei lai zhu zai	16
+谁来阻止	shei lai zu zhi	16
+谁拦得住	shei lan de zhu	21
+谁厉害呢	shei li hai ne	1
+谁怜夭折	shei lian yao zhe	4
+谁临晚眺	shei lin wan tiao	1
+谁领风骚	shei ling feng sao	27
+谁骂你了	shei ma ni le	4
+谁没点儿	shei mei dian er	20
+谁没事儿	shei mei shi er	33
+谁没有爱	shei mei you ai	6
+谁没有爹	shei mei you die	1
+谁没有娘	shei mei you niang	1
+谁没有情	shei mei you qing	1
+谁那么早	shei na me zao	8
+谁哪知道	shei na zhi dao	1
+谁能不听	shei neng bu ting	1
+谁能猜到	shei neng cai dao	32
+谁能挡我	shei neng dang wo	23
+谁能极之	shei neng ji zhi	13
+谁能解开	shei neng jie kai	20
+谁能晋级	shei neng jin ji	25
+谁能尽善	shei neng jin shan	1
+谁能像你	shei neng xiang ni	9
+谁念行人	shei nian xing ren	1
+谁怕谁了	shei pa shei le	8
+谁怕谁呀	shei pa shei ya	24
+谁跑得快	shei pao de kuai	34
+谁陪你打	shei pei ni da	1
+谁批准的	shei pi zhun di	17
+谁骗你了	shei pian ni le	1
+谁品春词	shei pin chun ci	1
+谁欺负你	shei qi fu ni	30
+谁欺负谁	shei qi fu shei	24
+谁强谁弱	shei qiang shei ruo	45
+谁轻谁重	shei qing shei zhong	31
+谁求知道	shei qiu zhi dao	1
+谁去打球	shei qu da qiu	1
+谁娶到你	shei qu dao ni	11
+谁去给我	shei qu gei wo	6
+谁去谁留	shei qu shei liu	28
+谁让你碰	shei rang ni peng	6
+谁让你丫	shei rang ni ya	13
+谁惹你了	shei re ni le	16
+谁人不晓	shei ren bu xiao	28
+谁认识你	shei ren shi ni	1
+谁荣谁辱	shei rong shei ru	1
+谁入地狱	shei ru di yu	41
+谁杀了谁	shei sha le shei	17
+谁伤了你	shei shang le ni	6
+谁上谁下	shei shang shei xia	25
+谁烧毁的	shei shao hui de	1
+谁少谁多	shei shao shei duo	1
+谁胜谁败	shei sheng shei bai	29
+谁胜谁负	shei sheng shei fu	48
+谁生谁死	shei sheng shei si	26
+谁胜算大	shei sheng suan da	13
+谁生下来	shei sheng xia lai	26
+谁是傻冒	shei shi sha mao	1
+谁是傻子	shei shi sha zi	1
+谁使神州	shei shi shen zhou	1
+谁是首富	shei shi shou fu	8
+谁是谁的	shei shi shei de	49
+谁是谁非	shei shi shei fei	49
+谁是闲人	shei shi xian ren	1
+谁是知心	shei shi zhi xin	1
+谁是知音	shei shi zhi yin	1
+谁是主人	shei shi zhu ren	25
+谁受得了	shei shou de liao	47
+谁谁谁去	shei shei shei qu	23
+谁谁谁谁	shei shei shei shei	25
+谁说的啊	shei shuo de a	29
+谁说的了	shei shuo de le	35
+谁说的清	shei shuo de qing	1
+谁说的呀	shei shuo de ya	13
+谁说谎了	shei shuo huang le	4
+谁死鹿手	shei si lu shou	1
+谁死谁活	shei si shei huo	17
+谁送过来	shei song guo lai	1
+谁算计谁	shei suan ji shei	16
+谁所极焉	shei suo ji yan	6
+谁他妈的	shei ta ma de	32
+谁他妈信	shei ta ma xin	6
+谁偷了我	shei tou le wo	27
+谁玩得过	shei wan de guo	13
+谁为情种	shei wei qing zhong	21
+谁为为之	shei wei wei zhi	6
+谁问旗亭	shei wen qi ting	1
+谁我喜欢	shei wo xi huan	4
+谁喜欢谁	shei xi huan shei	33
+谁下地狱	shei xia di yu	32
+谁羡骖鸾	shei xian can luan	1
+谁先动手	shei xian dong shou	33
+谁先开口	shei xian kai kou	29
+谁先谁后	shei xian shei hou	45
+谁先主动	shei xian zhu dong	24
+谁想得到	shei xiang de dao	30
+谁像你啊	shei xiang ni a	1
+谁像你们	shei xiang ni men	1
+谁想听你	shei xiang ting ni	1
+谁呀谁呀	shei ya shei ya	22
+谁言寸草	shei yan cun cao	41
+谁言琼树	shei yan qiong shu	1
+谁言人易	shei yan ren yi	1
+谁也不服	shei ye bu fu	44
+谁也不理	shei ye bu li	39
+谁也不弄	shei ye bu nong	1
+谁一会儿	shei yi hui er	14
+谁又不是	shei you bu shi	40
+谁又复活	shei you fu huo	1
+谁又是谁	shei you shi shei	16
+谁优谁劣	shei you shei lie	41
+谁又在乎	shei you zai hu	29
+谁又知道	shei you zhi dao	1
+谁与共饮	shei yu gong yin	11
+谁与温存	shei yu wen cun	1
+谁与争锋	shei yu zheng feng	52
+谁与争疯	shei yu zheng feng	17
+谁与争风	shei yu zheng feng	13
+谁于争锋	shei yu zheng feng	1
+谁与争功	shei yu zheng gong	6
+谁愿为首	shei yuan wei shou	8
+谁在背后	shei zai bei hou	32
+谁在北京	shei zai bei jing	21
+谁在唱歌	shei zai chang ge	1
+谁在打我	shei zai da wo	27
+谁在风中	shei zai feng zhong	16
+谁在杭州	shei zai hang zhou	6
+谁在呼唤	shei zai hu huan	1
+谁在乎呢	shei zai hu ne	39
+谁在乎你	shei zai hu ni	33
+谁在济南	shei zai ji nan	1
+谁在家的	shei zai jia de	6
+谁在浪费	shei zai lang fei	1
+谁在里面	shei zai li mian	21
+谁在裸泳	shei zai luo yong	45
+谁在那里	shei zai na li	25
+谁在秋千	shei zai qiu qian	11
+谁在撒谎	shei zai sa huang	27
+谁在说话	shei zai shuo hua	32
+谁在说谎	shei zai shuo huang	35
+谁在踢你	shei zai ti ni	1
+谁在武汉	shei zai wu han	1
+谁在西安	shei zai xi an	1
+谁在一起	shei zai yi qi	42
+谁在意我	shei zai yi wo	1
+谁在这里	shei zai zhe li	26
+谁在追你	shei zai zhui ni	1
+谁怎么说	shei zen me shuo	12
+谁照的呀	shei zhao de ya	4
+谁照顾你	shei zhao gu ni	1
+谁招你了	shei zhao ni le	4
+谁这么早	shei zhe me zao	1
+谁真谁假	shei zhen shei jia	36
+谁知道啊	shei zhi dao a	52
+谁知道的	shei zhi dao de	46
+谁知道来	shei zhi dao lai	13
+谁知道了	shei zhi dao le	28
+谁知道里	shei zhi dao li	13
+谁知道呐	shei zhi dao na	15
+谁知到那	shei zhi dao na	14
+谁知道囊	shei zhi dao nang	1
+谁知道呢	shei zhi dao ne	60
+谁知道你	shei zhi dao ni	47
+谁知道去	shei zhi dao qu	25
+谁知道啥	shei zhi dao sha	11
+谁知道也	shei zhi dao ye	13
+谁知娇养	shei zhi jiao yang	6
+谁知其数	shei zhi qi shu	12
+谁指使你	shei zhi shi ni	18
+谁知我心	shei zhi wo xin	20
+谁知云路	shei zhi yun lu	1
+谁知昨天	shei zhi zuo tian	20
+谁主沉浮	shei zhu chen fu	48
+谁主浮沉	shei zhu fu chen	26
+谁主君心	shei zhu jun xin	1
+谁主天下	shei zhu tian xia	8
+谁住院了	shei zhu yuan le	1
+谁主中原	shei zhu zhong yuan	9
+谁走谁留	shei zou shei liu	28
+谁组织的	shei zu zhi de	1
+谁最带种	shei zui dai zhong	13
+谁做的饭	shei zuo de fan	1
+说给谁听	shuo gei shei ting	37
+说谁呢你	shuo shei ne ni	1
+她是谁啊	ta shi shei a	33
+他是谁啊	ta shi shei a	1
+他是谁呀	ta shi shei ya	19
+听谁唱的	ting shei chang de	1
+听谁说的	ting shei shuo de	40
+听谁说了	ting shei shuo le	6
+忘记了谁	wang ji le shei	25
+为谁而鸣	wei shei er ming	44
+为谁而战	wei shei er zhan	33
+为谁而做	wei shei er zuo	23
+为谁凝伫	wei shei ning zhu	1
+为谁攀折	wei shei pan zhe	1
+问花笑谁	wen hua xiao shei	13
+问你问谁	wen ni wen shei	6
+我跟谁过	wo gen shei guo	1
+我是谁的	wo shi shei de	42
+我是谁呀	wo shi shei ya	20
+我问谁去	wo wen shei qu	22
+我相信谁	wo xiang xin shei	21
+我找谁去	wo zhao shei qu	1
+我找谁惹	wo zhao shei re	1
+吓不了谁	xia bu liao shei	1
+想掐死谁	xiang qia si shei	1
+向谁倾诉	xiang shei qing su	31
+心里比谁	xin li bi shei	31
+心事谁同	xin shi shei tong	1
+心事谁知	xin shi shei zhi	6
+姓甚名谁	xing shen ming shei	43
+演给谁看	yan gei shei kan	1
+也没谁了	ye mei shei le	40
+以为是谁	yi wei shi shei	1
+以为谁呢	yi wei shei ne	1
+用的谁的	yong de shei de	1
+又会是谁	you hui shi shei	33
+有没有谁	you mei you shei	47
+又杀了谁	you sha le shei	21
+由谁承担	you shei cheng dan	45
+由谁负责	you shei fu ze	43
+有谁会懂	you shei hui dong	13
+又谁咎也	you shei jiu ye	9
+由谁来做	you shei lai zuo	30
+有谁能懂	you shei neng dong	23
+有谁认识	you shei ren shi	36
+有谁谁谁	you shei shei shei	21
+有谁真得	you shei zhen de	1
+欲凭谁省	yu ping shei sheng	1
+与谁共眠	yu shei gong mian	4
+与谁同行	yu shei tong xing	45
+与谁同去	yu shei tong qu	1
+与谁同坐	yu shei tong zuo	24
+与谁相倚	yu shei xiang yi	1
+怨谁始得	yuan shei shi de	1
+在想是谁	zai xiang shi shei	8
+在意过谁	zai yi guo shei	1
+责任在谁	ze ren zai shei	41
+长得像谁	zhang de xiang shei	33
+找不出谁	zhao bu chu shei	11
+招谁惹谁	zhao shei re shei	52
+这个谁懂	zhe ge shei dong	6
+这是谁的	zhe shi shei de	51
+这是谁啦	zhe shi shei la	1
+这是谁了	zhe shi shei le	9
+这是谁吗	zhe shi shei ma	24
+这是谁呀	zhe shi shei ya	33
+这谁家娃	zhe shei jia wa	1
+这谁说话	zhe shei shuo hua	1
+这谁做的	zhe shei zuo de	1
+争道谁家	zheng dao shei jia	8
+指的是谁	zhi de shi shei	1
+终日谁来	zhong ri shei lai	11
+周幽谁诛	zhou you shei zhu	6
+主人是谁	zhu ren shi shei	38
+赚谁的钱	zhuan shei de qian	39
+装给谁看	zhuang gei shei kan	1
+准不准谁	zhun bu zhun shei	1
+略长一些	lve zhang yi xie	372
+为一名	wei yi ming	1956
+为一名	wei yi ming	1926
+两个八	liang ge ba	736
+两个白	liang ge bai	781
+两个百	liang ge bai	751
+两个貝	liang ge bei	1
+两个比	liang ge bi	948
+两个匕	liang ge bi	918
+两个秉	liang ge bing	574
+两个不	liang ge bu	1420
+两个倉	liang ge cang	1
+两个昌	liang ge chang	29
+两个巢	liang ge chao	1
+两个屮	liang ge che	934
+两个車	liang ge che	904
+两个臣	liang ge chen	1
+两个齒	liang ge chi	1
+两个虫	liang ge chong	1
+两个巛	liang ge chuan	457
+两个串	liang ge chuan	427
+两个朿	liang ge ci	1446
+两个大	liang ge da	1455
+两个歹	liang ge dai	1
+两个呆	liang ge dai	1
+两个東	liang ge dong	686
+两个二	liang ge er	758
+两个而	liang ge er	728
+两个耳	liang ge er	698
+两个凡	liang ge fan	1
+两个飞	liang ge fei	1
+两个風	liang ge feng	740
+两个夫	liang ge fu	1
+两个巿	liang ge fu	1
+两个畐	liang ge fu	1
+两个干	liang ge gan	668
+两个戈	liang ge ge	1
+两个弓	liang ge gong	1
+两个古	liang ge gu	1
+两个瓜	liang ge gua	416
+两个果	liang ge guo	754
+两个𢎘	liang ge han	1
+两个禾	liang ge he	1
+两个户	liang ge hu	1
+两个虎	liang ge hu	1
+两个火	liang ge huo	736
+两个彐	liang ge ji	601
+两个吉	liang ge ji	571
+两个几	liang ge ji	541
+两个旡	liang ge ji	511
+两个見	liang ge jian	164
+两个卪	liang ge jie	898
+两个巾	liang ge jin	781
+两个金	liang ge jin	751
+两个斤	liang ge jin	721
+两个井	liang ge jing	1
+两个竟	liang ge jing	1
+两个竞	liang ge jing	1
+两个九	liang ge jiu	1
+两个句	liang ge ju	498
+两个口	liang ge kou	840
+两个来	liang ge lai	894
+两个來	liang ge lai	864
+两个老	liang ge lao	1168
+两个力	liang ge li	660
+两个立	liang ge li	630
+两个隶	liang ge li	600
+两个龍	liang ge long	1
+两个龙	liang ge long	1
+两个马	liang ge ma	435
+两个馬	liang ge ma	405
+两个毛	liang ge mao	1
+两个米	liang ge mi	560
+两个面	liang ge mian	907
+两个明	liang ge ming	1
+两个牟	liang ge mou	1
+两个母	liang ge mu	1
+两个木	liang ge mu	1
+两个目	liang ge mu	1
+两个男	liang ge nan	1334
+两个𡥦	liang ge ni	691
+两个廿	liang ge nian	1110
+两个卄	liang ge nian	1080
+两个鸟	liang ge niao	1
+两个牛	liang ge niu	650
+两个女	liang ge nv	1542
+两个𠂢	liang ge pai	696
+两个片	liang ge pian	1
+两个启	liang ge qi	502
+两个桼	liang ge qi	472
+两个奇	liang ge qi	442
+两个乞	liang ge qi	412
+两个欠	liang ge qian	606
+两个僉	liang ge qian	576
+两个區	liang ge qu	979
+两个犬	liang ge quan	660
+两个夋	liang ge qun	817
+两个人	liang ge ren	52094
+两个日	liang ge ri	817
+两个入	liang ge ru	1
+两个卅	liang ge sa	1
+两个山	liang ge shan	655
+两个善	liang ge shan	625
+两个舌	liang ge she	1
+两个申	liang ge shen	583
+两个生	liang ge sheng	202
+两个尸	liang ge shi	804
+两个石	liang ge shi	774
+两个示	liang ge shi	744
+两个豕	liang ge shi	714
+两个手	liang ge shou	1074
+两个束	liang ge shu	1200
+两个水	liang ge shui	826
+两个厶	liang ge si	718
+两个田	liang ge tian	840
+两个天	liang ge tian	810
+两个土	liang ge tu	844
+两个罒	liang ge wang	727
+两个王	liang ge wang	697
+两个兀	liang ge wu	812
+两个㐅	liang ge wu	782
+两个夕	liang ge xi	1
+两个习	liang ge xi	1
+两个昔	liang ge xi	1
+两个喜	liang ge xi	1
+两个㔾	liang ge xian	682
+两个先	liang ge xian	652
+两个香	liang ge xiang	466
+两个享	liang ge xiang	436
+两个心	liang ge xin	740
+两个辛	liang ge xin	710
+两个兄	liang ge xiong	1
+两个玄	liang ge xuan	547
+两个牙	liang ge ya	534
+两个言	liang ge yan	812
+两个炎	liang ge yan	782
+两个羊	liang ge yang	758
+两个幺	liang ge yao	1
+两个堯	liang ge yao	1
+两个一	liang ge yi	350
+两个乂	liang ge yi	320
+两个乙	liang ge yi	290
+两个亦	liang ge yi	260
+两个易	liang ge yi	230
+两个㣇	liang ge yi	200
+两个邑	liang ge yi	170
+两个音	liang ge yin	902
+两个尹	liang ge yin	872
+两个永	liang ge yong	1
+两个又	liang ge you	673
+两个魚	liang ge yu	601
+两个余	liang ge yu	571
+两个予	liang ge yu	541
+两个禺	liang ge yu	511
+两个月	liang ge yue	18847
+两个曰	liang ge yue	18817
+两个真	liang ge zhen	808
+两个止	liang ge zhi	709
+两个支	liang ge zhi	679
+两个隻	liang ge zhi	649
+两个至	liang ge zhi	619
+两个隹	liang ge zhui	1
+两个子	liang ge zi	12734
+两个走	liang ge zou	632
+两个足	liang ge zu	920
+两个左	liang ge zuo	1
+买了布	mai le bu	552
+那是蝉	na shi chan	1
+跑了兔	pao le tu	1
+青葡萄	qing pu tao	462
+认真学	ren zhen xue	1684
+如雾里	ru wu li	1
+软舌头	ruan she tou	1
+三个白	san ge bai	592
+三个百	san ge bai	562
+三个宝	san ge bao	718
+三个贝	san ge bei	1
+三个屮	san ge che	704
+三个車	san ge che	674
+三个虫	san ge chong	1
+三个䖝	san ge chong	1
+三个朿	san ge ci	453
+三个大	san ge da	1177
+三个刀	san ge dao	1
+三个動	san ge dong	570
+三个斗	san ge dou	1020
+三个耳	san ge er	556
+三个方	san ge fang	1
+三个飛	san ge fei	1
+三个風	san ge feng	1
+三个盖	san ge gai	1
+三个个	san ge ge	628
+三个弓	san ge gong	376
+三个瓜	san ge gua	1
+三个光	san ge guang	1
+三个果	san ge guo	1
+三个寒	san ge han	1
+三个户	san ge hu	416
+三个火	san ge huo	1
+三个吉	san ge ji	1
+三个甲	san ge jia	624
+三个加	san ge jia	594
+三个介	san ge jie	1
+三个金	san ge jin	646
+三个九	san ge jiu	1
+三个可	san ge ke	912
+三个客	san ge ke	882
+三个空	san ge kong	650
+三个口	san ge kou	664
+三个老	san ge lao	835
+三个了	san ge le	786
+三个雷	san ge lei	0
+三个力	san ge li	1
+三个立	san ge li	0
+三个林	san ge lin	1
+三个龍	san ge long	1
+三个鹿	san ge lu	588
+三个圥	san ge lu	558
+三个马	san ge ma	538
+三个亇	san ge ma	508
+三个毛	san ge mao	1
+三个門	san ge men	673
+三个米	san ge mi	1
+三个面	san ge mian	704
+三个木	san ge mu	1
+三个目	san ge mu	1
+三个男	san ge nan	1051
+三个鳥	san ge niao	1
+三个鸟	san ge niao	1
+三个㖖	san ge nie	1
+三个牛	san ge niu	1
+三个女	san ge nv	1244
+三个丿	san ge pie	1
+三个七	san ge qi	1
+三个企	san ge qi	1
+三个欠	san ge qian	1
+三个千	san ge qian	1
+三个羗	san ge qiang	1
+三个秦	san ge qin	1
+三个去	san ge qu	902
+三个泉	san ge quan	458
+三个犬	san ge quan	428
+三个全	san ge quan	398
+三个𡿨	san ge quan	368
+三个人	san ge ren	13095
+三个日	san ge ri	601
+三个若	san ge ruo	1
+三个山	san ge shan	466
+三个少	san ge shao	1
+三个舌	san ge she	1
+三个舍	san ge she	1
+三个申	san ge shen	1
+三个生	san ge sheng	76
+三个市	san ge shi	568
+三个十	san ge shi	538
+三个士	san ge shi	508
+三个石	san ge shi	478
+三个手	san ge shou	1
+三个束	san ge shu	948
+三个水	san ge shui	1
+三个朔	san ge shuo	1
+三个厶	san ge si	606
+三个太	san ge tai	1
+三个田	san ge tian	290
+三个天	san ge tian	260
+三个𠧪	san ge tiao	1
+三个土	san ge tu	1
+三个兔	san ge tu	1
+三个妥	san ge tuo	1
+三个罒	san ge wang	601
+三个文	san ge wen	1
+三个夏	san ge xia	1
+三个㔾	san ge xian	1
+三个県	san ge xian	1
+三个香	san ge xiang	380
+三个小	san ge xiao	1465
+三个心	san ge xin	799
+三个興	san ge xing	1
+三个言	san ge yan	457
+三个羊	san ge yang	1
+三个頁	san ge ye	1
+三个也	san ge ye	1
+三个宜	san ge yi	48
+三个因	san ge yin	1
+三个用	san ge yong	1
+三个又	san ge you	1
+三个魚	san ge yu	1
+三个玉	san ge yu	1
+三个原	san ge yuan	606
+三个厡	san ge yuan	576
+三个月	san ge yue	24223
+三个雲	san ge yun	1
+三个爪	san ge zhao	1
+三个止	san ge zhi	664
+三个直	san ge zhi	634
+三个𠙽	san ge zhi	604
+三个𦉼	san ge zhi	574
+四个曰	si ge yue	4614
+四个日	si ge ri	1
+三个𣥚	san ge zhi	544
+三个至	san ge zhi	514
+三个丶	san ge zhu	1105
+三个竹	san ge zhu	1075
+三个隹	san ge zhui	1
+三个子	san ge zi	5659
+三个足	san ge zu	799
+十和四	shi he si	1
+十是十	shi shi shi	569
+史肖石	shi xiao shi	406
+石小四	shi xiao si	1
+手指头	shou zhi tou	2309
+四个匕	si ge bi	1
+四个屮	si ge che	715
+四个車	si ge che	745
+四个春	si ge chun	1
+四个朿	si ge ci	637
+四个風	si ge feng	1
+四个工	si ge gong	1
+四个果	si ge guo	1
+四个火	si ge huo	1
+四个甲	si ge jia	1
+四个金	si ge jin	1
+四个口	si ge kou	583
+四个困	si ge kun	1
+四个老	si ge lao	1
+四个雷	si ge lei	0
+四个林	si ge lin	1
+四个龍	si ge long	1
+四个門	si ge men	588
+四个牛	si ge niu	1
+四个且	si ge qie	1
+四个囚	si ge qiu	610
+四个泉	si ge quan	1082
+四个人	si ge ren	7000
+四个日	si ge ri	1
+四个石	si ge shi	520
+四个水	si ge shui	1
+四个厶	si ge si	552
+四个天	si ge tian	1
+四个田	si ge tian	1
+四个土	si ge tu	1
+四个先	si ge xian	1
+四个小	si ge xiao	1280
+四个興	si ge xing	1
+四个言	si ge yan	1
+四个乂	si ge yi	73
+四个又	si ge you	628
+四个魚	si ge yu	1
+四个月	si ge yue	4584
+四个雲	si ge yun	1
+四个竹	si ge zhu	894
