@@ -24,11 +24,44 @@ local DEFAULT_LOWER = "abcdefghijkmnopqrstuvwxyz"
 local DEFAULT_DIGIT = "23456789"
 local DEFAULT_SPECIAL = "!@#$%^&*_-+"
 
-local function time_ms()
+-- UUID v7 / ULID 需要 Unix epoch 毫秒。
+-- rime_api.get_time_ms() 在部分平台返回的是单调时钟（如系统运行毫秒数），
+-- 不能直接当作 Unix 时间戳使用。这里用 os.time() 提供 epoch 基准，
+-- 再用单调时钟补充运行期间的毫秒级增量。
+local epoch_base_ms = os.time() * 1000
+local monotonic_base_ms = nil
+
+do
     if rime_api and rime_api.get_time_ms then
-        return rime_api.get_time_ms()
+        local ok, value = pcall(rime_api.get_time_ms)
+        if ok and type(value) == "number" then
+            monotonic_base_ms = value
+        end
     end
-    return os.time() * 1000
+end
+
+local function time_ms()
+    local wall_ms = os.time() * 1000
+
+    if not monotonic_base_ms or not (rime_api and rime_api.get_time_ms) then
+        return wall_ms
+    end
+
+    local ok, monotonic_now = pcall(rime_api.get_time_ms)
+    if not ok or type(monotonic_now) ~= "number" then
+        return wall_ms
+    end
+
+    -- 单调时钟回退/重置，或与系统墙上时间偏差过大时重新校准。
+    -- os.time() 只有秒级精度，因此允许 2 秒内的正常锚定误差。
+    local estimated_ms = epoch_base_ms + (monotonic_now - monotonic_base_ms)
+    if monotonic_now < monotonic_base_ms or math.abs(estimated_ms - wall_ms) >= 2000 then
+        epoch_base_ms = wall_ms
+        monotonic_base_ms = monotonic_now
+        return wall_ms
+    end
+
+    return floor(estimated_ms)
 end
 
 local function u32(x)
