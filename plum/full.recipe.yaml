@@ -1,0 +1,18 @@
+# encoding: utf-8
+---
+recipe:
+  Rx: plum/full
+  args:
+  description: >-
+    万象拼音 pure 版（整个方案目录）- 分支 wanxiang-pure
+install_files: >-
+  dicts/*.*
+  custom/*.*
+  lua/*.*
+  lua/data/*.*
+  lua/wanxiang/*.*
+  default.yaml
+  weasel.yaml
+  wanxiang*.*yaml
+  README.md
+  custom_phrase.txt
