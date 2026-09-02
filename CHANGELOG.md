@@ -1,5 +1,33 @@
 # Changelog
 
+## [17.9.4](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.3...v17.9.4) (2026-09-02)
+
+
+### 📚 词库更新
+
+* 词库调整 ([c320698](https://github.com/amzxyz/rime-wanxiang/commit/c32069836bde6cc5d08ab344c1ee876f7131b2ec))
+* 词库调整 ([4618d67](https://github.com/amzxyz/rime-wanxiang/commit/4618d67a978ff4f41b165c10b35558d38e333ab1))
+
+
+### 🐛 Bug 修复
+
+* base携带九键修正词库引用 ([1c73d84](https://github.com/amzxyz/rime-wanxiang/commit/1c73d84db12900ee2e085c128646e3a86fcbf6b9))
+* 为shijian输出的候选添加preedit ([2726f91](https://github.com/amzxyz/rime-wanxiang/commit/2726f912e616be845897f0375c19ebe29934e1d1))
+* 使用混合计算模式拿到真正的UNIX毫秒时间 ([6979a25](https://github.com/amzxyz/rime-wanxiang/commit/6979a25820129e58ce1aa8f40df538ed448ea5fc))
+* 回复英文引用auto造词 ([f2e2da4](https://github.com/amzxyz/rime-wanxiang/commit/f2e2da4300eb43f5171f7343b07ccabd60f44c6a))
+
+
+### 🏡 杂项
+
+* update doc ([6ae789a](https://github.com/amzxyz/rime-wanxiang/commit/6ae789a3adda3bb7d41ac6c2805e9c9938b49cf3))
+* update readme ([bfeb028](https://github.com/amzxyz/rime-wanxiang/commit/bfeb028978407d375eb7c649291ed77941f4d4c4))
+* 修改文档 ([7ec998b](https://github.com/amzxyz/rime-wanxiang/commit/7ec998b28c9a5c57260d2ba24b264c1c1820e0ef))
+
+
+### 🤖 持续集成
+
+* 分支不再-f覆盖 ([646a939](https://github.com/amzxyz/rime-wanxiang/commit/646a939e912c42e530e53e6ecb251b7be1c30a07))
+
 ## [17.9.3](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.2...v17.9.3) (2026-09-01)
 
 
