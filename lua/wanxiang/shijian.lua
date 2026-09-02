@@ -2204,6 +2204,8 @@ local function generate_candidates(input, alias, seg, candidates)
         candidate.quality = 1000000
         if prefix ~= "" then
             candidate.preedit = prefix .. alias
+        else
+            candidate.preedit = input
         end
         yield(candidate)
     end
