@@ -55,6 +55,70 @@ package_schema_base() {
     --exclude='/LICENSE' \
     --exclude="/$OUT_BASE" \
     "$ROOT_DIR/" "$OUT_DIR/"
+
+  # 2.1) Base 内的 T9/T9i 强制挂载 Base 主词库。
+  #      只识别 translator: 块中的 dictionary 键，不依赖行尾注释内容。
+  python3 - \
+    "$OUT_DIR/wanxiang_t9.schema.yaml" \
+    "$OUT_DIR/wanxiang_t9i.schema.yaml" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+translator_re = re.compile(r'^(\s*)translator\s*:\s*(?:#.*)?$')
+dictionary_re = re.compile(
+    r'^(\s*dictionary\s*:\s*)wanxiang_lite(\s*(?:#.*)?)$'
+)
+
+for file_name in sys.argv[1:]:
+    path = Path(file_name)
+
+    if not path.is_file():
+        raise SystemExit(f"错误: T9/T9i schema 不存在: {path}")
+
+    text = path.read_text(encoding="utf-8")
+    lines = text.splitlines(keepends=True)
+
+    in_translator = False
+    translator_indent = -1
+    replaced = 0
+
+    for i, raw_line in enumerate(lines):
+        line = raw_line.rstrip("\r\n")
+        eol = raw_line[len(line):]
+
+        m_translator = translator_re.match(line)
+        if m_translator:
+            in_translator = True
+            translator_indent = len(m_translator.group(1))
+            continue
+
+        if not in_translator:
+            continue
+
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+
+        indent = len(line) - len(line.lstrip())
+        if indent <= translator_indent:
+            in_translator = False
+            continue
+
+        m_dictionary = dictionary_re.match(line)
+        if m_dictionary:
+            lines[i] = f"{m_dictionary.group(1)}wanxiang{m_dictionary.group(2)}{eol}"
+            replaced += 1
+            break
+
+    if replaced != 1:
+        raise SystemExit(
+            f"错误: {path.name} 未在 translator 块中唯一找到 "
+            f"dictionary: wanxiang_lite（匹配数: {replaced}）"
+        )
+
+    path.write_text("".join(lines), encoding="utf-8")
+PY
 }
 
 package_schema_lite() {
