@@ -1,0 +1,19 @@
+# 本文件的工作目录是在用户根目录，本目录携带是因为如果放外面就会更新的时候覆盖你的修改，因此我只能藏起来。
+# 如果没有按初始化说明进行初始化那么你需要手动复制本文件到上层目录，请知悉。
+patch:
+  speller/algebra:
+    __patch:
+      #- wanxiang_algebra:/模糊音_nl
+      #- wanxiang_algebra:/模糊音_ry
+      #- wanxiang_algebra:/模糊音_hf
+      #- wanxiang_algebra:/模糊音_rl
+      #- wanxiang_algebra:/模糊音_kg
+      #- wanxiang_algebra:/模糊音_en_eng
+      #- wanxiang_algebra:/模糊音_in_ing
+      #- wanxiang_algebra:/模糊音_c_ch
+      #- wanxiang_algebra:/模糊音_z_zh
+      #- wanxiang_algebra:/模糊音_s_sh
+      - wanxiang_algebra:/lite/全拼
+
+  #下面是候选数量
+  menu/page_size: 6
