@@ -169,7 +169,6 @@ PY
   # 4) 只裁剪 Lite 不需要的 Lua 模块和 data 文件
   rm -f \
     "$OUT_DIR/lua/wanxiang/super_sequence.lua" \
-    "$OUT_DIR/lua/wanxiang/auto_phrase.lua" \
     "$OUT_DIR/lua/wanxiang/charset_filter.lua" \
     "$OUT_DIR/lua/wanxiang/super_symbols.lua" \
     "$OUT_DIR/lua/wanxiang/force_upper_aux.lua" \
