@@ -1,0 +1,4896 @@
+# Rime dictionary
+# encoding: utf-8
+#https://github.com/amzxyz/RIME-LMDG
+#兼容词库，对于多字词汇两种读音的场景，手动维护到本表以及一些其他的杂项
+---
+name: duoyin
+version: "LTS"
+sort: by_weight
+...
+自己打的	zì;ph jǐ;vv dǎ;fh de;pp	80
+怎么打的	zěn;px me;pd dǎ;fh de;pp	49
+谁都不会服谁	shéi;ar dōu;tv bú;hd huì;rd fú;yv shéi;ar	1
+调来调去	tiáo;ap lái;hm tiáo;ap qù;td	1122
+不会服谁	bú;hd huì;rd fú;yv shéi;ar	29
+还给他们	hái;hz gěi;ir tā;rv men;rd	142
+很得劲	hěn;pv dé;pl jìn;vv	121
+真得劲	zhēn;hd dé;pl jìn;vv	322
+可得劲儿	kě;hs dé;pl jìn;vv er;pv	178
+乐山乐水	yào;pd shān;ss yào;pd shuǐ;ud	12
+伤着了	shāng;rp zhe;dh le;vs	130
+一场	yì;hh cháng;tv	17575
+事了	shì;hs liǎo;vs	337
+会得	huì;rd dé;pl	554
+越长越	yuè;td zhǎng;pd yuè;td	211
+哦哦	ò;kp ò;kp	1080
+吱吱	zī;kh zī;kh	100
+度量	dù;dd liáng;lt	100
+得了	de;pl liǎo;vs	203
+当天	dāng;sh tiān;hd	539
+当月	dāng;sh yuè;yh	449
+同行的	tóng;sk háng;ph de;pp	198
+中鱼	zhòng;ks yú;ph	100
+中鱼率	zhòng;ks yú;ph lǜ;ds	392
+露骨	lòu;hk gǔ;sy	1048
+发卡	fà;vd qiǎ;sd	1036
+作料	zuó;rp liào;dd	62
+流鼻血	liú;ud bí;ps xuè;ph	155
+大都会	dà;hd dōu;tv huì;rd	76
+包宿	bāo;pv xiǔ;bl	113
+结了	jiē;it le;vs	1235
+结出	jiē;it chū;vs	848
+经常流鼻血	jīng;iv cháng;ss liú;ud bí;ps xuè;ph	10
+抽空	chōu;fs kòng;bh	2528
+调到了	diào;ap dào;hs le;vs	95
+着了	zháo;dh le;vs	522
+那天	nèi;vv tiān;hd	1053
+坐骑	zuò;rt jì;vh	796
+曾参	zēng;dl shēn;vp	32
+乐和	yuè;pd hé;ek	1782
+乐考	lè;pd kǎo;tv	329
+乐考	yuè;pd kǎo;tv	1020
+求得	qiú;hd dé;pl	2702
+一来	yī;hh lái;hm	11920
+呦呵	yō;ki hē;kh	1930
+不落	bú;hd là;ck	1395
+并着手	bìng;ds zhe;dh shǒu;fs	98
+一战	yī;hh zhàn;sh	2136
+一战前	yī;hh zhàn;sh qián;ds	714
+一战中	yī;hh zhàn;sh zhōng;ks	858
+一战时	yī;hh zhàn;sh shí;lh	202
+一战后	yī;hh zhàn;sh hòu;pk	871
+不了吧	bù;hd liǎo;vs ba;kv	810
+不了吧	bù;hd le;vs ba;kv	703
+干了	gān;hs le;vs	1106
+裁缝	cái;td feng;ip	456
+轻薄	qīng;hv báo;cd	9145
+强人	qiáng;vk rén;rd	855
+天雨	tiān;hd yù;hd	264
+逮着	dǎi;vz zhe;dh	31
+临了	lín;sp liǎo;vs	411
+临了了	lín;sp liǎo;vs le;vs	143
+空着	kòng;bh zhe;dh	2177
+大夫们	dà;hd fū;hd men;rd	194
+校本	xiào;md běn;mh	868
+特调	tè;pt diào;ap	500
+你行	nǐ;rp háng;ph	207
+我行	wǒ;pd háng;ph	350
+咱家	zá;kp jiā;bd	768
+咱家的	zá;kp jiā;bd de;pp	118
+得叫	děi;pl jiào;kv	401
+得从	děi;pl cóng;rr	518
+成角	chéng;hd jué;ps	29
+打的	dǎ;fh de;pp	13883
+实在	shí;bd zai;ht	440
+长有	zhǎng;pd yǒu;hy	898
+识记	shí;ak jì;av	14489
+血条	xiě;ph tiáo;pm	14379
+冲卡	chōng;dk qiǎ;sd	311
+干吗	gàn;hs ma;kv	412
+干吗	gān;hs ma;kv	382
+多少	duō;pd shao;sp	157648
+当了	dàng;sh le;vs	11666
+星星	xīng;lh xing;lh	3144
+盛放	shèng;hh fàng;dp	1197
+愿为	yuàn;hx wèi;dd	1056
+东西	dōng;hd xī;hh	1687
+捏坏	niē;fl pēi;th	120
+糁馆	sá;dv guǎn;pb	88
+糁面	sá;dv miàn;hh	83
+糁粥	sá;dv zhōu;vd	94
+糁汤	sá;dv tāng;uv	215
+吃子	chī;kp zǐ;vh	1712
+倾倒	qīng;rh dào;rh	2001
+教授	jiāo;tp shòu;fp	1068
+褪去	tùn;dv qù;td	340
+一简	yī;hh jiǎn;gl	9766
+散发	sàn;cp fà;vd	393
+好事	hào;nv shì;hs	2155
+勒脚	lè;cv jiǎo;yt	1303
+调了	tiáo;ap le;vs	3948
+支着	zhī;hd zhāo;dh	500
+一朝	yì;hh cháo;hy	95
+特勒	tè;pt lēi;cv	310
+大汗	dà;hd hán;uh	1558
+指甲	zhī;fp jia;ls	4670
+好色	hǎo;nv sè;pv	1706
+一本	yī;hh běn;mh	5395
+一线	yí;hh xiàn;ih	183
+一级	yī;hh jí;ip	6576
+一级伤残	yī;hh jí;ip shāng;rp cán;hh	516
+普通话一级	pǔ;dl tōng;vz huà;ap yī;hh jí;ip	1
+一级字表	yī;hh jí;ip zì;bh biǎo;hd	32
+降了吧	xiáng;vp le;vs ba;kv	253
+降了没	xiáng;vp le;vs méi;up	194
+对不了	duì;vh bu;hd liǎo;vs	704
+玉米糁粥	yù;wd mǐ;dm sá;dv zhōu;vd	322
+玉米糁汤	yù;wd mǐ;dm sá;dv tāng;uv	298
+玉米糁面	yù;wd mǐ;dm sá;dv miàn;hh	97
+玉米糁饼	yù;wd mǐ;dm sá;dv bǐng;pd	182
+落子无悔	lào;ck zǐ;vh wú;hv huǐ;xp	37
+落子不悔	lào;ck zǐ;vh bù;hd huǐ;xp	426
+落子布局	lào;ck zǐ;vh bù;hs jú;vk	32
+长虫子	cháng;pd chóng;od zi;vh	146
+也不长	yě;vv bù;hd zhǎng;pd	547
+出血线	chū;vs xuè;ph xiàn;ih	261
+出血	chū;vs xuè;ph	6149
+逻辑	luó;sz jí;hk	4689
+此行	cí;sp háng;ph	1292
+上头	shàng;sh tou;dd	101
+长虫	zhǎng;pd chóng;od	377
+落子	lào;ck zǐ;vh	2847
+卡住	kǎ;sd zhù;rd	442
+本事	běn;mh shi;hs	2337
+还上了	huán;hz shàng;sh le;vs	1813
+她穿着	tā;nv chuān;bp zhuó;dh	394
+他穿着	tā;rv chuān;bp zhuó;dh	416
+一定还	yí;hh dìng;bd huán;hz	531
+将进酒	jiāng;dp jìn;hz jiǔ;uh	169
+调了吧	tiáo;ap le;vs ba;kv	354
+他调了	tā;rv tiáo;ap le;vs	579
+我调了	wǒ;pd tiáo;ap le;vs	822
+又调了	yòu;vd tiáo;ap le;vs	606
+将棋手	jiāng;dp qí;mc shǒu;fs	336
+将棋盘	jiāng;dp qí;mc pán;ph	529
+将棋子	jiāng;dp qí;mc zǐ;vh	745
+这谁了	zhè;dz shéi;ar le;vs	108
+有为	yǒu;hy wèi;dd	1385
+这一	zhè;dz yí;hh	115
+这一	zhè;dz yì;hh	145
+炸焦	zhá;qp jiāo;rq	696
+炸点	zhá;qp diǎn;sq	691
+炸好	zhá;qp hǎo;nv	1141
+炸成	zhá;qp chéng;hd	142
+炸起	zhá;qp qǐ;tv	720
+炸着	zhá;qp zhe;dh	89
+炸起了	zhá;qp qǐ;tv le;vs	295
+炸起来	zhá;qp qǐ;tv lái;hm	111
+炸好的	zhá;qp hǎo;nv de;pp	146
+炸成了	zhá;qp chéng;hd le;vs	628
+炸过了	zhá;qp guò;hz le;vs	359
+炸出了	zhá;qp chū;vs le;vs	650
+炸过吧	zhá;qp guò;hz ba;kv	218
+炸出来了	zhá;qp chū;vs lái;hm le;vs	583
+香炸	xiāng;el zhá;qp	776
+还上	huán;hz shàng;sh	3527
+重重	zhòng;pt zhòng;pt	3624
+还得了	huán;hz de;pl liǎo;vs	556
+尽量	jìn;vd liàng;lt	355
+背上	bēi;sy shàng;sh	5496
+调至	diào;ap zhì;ht	469
+重装	zhòng;pt zhuāng;dd	817
+孙子	sūn;vs zǐ;vh	13079
+老子	lǎo;tv zǐ;vh	2877
+和乐	hé;ek yuè;pd	214
+落在	là;ck zài;ht	10369
+得往	děi;pl wǎng;pd	482
+落在这	là;ck zài;ht zhè;dz	307
+还不完	huán;hz bù;hd wán;bv	4
+漯河	tà;us hé;uh	107
+重刻	chóng;pt kè;ds	970
+咳咳	ke;kd ke;kd	2142
+编辑	biān;id ji;hk	1144
+播种	bō;fp zhòng;ek	151
+密钥	mì;bs yuè;jy	452
+糖色	táng;dd shǎi;pv	369
+又得	yòu;vd děi;pl	4202
+拂过	bì;fv guò;hz	406
+粘着	zhān;ds zhe;dh	1677
+当时	dàng;sh shí;lh	1103
+当日	dàng;sh rì;lh	7440
+当年	dàng;sh nián;ps	170745
+当头	dàng;sh tóu;dd	824
+铁骑	tiě;jp qí;vh	1298
+垫圈	diàn;ft juàn;sh	285
+大黄	dài;hd huáng;cd	209
+调调	tiáo;ap tiáo;ap	779
+明朝	míng;ly zhāo;hy	754
+没入	mò;up rù;pd	321
+说客	shuō;ad kè;bk	1383
+高中	gāo;dk zhòng;ks	61159
+高中了	gāo;dk zhōng;ks le;vs	862
+正中了	zhèng;hh zhōng;ks le;vs	574
+没入了	mò;up rù;pd le;vs	156
+卡在	qiǎ;sd zài;ht	6149
+卡在了	qiǎ;sd zài;ht le;vs	161
+睡着觉	shuì;sp zhe;dh jiào;dv	136
+他卡在	tā;rv kǎ;sd zài;ht	344
+我卡在	wǒ;pd kǎ;sd zài;ht	444
+还不还	huán;hz bù;hd huán;hz	331
+忒过瘾	tēi;hd guò;hz yǐn;dx	80
+忒好吃	tēi;hd hǎo;nv chī;kp	140
+忒好看	tēi;hd hǎo;nv kàn;ph	60
+忒好了	tēi;hd hǎo;nv le;vs	130
+忒看的	tēi;hd kàn;ph de;pp	90
+忒可爱	tēi;hd kě;hs ài;pd	110
+忒快了	tēi;hd kuài;xv le;vs	150
+忒冷了	tēi;hd lěng;dr le;vs	90
+忒麻烦	tēi;hd má;dm fán;qh	100
+忒慢了	tēi;hd màn;xl le;vs	80
+忒美了	tēi;hd měi;dd le;vs	90
+忒难看	tēi;hd nán;vr kàn;ph	90
+忒牛逼	tēi;hd niú;ps bī;hz	90
+忒便宜	tēi;hd pián;rh yi;bh	70
+忒强了	tēi;hd qiáng;vk le;vs	90
+忒少了	tēi;hd shǎo;sp le;vs	180
+忒甜了	tēi;hd tián;pc le;vs	40
+忒喜欢	tēi;hd xǐ;tk huān;vp	110
+忒吓人	tēi;hd xià;kh rén;rd	100
+忒小了	tēi;hd xiǎo;sd le;vs	150
+忒有才	tēi;hd yǒu;hy cái;hp	100
+忒早了	tēi;hd zǎo;ls le;vs	70
+忒长了	tēi;hd zhǎng;pd le;vs	60
+没落到	méi;up luò;ck dào;hs	220
+没落地	mò;up luò;ck de;tv	310
+血债血还	xuè;ph zhài;rh xiě;ph huán;hz
+血债血偿	xuè;ph zhài;rh xiě;ph cháng;rs
+难兄难弟	nán;vr xiōng;kv nàn;vr dì;dp	717
+卡在那里	qiǎ;sd zài;ht nà;vv lǐ;lt	39
+卡在哪里	qiǎ;sd zài;ht nǎ;kv lǐ;lt	32
+就卡在那里了	jiù;dh qiǎ;sd zài;ht nà;vv lǐ;lt le;vs	1
+碍着您了	ài;hl zháo;dh nín;rx le;vs
+忒矮了吧	tēi;hd ǎi;pe le;vs ba;kv	43
+忒白了吧	tēi;hd bái;pl le;vs ba;kv	60
+忒薄了吧	tēi;hd báo;cd le;vs ba;kv	60
+忒不方便	tēi;hd bù;hd fāng;dp biàn;rh	11
+忒不给力	tēi;hd bù;hd gěi;ir lì;vp	11
+忒不好看	tēi;hd bù;hd hǎo;nv kàn;ph	3
+忒不好走	tēi;hd bù;hd hǎo;nv zǒu;tr	60
+忒不讲究	tēi;hd bù;hd jiǎng;ah jiu;bv	13
+忒不靠谱	tēi;hd bú;hd kào;ph pǔ;ad	24
+忒不容易	tēi;hd bù;hd róng;bk yì;lp	11
+忒不是人	tēi;hd bú;hd shì;lr rén;rd	32
+忒不听话	tēi;hd bù;hd tīng;kp huà;ap	5
+忒不喜欢	tēi;hd bù;hd xǐ;tk huān;vp	1
+忒不要脸	tēi;hd bú;hd yào;hn liǎn;yr	14
+忒丑了吧	tēi;hd chǒu;vt le;vs ba;kv	142
+忒长了吧	tēi;hd cháng;pd le;vs ba;kv	60
+忒大了吧	tēi;hd dà;hd le;vs ba;kv	23
+忒短了吧	tēi;hd duǎn;ph le;vs ba;kv	115
+忒对不起	tēi;hd duì;vh bù;hd qǐ;tv	128
+忒多了吧	tēi;hd duō;pd le;vs ba;kv	295
+忒高了吧	tēi;hd gāo;dk le;vs ba;kv	1
+忒贵了吧	tēi;hd guì;kr le;vs ba;kv	250
+忒好了吧	tēi;hd hǎo;nv le;vs ba;kv	60
+忒黑了吧	tēi;hd hēi;sq le;vs ba;kv	60
+忒黑了点	tēi;hd hēi;sq le;vs diǎn;sq	7
+忒红了吧	tēi;hd hóng;ih le;vs ba;kv	60
+忒厚了吧	tēi;hd hòu;hh le;vs ba;kv	115
+忒坏了吧	tēi;hd huài;th le;vs ba;kv	43
+忒黄了吧	tēi;hd huáng;cd le;vs ba;kv	60
+忒贱了吧	tēi;hd jiàn;sh le;vs ba;kv	60
+忒近了吧	tēi;hd jìn;pz le;vs ba;kv	41
+忒旧了吧	tēi;hd jiù;sl le;vs ba;kv	60
+忒苦了吧	tēi;hd kǔ;ck le;vs ba;kv	60
+忒宽了吧	tēi;hd kuān;bv le;vs ba;kv	60
+忒懒了吧	tēi;hd lǎn;xh le;vs ba;kv	60
+忒蓝了吧	tēi;hd lán;ch le;vs ba;kv	60
+忒浪漫了	tēi;hd làng;ud màn;ul le;vs	10
+忒冷了吧	tēi;hd lěng;dr le;vs ba;kv	60
+忒厉害了	tēi;hd lì;hp hai;bk le;vs	18
+忒绿了吧	tēi;hd lǜ;iv le;vs ba;kv	60
+忒没出息	tēi;hd méi;up chū;vs xī;px	1
+忒美了吧	tēi;hd měi;dd le;vs ba;kv	60
+忒没意思	tēi;hd méi;up yì;dx sī;sx	11
+忒木勒哥	tēi;hd mù;md lè;cv gē;hs	6
+忒便宜了	tēi;hd pián;rh yi;bh le;vs	64
+忒浅了吧	tēi;hd qiǎn;uh le;vs ba;kv	60
+忒强了吧	tēi;hd qiáng;vk le;vs ba;kv	60
+忒轻了吧	tēi;hd qīng;hv le;vs ba;kv	60
+忒软了吧	tēi;hd ruǎn;hp le;vs ba;kv	60
+忒弱了吧	tēi;hd ruò;vv le;vs ba;kv	60
+忒少了吧	tēi;hd shǎo;sp le;vs ba;kv	60
+忒深了吧	tēi;hd shēn;ud le;vs ba;kv	60
+忒他妈的	tēi;hd tā;rv mā;nv de;pp	5
+忒甜了吧	tēi;hd tián;pc le;vs ba;kv	60
+忒小了吧	tēi;hd xiǎo;sd le;vs ba;kv	60
+忒新了吧	tēi;hd xīn;dp le;vs ba;kv	60
+忒硬了吧	tēi;hd yìng;hh le;vs ba;kv	2
+忒有意思	tēi;hd yǒu;hy yì;dx sī;sx	12
+忒远了吧	tēi;hd yuǎn;hz le;vs ba;kv	60
+忒脏了吧	tēi;hd zāng;yd le;vs ba;kv	60
+忒窄了吧	tēi;hd zhǎi;bh le;vs ba;kv	60
+忒长了吧	tēi;hd zhǎng;pd le;vs ba;kv	60
+忒重了吧	tēi;hd zhòng;pt le;vs ba;kv	60
+没收	méi;up shōu;vp	236
+暴晒	pù;lu shài;lh	234
+大王	dài;hd wang;wh	226
+教会	jiāo;tp huì;rd	1546
+爱教	ài;pd jiāo;tp	64
+不教	bù;hd jiāo;tp	1869
+回调	huí;sh diào;ap	5725
+回调函数	huí;sh diào;ap hán;vs shù;dp	265
+结果	jiē;it guǒ;lm	374
+看不了	kàn;ph bù;hd le;vs	260
+卡住	qiǎ;sd zhù;rd	3355
+睡着	shuì;sp zhe;dh	664
+没地	mò;up dì;tv
+办不了	bàn;vd bù;hd le;vs	1213
+报不了	bào;fv bù;hd le;vs	180
+软弹	ruǎn;hp tán;vd	55
+露出	lù;hk chū;vs	883
+丁丁	zhēng;hs zhēng;hs	274
+没看着	méi;up kàn;ph zháo;dh	140
+下不了	xià;hd bù;hd liǎo;vs	295
+有多重	yǒu;hy duō;pd chóng;pt	250
+多重	duō;pd zhòng;pt	36513
+不干	bù;hd gān;hs	4362
+大夫	dà;hd fū;hd	1191
+薄膜	bó;cd mó;yc	858
+没过了	mò;up guò;hz le;vs
+没过我	mò;up guò;hz wǒ;pd
+没过线	mò;up guò;hz xiàn;ih
+没过	mò;up guò;hz	1291
+摩挲	mó;df suō;uf	14040
+公差	gōng;pd chā;dh	853
+好高	hào;nv gāo;dk	497
+好强	hào;nv qiáng;vk	2692
+攒个	cuán;fp gè;rs	390
+攒个	zǎn;fp gè;rs	921
+背着	bēi;sy zhe;dh	1323
+外传	wài;ps chuán;rh	3753
+长点儿	cháng;pd diǎn;sq er;pv	290
+长点儿	zhǎng;pd diǎn;sq er;pv	264
+有的行	yǒu;hy de;pp háng;ph	230
+就得到	jiù;dh děi;pl dào;hs	1204
+就得到	jiù;dh dé;pl dào;hs	500
+调回来	tiáo;ap huí;sh lái;hm	284
+调回了	tiáo;ap huí;sh le;vs	385
+调回去	tiáo;ap huí;sh qù;td	120
+长了	cháng;pd le;vs	5826
+哀乐	āi;dd lè;pd	1445
+炸锅	zhá;qp guō;jk	662
+调回	tiáo;ap huí;sh	381
+掉色	diào;fs sè;pv	550
+掉色	diào;fs shǎi;pv	550
+大方	dà;hd fang;dp	469
+落魄	luò;ck tuò;pp	3091
+落魄	luò;ck bó;pp	984
+沉甸甸	chén;ud diān;ph diān;ph	1147
+沉甸甸	chén;ud diàn;ph diàn;ph	1117
+热腾腾	rè;fq téng;yd téng;yd	142
+热腾腾	rè;fq tēng;yd tēng;yd	112
+大爷	dà;hd yé;ps	2020
+兄弟	xiōng;kv di;dp	41923
+姑父	gū;nh fù;pd	1166
+女婿	nǚ;nh xù;nv	1492
+得说	děi;pl shuō;ad	400
+朝阳	zhāo;hy yáng;vl	17711
+朝阳	cháo;hy yáng;vl	2920
+单行	dān;ds xíng;ph	4473
+单行	dān;ds háng;ph	2600
+串行	chuàn;ks xíng;ph	679
+串行	chuàn;ks háng;ph	679
+同行	tóng;sk háng;ph	28559
+同行	tóng;sk xíng;ph	2409
+多行	duō;pd xíng;ph	1154
+多行	duō;pd háng;ph	1490
+不了了	bù;hd liǎo;vs liǎo;vs	1622
+不了了	bù;hd liǎo;vs le;vs	1081
+爿字旁	chuáng;vp zì;bh páng;dp
+爿字旁	pán;vp zì;bh páng;dp
+肚子	dù;yt zi;vh	13420
+肚子	dǔ;yt zi;vh	597
+落了	là;ck le;vs	6074
+落了	luò;ck le;vs	4731
+迫降	pò;pz xiáng;vp	290
+迫降	pò;pz jiàng;vp	3918
+浅浅	jiān;uh jiān;uh	927
+浅浅	qiǎn;uh qiǎn;uh	447
+不了	bù;hd liǎo;vs	45439
+不了	bù;hd le;vs	45437
+着人	zhuó;dh rén;rd	149
+闲着	xián;dm zhāo;dh	555
+琢磨	zuó;wh mo;dk	13214
+琢磨	zhuó;wh mó;dk	13214
+线长	xiàn;ih zhǎng;pd	192
+看好	kān;ph hǎo;nv	18643
+看着	kān;ph zhe;dh	2226
+好这口	hào;nv zhè;dz kǒu;kh	490
+好这口	hào;nv zhèi;dz kǒu;kh	490
+不得	bù;hd dé;pl	25935
+不得	bù;hd děi;pl	320
+调对了	tiáo;ap duì;vh le;vs	310
+调对了	diào;ap duì;vh le;vs	624
+转来转去	zhuàn;hh lái;hm zhuàn;hh qù;td	60
+转来转去	zhuǎn;hh lái;hm zhuǎn;hh qù;td	25
+得了	dé;pl liǎo;vs	610
+得了	dé;pl le;vs	2610
+赢得了	yíng;dd de;pl liǎo;vs
+得是	de;pl shì;lr	707
+得是	děi;pl shì;lr	410
+还回	huán;hz huí;sh	302
+还回	hái;hz huí;sh	218
+看好他	kān;ph hǎo;nv tā;rv	400
+看好他	kàn;ph hǎo;nv tā;rv	400
+深藏不露	shēn;ud cáng;cd bú;hd lòu;hk	56
+还回去吧	huán;hz huí;sh qù;td ba;kv	26
+还回去吧	hái;hz huí;sh qù;td ba;kv	26
+还回去吗	huán;hz huí;sh qù;td ma;kv	25
+还回去吗	hái;hz huí;sh qù;td ma;kv	25
+还回来吗	hái;hz huí;sh lái;hm ma;kv	18
+还回来吗	huán;hz huí;sh lái;hm ma;kv	2
+还回来了	huán;hz huí;sh lái;hm le;vs	37
+还回来了	hái;hz huí;sh lái;hm le;vs	26
+还回来啊	huán;hz huí;sh lái;hm a;kv	8
+还回来啊	hái;hz huí;sh lái;hm a;kv	17
+还回来吧	huán;hz huí;sh lái;hm ba;kv	7
+还回来吧	hái;hz huí;sh lái;hm ba;kv	9
+还回去	huán;hz huí;sh qù;td	102
+还回去	hái;hz huí;sh qù;td	1201
+还回来	huán;hz huí;sh lái;hm	794
+还回来	hái;hz huí;sh lái;hm	733
+还给那	hái;hz gěi;ir nà;vv	90
+还给你	hái;hz gěi;ir nǐ;rp	250
+还给谁	hái;hz gěi;ir shuí;ar	50
+还给他	hái;hz gěi;ir tā;rv	250
+还给她	hái;hz gěi;ir tā;nv	230
+还给我	hái;hz gěi;ir wǒ;pd	290
+还给这	hái;hz gěi;ir zhè;dz	110
+你还给	nǐ;rp hái;hz gěi;ir	140
+他还给	tā;rv hái;hz gěi;ir	130
+我还给	wǒ;pd hái;hz gěi;ir	898
+还给你钱	hái;hz gěi;ir nǐ;rp qián;jh	22
+还给她过	hái;hz gěi;ir tā;nv guò;hz	7
+还给她们	hái;hz gěi;ir tā;nv men;rd	30
+什么时候还	shén;rh me;pd shí;lh hòu;rs huán;hz	1
+下次一定还	xià;hd cì;dp yī;hh dìng;bd huán;hz	1
+还都	huán;hz dū;tv	95
+还都	hái;hz dōu;tv	2580
+重载	zhòng;pt zài;td	472
+重载	chóng;pt zài;td	808
+把子	bǎ;fv zi;vh	754
+罢了	bà;sd le;vs	2230
+总长	zǒng;dx cháng;pd	3710
+总长	zǒng;dx zhǎng;pd	450
+罢了	bà;sd liǎo;vs	650
+白庙	bái;pl miào;dh	1436
+便宜	biàn;rh yí;bh	4491
+不长	bǔ;hd cháng;pd	2032
+不为	bú;hd wèi;dd	2388
+不为	bù;hd wéi;dd	2418
+不长	bù;hd zhǎng;pd	1334
+长的	cháng;pd de;pp	14363
+咳痰	kǎ;kd tán;dq	51
+委屈	wěi;en qu;vs	136
+精神	jīng;dh shen;dl	1147
+朴树	pò;ms shù;mv	2837
+干将	gān;hs jiāng;dp
+长不长	cháng;pd bù;hd cháng;pd	408
+长头发	cháng;pd tóu;dd fā;vd	645
+长头发	zhǎng;pd tóu;dd fā;vd	500
+长尾巴	cháng;pd wěi;vv bā;vv	108
+长尾巴	zhǎng;pd wěi;vv bā;vv	400
+长细纹	cháng;pd xì;is wén;id	20
+长细纹	zhǎng;pd xì;is wén;id	250
+长羽毛	cháng;pd yǔ;vv máo;pv	250
+长羽毛	zhǎng;pd yǔ;vv máo;pv	11
+区队长	qū;hv duì;vr zhǎng;pd	280
+会落下	huì;rd là;ck xià;hd	470
+落下了	là;ck xià;hd le;vs	120
+他落下	tā;rv là;ck xià;hd	588
+我落下	wǒ;pd là;ck xià;hd	511
+已落下	yǐ;vv là;ck xià;hd	110
+落下的	là;ck xià;hd de;pp	312
+落下一个	là;ck xià;hd yí;hh gè;rs	1
+落下一个人	là;ck xià;hd yí;hh gè;rs rén;rd	1
+不要落下	bú;hd yào;hn là;ck xià;hd	33
+不要落下	bú;hd yào;hn lào;ck xià;hd	33
+落下的功课	là;ck xià;hd de;pp gōng;hv kè;al	1
+落下的课程	là;ck xià;hd de;pp kè;al chéng;ek	1
+已经落下了	yǐ;vv jīng;iv là;ck xià;hd le;vs	1
+谁认得	shéi;ar rèn;ar de;pl	444
+干爽了	gàn;hs shuǎng;hd le;vs	358
+一点	yī;hh diǎn;sq	1087
+汤汤	tāng;uv tāng;uv	164
+贴吧	tiē;ss bā;kv	19915
+找着	zhǎo;fh zhe;dh	830
+再长	zài;hh cháng;pd	333
+行道	háng;ph dào;dz	1394
+重读	zhòng;pt dú;ah	2836
+一专	yī;hh zhuān;hd	180
+磨豆腐	mò;dk dòu;hh fu;dr	55
+颜色差	yán;dh sè;pv chā;dh	758
+冷战	lěng;dr zhan;sh	4039
+打冷战	dǎ;fh lěng;dr zhan;sh	73
+打个冷战	dǎ;fh gè;rs lěng;dr zhàn;sh	358
+打了个冷战	dǎ;fh le;vs gè;rs lěng;dr zhan;sh	1
+重活	chóng;pt huó;up	609
+重天	chóng;pt tiān;hd	459
+穿着	chuān;bp zhuó;dh	640
+穿着清凉	chuān;bp zhe;dh qīng;uh liáng;dd	23
+赶场	gǎn;ts cháng;tv	126
+调配	diào;ap pèi;hv	690
+更为	gèng;hd wèi;dd	1313
+更为	gēng;hd wéi;dd	143
+行长	háng;ph zhǎng;pd	470
+见长	jiàn;sv cháng;pd	851
+见长	jiàn;sv zhǎng;pd	428
+落下	là;ck xià;hd	10762
+累累	léi;si léi;si	98
+累累	lěi;si lěi;si	68
+落下	luò;ck xià;hd	10764
+略长	lüè;sp cháng;pd	450
+掠夺	lüè;fd duó;hd	988
+掠夺	lüě;fd duó;hd	958
+略长	lüè;sp zhǎng;pd	180
+美的	měi;dd dì;pp	20709
+命中	mìng;rs zhōng;ks	6999
+命中	mìng;rs zhòng;ks	5760
+年长	nián;ps cháng;pd	1450
+年长	nián;ps zhǎng;pd	2520
+便宜	pián;rh yi;bh	3423
+大都	dà;hd dū;tv		350
+数次	shù;dp cì;dp	6083
+数次	shuò;dp cì;dp	5006
+随行	suí;vh háng;ph	550
+随行	suí;vh xíng;ph	497
+所长	suǒ;pp cháng;pd	3222
+所长	suǒ;pp zhǎng;pd	2790
+调配	tiáo;ap pèi;hv	620
+调为	tiáo;ap wéi;dd	5995
+都为	dōu;tv wéi;dd	999
+我为	wǒ;pd wèi;dd	2042
+我为	wǒ;pd wéi;dd	1612
+五行	wǔ;hh háng;ph	3367
+五行	wǔ;hh xíng;ph	3367
+相称	xiāng;ms chèn;ep	827
+相称	xiāng;ms chēng;ep	217
+血晕	xiě;ph yùn;ls	725
+血晕	xuè;ph yùn;ls	1769
+一行	yì;hh háng;ph	170
+一通	yí;hh tòng;vz	2205
+一通	yì;hh tōng;vz	2175
+一行	yì;hh xíng;ph	5558
+越长	yuè;td cháng;pd	2270
+越长	yuè;td zhǎng;pd	3972
+炸鱼	zhá;qp yú;ph	2636
+炸鱼	zhà;qp yú;ph	2606
+喜乐	xǐ;tk yuè;pd	111
+长的	zhǎng;pd de;pp	1583
+长牙	zhǎng;pd yá;hp	293
+长牙	cháng;pd yá;hp	382
+长芽	cháng;pd yá;cp	352
+重活	zhòng;pt huó;up	1859
+重活	chóng;pt huó;up	639
+按这	àn;fb zhèi;dz	400
+把这	bǎ;fv zhèi;dz	650
+被这	bèi;dv zhèi;dz	530
+比这	bǐ;hp zhèi;dz	600
+从这	cóng;rr zhèi;dz	620
+但这	dàn;rl zhèi;dz	770
+到这	dào;hs zhèi;dz	620
+对这	duì;vh zhèi;dz	650
+而这	ér;hs zhèi;dz	720
+放这	fàng;dp zhèi;dz	400
+干这	gàn;hs zhèi;dz	460
+搁这	gē;fd zhèi;dz	350
+跟这	gēn;zv zhèi;dz	480
+管这	guǎn;gh zhèi;dz	370
+将这	jiāng;dp zhèi;dz	600
+就这	jiù;dh zhèi;dz	640
+看这	kàn;ph zhèi;dz	650
+靠这	kào;ph zhèi;dz	460
+来这	lái;hm zhèi;dz	670
+离这	lí;dd zhèi;dz	450
+没这	méi;up zhèi;dz	470
+那这	nà;vv zhèi;dz	560
+你这	nǐ;rp zhèi;dz	660
+您这	nín;rx zhèi;dz	510
+瞧这	qiáo;sr zhèi;dz	460
+让这	ràng;as zhèi;dz	550
+送这	sòng;dz zhèi;dz	340
+他这	tā;rv zhèi;dz	630
+她这	tā;nv zhèi;dz	520
+为这	wèi;dd zhèi;dz	560
+问这	wèn;dk zhèi;dz	600
+我这	wǒ;pd zhèi;dz	690
+用这	yòng;ps zhèi;dz	560
+在这	zài;ht zhèi;dz	800
+咱这	zán;kp zhèi;dz	470
+照这	zhào;lq zhèi;dz	390
+这爱	zhèi;dz ài;pd	360
+这把	zhèi;dz bǎ;fv	590
+这般	zhèi;dz bān;pp	560
+这版	zhèi;dz bǎn;pp	530
+这班	zhèi;dz bān;wd	420
+这半	zhèi;dz bàn;ds	360
+这帮	zhèi;dz bāng;hs	580
+这包	zhèi;dz bāo;pv	430
+这杯	zhèi;dz bēi;mh	500
+这本	zhèi;dz běn;mh	760
+这笔	zhèi;dz bǐ;gv	620
+这比	zhèi;dz bǐ;hp	580
+这边	zhèi;dz biān;vz	730
+这便	zhèi;dz biàn;rh	450
+这表	zhèi;dz biǎo;hd	410
+这并	zhèi;dz bìng;ds	620
+这病	zhèi;dz bìng;dd	490
+这饼	zhèi;dz bǐng;pd	360
+这柄	zhèi;dz bǐng;mh	330
+这波	zhèi;dz bō;uv	600
+这拨	zhèi;dz bō;fv	350
+这部	zhèi;dz bù;dv	780
+这不	zhèi;dz bù;hd	670
+这步	zhèi;dz bù;sp	500
+这才	zhèi;dz cái;hp	600
+这菜	zhèi;dz cài;cm	540
+这餐	zhèi;dz cān;sd	460
+这册	zhèi;dz cè;ph	350
+这侧	zhèi;dz cè;rs	310
+这层	zhèi;dz céng;vd	560
+这茬	zhèi;dz chá;ct	420
+这茶	zhèi;dz chá;cm	390
+这场	zhèi;dz chǎng;tv	730
+这车	zhèi;dz chē;hs	590
+这城	zhèi;dz chéng;th	330
+这处	zhèi;dz chù;pd	530
+这出	zhèi;dz chū;vs	450
+这串	zhèi;dz chuàn;ks	440
+这船	zhèi;dz chuán;pp	330
+这次	zhèi;dz cì;dp	810
+这词	zhèi;dz cí;av	510
+这从	zhèi;dz cóng;rr	520
+这村	zhèi;dz cūn;mh	360
+这大	zhèi;dz dà;hd	500
+这代	zhèi;dz dài;rh	510
+这袋	zhèi;dz dài;rd	350
+这单	zhèi;dz dān;ds	470
+这档	zhèi;dz dàng;ms	510
+这道	zhèi;dz dào;dz	630
+这倒	zhèi;dz dào;rh	470
+这到	zhèi;dz dào;hs	420
+这刀	zhèi;dz dāo;vp	350
+这得	zhèi;dz dé;pl	510
+这等	zhèi;dz děng;gd	540
+这灯	zhèi;dz dēng;qh	320
+这地	zhèi;dz dì;tv	460
+这点	zhèi;dz diǎn;sq	750
+这店	zhèi;dz diàn;dk	590
+这碟	zhèi;dz dié;hc	340
+这顶	zhèi;dz dǐng;hh	450
+这栋	zhèi;dz dòng;mh	540
+这都	zhèi;dz dōu;tv	620
+这段	zhèi;dz duàn;pp	770
+这端	zhèi;dz duān;ds	330
+这对	zhèi;dz duì;vh	710
+这堆	zhèi;dz duī;tr	450
+这队	zhèi;dz duì;vr	390
+这顿	zhèi;dz dùn;hh	550
+这多	zhèi;dz duō;pd	470
+这朵	zhèi;dz duǒ;pm	440
+这儿	zhèi;dz er;pv	650
+这番	zhèi;dz fān;ph	540
+这饭	zhèi;dz fàn;pp	430
+这方	zhèi;dz fāng;dp	440
+这房	zhèi;dz fáng;dp	330
+这份	zhèi;dz fèn;rp	730
+这粉	zhèi;dz fěn;dp	300
+这封	zhèi;dz fēng;th	580
+这风	zhèi;dz fēng;pd	350
+这幅	zhèi;dz fú;sh	600
+这副	zhèi;dz fù;hs	510
+这该	zhèi;dz gāi;ad	430
+这杆	zhèi;dz gān;mh	330
+这个	zhèi;dz ge;rs	960
+这歌	zhèi;dz gē;hp	490
+这哥	zhèi;dz gē;hs	390
+这给	zhèi;dz gěi;ir	560
+这跟	zhèi;dz gēn;zv	620
+这根	zhèi;dz gēn;mv	540
+这更	zhèi;dz gèng;hd	500
+这狗	zhèi;dz gǒu;pp	440
+这股	zhèi;dz gǔ;yp	580
+这瓜	zhèi;dz guā;pd	320
+这关	zhèi;dz guān;dd	470
+这罐	zhèi;dz guàn;pc	330
+这光	zhèi;dz guāng;sv	320
+这鬼	zhèi;dz guǐ;pd	360
+这锅	zhèi;dz guō;jk	500
+这还	zhèi;dz hái;hz	570
+这好	zhèi;dz hǎo;nv	430
+这号	zhèi;dz hào;kv	410
+这和	zhèi;dz hé;ek	660
+这盒	zhèi;dz hé;rh	400
+这很	zhèi;dz hěn;pv	570
+这户	zhèi;dz hù;dp	440
+这壶	zhèi;dz hú;th	340
+这话	zhèi;dz huà;ap	630
+这花	zhèi;dz huā;cv	400
+这画	zhèi;dz huà;hs	370
+这会	zhèi;dz huì;rd	620
+这回	zhèi;dz huí;sh	620
+这婚	zhèi;dz hūn;np	400
+这货	zhèi;dz huò;rr	640
+这活	zhèi;dz huó;up	440
+这伙	zhèi;dz huǒ;rq	390
+这火	zhèi;dz huǒ;qd	350
+这几	zhèi;dz jǐ;pv	550
+这集	zhèi;dz jí;rm	520
+这既	zhèi;dz jì;vh	500
+这季	zhèi;dz jì;eh	470
+这鸡	zhèi;dz jī;vp	380
+这记	zhèi;dz jì;av	370
+这家	zhèi;dz jiā;bd	850
+这架	zhèi;dz jià;vm	530
+这价	zhèi;dz jià;rr	470
+这件	zhèi;dz jiàn;rp	680
+这间	zhèi;dz jiān;dl	620
+这将	zhèi;dz jiāng;dp	750
+这叫	zhèi;dz jiào;kv	630
+这脚	zhèi;dz jiǎo;yt	340
+这届	zhèi;dz jiè;vh	570
+这节	zhèi;dz jié;cs	420
+这就	zhèi;dz jiù;dh	760
+这酒	zhèi;dz jiǔ;uh	450
+这句	zhèi;dz jù;pk	640
+这局	zhèi;dz jú;vk	480
+这剧	zhèi;dz jù;vs	480
+这具	zhèi;dz jù;sd	450
+这卷	zhèi;dz juǎn;dv	350
+这卡	zhèi;dz kǎ;sd	440
+这看	zhèi;dz kàn;ph	380
+这颗	zhèi;dz kē;lh	640
+这可	zhèi;dz kě;hs	610
+这棵	zhèi;dz kē;ml	480
+这科	zhèi;dz kē;ed	420
+这课	zhèi;dz kè;al	410
+这刻	zhèi;dz kè;ds	320
+这口	zhèi;dz kǒu;kh	530
+这块	zhèi;dz kuài;tv	670
+这款	zhèi;dz kuǎn;tp	810
+这来	zhèi;dz lái;hm	410
+这类	zhèi;dz lèi;dd	760
+这里	zhèi;dz lǐ;lt	850
+这粒	zhèi;dz lì;dd	440
+这俩	zhèi;dz liǎ;rh	600
+这脸	zhèi;dz liǎn;yr	420
+这连	zhèi;dz lián;hz	350
+这两	zhèi;dz liǎng;hd	640
+这辆	zhèi;dz liàng;hh	610
+这列	zhèi;dz liè;hs	410
+这令	zhèi;dz lìng;rd	530
+这楼	zhèi;dz lóu;md	390
+这路	zhèi;dz lù;zp	430
+这轮	zhèi;dz lún;hr	570
+这码	zhèi;dz mǎ;hv	340
+这猫	zhèi;dz māo;pc	400
+这么	zhèi;dz me;pd	830
+这枚	zhèi;dz méi;mp	560
+这门	zhèi;dz mén;dv	610
+这米	zhèi;dz mǐ;dm	360
+这面	zhèi;dz miàn;hh	520
+这名	zhèi;dz míng;pk	680
+这幕	zhèi;dz mù;cs	400
+这哪	zhèi;dz nǎ;kv	380
+这能	zhèi;dz néng;vp	520
+这年	zhèi;dz nián;ps	610
+这鸟	zhèi;dz niǎo;ph	350
+这怕	zhèi;dz pà;xp	250
+这排	zhèi;dz pái;fs	360
+这盘	zhèi;dz pán;ph	520
+这盆	zhèi;dz pén;ph	420
+这批	zhèi;dz pī;fh	640
+这匹	zhèi;dz pǐ;hv	420
+这篇	zhèi;dz piān;gc	780
+这片	zhèi;dz piàn;pv	610
+这票	zhèi;dz piào;hd	410
+这瓶	zhèi;dz píng;dh	510
+这起	zhèi;dz qǐ;tv	650
+这期	zhèi;dz qī;cy	580
+这钱	zhèi;dz qián;jh	550
+这枪	zhèi;dz qiāng;mr	390
+这桥	zhèi;dz qiáo;mp	320
+这球	zhèi;dz qiú;wh	470
+这区	zhèi;dz qū;hv	380
+这曲	zhèi;dz qū;sh	350
+这全	zhèi;dz quán;rw	360
+这圈	zhèi;dz quān;sh	340
+这券	zhèi;dz quàn;dp	300
+这却	zhèi;dz què;tv	450
+这确	zhèi;dz què;hp	300
+这群	zhèi;dz qún;vd	640
+这让	zhèi;dz ràng;as	680
+这人	zhèi;dz rén;rd	600
+这日	zhèi;dz rì;lh	390
+这肉	zhèi;dz ròu;sr	420
+这啥	zhèi;dz shá;kr	390
+这扇	zhèi;dz shàn;dh	480
+这山	zhèi;dz shān;ss	380
+这身	zhèi;dz shēn;pp	510
+这声	zhèi;dz shēng;tp	350
+这是	zhèi;dz shì;lr	900
+这时	zhèi;dz shí;lh	710
+这事	zhèi;dz shì;hs	680
+这使	zhèi;dz shǐ;rh	550
+这诗	zhèi;dz shī;at	390
+这首	zhèi;dz shǒu;dh	640
+这手	zhèi;dz shǒu;fs	420
+这书	zhèi;dz shū;vd	690
+这束	zhèi;dz shù;hd	370
+这树	zhèi;dz shù;mv	360
+这双	zhèi;dz shuāng;vv	540
+这水	zhèi;dz shuǐ;ud	430
+这谁	zhèi;dz shuí;ar	410
+这说	zhèi;dz shuō;ad	380
+这厮	zhèi;dz sī;hs	460
+这艘	zhèi;dz sōu;pp	560
+这算	zhèi;dz suàn;gs	560
+这所	zhèi;dz suǒ;pp	620
+这台	zhèi;dz tái;vk	640
+这太	zhèi;dz tài;hd	460
+这摊	zhèi;dz tān;fv	320
+这趟	zhèi;dz tàng;tk	520
+这汤	zhèi;dz tāng;uv	450
+这堂	zhèi;dz táng;st	360
+这套	zhèi;dz tào;hd	700
+这题	zhèi;dz tí;lr	600
+这天	zhèi;dz tiān;hd	620
+这条	zhèi;dz tiáo;pm	720
+这贴	zhèi;dz tiē;ss	400
+这挺	zhèi;dz tǐng;fp	360
+这同	zhèi;dz tóng;sk	390
+这通	zhèi;dz tōng;vz	340
+这桶	zhèi;dz tǒng;mv	320
+这头	zhèi;dz tóu;dd	540
+这图	zhèi;dz tú;sh	520
+这团	zhèi;dz tuán;sh	410
+这腿	zhèi;dz tuǐ;yv	380
+这娃	zhèi;dz wá;nt	390
+这碗	zhèi;dz wǎn;hb	530
+这晚	zhèi;dz wǎn;lp	370
+这位	zhèi;dz wèi;rd	750
+这为	zhèi;dz wéi;dd	580
+这味	zhèi;dz wèi;kh	420
+这窝	zhèi;dz wō;bd	250
+这屋	zhèi;dz wū;vt	320
+这戏	zhèi;dz xì;vh	400
+这下	zhèi;dz xià;hd	620
+这虾	zhèi;dz xiā;oh	330
+这线	zhèi;dz xiàn;ih	310
+这项	zhèi;dz xiàng;hh	730
+这像	zhèi;dz xiàng;rp	430
+这厢	zhèi;dz xiāng;hh	400
+这些	zhèi;dz xiē;sh	900
+这鞋	zhèi;dz xié;ct	430
+这心	zhèi;dz xīn;xd	350
+这行	zhèi;dz xíng;ph	580
+这样	zhèi;dz yàng;md	870
+这要	zhèi;dz yào;hn	550
+这药	zhèi;dz yào;cd	440
+这也	zhèi;dz yě;vv	780
+这页	zhèi;dz yè;hr	410
+这夜	zhèi;dz yè;dd	330
+这一	zhèi;dz yī;hh	810
+这已	zhèi;dz yǐ;vv	430
+这又	zhèi;dz yòu;vd	560
+这有	zhèi;dz yǒu;hy	510
+这油	zhèi;dz yóu;us	330
+这与	zhèi;dz yǔ;hh	680
+这鱼	zhèi;dz yú;ph	470
+这雨	zhèi;dz yǔ;hd	410
+这在	zhèi;dz zài;ht	690
+这则	zhèi;dz zé;ss	610
+这站	zhèi;dz zhàn;ds	370
+这张	zhèi;dz zhāng;vp	750
+这章	zhèi;dz zhāng;ds	410
+这仗	zhèi;dz zhàng;rh	360
+这招	zhèi;dz zhāo;fv	570
+这真	zhèi;dz zhēn;hd	440
+这阵	zhèi;dz zhèn;vh	370
+这只	zhèi;dz zhǐ;kd	700
+这支	zhèi;dz zhī;hd	620
+这纸	zhèi;dz zhǐ;ip	350
+这枝	zhèi;dz zhī;mh	320
+这种	zhèi;dz zhǒng;ek	890
+这周	zhèi;dz zhōu;pk	590
+这株	zhèi;dz zhū;mp	430
+这注	zhèi;dz zhù;ud	360
+这桩	zhèi;dz zhuāng;md	480
+这幢	zhèi;dz zhuàng;sd	450
+这桌	zhèi;dz zhuō;sm	510
+这字	zhèi;dz zì;bh	420
+这宗	zhèi;dz zōng;bd	460
+这组	zhèi;dz zǔ;is	610
+这罪	zhèi;dz zuì;sh	330
+这尊	zhèi;dz zūn;dd	510
+这座	zhèi;dz zuò;dt	710
+在不了	zài;ht bu;hd le;vs	439
+啊这是	a;kv zhèi;dz shì;lr	520
+啊这些	a;kv zhèi;dz xiē;sh	500
+爱这个	ài;pd zhèi;dz ge;rs	490
+爱这些	ài;pd zhèi;dz xiē;sh	270
+爱这样	ài;pd zhèi;dz yàng;md	310
+按这个	àn;fb zhèi;dz ge;rs	530
+俺这个	ǎn;rh zhèi;dz ge;rs	350
+按这里	àn;fb zhèi;dz lǐ;lt	280
+俺这里	ǎn;rh zhèi;dz lǐ;lt	240
+按这样	àn;fb zhèi;dz yàng;md	330
+按这种	àn;fb zhèi;dz zhǒng;ek	400
+把这次	bǎ;fv zhèi;dz cì;dp	410
+把这段	bǎ;fv zhèi;dz duàn;pp	500
+把这个	bǎ;fv zhèi;dz ge;rs	690
+把这集	bǎ;fv zhèi;dz jí;rm	200
+把这类	bǎ;fv zhèi;dz lèi;dd	370
+把这里	bǎ;fv zhèi;dz lǐ;lt	480
+把这两	bǎ;fv zhèi;dz liǎng;hd	390
+把这项	bǎ;fv zhèi;dz xiàng;hh	420
+把这些	bǎ;fv zhèi;dz xiē;sh	660
+把这种	bǎ;fv zhèi;dz zhǒng;ek	570
+白这样	bái;pl zhèi;dz yàng;md	220
+办这样	bàn;vd zhèi;dz yàng;md	270
+被这个	bèi;dv zhèi;dz ge;rs	570
+被这些	bèi;dv zhèi;dz xiē;sh	500
+被这样	bèi;dv zhèi;dz yàng;md	480
+被这种	bèi;dv zhèi;dz zhǒng;ek	490
+比这个	bǐ;hp zhèi;dz ge;rs	590
+比这里	bǐ;hp zhèi;dz lǐ;lt	490
+表这样	biǎo;hd zhèi;dz yàng;md	260
+别这样	bié;ks zhèi;dz yàng;md	450
+别这种	bié;ks zhèi;dz zhǒng;ek	100
+不这样	bú;hd zhèi;dz yàng;md	480
+才这点	cái;hp zhèi;dz diǎn;sq	210
+猜这个	cāi;ph zhèi;dz ge;rs	290
+才这样	cái;hp zhèi;dz yàng;md	450
+唱这歌	chàng;kl zhèi;dz gē;hp	300
+朝这边	cháo;hy zhèi;dz biān;vz	280
+趁这个	chèn;tp zhèi;dz ge;rs	450
+趁这时	chèn;tp zhèi;dz shí;lh	170
+成这样	chéng;hd zhèi;dz yàng;md	600
+成这种	chéng;hd zhèi;dz zhǒng;ek	340
+吃这个	chī;kp zhèi;dz ge;rs	620
+吃这类	chī;kp zhèi;dz lèi;dd	370
+吃这里	chī;kp zhèi;dz lǐ;lt	410
+吃这套	chī;kp zhèi;dz tào;hd	320
+持这样	chí;ft zhèi;dz yàng;md	270
+持这种	chí;ft zhèi;dz zhǒng;ek	420
+穿这个	chuān;bp zhèi;dz ge;rs	410
+穿这件	chuān;bp zhèi;dz jiàn;rp	390
+次这样	cì;dp zhèi;dz yàng;md	340
+从这个	cóng;rr zhèi;dz ge;rs	680
+从这里	cóng;rr zhèi;dz lǐ;lt	640
+打这个	dǎ;fh zhèi;dz ge;rs	440
+打这里	dǎ;fh zhèi;dz lǐ;lt	220
+带这里	dài;hs zhèi;dz lǐ;lt	250
+但这次	dàn;rl zhèi;dz cì;dp	590
+但这都	dàn;rl zhèi;dz dōu;tv	370
+但这会	dàn;rl zhèi;dz huì;rd	320
+但这些	dàn;rl zhèi;dz xiē;sh	670
+但这种	dàn;rl zhèi;dz zhǒng;ek	650
+当这个	dāng;sh zhèi;dz ge;rs	520
+到这边	dào;hs zhèi;dz biān;vz	520
+到这点	dào;hs zhèi;dz diǎn;sq	400
+到这个	dào;hs zhèi;dz ge;rs	670
+到这来	dào;hs zhèi;dz lái;hm	460
+到这里	dào;hs zhèi;dz lǐ;lt	710
+到这时	dào;hs zhèi;dz shí;lh	400
+得这样	dé;pl zhèi;dz yàng;md	390
+等这些	děng;gd zhèi;dz xiē;sh	720
+点这个	diǎn;sq zhèi;dz ge;rs	560
+点这里	diǎn;sq zhèi;dz lǐ;lt	520
+点这样	diǎn;sq zhèi;dz yàng;md	400
+定这个	dìng;bd zhèi;dz ge;rs	340
+都这个	dōu;tv zhèi;dz ge;rs	450
+都这样	dōu;tv zhèi;dz yàng;md	610
+都这种	dōu;tv zhèi;dz zhǒng;ek	310
+对这帮	duì;vh zhèi;dz bāng;hs	250
+对这次	duì;vh zhèi;dz cì;dp	510
+对这个	duì;vh zhèi;dz ge;rs	720
+对这里	duì;vh zhèi;dz lǐ;lt	510
+对这没	duì;vh zhèi;dz méi;up	70
+对这种	duì;vh zhèi;dz zhǒng;ek	630
+多这里	duō;pd zhèi;dz lǐ;lt	360
+而这次	ér;hs zhèi;dz cì;dp	560
+而这个	ér;hs zhèi;dz ge;rs	670
+而这里	ér;hs zhèi;dz lǐ;lt	500
+而这时	ér;hs zhèi;dz shí;lh	480
+而这些	ér;hs zhèi;dz xiē;sh	690
+而这样	ér;hs zhèi;dz yàng;md	480
+而这种	ér;hs zhèi;dz zhǒng;ek	640
+发这个	fā;vd zhèi;dz ge;rs	520
+发这条	fā;vd zhèi;dz tiáo;pm	370
+发这种	fā;vd zhèi;dz zhǒng;ek	400
+犯这种	fàn;pv zhèi;dz zhǒng;ek	400
+放这吧	fàng;dp zhèi;dz ba;kv	190
+放这个	fàng;dp zhèi;dz ge;rs	380
+放这里	fàng;dp zhèi;dz lǐ;lt	380
+放这首	fàng;dp zhèi;dz shǒu;dh	160
+干这个	gàn;hs zhèi;dz ge;rs	500
+干这活	gàn;hs zhèi;dz huó;up	300
+敢这样	gǎn;vp zhèi;dz yàng;md	400
+搞这个	gǎo;fd zhèi;dz ge;rs	460
+搞这些	gǎo;fd zhèi;dz xiē;sh	430
+搞这种	gǎo;fd zhèi;dz zhǒng;ek	420
+给这边	gěi;ir zhèi;dz biān;vz	160
+给这类	gěi;ir zhèi;dz lèi;dd	300
+给这里	gěi;ir zhèi;dz lǐ;lt	340
+给这些	gěi;ir zhèi;dz xiē;sh	510
+跟这个	gēn;zv zhèi;dz ge;rs	550
+管这个	guǎn;gh zhèi;dz ge;rs	430
+光这样	guāng;sv zhèi;dz yàng;md	300
+过这样	guò;hz zhèi;dz yàng;md	520
+还这样	hái;hz zhèi;dz yàng;md	470
+还这种	hái;hz zhèi;dz zhǒng;ek	310
+好这里	hǎo;nv zhèi;dz lǐ;lt	320
+和这种	hé;ek zhèi;dz zhǒng;ek	500
+画这个	huà;hs zhèi;dz ge;rs	340
+换这个	huàn;fp zhèi;dz ge;rs	380
+会这样	huì;rd zhèi;dz yàng;md	570
+会这种	huì;rd zhèi;dz zhǒng;ek	280
+将这个	jiāng;dp zhèi;dz ge;rs	600
+讲这个	jiǎng;ah zhèi;dz ge;rs	510
+讲这话	jiǎng;ah zhèi;dz huà;ap	250
+将这些	jiāng;dp zhèi;dz xiē;sh	670
+讲这些	jiǎng;ah zhèi;dz xiē;sh	610
+讲这种	jiǎng;ah zhèi;dz zhǒng;ek	390
+叫这个	jiào;kv zhèi;dz ge;rs	540
+借这个	jiè;rc zhèi;dz ge;rs	500
+进这个	jìn;hz zhèi;dz ge;rs	440
+就这啊	jiù;dh zhèi;dz a;kv	160
+就这吧	jiù;dh zhèi;dz ba;kv	310
+就这般	jiù;dh zhèi;dz bān;pp	270
+就这大	jiù;dh zhèi;dz dà;hd	100
+就这的	jiù;dh zhèi;dz de;pp	210
+就这点	jiù;dh zhèi;dz diǎn;sq	500
+就这个	jiù;dh zhèi;dz ge;rs	610
+就这话	jiù;dh zhèi;dz huà;ap	130
+就这家	jiù;dh zhèi;dz jiā;bd	510
+就这来	jiù;dh zhèi;dz lái;hm	160
+就这俩	jiù;dh zhèi;dz liǎ;rh	280
+就这仨	jiù;dh zhèi;dz sā;rh	180
+就这些	jiù;dh zhèi;dz xiē;sh	540
+就这样	jiù;dh zhèi;dz yàng;md	750
+就这种	jiù;dh zhèi;dz zhǒng;ek	490
+据这位	jù;fv zhèi;dz wèi;rd	370
+开这个	kāi;hs zhèi;dz ge;rs	480
+看这个	kàn;ph zhèi;dz ge;rs	640
+看这里	kàn;ph zhèi;dz lǐ;lt	570
+看这样	kàn;ph zhèi;dz yàng;md	420
+靠这个	kào;ph zhèi;dz ge;rs	520
+考这个	kǎo;tv zhèi;dz ge;rs	420
+考这里	kǎo;tv zhèi;dz lǐ;lt	150
+可这次	kě;hs zhèi;dz cì;dp	430
+可这钱	kě;hs zhèi;dz qián;jh	190
+可这种	kě;hs zhèi;dz zhǒng;ek	410
+快这里	kuài;xv zhèi;dz lǐ;lt	140
+来这吧	lái;hm zhèi;dz ba;kv	310
+来这边	lái;hm zhèi;dz biān;vz	590
+来这点	lái;hm zhèi;dz diǎn;sq	270
+来这个	lái;hm zhèi;dz ge;rs	550
+来这里	lái;hm zhèi;dz lǐ;lt	770
+来这套	lái;hm zhèi;dz tào;hd	290
+老这个	lǎo;tv zhèi;dz ge;rs	260
+老这样	lǎo;tv zhèi;dz yàng;md	350
+老这种	lǎo;tv zhèi;dz zhǒng;ek	160
+累这样	lèi;si zhèi;dz yàng;md	130
+离这里	lí;dd zhèi;dz lǐ;lt	480
+连这个	lián;hz zhèi;dz ge;rs	500
+聊这个	liáo;hp zhèi;dz ge;rs	410
+聊这事	liáo;hp zhèi;dz shì;hs	200
+码这篇	mǎ;hv zhèi;dz piān;gc	170
+买这个	mǎi;vd zhèi;dz ge;rs	600
+买这件	mǎi;vd zhèi;dz jiàn;rp	310
+买这些	mǎi;vd zhèi;dz xiē;sh	460
+卖这些	mài;hd zhèi;dz xiē;sh	340
+毛这种	máo;pv zhèi;dz zhǒng;ek	210
+没这店	méi;up zhèi;dz diàn;dk	300
+没这个	méi;up zhèi;dz ge;rs	530
+美这里	měi;dd zhèi;dz lǐ;lt	190
+没这命	méi;up zhèi;dz mìng;rs	140
+没这样	méi;up zhèi;dz yàng;md	330
+没这种	méi;up zhèi;dz zhǒng;ek	400
+莫这样	mò;cd zhèi;dz yàng;md	110
+那这不	nà;vv zhèi;dz bù;hd	150
+那这个	nà;vv zhèi;dz ge;rs	580
+拿这个	ná;rf zhèi;dz ge;rs	520
+那这会	nà;vv zhèi;dz huì;rd	120
+那这就	nà;vv zhèi;dz jiù;dh	380
+那这些	nà;vv zhèi;dz xiē;sh	490
+拿这些	ná;rf zhèi;dz xiē;sh	430
+闹这个	nào;ds zhèi;dz ge;rs	200
+嫩这个	nèn;nh zhèi;dz ge;rs	240
+嫩这是	nèn;nh zhèi;dz shì;lr	170
+能这样	néng;vp zhèi;dz yàng;md	500
+你这般	nǐ;rp zhèi;dz bān;pp	260
+你这边	nǐ;rp zhèi;dz biān;vz	430
+你这不	nǐ;rp zhèi;dz bù;hd	350
+你这次	nǐ;rp zhèi;dz cì;dp	420
+你这的	nǐ;rp zhèi;dz de;pp	250
+你这都	nǐ;rp zhèi;dz dōu;tv	290
+你这份	nǐ;rp zhèi;dz fèn;rp	290
+你这个	nǐ;rp zhèi;dz ge;rs	650
+你这会	nǐ;rp zhèi;dz huì;rd	190
+你这来	nǐ;rp zhèi;dz lái;hm	210
+你这里	nǐ;rp zhèi;dz lǐ;lt	470
+你这面	nǐ;rp zhèi;dz miàn;hh	120
+你这年	nǐ;rp zhèi;dz nián;ps	240
+你这人	nǐ;rp zhèi;dz rén;rd	420
+你这是	nǐ;rp zhèi;dz shì;lr	570
+你这时	nǐ;rp zhèi;dz shí;lh	300
+你这算	nǐ;rp zhèi;dz suàn;gs	280
+你这天	nǐ;rp zhèi;dz tiān;hd	160
+你这图	nǐ;rp zhèi;dz tú;sh	200
+你这娃	nǐ;rp zhèi;dz wá;nt	170
+你这下	nǐ;rp zhèi;dz xià;hd	200
+你这些	nǐ;rp zhèi;dz xiē;sh	410
+你这样	nǐ;rp zhèi;dz yàng;md	580
+你这也	nǐ;rp zhèi;dz yě;vv	330
+你这种	nǐ;rp zhèi;dz zhǒng;ek	540
+您这边	nín;rx zhèi;dz biān;vz	300
+您这个	nín;rx zhèi;dz ge;rs	440
+您这是	nín;rx zhèi;dz shì;lr	430
+弄这个	nòng;ws zhèi;dz ge;rs	380
+喔这样	ō;kv zhèi;dz yàng;md	190
+配这个	pèi;hv zhèi;dz ge;rs	390
+气这样	qì;pv zhèi;dz yàng;md	190
+钱这是	qián;jh zhèi;dz shì;lr	410
+去这里	qù;td zhèi;dz lǐ;lt	590
+却这样	què;tv zhèi;dz yàng;md	200
+让这个	ràng;as zhèi;dz ge;rs	610
+让这颗	ràng;as zhèi;dz kē;lh	260
+让这些	ràng;as zhèi;dz xiē;sh	570
+让这种	ràng;as zhèi;dz zhǒng;ek	480
+人这会	rén;rd zhèi;dz huì;rd	150
+人这样	rén;rd zhèi;dz yàng;md	470
+上这来	shàng;sh zhèi;dz lái;hm	340
+上这类	shàng;sh zhèi;dz lèi;dd	350
+上这里	shàng;sh zhèi;dz lǐ;lt	440
+是这吧	shì;lr zhèi;dz ba;kv	300
+是这不	shì;lr zhèi;dz bù;hd	260
+是这的	shì;lr zhèi;dz de;pp	410
+是这个	shì;lr zhèi;dz ge;rs	710
+是这话	shì;lr zhèi;dz huà;ap	170
+是这吗	shì;lr zhèi;dz ma;kv	350
+使这些	shǐ;rh zhèi;dz xiē;sh	480
+是这样	shì;lr zhèi;dz yàng;md	740
+是这种	shì;lr zhèi;dz zhǒng;ek	610
+耍这个	shuǎ;hn zhèi;dz ge;rs	160
+耍这些	shuǎ;hn zhèi;dz xiē;sh	220
+睡这里	shuì;sp zhèi;dz lǐ;lt	170
+说这多	shuō;ad zhèi;dz duō;pd	210
+说这个	shuō;ad zhèi;dz ge;rs	680
+说这话	shuō;ad zhèi;dz huà;ap	540
+说这里	shuō;ad zhèi;dz lǐ;lt	560
+说这事	shuō;ad zhèi;dz shì;hs	450
+说这些	shuō;ad zhèi;dz xiē;sh	600
+说这种	shuō;ad zhèi;dz zhǒng;ek	560
+似这般	sì;rv zhèi;dz bān;pp	300
+他这般	tā;rv zhèi;dz bān;pp	270
+她这般	tā;nv zhèi;dz bān;pp	220
+他这个	tā;rv zhèi;dz ge;rs	540
+她这会	tā;nv zhèi;dz huì;rd	130
+他这人	tā;rv zhèi;dz rén;rd	350
+她这样	tā;nv zhèi;dz yàng;md	490
+他这种	tā;rv zhèi;dz zhǒng;ek	490
+特这个	tè;pt zhèi;dz ge;rs	290
+特这是	tè;pt zhèi;dz shì;lr	170
+特这样	tè;pt zhèi;dz yàng;md	200
+提这个	tí;fl zhèi;dz ge;rs	610
+填这个	tián;th zhèi;dz ge;rs	310
+听这边	tīng;kp zhèi;dz biān;vz	160
+听这歌	tīng;kp zhèi;dz gē;hp	310
+听这句	tīng;kp zhèi;dz jù;pk	110
+听这首	tīng;kp zhèi;dz shǒu;dh	360
+玩这个	wán;wh zhèi;dz ge;rs	540
+玩这套	wán;wh zhèi;dz tào;hd	290
+玩这些	wán;wh zhèi;dz xiē;sh	390
+往这走	wǎng;pd zhèi;dz zǒu;tr	180
+为这个	wèi;dd zhèi;dz gè;rs	600
+为这事	wèi;dd zhèi;dz shì;hs	460
+为这些	wèi;dd zhèi;dz xiē;sh	560
+问这里	wèn;dk zhèi;dz lǐ;lt	280
+我这般	wǒ;pd zhèi;dz bān;pp	300
+我这边	wǒ;pd zhèi;dz biān;vz	560
+我这才	wǒ;pd zhèi;dz cái;hp	420
+我这次	wǒ;pd zhèi;dz cì;dp	520
+我这大	wǒ;pd zhèi;dz dà;hd	230
+我这得	wǒ;pd zhèi;dz dé;pl	140
+我这段	wǒ;pd zhèi;dz duàn;pp	510
+我这份	wǒ;pd zhèi;dz fèn;rp	320
+我这分	wǒ;pd zhèi;dz fēn;pp	210
+我这个	wǒ;pd zhèi;dz ge;rs	680
+我这和	wǒ;pd zhèi;dz hé;ek	80
+我这回	wǒ;pd zhèi;dz huí;sh	300
+我这会	wǒ;pd zhèi;dz huì;rd	230
+我这间	wǒ;pd zhèi;dz jiān;dl	180
+我这叫	wǒ;pd zhèi;dz jiào;kv	320
+我这就	wǒ;pd zhèi;dz jiù;dh	420
+我这块	wǒ;pd zhèi;dz kuài;tv	300
+我这来	wǒ;pd zhèi;dz lái;hm	300
+我这里	wǒ;pd zhèi;dz lǐ;lt	640
+我这面	wǒ;pd zhèi;dz miàn;hh	170
+我这拿	wǒ;pd zhèi;dz ná;rf	120
+我这年	wǒ;pd zhèi;dz nián;ps	320
+我这盘	wǒ;pd zhèi;dz pán;ph	200
+我这人	wǒ;pd zhèi;dz rén;rd	550
+我这是	wǒ;pd zhèi;dz shì;lr	550
+我这时	wǒ;pd zhèi;dz shí;lh	340
+我这手	wǒ;pd zhèi;dz shǒu;fs	210
+我这书	wǒ;pd zhèi;dz shū;vd	230
+我这套	wǒ;pd zhèi;dz tào;hd	320
+我这天	wǒ;pd zhèi;dz tiān;hd	260
+我这下	wǒ;pd zhèi;dz xià;hd	250
+我这样	wǒ;pd zhèi;dz yàng;md	590
+我这有	wǒ;pd zhèi;dz yǒu;hy	380
+我这正	wǒ;pd zhèi;dz zhèng;hh	200
+我这种	wǒ;pd zhèi;dz zhǒng;ek	620
+我这周	wǒ;pd zhèi;dz zhōu;pk	330
+我这组	wǒ;pd zhèi;dz zǔ;is	140
+下这个	xià;hd zhèi;dz ge;rs	580
+下这里	xià;hd zhèi;dz lǐ;lt	350
+先这样	xiān;pv zhèi;dz yàng;md	390
+向这边	xiàng;pk zhèi;dz biān;vz	290
+像这个	xiàng;rp zhèi;dz ge;rs	450
+向这里	xiàng;pk zhèi;dz lǐ;lt	300
+向这些	xiàng;pk zhèi;dz xiē;sh	460
+想这些	xiǎng;mx zhèi;dz xiē;sh	420
+像这样	xiàng;rp zhèi;dz yàng;md	600
+像这种	xiàng;rp zhèi;dz zhǒng;ek	580
+小这类	xiǎo;sd zhèi;dz lèi;dd	140
+写这段	xiě;dh zhèi;dz duàn;pp	380
+写这个	xiě;dh zhèi;dz ge;rs	550
+写这篇	xiě;dh zhèi;dz piān;gc	540
+写这些	xiě;dh zhèi;dz xiē;sh	460
+熊这个	xióng;vq zhèi;dz ge;rs	210
+选这个	xuǎn;pz zhèi;dz ge;rs	500
+选这种	xuǎn;pz zhèi;dz zhǒng;ek	360
+学这个	xué;dh zhèi;dz ge;rs	510
+呀这里	ya;kh zhèi;dz lǐ;lt	300
+演这种	yǎn;ub zhèi;dz zhǒng;ek	320
+要这样	yào;hn zhèi;dz yàng;md	530
+也这样	yě;vv zhèi;dz yàng;md	550
+以这份	yǐ;vr zhèi;dz fèn;rp	190
+以这个	yǐ;vr zhèi;dz ge;rs	550
+以这样	yǐ;vr zhèi;dz yàng;md	440
+以这种	yǐ;vr zhèi;dz zhǒng;ek	560
+用这个	yòng;ps zhèi;dz ge;rs	650
+用这颗	yòng;ps zhèi;dz kē;lh	170
+用这样	yòng;ps zhèi;dz yàng;md	470
+用这种	yòng;ps zhèi;dz zhǒng;ek	620
+有这大	yǒu;hy zhèi;dz dà;hd	190
+有这的	yǒu;hy zhèi;dz de;pp	270
+有这多	yǒu;hy zhèi;dz duō;pd	220
+有这个	yǒu;hy zhèi;dz ge;rs	660
+有这好	yǒu;hy zhèi;dz hǎo;nv	210
+有这话	yǒu;hy zhèi;dz huà;ap	110
+有这空	yǒu;hy zhèi;dz kōng;bh	160
+有这钱	yǒu;hy zhèi;dz qián;jh	360
+有这事	yǒu;hy zhèi;dz shì;hs	360
+有这些	yǒu;hy zhèi;dz xiē;sh	180
+由这些	yóu;sh zhèi;dz xiē;sh	140
+有这样	yǒu;hy zhèi;dz yàng;md	670
+有这种	yǒu;hy zhèi;dz zhǒng;ek	660
+与这些	yǔ;hh zhèi;dz xiē;sh	570
+咋这样	zǎ;kp zhèi;dz yàng;md	270
+再这里	zài;hh zhèi;dz lǐ;lt	400
+再这样	zài;hh zhèi;dz yàng;md	530
+咱这个	zán;kp zhèi;dz ge;rs	300
+咱这里	zán;kp zhèi;dz lǐ;lt	260
+咱这些	zán;kp zhèi;dz xiē;sh	240
+早这里	zǎo;ls zhèi;dz lǐ;lt	170
+则这个	zé;ss zhèi;dz ge;rs	420
+站这边	zhàn;ds zhèi;dz biān;vz	210
+站这里	zhàn;ds zhèi;dz lǐ;lt	290
+照这个	zhào;lq zhèi;dz ge;rs	460
+找这个	zhǎo;fh zhèi;dz ge;rs	460
+照这样	zhào;lq zhèi;dz yàng;md	450
+这爱情	zhèi;dz ài;pd qíng;xh	300
+这安静	zhèi;dz ān;bn jìng;hp	180
+这案子	zhèi;dz àn;bm zi;vh	370
+这把刀	zhèi;dz bǎ;fv dāo;vp	430
+这八卦	zhèi;dz bā;pd guà;ts	180
+这把剑	zhèi;dz bǎ;fv jiàn;rs	420
+这把你	zhèi;dz bǎ;fv nǐ;rp	140
+这八年	zhèi;dz bā;pd nián;ps	360
+这把枪	zhèi;dz bǎ;fv qiāng;mr	430
+这八天	zhèi;dz bā;pd tiān;hd	200
+这版本	zhèi;dz bǎn;pp běn;mh	420
+这班车	zhèi;dz bān;wd chē;hs	340
+这半年	zhèi;dz bàn;ds nián;ps	510
+这班人	zhèi;dz bān;wd rén;rd	270
+这般人	zhèi;dz bān;pp rén;rd	190
+这半天	zhèi;dz bàn;ds tiān;hd	280
+这半夜	zhèi;dz bàn;ds yè;dd	150
+这帮人	zhèi;dz bāng;hs rén;rd	550
+这帮子	zhèi;dz bāng;hs zi;vh	370
+这杯茶	zhèi;dz bēi;mh chá;cm	330
+这背后	zhèi;dz bèi;sy hòu;pk	540
+这杯酒	zhèi;dz bēi;mh jiǔ;uh	410
+这辈人	zhèi;dz bèi;ss rén;rd	330
+这杯水	zhèi;dz bēi;mh shuǐ;ud	350
+这辈子	zhèi;dz bèi;ss zi;vh	630
+这本来	zhèi;dz běn;mh lái;hm	510
+这本身	zhèi;dz běn;mh shēn;pp	550
+这本书	zhèi;dz běn;mh shū;vd	870
+这壁画	zhèi;dz bì;vt huà;hs	150
+这比那	zhèi;dz bǐ;hp nà;vv	150
+这笔钱	zhèi;dz bǐ;gv qián;jh	620
+这逼样	zhèi;dz bī;hz yàng;md	250
+这笔债	zhèi;dz bǐ;gv zhài;rh	280
+这笔账	zhèi;dz bǐ;gv zhàng;sp	440
+这边好	zhèi;dz biān;vz hǎo;nv	300
+这编辑	zhèi;dz biān;id jí;hk	240
+这边来	zhèi;dz biān;vz lái;hm	450
+这边买	zhèi;dz biān;vz mǎi;vd	380
+这边请	zhèi;dz biān;vz qǐng;ah	320
+这便是	zhèi;dz biàn;rh shì;lr	580
+这边是	zhèi;dz biān;vz shì;lr	490
+这边厢	zhèi;dz biān;vz xiāng;hh	380
+这边有	zhèi;dz biān;vz yǒu;hy	470
+这边走	zhèi;dz biān;vz zǒu;tr	350
+这表明	zhèi;dz biǎo;hd míng;ly	610
+这表情	zhèi;dz biǎo;hd qíng;xh	400
+这标题	zhèi;dz biāo;mh tí;lr	360
+这病毒	zhèi;dz bìng;dd dú;hd	280
+这并非	zhèi;dz bìng;ds fēi;ss	540
+这柄剑	zhèi;dz bǐng;mh jiàn;rs	240
+这波亏	zhèi;dz bō;uv kuī;hv	30
+这拨人	zhèi;dz bō;fv rén;rd	350
+这不比	zhèi;dz bù;hd bǐ;hp	340
+这不带	zhèi;dz bú;hd dài;hs	130
+这不但	zhèi;dz bú;hd dàn;rl	460
+这不对	zhèi;dz bú;hd duì;vh	340
+这部队	zhèi;dz bù;dv duì;vr	140
+这部分	zhèi;dz bù;dv fèn;pp	660
+这不敢	zhèi;dz bú;hd gǎn;vp	190
+这不关	zhèi;dz bù;hd guān;dd	310
+这不好	zhèi;dz bù;hd hǎo;nv	450
+这不会	zhèi;dz bú;hd huì;rd	410
+这部机	zhèi;dz bù;dv jī;mp	280
+这不叫	zhèi;dz bú;hd jiào;kv	460
+这不仅	zhèi;dz bù;hd jǐn;rv	630
+这不就	zhèi;dz bú;hd jiù;dh	490
+这部剧	zhèi;dz bù;dv jù;vs	630
+这不能	zhèi;dz bù;hd néng;vp	500
+这不去	zhèi;dz bú;hd qù;td	180
+这不是	zhèi;dz bú;hd shì;lr	750
+这部书	zhèi;dz bù;dv shū;vd	530
+这不说	zhèi;dz bù;hd shuō;ad	220
+这不算	zhèi;dz bú;hd suàn;gs	470
+这不太	zhèi;dz bú;hd tài;hd	370
+这部位	zhèi;dz bù;dv wèi;rd	310
+这部戏	zhèi;dz bù;dv xì;vh	540
+这不行	zhèi;dz bù;hd xíng;ph	380
+这才敢	zhèi;dz cái;hp gǎn;vp	230
+这才刚	zhèi;dz cái;hp gāng;ss	330
+这才好	zhèi;dz cái;hp hǎo;nv	150
+这才回	zhèi;dz cái;hp huí;sh	110
+这才叫	zhèi;dz cái;hp jiào;kv	530
+这才能	zhèi;dz cái;hp néng;vp	430
+这菜鸟	zhèi;dz cài;cm niǎo;ph	200
+这才是	zhèi;dz cái;hp shì;lr	710
+这操行	zhèi;dz cāo;fk xíng;ph	220
+这操作	zhèi;dz cāo;fk zuò;rp	350
+这场火	zhèi;dz chǎng;tv huǒ;qd	240
+这场球	zhèi;dz chǎng;tv qiú;wh	490
+这场雪	zhèi;dz chǎng;tv xuě;hh	310
+这场雨	zhèi;dz chǎng;tv yǔ;hd	420
+这场仗	zhèi;dz chǎng;tv zhàng;rh	380
+这程度	zhèi;dz chéng;ek dù;dd	320
+这成绩	zhèi;dz chéng;hd jì;ih	350
+这城里	zhèi;dz chéng;th lǐ;lt	190
+这城市	zhèi;dz chéng;th shì;ds	410
+这充分	zhèi;dz chōng;dv fèn;pp	480
+这出剧	zhèi;dz chū;vs jù;vs	280
+这出戏	zhèi;dz chū;vs xì;vh	420
+这次不	zhèi;dz cì;dp bù;hd	420
+这次的	zhèi;dz cì;dp de;pp	700
+这次第	zhèi;dz cì;dp dì;gp	310
+这次来	zhèi;dz cì;dp lái;hm	530
+这次拿	zhèi;dz cì;dp ná;rf	250
+这次呢	zhèi;dz cì;dp ne;kv	310
+这次你	zhèi;dz cì;dp nǐ;rp	380
+这次您	zhèi;dz cì;dp nín;rx	200
+这次去	zhèi;dz cì;dp qù;td	580
+这次是	zhèi;dz cì;dp shì;lr	620
+这次我	zhèi;dz cì;dp wǒ;pd	540
+这次在	zhèi;dz cì;dp zài;ht	530
+这村子	zhèi;dz cūn;mh zi;vh	240
+这答案	zhèi;dz dá;gk àn;bm	450
+这大概	zhèi;dz dà;hd gài;mv	550
+这大哥	zhèi;dz dà;hd gē;hs	350
+这大姐	zhèi;dz dà;hd jiě;ns	280
+这大妈	zhèi;dz dà;hd mā;nv	260
+这大叔	zhèi;dz dà;hd shū;sv	300
+这大树	zhèi;dz dà;hd shù;mv	130
+这大雪	zhèi;dz dà;hd xuě;hh	130
+这大爷	zhèi;dz dà;hd yé;ps	290
+这大雨	zhèi;dz dà;hd yǔ;hd	240
+这代表	zhèi;dz dài;rh biǎo;hd	490
+这代码	zhèi;dz dài;rh mǎ;hv	290
+这代人	zhèi;dz dài;rh rén;rd	510
+这呆着	zhèi;dz dāi;km zhe;dh	210
+这当口	zhèi;dz dāng;sh kǒu;kh	270
+这当然	zhèi;dz dāng;sh rán;pq	550
+这当中	zhèi;dz dāng;sh zhōng;ks	500
+这道菜	zhèi;dz dào;dz cài;cm	680
+这到底	zhèi;dz dào;hs dǐ;dd	570
+这道关	zhèi;dz dào;dz guān;dd	260
+这道坎	zhèi;dz dào;dz kǎn;tp	430
+这捣乱	zhèi;dz dǎo;fp luàn;pv	110
+这倒是	zhèi;dz dào;rh shì;lr	480
+这道汤	zhèi;dz dào;dz tāng;uv	390
+这道题	zhèi;dz dào;dz tí;lr	610
+这导致	zhèi;dz dǎo;vd zhì;hp	580
+这得看	zhèi;dz dé;pl kàn;ph	420
+这得是	zhèi;dz dé;pl shì;lr	350
+这的是	zhèi;dz de;pp shì;lr	320
+这等你	zhèi;dz děng;gd nǐ;rp	220
+这等人	zhèi;dz děng;gd rén;rd	250
+这等事	zhèi;dz děng;gd shì;hs	320
+这等于	zhèi;dz děng;gd yú;hs	440
+这地方	zhèi;dz dì;tv fāng;dp	590
+这的确	zhèi;dz dí;pp què;hp	510
+这地铁	zhèi;dz dì;tv tiě;jp	230
+这地图	zhèi;dz dì;tv tú;sh	300
+这电脑	zhèi;dz diàn;lv nǎo;yd	370
+这点钱	zhèi;dz diǎn;sq qián;jh	530
+这点去	zhèi;dz diǎn;sq qù;td	260
+这点上	zhèi;dz diǎn;sq shàng;sh	500
+这点血	zhèi;dz diǎn;sq xuè;ph	120
+这点雪	zhèi;dz diǎn;sq xuě;hh	110
+这电影	zhèi;dz diàn;lv yǐng;lp	490
+这点子	zhèi;dz diǎn;sq zi;vh	290
+这东东	zhèi;dz dōng;hd dōng;hd	420
+这东西	zhèi;dz dōng;hd xi;hh	680
+这都被	zhèi;dz dōu;tv bèi;dv	300
+这都不	zhèi;dz dōu;tv bù;hd	490
+这都快	zhèi;dz dōu;tv kuài;xv	320
+这都没	zhèi;dz dōu;tv méi;up	350
+这都能	zhèi;dz dōu;tv néng;vp	440
+这都是	zhèi;dz dōu;tv shì;lr	670
+这都算	zhèi;dz dōu;tv suàn;gs	340
+这都些	zhèi;dz dōu;tv xiē;sh	100
+这都信	zhèi;dz dōu;tv xìn;ra	160
+这都行	zhèi;dz dōu;tv xíng;ph	280
+这都要	zhèi;dz dōu;tv yào;hn	390
+这都有	zhèi;dz dōu;tv yǒu;hy	370
+这犊子	zhèi;dz dú;ph zi;vh	140
+这段话	zhèi;dz duàn;pp huà;ap	660
+这段情	zhèi;dz duàn;pp qíng;xh	350
+这段字	zhèi;dz duàn;pp zì;bh	230
+这对我	zhèi;dz duì;vh wǒ;pd	450
+这队伍	zhèi;dz duì;vr wǔ;rh	290
+这对于	zhèi;dz duì;vh yú;hs	680
+这对子	zhèi;dz duì;vh zi;vh	180
+这顿饭	zhèi;dz dùn;hh fàn;pp	570
+这多好	zhèi;dz duō;pd hǎo;nv	250
+这朵花	zhèi;dz duǒ;pm huā;cv	390
+这多年	zhèi;dz duō;pd nián;ps	380
+这多钱	zhèi;dz duō;pd qián;jh	190
+这多人	zhèi;dz duō;pd rén;rd	310
+这多天	zhèi;dz duō;pd tiān;hd	310
+这多字	zhèi;dz duō;pd zì;bh	130
+这二货	zhèi;dz èr;hh huò;rr	330
+这二年	zhèi;dz èr;hh nián;ps	310
+这二天	zhèi;dz èr;hh tiān;hd	310
+这二位	zhèi;dz èr;hh wèi;rd	430
+这二者	zhèi;dz èr;hh zhě;tl	480
+这二字	zhèi;dz èr;hh zì;bh	280
+这番话	zhèi;dz fān;ph huà;ap	500
+这翻译	zhèi;dz fān;pv yì;av	370
+这反映	zhèi;dz fǎn;pd yìng;ls	370
+这方法	zhèi;dz fāng;dp fǎ;ut	470
+这方面	zhèi;dz fāng;dp miàn;hh	670
+这房子	zhèi;dz fáng;dp zi;vh	490
+这份爱	zhèi;dz fèn;rp ài;pd	470
+这份表	zhèi;dz fèn;rp biǎo;hd	240
+这份工	zhèi;dz fèn;rp gōng;hh	310
+这分明	zhèi;dz fēn;pp míng;ly	460
+这份情	zhèi;dz fèn;rp qíng;xh	330
+这份上	zhèi;dz fèn;rp shàng;sh	410
+这氛围	zhèi;dz fēn;pp wéi;sh	280
+这分钟	zhèi;dz fēn;pp zhōng;jk	440
+这封信	zhèi;dz fēng;th xìn;ra	550
+这副本	zhèi;dz fù;hs běn;mh	200
+这幅画	zhèi;dz fú;sh huà;hs	630
+这附近	zhèi;dz fù;vr jìn;pz	570
+这幅图	zhèi;dz fú;sh tú;sh	480
+这复杂	zhèi;dz fù;pd zá;pm	250
+这嘎达	zhèi;dz gā;kh dá;hz	250
+这感觉	zhèi;dz gǎn;hx jué;dv	510
+这杆枪	zhèi;dz gān;mh qiāng;mr	180
+这岗位	zhèi;dz gǎng;sd wèi;rd	280
+这搞得	zhèi;dz gǎo;fd de;pl	190
+这高的	zhèi;dz gāo;dk de;pp	150
+这高级	zhèi;dz gāo;dk jí;ip	190
+这高兴	zhèi;dz gāo;dk xìng;dd	110
+这个啊	zhèi;dz ge;rs a;kv	470
+这个吧	zhèi;dz ge;rs ba;kv	530
+这个摆	zhèi;dz ge;rs bǎi;fs	160
+这个班	zhèi;dz ge;rs bān;wd	470
+这个板	zhèi;dz ge;rs bǎn;mp	280
+这个本	zhèi;dz ge;rs běn;mh	430
+这个逼	zhèi;dz ge;rs bī;hz	400
+这个表	zhèi;dz ge;rs biǎo;hd	460
+这个标	zhèi;dz ge;rs biāo;mh	310
+这个别	zhèi;dz ge;rs bié;ks	260
+这个兵	zhèi;dz ge;rs bīng;pd	260
+这个不	zhèi;dz ge;rs bù;hd	560
+这个厂	zhèi;dz ge;rs chǎng;hp	360
+这个场	zhèi;dz ge;rs chǎng;tv	340
+这个城	zhèi;dz ge;rs chéng;th	310
+这个仇	zhèi;dz ge;rs chóu;rp	260
+这个船	zhèi;dz ge;rs chuán;pp	290
+这个词	zhèi;dz ge;rs cí;av	710
+这疙瘩	zhèi;dz gē;dv da;dk	250
+这个单	zhèi;dz ge;rs dān;ds	370
+这个蛋	zhèi;dz ge;rs dàn;vo	340
+这个岛	zhèi;dz ge;rs dǎo;ps	430
+这个的	zhèi;dz ge;rs de;pp	640
+这个灯	zhèi;dz ge;rs dēng;qh	400
+这个底	zhèi;dz ge;rs dǐ;dd	310
+这个店	zhèi;dz ge;rs diàn;dk	670
+这个点	zhèi;dz ge;rs diǎn;sq	570
+这个度	zhèi;dz ge;rs dù;dd	440
+这个队	zhèi;dz ge;rs duì;vr	400
+这个分	zhèi;dz ge;rs fēn;pp	430
+这个符	zhèi;dz ge;rs fú;gd	200
+这个歌	zhèi;dz ge;rs gē;hp	400
+这个给	zhèi;dz ge;rs gěi;ir	400
+这个梗	zhèi;dz ge;rs gěng;mh	510
+这个股	zhèi;dz ge;rs gǔ;yp	350
+这个瓜	zhèi;dz ge;rs guā;pd	320
+这个锅	zhèi;dz ge;rs guō;jk	530
+这个国	zhèi;dz ge;rs guó;sh	340
+这个还	zhèi;dz ge;rs hái;hz	520
+这个函	zhèi;dz ge;rs hán;vs	190
+这个好	zhèi;dz ge;rs hǎo;nv	550
+这个号	zhèi;dz ge;rs hào;kv	500
+这个和	zhèi;dz ge;rs hé;ek	570
+这个很	zhèi;dz ge;rs hěn;pv	540
+这个灰	zhèi;dz ge;rs huī;hq	200
+这个货	zhèi;dz ge;rs huò;rr	390
+这个价	zhèi;dz ge;rs jià;rr	640
+这个家	zhèi;dz ge;rs jiā;bd	550
+这个键	zhèi;dz ge;rs jiàn;jv	400
+这个奖	zhèi;dz ge;rs jiǎng;dd	490
+这个叫	zhèi;dz ge;rs jiào;kv	530
+这个节	zhèi;dz ge;rs jié;cs	460
+这个井	zhèi;dz ge;rs jǐng;hs	270
+这个就	zhèi;dz ge;rs jiù;dh	600
+这个酒	zhèi;dz ge;rs jiǔ;uh	400
+这个剧	zhèi;dz ge;rs jù;vs	480
+这个局	zhèi;dz ge;rs jú;vk	420
+这个卡	zhèi;dz ge;rs kǎ;sd	470
+这个坎	zhèi;dz ge;rs kǎn;tp	440
+这个课	zhèi;dz ge;rs kè;al	430
+这个坑	zhèi;dz ge;rs kēng;td	480
+这个款	zhèi;dz ge;rs kuǎn;tp	380
+这个框	zhèi;dz ge;rs kuāng;mh	300
+这个啦	zhèi;dz ge;rs la;kf	410
+这个来	zhèi;dz ge;rs lái;hm	460
+这个雷	zhèi;dz ge;rs léi;hh	290
+这个冷	zhèi;dz ge;rs lěng;dr	390
+这个理	zhèi;dz ge;rs lǐ;wl	410
+这个列	zhèi;dz ge;rs liè;hs	210
+这个龙	zhèi;dz ge;rs lóng;hd	260
+这个楼	zhèi;dz ge;rs lóu;md	400
+这个嘛	zhèi;dz ge;rs ma;kd	480
+这个吗	zhèi;dz ge;rs ma;kv	460
+这个忙	zhèi;dz ge;rs máng;xd	400
+这哥们	zhèi;dz gē;hs men;rd	550
+这个门	zhèi;dz ge;rs mén;dv	420
+这个梦	zhèi;dz ge;rs mèng;md	490
+这个南	zhèi;dz ge;rs nán;hs	190
+这个呢	zhèi;dz ge;rs ne;kv	480
+这个能	zhèi;dz ge;rs néng;vp	450
+这个你	zhèi;dz ge;rs nǐ;rp	480
+这个捏	zhèi;dz ge;rs niē;fl	170
+这个哦	zhèi;dz ge;rs ó;kp	360
+这个片	zhèi;dz ge;rs piàn;pv	360
+这个钱	zhèi;dz ge;rs qián;jh	580
+这个签	zhèi;dz ge;rs qiān;gh	240
+这个秋	zhèi;dz ge;rs qiū;eq	270
+这个群	zhèi;dz ge;rs qún;vd	450
+这个人	zhèi;dz ge;rs rén;rd	730
+这个骚	zhèi;dz ge;rs sāo;vv	210
+这歌声	zhèi;dz gē;hp shēng;tp	270
+这个是	zhèi;dz ge;rs shì;lr	720
+这个事	zhèi;dz ge;rs shì;hs	620
+这个书	zhèi;dz ge;rs shū;vd	570
+这个数	zhèi;dz ge;rs shù;dp	530
+这个怂	zhèi;dz ge;rs sǒng;rx	150
+这个算	zhèi;dz ge;rs suàn;gs	490
+这个挺	zhèi;dz ge;rs tǐng;fp	450
+这个图	zhèi;dz ge;rs tú;sh	540
+这个娃	zhèi;dz ge;rs wá;nt	300
+这个哇	zhèi;dz ge;rs wa;kt	220
+这个外	zhèi;dz ge;rs wài;ps	340
+这个网	zhèi;dz ge;rs wǎng;sd	410
+这个我	zhèi;dz ge;rs wǒ;pd	610
+这个夏	zhèi;dz ge;rs xià;hd	250
+这个邪	zhèi;dz ge;rs xié;hv	370
+这个鞋	zhèi;dz ge;rs xié;ct	350
+这个星	zhèi;dz ge;rs xīng;lh	320
+这个雪	zhèi;dz ge;rs xuě;hh	200
+这个要	zhèi;dz ge;rs yào;hn	560
+这个药	zhèi;dz ge;rs yào;cd	500
+这个也	zhèi;dz ge;rs yě;vv	590
+这个夜	zhèi;dz ge;rs yè;dd	240
+这个有	zhèi;dz ge;rs yǒu;hy	520
+这个院	zhèi;dz ge;rs yuàn;vb	270
+这个月	zhèi;dz ge;rs yuè;yh	630
+这个早	zhèi;dz ge;rs zǎo;ls	280
+这个站	zhèi;dz ge;rs zhàn;ds	400
+这个真	zhèi;dz ge;rs zhēn;hd	480
+这个证	zhèi;dz ge;rs zhèng;ah	460
+这个值	zhèi;dz ge;rs zhí;rh	490
+这个周	zhèi;dz ge;rs zhōu;pk	330
+这个字	zhèi;dz ge;rs zì;bh	600
+这个总	zhèi;dz ge;rs zǒng;dx	340
+这个组	zhèi;dz ge;rs zǔ;is	390
+这给你	zhèi;dz gěi;ir nǐ;rp	250
+这给我	zhèi;dz gěi;ir wǒ;pd	380
+这根本	zhèi;dz gēn;mv běn;mh	540
+这根刺	zhèi;dz gēn;mv cì;hs	260
+这根梁	zhèi;dz gēn;mv liáng;um	170
+这跟我	zhèi;dz gēn;zv wǒ;pd	390
+这根弦	zhèi;dz gēn;mv xián;vd	420
+这根线	zhèi;dz gēn;mv xiàn;ih	360
+这功夫	zhèi;dz gōng;hv fū;hd	390
+这功能	zhèi;dz gōng;hv néng;vp	440
+这公司	zhèi;dz gōng;pd sī;vk	450
+这狗的	zhèi;dz gǒu;pp de;pp	140
+这股火	zhèi;dz gǔ;yp huǒ;qd	170
+这估计	zhèi;dz gū;rh jì;ah	390
+这股劲	zhèi;dz gǔ;yp jìn;vv	280
+这姑娘	zhèi;dz gū;nh niáng;nd	530
+这关心	zhèi;dz guān;dd xīn;xd	110
+这管子	zhèi;dz guǎn;gh zi;vh	140
+这光景	zhèi;dz guāng;sv jǐng;ld	210
+这闺女	zhèi;dz guī;dt nǚ;nh	270
+这规则	zhèi;dz guī;hs zé;ss	290
+这哈哈	zhèi;dz hā;kr hā;kr	240
+这还不	zhèi;dz hái;hz bù;hd	520
+这还好	zhèi;dz hái;hz hǎo;nv	280
+这还叫	zhèi;dz hái;hz jiào;kv	370
+这还没	zhèi;dz hái;hz méi;up	400
+这海上	zhèi;dz hǎi;up shàng;sh	130
+这还是	zhèi;dz hái;hz shì;lr	610
+这还要	zhèi;dz hái;hz yào;hn	390
+这还用	zhèi;dz hái;hz yòng;ps	400
+这还有	zhèi;dz hái;hz yǒu;hy	420
+这还真	zhèi;dz hái;hz zhēn;hd	430
+这孩子	zhèi;dz hái;vd zi;vh	600
+这行情	zhèi;dz háng;ph qíng;xh	300
+这行业	zhèi;dz háng;ph yè;sh	460
+这好啊	zhèi;dz hǎo;nv a;kv	200
+这好比	zhèi;dz hǎo;nv bǐ;hp	410
+这好的	zhèi;dz hǎo;nv de;pp	260
+这号人	zhèi;dz hào;kv rén;rd	330
+这好事	zhèi;dz hǎo;nv shì;hs	350
+这好像	zhèi;dz hǎo;nv xiàng;rp	480
+这和爱	zhèi;dz hé;ek ài;pd	140
+这合理	zhèi;dz hé;rk lǐ;wl	260
+这和你	zhèi;dz hé;ek nǐ;rp	370
+这黑人	zhèi;dz hēi;sq rén;rd	200
+这黑夜	zhèi;dz hēi;sq yè;dd	160
+这很好	zhèi;dz hěn;pv hǎo;nv	450
+这很难	zhèi;dz hěn;pv nán;vr	440
+这横山	zhèi;dz héng;mc shān;ss	10
+这后来	zhèi;dz hòu;pk lái;hm	320
+这后生	zhèi;dz hòu;pk shēng;ph	200
+这胡子	zhèi;dz hú;hy zi;vh	210
+这话里	zhèi;dz huà;ap lǐ;lt	200
+这话题	zhèi;dz huà;ap tí;lr	420
+这环境	zhèi;dz huán;wh jìng;td	450
+这会都	zhèi;dz huì;rd dōu;tv	180
+这回跟	zhèi;dz huí;sh gēn;zv	180
+这会还	zhèi;dz huì;rd hái;hz	210
+这回好	zhèi;dz huí;sh hǎo;nv	140
+这回呢	zhèi;dz huí;sh ne;kv	180
+这回却	zhèi;dz huí;sh què;tv	250
+这回事	zhèi;dz huí;sh shì;hs	560
+这会使	zhèi;dz huì;rd shǐ;rh	490
+这回我	zhèi;dz huí;sh wǒ;pd	370
+这回忆	zhèi;dz huí;sh yì;xv	220
+这会在	zhèi;dz huì;rd zài;ht	340
+这徽章	zhèi;dz huī;ps zhāng;ds	130
+这会正	zhèi;dz huì;rd zhèng;hh	200
+这会子	zhèi;dz huì;rd zǐ;vh	320
+这回子	zhèi;dz huí;sh zǐ;vh	150
+这回做	zhèi;dz huí;sh zuò;rh	120
+这婚事	zhèi;dz hūn;np shì;hs	200
+这活动	zhèi;dz huó;up dòng;hv	410
+这伙计	zhèi;dz huǒ;rq jì;ah	240
+这伙人	zhèi;dz huǒ;rq rén;rd	420
+这或许	zhèi;dz huò;hd xǔ;ap	580
+这几把	zhèi;dz jǐ;pv bǎ;fv	250
+这鸡巴	zhèi;dz jī;vp bā;vv	170
+这基本	zhèi;dz jī;ct běn;mh	450
+这几本	zhèi;dz jǐ;pv běn;mh	450
+这几笔	zhèi;dz jǐ;pv bǐ;gv	240
+这几波	zhèi;dz jǐ;pv bō;uv	220
+这几部	zhèi;dz jǐ;pv bù;dv	450
+这几场	zhèi;dz jǐ;pv chǎng;tv	390
+这几处	zhèi;dz jǐ;pv chù;pd	340
+这几次	zhèi;dz jǐ;pv cì;dp	460
+这几点	zhèi;dz jǐ;pv diǎn;sq	550
+这激动	zhèi;dz jī;up dòng;hv	180
+这季度	zhèi;dz jì;eh dù;dd	220
+这几段	zhèi;dz jǐ;pv duàn;pp	340
+这几对	zhèi;dz jǐ;pv duì;vh	260
+这几份	zhèi;dz jǐ;pv fèn;rp	250
+这几个	zhèi;dz jǐ;pv gè;rs	700
+这几行	zhèi;dz jǐ;pv háng;ph	240
+这几家	zhèi;dz jǐ;pv jiā;bd	530
+这季节	zhèi;dz jì;eh jié;cs	380
+这几届	zhèi;dz jǐ;pv jiè;vh	270
+这几句	zhèi;dz jǐ;pv jù;pk	450
+这几颗	zhèi;dz jǐ;pv kē;lh	270
+这几块	zhèi;dz jǐ;pv kuài;tv	370
+这几款	zhèi;dz jǐ;pv kuǎn;tp	550
+这几类	zhèi;dz jǐ;pv lèi;dd	470
+这几辆	zhèi;dz jǐ;pv liàng;hh	280
+这几名	zhèi;dz jǐ;pv míng;pk	380
+这几年	zhèi;dz jǐ;pv nián;ps	710
+这几篇	zhèi;dz jǐ;pv piān;gc	360
+这几日	zhèi;dz jǐ;pv rì;lh	500
+这既是	zhèi;dz jì;vh shì;lr	510
+这几首	zhèi;dz jǐ;pv shǒu;dh	380
+这几套	zhèi;dz jǐ;pv tào;hd	320
+这几天	zhèi;dz jǐ;pv tiān;hd	720
+这几晚	zhèi;dz jǐ;pv wǎn;lp	180
+这几位	zhèi;dz jǐ;pv wèi;rd	530
+这几项	zhèi;dz jǐ;pv xiàng;hh	460
+这几张	zhèi;dz jǐ;pv zhāng;vp	490
+这几只	zhèi;dz jǐ;pv zhī;kd	420
+这几种	zhèi;dz jǐ;pv zhǒng;ek	580
+这家厂	zhèi;dz jiā;bd chǎng;hp	270
+这家店	zhèi;dz jiā;bd diàn;dk	840
+这家伙	zhèi;dz jiā;bd huo;rq	570
+这家你	zhèi;dz jiā;bd nǐ;rp	230
+这家人	zhèi;dz jiā;bd rén;rd	500
+这家是	zhèi;dz jiā;bd shì;lr	620
+这家子	zhèi;dz jiā;bd zǐ;vh	280
+这简单	zhèi;dz jiǎn;gl dān;ds	340
+这件事	zhèi;dz jiàn;rp shì;hs	770
+这简直	zhèi;dz jiǎn;gl zhí;hh	540
+这将是	zhèi;dz jiāng;dp shì;lr	590
+这将有	zhèi;dz jiāng;dp yǒu;hy	150
+这叫爱	zhèi;dz jiào;kv ài;pd	190
+这阶段	zhèi;dz jiē;vr duàn;pp	430
+这节课	zhèi;dz jié;cs kè;al	470
+这姐们	zhèi;dz jiě;ns men;rd	320
+这节目	zhèi;dz jié;cs mù;sh	460
+这节奏	zhèi;dz jié;cs zòu;hd	360
+这仅是	zhèi;dz jǐn;rv shì;lr	430
+这经济	zhèi;dz jīng;iv jì;ud	240
+这精神	zhèi;dz jīng;dh shén;dl	290
+这就不	zhèi;dz jiù;dh bù;hd	460
+这就带	zhèi;dz jiù;dh dài;hs	290
+这就到	zhèi;dz jiù;dh dào;hs	210
+这就得	zhèi;dz jiù;dh děi;pl	380
+这就对	zhèi;dz jiù;dh duì;vh	400
+这就该	zhèi;dz jiù;dh gāi;ad	200
+这就跟	zhèi;dz jiù;dh gēn;zv	470
+这就好	zhèi;dz jiù;dh hǎo;nv	420
+这就和	zhèi;dz jiù;dh hé;ek	450
+这就会	zhèi;dz jiù;dh huì;rd	400
+这就叫	zhèi;dz jiù;dh jiào;kv	530
+这究竟	zhèi;dz jiū;bv jìng;dv	490
+这就来	zhèi;dz jiù;dh lái;hm	350
+这就去	zhèi;dz jiù;dh qù;td	300
+这就是	zhèi;dz jiù;dh shì;lr	820
+这就使	zhèi;dz jiù;dh shǐ;rh	450
+这就算	zhèi;dz jiù;dh suàn;gs	410
+这就太	zhèi;dz jiù;dh tài;hd	280
+这就完	zhèi;dz jiù;dh wán;bv	210
+这就要	zhèi;dz jiù;dh yào;hn	510
+这就有	zhèi;dz jiù;dh yǒu;hy	370
+这句好	zhèi;dz jù;pk hǎo;nv	200
+这句话	zhèi;dz jù;pk huà;ap	790
+这局面	zhèi;dz jú;vk miàn;hh	290
+这绝不	zhèi;dz jué;ip bù;hd	370
+这看似	zhèi;dz kàn;ph sì;rv	460
+这靠谱	zhèi;dz kào;ph pǔ;ad	130
+这可能	zhèi;dz kě;hs néng;vp	730
+这可是	zhèi;dz kě;hs shì;lr	620
+这棵树	zhèi;dz kē;ml shù;mv	480
+这颗糖	zhèi;dz kē;lh táng;dd	250
+这颗星	zhèi;dz kē;lh xīng;lh	370
+这可以	zhèi;dz kě;hs yǐ;vr	760
+这可真	zhèi;dz kě;hs zhēn;hd	400
+这肯定	zhèi;dz kěn;sy dìng;bd	470
+这坑爹	zhèi;dz kēng;td diē;pd	220
+这恐怖	zhèi;dz kǒng;hx bù;xh	210
+这恐怕	zhèi;dz kǒng;hx pà;xp	510
+这口锅	zhèi;dz kǒu;kh guō;jk	380
+这口气	zhèi;dz kǒu;kh qì;pv	470
+这口音	zhèi;dz kǒu;kh yīn;dl	210
+这裤子	zhèi;dz kù;dd zi;vh	320
+这夸张	zhèi;dz kuā;hv zhāng;vp	110
+这块布	zhèi;dz kuài;tv bù;hs	290
+这块地	zhèi;dz kuài;tv dì;tv	480
+这块料	zhèi;dz kuài;tv liào;dd	360
+这块钱	zhèi;dz kuài;tv qián;jh	430
+这块肉	zhèi;dz kuài;tv ròu;sr	350
+这款琴	zhèi;dz kuǎn;tp qín;wv	260
+这老大	zhèi;dz lǎo;tv dà;hd	200
+这老哥	zhèi;dz lǎo;tv gē;hs	330
+这老汉	zhèi;dz lǎo;tv hàn;uv	170
+这老头	zhèi;dz lǎo;tv tóu;dd	390
+这老些	zhèi;dz lǎo;tv xiē;sh	170
+这类词	zhèi;dz lèi;dd cí;av	150
+这类人	zhèi;dz lèi;dd rén;rd	600
+这里啊	zhèi;dz lǐ;lt a;kv	420
+这里吧	zhèi;dz lǐ;lt ba;kv	520
+这里边	zhèi;dz lǐ;lt biān;vz	480
+这里曾	zhèi;dz lǐ;lt céng;dl	420
+这里的	zhèi;dz lǐ;lt de;pp	850
+这里等	zhèi;dz lǐ;lt děng;gd	360
+这里过	zhèi;dz lǐ;lt guò;hz	320
+这厉害	zhèi;dz lì;hp hài;bk	140
+这里好	zhèi;dz lǐ;lt hǎo;nv	420
+这里会	zhèi;dz lǐ;lt huì;rd	460
+这里建	zhèi;dz lǐ;lt jiàn;vd	280
+这里将	zhèi;dz lǐ;lt jiāng;dp	470
+这里就	zhèi;dz lǐ;lt jiù;dh	640
+这里来	zhèi;dz lǐ;lt lái;hm	510
+这里连	zhèi;dz lǐ;lt lián;hz	350
+这里吗	zhèi;dz lǐ;lt ma;kv	390
+这里买	zhèi;dz lǐ;lt mǎi;vd	570
+这里没	zhèi;dz lǐ;lt méi;up	460
+这里面	zhèi;dz lǐ;lt miàn;hh	670
+这里木	zhèi;dz lǐ;lt mù;md	160
+这里那	zhèi;dz lǐ;lt nà;vv	310
+这里能	zhèi;dz lǐ;lt néng;vp	430
+这里是	zhèi;dz lǐ;lt shì;lr	720
+这里耍	zhèi;dz lǐ;lt shuǎ;hn	150
+这里我	zhèi;dz lǐ;lt wǒ;pd	600
+这里雪	zhèi;dz lǐ;lt xuě;hh	150
+这里也	zhèi;dz lǐ;lt yě;vv	610
+这里有	zhèi;dz lǐ;lt yǒu;hy	710
+这理由	zhèi;dz lǐ;wl yóu;sh	350
+这里找	zhèi;dz lǐ;lt zhǎo;fh	380
+这里住	zhèi;dz lǐ;lt zhù;rd	380
+这俩地	zhèi;dz liǎ;rh dì;tv	220
+这俩队	zhèi;dz liǎ;rh duì;vr	200
+这俩个	zhèi;dz liǎ;rh gè;rs	360
+这俩人	zhèi;dz liǎ;rh rén;rd	480
+这俩事	zhèi;dz liǎ;rh shì;hs	190
+这两把	zhèi;dz liǎng;hd bǎ;fv	340
+这两本	zhèi;dz liǎng;hd běn;mh	500
+这两部	zhèi;dz liǎng;hd bù;dv	560
+这辆车	zhèi;dz liàng;hh chē;hs	610
+这两处	zhèi;dz liǎng;hd chù;pd	440
+这两次	zhèi;dz liǎng;hd cì;dp	510
+这两大	zhèi;dz liǎng;hd dà;hd	540
+这两点	zhèi;dz liǎng;hd diǎn;sq	580
+这两份	zhèi;dz liǎng;hd fèn;rp	450
+这两个	zhèi;dz liǎng;hd gè;rs	780
+这两根	zhèi;dz liǎng;hd gēn;mv	340
+这两行	zhèi;dz liǎng;hd háng;ph	270
+这两家	zhèi;dz liǎng;hd jiā;bd	590
+这两件	zhèi;dz liǎng;hd jiàn;rp	490
+这两间	zhèi;dz liǎng;hd jiān;dl	320
+这两句	zhèi;dz liǎng;hd jù;pk	500
+这两颗	zhèi;dz liǎng;hd kē;lh	430
+这两口	zhèi;dz liǎng;hd kǒu;kh	230
+这两块	zhèi;dz liǎng;hd kuài;tv	460
+这两款	zhèi;dz liǎng;hd kuǎn;tp	620
+这两名	zhèi;dz liǎng;hd míng;pk	490
+这两年	zhèi;dz liǎng;hd nián;ps	680
+这两批	zhèi;dz liǎng;hd pī;fh	280
+这两票	zhèi;dz liǎng;hd piào;hd	160
+这两人	zhèi;dz liǎng;hd rén;rd	530
+这两日	zhèi;dz liǎng;hd rì;lh	410
+这两首	zhèi;dz liǎng;hd shǒu;dh	420
+这两双	zhèi;dz liǎng;hd shuāng;vv	260
+这两台	zhèi;dz liǎng;hd tái;vk	430
+这两天	zhèi;dz liǎng;hd tiān;hd	700
+这两条	zhèi;dz liǎng;hd tiáo;pm	550
+这两晚	zhèi;dz liǎng;hd wǎn;lp	160
+这两位	zhèi;dz liǎng;hd wèi;rd	600
+这两项	zhèi;dz liǎng;hd xiàng;hh	550
+这两页	zhèi;dz liǎng;hd yè;hr	270
+这两张	zhèi;dz liǎng;hd zhāng;vp	510
+这两者	zhèi;dz liǎng;hd zhě;tl	600
+这两只	zhèi;dz liǎng;hd zhǐ;kd	490
+这两种	zhèi;dz liǎng;hd zhǒng;ek	700
+这六点	zhèi;dz liù;dd diǎn;sq	310
+这六个	zhèi;dz liù;dd gè;rs	470
+这六年	zhèi;dz liù;dd nián;ps	360
+这六人	zhèi;dz liù;dd rén;rd	260
+这六所	zhèi;dz liù;dd suǒ;pp	240
+这路子	zhèi;dz lù;zp zi;vh	240
+这轮回	zhèi;dz lún;hr huí;sh	140
+这逻辑	zhèi;dz luó;sz jí;hk	420
+这买卖	zhèi;dz mǎi;vd mài;hd	340
+这貌似	zhèi;dz mào;pp sì;rv	380
+这美人	zhèi;dz měi;dd rén;rd	160
+这没啥	zhèi;dz méi;up shá;kr	360
+这每天	zhèi;dz měi;pd tiān;hd	290
+这没用	zhèi;dz méi;up yòng;ps	220
+这没有	zhèi;dz méi;up yǒu;hy	500
+这妹子	zhèi;dz mèi;nh zi;vh	450
+这门课	zhèi;dz mén;dv kè;al	590
+这门口	zhèi;dz mén;dv kǒu;kh	280
+这门子	zhèi;dz mén;dv zǐ;vh	240
+这面墙	zhèi;dz miàn;hh qiáng;th	380
+这明显	zhèi;dz míng;ly xiǎn;lh	460
+这名字	zhèi;dz míng;pk zì;bh	550
+这魔鬼	zhèi;dz mó;dd guǐ;pd	210
+这那的	zhèi;dz nà;vv de;pp	310
+这哪是	zhèi;dz nǎ;kv shì;lr	460
+这哪行	zhèi;dz nǎ;kv xíng;ph	220
+这难道	zhèi;dz nán;vr dào;dz	550
+这男的	zhèi;dz nán;sp de;pp	480
+这男人	zhèi;dz nán;sp rén;rd	450
+这脑袋	zhèi;dz nǎo;yd dài;rd	240
+这能力	zhèi;dz néng;vp lì;vp	370
+这能让	zhèi;dz néng;vp ràng;as	400
+这能忍	zhèi;dz néng;vp rěn;vx	260
+这你就	zhèi;dz nǐ;rp jiù;dh	380
+这你妈	zhèi;dz nǐ;rp mā;nv	200
+这年代	zhèi;dz nián;ps dài;rh	370
+这年纪	zhèi;dz nián;ps jì;iv	350
+这年轻	zhèi;dz nián;ps qīng;hv	240
+这年头	zhèi;dz nián;ps tóu;dd	600
+这年月	zhèi;dz nián;ps yuè;yh	390
+这女的	zhèi;dz nǚ;nh de;pp	470
+这女人	zhèi;dz nǚ;nh rén;rd	460
+这女娃	zhèi;dz nǚ;nh wá;nt	210
+这女子	zhèi;dz nǚ;nh zǐ;vh	360
+这牌子	zhèi;dz pái;pp zi;vh	480
+这盘是	zhèi;dz pán;ph shì;lr	240
+这匹马	zhèi;dz pǐ;hv mǎ;vh	390
+这片海	zhèi;dz piàn;pv hǎi;up	340
+这片湖	zhèi;dz piàn;pv hú;uh	220
+这篇文	zhèi;dz piān;gc wén;dd	440
+这便宜	zhèi;dz pián;rh yi;bh	330
+这片子	zhèi;dz piān;pv zi;vh	500
+这票的	zhèi;dz piào;hd de;pp	260
+这破店	zhèi;dz pò;hv diàn;dk	220
+这破乎	zhèi;dz pò;hv hū;ps	260
+这婆娘	zhèi;dz pó;un niáng;nd	210
+这气场	zhèi;dz qì;pv chǎng;tv	320
+这岂非	zhèi;dz qǐ;sv fēi;ss	260
+这七个	zhèi;dz qī;hv gè;rs	440
+这期间	zhèi;dz qī;cy jiān;dl	610
+这其间	zhèi;dz qí;cd jiān;dl	360
+这七款	zhèi;dz qī;hv kuǎn;tp	170
+这七人	zhèi;dz qī;hv rén;rd	230
+这其中	zhèi;dz qí;cd zhōng;ks	650
+这恰恰	zhèi;dz qià;xr qià;xr	450
+这情怀	zhèi;dz qíng;xh huái;xh	250
+这情况	zhèi;dz qíng;xh kuàng;dk	490
+这区区	zhèi;dz qū;hv qū;hv	330
+这泉水	zhèi;dz quán;pu shuǐ;ud	190
+这群狗	zhèi;dz qún;vd gǒu;pp	220
+这群里	zhèi;dz qún;vd lǐ;lt	190
+这群人	zhèi;dz qún;vd rén;rd	550
+这让她	zhèi;dz ràng;as tā;nv	470
+这让我	zhèi;dz ràng;as wǒ;pd	630
+这人生	zhèi;dz rén;rd shēng;ph	380
+这日子	zhèi;dz rì;lh zi;vh	470
+这软件	zhèi;dz ruǎn;hp jiàn;rp	370
+这仨人	zhèi;dz sā;rh rén;rd	280
+这三大	zhèi;dz sān;hh dà;hd	540
+这三对	zhèi;dz sān;hh duì;vh	270
+这三份	zhèi;dz sān;hh fèn;rp	320
+这三个	zhèi;dz sān;hh gè;rs	690
+这三国	zhèi;dz sān;hh guó;sh	330
+这三家	zhèi;dz sān;hh jiā;bd	510
+这三类	zhèi;dz sān;hh lèi;dd	480
+这三名	zhèi;dz sān;hh míng;pk	410
+这三年	zhèi;dz sān;hh nián;ps	510
+这三人	zhèi;dz sān;hh rén;rd	470
+这三天	zhèi;dz sān;hh tiān;hd	460
+这三条	zhèi;dz sān;hh tiáo;pm	470
+这三位	zhèi;dz sān;hh wèi;rd	510
+这三项	zhèi;dz sān;hh xiàng;hh	470
+这三只	zhèi;dz sān;hh zhǐ;kd	400
+这三种	zhèi;dz sān;hh zhǒng;ek	610
+这傻逼	zhèi;dz shǎ;rp bī;hz	370
+这社会	zhèi;dz shè;dt huì;rd	430
+这神秘	zhèi;dz shén;dl mì;ex	250
+这深夜	zhèi;dz shēn;ud yè;dd	180
+这身子	zhèi;dz shēn;pp zi;vh	170
+这生活	zhèi;dz shēng;ph huó;up	360
+这盛世	zhèi;dz shèng;hh shì;cv	380
+这声音	zhèi;dz shēng;tp yīn;dl	440
+这事啊	zhèi;dz shì;hs a;kv	310
+这是爱	zhèi;dz shì;lr ài;pd	370
+这是把	zhèi;dz shì;lr bǎ;fv	410
+这事吧	zhèi;dz shì;hs ba;kv	370
+这是病	zhèi;dz shì;lr bìng;dd	440
+这是从	zhèi;dz shì;lr cóng;rr	510
+这时代	zhèi;dz shí;lh dài;rh	360
+这是带	zhèi;dz shì;lr dài;hs	280
+这世代	zhèi;dz shì;cv dài;rh	230
+这世道	zhèi;dz shì;cv dào;dz	440
+这使得	zhèi;dz shǐ;rh de;pl	690
+这是第	zhèi;dz shì;lr dì;gp	440
+这事都	zhèi;dz shì;hs dōu;tv	320
+这是对	zhèi;dz shì;lr duì;vh	600
+这是非	zhèi;dz shì;lr fēi;ss	330
+这是否	zhèi;dz shì;lr fǒu;hk	580
+这是个	zhèi;dz shì;lr gè;rs	700
+这是给	zhèi;dz shì;lr gěi;ir	470
+这是跟	zhèi;dz shì;lr gēn;zv	380
+这时光	zhèi;dz shí;lh guāng;sv	290
+这是很	zhèi;dz shì;lr hěn;pv	570
+这时候	zhèi;dz shí;lh hòu;rs	700
+这是家	zhèi;dz shì;lr jiā;bd	490
+这世间	zhèi;dz shì;cv jiān;dl	510
+这时间	zhèi;dz shí;lh jiān;dl	460
+这世界	zhèi;dz shì;cv jiè;ss	600
+这时就	zhèi;dz shí;lh jiù;dh	520
+这是嘛	zhèi;dz shì;lr ma;kd	230
+这是没	zhèi;dz shì;lr méi;up	400
+这是梦	zhèi;dz shì;lr mèng;md	280
+这是命	zhèi;dz shì;lr mìng;rs	300
+这是哪	zhèi;dz shì;lr nǎ;kv	440
+这时你	zhèi;dz shí;lh nǐ;rp	560
+这是你	zhèi;dz shì;lr nǐ;rp	560
+这十年	zhèi;dz shí;hs nián;ps	510
+这是怕	zhèi;dz shì;lr pà;xp	280
+这视频	zhèi;dz shì;ds pín;sh	430
+这时期	zhèi;dz shí;lh qī;cy	430
+这事情	zhèi;dz shì;hs qíng;xh	520
+这事请	zhèi;dz shì;hs qǐng;ah	130
+这是啥	zhèi;dz shì;lr shá;kr	500
+这世上	zhèi;dz shì;cv shàng;sh	590
+这是神	zhèi;dz shì;lr shén;dl	330
+这是谁	zhèi;dz shì;lr shuí;ar	480
+这是他	zhèi;dz shì;lr tā;rv	620
+这是她	zhèi;dz shì;lr tā;nv	560
+这是我	zhèi;dz shì;lr wǒ;pd	740
+这使我	zhèi;dz shǐ;rh wǒ;pd	430
+这实习	zhèi;dz shí;bd xí;vh	110
+这是想	zhèi;dz shì;lr xiǎng;mx	370
+这是些	zhèi;dz shì;lr xiē;sh	280
+这是由	zhèi;dz shì;lr yóu;sh	550
+这是咋	zhèi;dz shì;lr zǎ;kp	280
+这是在	zhèi;dz shì;lr zài;ht	630
+这是正	zhèi;dz shì;lr zhèng;hh	270
+这首词	zhèi;dz shǒu;dh cí;av	480
+这首歌	zhèi;dz shǒu;dh gē;hp	710
+这手机	zhèi;dz shǒu;fs jī;mp	480
+这首诗	zhèi;dz shǒu;dh shī;at	590
+这手速	zhèi;dz shǒu;fs sù;hz	200
+这舒服	zhèi;dz shū;rv fú;yv	230
+这数字	zhèi;dz shù;dp zì;bh	390
+这双手	zhèi;dz shuāng;vv shǒu;fs	350
+这双鞋	zhèi;dz shuāng;vv xié;ct	500
+这谁啊	zhèi;dz shuí;ar a;kv	300
+这谁呀	zhèi;dz shuí;ar ya;kh	210
+这说的	zhèi;dz shuō;ad de;pp	420
+这说明	zhèi;dz shuō;ad míng;ly	650
+这四个	zhèi;dz sì;sh gè;rs	600
+这似乎	zhèi;dz sì;rv hū;ps	550
+这四名	zhèi;dz sì;sh míng;pk	350
+这四年	zhèi;dz sì;sh nián;ps	480
+这四天	zhèi;dz sì;sh tiān;hd	330
+这艘船	zhèi;dz sōu;pp chuán;pp	490
+这速度	zhèi;dz sù;hz dù;dd	460
+这算不	zhèi;dz suàn;gs bù;hd	170
+这算是	zhèi;dz suàn;gs shì;lr	580
+这酸爽	zhèi;dz suān;hv shuǎng;hd	410
+这岁数	zhèi;dz sui;sd shù;dp	320
+这孙子	zhèi;dz sūn;vs zi;vh	400
+这他妈	zhèi;dz tā;rv mā;nv	450
+这台风	zhèi;dz tái;vk fēng;pd	230
+这台机	zhèi;dz tái;vk jī;mp	350
+这太阳	zhèi;dz tài;hd yáng;vl	230
+这堂课	zhèi;dz táng;st kè;al	420
+这套房	zhèi;dz tào;hd fáng;dp	420
+这套书	zhèi;dz tào;hd shū;vd	660
+这体格	zhèi;dz tǐ;rm gé;mp	240
+这题目	zhèi;dz tí;lr mù;sh	450
+这题选	zhèi;dz tí;lr xuǎn;pz	220
+这天气	zhèi;dz tiān;hd qì;pv	460
+这天色	zhèi;dz tiān;hd sè;pv	170
+这天下	zhèi;dz tiān;hd xià;hd	370
+这条虫	zhèi;dz tiáo;pm chóng;od	110
+这条船	zhèi;dz tiáo;pm chuán;pp	380
+这条狗	zhèi;dz tiáo;pm gǒu;pp	400
+这条河	zhèi;dz tiáo;pm hé;uh	450
+这条件	zhèi;dz tiáo;pm jiàn;rp	390
+这条街	zhèi;dz tiáo;pm jiē;pt	560
+这条龙	zhèi;dz tiáo;pm lóng;hd	340
+这条路	zhèi;dz tiáo;pm lù;zp	650
+这条命	zhèi;dz tiáo;pm mìng;rs	410
+这条线	zhèi;dz tiáo;pm xiàn;ih	540
+这挺好	zhèi;dz tǐng;fp hǎo;nv	250
+这头猪	zhèi;dz tóu;dd zhū;pt	350
+这推理	zhèi;dz tuī;fr lǐ;wl	130
+这娃娃	zhèi;dz wá;nt wa;nt	240
+这碗饭	zhèi;dz wǎn;hb fàn;pp	450
+这碗酒	zhèi;dz wǎn;hb jiǔ;uh	260
+这完全	zhèi;dz wán;bv quán;rw	550
+这万是	zhèi;dz wàn;hp shì;lr	340
+这玩玩	zhèi;dz wán;wh wán;wh	200
+这玩意	zhèi;dz wán;wh yì;dx	630
+这万一	zhèi;dz wàn;hp yī;hh	260
+这玩应	zhèi;dz wán;wh yīng;dh	220
+这碗粥	zhèi;dz wǎn;hb zhōu;vd	280
+这网络	zhèi;dz wǎng;sd luò;ip	260
+这网速	zhèi;dz wǎng;sd sù;hz	200
+这未必	zhèi;dz wèi;hm bì;xp	340
+这胃口	zhèi;dz wèi;sy kǒu;kh	200
+这位老	zhèi;dz wèi;rd lǎo;tv	450
+这位是	zhèi;dz wèi;rd shì;lr	440
+这味药	zhèi;dz wèi;kh yào;cd	300
+这位爷	zhèi;dz wèi;rd yé;ps	360
+这问题	zhèi;dz wèn;dk tí;lr	620
+这我就	zhèi;dz wǒ;pd jiù;dh	420
+这五个	zhèi;dz wǔ;hh gè;rs	550
+这五家	zhèi;dz wǔ;hh jiā;bd	360
+这五年	zhèi;dz wǔ;hh nián;ps	440
+这五人	zhèi;dz wǔ;hh rén;rd	320
+这无疑	zhèi;dz wú;hv yí;pv	580
+这五种	zhèi;dz wǔ;hh zhǒng;ek	460
+这习惯	zhèi;dz xí;vh guàn;xv	360
+这喜欢	zhèi;dz xǐ;tk huān;vp	270
+这系列	zhèi;dz xì;pi liè;hs	480
+这系统	zhèi;dz xì;pi tǒng;id	360
+这下看	zhèi;dz xià;hd kàn;ph	190
+这下面	zhèi;dz xià;hd miàn;hh	360
+这下去	zhèi;dz xià;hd qù;td	150
+这下子	zhèi;dz xià;hd zǐ;vh	440
+这先生	zhèi;dz xiān;pv shēng;ph	200
+这小哥	zhèi;dz xiǎo;sd gē;hs	330
+这小孩	zhèi;dz xiǎo;sd hái;vd	410
+这小伙	zhèi;dz xiǎo;sd huǒ;rq	350
+这潇洒	zhèi;dz xiāo;uc sǎ;uh	130
+这小样	zhèi;dz xiǎo;sd yàng;md	160
+这小子	zhèi;dz xiǎo;sd zi;vh	510
+这些表	zhèi;dz xiē;sh biǎo;hd	340
+这些厂	zhèi;dz xiē;sh chǎng;hp	240
+这些场	zhèi;dz xiē;sh chǎng;tv	230
+这些车	zhèi;dz xiē;sh chē;hs	500
+这些词	zhèi;dz xiē;sh cí;av	530
+这些点	zhèi;dz xiē;sh diǎn;sq	460
+这些都	zhèi;dz xiē;sh dōu;tv	710
+这些队	zhèi;dz xiē;sh duì;vr	220
+这些个	zhèi;dz xiē;sh gè;rs	520
+这些歌	zhèi;dz xiē;sh gē;hp	460
+这些狗	zhèi;dz xiē;sh gǒu;pp	370
+这些股	zhèi;dz xiē;sh gǔ;yp	400
+这些哈	zhèi;dz xiē;sh hā;kr	180
+这些好	zhèi;dz xiē;sh hǎo;nv	370
+这些话	zhèi;dz xiē;sh huà;ap	590
+这些货	zhèi;dz xiē;sh huò;rr	340
+这些课	zhèi;dz xiē;sh kè;al	410
+这些料	zhèi;dz xiē;sh liào;dd	290
+这些吗	zhèi;dz xiē;sh ma;kv	430
+这些年	zhèi;dz xiē;sh nián;ps	680
+这些票	zhèi;dz xiē;sh piào;hd	330
+这些钱	zhèi;dz xiē;sh qián;jh	600
+这些群	zhèi;dz xiē;sh qún;vd	330
+这些人	zhèi;dz xiē;sh rén;rd	720
+这些是	zhèi;dz xiē;sh shì;lr	600
+这些事	zhèi;dz xiē;sh shì;hs	600
+这些时	zhèi;dz xiē;sh shí;lh	380
+这些书	zhèi;dz xiē;sh shū;vd	560
+这些数	zhèi;dz xiē;sh shù;dp	320
+这些天	zhèi;dz xiē;sh tiān;hd	560
+这些娃	zhèi;dz xiē;sh wá;nt	210
+这些项	zhèi;dz xiē;sh xiàng;hh	280
+这些字	zhèi;dz xiē;sh zì;bh	470
+这鞋子	zhèi;dz xié;ct zi;vh	360
+这些子	zhèi;dz xiē;sh zǐ;vh	310
+这辛苦	zhèi;dz xīn;ds kǔ;ck	170
+这心情	zhèi;dz xīn;xd qíng;xh	300
+这心思	zhèi;dz xīn;xd sī;sx	290
+这心态	zhèi;dz xīn;xd tài;hx	310
+这型号	zhèi;dz xíng;ht hào;kv	290
+这星期	zhèi;dz xīng;lh qī;cy	380
+这形势	zhèi;dz xíng;hp shì;fp	240
+这兄弟	zhèi;dz xiōng;kv dì;dp	380
+这熊样	zhèi;dz xióng;vq yàng;md	280
+这需要	zhèi;dz xū;hs yào;hn	670
+这学期	zhèi;dz xué;dh qī;cy	560
+这学校	zhèi;dz xué;dh xiào;md	440
+这丫头	zhèi;dz yā;ds tou;dd	380
+这颜色	zhèi;dz yán;dh sè;pv	410
+这言语	zhèi;dz yán;ak yǔ;ah	120
+这颜值	zhèi;dz yán;dh zhí;rh	390
+这严重	zhèi;dz yán;hp zhòng;pt	390
+这样啊	zhèi;dz yàng;md a;kv	560
+这样爱	zhèi;dz yàng;md ài;pd	350
+这样吧	zhèi;dz yàng;md ba;kv	600
+这样办	zhèi;dz yàng;md bàn;vd	310
+这样才	zhèi;dz yàng;md cái;hp	670
+这样穿	zhèi;dz yàng;md chuān;bp	490
+这样打	zhèi;dz yàng;md dǎ;fh	410
+这样哒	zhèi;dz yàng;md dá;kh	320
+这样的	zhèi;dz yàng;md de;pp	920
+这样滴	zhèi;dz yàng;md dī;ud	460
+这样地	zhèi;dz yàng;md dì;tv	390
+这样对	zhèi;dz yàng;md duì;vh	590
+这样额	zhèi;dz yàng;md é;bh	250
+这样干	zhèi;dz yàng;md gàn;hs	410
+这样搞	zhèi;dz yàng;md gǎo;fd	430
+这样怪	zhèi;dz yàng;md guài;xv	230
+这样和	zhèi;dz yàng;md hé;ek	450
+这样合	zhèi;dz yàng;md hé;rk	210
+这样很	zhèi;dz yàng;md hěn;pv	490
+这样会	zhèi;dz yàng;md huì;rd	600
+这样叫	zhèi;dz yàng;md jiào;kv	410
+这样就	zhèi;dz yàng;md jiù;dh	680
+这样坑	zhèi;dz yàng;md kēng;td	270
+这样快	zhèi;dz yàng;md kuài;xv	340
+这样啦	zhèi;dz yàng;md la;kf	450
+这样来	zhèi;dz yàng;md lái;hm	480
+这样类	zhèi;dz yàng;md lèi;dd	170
+这样聊	zhèi;dz yàng;md liáo;hp	220
+这样吗	zhèi;dz yàng;md ma;kv	570
+这样嘛	zhèi;dz yàng;md ma;kd	420
+这样能	zhèi;dz yàng;md néng;vp	530
+这样哦	zhèi;dz yàng;md ó;kp	360
+这样噢	zhèi;dz yàng;md ō;kp	170
+这样喔	zhèi;dz yàng;md ō;kv	170
+这样怕	zhèi;dz yàng;md pà;xp	220
+这样排	zhèi;dz yàng;md pái;fs	260
+这样撒	zhèi;dz yàng;md sā;fc	160
+这样三	zhèi;dz yàng;md sān;hh	260
+这样事	zhèi;dz yàng;md shì;hs	300
+这样说	zhèi;dz yàng;md shuō;ad	650
+这样算	zhèi;dz yàng;md suàn;gs	490
+这样所	zhèi;dz yàng;md suǒ;pp	300
+这样天	zhèi;dz yàng;md tiān;hd	260
+这样填	zhèi;dz yàng;md tián;th	200
+这样玩	zhèi;dz yàng;md wán;wh	480
+这样晚	zhèi;dz yàng;md wǎn;lp	170
+这样问	zhèi;dz yàng;md wèn;dk	490
+这样我	zhèi;dz yàng;md wǒ;pd	590
+这样想	zhèi;dz yàng;md xiǎng;mx	580
+这样写	zhèi;dz yàng;md xiě;dh	530
+这样学	zhèi;dz yàng;md xué;dh	380
+这样呀	zhèi;dz yàng;md ya;kh	380
+这样也	zhèi;dz yàng;md yě;vv	580
+这样耶	zhèi;dz yàng;md yé;hv	120
+这样有	zhèi;dz yàng;md yǒu;hy	500
+这样在	zhèi;dz yàng;md zài;ht	580
+这样装	zhèi;dz yàng;md zhuāng;dd	340
+这样子	zhèi;dz yàng;md zi;vh	640
+这样紫	zhèi;dz yàng;md zǐ;si	170
+这样走	zhèi;dz yàng;md zǒu;tr	420
+这样做	zhèi;dz yàng;md zuò;rh	720
+这要看	zhèi;dz yào;hn kàn;ph	520
+这要求	zhèi;dz yāo;hn qiú;hd	490
+这也不	zhèi;dz yě;vv bù;hd	490
+这也成	zhèi;dz yě;vv chéng;hd	350
+这也带	zhèi;dz yě;vv dài;hs	190
+这也得	zhèi;dz yě;vv de;pl	320
+这也跟	zhèi;dz yě;vv gēn;zv	380
+这也叫	zhèi;dz yě;vv jiào;kv	470
+这也就	zhèi;dz yě;vv jiù;dh	580
+这页面	zhèi;dz yè;hr miàn;hh	210
+这也能	zhèi;dz yě;vv néng;vp	460
+这也让	zhèi;dz yě;vv ràng;as	570
+这也是	zhèi;dz yě;vv shì;lr	800
+这也算	zhèi;dz yě;vv suàn;gs	530
+这也太	zhèi;dz yě;vv tài;hd	510
+这也忒	zhèi;dz yě;vv tè;hd	300
+这也行	zhèi;dz yě;vv xíng;ph	360
+这也许	zhèi;dz yě;vv xǔ;ap	540
+这也要	zhèi;dz yě;vv yào;hn	390
+这一把	zhèi;dz yì;hh bǎ;fv	370
+这一拜	zhèi;dz yí;hh bài;ph	200
+这一版	zhèi;dz yì;hh bǎn;pp	500
+这一般	zhèi;dz yì;hh bān;pp	420
+这一半	zhèi;dz yí;hh bàn;ds	340
+这一辈	zhèi;dz yí;hh bèi;ss	430
+这一杯	zhèi;dz yì;hh bēi;mh	380
+这一本	zhèi;dz yì;hh běn;mh	570
+这一笔	zhèi;dz yì;hh bǐ;gv	410
+这一边	zhèi;dz yì;hh biān;vz	470
+这一别	zhèi;dz yì;hh bié;ks	330
+这一波	zhèi;dz yì;hh bō;uv	550
+这一步	zhèi;dz yí;hh bù;sp	640
+这一部	zhèi;dz yì;hh bù;dv	510
+这一层	zhèi;dz yì;hh céng;vd	510
+这一茬	zhèi;dz yì;hh chá;ct	300
+这一场	zhèi;dz yì;hh chǎng;tv	540
+这一出	zhèi;dz yì;hh chū;vs	410
+这一处	zhèi;dz yí;hh chù;pd	390
+这一串	zhèi;dz yí;hh chuàn;ks	390
+这一次	zhèi;dz yí;hh cì;dp	700
+这一代	zhèi;dz yí;hh dài;rh	600
+这一带	zhèi;dz yí;hh dài;hs	540
+这一刀	zhèi;dz yì;hh dāo;vp	360
+这一点	zhèi;dz yì;hh diǎn;sq	780
+这一定	zhèi;dz yí;hh dìng;bd	490
+这一栋	zhèi;dz yí;hh dòng;mh	250
+这一动	zhèi;dz yí;hh dòng;hv	220
+这一段	zhèi;dz yí;hh duàn;pp	630
+这一对	zhèi;dz yí;hh duì;vh	510
+这一堆	zhèi;dz yì;hh duī;tr	410
+这一发	zhèi;dz yí;hh fā;vd	280
+这一番	zhèi;dz yì;hh fān;ph	420
+这一方	zhèi;dz yì;hh fāng;dp	420
+这一份	zhèi;dz yí;hh fèn;rp	500
+这一分	zhèi;dz yì;hh fēn;pp	350
+这衣服	zhèi;dz yī;dd fú;yv	440
+这一搞	zhèi;dz yì;hh gǎo;fd	180
+这一稿	zhèi;dz yì;hh gǎo;ed	160
+这一个	zhèi;dz yí;hh gè;rs	630
+这一挂	zhèi;dz yí;hh guà;ft	220
+这一关	zhèi;dz yì;hh guān;dd	500
+这一跪	zhèi;dz yí;hh guì;zp	290
+这一锅	zhèi;dz yì;hh guō;jk	380
+这一行	zhèi;dz yì;hh háng;ph	560
+这一号	zhèi;dz yí;hh hào;kv	220
+这以后	zhèi;dz yǐ;vr hòu;pk	440
+这一环	zhèi;dz yì;hh huán;wh	360
+这一回	zhèi;dz yì;hh huí;sh	470
+这一季	zhèi;dz yì;hh jì;eh	550
+这一集	zhèi;dz yì;hh jí;rm	510
+这一级	zhèi;dz yì;hh jí;ip	400
+这一件	zhèi;dz yí;hh jiàn;rp	420
+这一剑	zhèi;dz yí;hh jiàn;rs	290
+这一届	zhèi;dz yí;hh jiè;vh	510
+这一节	zhèi;dz yì;hh jié;cs	430
+这一劫	zhèi;dz yì;hh jié;tv	370
+这一截	zhèi;dz yì;hh jié;td	240
+这已经	zhèi;dz yǐ;vv jīng;iv	600
+这一句	zhèi;dz yí;hh jù;pk	540
+这一局	zhèi;dz yì;hh jú;vk	430
+这一看	zhèi;dz yí;hh kàn;ph	410
+这一刻	zhèi;dz yí;hh kè;ds	600
+这一课	zhèi;dz yí;hh kè;al	420
+这一颗	zhèi;dz yì;hh kē;lh	350
+这一块	zhèi;dz yí;hh kuài;tv	630
+这一款	zhèi;dz yì;hh kuǎn;tp	580
+这一来	zhèi;dz yì;hh lái;hm	350
+这一类	zhèi;dz yí;hh lèi;dd	620
+这一路	zhèi;dz yí;hh lù;zp	540
+这一轮	zhèi;dz yì;hh lún;hr	590
+这一面	zhèi;dz yì;hh miàn;hh	460
+这一秒	zhèi;dz yì;hh miǎo;es	410
+这一幕	zhèi;dz yí;hh mù;cs	610
+这一年	zhèi;dz yì;hh nián;ps	660
+这一弄	zhèi;dz yí;hh nòng;ws	170
+这一排	zhèi;dz yì;hh pái;fs	380
+这一批	zhèi;dz yì;hh pī;fh	490
+这一片	zhèi;dz yí;hh piàn;pv	520
+这一篇	zhèi;dz yì;hh piān;gc	490
+这一票	zhèi;dz yí;hh piào;hd	370
+这一瓶	zhèi;dz yì;hh píng;dh	350
+这一期	zhèi;dz yì;hh qī;cy	530
+这一切	zhèi;dz yí;hh qiè;hv	690
+这一去	zhèi;dz yí;hh qù;td	380
+这一曲	zhèi;dz yì;hh qǔ;sh	320
+这一日	zhèi;dz yí;hh rì;lh	380
+这一身	zhèi;dz yì;hh shēn;pp	480
+这一生	zhèi;dz yì;hh shēng;ph	580
+这已是	zhèi;dz yǐ;vv shì;lr	500
+这一世	zhèi;dz yí;hh shì;cv	450
+这一事	zhèi;dz yí;hh shì;hs	290
+这一首	zhèi;dz yì;hh shǒu;dh	430
+这一手	zhèi;dz yì;hh shǒu;fs	420
+这意思	zhèi;dz yì;dx sī;sx	430
+这一台	zhèi;dz yì;hh tái;vk	350
+这一趟	zhèi;dz yí;hh tàng;tk	440
+这一套	zhèi;dz yí;hh tào;hd	590
+这一天	zhèi;dz yì;hh tiān;hd	670
+这一跳	zhèi;dz yí;hh tiào;zp	300
+这一通	zhèi;dz yí;hh tòng;vz	320
+这一头	zhèi;dz yì;hh tóu;dd	390
+这一碗	zhèi;dz yì;hh wǎn;hb	420
+这一晚	zhèi;dz yì;hh wǎn;lp	390
+这一网	zhèi;dz yì;hh wǎng;sd	180
+这意味	zhèi;dz yì;dx wèi;kh	440
+这一位	zhèi;dz yí;hh wèi;rd	430
+这一吻	zhèi;dz yì;hh wěn;kp	310
+这一窝	zhèi;dz yì;hh wō;bd	220
+这一物	zhèi;dz yí;hh wù;pp	260
+这一下	zhèi;dz yí;hh xià;hd	450
+这一项	zhèi;dz yí;hh xiàng;hh	570
+这一向	zhèi;dz yí;hh xiàng;pk	240
+这一些	zhèi;dz yì;hh xiē;sh	450
+这一夜	zhèi;dz yí;hh yè;dd	440
+这一页	zhèi;dz yì;hh yè;hr	440
+这一战	zhèi;dz yí;hh zhàn;sh	440
+这一站	zhèi;dz yí;hh zhàn;ds	410
+这一张	zhèi;dz yì;hh zhāng;vp	490
+这一章	zhèi;dz yì;hh zhāng;ds	480
+这一仗	zhèi;dz yí;hh zhàng;rh	430
+这一掌	zhèi;dz yì;hh zhǎng;sf	270
+这一招	zhèi;dz yì;hh zhāo;fv	540
+这一阵	zhèi;dz yí;hh zhèn;vh	370
+这一帧	zhèi;dz yí;hh zhēn;ss	240
+这一支	zhèi;dz yì;hh zhī;hd	430
+这一只	zhèi;dz yì;hh zhī;kd	400
+这一种	zhèi;dz yì;hh zhǒng;ek	540
+这一周	zhèi;dz yì;hh zhōu;pk	520
+这一株	zhèi;dz yì;hh zhū;mp	220
+这一转	zhèi;dz yí;hh zhuǎn;hh	300
+这一字	zhèi;dz yì;hh zì;bh	250
+这一宗	zhèi;dz yì;hh zōng;bd	220
+这一座	zhèi;dz yí;hh zuò;dt	370
+这应该	zhèi;dz yīng;dh gāi;ad	610
+这又不	zhèi;dz yòu;vd bù;hd	350
+这有个	zhèi;dz yǒu;hy gè;rs	400
+这又没	zhèi;dz yòu;vd méi;up	170
+这有钱	zhèi;dz yǒu;hy qián;jh	190
+这有啥	zhèi;dz yǒu;hy shá;kr	430
+这又是	zhèi;dz yòu;vd shì;lr	570
+这游戏	zhèi;dz yóu;ud xì;vh	590
+这悠闲	zhèi;dz yōu;rx xián;dm	130
+这语气	zhèi;dz yǔ;ah qì;pv	280
+这咋还	zhèi;dz zǎ;kp hái;hz	210
+这在哪	zhèi;dz zài;ht nǎ;kv	170
+这渣男	zhèi;dz zhā;um nán;sp	190
+这张车	zhèi;dz zhāng;vp chē;hs	80
+这张床	zhèi;dz zhāng;vp chuáng;dm	340
+这张单	zhèi;dz zhāng;vp dān;ds	280
+这张的	zhèi;dz zhāng;vp de;pp	410
+这张好	zhèi;dz zhāng;vp hǎo;nv	260
+这张脸	zhèi;dz zhāng;vp liǎn;yr	470
+这张牌	zhèi;dz zhāng;vp pái;pp	460
+这张图	zhèi;dz zhāng;vp tú;sh	650
+着这座	zhe;dh zhèi;dz zuò;dt	380
+这阵容	zhèi;dz zhèn;vh róng;bk	360
+这真是	zhèi;dz zhēn;hd shì;lr	590
+这阵子	zhèi;dz zhèn;vh zi;vh	440
+这正如	zhèi;dz zhèng;hh rú;nk	380
+这正是	zhèi;dz zhèng;hh shì;lr	610
+这之间	zhèi;dz zhī;dd jiān;dl	420
+这之类	zhèi;dz zhī;dd lèi;dd	180
+这只猫	zhèi;dz zhǐ;kd māo;pc	490
+这只能	zhèi;dz zhǐ;kd néng;vp	460
+这只鸟	zhèi;dz zhǐ;kd niǎo;ph	370
+这只票	zhèi;dz zhǐ;kd piào;hd	300
+这之前	zhèi;dz zhī;dd qián;ds	500
+这智商	zhèi;dz zhì;pl shāng;dk	400
+这只是	zhèi;dz zhǐ;kd shì;lr	700
+这只要	zhèi;dz zhǐ;kd yào;hn	270
+这只鹰	zhèi;dz zhǐ;kd yīng;dh	280
+这只猪	zhèi;dz zhǐ;kd zhū;pt	300
+这种啊	zhèi;dz zhǒng;ek a;kv	280
+这种爱	zhèi;dz zhǒng;ek ài;pd	460
+这种表	zhèi;dz zhǒng;ek biǎo;hd	290
+这种病	zhèi;dz zhǒng;ek bìng;dd	570
+这种车	zhèi;dz zhǒng;ek chē;hs	460
+这种虫	zhèi;dz zhǒng;ek chóng;od	330
+这种船	zhèi;dz zhǒng;ek chuán;pp	290
+这种词	zhèi;dz zhǒng;ek cí;av	150
+这种单	zhèi;dz zhǒng;ek dān;ds	330
+这种的	zhèi;dz zhǒng;ek de;pp	560
+这种地	zhèi;dz zhòng;ek dì;tv	300
+这种店	zhèi;dz zhǒng;ek diàn;dk	540
+这种点	zhèi;dz zhǒng;ek diǎn;sq	260
+这种多	zhèi;dz zhǒng;ek duō;pd	350
+这种房	zhèi;dz zhǒng;ek fáng;dp	270
+这种该	zhèi;dz zhǒng;ek gāi;ad	230
+这种给	zhèi;dz zhǒng;ek gěi;ir	310
+这种梗	zhèi;dz zhǒng;ek gěng;mh	320
+这种话	zhèi;dz zhǒng;ek huà;ap	570
+这种花	zhèi;dz zhòng;ek huā;cv	420
+这中间	zhèi;dz zhōng;ks jiān;dl	550
+这种讲	zhèi;dz zhǒng;ek jiǎng;ah	250
+这种课	zhèi;dz zhǒng;ek kè;al	360
+这种啦	zhèi;dz zhǒng;ek la;kf	220
+这种嘛	zhèi;dz zhǒng;ek ma;kd	280
+这种猫	zhèi;dz zhǒng;ek māo;pc	310
+这种美	zhèi;dz zhǒng;ek měi;dd	410
+这种呢	zhèi;dz zhǒng;ek ne;kv	300
+这种枪	zhèi;dz zhǒng;ek qiāng;mr	300
+这种人	zhèi;dz zhǒng;ek rén;rd	660
+这种事	zhèi;dz zhǒng;ek shì;hs	660
+这种鞋	zhèi;dz zhǒng;ek xié;ct	360
+这种药	zhèi;dz zhǒng;ek yào;cd	470
+这周二	zhèi;dz zhōu;pk èr;hh	270
+这周还	zhèi;dz zhōu;pk hái;hz	230
+这周六	zhèi;dz zhōu;pk liù;dd	390
+这周末	zhèi;dz zhōu;pk mò;hm	490
+这周内	zhèi;dz zhōu;pk nà;sd	240
+这周日	zhèi;dz zhōu;pk rì;lh	340
+这周三	zhèi;dz zhōu;pk sān;hh	290
+这周四	zhèi;dz zhōu;pk sì;sh	280
+这周天	zhèi;dz zhōu;pk tiān;hd	170
+这周五	zhèi;dz zhōu;pk wǔ;hh	380
+这主播	zhèi;dz zhǔ;dw bō;fp	190
+这主意	zhèi;dz zhǔ;dw yì;dx	350
+这专业	zhèi;dz zhuān;hd yè;sh	420
+这幢楼	zhèi;dz zhuàng;sd lóu;md	410
+这姿势	zhèi;dz zī;dn shì;fp	390
+这滋味	zhèi;dz zī;ud wèi;kh	340
+这最后	zhèi;dz zuì;ld hòu;pk	470
+这最终	zhèi;dz zuì;ld zhōng;ip	410
+这座城	zhèi;dz zuò;dt chéng;th	460
+这座岛	zhèi;dz zuò;dt dǎo;ps	350
+这作者	zhèi;dz zuò;rp zhě;tl	350
+真这样	zhēn;hd zhèi;dz yàng;md	330
+整这些	zhěng;hh zhèi;dz xiē;sh	310
+装这种	zhuāng;dd zhèi;dz zhǒng;ek	260
+总这样	zǒng;dx zhèi;dz yàng;md	380
+走这边	zǒu;tr zhèi;dz biān;vz	260
+走这个	zǒu;tr zhèi;dz ge;rs	400
+做这个	zuò;rh zhèi;dz ge;rs	610
+做这事	zuò;rh zhèi;dz shì;hs	380
+做这些	zuò;rh zhèi;dz xiē;sh	540
+做这种	zuò;rh zhèi;dz zhǒng;ek	520
+谙熟	ān;ad shóu;dq	1
+半熟	bàn;ds shóu;dq	98
+保熟	bǎo;rk shóu;dq	481
+背熟	bèi;sy shóu;dq	318
+变熟	biàn;dd shóu;dq	937
+不熟	bù;hd shóu;dq	3674
+常熟	cháng;ss shóu;dq	1006
+炒熟	chǎo;qs shóu;dq	158
+成熟	chéng;hd shóu;dq	19557
+初熟	chū;dv shóu;dq	2315
+纯熟	chún;ih shóu;dq	794
+醇熟	chún;hd shóu;dq	764
+催熟	cuī;rs shóu;dq	1888
+大熟	dà;hd shóu;dq	384
+蛋熟	dàn;vo shóu;dq	1010
+读熟	dú;ah shóu;dq	359
+炖熟	dùn;qh shóu;dq	862
+耳熟	ěr;hh shóu;dq	754
+腐熟	fǔ;dr shóu;dq	608
+刚熟	gāng;ss shóu;dq	1948
+搞熟	gǎo;fd shóu;dq	333
+瓜熟	guā;pd shóu;dq	51
+过熟	guò;hz shóu;dq	500
+果熟	guǒ;lm shóu;dq	470
+很熟	hěn;pv shóu;dq	2095
+湖熟	hú;uh shóu;dq	924
+混熟	hùn;ul shóu;dq	460
+记熟	jì;av shóu;dq	490
+即熟	jí;vv shóu;dq	460
+较熟	jiào;hd shóu;dq	1038
+精熟	jīng;dh shóu;dq	1643
+烤熟	kǎo;qt shóu;dq	1040
+快熟	kuài;xv shóu;dq	9610
+烂熟	làn;qd shóu;dq	171
+老熟	lǎo;tv shóu;dq	4925
+脸熟	liǎn;yr shóu;dq	4563
+练熟	liàn;ih shóu;dq	4533
+两熟	liǎng;hd shóu;dq	3308
+蛮熟	mán;do shóu;dq	526
+没熟	méi;up shóu;dq	206
+面熟	miàn;hh shóu;dq	688
+摸熟	mō;fc shóu;dq	821
+轻熟	qīng;hv shóu;dq	198
+全熟	quán;rw shóu;dq	2020
+稔熟	rěn;er shóu;dq	1150
+软熟	ruǎn;hp shóu;dq	380
+杀熟	shā;pm shóu;dq	12147
+烧熟	shāo;qh shóu;dq	255
+生熟	shēng;ph shóu;dq	120
+手熟	shǒu;fs shóu;dq	319
+熟啊	shóu;dq a;kv	460
+熟谙	shóu;dq ān;ad	192
+熟背	shóu;dq bèi;sy	1581
+熟菜	shóu;dq cài;cm	869
+熟茶	shóu;dq chá;cm	158
+熟成	shóu;dq chéng;hd	396
+熟词	shóu;dq cí;av	641
+熟的	shóu;dq de;pp	2849
+熟得	shóu;dq de;pl	2819
+熟地	shóu;dq dì;tv	68
+熟点	shóu;dq diǎn;sq	318
+熟读	shóu;dq dú;ah	10272
+熟度	shóu;dq dù;dd	10242
+熟饭	shóu;dq fàn;pp	42
+熟果	shóu;dq guǒ;lm	673
+熟后	shóu;dq hòu;pk	1043
+熟化	shóu;dq huà;rp	296
+熟记	shóu;dq jì;av	1743
+熟筋	shóu;dq jīn;gp	500
+熟客	shóu;dq kè;bk	239
+熟烂	shóu;dq làn;qd	146
+熟了	shóu;dq le;vs	5194
+熟练	shóu;dq liàn;ih	1173
+熟脸	shóu;dq liǎn;yr	1203
+熟料	shóu;dq liào;dd	450
+熟路	shóu;dq lù;zp	1177
+熟络	shóu;dq luò;ip	205
+熟虑	shóu;dq lǜ;sx	1147
+熟女	shóu;dq nǚ;nh	520
+熟皮	shóu;dq pí;vd	3895
+熟普	shóu;dq pǔ;dl	822
+熟人	shóu;dq rén;rd	792
+熟稔	shóu;dq rěn;er	762
+熟肉	shóu;dq ròu;sr	2287
+熟食	shóu;dq shí;rd	3615
+熟识	shóu;dq shí;ak	3585
+熟时	shóu;dq shí;lh	3555
+熟手	shóu;dq shǒu;fs	349
+熟水	shóu;dq shuǐ;ud	2510
+熟铁	shóu;dq tiě;jp	632
+熟透	shóu;dq tòu;ez	8313
+熟悉	shóu;dq xī;px	268
+熟习	shóu;dq xí;vh	238
+熟虾	shóu;dq xiā;oh	1696
+熟用	shóu;dq yòng;ps	853
+熟油	shóu;dq yóu;us	189
+熟语	shóu;dq yǔ;ah	469
+熟知	shóu;dq zhī;pk	1184
+熟制	shóu;dq zhì;ps	1154
+睡熟	shuì;sp shóu;dq	2974
+太熟	tài;hd shóu;dq	2861
+挺熟	tǐng;fp shóu;dq	776
+晚熟	wǎn;lp shóu;dq	189
+玩熟	wán;wh shóu;dq	159
+完熟	wán;bv shóu;dq	129
+未熟	wèi;hm shóu;dq	318
+我熟	wǒ;pd shóu;dq	399
+娴熟	xián;nd shóu;dq	340
+相熟	xiāng;ms shóu;dq	707
+眼熟	yǎn;sv shóu;dq	751
+一熟	yì;hh shóu;dq	478
+用熟	yòng;ps shóu;dq	12213
+圆熟	yuán;sh shóu;dq	230
+再熟	zài;hh shóu;dq	2104
+早熟	zǎo;ls shóu;dq	11647
+炸熟	zhà;qp shóu;dq	208
+蒸熟	zhēng;cq shóu;dq	4262
+至熟	zhì;ht shóu;dq	1699
+煮熟	zhǔ;tq shóu;dq	1960
+最熟	zuì;ld shóu;dq	2080
+难煮熟	nán;vr zhǔ;tq shóu;dq	272
+八成熟	bā;pd chéng;hd shóu;dq	230
+八分熟	bā;pd fēn;pp shóu;dq	565
+把熟睡	bǎ;fv shóu;dq shuì;sp	100
+把蒸熟	bǎ;fv zhēng;cq shóu;dq	100
+把煮熟	bǎ;fv zhǔ;tq shóu;dq	140
+半成熟	bàn;ds chéng;hd shóu;dq	130
+扮成熟	bàn;fp chéng;hd shóu;dq	100
+半生熟	bàn;ds shēng;ph shóu;dq	170
+半熟蛋	bàn;ds shóu;dq dàn;vo	180
+半熟的	bàn;ds shóu;dq de;pp	210
+半熟练	bàn;ds shóu;dq liàn;ih	120
+半熟人	bàn;ds shóu;dq rén;rd	1395
+半熟时	bàn;ds shóu;dq shí;lh	50
+被催熟	bèi;dv cuī;rs shóu;dq	390
+被烤熟	bèi;dv kǎo;qt shóu;dq	140
+背熟了	bèi;sy shóu;dq le;vs	655
+被煮熟	bèi;dv zhǔ;tq shóu;dq	120
+比较熟	bǐ;hp jiào;hd shóu;dq	938
+变成熟	biàn;dd chéng;hd shóu;dq	190
+并不熟	bìng;ds bù;hd shóu;dq	160
+不成熟	bù;hd chéng;hd shóu;dq	310
+不催熟	bù;hd cuī;rs shóu;dq	80
+不熟啊	bù;hd shóu;dq a;kv	130
+不熟吧	bù;hd shóu;dq ba;kv	272
+不熟练	bù;hd shóu;dq liàn;ih	822
+不熟悉	bù;hd shóu;dq xī;px	320
+不太熟	bú;hd tài;hd shóu;dq	4
+不娴熟	bù;hd xián;nd shóu;dq	462
+不眼熟	bù;hd yǎn;sv shóu;dq	20
+菜熟了	cài;cm shóu;dq le;vs	588
+常熟的	cháng;ss shóu;dq de;pp	190
+常熟话	cháng;ss shóu;dq huà;ap	155
+常熟路	cháng;ss shóu;dq lù;zp	11
+常熟人	cháng;ss shóu;dq rén;rd	170
+常熟市	cháng;ss shóu;dq shì;ds	223
+常熟县	cháng;ss shóu;dq xiàn;sd	180
+常熟有	cháng;ss shóu;dq yǒu;hy	60
+常熟站	cháng;ss shóu;dq zhàn;ds	80
+炒不熟	chǎo;qs bù;hd shóu;dq	130
+炒熟后	chǎo;qs shóu;dq hòu;pk	220
+炒熟了	chǎo;qs shóu;dq le;vs	160
+成熟啊	chéng;hd shóu;dq a;kv	372
+成熟吧	chéng;hd shóu;dq ba;kv	412
+成熟的	chéng;hd shóu;dq de;pp	420
+成熟点	chéng;hd shóu;dq diǎn;sq	190
+成熟度	chéng;hd shóu;dq dù;dd	1979
+成熟范	chéng;hd shóu;dq fàn;cv	50
+成熟风	chéng;hd shóu;dq fēng;pd	140
+成熟感	chéng;hd shóu;dq gǎn;hx	170
+成熟好	chéng;hd shóu;dq hǎo;nv	70
+成熟很	chéng;hd shóu;dq hěn;pv	120
+成熟后	chéng;hd shóu;dq hòu;pk	260
+成熟化	chéng;hd shóu;dq huà;rp	180
+成熟季	chéng;hd shóu;dq jì;eh	120
+成熟了	chéng;hd shóu;dq le;vs	1822
+成熟脸	chéng;hd shóu;dq liǎn;yr	60
+成熟林	chéng;hd shóu;dq lín;mm	70
+成熟美	chéng;hd shóu;dq měi;dd	140
+成熟蜜	chéng;hd shóu;dq mì;bo	150
+成熟男	chéng;hd shóu;dq nán;sp	170
+成熟女	chéng;hd shóu;dq nǚ;nh	150
+成熟期	chéng;hd shóu;dq qí;cy	260
+成熟前	chéng;hd shóu;dq qián;ds	272
+成熟区	chéng;hd shóu;dq qū;hv	100
+成熟人	chéng;hd shóu;dq rén;rd	39
+成熟乳	chéng;hd shóu;dq rǔ;pv	120
+成熟时	chéng;hd shóu;dq shí;lh	430
+成熟体	chéng;hd shóu;dq tǐ;rm	90
+成熟些	chéng;hd shóu;dq xiē;sh	170
+成熟性	chéng;hd shóu;dq xìng;xp	240
+成熟型	chéng;hd shóu;dq xíng;ht	190
+成熟早	chéng;hd shóu;dq zǎo;ls	130
+成熟中	chéng;hd shóu;dq zhōng;ks	150
+吃熟食	chī;kp shóu;dq shí;rd	170
+初熟的	chū;dv shóu;dq de;pp	1272
+从熟睡	cóng;rr shóu;dq shuì;sp	50
+从熟悉	cóng;rr shóu;dq xī;px	30
+催熟剂	cuī;rs shóu;dq jì;ds	190
+大家熟	dà;hd jiā;bd shóu;dq	90
+到常熟	dào;hs cháng;ss shóu;dq	240
+的熟了	de;pp shóu;dq le;vs	177
+等熟了	děng;gd shóu;dq le;vs	277
+地不熟	dì;tv bù;hd shóu;dq	480
+东京熟	dōng;hd jīng;dd shóu;dq	50
+都不熟	dōu;tv bù;hd shóu;dq	240
+都成熟	dōu;tv chéng;hd shóu;dq	150
+都熟了	dōu;tv shóu;dq le;vs	117
+都熟悉	dōu;tv shóu;dq xī;px	210
+都早熟	dōu;tv zǎo;ls shóu;dq	80
+多熟了	duō;pd shóu;dq le;vs	794
+多熟期	duō;pd shóu;dq qī;cy	230
+多熟悉	duō;pd shóu;dq xī;px	170
+二回熟	èr;hh huí;sh shóu;dq	160
+耳熟啊	ěr;hh shóu;dq a;kv	140
+耳熟吧	ěr;hh shóu;dq ba;kv	304
+耳熟了	ěr;hh shóu;dq le;vs	140
+非常熟	fēi;ss cháng;ss shóu;dq	637
+分熟吧	fēn;pp shóu;dq ba;kv	356
+分熟了	fēn;pp shóu;dq le;vs	2874
+干熟么	gàn;hs shóu;dq me;pd	80
+搞熟了	gǎo;fd shóu;dq le;vs	804
+更成熟	gèng;hd chéng;hd shóu;dq	240
+更熟练	gèng;hd shóu;dq liàn;ih	170
+更熟悉	gèng;hd shóu;dq xī;px	220
+够成熟	gòu;pp chéng;hd shóu;dq	130
+过熟的	guò;hz shóu;dq de;pp	140
+过熟了	guò;hz shóu;dq le;vs	170
+果熟期	guǒ;lm shóu;dq qī;cy	120
+过熟期	guò;hz shóu;dq qī;cy	80
+还不熟	hái;hz bù;hd shóu;dq	161
+还算熟	hái;hz suàn;gs shóu;dq	100
+好成熟	hǎo;nv chéng;hd shóu;dq	70
+好耳熟	hǎo;nv ěr;hh shóu;dq	120
+好面熟	hǎo;nv miàn;hh shóu;dq	140
+好熟悉	hǎo;nv shóu;dq xī;px	190
+好眼熟	hǎo;nv yǎn;sv shóu;dq	190
+很成熟	hěn;pv chéng;hd shóu;dq	250
+很纯熟	hěn;pv chún;ih shóu;dq	230
+很耳熟	hěn;pv ěr;hh shóu;dq	190
+很面熟	hěn;pv miàn;hh shóu;dq	150
+很熟啊	hěn;pv shóu;dq a;kv	140
+很熟吧	hěn;pv shóu;dq ba;kv	130
+很熟但	hěn;pv shóu;dq dàn;rl	300
+很熟很	hěn;pv shóu;dq hěn;pv	350
+很熟了	hěn;pv shóu;dq le;vs	240
+很熟练	hěn;pv shóu;dq liàn;ih	416
+很熟络	hěn;pv shóu;dq luò;ip	300
+很熟稔	hěn;pv shóu;dq rěn;er	340
+很熟识	hěn;pv shóu;dq shí;ak	484
+很熟悉	hěn;pv shóu;dq xī;px	290
+很娴熟	hěn;pv xián;nd shóu;dq	754
+很眼熟	hěn;pv yǎn;sv shóu;dq	80
+很早熟	hěn;pv zǎo;ls shóu;dq	180
+后熟期	hòu;pk shóu;dq qī;cy	80
+回常熟	huí;sh cháng;ss shóu;dq	7
+会熟练	huì;rd shóu;dq liàn;ih	750
+混脸熟	hùn;ul liǎn;yr shóu;dq	170
+混熟吧	hùn;ul shóu;dq ba;kv	180
+混熟了	hùn;ul shóu;dq le;vs	170
+混眼熟	hùn;ul yǎn;sv shóu;dq	100
+几成熟	jǐ;pv chéng;hd shóu;dq	190
+几分熟	jǐ;pv fēn;pp shóu;dq	260
+记熟了	jì;av shóu;dq le;vs	570
+将熟时	jiāng;dp shóu;dq shí;lh	421
+将熟睡	jiāng;dp shóu;dq shuì;sp	240
+将蒸熟	jiāng;dp zhēng;cq shóu;dq	516
+将煮熟	jiāng;dp zhǔ;tq shóu;dq	376
+较成熟	jiào;hd chéng;hd shóu;dq	180
+九成熟	jiǔ;pv chéng;hd shóu;dq	170
+九分熟	jiǔ;pv fēn;pp shóu;dq	1078
+就熟了	jiù;dh shóu;dq le;vs	621
+就熟时	jiù;dh shóu;dq shí;lh	310
+就熟悉	jiù;dh shóu;dq xī;px	150
+看熟了	kàn;ph shóu;dq le;vs	367
+烤熟后	kǎo;qt shóu;dq hòu;pk	200
+烤熟了	kǎo;qt shóu;dq le;vs	160
+可成熟	kě;hs chéng;hd shóu;dq	988
+可熟了	kě;hs shóu;dq le;vs	90
+可熟悉	kě;hs shóu;dq xī;px	130
+快熟了	kuài;xv shóu;dq le;vs	493
+快熟面	kuài;xv shóu;dq miàn;hh	100
+快熟时	kuài;xv shóu;dq shí;lh	650
+来常熟	lái;hm cháng;ss shóu;dq	240
+来熟了	lái;hm shóu;dq le;vs	458
+烂熟时	làn;qd shóu;dq shí;lh	480
+老熟客	lǎo;tv shóu;dq kè;bk	140
+老熟人	lǎo;tv shóu;dq rén;rd	210
+脸熟吧	liǎn;yr shóu;dq ba;kv	462
+脸熟了	liǎn;yr shóu;dq le;vs	420
+练熟了	liàn;ih shóu;dq le;vs	390
+两次熟	liǎng;hd cì;dp shóu;dq	50
+六分熟	liù;dd fēn;pp shóu;dq	160
+路不熟	lù;zp bù;hd shóu;dq	160
+卖熟食	mài;hd shóu;dq shí;rd	95
+没炒熟	méi;up chǎo;qs shóu;dq	90
+没成熟	méi;up chéng;hd shóu;dq	130
+没烤熟	méi;up kǎo;qt shóu;dq	440
+没烧熟	méi;up shāo;qh shóu;dq	70
+没熟吧	méi;up shóu;dq ba;kv	80
+没熟就	méi;up shóu;dq jiù;dh	50
+美熟女	měi;dd shóu;dq nǚ;nh	180
+没熟人	méi;up shóu;dq rén;rd	500
+没熟似	méi;up shóu;dq sì;rv	230
+没熟透	méi;up shóu;dq tòu;ez	60
+没有熟	méi;up yǒu;hy shóu;dq	108
+没蒸熟	méi;up zhēng;cq shóu;dq	120
+没煮熟	méi;up zhǔ;tq shóu;dq	110
+面熟吧	miàn;hh shóu;dq ba;kv	190
+摸熟了	mō;fc shóu;dq le;vs	689
+能成熟	néng;vp chéng;hd shóu;dq	3863
+能熟练	néng;vp shóu;dq liàn;ih	240
+你不熟	nǐ;rp bù;hd shóu;dq	477
+你成熟	nǐ;rp chéng;hd shóu;dq	718
+你很熟	nǐ;rp hěn;pv shóu;dq	488
+你熟练	nǐ;rp shóu;dq liàn;ih	370
+你熟人	nǐ;rp shóu;dq rén;rd	100
+你熟睡	nǐ;rp shóu;dq shuì;sp	160
+你熟悉	nǐ;rp shóu;dq xī;px	200
+你熟知	nǐ;rp shóu;dq zhī;pk	578
+你眼熟	nǐ;rp yǎn;sv shóu;dq	180
+你最熟	nǐ;rp zuì;ld shóu;dq	466
+您熟悉	nín;rx shóu;dq xī;px	170
+弄熟了	nòng;ws shóu;dq le;vs	170
+偏成熟	piān;rd chéng;hd shóu;dq	170
+七成熟	qī;hv chéng;hd shóu;dq	150
+七分熟	qī;hv fēn;pp shóu;dq	50
+情况熟	qíng;xh kuàng;dk shóu;dq	90
+轻熟风	qīng;hv shóu;dq fēng;pd	150
+轻熟感	qīng;hv shóu;dq gǎn;hx	80
+轻熟龄	qīng;hv shóu;dq líng;sr	140
+轻熟男	qīng;hv shóu;dq nán;sp	130
+轻熟女	qīng;hv shóu;dq nǚ;nh	220
+去常熟	qù;td cháng;ss shóu;dq	434
+去熟悉	qù;td shóu;dq xī;px	180
+全熟吧	quán;rw shóu;dq ba;kv	180
+全熟了	quán;rw shóu;dq le;vs	552
+人不熟	rén;rd bù;hd shóu;dq	100
+人熟人	rén;rd shóu;dq rén;rd	40
+容易熟	róng;bk yì;lp shóu;dq	547
+三分熟	sān;hh fēn;pp shóu;dq	628
+烧熟了	shāo;qh shóu;dq le;vs	502
+生变熟	shēng;ph biàn;dd shóu;dq	90
+生吃熟	shēng;ph chī;kp shóu;dq	160
+生熟地	shēng;ph shóu;dq dì;tv	160
+是常熟	shì;lr cháng;ss shóu;dq	130
+十成熟	shí;hs chéng;hd shóu;dq	130
+十分熟	shí;hs fēn;pp shóu;dq	130
+是熟么	shì;lr shóu;dq me;pd	100
+熟不熟	shóu;dq bù;hd shóu;dq	224
+熟菜油	shóu;dq cài;cm yóu;us	150
+熟吃好	shóu;dq chī;kp hǎo;nv	130
+熟大黄	shóu;dq dài;hd huáng;cd	70
+熟蛋黄	shóu;dq dàn;vo huáng;cd	150
+熟当时	shóu;dq dāng;sh shí;lh	629
+熟的吧	shóu;dq de;pp ba;kv	283
+熟得快	shóu;dq de;pl kuài;xv	14
+熟的了	shóu;dq de;pp le;vs	356
+熟地黄	shóu;dq dì;tv huáng;cd	210
+熟读了	shóu;dq dú;ah le;vs	448
+熟归熟	shóu;dq guī;sv shóu;dq	110
+熟过头	shóu;dq guò;hz tóu;dd	150
+熟花生	shóu;dq huā;cv shēng;ph	295
+熟火腿	shóu;dq huǒ;qd tuǐ;yv	170
+熟鸡蛋	shóu;dq jī;vp dàn;vo	484
+熟客吧	shóu;dq kè;bk ba;kv	218
+熟烂时	shóu;dq làn;qd shí;lh	70
+熟了吧	shóu;dq le;vs ba;kv	94
+熟了后	shóu;dq le;vs hòu;pk	170
+熟了吗	shóu;dq le;vs ma;kv	42
+熟了么	shóu;dq le;vs me;pd	80
+熟了没	shóu;dq le;vs méi;up	11
+熟梨糕	shóu;dq lí;em gāo;dd	120
+熟练啊	shóu;dq liàn;ih a;kv	140
+熟练吧	shóu;dq liàn;ih ba;kv	277
+熟练地	shóu;dq liàn;ih de;tv	1593
+熟练的	shóu;dq liàn;ih de;pp	1563
+熟练度	shóu;dq liàn;ih dù;dd	260
+熟练工	shóu;dq liàn;ih gōng;hh	210
+熟练后	shóu;dq liàn;ih hòu;pk	210
+熟练活	shóu;dq liàn;ih huó;up	10
+熟练了	shóu;dq liàn;ih le;vs	1010
+熟练那	shóu;dq liàn;ih nà;vv	60
+熟练时	shóu;dq liàn;ih shí;lh	444
+熟练性	shóu;dq liàn;ih xìng;xp	315
+熟练于	shóu;dq liàn;ih yú;hs	606
+熟练者	shóu;dq liàn;ih zhě;tl	140
+熟龄肌	shóu;dq líng;sr jī;yp	367
+熟络了	shóu;dq luò;ip le;vs	488
+熟没熟	shóu;dq méi;up shóu;dq	29
+熟米饭	shóu;dq mǐ;dm fàn;pp	180
+熟面孔	shóu;dq miàn;hh kǒng;vv	200
+熟牛排	shóu;dq niú;ps pái;fs	160
+熟牛肉	shóu;dq niú;ps ròu;sr	858
+熟女网	shóu;dq nǚ;nh wǎng;sd	170
+熟女系	shóu;dq nǚ;nh xì;pi	130
+熟螃蟹	shóu;dq páng;od xiè;po	100
+熟朋友	shóu;dq péng;yy yǒu;hd	110
+熟苹果	shóu;dq píng;cs guǒ;lm	430
+熟起来	shóu;dq qǐ;tv lái;hm	1672
+熟人啊	shóu;dq rén;rd a;kv	130
+熟人吧	shóu;dq rén;rd ba;kv	264
+熟人带	shóu;dq rén;rd dài;hs	150
+熟人多	shóu;dq rén;rd duō;pd	140
+熟人间	shóu;dq rén;rd jiān;dl	552
+熟稔了	shóu;dq rěn;er le;vs	502
+熟人了	shóu;dq rén;rd le;vs	472
+熟人们	shóu;dq rén;rd men;rd	660
+熟人圈	shóu;dq rén;rd quān;sh	160
+熟三七	shóu;dq sān;hh qī;hv	100
+树上熟	shù;mv shàng;sh shóu;dq	80
+熟食吧	shóu;dq shí;rd ba;kv	20
+熟食店	shóu;dq shí;rd diàn;dk	67
+熟石膏	shóu;dq shí;hk gāo;dy	596
+熟食柜	shóu;dq shí;rd guì;mh	80
+熟石灰	shóu;dq shí;hk huī;hq	170
+熟识了	shóu;dq shí;ak le;vs	408
+熟食类	shóu;dq shí;rd lèi;dd	416
+熟食品	shóu;dq shí;rd pǐn;kk	574
+熟食区	shóu;dq shí;rd qū;hv	180
+熟熟的	shóu;dq shóu;dq de;pp	485
+熟睡的	shóu;dq shuì;sp de;pp	290
+熟睡了	shóu;dq shuì;sp le;vs	150
+熟睡时	shóu;dq shuì;sp shí;lh	80
+熟睡中	shóu;dq shuì;sp zhōng;ks	220
+熟铜棍	shóu;dq tóng;js gùn;ml	70
+熟桐油	shóu;dq tóng;ms yóu;us	80
+熟透后	shóu;dq tòu;ez hòu;pk	190
+熟透了	shóu;dq tòu;ez le;vs	210
+熟透时	shóu;dq tòu;ez shí;lh	250
+熟悉啊	shóu;dq xī;px a;kv	180
+熟悉吧	shóu;dq xī;px ba;kv	120
+熟悉不	shóu;dq xī;px bù;hd	170
+熟悉的	shóu;dq xī;px de;pp	583
+熟悉度	shóu;dq xī;px dù;dd	210
+熟悉感	shóu;dq xī;px gǎn;hx	210
+熟悉很	shóu;dq xī;px hěn;pv	80
+熟悉后	shóu;dq xī;px hòu;pk	200
+熟悉了	shóu;dq xī;px le;vs	340
+熟悉吗	shóu;dq xī;px ma;kv	180
+熟悉你	shóu;dq xī;px nǐ;rp	170
+熟悉人	shóu;dq xī;px rén;rd	120
+熟悉时	shóu;dq xī;px shí;lh	120
+熟悉他	shóu;dq xī;px tā;rv	170
+熟悉下	shóu;dq xī;px xià;hd	180
+熟一个	shóu;dq yí;hh gè;rs	240
+熟一些	shóu;dq yì;hh xiē;sh	560
+熟语料	shóu;dq yǔ;ah liào;dd	760
+熟玉米	shóu;dq yù;wd mǐ;dm	552
+熟知的	shóu;dq zhī;pk de;pp	1168
+熟芝麻	shóu;dq zhī;cd má;dm	210
+熟制品	shóu;dq zhì;ps pǐn;kk	110
+熟猪油	shóu;dq zhū;pt yóu;us	210
+睡不熟	shuì;sp bù;hd shóu;dq	100
+睡熟了	shuì;sp shóu;dq le;vs	336
+四书熟	sì;sh shū;vd shóu;dq	20
+所熟悉	suǒ;pp shóu;dq xī;px	220
+所熟知	suǒ;pp shóu;dq zhī;pk	290
+他不熟	tā;rv bù;hd shóu;dq	20
+他成熟	tā;rv chéng;hd shóu;dq	704
+他很熟	tā;rv hěn;pv shóu;dq	434
+他混熟	tā;rv hùn;ul shóu;dq	80
+他熟读	tā;rv shóu;dq dú;ah	570
+他熟练	tā;rv shóu;dq liàn;ih	542
+他熟络	tā;rv shóu;dq luò;ip	90
+他熟稔	tā;rv shóu;dq rěn;er	390
+他熟识	tā;rv shóu;dq shí;ak	808
+他熟睡	tā;rv shóu;dq shuì;sp	160
+他熟悉	tā;rv shóu;dq xī;px	120
+他熟知	tā;rv shóu;dq zhī;pk	848
+他睡熟	tā;rv shuì;sp shóu;dq	250
+他太熟	tā;rv tài;hd shóu;dq	321
+他娴熟	tā;rv xián;nd shóu;dq	120
+他相熟	tā;rv xiāng;ms shóu;dq	321
+他眼熟	tā;rv yǎn;sv shóu;dq	120
+他早熟	tā;rv zǎo;ls shóu;dq	624
+太成熟	tài;hd chéng;hd shóu;dq	200
+太熟了	tài;hd shóu;dq le;vs	416
+太熟练	tài;hd shóu;dq liàn;ih	150
+太熟悉	tài;hd shóu;dq xī;px	250
+太早熟	tài;hd zǎo;ls shóu;dq	110
+烫熟后	tàng;uq shóu;dq hòu;pk	170
+烫熟了	tàng;uq shóu;dq le;vs	524
+特眼熟	tè;pt yǎn;sv shóu;dq	80
+挺成熟	tǐng;fp chéng;hd shóu;dq	140
+托熟人	tuō;fp shóu;dq rén;rd	160
+晚熟的	wǎn;lp shóu;dq de;pp	150
+玩熟了	wán;wh shóu;dq le;vs	180
+晚熟期	wǎn;lp shóu;dq qī;cy	169
+喂不熟	wèi;ks bù;hd shóu;dq	120
+未成熟	wèi;hm chéng;hd shóu;dq	220
+未熟的	wèi;hm shóu;dq de;pp	1478
+未熟透	wèi;hm shóu;dq tòu;ez	170
+未煮熟	wèi;hm zhǔ;tq shóu;dq	210
+我不熟	wǒ;pd bù;hd shóu;dq	511
+我成熟	wǒ;pd chéng;hd shóu;dq	745
+我都熟	wǒ;pd dōu;tv shóu;dq	642
+我很熟	wǒ;pd hěn;pv shóu;dq	786
+我们熟	wǒ;pd men;rd shóu;dq	478
+我熟得	wǒ;pd shóu;dq de;pl	80
+我熟的	wǒ;pd shóu;dq de;pp	70
+我熟练	wǒ;pd shóu;dq liàn;ih	462
+我熟识	wǒ;pd shóu;dq shí;ak	242
+我熟睡	wǒ;pd shóu;dq shuì;sp	110
+我熟悉	wǒ;pd shóu;dq xī;px	349
+我熟知	wǒ;pd shóu;dq zhī;pk	686
+我睡熟	wǒ;pd shuì;sp shóu;dq	90
+我相熟	wǒ;pd xiāng;ms shóu;dq	848
+我眼熟	wǒ;pd yǎn;sv shóu;dq	110
+我早熟	wǒ;pd zǎo;ls shóu;dq	588
+五成熟	wǔ;hh chéng;hd shóu;dq	200
+五分熟	wǔ;hh fēn;pp shóu;dq	220
+显成熟	xiǎn;lh chéng;hd shóu;dq	150
+娴熟地	xián;nd shóu;dq dì;tv	200
+娴熟了	xián;nd shóu;dq le;vs	560
+先熟悉	xiān;pv shóu;dq xī;px	200
+相熟了	xiāng;ms shóu;dq le;vs	1200
+小成熟	xiǎo;sd chéng;hd shóu;dq	90
+性成熟	xìng;xp chéng;hd shóu;dq	230
+性早熟	xìng;xp zǎo;ls shóu;dq	250
+眼熟啊	yǎn;sv shóu;dq a;kv	140
+眼熟吧	yǎn;sv shóu;dq ba;kv	170
+眼熟了	yǎn;sv shóu;dq le;vs	76
+眼熟吗	yǎn;sv shóu;dq ma;kv	170
+养不熟	yǎng;ds bù;hd shóu;dq	140
+也不熟	yě;vv bù;hd shóu;dq	830
+也熟了	yě;vv shóu;dq le;vs	606
+也熟悉	yě;vv shóu;dq xī;px	470
+烫熟	tàng;uq shóu;dq	990
+已成熟	yǐ;vv chéng;hd shóu;dq	190
+一锅熟	yì;hh guō;jk shóu;dq	100
+异熟果	yì;vs shóu;dq guǒ;lm	130
+异熟识	yì;vs shóu;dq shí;ak	2274
+用熟了	yòng;ps shóu;dq le;vs	180
+又不熟	yòu;vd bù;hd shóu;dq	160
+有熟人	yǒu;hy shóu;dq rén;rd	286
+园梅熟	yuán;sh méi;mp shóu;dq	10
+在常熟	zài;ht cháng;ss shóu;dq	668
+在成熟	zài;ht chéng;hd shóu;dq	250
+再成熟	zài;hh chéng;hd shóu;dq	150
+再熟了	zài;hh shóu;dq le;vs	480
+再熟悉	zài;hh shóu;dq xī;px	250
+早成熟	zǎo;ls chéng;hd shóu;dq	100
+早熟吧	zǎo;ls shóu;dq ba;kv	190
+早熟的	zǎo;ls shóu;dq de;pp	220
+早熟禾	zǎo;ls shóu;dq hé;em	200
+早熟梨	zǎo;ls shóu;dq lí;em	100
+早熟性	zǎo;ls shóu;dq xìng;xp	110
+这么熟	zhè;dz me;pd shóu;dq	812
+真不熟	zhēn;hd bù;hd shóu;dq	90
+蒸不熟	zhēng;cq bù;hd shóu;dq	120
+蒸熟的	zhēng;cq shóu;dq de;pp	240
+蒸熟后	zhēng;cq shóu;dq hòu;pk	230
+蒸熟了	zhēng;cq shóu;dq le;vs	583
+中晚熟	zhōng;ks wǎn;lp shóu;dq	110
+中早熟	zhōng;ks zǎo;ls shóu;dq	50
+煮不熟	zhǔ;tq bù;hd shóu;dq	210
+煮熟后	zhǔ;tq shóu;dq hòu;pk	290
+煮熟了	zhǔ;tq shóu;dq le;vs	475
+煮熟时	zhǔ;tq shóu;dq shí;lh	340
+装成熟	zhuāng;dd chéng;hd shóu;dq	140
+自来熟	zì;ph lái;hm shóu;dq	210
+自然熟	zì;ph rán;pq shóu;dq	416
+最成熟	zuì;ld chéng;hd shóu;dq	40
+最熟的	zuì;ld shóu;dq de;pp	160
+最熟悉	zuì;ld shóu;dq xī;px	230
+做熟了	zuò;rh shóu;dq le;vs	100
+爱谁	ài;pd shéi;ar	420
+把谁	bǎ;fv shéi;ar	380
+帮谁	bāng;hs shéi;ar	340
+被谁	bèi;dv shéi;ar	500
+比谁	bǐ;hp shéi;ar	560
+吃谁	chī;kp shéi;ar	300
+打谁	dǎ;fh shéi;ar	410
+带谁	dài;hs shéi;ar	300
+到谁	dào;hs shéi;ar	370
+等谁	děng;gd shéi;ar	330
+对谁	duì;vh shéi;ar	490
+放谁	fàng;dp shéi;ar	280
+服谁	fú;yv shéi;ar	350
+该谁	gāi;ad shéi;ar	360
+给谁	gěi;ir shéi;ar	560
+跟谁	gēn;zv shéi;ar	570
+怪谁	guài;xv shéi;ar	440
+归谁	guī;sv shéi;ar	440
+和谁	hé;ek shéi;ar	570
+恨谁	hèn;xv shéi;ar	310
+换谁	huàn;fp shéi;ar	420
+见谁	jiàn;sv shéi;ar	410
+叫谁	jiào;kv shéi;ar	330
+看谁	kàn;ph shéi;ar	570
+靠谁	kào;ph shéi;ar	370
+可谁	kě;hs shéi;ar	410
+坑谁	kēng;td shéi;ar	310
+赖谁	lài;hp shéi;ar	250
+骂谁	mà;kh shéi;ar	350
+没谁	méi;up shéi;ar	410
+蒙谁	méng;cd shéi;ar	200
+那谁	nà;vv shéi;ar	490
+怕谁	pà;xp shéi;ar	310
+陪谁	péi;vd shéi;ar	260
+娶谁	qǔ;hn shéi;ar	280
+让谁	ràng;as shéi;ar	450
+惹谁	rě;cx shéi;ar	310
+任谁	rèn;rp shéi;ar	420
+是谁	shì;lr shéi;ar	760
+谁啊	shéi;ar a;kv	510
+谁把	shéi;ar bǎ;fv	470
+谁不	shéi;ar bù;hd	540
+谁曾	shéi;ar céng;dl	340
+谁吃	shéi;ar chī;kp	390
+谁出	shéi;ar chū;vs	380
+谁错	shéi;ar cuò;jc	290
+谁带	shéi;ar dài;hs	340
+谁当	shéi;ar dāng;sh	420
+谁的	shéi;ar de;pp	680
+谁等	shéi;ar děng;gd	240
+谁定	shéi;ar dìng;bd	240
+谁懂	shéi;ar dǒng;xc	400
+谁都	shéi;ar dōu;tv	690
+谁对	shéi;ar duì;vh	470
+谁负	shéi;ar fù;pr	300
+谁改	shéi;ar gǎi;vp	210
+谁敢	shéi;ar gǎn;vp	570
+谁干	shéi;ar gàn;hs	350
+谁高	shéi;ar gāo;dk	400
+谁给	shéi;ar gěi;ir	530
+谁跟	shéi;ar gēn;zv	360
+谁管	shéi;ar guǎn;gh	420
+谁还	shéi;ar hái;hz	560
+谁喊	shéi;ar hǎn;kh	280
+谁好	shéi;ar hǎo;nv	460
+谁坏	shéi;ar huài;th	380
+谁会	shéi;ar huì;rd	630
+谁家	shéi;ar jiā;bd	550
+谁将	shéi;ar jiāng;dp	520
+谁叫	shéi;ar jiào;kv	550
+谁教	shéi;ar jiào;tp	340
+谁接	shéi;ar jiē;fd	290
+谁就	shéi;ar jiù;dh	570
+谁开	shéi;ar kāi;hs	340
+谁看	shéi;ar kàn;ph	410
+谁肯	shéi;ar kěn;sy	350
+谁快	shéi;ar kuài;xv	350
+谁来	shéi;ar lái;hm	640
+谁料	shéi;ar liào;dd	470
+谁买	shéi;ar mǎi;vd	480
+谁卖	shéi;ar mài;hd	290
+谁拿	shéi;ar ná;rf	380
+谁呢	shéi;ar ne;kv	550
+谁能	shéi;ar néng;vp	720
+谁哦	shéi;ar ó;kp	240
+谁怕	shéi;ar pà;xp	370
+谁去	shéi;ar qù;td	510
+谁让	shéi;ar ràng;as	590
+谁人	shéi;ar rén;rd	500
+谁傻	shéi;ar shǎ;rp	330
+谁上	shéi;ar shàng;sh	370
+谁是	shéi;ar shì;lr	680
+谁输	shéi;ar shū;hr	430
+谁谁	shéi;ar shéi;ar	540
+谁说	shéi;ar shuō;ad	640
+谁送	shéi;ar sòng;dz	290
+谁玩	shéi;ar wán;wh	330
+谁问	shéi;ar wèn;dk	300
+谁无	shéi;ar wú;hv	300
+谁先	shéi;ar xiān;pv	540
+谁想	shéi;ar xiǎng;mx	500
+谁信	shéi;ar xìn;ra	410
+谁选	shéi;ar xuǎn;pz	240
+谁呀	shéi;ar ya;kh	430
+谁演	shéi;ar yǎn;ub	360
+谁养	shéi;ar yǎng;ds	300
+谁要	shéi;ar yào;hn	530
+谁也	shéi;ar yě;vv	670
+谁赢	shéi;ar yíng;dd	470
+谁用	shéi;ar yòng;ps	510
+谁有	shéi;ar yǒu;hy	630
+谁又	shéi;ar yòu;vd	550
+谁与	shéi;ar yǔ;hh	400
+谁在	shéi;ar zài;ht	580
+谁再	shéi;ar zài;hh	420
+谁真	shéi;ar zhēn;hd	300
+谁知	shéi;ar zhī;pk	600
+谁最	shéi;ar zuì;ld	540
+谁做	shéi;ar zuò;rh	450
+说谁	shuō;ad shéi;ar	500
+送谁	sòng;dz shéi;ar	300
+挑谁	tiāo;fp shéi;ar	220
+听谁	tīng;kp shéi;ar	330
+为谁	wéi;dd shéi;ar	530
+问谁	wèn;dk shéi;ar	460
+向谁	xiàng;pk shéi;ar	470
+像谁	xiàng;rp shéi;ar	400
+笑谁	xiào;gd shéi;ar	240
+选谁	xuǎn;pz shéi;ar	470
+用谁	yòng;ps shéi;ar	370
+有谁	yǒu;hy shéi;ar	630
+由谁	yóu;sh shéi;ar	500
+与谁	yǔ;hh shéi;ar	460
+怨谁	yuàn;px shéi;ar	350
+找谁	zhǎo;fh shéi;ar	530
+招谁	zhāo;fv shéi;ar	280
+这谁	zhè;dz shéi;ar	410
+指谁	zhǐ;fp shéi;ar	300
+追谁	zhuī;pz shéi;ar	300
+啊有谁	a;kv yǒu;hy shéi;ar	340
+爱过谁	ài;pd guò;hz shéi;ar	300
+爱看谁	ài;pd kàn;ph shéi;ar	210
+爱上谁	ài;pd shàng;sh shéi;ar	340
+爱谁啊	ài;pd shéi;ar a;kv	110
+爱谁谁	ài;pd shéi;ar shéi;ar	420
+爱着谁	ài;pd zhe;dh shéi;ar	280
+把谁谁	bǎ;fv shéi;ar shéi;ar	110
+帮助谁	bāng;hs zhù;sv shéi;ar	260
+比谁差	bǐ;hp shéi;ar chà;dh	270
+比谁都	bǐ;hp shéi;ar dōu;tv	510
+不到谁	bú;hd dào;hs shéi;ar	170
+不管谁	bù;hd guǎn;gh shéi;ar	450
+不过谁	bú;hd guò;hz shéi;ar	360
+不能谁	bù;hd néng;vp shéi;ar	200
+不是谁	bú;hd shì;lr shéi;ar	470
+不为谁	bù;hd wéi;dd shéi;ar	340
+不知谁	bù;hd zhī;pk shéi;ar	400
+不准谁	bù;hd zhǔn;dr shéi;ar	110
+猜猜谁	cāi;ph cāi;ph shéi;ar	310
+传给谁	chuán;rh gěi;ir shéi;ar	230
+打给谁	dǎ;fh gěi;ir shéi;ar	280
+代表谁	dài;rh biǎo;hd shéi;ar	290
+但谁也	dàn;rl shéi;ar yě;vv	440
+到底谁	dào;hs dǐ;dd shéi;ar	550
+到谁了	dào;hs shéi;ar le;vs	310
+爹是谁	diē;pd shì;lr shéi;ar	240
+都是谁	dōu;tv shì;lr shéi;ar	450
+都谁啊	dōu;tv shéi;ar a;kv	140
+都有谁	dōu;tv yǒu;hy shéi;ar	480
+对谁都	duì;vh shéi;ar dōu;tv	470
+对谁说	duì;vh shéi;ar shuō;ad	280
+发给谁	fā;vd gěi;ir shéi;ar	310
+放到谁	fàng;dp dào;hs shéi;ar	170
+分给谁	fēn;pp gěi;ir shéi;ar	250
+分跟谁	fēn;pp gēn;zv shéi;ar	160
+扶持谁	fú;fh chí;ft shéi;ar	260
+付给谁	fù;rh gěi;ir shéi;ar	140
+该给谁	gāi;ad gěi;ir shéi;ar	270
+该怪谁	gāi;ad guài;xv shéi;ar	260
+该归谁	gāi;ad guī;sv shéi;ar	240
+该是谁	gāi;ad shì;lr shéi;ar	170
+该谁出	gāi;ad shéi;ar chū;vs	160
+该信谁	gāi;ad xìn;ra shéi;ar	340
+该选谁	gāi;ad xuǎn;pz shéi;ar	310
+该由谁	gāi;ad yóu;sh shéi;ar	400
+该找谁	gāi;ad zhǎo;fh shéi;ar	400
+干掉谁	gàn;hs diào;fs shéi;ar	240
+告诉谁	gào;pk sù;ap shéi;ar	230
+给谁啊	gěi;ir shéi;ar a;kv	210
+给谁了	gěi;ir shéi;ar le;vs	350
+给谁买	gěi;ir shéi;ar mǎi;vd	170
+给谁说	gěi;ir shéi;ar shuō;ad	160
+跟谁啊	gēn;zv shéi;ar a;kv	200
+跟谁打	gēn;zv shéi;ar dǎ;fh	210
+跟谁都	gēn;zv shéi;ar dōu;tv	380
+跟谁过	gēn;zv shéi;ar guò;hz	290
+跟谁急	gēn;zv shéi;ar jí;px	400
+跟谁去	gēn;zv shéi;ar qù;td	330
+跟谁睡	gēn;zv shéi;ar shuì;sp	310
+跟谁谈	gēn;zv shéi;ar tán;aq	170
+跟谁玩	gēn;zv shéi;ar wán;wh	250
+跟谁姓	gēn;zv shéi;ar xìng;np	320
+跟谁也	gēn;zv shéi;ar yě;vv	160
+跟谁走	gēn;zv shéi;ar zǒu;tr	290
+跟着谁	gēn;zv zhe;dh shéi;ar	260
+更像谁	gèng;hd xiàng;rp shéi;ar	130
+勾引谁	gōu;pd yǐn;vs shéi;ar	190
+关于谁	guān;dd yú;hs shéi;ar	280
+归谁管	guī;sv shéi;ar guǎn;gh	340
+还是谁	hái;hz shì;lr shéi;ar	350
+还有谁	hái;hz yǒu;hy shéi;ar	540
+和那谁	hé;ek nà;vv shéi;ar	240
+和谁啊	hé;ek shéi;ar a;kv	190
+和谁家	hé;ek shéi;ar jiā;bd	150
+和谁了	hé;ek shéi;ar le;vs	150
+和谁去	hé;ek shéi;ar qù;td	300
+和谁说	hé;ek shéi;ar shuō;ad	270
+怀疑谁	huái;xh yí;pv shéi;ar	140
+还给谁	huán;hz gěi;ir shéi;ar	110
+会是谁	huì;rd shì;lr shéi;ar	450
+会选谁	huì;rd xuǎn;pz shéi;ar	290
+会有谁	huì;rd yǒu;hy shéi;ar	300
+几个谁	jǐ;pv gè;rs shéi;ar	150
+寄给谁	jì;bs gěi;ir shéi;ar	200
+嫁给谁	jià;nb gěi;ir shéi;ar	380
+见到谁	jiàn;sv dào;hs shéi;ar	300
+见过谁	jiàn;sv guò;hz shéi;ar	320
+见了谁	jiàn;sv le;vs shéi;ar	240
+交给谁	jiāo;dd gěi;ir shéi;ar	350
+介是谁	jiè;rs shì;lr shéi;ar	210
+究竟谁	jiū;bv jìng;dv shéi;ar	480
+就看谁	jiù;dh kàn;ph shéi;ar	390
+就是谁	jiù;dh shì;lr shéi;ar	420
+看到谁	kàn;ph dào;hs shéi;ar	380
+看好谁	kàn;ph hǎo;nv shéi;ar	360
+看见谁	kàn;ph jiàn;sv shéi;ar	300
+看看谁	kàn;ph kàn;ph shéi;ar	450
+看上谁	kàn;ph shàng;sh shéi;ar	230
+看是谁	kàn;ph shì;lr shéi;ar	330
+看谁快	kàn;ph shéi;ar kuài;xv	200
+可谁曾	kě;hs shéi;ar céng;dl	200
+可谁想	kě;hs shéi;ar xiǎng;mx	230
+可谁有	kě;hs shéi;ar yǒu;hy	70
+可谁知	kě;hs shéi;ar zhī;pk	390
+坑谁呢	kēng;td shéi;ar ne;kv	190
+离开谁	lí;dd kāi;hs shéi;ar	310
+联系谁	lián;hd xì;pi shéi;ar	310
+留给谁	liú;ph gěi;ir shéi;ar	230
+轮到谁	lún;hr dào;hs shéi;ar	270
+落谁家	luò;ck shéi;ar jiā;bd	330
+买的谁	mǎi;vd de;pp shéi;ar	160
+没谁了	méi;up shéi;ar le;vs	480
+没有谁	méi;up yǒu;hy shéi;ar	550
+模仿谁	mó;mc fǎng;rd shéi;ar	290
+那个谁	nà;vv gè;rs shéi;ar	430
+那是谁	nà;vv shì;lr shéi;ar	360
+那谁谁	nà;vv shéi;ar shéi;ar	380
+内小谁	nèi;sd xiǎo;sd shéi;ar	110
+能怪谁	néng;vp guài;xv shéi;ar	360
+能有谁	néng;vp yǒu;hy shéi;ar	250
+你爱谁	nǐ;rp ài;pd shéi;ar	300
+你跟谁	nǐ;rp gēn;zv shéi;ar	340
+你和谁	nǐ;rp hé;ek shéi;ar	390
+你救谁	nǐ;rp jiù;hp shéi;ar	280
+你看谁	nǐ;rp kàn;ph shéi;ar	290
+你俩谁	nǐ;rp liǎ;rh shéi;ar	230
+你骂谁	nǐ;rp mà;kh shéi;ar	220
+你是谁	nǐ;rp shì;lr shéi;ar	540
+你谁啊	nǐ;rp shéi;ar a;kv	380
+你谁来	nǐ;rp shéi;ar lái;hm	90
+你谁呀	nǐ;rp shéi;ar ya;kh	240
+你谁也	nǐ;rp shéi;ar yě;vv	240
+你说谁	nǐ;rp shuō;ad shéi;ar	360
+你听谁	nǐ;rp tīng;kp shéi;ar	180
+你问谁	nǐ;rp wèn;dk shéi;ar	210
+你选谁	nǐ;rp xuǎn;pz shéi;ar	380
+你站谁	nǐ;rp zhàn;ds shéi;ar	140
+你找谁	nǐ;rp zhǎo;fh shéi;ar	330
+您是谁	nín;rx shì;lr shéi;ar	250
+弄死谁	nòng;ws sǐ;hv shéi;ar	200
+怕过谁	pà;xp guò;hz shéi;ar	300
+骗谁呢	piàn;vd shéi;ar ne;kv	330
+偏向谁	piān;rd xiàng;pk shéi;ar	280
+凭谁问	píng;rv shéi;ar wèn;dk	280
+欺负谁	qī;cp fù;pr shéi;ar	270
+气死谁	qì;pv sǐ;hv shéi;ar	200
+取代谁	qǔ;hv dài;rh shéi;ar	250
+去谁家	qù;td shéi;ar jiā;bd	280
+饶过谁	ráo;ph guò;hz shéi;ar	380
+惹了谁	rě;cx le;vs shéi;ar	280
+惹谁了	rě;cx shéi;ar le;vs	290
+人是谁	rén;rd shì;lr shéi;ar	510
+认识谁	rèn;ar shi;ak shéi;ar	360
+任谁都	rèn;rp shéi;ar dōu;tv	410
+任谁看	rèn;rp shéi;ar kàn;ph	190
+人问谁	rén;rd wèn;dk shéi;ar	160
+杀了谁	shā;pm le;vs shéi;ar	250
+是个谁	shì;lr gè;rs shéi;ar	180
+适合谁	shì;pz hé;rk shéi;ar	280
+是谁啊	shì;lr shéi;ar a;kv	500
+是谁吧	shì;lr shéi;ar ba;kv	360
+是谁的	shì;lr shéi;ar de;pp	560
+是谁家	shì;lr shéi;ar jiā;bd	360
+是谁教	shì;lr shéi;ar jiào;tp	220
+是谁来	shì;lr shéi;ar lái;hm	350
+是谁了	shì;lr shéi;ar le;vs	450
+是谁吗	shì;lr shéi;ar ma;kv	470
+是谁呢	shì;lr shéi;ar ne;kv	530
+是谁让	shì;lr shéi;ar ràng;as	330
+是谁人	shì;lr shéi;ar rén;rd	190
+是谁偷	shì;lr shéi;ar tōu;rr	180
+是谁先	shì;lr shéi;ar xiān;pv	380
+是谁呀	shì;lr shéi;ar ya;kh	400
+是谁也	shì;lr shéi;ar yě;vv	420
+是谁在	shì;lr shéi;ar zài;ht	490
+属于谁	shǔ;vd yú;hs shéi;ar	380
+谁爱你	shéi;ar ài;pd nǐ;rp	180
+谁爱谁	shéi;ar ài;pd shéi;ar	300
+谁爱我	shéi;ar ài;pd wǒ;pd	230
+谁把你	shéi;ar bǎ;fv nǐ;rp	280
+谁霸气	shéi;ar bà;hy qì;pv	150
+谁伴我	shéi;ar bàn;rd wǒ;pd	260
+谁帮你	shéi;ar bāng;hs nǐ;rp	260
+谁帮谁	shéi;ar bāng;hs shéi;ar	170
+谁帮我	shéi;ar bāng;hs wǒ;pd	430
+谁保护	shéi;ar bǎo;rk hù;fd	270
+谁背锅	shéi;ar bèi;sy guō;jk	220
+谁比和	shéi;ar bǐ;hp hé;ek	160
+谁比较	shéi;ar bǐ;hp jiào;hd	410
+谁不爱	shéi;ar bú;hd ài;pd	400
+谁不曾	shéi;ar bù;hd céng;dl	320
+谁不懂	shéi;ar bù;hd dǒng;xc	270
+谁不对	shéi;ar bú;hd duì;vh	150
+谁不服	shéi;ar bù;hd fú;yv	320
+谁不好	shéi;ar bù;hd hǎo;nv	340
+谁不会	shéi;ar bú;hd huì;rd	440
+谁不来	shéi;ar bù;hd lái;hm	190
+谁不怕	shéi;ar bú;hd pà;xp	250
+谁不去	shéi;ar bú;hd qù;td	220
+谁不是	shéi;ar bú;hd shì;lr	470
+谁不说	shéi;ar bù;hd shuō;ad	300
+谁不想	shéi;ar bù;hd xiǎng;mx	510
+谁不信	shéi;ar bú;hd xìn;ra	230
+谁不行	shéi;ar bù;hd xíng;ph	230
+谁不要	shéi;ar bú;hd yào;hn	270
+谁不愿	shéi;ar bú;hd yuàn;hx	260
+谁不在	shéi;ar bú;hd zài;ht	240
+谁不知	shéi;ar bù;hd zhī;pk	290
+谁才是	shéi;ar cái;hp shì;lr	530
+谁曾见	shéi;ar céng;dl jiàn;sv	150
+谁曾想	shéi;ar céng;dl xiǎng;mx	400
+谁唱的	shéi;ar chàng;kl de;pp	380
+谁唱歌	shéi;ar chàng;kl gē;hp	180
+谁承担	shéi;ar chéng;vd dān;fl	350
+谁承想	shéi;ar chéng;vd xiǎng;mx	310
+谁吃亏	shéi;ar chī;kp kuī;hv	310
+谁吃谁	shéi;ar chī;kp shéi;ar	370
+谁出的	shéi;ar chū;vs de;pp	340
+谁出轨	shéi;ar chū;vs guǐ;hp	200
+谁出来	shéi;ar chū;vs lái;hm	260
+谁出钱	shéi;ar chū;vs qián;jh	350
+谁出去	shéi;ar chū;vs qù;td	210
+谁出资	shéi;ar chū;vs zī;dr	180
+谁聪明	shéi;ar cōng;hd míng;ly	230
+谁错了	shéi;ar cuò;jc le;vs	330
+谁打的	shéi;ar dǎ;fh de;pp	310
+谁打你	shéi;ar dǎ;fh nǐ;rp	190
+谁打谁	shéi;ar dǎ;fh shéi;ar	330
+谁打我	shéi;ar dǎ;fh wǒ;pd	290
+谁带来	shéi;ar dài;hs lái;hm	170
+谁带你	shéi;ar dài;hs nǐ;rp	170
+谁带我	shéi;ar dài;hs wǒ;pd	230
+谁带走	shéi;ar dài;hs zǒu;tr	100
+谁担责	shéi;ar dān;fl zé;hr	320
+谁当家	shéi;ar dāng;sh jiā;bd	240
+谁到了	shéi;ar dào;hs le;vs	170
+谁倒霉	shéi;ar dǎo;rh méi;hd	380
+谁的啊	shéi;ar de;pp a;kv	270
+谁的爱	shéi;ar de;pp ài;pd	230
+谁的车	shéi;ar de;pp chē;hs	290
+谁的错	shéi;ar de;pp cuò;jc	380
+谁的大	shéi;ar de;pp dà;hd	180
+谁的歌	shéi;ar de;pp gē;hp	320
+谁的光	shéi;ar de;pp guāng;sv	220
+谁的锅	shéi;ar de;pp guō;jk	250
+谁的号	shéi;ar de;pp hào;kv	150
+谁的话	shéi;ar de;pp huà;ap	360
+谁的家	shéi;ar de;pp jiā;bd	320
+谁的脚	shéi;ar de;pp jiǎo;yt	220
+谁的了	shéi;ar de;pp le;vs	230
+谁的脸	shéi;ar de;pp liǎn;yr	350
+谁的梦	shéi;ar de;pp mèng;md	210
+谁的钱	shéi;ar de;pp qián;jh	420
+谁的群	shéi;ar de;pp qún;vd	150
+谁的人	shéi;ar de;pp rén;rd	230
+谁的事	shéi;ar de;pp shì;hs	220
+谁的手	shéi;ar de;pp shǒu;fs	320
+谁的谁	shéi;ar de;pp shéi;ar	320
+谁的心	shéi;ar de;pp xīn;xd	340
+谁的呀	shéi;ar de;pp ya;kh	250
+谁的眼	shéi;ar de;pp yǎn;sv	180
+谁第一	shéi;ar dì;gp yī;hh	300
+谁掉的	shéi;ar diào;fs de;pp	130
+谁订的	shéi;ar dìng;ah de;pp	160
+谁懂啊	shéi;ar dǒng;xc a;kv	220
+谁懂得	shéi;ar dǒng;xc de;pl	240
+谁动了	shéi;ar dòng;hv le;vs	420
+谁懂我	shéi;ar dǒng;xc wǒ;pd	180
+谁都爱	shéi;ar dōu;tv ài;pd	270
+谁都不	shéi;ar dōu;tv bù;hd	560
+谁都懂	shéi;ar dōu;tv dǒng;xc	380
+谁都会	shéi;ar dōu;tv huì;rd	510
+谁都能	shéi;ar dōu;tv néng;vp	520
+谁都怕	shéi;ar dōu;tv pà;xp	320
+谁都去	shéi;ar dōu;tv qù;td	100
+谁都是	shéi;ar dōu;tv shì;lr	440
+谁都想	shéi;ar dōu;tv xiǎng;mx	470
+谁都行	shéi;ar dōu;tv xíng;ph	290
+谁都有	shéi;ar dōu;tv yǒu;hy	490
+谁都在	shéi;ar dōu;tv zài;ht	270
+谁对谁	shéi;ar duì;vh shéi;ar	520
+谁儿子	shéi;ar ér;pv zi;vh	130
+谁发的	shéi;ar fā;vd de;pp	290
+谁发明	shéi;ar fā;vd míng;ly	360
+谁发现	shéi;ar fā;vd xiàn;ws	230
+谁放在	shéi;ar fàng;dp zài;ht	70
+谁付费	shéi;ar fù;rh fèi;vr	230
+谁付钱	shéi;ar fù;rh qián;jh	290
+谁服务	shéi;ar fú;yv wù;pp	270
+谁负责	shéi;ar fù;pr zé;hr	490
+谁改的	shéi;ar gǎi;vp de;pp	330
+谁敢把	shéi;ar gǎn;vp bǎ;fv	230
+谁敢不	shéi;ar gǎn;vp bù;hd	250
+谁干的	shéi;ar gàn;hs de;pp	420
+谁干净	shéi;ar gān;hs jìng;dp	70
+谁敢拦	shéi;ar gǎn;vp lán;fd	170
+谁敢娶	shéi;ar gǎn;vp qǔ;hn	240
+谁敢惹	shéi;ar gǎn;vp rě;cx	270
+谁敢上	shéi;ar gǎn;vp shàng;sh	150
+谁告诉	shéi;ar gào;pk sù;ap	400
+谁高兴	shéi;ar gāo;dk xìng;dd	240
+谁给了	shéi;ar gěi;ir le;vs	280
+谁给你	shéi;ar gěi;ir nǐ;rp	410
+谁给谁	shéi;ar gěi;ir shéi;ar	310
+谁给说	shéi;ar gěi;ir shuō;ad	110
+谁给我	shéi;ar gěi;ir wǒ;pd	460
+谁给咱	shéi;ar gěi;ir zán;kp	150
+谁跟你	shéi;ar gēn;zv nǐ;rp	390
+谁跟谁	shéi;ar gēn;zv shéi;ar	370
+谁跟他	shéi;ar gēn;zv tā;rv	300
+谁跟我	shéi;ar gēn;zv wǒ;pd	380
+谁更	shéi;ar gèng;hd	339
+谁更爱	shéi;ar gèng;hd ài;pd	250
+谁更惨	shéi;ar gèng;hd cǎn;xv	250
+谁更大	shéi;ar gèng;hd dà;hd	290
+谁更好	shéi;ar gèng;hd hǎo;nv	410
+谁更狠	shéi;ar gèng;hd hěn;pv	150
+谁更红	shéi;ar gèng;hd hóng;ih	260
+谁更快	shéi;ar gèng;hd kuài;xv	260
+谁更美	shéi;ar gèng;hd měi;dd	370
+谁更牛	shéi;ar gèng;hd niú;ps	290
+谁更强	shéi;ar gèng;hd qiáng;vk	440
+谁更帅	shéi;ar gèng;hd shuài;ss	320
+谁更像	shéi;ar gèng;hd xiàng;rp	270
+谁公开	shéi;ar gōng;pd kāi;hs	180
+谁共我	shéi;ar gòng;cd wǒ;pd	210
+谁管理	shéi;ar guǎn;gh lǐ;wl	260
+谁管你	shéi;ar guǎn;gh nǐ;rp	400
+谁管钱	shéi;ar guǎn;gh qián;jh	300
+谁管他	shéi;ar guǎn;gh tā;rv	180
+谁规定	shéi;ar guī;hs dìng;bd	400
+谁过来	shéi;ar guò;hz lái;hm	230
+谁还敢	shéi;ar hái;hz gǎn;vp	480
+谁还管	shéi;ar hái;hz guǎn;gh	320
+谁还会	shéi;ar hái;hz huì;rd	480
+谁还没	shéi;ar hái;hz méi;up	430
+谁还能	shéi;ar hái;hz néng;vp	420
+谁害怕	shéi;ar hài;bk pà;xp	210
+谁还去	shéi;ar hái;hz qù;td	360
+谁还要	shéi;ar hái;hz yào;hn	310
+谁还用	shéi;ar hái;hz yòng;ps	310
+谁还有	shéi;ar hái;hz yǒu;hy	400
+谁还在	shéi;ar hái;hz zài;ht	310
+谁好看	shéi;ar hǎo;nv kàn;ph	290
+谁好像	shéi;ar hǎo;nv xiàng;rp	160
+谁和你	shéi;ar hé;ek nǐ;rp	320
+谁和我	shéi;ar hé;ek wǒ;pd	340
+谁画的	shéi;ar huà;hs de;pp	310
+谁花钱	shéi;ar huā;cv qián;jh	240
+谁会得	shéi;ar huì;rd de;pl	100
+谁会跟	shéi;ar huì;rd gēn;zv	250
+谁会来	shéi;ar huì;rd lái;hm	330
+谁回来	shéi;ar huí;sh lái;hm	170
+谁会买	shéi;ar huì;rd mǎi;vd	340
+谁会去	shéi;ar huì;rd qù;td	410
+谁会想	shéi;ar huì;rd xiǎng;mx	310
+谁会信	shéi;ar huì;rd xìn;ra	250
+谁记得	shéi;ar jì;av de;pl	320
+谁家里	shéi;ar jiā;bd lǐ;lt	330
+谁家去	shéi;ar jiā;bd qù;td	110
+谁家有	shéi;ar jiā;bd yǒu;hy	370
+谁家做	shéi;ar jiā;bd zuò;rh	190
+谁建的	shéi;ar jiàn;vd de;pp	170
+谁监管	shéi;ar jiān;sh guǎn;gh	300
+谁见过	shéi;ar jiàn;sv guò;hz	410
+谁见了	shéi;ar jiàn;sv le;vs	380
+谁讲的	shéi;ar jiǎng;ah de;pp	270
+谁教的	shéi;ar jiào;tp de;pp	260
+谁叫你	shéi;ar jiào;kv nǐ;rp	430
+谁教你	shéi;ar jiào;tp nǐ;rp	250
+谁叫他	shéi;ar jiào;kv tā;rv	370
+谁教他	shéi;ar jiào;tp tā;rv	30
+谁叫我	shéi;ar jiào;kv wǒ;pd	450
+谁教我	shéi;ar jiào;tp wǒ;pd	310
+谁接的	shéi;ar jiē;fd de;pp	180
+谁结婚	shéi;ar jié;it hūn;np	280
+谁借我	shéi;ar jiè;rc wǒ;pd	260
+谁进的	shéi;ar jìn;hz de;pp	240
+谁就能	shéi;ar jiù;dh néng;vp	470
+谁就是	shéi;ar jiù;dh shì;lr	480
+谁举报	shéi;ar jǔ;ds bào;fv	310
+谁举证	shéi;ar jǔ;ds zhèng;ah	400
+谁开车	shéi;ar kāi;hs chē;hs	220
+谁开的	shéi;ar kāi;hs de;pp	270
+谁开发	shéi;ar kāi;hs fā;vd	270
+谁看到	shéi;ar kàn;ph dào;hs	350
+谁看的	shéi;ar kàn;ph de;pp	320
+谁看过	shéi;ar kàn;ph guò;hz	380
+谁看了	shéi;ar kàn;ph le;vs	380
+谁看你	shéi;ar kàn;ph nǐ;rp	220
+谁看谁	shéi;ar kàn;ph shéi;ar	380
+谁可比	shéi;ar kě;hs bǐ;hp	210
+谁可以	shéi;ar kě;hs yǐ;vr	530
+谁坑谁	shéi;ar kēng;td shéi;ar	160
+谁来帮	shéi;ar lái;hm bāng;hs	330
+谁来出	shéi;ar lái;hm chū;vs	280
+谁来打	shéi;ar lái;hm dǎ;fh	190
+谁来带	shéi;ar lái;hm dài;hs	230
+谁来的	shéi;ar lái;hm de;pp	230
+谁来扶	shéi;ar lái;hm fú;fh	250
+谁来干	shéi;ar lái;hm gàn;hs	250
+谁来管	shéi;ar lái;hm guǎn;gh	390
+谁来讲	shéi;ar lái;hm jiǎng;ah	200
+谁来教	shéi;ar lái;hm jiào;tp	270
+谁来接	shéi;ar lái;hm jiē;fd	260
+谁来看	shéi;ar lái;hm kàn;ph	180
+谁来了	shéi;ar lái;hm le;vs	310
+谁来买	shéi;ar lái;hm mǎi;vd	270
+谁来赔	shéi;ar lái;hm péi;sd	300
+谁来陪	shéi;ar lái;hm péi;vd	200
+谁来收	shéi;ar lái;hm shōu;vp	130
+谁来问	shéi;ar lái;hm wèn;dk	160
+谁来演	shéi;ar lái;hm yǎn;ub	350
+谁来养	shéi;ar lái;hm yǎng;ds	230
+谁来找	shéi;ar lái;hm zhǎo;fh	180
+谁来着	shéi;ar lái;hm zhe;dh	290
+谁来做	shéi;ar lái;hm zuò;rh	390
+谁了么	shéi;ar le;vs me;pd	150
+谁了呢	shéi;ar le;vs ne;kv	200
+谁乐意	shéi;ar lè;pd yì;dx	270
+谁厉害	shéi;ar lì;hp hài;bk	430
+谁理你	shéi;ar lǐ;wl nǐ;rp	280
+谁了解	shéi;ar liǎo;vs jiě;pv	380
+谁骂谁	shéi;ar mà;kh shéi;ar	240
+谁买单	shéi;ar mǎi;vd dān;ds	360
+谁买的	shéi;ar mǎi;vd de;pp	310
+谁买了	shéi;ar mǎi;vd le;vs	340
+谁没点	shéi;ar méi;up diǎn;sq	270
+谁没事	shéi;ar méi;up shì;hs	400
+谁每天	shéi;ar měi;pd tiān;hd	230
+谁没有	shéi;ar méi;up yǒu;hy	490
+谁明白	shéi;ar míng;ly bái;pl	310
+谁拿的	shéi;ar ná;rf de;pp	230
+谁哪个	shéi;ar nǎ;kv gè;rs	210
+谁拿了	shéi;ar ná;rf le;vs	360
+谁能把	shéi;ar néng;vp bǎ;fv	410
+谁能保	shéi;ar néng;vp bǎo;rk	110
+谁能比	shéi;ar néng;vp bǐ;hp	340
+谁能吃	shéi;ar néng;vp chī;kp	180
+谁能带	shéi;ar néng;vp dài;hs	190
+谁能敌	shéi;ar néng;vp dí;pp	230
+谁能懂	shéi;ar néng;vp dǒng;xc	320
+谁能干	shéi;ar néng;vp gàn;hs	170
+谁能给	shéi;ar néng;vp gěi;ir	480
+谁能管	shéi;ar néng;vp guǎn;gh	190
+谁能及	shéi;ar néng;vp jí;pd	150
+谁能记	shéi;ar néng;vp jì;av	30
+谁能接	shéi;ar néng;vp jiē;fd	120
+谁能说	shéi;ar néng;vp shuō;ad	410
+谁能向	shéi;ar néng;vp xiàng;pk	150
+谁能知	shéi;ar néng;vp zhī;pk	180
+谁能做	shéi;ar néng;vp zuò;rh	310
+谁尼玛	shéi;ar ní;vv mǎ;wv	320
+谁怕谁	shéi;ar pà;xp shéi;ar	410
+谁拍的	shéi;ar pāi;fp de;pp	330
+谁排的	shéi;ar pái;fs de;pp	130
+谁陪你	shéi;ar péi;vd nǐ;rp	250
+谁陪我	shéi;ar péi;vd wǒ;pd	300
+谁批准	shéi;ar pī;fh zhǔn;dr	200
+谁漂亮	shéi;ar piào;uh liang;dv	280
+谁破坏	shéi;ar pò;hv huài;th	250
+谁欺负	shéi;ar qī;cp fù;pr	270
+谁欠谁	shéi;ar qiàn;pr shéi;ar	300
+谁签字	shéi;ar qiān;gh zì;bh	280
+谁清楚	shéi;ar qīng;uh chǔ;md	250
+谁请客	shéi;ar qǐng;ah kè;bk	320
+谁去接	shéi;ar qù;td jiē;fd	160
+谁去呢	shéi;ar qù;td ne;kv	220
+谁娶谁	shéi;ar qǔ;hn shéi;ar	220
+谁去做	shéi;ar qù;td zuò;rh	280
+谁让你	shéi;ar ràng;as nǐ;rp	500
+谁让您	shéi;ar ràng;as nín;rx	130
+谁让谁	shéi;ar ràng;as shéi;ar	220
+谁让他	shéi;ar ràng;as tā;rv	400
+谁让她	shéi;ar ràng;as tā;nv	330
+谁让我	shéi;ar ràng;as wǒ;pd	490
+谁人能	shéi;ar rén;rd néng;vp	290
+谁认识	shéi;ar rèn;ar shi;ak	400
+谁人识	shéi;ar rén;rd shí;ak	260
+谁人知	shéi;ar rén;rd zhī;pk	320
+谁扔的	shéi;ar rēng;fv de;pp	240
+谁杀谁	shéi;ar shā;pm shéi;ar	240
+谁上班	shéi;ar shàng;sh bān;wd	140
+谁审核	shéi;ar shěn;bs hé;md	250
+谁生病	shéi;ar shēng;ph bìng;dd	210
+谁生日	shéi;ar shēng;ph rì;lh	210
+谁是爹	shéi;ar shì;lr diē;pd	190
+谁是狗	shéi;ar shì;lr gǒu;pp	280
+谁是谁	shéi;ar shì;lr shéi;ar	470
+谁是我	shéi;ar shì;lr wǒ;pd	270
+谁使用	shéi;ar shǐ;rh yòng;ps	280
+谁是主	shéi;ar shì;lr zhǔ;dw	230
+谁是猪	shéi;ar shì;lr zhū;pt	180
+谁收藏	shéi;ar shōu;vp cáng;cd	130
+谁手机	shéi;ar shǒu;fs jī;mp	170
+谁受益	shéi;ar shòu;pd yì;dh	380
+谁输了	shéi;ar shū;hr le;vs	340
+谁谁是	shéi;ar shéi;ar shì;lr	240
+谁谁谁	shéi;ar shéi;ar shéi;ar	520
+谁说到	shéi;ar shuō;ad dào;hs	80
+谁说的	shéi;ar shuō;ad de;pp	500
+谁说过	shéi;ar shuō;ad guò;hz	370
+谁说话	shéi;ar shuō;ad huà;ap	340
+谁说谎	shéi;ar shuō;ad huǎng;ac	140
+谁说来	shéi;ar shuō;ad lái;hm	90
+谁说你	shéi;ar shuō;ad nǐ;rp	270
+谁说女	shéi;ar shuō;ad nǚ;nh	210
+谁说我	shéi;ar shuō;ad wǒ;pd	380
+谁送的	shéi;ar sòng;dz de;pp	330
+谁送我	shéi;ar sòng;dz wǒ;pd	310
+谁他妈	shéi;ar tā;rv mā;nv	420
+谁掏钱	shéi;ar tāo;fp qián;jh	270
+谁提的	shéi;ar tí;fl de;pp	290
+谁提供	shéi;ar tí;fl gōng;rc	310
+谁听谁	shéi;ar tīng;kp shéi;ar	240
+谁同意	shéi;ar tóng;sk yì;dx	200
+谁统一	shéi;ar tǒng;id yī;hh	170
+谁投资	shéi;ar tóu;fp zī;dr	290
+谁玩过	shéi;ar wán;wh guò;hz	280
+谁玩谁	shéi;ar wán;wh shéi;ar	280
+谁为你	shéi;ar wéi;dd nǐ;rp	290
+谁为谁	shéi;ar wéi;dd shéi;ar	280
+谁为我	shéi;ar wèi;dd wǒ;pd	250
+谁维修	shéi;ar wéi;ir xiū;rs	130
+谁为主	shéi;ar wéi;dd zhǔ;dw	230
+谁问的	shéi;ar wèn;dk de;pp	230
+谁污染	shéi;ar wū;uh rǎn;um	320
+谁侮辱	shéi;ar wǔ;rp rǔ;hd	160
+谁稀罕	shéi;ar xī;ep hǎn;ds	340
+谁喜欢	shéi;ar xǐ;tk huān;vp	400
+谁洗碗	shéi;ar xǐ;up wǎn;hb	290
+谁先到	shéi;ar xiān;pv dào;hs	280
+谁先来	shéi;ar xiān;pv lái;hm	250
+谁先上	shéi;ar xiān;pv shàng;sh	250
+谁先说	shéi;ar xiān;pv shuō;ad	210
+谁先死	shéi;ar xiān;pv sǐ;hv	310
+谁先走	shéi;ar xiān;pv zǒu;tr	270
+谁相伴	shéi;ar xiāng;ms bàn;rd	130
+谁想到	shéi;ar xiǎng;mx dào;hs	440
+谁想的	shéi;ar xiǎng;mx de;pp	260
+谁想干	shéi;ar xiǎng;mx gàn;hs	140
+谁想看	shéi;ar xiǎng;mx kàn;ph	240
+谁想买	shéi;ar xiǎng;mx mǎi;vd	210
+谁像你	shéi;ar xiàng;rp nǐ;rp	210
+谁想去	shéi;ar xiǎng;mx qù;td	260
+谁像谁	shéi;ar xiàng;rp shéi;ar	290
+谁相信	shéi;ar xiāng;ms xìn;ra	290
+谁想要	shéi;ar xiǎng;mx yào;hn	360
+谁晓得	shéi;ar xiǎo;lh de;pl	350
+谁写的	shéi;ar xiě;dh de;pp	430
+谁信啊	shéi;ar xìn;ra a;kv	350
+谁信道	shéi;ar xìn;ra dào;dz	160
+谁信呐	shéi;ar xìn;ra nà;ks	170
+谁信呢	shéi;ar xìn;ra ne;kv	260
+谁信呀	shéi;ar xìn;ra ya;kh	170
+谁需要	shéi;ar xū;hs yào;hn	360
+谁学得	shéi;ar xué;dh dé;pl	50
+谁呀我	shéi;ar ya;kh wǒ;pd	220
+谁演的	shéi;ar yǎn;ub de;pp	330
+谁要的	shéi;ar yào;hn de;pp	260
+谁要和	shéi;ar yào;hn hé;ek	200
+谁要看	shéi;ar yào;hn kàn;ph	260
+谁要来	shéi;ar yào;hn lái;hm	250
+谁要买	shéi;ar yào;hn mǎi;vd	220
+谁要是	shéi;ar yào;hn shì;lr	480
+谁也不	shéi;ar yě;vv bù;hd	580
+谁也会	shéi;ar yě;vv huì;rd	160
+谁也没	shéi;ar yě;vv méi;up	500
+谁也能	shéi;ar yě;vv néng;vp	120
+谁也是	shéi;ar yě;vv shì;lr	200
+谁也想	shéi;ar yě;vv xiǎng;mx	180
+谁也有	shéi;ar yě;vv yǒu;hy	170
+谁一个	shéi;ar yí;hh gè;rs	300
+谁一起	shéi;ar yì;hh qǐ;tv	280
+谁一天	shéi;ar yì;hh tiān;hd	160
+谁赢了	shéi;ar yíng;dd le;vs	390
+谁影响	shéi;ar yǐng;lp xiǎng;kp	220
+谁用过	shéi;ar yòng;ps guò;hz	460
+谁拥有	shéi;ar yōng;fp yǒu;hy	410
+谁有病	shéi;ar yǒu;hy bìng;dd	230
+谁有发	shéi;ar yǒu;hy fā;vd	140
+谁有空	shéi;ar yǒu;hy kòng;bh	350
+谁有理	shéi;ar yǒu;hy lǐ;wl	320
+谁又能	shéi;ar yòu;vd néng;vp	480
+谁有钱	shéi;ar yǒu;hy qián;jh	350
+谁与共	shéi;ar yǔ;hh gòng;cd	280
+谁与谁	shéi;ar yǔ;hh shéi;ar	290
+谁愿意	shéi;ar yuàn;hx yì;dx	530
+谁允许	shéi;ar yǔn;vv xǔ;ap	310
+谁再敢	shéi;ar zài;hh gǎn;vp	260
+谁在家	shéi;ar zài;ht jiā;bd	200
+谁在叫	shéi;ar zài;ht jiào;kv	150
+谁在看	shéi;ar zài;ht kàn;ph	230
+谁在买	shéi;ar zài;ht mǎi;vd	330
+谁在卖	shéi;ar zài;ht mài;hd	220
+谁在那	shéi;ar zài;ht nà;vv	230
+谁在说	shéi;ar zài;ht shuō;ad	280
+谁在玩	shéi;ar zài;ht wán;wh	230
+谁在线	shéi;ar zài;ht xiàn;ih	90
+谁在意	shéi;ar zài;ht yì;dx	290
+谁在用	shéi;ar zài;ht yòng;ps	310
+谁照顾	shéi;ar zhào;lq gù;hh	290
+谁找你	shéi;ar zhǎo;fh nǐ;rp	180
+谁挣钱	shéi;ar zhèng;fp qián;jh	220
+谁值班	shéi;ar zhí;rh bān;wd	120
+谁知此	shéi;ar zhī;pk cǐ;sp	170
+谁知道	shéi;ar zhī;pk dào;dz	710
+谁值得	shéi;ar zhí;rh de;pl	250
+谁制定	shéi;ar zhì;ps dìng;bd	180
+谁执法	shéi;ar zhí;fp fǎ;ut	280
+谁之过	shéi;ar zhī;dd guò;hz	410
+谁知过	shéi;ar zhī;pk guò;hz	70
+谁治理	shéi;ar zhì;uv lǐ;wl	320
+谁知是	shéi;ar zhī;pk shì;lr	300
+谁知我	shéi;ar zhī;pk wǒ;pd	280
+谁知有	shéi;ar zhī;pk yǒu;hy	160
+谁之责	shéi;ar zhī;dd zé;hr	210
+谁重要	shéi;ar zhòng;pt yào;hn	280
+谁主导	shéi;ar zhǔ;dw dǎo;vd	370
+谁主动	shéi;ar zhǔ;dw dòng;hv	300
+谁主管	shéi;ar zhǔ;dw guǎn;gh	370
+谁主张	shéi;ar zhǔ;dw zhāng;vp	390
+谁追谁	shéi;ar zhuī;pz shéi;ar	300
+谁走了	shéi;ar zǒu;tr le;vs	240
+谁组队	shéi;ar zǔ;is duì;vr	170
+谁组织	shéi;ar zǔ;is zhī;ik	220
+谁最惨	shéi;ar zuì;ld cǎn;xv	170
+谁最丑	shéi;ar zuì;ld chǒu;vt	170
+谁最大	shéi;ar zuì;ld dà;hd	230
+谁最高	shéi;ar zuì;ld gāo;dk	260
+谁最好	shéi;ar zuì;ld hǎo;nv	300
+谁最红	shéi;ar zuì;ld hóng;ih	210
+谁最快	shéi;ar zuì;ld kuài;xv	210
+谁最美	shéi;ar zuì;ld měi;dd	330
+谁最能	shéi;ar zuì;ld néng;vp	280
+谁最牛	shéi;ar zuì;ld niú;ps	270
+谁最强	shéi;ar zuì;ld qiáng;vk	360
+谁最帅	shéi;ar zuì;ld shuài;ss	310
+谁做的	shéi;ar zuò;rh de;pp	410
+谁做饭	shéi;ar zuò;rh fàn;pp	280
+谁做主	shéi;ar zuò;rh zhǔ;dw	370
+说的谁	shuō;ad de;pp shéi;ar	240
+说谁的	shuō;ad shéi;ar de;pp	270
+说谁了	shuō;ad shéi;ar le;vs	200
+说谁呢	shuō;ad shéi;ar ne;kv	310
+思念谁	sī;sx niàn;rx shéi;ar	260
+送给谁	sòng;dz gěi;ir shéi;ar	350
+算谁的	suàn;gs shéi;ar de;pp	370
+所以谁	suǒ;pp yǐ;vr shéi;ar	380
+他是谁	tā;rv shì;lr shéi;ar	490
+她是谁	tā;nv shì;lr shéi;ar	450
+淘汰谁	táo;up tài;uh shéi;ar	240
+讨厌谁	tǎo;ah yàn;hd shéi;ar	340
+听谁的	tīng;kp shéi;ar de;pp	440
+听谁说	tīng;kp shéi;ar shuō;ad	330
+投给谁	tóu;fp gěi;ir shéi;ar	330
+投靠谁	tóu;fp kào;ph shéi;ar	210
+忘记谁	wàng;dx jì;av shéi;ar	210
+忘了谁	wàng;dx le;vs shéi;ar	280
+为了谁	wèi;dd le;vs shéi;ar	430
+为谁开	wéi;dd shéi;ar kāi;hs	260
+为谁留	wéi;dd shéi;ar liú;ph	160
+为谁落	wéi;dd shéi;ar luò;ck	180
+为谁忙	wéi;dd shéi;ar máng;xd	240
+为谁去	wéi;dd shéi;ar qù;td	90
+问是谁	wèn;dk shì;lr shéi;ar	350
+问谁来	wèn;dk shéi;ar lái;hm	90
+问谁能	wèn;dk shéi;ar néng;vp	220
+问谁是	wèn;dk shéi;ar shì;lr	320
+问谁在	wèn;dk shéi;ar zài;ht	180
+问有谁	wèn;dk yǒu;hy shéi;ar	270
+我爱谁	wǒ;pd ài;pd shéi;ar	200
+我和谁	wǒ;pd hé;ek shéi;ar	300
+我骂谁	wǒ;pd mà;kh shéi;ar	160
+我怕谁	wǒ;pd pà;xp shéi;ar	340
+我是谁	wǒ;pd shì;lr shéi;ar	550
+我问谁	wǒ;pd wèn;dk shéi;ar	240
+我像谁	wǒ;pd xiàng;rp shéi;ar	120
+无论谁	wú;hv lùn;ar shéi;ar	450
+喜欢谁	xǐ;tk huān;vp shéi;ar	460
+吓唬谁	xià;kh hu;ks shéi;ar	220
+先救谁	xiān;pv jiù;hp shéi;ar	380
+想起谁	xiǎng;mx qǐ;tv shéi;ar	340
+像是谁	xiàng;rp shì;lr shéi;ar	190
+想谁的	xiǎng;mx shéi;ar de;pp	100
+想谁呢	xiǎng;mx shéi;ar ne;kv	90
+向谁说	xiàng;pk shéi;ar shuō;ad	230
+向谁诉	xiàng;pk shéi;ar sù;ap	210
+相信谁	xiāng;ms xìn;ra shéi;ar	380
+想要谁	xiǎng;mx yào;hn shéi;ar	190
+想着谁	xiǎng;mx zhe;dh shéi;ar	250
+写给谁	xiě;dh gěi;ir shéi;ar	310
+需要谁	xū;hs yào;hn shéi;ar	250
+选择谁	xuǎn;pz zé;fv shéi;ar	440
+也没谁	yě;vv méi;up shéi;ar	300
+依靠谁	yī;rd kào;ph shéi;ar	320
+依赖谁	yī;rd lài;hp shéi;ar	190
+因为谁	yīn;sh wèi;dd shéi;ar	420
+用谁的	yòng;ps shéi;ar de;pp	310
+又被谁	yòu;vd bèi;dv shéi;ar	220
+又是谁	yòu;vd shì;lr shéi;ar	470
+有谁把	yǒu;hy shéi;ar bǎ;fv	180
+有谁家	yǒu;hy shéi;ar jiā;bd	200
+有谁看	yǒu;hy shéi;ar kàn;ph	240
+由谁来	yóu;sh shéi;ar lái;hm	470
+有谁来	yǒu;hy shéi;ar lái;hm	310
+有谁怜	yǒu;hy shéi;ar lián;xr	280
+优谁劣	yōu;rh shéi;ar liè;sp	10
+有谁呢	yǒu;hy shéi;ar ne;kv	300
+有谁能	yǒu;hy shéi;ar néng;vp	540
+又谁能	yòu;vd shéi;ar néng;vp	160
+有谁是	yǒu;hy shéi;ar shì;lr	310
+有谁问	yǒu;hy shéi;ar wèn;dk	30
+有谁也	yǒu;hy shéi;ar yě;vv	150
+有谁知	yǒu;hy shéi;ar zhī;pk	350
+又谁知	yòu;vd shéi;ar zhī;pk	240
+又有谁	yòu;vd yǒu;hy shéi;ar	460
+遇到谁	yù;lz dào;hs shéi;ar	320
+遇见谁	yù;lz jiàn;sv shéi;ar	350
+与谁共	yǔ;hh shéi;ar gòng;cd	170
+与谁同	yǔ;hh shéi;ar tóng;sk	240
+在等谁	zài;ht děng;gd shéi;ar	280
+在和谁	zài;ht hé;ek shéi;ar	260
+在乎谁	zài;ht hū;ps shéi;ar	290
+在谁家	zài;ht shéi;ar jiā;bd	270
+怎么谁	zěn;px me;pd shéi;ar	180
+照顾谁	zhào;lq gù;hh shéi;ar	200
+找谁啊	zhǎo;fh shéi;ar a;kv	290
+找谁帮	zhǎo;fh shéi;ar bāng;hs	50
+招谁了	zhāo;fv shéi;ar le;vs	190
+找谁呀	zhǎo;fh shéi;ar ya;kh	190
+找谁做	zhǎo;fh shéi;ar zuò;rh	250
+这是谁	zhè;dz shì;lr shéi;ar	480
+这谁啊	zhè;dz shéi;ar a;kv	300
+这谁呀	zhè;dz shéi;ar ya;kh	210
+针对谁	zhēn;jh duì;vh shéi;ar	440
+支持谁	zhī;hd chí;ft shéi;ar	390
+知道谁	zhī;pk dào;dz shéi;ar	440
+指望谁	zhǐ;fp wàng;dw shéi;ar	310
+只有谁	zhǐ;kd yǒu;hy shéi;ar	320
+转给谁	zhuǎn;hh gěi;ir shéi;ar	190
+资料谁	zī;dr liào;dd shéi;ar	210
+最后谁	zuì;ld hòu;pk shéi;ar	400
+爱谁谁吧	ài;pd shéi;ar shéi;ar ba;kv	29
+暗恋过谁	àn;ld liàn;dx guò;hz shéi;ar	1
+白云谁侣	bái;pl yún;hd shéi;ar lǚ;rk	1
+被谁抛弃	bèi;dv shéi;ar pāo;fp qì;ds	33
+被谁杀了	bèi;dv shéi;ar shā;pm le;vs	14
+被谁调戏	bèi;dv shéi;ar tiáo;ap xì;vh	1
+比谁都多	bǐ;hp shéi;ar dōu;tv duō;pd	35
+比谁都快	bǐ;hp shéi;ar dōu;tv kuài;xv	47
+变成了谁	biàn;dd chéng;hd le;vs shéi;ar	23
+不比谁弱	bù;hd bǐ;hp shéi;ar ruò;vv	6
+不嘲笑谁	bù;hd cháo;kh xiào;gd shéi;ar	1
+不怀疑谁	bù;hd huái;xh yí;pv shéi;ar	1
+不知道谁	bù;hd zhī;pk dào;dz shéi;ar	60
+猜我是谁	cāi;ph wǒ;pd shì;lr shéi;ar	31
+曾共谁倚	céng;dl gòng;cd shéi;ar yǐ;rh	1
+唱给谁听	chàng;kl gěi;ir shéi;ar tīng;kp	19
+出自谁手	chū;vs zì;ph shéi;ar shǒu;fs	31
+此恨谁知	cǐ;sp hèn;xv shéi;ar zhī;pk	6
+此情谁会	cǐ;sp qíng;xh shéi;ar huì;rd	1
+此情谁托	cǐ;sp qíng;xh shéi;ar tuō;fp	1
+逮谁咬谁	dǎi;vz shéi;ar yǎo;kd shéi;ar	23
+但谁曾想	dàn;rl shéi;ar céng;dl xiǎng;mx	15
+当年谁种	dāng;sh nián;ps shéi;ar zhǒng;ek	1
+当是谁呢	dàng;sh shì;lr shéi;ar ne;kv	1
+到底投谁	dào;hs dǐ;dd tóu;fp shéi;ar	1
+的你和谁	de;pp nǐ;rp hé;ek shéi;ar	9
+得罪了谁	dé;pl zuì;sh le;vs shéi;ar	36
+都谁能来	dōu;tv shéi;ar néng;vp lái;hm	1
+都谁在啊	dōu;tv shéi;ar zài;ht a;kv	1
+都有谁了	dōu;tv yǒu;hy shéi;ar le;vs	1
+都有谁去	dōu;tv yǒu;hy shéi;ar qù;td	8
+都有谁在	dōu;tv yǒu;hy shéi;ar zài;ht	1
+都有些谁	dōu;tv yǒu;hy xiē;sh shéi;ar	15
+对不起谁	duì;vh bù;hd qǐ;tv shéi;ar	42
+对谁都好	duì;vh shéi;ar dōu;tv hǎo;nv	40
+蛾眉谁妒	é;op méi;vh shéi;ar dù;nd	1
+发给谁了	fā;vd gěi;ir shéi;ar le;vs	1
+翻谁牌子	fān;pv shéi;ar pái;pp zi;vh	4
+飞傍谁家	fēi;vd bàng;rd shéi;ar jiā;bd	1
+非谁不可	fēi;ss shéi;ar bù;hd kě;hs	26
+飞向谁家	fēi;vd xiàng;pk shéi;ar jiā;bd	11
+分不出谁	fēn;pp bù;hd chū;vs shéi;ar	22
+分付他谁	fēn;pp fù;rh tā;rv shéi;ar	1
+夫谁畏惧	fū;hd shéi;ar wèi;sd jù;xs	6
+该归谁管	gāi;ad guī;sv shéi;ar guǎn;gh	17
+该相信谁	gāi;ad xiāng;ms xìn;ra shéi;ar	38
+给别人谁	gěi;ir bié;ks rén;rd shéi;ar	4
+给谁看呢	gěi;ir shéi;ar kàn;ph ne;kv	41
+给谁买呢	gěi;ir shéi;ar mǎi;vd ne;kv	1
+跟谁赌气	gēn;zv shéi;ar dǔ;st qì;pv	14
+跟谁俩呢	gēn;zv shéi;ar liǎ;rh ne;kv	22
+跟谁聊呢	gēn;zv shéi;ar liáo;hp ne;kv	8
+跟谁有仇	gēn;zv shéi;ar yǒu;hy chóu;rp	29
+更为谁羞	gēng;hd wéi;dd shéi;ar xiū;dt	6
+更喜欢谁	gèng;hd xǐ;tk huān;vp shéi;ar	46
+更有谁知	gèng;hd yǒu;hy shéi;ar zhī;pk	1
+共谁同航	gòng;cd shéi;ar tóng;sk háng;pd	28
+关心过谁	guān;dd xīn;xd guò;hz shéi;ar	1
+归谁管啊	guī;sv shéi;ar guǎn;gh a;kv	6
+哈谁知道	hā;kr shéi;ar zhī;pk dào;dz	16
+还有那谁	hái;hz yǒu;hy nà;vv shéi;ar	21
+还有谁了	hái;hz yǒu;hy shéi;ar le;vs	14
+还有谁去	hái;hz yǒu;hy shéi;ar qù;td	25
+还有谁在	hái;hz yǒu;hy shéi;ar zài;ht	1
+孩子像谁	hái;vd zi;vh xiàng;rp shéi;ar	17
+和谁交往	hé;ek shéi;ar jiāo;dd wǎng;pd	26
+和谁结婚	hé;ek shéi;ar jié;it hūn;np	42
+和谁聊了	hé;ek shéi;ar liáo;hp le;vs	24
+和谁聊呢	hé;ek shéi;ar liáo;hp ne;kv	1
+和谁聊天	hé;ek shéi;ar liáo;hp tiān;hd	29
+和谁去的	hé;ek shéi;ar qù;td de;pp	20
+和谁去了	hé;ek shéi;ar qù;td le;vs	12
+和谁玩呢	hé;ek shéi;ar wán;wh ne;kv	1
+和谁一起	hé;ek shéi;ar yì;hh qǐ;tv	51
+和谁在家	hé;ek shéi;ar zài;ht jiā;bd	1
+和谁在聊	hé;ek shéi;ar zài;ht liáo;hp	1
+花落谁家	huā;cv luò;ck shéi;ar jiā;bd	58
+会是谁呢	huì;rd shì;lr shéi;ar ne;kv	48
+会选择谁	huì;rd xuǎn;pz zé;fv shéi;ar	38
+寂寞谁同	jì;bd mò;bd shéi;ar tóng;sk	1
+见谁秒谁	jiàn;sv shéi;ar miǎo;es shéi;ar	23
+解组谁逼	jiě;pv zǔ;is shéi;ar bī;hz	13
+今倩谁温	jīn;rv qiàn;rh shéi;ar wēn;ul	6
+今谁存者	jīn;rv shéi;ar cún;hh zhě;tl	8
+就给谁吃	jiù;dh gěi;ir shéi;ar chī;kp	9
+就卖给谁	jiù;dh mài;hd gěi;ir shéi;ar	22
+绝艳谁怜	jué;ip yàn;hp shéi;ar lián;xr	4
+君谁与守	jūn;vk shéi;ar yǔ;hh shǒu;bd	1
+开口谁亲	kāi;hs kǒu;kh shéi;ar qīn;dm	22
+看不出谁	kàn;ph bù;hd chū;vs shéi;ar	26
+看不惯谁	kàn;ph bù;hd guàn;xv shéi;ar	28
+看不起谁	kàn;ph bù;hd qǐ;tv shéi;ar	34
+看不清谁	kàn;ph bu;hd qīng;uh shéi;ar	16
+看出来谁	kàn;ph chū;vs lái;hm shéi;ar	30
+看得起谁	kàn;ph de;pl qǐ;tv shéi;ar	21
+看看谁先	kàn;ph kàn;ph shéi;ar xiān;pv	1
+看看谁硬	kàn;ph kàn;ph shéi;ar yìng;hh	1
+看谁都像	kàn;ph shéi;ar dōu;tv xiàng;rp	34
+看谁先得	kàn;ph shéi;ar xiān;pv dé;pl	1
+看谁先死	kàn;ph shéi;ar xiān;pv sǐ;hv	1
+可谁想到	kě;hs shéi;ar xiǎng;mx dào;hs	28
+可谁知道	kě;hs shéi;ar zhī;pk dào;dz	42
+离不开谁	lí;dd bù;hd kāi;hs shéi;ar	1
+帘影谁摇	lián;bs yǐng;lp shéi;ar yáo;fp	6
+鹿死谁手	lù;dv sǐ;hv shéi;ar shǒu;fs	296
+卖给了谁	mài;hd gěi;ir le;vs shéi;ar	30
+卖给谁了	mài;hd gěi;ir shéi;ar le;vs	1
+满庭谁扫	mǎn;uc tíng;dd shéi;ar sǎo;fv	1
+没看好谁	méi;up kàn;ph hǎo;nv shéi;ar	1
+明年谁健	míng;ly nián;ps shéi;ar jiàn;rv	6
+名之者谁	míng;pk zhī;dd zhě;tl shéi;ar	14
+莫敢谁何	mò;cd gǎn;vp shéi;ar hé;rh	13
+莫之谁何	mò;cd zhī;dd shéi;ar hé;rh	1
+那个谁谁	nà;vv gè;rs shéi;ar shéi;ar	39
+那是谁的	nà;vv shì;lr shéi;ar de;pp	1
+那是谁了	nà;vv shì;lr shéi;ar le;vs	11
+那谁到了	nà;vv shéi;ar dào;hs le;vs	1
+那谁谁谁	nà;vv shéi;ar shéi;ar shéi;ar	45
+那谁知道	nà;vv shéi;ar zhī;pk dào;dz	28
+能代表谁	néng;vp dài;rh biǎo;hd shéi;ar	16
+你猜是谁	nǐ;rp cāi;ph shì;lr shéi;ar	28
+你跟谁过	nǐ;rp gēn;zv shéi;ar guò;hz	1
+你跟谁俩	nǐ;rp gēn;zv shéi;ar liǎ;rh	9
+你管他谁	nǐ;rp guǎn;gh tā;rv shéi;ar	1
+你和谁过	nǐ;rp hé;ek shéi;ar guò;hz	1
+你觉得谁	nǐ;rp jué;dv de;pl shéi;ar	46
+你看好谁	nǐ;rp kàn;ph hǎo;nv shéi;ar	34
+你骂谁的	nǐ;rp mà;kh shéi;ar de;pp	1
+你买的谁	nǐ;rp mǎi;vd de;pp shéi;ar	1
+你买了谁	nǐ;rp mǎi;vd le;vs shéi;ar	1
+你们俩谁	nǐ;rp men;rd liǎ;rh shéi;ar	22
+你能对谁	nǐ;rp néng;vp duì;vh shéi;ar	1
+你认识谁	nǐ;rp rèn;ar shi;ak shéi;ar	27
+你是谁啦	nǐ;rp shì;lr shéi;ar la;kf	4
+你是谁了	nǐ;rp shì;lr shéi;ar le;vs	28
+你是谁么	nǐ;rp shì;lr shéi;ar me;pd	4
+你是谁呀	nǐ;rp shì;lr shéi;ar ya;kh	36
+你谁啊你	nǐ;rp shéi;ar a;kv nǐ;rp	28
+你谁都怕	nǐ;rp shéi;ar dōu;tv pà;xp	1
+你谁一个	nǐ;rp shéi;ar yí;hh gè;rs	1
+你说谁的	nǐ;rp shuō;ad shéi;ar de;pp	1
+你为了谁	nǐ;rp wèi;dd le;vs shéi;ar	17
+你稀罕谁	nǐ;rp xī;ep hǎn;ds shéi;ar	1
+你喜欢谁	nǐ;rp xǐ;tk huān;vp shéi;ar	42
+你先救谁	nǐ;rp xiān;pv jiù;hp shéi;ar	44
+你想要谁	nǐ;rp xiǎng;mx yào;hn shéi;ar	17
+你又是谁	nǐ;rp yòu;vd shì;lr shéi;ar	30
+你遇见谁	nǐ;rp yù;lz jiàn;sv shéi;ar	43
+你在想谁	nǐ;rp zài;ht xiǎng;mx shéi;ar	9
+你找谁呀	nǐ;rp zhǎo;fh shéi;ar ya;kh	13
+你支持谁	nǐ;rp zhī;hd chí;ft shéi;ar	35
+你知道谁	nǐ;rp zhī;pk dào;dz shéi;ar	30
+哦那个谁	ó;kp nà;vv gè;rs shéi;ar	11
+凭谁妙笔	píng;rv shéi;ar miào;ns bǐ;gv	1
+其谁从焉	qí;cd shéi;ar cóng;rr yān;hq	9
+其谁知之	qí;cd shéi;ar zhī;pk zhī;dd	4
+倩谁摘取	qiàn;rh shéi;ar zhāi;fd qǔ;hv	1
+瞧不起谁	qiáo;sr bù;hd qǐ;tv shéi;ar	35
+清韵谁敲	qīng;uh yùn;dp shéi;ar qiāo;ds	4
+认不出谁	rèn;ar bù;hd chū;vs shéi;ar	8
+人谁无过	rén;rd shéi;ar wú;hv guò;hz	33
+人在谁边	rén;rd zài;ht shéi;ar biān;vz	12
+舍你其谁	shě;rk nǐ;rp qí;cd shéi;ar	1
+舍他其谁	shě;rk tā;rv qí;cd shéi;ar	25
+舍我复谁	shě;rk wǒ;pd fù;pd shéi;ar	1
+舍我其谁	shě;rk wǒ;pd qí;cd shéi;ar	54
+生父是谁	shēng;ph fù;pd shì;lr shéi;ar	27
+生母是谁	shēng;ph mǔ;vd shì;lr shéi;ar	24
+师父是谁	shī;sh fu;pd shì;lr shéi;ar	23
+是输给谁	shì;lr shū;hr gěi;ir shéi;ar	1
+是谁的错	shì;lr shéi;ar de;pp cuò;jc	46
+是谁的锅	shì;lr shéi;ar de;pp guō;jk	31
+是谁照的	shì;lr shéi;ar zhào;lq de;pp	13
+书谁看过	shū;vd shéi;ar kàn;ph guò;hz	1
+谁伴孤吟	shéi;ar bàn;rd gū;vp yín;kr	1
+谁帮帮我	shéi;ar bāng;hs bāng;hs wǒ;pd	41
+谁帮我收	shéi;ar bāng;hs wǒ;pd shōu;vp	1
+谁帮我找	shéi;ar bāng;hs wǒ;pd zhǎo;fh	21
+谁比得上	shéi;ar bǐ;hp dé;pl shàng;sh	26
+谁比较好	shéi;ar bǐ;hp jiào;hd hǎo;nv	29
+谁比谁强	shéi;ar bǐ;hp shéi;ar qiáng;vk	31
+谁比我帅	shéi;ar bǐ;hp wǒ;pd shuài;ss	1
+谁不爱呢	shéi;ar bú;hd ài;pd ne;kv	43
+谁不懂啊	shéi;ar bù;hd dǒng;xc a;kv	21
+谁不会啊	shéi;ar bú;hd huì;rd a;kv	39
+谁不理你	shéi;ar bù;hd lǐ;wl nǐ;rp	1
+谁不欠谁	shéi;ar bú;hd qiàn;pr shéi;ar	1
+谁不是的	shéi;ar bú;hd shì;lr de;pp	8
+谁不是有	shéi;ar bú;hd shì;lr yǒu;hy	1
+谁不信呢	shéi;ar bú;hd xìn;ra ne;kv	1
+谁不要脸	shéi;ar bú;hd yào;hn liǎn;yr	1
+谁不着觉	shéi;ar bù;hd zhuó;dh jué;dv	8
+谁曾想到	shéi;ar céng;dl xiǎng;mx dào;hs	36
+谁曾想过	shéi;ar céng;dl xiǎng;mx guò;hz	22
+谁唱的了	shéi;ar chàng;kl de;pp le;vs	13
+谁吃的饭	shéi;ar chī;kp de;pp fàn;pp	1
+谁处对象	shéi;ar chù;pd duì;vh xiàng;pd	11
+谁传道之	shéi;ar chuán;rh dào;dz zhī;dd	19
+谁穿谁美	shéi;ar chuān;bp shéi;ar měi;dd	15
+谁打开的	shéi;ar dǎ;fh kāi;hs de;pp	8
+谁搭理你	shéi;ar dā;fc lǐ;wl nǐ;rp	21
+谁大谁小	shéi;ar dà;hd shéi;ar xiǎo;sd	37
+谁带孩子	shéi;ar dài;hs hái;vd zi;vh	26
+谁的爱情	shéi;ar de;pp ài;pd qíng;xh	25
+谁的车身	shéi;ar de;pp chē;hs shēn;pp	1
+谁的初吻	shéi;ar de;pp chū;dv wěn;kp	1
+谁的蛋糕	shéi;ar de;pp dàn;vo gāo;dd	25
+谁的地方	shéi;ar de;pp dì;tv fāng;dp	1
+谁的电话	shéi;ar de;pp diàn;lv huà;ap	34
+谁的电脑	shéi;ar de;pp diàn;lv nǎo;yd	1
+谁的儿子	shéi;ar de;pp ér;pv zi;vh	33
+谁的房子	shéi;ar de;pp fáng;dp zi;vh	21
+谁的粉丝	shéi;ar de;pp fěn;dp sī;ii	38
+谁的父母	shéi;ar de;pp fù;pd mǔ;vd	28
+谁的功劳	shéi;ar de;pp gōng;hv láo;cp	31
+谁的故事	shéi;ar de;pp gù;hp shì;hs	35
+谁的孩子	shéi;ar de;pp hái;vd zi;vh	42
+谁的好啊	shéi;ar de;pp hǎo;nv a;kv	1
+谁的好看	shéi;ar de;pp hǎo;nv kàn;ph	13
+谁的历史	shéi;ar de;pp lì;hp shǐ;kd	37
+谁的妈妈	shéi;ar de;pp mā;nv ma;nv	21
+谁的名片	shéi;ar de;pp míng;pk piàn;pv	1
+谁的名字	shéi;ar de;pp míng;pk zì;bh	46
+谁的女儿	shéi;ar de;pp nǚ;nh ér;pv	29
+谁的皮肤	shéi;ar de;pp pí;vd fū;yh	20
+谁的妻子	shéi;ar de;pp qī;hn zǐ;vh	21
+谁的青春	shéi;ar de;pp qīng;hy chūn;hl	56
+谁的人生	shéi;ar de;pp rén;rd shēng;ph	43
+谁的身体	shéi;ar de;pp shēn;pp tǐ;rm	26
+谁的生活	shéi;ar de;pp shēng;ph huó;up	38
+谁的声音	shéi;ar de;pp shēng;tp yīn;dl	34
+谁的手机	shéi;ar de;pp shǒu;fs jī;mp	35
+谁的手里	shéi;ar de;pp shǒu;fs lǐ;lt	37
+谁的问题	shéi;ar de;pp wèn;dk tí;lr	52
+谁的眼睛	shéi;ar de;pp yǎn;sv jīng;sh	26
+谁的眼泪	shéi;ar de;pp yǎn;sv lèi;us	32
+谁的造型	shéi;ar de;pp zào;pz xíng;ht	21
+谁的最好	shéi;ar de;pp zuì;ld hǎo;nv	15
+谁顶得住	shéi;ar dǐng;hh dé;pl zhù;rd	29
+谁懂我心	shéi;ar dǒng;xc wǒ;pd xīn;xd	1
+谁都不服	shéi;ar dōu;tv bù;hd fú;yv	32
+谁都不理	shéi;ar dōu;tv bù;hd lǐ;wl	35
+谁都不傻	shéi;ar dōu;tv bù;hd shǎ;rp	36
+谁都认识	shéi;ar dōu;tv rèn;ar shi;ak	30
+谁多谁少	shéi;ar duō;pd shéi;ar shǎo;sp	36
+谁饿肚子	shéi;ar è;pp dǔ;yt zi;vh	1
+谁发明的	shéi;ar fā;vd míng;ly de;pp	1
+谁负得起	shéi;ar fù;pr dé;pl qǐ;tv	1
+谁负刚肠	shéi;ar fù;pr gāng;ss cháng;yv	1
+谁负了谁	shéi;ar fù;pr le;vs shéi;ar	19
+谁负责啊	shéi;ar fù;pr zé;hr a;kv	26
+谁该负责	shéi;ar gāi;ad fù;pr zé;hr	32
+谁敢不服	shéi;ar gǎn;vp bù;hd fú;yv	30
+谁敢挡关	shéi;ar gǎn;vp dǎng;fs guān;dd	4
+谁干得好	shéi;ar gàn;hs dé;pl hǎo;nv	19
+谁敢动我	shéi;ar gǎn;vp dòng;hv wǒ;pd	28
+谁搞的鬼	shéi;ar gǎo;fd de;pp guǐ;pd	21
+谁告你的	shéi;ar gào;pk nǐ;rp de;pp	1
+谁告诉你	shéi;ar gào;pk sù;ap nǐ;rp	54
+谁告诉我	shéi;ar gào;pk sù;ap wǒ;pd	54
+谁个不晓	shéi;ar gè;rs bù;hd xiǎo;lh	1
+谁给的啊	shéi;ar gěi;ir de;pp a;kv	4
+谁给了你	shéi;ar gěi;ir le;vs nǐ;rp	24
+谁跟谁呀	shéi;ar gēn;zv shéi;ar ya;kh	13
+谁更出色	shéi;ar gèng;hd chū;vs sè;pv	29
+谁更聪明	shéi;ar gèng;hd cōng;hd míng;ly	34
+谁更好看	shéi;ar gèng;hd hǎo;nv kàn;ph	34
+谁更合适	shéi;ar gèng;hd hé;rk shì;pz	29
+谁更可爱	shéi;ar gèng;hd kě;hs ài;pd	23
+谁更漂亮	shéi;ar gèng;hd piào;uh liang;dv	36
+谁更容易	shéi;ar gèng;hd róng;bk yì;lp	34
+谁更适合	shéi;ar gèng;hd shì;pz hé;rk	47
+谁更帅呢	shéi;ar gèng;hd shuài;ss ne;kv	6
+谁更伟大	shéi;ar gèng;hd wěi;rh dà;hd	41
+谁更无聊	shéi;ar gèng;hd wú;hv liáo;hp	4
+谁更有钱	shéi;ar gèng;hd yǒu;hy qián;jh	31
+谁更优秀	shéi;ar gèng;hd yōu;rh xiù;ep	38
+谁更重要	shéi;ar gèng;hd zhòng;pt yào;hn	41
+谁攻谁受	shéi;ar gōng;hp shéi;ar shòu;pd	25
+谁管得着	shéi;ar guǎn;gh de;pl zháo;dh	20
+谁规定的	shéi;ar guī;hs dìng;bd de;pp	42
+谁还打牌	shéi;ar hái;hz dǎ;fh pái;pp	1
+谁还以为	shéi;ar hái;hz yǐ;vr wéi;dd	4
+谁和你在	shéi;ar hé;ek nǐ;rp zài;ht	1
+谁和我开	shéi;ar hé;ek wǒ;pd kāi;hs	1
+谁和我约	shéi;ar hé;ek wǒ;pd yuē;ip	1
+谁会搭理	shéi;ar huì;rd dā;fc lǐ;wl	9
+谁毁谁誉	shéi;ar huǐ;pp shéi;ar yù;da	6
+谁寄相思	shéi;ar jì;bs xiāng;ms sī;sx	1
+谁家璧人	shéi;ar jiā;bd bì;vd rén;rd	1
+谁家的狗	shéi;ar jiā;bd de;pp gǒu;pp	33
+谁家的了	shéi;ar jiā;bd de;pp le;vs	20
+谁家姝丽	shéi;ar jiā;bd shū;np lì;hd	1
+谁家小院	shéi;ar jiā;bd xiǎo;sd yuàn;vb	4
+谁家种的	shéi;ar jiā;bd zhǒng;ek de;pp	4
+谁讲过我	shéi;ar jiǎng;ah guò;hz wǒ;pd	1
+谁教你的	shéi;ar jiào;tp nǐ;rp de;pp	1
+谁叫你手	shéi;ar jiào;kv nǐ;rp shǒu;fs	1
+谁结婚呢	shéi;ar jié;it hūn;np ne;kv	1
+谁就指挥	shéi;ar jiù;dh zhǐ;fp huī;fd	1
+谁开的房	shéi;ar kāi;hs de;pp fáng;dp	1
+谁扛得住	shéi;ar káng;fh de;pl zhù;rd	20
+谁可知道	shéi;ar kě;hs zhī;pk dào;dz	1
+谁坑你了	shéi;ar kēng;td nǐ;rp le;vs	4
+谁来接班	shéi;ar lái;hm jiē;fd bān;wd	26
+谁来救我	shéi;ar lái;hm jiù;hp wǒ;pd	26
+谁来主宰	shéi;ar lái;hm zhǔ;dw zǎi;bs	16
+谁来阻止	shéi;ar lái;hm zǔ;vs zhǐ;sh	16
+谁拦得住	shéi;ar lán;fd dé;pl zhù;rd	21
+谁厉害呢	shéi;ar lì;hp hài;bk ne;kv	1
+谁怜夭折	shéi;ar lián;xr yāo;pd zhé;fp	4
+谁临晚眺	shéi;ar lín;sp wǎn;lp tiào;sp	1
+谁领风骚	shéi;ar lǐng;rh fēng;pd sāo;vv	27
+谁骂你了	shéi;ar mà;kh nǐ;rp le;vs	4
+谁没点儿	shéi;ar méi;up diǎn;sq er;pv	20
+谁没事儿	shéi;ar méi;up shì;hs er;pv	33
+谁没有爱	shéi;ar méi;up yǒu;hy ài;pd	6
+谁没有爹	shéi;ar méi;up yǒu;hy diē;pd	1
+谁没有娘	shéi;ar méi;up yǒu;hy niáng;nd	1
+谁没有情	shéi;ar méi;up yǒu;hy qíng;xh	1
+谁那么早	shéi;ar nà;vv me;pd zǎo;ls	8
+谁哪知道	shéi;ar nǎ;kv zhī;pk dào;dz	1
+谁能不听	shéi;ar néng;vp bù;hd tīng;kp	1
+谁能猜到	shéi;ar néng;vp cāi;ph dào;hs	32
+谁能挡我	shéi;ar néng;vp dǎng;fs wǒ;pd	23
+谁能极之	shéi;ar néng;vp jí;mp zhī;dd	13
+谁能解开	shéi;ar néng;vp jiě;pv kāi;hs	20
+谁能晋级	shéi;ar néng;vp jìn;hl jí;ip	25
+谁能尽善	shéi;ar néng;vp jìn;vd shàn;dk	1
+谁能像你	shéi;ar néng;vp xiàng;rp nǐ;rp	9
+谁念行人	shéi;ar niàn;rx xíng;ph rén;rd	1
+谁怕谁了	shéi;ar pà;xp shéi;ar le;vs	8
+谁怕谁呀	shéi;ar pà;xp shéi;ar ya;kh	24
+谁跑得快	shéi;ar pǎo;zp dé;pl kuài;xv	34
+谁陪你打	shéi;ar péi;vd nǐ;rp dǎ;fh	1
+谁批准的	shéi;ar pī;fh zhǔn;dr dì;pp	17
+谁骗你了	shéi;ar piàn;vd nǐ;rp le;vs	1
+谁品春词	shéi;ar pǐn;kk chūn;hl cí;av	1
+谁欺负你	shéi;ar qī;cp fù;pr nǐ;rp	30
+谁欺负谁	shéi;ar qī;cp fù;pr shéi;ar	24
+谁强谁弱	shéi;ar qiáng;vk shéi;ar ruò;vv	45
+谁轻谁重	shéi;ar qīng;hv shéi;ar zhòng;pt	31
+谁求知道	shéi;ar qiú;hd zhī;pk dào;dz	1
+谁去打球	shéi;ar qù;td dǎ;fh qiú;wh	1
+谁娶到你	shéi;ar qǔ;hn dào;hs nǐ;rp	11
+谁去给我	shéi;ar qù;td gěi;ir wǒ;pd	6
+谁去谁留	shéi;ar qù;td shéi;ar liú;ph	28
+谁让你碰	shéi;ar ràng;as nǐ;rp pèng;hd	6
+谁让你丫	shéi;ar ràng;as nǐ;rp yā;ds	13
+谁惹你了	shéi;ar rě;cx nǐ;rp le;vs	16
+谁人不晓	shéi;ar rén;rd bù;hd xiǎo;lh	28
+谁认识你	shéi;ar rèn;ar shi;ak nǐ;rp	1
+谁荣谁辱	shéi;ar róng;cm shéi;ar rǔ;hd	1
+谁入地狱	shéi;ar rù;pd dì;tv yù;pa	41
+谁杀了谁	shéi;ar shā;pm le;vs shéi;ar	17
+谁伤了你	shéi;ar shāng;rp le;vs nǐ;rp	6
+谁上谁下	shéi;ar shàng;sh shéi;ar xià;hd	25
+谁烧毁的	shéi;ar shāo;qh huǐ;pp de;pp	1
+谁少谁多	shéi;ar shǎo;sp shéi;ar duō;pd	1
+谁胜谁败	shéi;ar shèng;yp shéi;ar bài;sp	29
+谁胜谁负	shéi;ar shèng;yp shéi;ar fù;pr	48
+谁生谁死	shéi;ar shēng;ph shéi;ar sǐ;hv	26
+谁胜算大	shéi;ar shèng;yp suàn;gs dà;hd	13
+谁生下来	shéi;ar shēng;ph xià;hd lái;hm	26
+谁是傻冒	shéi;ar shì;lr shǎ;rp mào;lh	1
+谁是傻子	shéi;ar shì;lr shǎ;rp zi;vh	1
+谁使神州	shéi;ar shǐ;rh shén;dl zhōu;ds	1
+谁是首富	shéi;ar shì;lr shǒu;dh fù;bh	8
+谁是谁的	shéi;ar shì;lr shéi;ar de;pp	49
+谁是谁非	shéi;ar shì;lr shéi;ar fēi;ss	49
+谁是闲人	shéi;ar shì;lr xián;dm rén;rd	1
+谁是知心	shéi;ar shì;lr zhī;pk xīn;xd	1
+谁是知音	shéi;ar shì;lr zhī;pk yīn;dl	1
+谁是主人	shéi;ar shì;lr zhǔ;dw rén;rd	25
+谁受得了	shéi;ar shòu;pd dé;pl liǎo;vs	47
+谁谁谁去	shéi;ar shéi;ar shéi;ar qù;td	23
+谁谁谁谁	shéi;ar shéi;ar shéi;ar shéi;ar	25
+谁说的啊	shéi;ar shuō;ad de;pp a;kv	29
+谁说的了	shéi;ar shuō;ad de;pp le;vs	35
+谁说的清	shéi;ar shuō;ad de;pp qīng;uh	1
+谁说的呀	shéi;ar shuō;ad de;pp ya;kh	13
+谁说谎了	shéi;ar shuō;ad huǎng;ac le;vs	4
+谁死鹿手	shéi;ar sǐ;hv lù;dv shǒu;fs	1
+谁死谁活	shéi;ar sǐ;hv shéi;ar huó;up	17
+谁送过来	shéi;ar sòng;dz guò;hz lái;hm	1
+谁算计谁	shéi;ar suàn;gs jì;ah shéi;ar	16
+谁所极焉	shéi;ar suǒ;pp jí;mp yān;hq	6
+谁他妈的	shéi;ar tā;rv mā;nv de;pp	32
+谁他妈信	shéi;ar tā;rv mā;nv xìn;ra	6
+谁偷了我	shéi;ar tōu;rr le;vs wǒ;pd	27
+谁玩得过	shéi;ar wán;wh dé;pl guò;hz	13
+谁为情种	shéi;ar wéi;dd qíng;xh zhǒng;ek	21
+谁为为之	shéi;ar wéi;dd wéi;dd zhī;dd	6
+谁问旗亭	shéi;ar wèn;dk qí;dp tíng;ds	1
+谁我喜欢	shéi;ar wǒ;pd xǐ;tk huān;vp	4
+谁喜欢谁	shéi;ar xǐ;tk huān;vp shéi;ar	33
+谁下地狱	shéi;ar xià;hd dì;tv yù;pa	32
+谁羡骖鸾	shéi;ar xiàn;dr cān;vv luán;dh	1
+谁先动手	shéi;ar xiān;pv dòng;hv shǒu;fs	33
+谁先开口	shéi;ar xiān;pv kāi;hs kǒu;kh	29
+谁先谁后	shéi;ar xiān;pv shéi;ar hòu;pk	45
+谁先主动	shéi;ar xiān;pv zhǔ;dw dòng;hv	24
+谁想得到	shéi;ar xiǎng;mx dé;pl dào;hs	30
+谁像你啊	shéi;ar xiàng;rp nǐ;rp a;kv	1
+谁像你们	shéi;ar xiàng;rp nǐ;rp men;rd	1
+谁想听你	shéi;ar xiǎng;mx tīng;kp nǐ;rp	1
+谁呀谁呀	shéi;ar ya;kh shéi;ar ya;kh	22
+谁言寸草	shéi;ar yán;ak cùn;hd cǎo;cs	41
+谁言琼树	shéi;ar yán;ak qióng;wd shù;mv	1
+谁言人易	shéi;ar yán;ak rén;rd yì;lp	1
+谁也不服	shéi;ar yě;vv bù;hd fú;yv	44
+谁也不理	shéi;ar yě;vv bù;hd lǐ;wl	39
+谁也不弄	shéi;ar yě;vv bú;hd nòng;ws	1
+谁一会儿	shéi;ar yí;hh huì;rd er;pv	14
+谁又不是	shéi;ar yòu;vd bú;hd shì;lr	40
+谁又复活	shéi;ar yòu;vd fù;pd huó;up	1
+谁又是谁	shéi;ar yòu;vd shì;lr shéi;ar	16
+谁优谁劣	shéi;ar yōu;rh shéi;ar liè;sp	41
+谁又在乎	shéi;ar yòu;vd zài;ht hū;ps	29
+谁又知道	shéi;ar yòu;vd zhī;pk dào;dz	1
+谁与共饮	shéi;ar yǔ;hh gòng;cd yǐn;pp	11
+谁与温存	shéi;ar yǔ;hh wēn;ul cún;hh	1
+谁与争锋	shéi;ar yǔ;hh zhēng;ps fēng;jp	52
+谁与争疯	shéi;ar yǔ;hh zhēng;ps fēng;dd	17
+谁与争风	shéi;ar yǔ;hh zhēng;ps fēng;pd	13
+谁于争锋	shéi;ar yú;hs zhēng;ps fēng;jp	1
+谁与争功	shéi;ar yǔ;hh zhēng;ps gōng;hv	6
+谁愿为首	shéi;ar yuàn;hx wéi;dd shǒu;dh	8
+谁在背后	shéi;ar zài;ht bèi;sy hòu;pk	32
+谁在北京	shéi;ar zài;ht běi;sp jīng;dd	21
+谁在唱歌	shéi;ar zài;ht chàng;kl gē;hp	1
+谁在打我	shéi;ar zài;ht dǎ;fh wǒ;pd	27
+谁在风中	shéi;ar zài;ht fēng;pd zhōng;ks	16
+谁在杭州	shéi;ar zài;ht háng;md zhōu;ds	6
+谁在呼唤	shéi;ar zài;ht hū;kp huàn;kp	1
+谁在乎呢	shéi;ar zài;ht hū;ps ne;kv	39
+谁在乎你	shéi;ar zài;ht hū;ps nǐ;rp	33
+谁在济南	shéi;ar zài;ht jǐ;ud nán;hs	1
+谁在家的	shéi;ar zài;ht jiā;bd de;pp	6
+谁在浪费	shéi;ar zài;ht làng;ud fèi;vr	1
+谁在里面	shéi;ar zài;ht lǐ;lt miàn;hh	21
+谁在裸泳	shéi;ar zài;ht luǒ;dl yǒng;ud	45
+谁在那里	shéi;ar zài;ht nà;vv lǐ;lt	25
+谁在秋千	shéi;ar zài;ht qiū;eq qiān;ps	11
+谁在撒谎	shéi;ar zài;ht sā;fc huǎng;ac	27
+谁在说话	shéi;ar zài;ht shuō;ad huà;ap	32
+谁在说谎	shéi;ar zài;ht shuō;ad huǎng;ac	35
+谁在踢你	shéi;ar zài;ht tī;zl nǐ;rp	1
+谁在武汉	shéi;ar zài;ht wǔ;hd hàn;uv	1
+谁在西安	shéi;ar zài;ht xī;hh ān;bn	1
+谁在一起	shéi;ar zài;ht yì;hh qǐ;tv	42
+谁在意我	shéi;ar zài;ht yì;dx wǒ;pd	1
+谁在这里	shéi;ar zài;ht zhè;dz lǐ;lt	26
+谁在追你	shéi;ar zài;ht zhuī;pz nǐ;rp	1
+谁怎么说	shéi;ar zěn;px me;pd shuō;ad	12
+谁照的呀	shéi;ar zhào;lq de;pp ya;kh	4
+谁照顾你	shéi;ar zhào;lq gù;hh nǐ;rp	1
+谁招你了	shéi;ar zhāo;fv nǐ;rp le;vs	4
+谁这么早	shéi;ar zhè;dz me;pd zǎo;ls	1
+谁真谁假	shéi;ar zhēn;hd shéi;ar jiǎ;rv	36
+谁知道啊	shéi;ar zhī;pk dào;dz a;kv	52
+谁知道的	shéi;ar zhī;pk dào;dz de;pp	46
+谁知道来	shéi;ar zhī;pk dào;dz lái;hm	13
+谁知道了	shéi;ar zhī;pk dào;dz le;vs	28
+谁知道里	shéi;ar zhī;pk dào;dz lǐ;lt	13
+谁知道呐	shéi;ar zhī;pk dào;dz nà;ks	15
+谁知到那	shéi;ar zhī;pk dào;hs nà;vv	14
+谁知道囊	shéi;ar zhī;pk dào;dz náng;hd	1
+谁知道呢	shéi;ar zhī;pk dào;dz ne;kv	60
+谁知道你	shéi;ar zhī;pk dào;dz nǐ;rp	47
+谁知道去	shéi;ar zhī;pk dào;dz qù;td	25
+谁知道啥	shéi;ar zhī;pk dào;dz shá;kr	11
+谁知道也	shéi;ar zhī;pk dào;dz yě;vv	13
+谁知娇养	shéi;ar zhī;pk jiāo;np yǎng;ds	6
+谁知其数	shéi;ar zhī;pk qí;cd shù;dp	12
+谁指使你	shéi;ar zhǐ;fp shǐ;rh nǐ;rp	18
+谁知我心	shéi;ar zhī;pk wǒ;pd xīn;xd	20
+谁知云路	shéi;ar zhī;pk yún;hd lù;zp	1
+谁知昨天	shéi;ar zhī;pk zuó;lp tiān;hd	20
+谁主沉浮	shéi;ar zhǔ;dw chén;ud fú;up	48
+谁主浮沉	shéi;ar zhǔ;dw fú;up chén;ud	26
+谁主君心	shéi;ar zhǔ;dw jūn;vk xīn;xd	1
+谁主天下	shéi;ar zhǔ;dw tiān;hd xià;hd	8
+谁住院了	shéi;ar zhù;rd yuàn;vb le;vs	1
+谁主中原	shéi;ar zhǔ;dw zhōng;ks yuán;hd	9
+谁走谁留	shéi;ar zǒu;tr shéi;ar liú;ph	28
+谁组织的	shéi;ar zǔ;is zhī;ik de;pp	1
+谁最带种	shéi;ar zuì;ld dài;hs zhǒng;ek	13
+谁做的饭	shéi;ar zuò;rh de;pp fàn;pp	1
+说给谁听	shuō;ad gěi;ir shéi;ar tīng;kp	37
+说谁呢你	shuō;ad shéi;ar ne;kv nǐ;rp	1
+她是谁啊	tā;nv shì;lr shéi;ar a;kv	33
+他是谁啊	tā;rv shì;lr shéi;ar a;kv	1
+他是谁呀	tā;rv shì;lr shéi;ar ya;kh	19
+听谁唱的	tīng;kp shéi;ar chàng;kl de;pp	1
+听谁说的	tīng;kp shéi;ar shuō;ad de;pp	40
+听谁说了	tīng;kp shéi;ar shuō;ad le;vs	6
+忘记了谁	wàng;dx jì;av le;vs shéi;ar	25
+为谁而鸣	wéi;dd shéi;ar ér;hs míng;kp	44
+为谁而战	wéi;dd shéi;ar ér;hs zhàn;sh	33
+为谁而做	wéi;dd shéi;ar ér;hs zuò;rh	23
+为谁凝伫	wéi;dd shéi;ar níng;dp zhù;rb	1
+为谁攀折	wéi;dd shéi;ar pān;mf zhé;fp	1
+问花笑谁	wèn;dk huā;cv xiào;gd shéi;ar	13
+问你问谁	wèn;dk nǐ;rp wèn;dk shéi;ar	6
+我跟谁过	wǒ;pd gēn;zv shéi;ar guò;hz	1
+我是谁的	wǒ;pd shì;lr shéi;ar de;pp	42
+我是谁呀	wǒ;pd shì;lr shéi;ar ya;kh	20
+我问谁去	wǒ;pd wèn;dk shéi;ar qù;td	22
+我相信谁	wǒ;pd xiāng;ms xìn;ra shéi;ar	21
+我找谁去	wǒ;pd zhǎo;fh shéi;ar qù;td	1
+我找谁惹	wǒ;pd zhǎo;fh shéi;ar rě;cx	1
+吓不了谁	xià;kh bù;hd liǎo;vs shéi;ar	1
+想掐死谁	xiǎng;mx qiā;fp sǐ;hv shéi;ar	1
+向谁倾诉	xiàng;pk shéi;ar qīng;rh sù;ap	31
+心里比谁	xīn;xd lǐ;lt bǐ;hp shéi;ar	31
+心事谁同	xīn;xd shì;hs shéi;ar tóng;sk	1
+心事谁知	xīn;xd shì;hs shéi;ar zhī;pk	6
+姓甚名谁	xìng;np shèn;cv míng;pk shéi;ar	43
+演给谁看	yǎn;ub gěi;ir shéi;ar kàn;ph	1
+也没谁了	yě;vv méi;up shéi;ar le;vs	40
+以为是谁	yǐ;vr wéi;dd shì;lr shéi;ar	1
+以为谁呢	yǐ;vr wéi;dd shéi;ar ne;kv	1
+用的谁的	yòng;ps de;pp shéi;ar de;pp	1
+又会是谁	yòu;vd huì;rd shì;lr shéi;ar	33
+有没有谁	yǒu;hy méi;up yǒu;hy shéi;ar	47
+又杀了谁	yòu;vd shā;pm le;vs shéi;ar	21
+由谁承担	yóu;sh shéi;ar chéng;vd dān;fl	45
+由谁负责	yóu;sh shéi;ar fù;pr zé;hr	43
+有谁会懂	yǒu;hy shéi;ar huì;rd dǒng;xc	13
+又谁咎也	yòu;vd shéi;ar jiù;pk yě;vv	9
+由谁来做	yóu;sh shéi;ar lái;hm zuò;rh	30
+有谁能懂	yǒu;hy shéi;ar néng;vp dǒng;xc	23
+有谁认识	yǒu;hy shéi;ar rèn;ar shi;ak	36
+有谁谁谁	yǒu;hy shéi;ar shéi;ar shéi;ar	21
+有谁真得	yǒu;hy shéi;ar zhēn;hd dé;pl	1
+欲凭谁省	yù;pp píng;rv shéi;ar shěng;sh	1
+与谁共眠	yǔ;hh shéi;ar gòng;cd mián;sv	4
+与谁同行	yǔ;hh shéi;ar tóng;sk xíng;ph	45
+与谁同去	yǔ;hh shéi;ar tóng;sk qù;td	1
+与谁同坐	yǔ;hh shéi;ar tóng;sk zuò;rt	24
+与谁相倚	yǔ;hh shéi;ar xiāng;ms yǐ;rh	1
+怨谁始得	yuàn;px shéi;ar shǐ;nv dé;pl	1
+在想是谁	zài;ht xiǎng;mx shì;lr shéi;ar	8
+在意过谁	zài;ht yì;dx guò;hz shéi;ar	1
+责任在谁	zé;hr rèn;rp zài;ht shéi;ar	41
+长得像谁	zhǎng;pd de;pl xiàng;rp shéi;ar	33
+找不出谁	zhǎo;fh bù;hd chū;vs shéi;ar	11
+招谁惹谁	zhāo;fv shéi;ar rě;cx shéi;ar	52
+这个谁懂	zhè;dz ge;rs shéi;ar dǒng;xc	6
+这是谁的	zhè;dz shì;lr shéi;ar de;pp	51
+这是谁啦	zhè;dz shì;lr shéi;ar la;kf	1
+这是谁了	zhè;dz shì;lr shéi;ar le;vs	9
+这是谁吗	zhè;dz shì;lr shéi;ar ma;kv	24
+这是谁呀	zhè;dz shì;lr shéi;ar ya;kh	33
+这谁家娃	zhè;dz shéi;ar jiā;bd wá;nt	1
+这谁说话	zhè;dz shéi;ar shuō;ad huà;ap	1
+这谁做的	zhè;dz shéi;ar zuò;rh de;pp	1
+争道谁家	zhēng;ps dào;dz shéi;ar jiā;bd	8
+指的是谁	zhǐ;fp de;pp shì;lr shéi;ar	1
+终日谁来	zhōng;ip rì;lh shéi;ar lái;hm	11
+周幽谁诛	zhōu;pk yōu;ss shéi;ar zhū;ap	6
+主人是谁	zhǔ;dw rén;rd shì;lr shéi;ar	38
+赚谁的钱	zhuàn;sd shéi;ar de;pp qián;jh	39
+装给谁看	zhuāng;dd gěi;ir shéi;ar kàn;ph	1
+准不准谁	zhǔn;dr bù;hd zhǔn;dr shéi;ar	1
+略长一些	lüè;sp zhǎng;pd yì;hh xiē;sh	372
+为一名	wéi;dd yì;hh míng;pk	1956
+为一名	wèi;dd yì;hh míng;pk	1926
+两个八	liǎng;hd gè;rs bā;pd	736
+两个白	liǎng;hd gè;rs bái;pl	781
+两个百	liǎng;hd gè;rs bǎi;hl	751
+两个貝	liǎng;hd gè;rs bèi;sd	1
+两个比	liǎng;hd gè;rs bǐ;hp	948
+两个匕	liǎng;hd gè;rs bǐ;pv	918
+两个秉	liǎng;hd gè;rs bǐng;pd	574
+两个不	liǎng;hd gè;rs bù;hd	1420
+两个倉	liǎng;hd gè;rs cāng;rk	1
+两个昌	liǎng;hd gè;rs chāng;ll	29
+两个巢	liǎng;hd gè;rs cháo;vm	1
+两个屮	liǎng;hd gè;rs chè;vs	934
+两个車	liǎng;hd gè;rs chē;hs	904
+两个臣	liǎng;hd gè;rs chén;hv	1
+两个齒	liǎng;hd gè;rs chǐ;ss	1
+两个虫	liǎng;hd gè;rs chóng;od	1
+两个巛	liǎng;hd gè;rs chuān;vv	457
+两个串	liǎng;hd gè;rs chuàn;ks	427
+两个朿	liǎng;hd gè;rs cì;hd	1446
+两个大	liǎng;hd gè;rs dà;hd	1455
+两个歹	liǎng;hd gè;rs dǎi;hd	1
+两个呆	liǎng;hd gè;rs dāi;km	1
+两个東	liǎng;hd gè;rs dōng;hd	686
+两个二	liǎng;hd gè;rs èr;hh	758
+两个而	liǎng;hd gè;rs ér;hs	728
+两个耳	liǎng;hd gè;rs ěr;hh	698
+两个凡	liǎng;hd gè;rs fán;pd	1
+两个飞	liǎng;hd gè;rs fēi;vd	1
+两个風	liǎng;hd gè;rs fēng;po	740
+两个夫	liǎng;hd gè;rs fū;hd	1
+两个巿	liǎng;hd gè;rs fú;hs	1
+两个畐	liǎng;hd gè;rs fú;hh	1
+两个干	liǎng;hd gè;rs gàn;hs	668
+两个戈	liǎng;hd gè;rs gē;hd	1
+两个弓	liǎng;hd gè;rs gōng;vv	1
+两个古	liǎng;hd gè;rs gǔ;hk	1
+两个瓜	liǎng;hd gè;rs guā;pd	416
+两个果	liǎng;hd gè;rs guǒ;lm	754
+两个𢎘	liǎng;hd gè;rs hàn;	1
+两个禾	liǎng;hd gè;rs hé;em	1
+两个户	liǎng;hd gè;rs hù;dp	1
+两个虎	liǎng;hd gè;rs hǔ;sv	1
+两个火	liǎng;hd gè;rs huǒ;qd	736
+两个彐	liǎng;hd gè;rs jì;vh	601
+两个吉	liǎng;hd gè;rs jí;tk	571
+两个几	liǎng;hd gè;rs jǐ;pv	541
+两个旡	liǎng;hd gè;rs jì;hv	511
+两个見	liǎng;hd gè;rs jiàn;sv	164
+两个卪	liǎng;hd gè;rs jié;vd	898
+两个巾	liǎng;hd gè;rs jīn;ss	781
+两个金	liǎng;hd gè;rs jīn;jh	751
+两个斤	liǎng;hd gè;rs jīn;ps	721
+两个井	liǎng;hd gè;rs jǐng;hs	1
+两个竟	liǎng;hd gè;rs jìng;dv	1
+两个竞	liǎng;hd gè;rs jìng;dv	1
+两个九	liǎng;hd gè;rs jiǔ;pv	1
+两个句	liǎng;hd gè;rs jù;pk	498
+两个口	liǎng;hd gè;rs kǒu;kh	840
+两个来	liǎng;hd gè;rs lái;hm	894
+两个來	liǎng;hd gè;rs lái;hr	864
+两个老	liǎng;hd gè;rs lǎo;tv	1168
+两个力	liǎng;hd gè;rs lì;vp	660
+两个立	liǎng;hd gè;rs lì;dh	630
+两个隶	liǎng;hd gè;rs lì;vu	600
+两个龍	liǎng;hd gè;rs lóng;dh	1
+两个龙	liǎng;hd gè;rs lóng;hd	1
+两个马	liǎng;hd gè;rs mǎ;vh	435
+两个馬	liǎng;hd gè;rs mǎ;hd	405
+两个毛	liǎng;hd gè;rs máo;pv	1
+两个米	liǎng;hd gè;rs mǐ;dm	560
+两个面	liǎng;hd gè;rs miàn;hh	907
+两个明	liǎng;hd gè;rs míng;ly	1
+两个牟	liǎng;hd gè;rs móu;vs	1
+两个母	liǎng;hd gè;rs mǔ;vd	1
+两个木	liǎng;hd gè;rs mù;md	1
+两个目	liǎng;hd gè;rs mù;sh	1
+两个男	liǎng;hd gè;rs nán;sp	1334
+两个𡥦	liǎng;hd gè;rs nǐ;	691
+两个廿	liǎng;hd gè;rs niàn;ch	1110
+两个卄	liǎng;hd gè;rs niàn;cc	1080
+两个鸟	liǎng;hd gè;rs niǎo;ph	1
+两个牛	liǎng;hd gè;rs niú;ps	650
+两个女	liǎng;hd gè;rs nǚ;nh	1542
+两个𠂢	liǎng;hd gè;rs pài;	696
+两个片	liǎng;hd gè;rs piàn;pv	1
+两个启	liǎng;hd gè;rs qǐ;dk	502
+两个桼	liǎng;hd gè;rs qī;mu	472
+两个奇	liǎng;hd gè;rs qí;hs	442
+两个乞	liǎng;hd gè;rs qǐ;pv	412
+两个欠	liǎng;hd gè;rs qiàn;pr	606
+两个僉	liǎng;hd gè;rs qiān;rr	576
+两个區	liǎng;hd gè;rs qū;hv	979
+两个犬	liǎng;hd gè;rs quǎn;hd	660
+两个夋	liǎng;hd gè;rs qūn;vd	817
+两个人	liǎng;hd gè;rs rén;rd	52094
+两个日	liǎng;hd gè;rs rì;lh	817
+两个入	liǎng;hd gè;rs rù;pd	1
+两个卅	liǎng;hd gè;rs sà;hs	1
+两个山	liǎng;hd gè;rs shān;ss	655
+两个善	liǎng;hd gè;rs shàn;dk	625
+两个舌	liǎng;hd gè;rs shé;pk	1
+两个申	liǎng;hd gè;rs shēn;ls	583
+两个生	liǎng;hd gè;rs shēng;ph	202
+两个尸	liǎng;hd gè;rs shī;vp	804
+两个石	liǎng;hd gè;rs shí;hk	774
+两个示	liǎng;hd gè;rs shì;hd	744
+两个豕	liǎng;hd gè;rs shǐ;hd	714
+两个手	liǎng;hd gè;rs shǒu;fs	1074
+两个束	liǎng;hd gè;rs shù;hd	1200
+两个水	liǎng;hd gè;rs shuǐ;ud	826
+两个厶	liǎng;hd gè;rs sī;vd	718
+两个田	liǎng;hd gè;rs tián;sh	840
+两个天	liǎng;hd gè;rs tiān;hd	810
+两个土	liǎng;hd gè;rs tǔ;th	844
+两个罒	liǎng;hd gè;rs wǎng;sh	727
+两个王	liǎng;hd gè;rs wáng;wh	697
+两个兀	liǎng;hd gè;rs wù;hv	812
+两个㐅	liǎng;hd gè;rs wǔ;	782
+两个夕	liǎng;hd gè;rs xī;pd	1
+两个习	liǎng;hd gè;rs xí;vh	1
+两个昔	liǎng;hd gè;rs xī;cl	1
+两个喜	liǎng;hd gè;rs xǐ;tk	1
+两个㔾	liǎng;hd gè;rs xiān;	682
+两个先	liǎng;hd gè;rs xiān;pv	652
+两个香	liǎng;hd gè;rs xiāng;el	466
+两个享	liǎng;hd gè;rs xiǎng;dh	436
+两个心	liǎng;hd gè;rs xīn;xd	740
+两个辛	liǎng;hd gè;rs xīn;ds	710
+两个兄	liǎng;hd gè;rs xiōng;kv	1
+两个玄	liǎng;hd gè;rs xuán;di	547
+两个牙	liǎng;hd gè;rs yá;hp	534
+两个言	liǎng;hd gè;rs yán;ak	812
+两个炎	liǎng;hd gè;rs yán;qq	782
+两个羊	liǎng;hd gè;rs yáng;ds	758
+两个幺	liǎng;hd gè;rs yāo;ii	1
+两个堯	liǎng;hd gè;rs yáo;tv	1
+两个一	liǎng;hd gè;rs yī;hh	350
+两个乂	liǎng;hd gè;rs yì;pd	320
+两个乙	liǎng;hd gè;rs yǐ;vv	290
+两个亦	liǎng;hd gè;rs yì;dd	260
+两个易	liǎng;hd gè;rs yì;lp	230
+两个㣇	liǎng;hd gè;rs yì;	200
+两个邑	liǎng;hd gè;rs yì;kv	170
+两个音	liǎng;hd gè;rs yīn;dl	902
+两个尹	liǎng;hd gè;rs yǐn;vp	872
+两个永	liǎng;hd gè;rs yǒng;dd	1
+两个又	liǎng;hd gè;rs yòu;vd	673
+两个魚	liǎng;hd gè;rs yú;pd	601
+两个余	liǎng;hd gè;rs yú;rm	571
+两个予	liǎng;hd gè;rs yǔ;vs	541
+两个禺	liǎng;hd gè;rs yú;ld	511
+两个月	liǎng;hd gè;rs yuè;yh	18847
+两个曰	liǎng;hd gè;rs yuē;lh	18817
+两个真	liǎng;hd gè;rs zhēn;hd	808
+两个止	liǎng;hd gè;rs zhǐ;sh	709
+两个支	liǎng;hd gè;rs zhī;hd	679
+两个隻	liǎng;hd gè;rs zhī;rd	649
+两个至	liǎng;hd gè;rs zhì;ht	619
+两个隹	liǎng;hd gè;rs zhuī;rd	1
+两个子	liǎng;hd gè;rs zi;vh	12734
+两个走	liǎng;hd gè;rs zǒu;tr	632
+两个足	liǎng;hd gè;rs zú;zr	920
+两个左	liǎng;hd gè;rs zuǒ;hh	1
+买了布	mǎi;vd le;vs bù;hs	552
+那是蝉	nà;vv shì;lr chán;od	1
+跑了兔	pǎo;zp le;vs tù;pd	1
+青葡萄	qīng;hy pú;cd táo;cs	462
+认真学	rèn;ar zhēn;hd xué;dh	1684
+如雾里	rú;nk wù;hp lǐ;lt	1
+软舌头	ruǎn;hp shé;pk tou;dd	1
+三个白	sān;hh gè;rs bái;pl	592
+三个百	sān;hh gè;rs bǎi;hl	562
+三个宝	sān;hh gè;rs bǎo;bd	718
+三个贝	sān;hh gè;rs bèi;sr	1
+三个屮	sān;hh gè;rs chè;vs	704
+三个車	sān;hh gè;rs chē;hs	674
+三个虫	sān;hh gè;rs chóng;od	1
+三个䖝	sān;hh gè;rs chóng;	1
+三个朿	sān;hh gè;rs cì;hd	453
+三个大	sān;hh gè;rs dà;hd	1177
+三个刀	sān;hh gè;rs dāo;vp	1
+三个動	sān;hh gè;rs dòng;pv	570
+三个斗	sān;hh gè;rs dòu;ds	1020
+三个耳	sān;hh gè;rs ěr;hh	556
+三个方	sān;hh gè;rs fāng;dp	1
+三个飛	sān;hh gè;rs fēi;vs	1
+三个風	sān;hh gè;rs fēng;po	1
+三个盖	sān;hh gè;rs gài;dh	1
+三个个	sān;hh gè;rs gè;rs	628
+三个弓	sān;hh gè;rs gōng;vv	376
+三个瓜	sān;hh gè;rs guā;pd	1
+三个光	sān;hh gè;rs guāng;sv	1
+三个果	sān;hh gè;rs guǒ;lm	1
+三个寒	sān;hh gè;rs hán;bd	1
+三个户	sān;hh gè;rs hù;dp	416
+三个火	sān;hh gè;rs huǒ;qd	1
+三个吉	sān;hh gè;rs jí;tk	1
+三个甲	sān;hh gè;rs jiǎ;ls	624
+三个加	sān;hh gè;rs jiā;vk	594
+三个介	sān;hh gè;rs jiè;rs	1
+三个金	sān;hh gè;rs jīn;jh	646
+三个九	sān;hh gè;rs jiǔ;pv	1
+三个可	sān;hh gè;rs kě;hs	912
+三个客	sān;hh gè;rs kè;bk	882
+三个空	sān;hh gè;rs kōng;bh	650
+三个口	sān;hh gè;rs kǒu;kh	664
+三个老	sān;hh gè;rs lǎo;tv	835
+三个了	sān;hh gè;rs le;vs	786
+三个雷	sān;hh gè;rs léi;hh	0
+三个力	sān;hh gè;rs lì;vp	1
+三个立	sān;hh gè;rs lì;dh	0
+三个林	sān;hh gè;rs lín;mm	1
+三个龍	sān;hh gè;rs lóng;dh	1
+三个鹿	sān;hh gè;rs lù;dv	588
+三个圥	sān;hh gè;rs lù;tv	558
+三个马	sān;hh gè;rs mǎ;vh	538
+三个亇	sān;hh gè;rs ma;ps	508
+三个毛	sān;hh gè;rs máo;pv	1
+三个門	sān;hh gè;rs mén;ss	673
+三个米	sān;hh gè;rs mǐ;dm	1
+三个面	sān;hh gè;rs miàn;hh	704
+三个木	sān;hh gè;rs mù;md	1
+三个目	sān;hh gè;rs mù;sh	1
+三个男	sān;hh gè;rs nán;sp	1051
+三个鳥	sān;hh gè;rs niǎo;pd	1
+三个鸟	sān;hh gè;rs niǎo;ph	1
+三个㖖	sān;hh gè;rs niè;	1
+三个牛	sān;hh gè;rs niú;ps	1
+三个女	sān;hh gè;rs nǚ;nh	1244
+三个丿	sān;hh gè;rs piě;pp	1
+三个七	sān;hh gè;rs qī;hv	1
+三个企	sān;hh gè;rs qǐ;rh	1
+三个欠	sān;hh gè;rs qiàn;pr	1
+三个千	sān;hh gè;rs qiān;ps	1
+三个羗	sān;hh gè;rs qiāng;dd	1
+三个秦	sān;hh gè;rs qín;he	1
+三个去	sān;hh gè;rs qù;td	902
+三个泉	sān;hh gè;rs quán;pu	458
+三个犬	sān;hh gè;rs quǎn;hd	428
+三个全	sān;hh gè;rs quán;rw	398
+三个𡿨	sān;hh gè;rs quǎn;	368
+三个人	sān;hh gè;rs rén;rd	13095
+三个日	sān;hh gè;rs rì;lh	601
+三个若	sān;hh gè;rs ruò;ck	1
+三个山	sān;hh gè;rs shān;ss	466
+三个少	sān;hh gè;rs shǎo;sp	1
+三个舌	sān;hh gè;rs shé;pk	1
+三个舍	sān;hh gè;rs shě;rk	1
+三个申	sān;hh gè;rs shēn;ls	1
+三个生	sān;hh gè;rs shēng;ph	76
+三个市	sān;hh gè;rs shì;ds	568
+三个十	sān;hh gè;rs shí;hs	538
+三个士	sān;hh gè;rs shì;th	508
+三个石	sān;hh gè;rs shí;hk	478
+三个手	sān;hh gè;rs shǒu;fs	1
+三个束	sān;hh gè;rs shù;hd	948
+三个水	sān;hh gè;rs shuǐ;ud	1
+三个朔	sān;hh gè;rs shuò;dy	1
+三个厶	sān;hh gè;rs sī;vd	606
+三个太	sān;hh gè;rs tài;hd	1
+三个田	sān;hh gè;rs tián;sh	290
+三个天	sān;hh gè;rs tiān;hd	260
+三个𠧪	sān;hh gè;rs tiáo;	1
+三个土	sān;hh gè;rs tǔ;th	1
+三个兔	sān;hh gè;rs tù;pd	1
+三个妥	sān;hh gè;rs tuǒ;pn	1
+三个罒	sān;hh gè;rs wǎng;sh	601
+三个文	sān;hh gè;rs wén;dd	1
+三个夏	sān;hh gè;rs xià;hd	1
+三个㔾	sān;hh gè;rs xiān;	1
+三个県	sān;hh gè;rs xiàn;sd	1
+三个香	sān;hh gè;rs xiāng;el	380
+三个小	sān;hh gè;rs xiǎo;sd	1465
+三个心	sān;hh gè;rs xīn;xd	799
+三个興	sān;hh gè;rs xìng;pd	1
+三个言	sān;hh gè;rs yán;ak	457
+三个羊	sān;hh gè;rs yáng;ds	1
+三个頁	sān;hh gè;rs yè;hd	1
+三个也	sān;hh gè;rs yě;vv	1
+三个宜	sān;hh gè;rs yí;bh	48
+三个因	sān;hh gè;rs yīn;sh	1
+三个用	sān;hh gè;rs yòng;ps	1
+三个又	sān;hh gè;rs yòu;vd	1
+三个魚	sān;hh gè;rs yú;pd	1
+三个玉	sān;hh gè;rs yù;wd	1
+三个原	sān;hh gè;rs yuán;hd	606
+三个厡	sān;hh gè;rs yuán;hu	576
+三个月	sān;hh gè;rs yuè;yh	24223
+三个雲	sān;hh gè;rs yún;hd	1
+三个爪	sān;hh gè;rs zhǎo;pd	1
+三个止	sān;hh gè;rs zhǐ;sh	664
+三个直	sān;hh gè;rs zhí;hh	634
+三个𠙽	sān;hh gè;rs zhì;	604
+三个𦉼	sān;hh gè;rs zhì;	574
+四个曰	sì;sh gè;rs yuē;lh	4614
+四个日	sì;sh gè;rs rì;lh	1
+三个𣥚	sān;hh gè;rs zhì;	544
+三个至	sān;hh gè;rs zhì;ht	514
+三个丶	sān;hh gè;rs zhǔ;dd	1105
+三个竹	sān;hh gè;rs zhú;gs	1075
+三个隹	sān;hh gè;rs zhuī;rd	1
+三个子	sān;hh gè;rs zi;vh	5659
+三个足	sān;hh gè;rs zú;zr	799
+十和四	shí;hs hé;ek sì;sh	1
+十是十	shí;hs shì;lr shí;hs	569
+史肖石	shǐ;kd xiào;sy shí;hk	406
+石小四	shí;hk xiǎo;sd sì;sh	1
+手指头	shǒu;fs zhǐ;fp tou;dd	2309
+四个匕	sì;sh gè;rs bǐ;pv	1
+四个屮	sì;sh gè;rs chè;vs	715
+四个車	sì;sh gè;rs chē;hs	745
+四个春	sì;sh gè;rs chūn;hl	1
+四个朿	sì;sh gè;rs cì;hd	637
+四个風	sì;sh gè;rs fēng;po	1
+四个工	sì;sh gè;rs gōng;hh	1
+四个果	sì;sh gè;rs guǒ;lm	1
+四个火	sì;sh gè;rs huǒ;qd	1
+四个甲	sì;sh gè;rs jiǎ;ls	1
+四个金	sì;sh gè;rs jīn;jh	1
+四个口	sì;sh gè;rs kǒu;kh	583
+四个困	sì;sh gè;rs kùn;sh	1
+四个老	sì;sh gè;rs lǎo;tv	1
+四个雷	sì;sh gè;rs léi;hh	0
+四个林	sì;sh gè;rs lín;mm	1
+四个龍	sì;sh gè;rs lóng;dh	1
+四个門	sì;sh gè;rs mén;ss	588
+四个牛	sì;sh gè;rs niú;ps	1
+四个且	sì;sh gè;rs qiě;sh	1
+四个囚	sì;sh gè;rs qiú;sh	610
+四个泉	sì;sh gè;rs quán;pu	1082
+四个人	sì;sh gè;rs rén;rd	7000
+四个日	sì;sh gè;rs rì;lh	1
+四个石	sì;sh gè;rs shí;hk	520
+四个水	sì;sh gè;rs shuǐ;ud	1
+四个厶	sì;sh gè;rs sī;vd	552
+四个天	sì;sh gè;rs tiān;hd	1
+四个田	sì;sh gè;rs tián;sh	1
+四个土	sì;sh gè;rs tǔ;th	1
+四个先	sì;sh gè;rs xiān;pv	1
+四个小	sì;sh gè;rs xiǎo;sd	1280
+四个興	sì;sh gè;rs xìng;pd	1
+四个言	sì;sh gè;rs yán;ak	1
+四个乂	sì;sh gè;rs yì;pd	73
+四个又	sì;sh gè;rs yòu;vd	628
+四个魚	sì;sh gè;rs yú;pd	1
+四个月	sì;sh gè;rs yuè;yh	4584
+四个雲	sì;sh gè;rs yún;hd	1
+四个竹	sì;sh gè;rs zhú;gs	894
