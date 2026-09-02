@@ -1,0 +1,350 @@
+# rime dictionary
+# encoding: utf-8
+#https://github.com/amzxyz/RIME-LMDG
+# ------- 方言-------
+# 词库维护中避免当成烂词删除，独立维护，以明确用途
+---
+name: fangyan
+version: "LTS"
+sort: by_weight
+...
+#北方方言-晋方言-大包片-大同小片
+红话	hóng;iu huà;sa
+勾留	gōu;nk liú;bq
+呱嗒	guā;dy dā;dd
+喜人	xǐ;hd rén;jr
+各闹	gè;sg nào;ar
+失笑	shī;th xiào;rm
+紧巴	jǐn;pi bā;mb
+营生	yíng;ld shēng;ls
+呐心	nà;dj xīn;hx
+耨呐心	nòu;ak nà;dj xīn;hx
+不记明	bú;cb jì;sv míng;ov
+片呢哇	piàn;ap ne;dv wa;dg
+胡嚼	hú;cv jué;dk
+嫌吱	xián;bc zhī;dc
+各揪	gè;sg jiū;uc
+疙塌	gē;aa tā;gz
+磋着	cuō;mu zhe;gq
+溶噶	róng;kh gá;df
+乃心	nǎi;vn xīn;hx
+噶切	gá;df qiè;rp
+切吧	qiè;rp ba;dm
+各乐儿	gè;sg lè;by er;pe
+山各拉	shān;vs gè;sg lā;ui
+滚略	gǔn;kk lüè;qs
+尿兴	niào;ck xīng;kh
+愣求噶	lèng;hl qiú;fi gá;df
+成色	chéng;na sè;xm
+各泡	gè;sg pào;kv
+玉茭	yù;ni jiāo;lb
+那糕	nà;at gāo;pc
+汪汪	wāng;kn wāng;kn
+傀儡	kuǐ;ja lěi;jq
+合烙	hé;jd lào;cs
+抓恰	zhuā;uy qià;hd
+圪揪	gē;ga jiū;uc
+寡气	guǎ;wp qì;vq
+塌锅了	tā;gz guō;zj le;rl
+咋底	zǎ;dw dǐ;xi
+甚么老过	shèn;za me;tk lǎo;ql guò;ku
+圪促打蛋	gē;ga cù;jp dǎ;ua dàn;tc
+逼兜	bī;fu dōu;up
+耐心	nài;lk xīn;hx
+周割	zhōu;md gē;wp
+盖握	gài;ga wò;uy
+能带	néng;kv dài;lr
+崩楼	bēng;vv lóu;eb
+扑灯牛子	pū;uy dēng;ca niú;qn zi;hi
+黑楞儿	hēi;ph léng;el ér;pe
+岗岗	gǎng;vb gǎng;vb
+子背	zǐ;hi bèi;av
+胡子	hú;cv zi;hi
+结壳子	jié;id ké;go zǐ;hi
+个圈儿头	gè;jg quān;rz er;pe tóu;wm
+个生儿	gè;jg shēng;ls ér;pe
+兜儿	dōu;up ér;pe
+不逮子	bú;cb dài;bu zǐ;hi
+不逮儿	bú;cb dài;bu ér;pe
+个闹	gè;jg nào;ar
+家巴巧儿	jiā;wj bā;mb qiǎo;ua ér;pe
+狗娃儿	gǒu;mg wá;bg ér;pe
+猫娃儿	māo;mq wá;bg ér;pe
+鸡娃儿	jī;rx wá;bg ér;pe
+屎介	shǐ;cp jiè;jp
+个督	gè;jg dū;yq
+条出	tiáo;he chū;sm
+方祖货	fāng;lf zǔ;ff huò;jo
+收收	shōu;ih shōu;ih
+铁千	tiě;zh qiān;lq
+特拉板儿	tè;qk lā;ui bǎn;er er;pe
+黑朗子	hēi;ph lǎng;iv zǐ;hi
+莫坡	mò;lm pō;gr
+眼扎毛	yǎn;qi zhā;ua máo;vm
+个拜	gè;jg bài;ua
+个涝指窝儿	gè;jg lào;ks zhǐ;uo wō;ej ér;pe
+溜天	liū;kq tiān;fm
+摆咧	bǎi;uk liě;dp
+爬长	pá;ym cháng;pc
+等当	děng;rk dāng;yb
+不辣	bú;cb là;nx
+抬郭	tái;ud guō;gt
+处不下起	chù;hy bú;cb xià;fy qǐ;pv
+个对	gè;jg duì;rk
+颤达	chàn;zw dá;mu
+忽颤	hū;nh chàn;zw
+叼夺	diāo;df duó;mk
+勿略	wù;ne lüè;qs
+戳鬼	chuō;zp guǐ;ag
+戳楼子	chuō;zp lóu;eb zǐ;hi
+定每	dìng;wt měi;ek
+导年	dǎo;vk nián;ev
+捏扁	niē;ug biǎn;mi
+摊霍	tān;uu huò;tu
+忽颠	hū;nh diān;nw
+个塔	gè;jg tǎ;gd
+个嚼	gè;jg jué;dk
+如节	rú;bd jié;lz
+绕节	rào;ip jié;lz
+忽抖	hū;nh dǒu;uj
+抖达	dǒu;uj dá;mu
+个纠	gè;jg jiū;ii
+窝缺	wō;ej quē;aj
+十翻	shí;ns fān;tz
+叫忽	jiào;di hū;nh
+折楞	zhé;ut léng;el
+宁迷	níng;wa mí;pu
+老色	lǎo;ql sè;xm
+老郭	lǎo;ql guō;gt
+丑念	chǒu;ag niàn;jh
+虎擦	hǔ;zh cā;uf
+炸霍	zhà;cw huò;tu
+忽炸	hū;nh zhà;cw
+个抽	gè;jg chōu;ud
+揪决	jiū;uc jué;wj
+忽沙	hū;nh shā;kt
+尿西	niào;ck xī;vx
+瓜达	guā;yg dá;mu
+旅忽	lǚ;lt hū;nh
+个绕	gè;jg rào;ip
+忽绕	hū;nh rào;ip
+糙决	cāo;pu jué;wj
+个支	gè;jg zhī;ci
+黑兰	hēi;ph lán;ht
+戳达	chuō;zp dá;mu
+个刀	gè;jg dāo;pd
+导心	dǎo;vk xīn;hx
+擦牛	cā;uf niú;qn
+摸捞	mō;um lāo;us
+没辣	méi;kr là;nx
+拿念	ná;ju niàn;jh
+个折	gè;jg zhé;ut
+对达	duì;rk dá;mu
+失溜二眼	shī;th liū;kq èr;me yǎn;qi
+瞎眉触眼	xiā;qd méi;cq chù;xc yǎn;qi
+颠毛颤眼	diān;nw máo;vm chàn;zw yǎn;qi
+求眉杏眼	qiú;fi méi;cq xìng;ed yǎn;qi
+瓷眉杏眼	cí;wr méi;cq xìng;ed yǎn;qi
+囊眉凤眼	náng;nt méi;cq fèng;or yǎn;qi
+光眉俊眼	guāng;mg méi;cq jùn;jh yǎn;qi
+舒眉展眼	shū;ji méi;cq zhǎn;ct yǎn;qi
+灰眉触眼	huī;nc méi;cq chù;xc yǎn;qi
+假眉惺眼	jiǎ;jr méi;cq xīng;hl yǎn;qi
+胖眉肿眼	pàng;vu méi;cq zhǒng;vg yǎn;qi
+急眉霸眼	jí;xh méi;cq bà;tv yǎn;qi
+猴眉洼眼	hóu;mo méi;cq wā;kg yǎn;qi
+立眉霸眼	lì;il méi;cq bà;tv yǎn;qi
+黑眉洼眼	hēi;ph méi;cq wā;kg yǎn;qi
+骚眉垃眼	sāo;nc méi;cq lā;gi yǎn;qi
+丢眉扯眼	diū;tk méi;cq chě;us yǎn;qi
+死眉羊眼	sǐ;gv méi;cq yáng;gy yǎn;qi
+贼眉鼠眼	zéi;on méi;cq shǔ;ps yǎn;qi
+土眉混眼	tǔ;gt méi;cq hùn;kv yǎn;qi
+秃眉少眼	tū;xo méi;cq shǎo;yt yǎn;qi
+鬼眉六眼	guǐ;ag méi;cq liù;al yǎn;qi
+揇眉塌眼	nǎn;ug méi;cq tā;gz yǎn;qi
+没眉晃眼	méi;kr méi;cq huǎng;om yǎn;qi
+瓷八瓦观	cí;wr bā;hb wǎ;rw guān;re
+活眼转色	huó;ka yǎn;qi zhuǎn;yi sè;xm
+恼眉恨眼	nǎo;hm méi;cq hèn;hi yǎn;qi
+喜眉笑眼	xǐ;hd méi;cq xiào;rm yǎn;qi
+慈眉善眼	cí;hh méi;cq shàn;gd yǎn;qi
+夹疯楞症	jiā;hh fēng;ab léng;el zhèng;as
+愣七砍八	lèng;hl qī;rq kǎn;me bā;hb
+陈里圪色	chén;ty lǐ;dl gē;ga sè;xm
+精说白道	jīng;pv shuō;sp bái;ub dào;hu
+跌东舀西	diē;ph dōng;ry yǎo;yp xī;vx
+仄愣散偏	zè;xj lèng;hl sàn;lh piān;ji
+毛反带乱	máo;vm fǎn;xr dài;lr luàn;aa
+打架各厌	dǎ;ua jià;se gè;sg yàn;xm
+成色懒气	chéng;na sè;xm lǎn;ho qì;vq
+劈头盖脸	pī;cp tóu;wm gài;ga liǎn;vf
+阴七阳八	yīn;tv qī;rq yáng;to bā;hb
+鬼忽零丁	guǐ;ag hū;nh líng;tk dīng;ad
+张巴盖九	zhāng;bp bā;mb gài;ga jiǔ;kj
+游出摆进	yóu;kh chū;sm bǎi;uk jìn;qu
+撩猫戏狗	liāo;uy māo;mq xì;rp gǒu;mg
+白皮泛脸	bái;ub pí;rp fàn;kr liǎn;vf
+平不呀查	píng;eh bù;cb ya;dl chá;ef
+虚棱凳架	xū;zc léng;eh dèng;ho jià;se
+龇牙打调	zī;lv yá;ly dǎ;ua diào;sd
+吐天洼地	tǔ;dg tiān;fm wā;kg dì;ge
+打牙讪嘴	dǎ;ua yá;ly shàn;sv zuǐ;dt
+嘴尖毛长	zuǐ;dt jiān;ym máo;vm cháng;pc
+闪深踏浅	shǎn;aj shēn;ke tà;po qiǎn;kp
+横搅顺说	héng;en jiǎo;ue shùn;ow shuō;sp
+成里八色	chéng;na lǐ;dl bā;hb sè;xm
+变眉失脸	biàn;zr méi;cq shī;th liǎn;vf
+歪三仄愣	wāi;cs sān;ts zè;xj lèng;hl
+哇叽吵闹	wa;dg jī;do chǎo;dt nào;ar
+鬼七裂八	guǐ;ag qī;rq liè;gt bā;hb
+云山雾罩	yún;by shān;vs wù;ts zhào;yn
+磨鼻蹭痒	mó;zm bí;ol cèng;po yǎng;ag
+寡鼻六说	guǎ;wp bí;ol liù;al shuō;sp
+多鼻咳嗽	duō;ll bí;ol ké;dk sòu;de
+油鼻圪嚼	yóu;kd bí;ol gē;ga jué;dk
+阴言鬼语	yīn;tv yán;sy guǐ;ag yǔ;sd
+五眉三道	wǔ;wu méi;cq sān;ts dào;hu
+呛查古东	qiāng;dz chá;ef gǔ;cg dōng;ry
+聋七坎症	lóng;tq qī;rq kǎn;ge zhèng;as
+穷打急闹	qióng;es dǎ;ua jí;xh nào;ar
+穷急生风	qióng;es jí;xh shēng;ls fēng;ob
+牵粗把细	qiān;mq cū;pf bǎ;um xì;iq
+跌皮弄垮	diē;ph pí;rp nòng;nl kuǎ;ga
+斗打神散	dòu;jd dǎ;ua shén;fg sàn;lh
+拿龙捉虎	ná;ju lóng;tl zhuō;up hǔ;zh
+忙慌什乱	máng;hf huāng;ho shí;jn luàn;aa
+飘游浪荡	piāo;vb yóu;kh làng;ki dàng;le
+扭头不垒	niǔ;ug tóu;wm bù;cb lěi;kg
+拍大来小	pāi;uu dà;md lái;ah xiǎo;yx
+支天了地	zhī;ci tiān;fm le;rl dì;ge
+神头鬼脸	shén;fg tóu;wm guǐ;ag liǎn;vf
+扒头上脸	bā;uh tóu;wm shàng;yf liǎn;vf
+白不理正	bái;ub bù;cb lǐ;nd zhèng;fs
+本不牙叉	běn;ef bù;cb yá;ly chā;ri
+不由分水	bù;cb yóu;dy fēn;hp shuǐ;ks
+大口马牙	dà;md kǒu;dk mǎ;nm yá;ly
+点着吹美	diǎn;yc zháo;gq chuī;de měi;gm
+厾几厾达	dū;ak jǐ;oj dū;ak dá;mu
+鬼声夜气	guǐ;ag shēng;gc yè;zv qì;vq
+憨吃愣害	hān;ah chī;da lèng;hl hài;wd
+哼五喝六	hēng;dr wǔ;wu hē;df liù;al
+胡支也扯	hú;cv zhī;ci yě;ey chě;us
+急刁瓦抢	jí;xh diāo;af wǎ;rw qiǎng;uz
+尖言诈语	jiān;ym yán;sy zhà;sw yǔ;sd
+讲经说法	jiǎng;sq jīng;iu shuō;sp fǎ;kk
+扇扇达达	shàn;mz shàn;mz dá;mu dá;mu
+私由作翻	sī;xk yóu;dy zuò;jw fān;tz
+跌跟抢头	diē;ph gēn;pi qiǎng;uz tóu;wm
+横躺竖卧	héng;en tǎng;zs shù;pi wò;qy
+精七明八	jīng;pv qī;rq míng;ov bā;hb
+油腔滑调	yóu;kd qiāng;vu huá;kf diào;sd
+日祖王朝	rì;or zǔ;ff wáng;nw cháo;nv
+圪朽打蛋	gē;ga xiǔ;ea dǎ;ua dàn;tc
+瘦马圪连	shòu;ar mǎ;nm gē;ga lián;yu
+圪思圪忍	gē;ga sī;qh gē;ga rěn;ph
+圪折摆势	gē;ga zhé;ut bǎi;uk shì;us
+忽松咬沓	hū;nh sōng;ek yǎo;db dá;ko
+豁沟打牙	huō;wh gōu;kk dǎ;ua yá;ly
+死松破肚	sǐ;gv sōng;ek pò;mr dù;vg
+冷清客气	lěng;wk qīng;kv kè;ws qi;vq
+翻鼻麻叶	fān;tz bí;ol má;zm yè;dn
+软鸡圪能	ruǎn;ye jī;rx gē;ga néng;kv
+迷糊打蛋	mí;pu hu;pv dǎ;ua dàn;tc
+死求一记	sǐ;gv qiú;fi yí;fi jì;sv
+秃嘴笨舌	tū;xo zuǐ;dt bèn;rf shé;as
+四大不挨	sì;ys dà;md bù;cb āi;uo
+讨吃乱鬼	tǎo;sk chī;da luàn;aa guǐ;ag
+十龇赖害	shí;ns zī;lv lài;xo hài;wd
+软腰裂垮	ruǎn;ye yāo;vb liè;gt kuǎ;ga
+圪连前蛋	gē;ga lián;yu qián;hp dàn;tc
+圪叽散塌	gē;ga jī;do sàn;lh tā;gz
+窝叽圪囊	wō;ej jī;do gē;ga náng;nt
+孤独流细	gū;hy dú;mc liú;ko xì;iq
+小家瓦气	xiǎo;yx jiā;wj wǎ;rw qì;vq
+翻里折外	fān;tz lǐ;dl zhé;ut wài;ly
+酸文假醋	suān;yh wén;vw jiǎ;jr cù;yo
+浮皮了草	fú;kh pí;rp le;rl cǎo;ln
+小眼簿皮	xiǎo;yx yǎn;qi bù;rk pí;rp
+圪抽圪扯	gē;ga chōu;ud gē;ga chě;us
+粘几糊察	zhān;pd jǐ;oj hú;pv chá;wf
+眯连忽都	mī;qp lián;yu hū;nh dōu;qt
+圪列圪八	gē;ga liè;gp gē;ga bā;hb
+死精圪韧	sǐ;gv jīng;pv gē;ga rèn;gi
+爽前褪后	shuǎng;mb qián;hp tuì;tu hòu;xd
+推前爽后	tuī;uu qián;hp shuǎng;mb hòu;xd
+眉毛眼扎	méi;cq máo;vm yǎn;qi zhā;ua
+拉汤沫线	lā;ui tāng;ke mò;ke xiàn;ip
+没捉没拿	méi;kr zhuō;up méi;kr ná;ju
+拉巴扯叶	lā;ui bā;mb chě;us yè;dn
+抽柚抽柚	chōu;ud yòu;ed chōu;ud yòu;ed
+错前摸后	cuò;zo qián;hp mō;um hòu;xd
+打杂烙毛	dǎ;ua zá;ke lào;cs máo;vm
+#北方方言-西南官话
+㮟㮟角角	kā;ee kā;ee jiǎo;xt jiǎo;xt
+日白	rì;or bái;ub	3
+厮儿	sī;xt ér;pe	54
+鼁蟆	qù;gd má;cm
+鼁蟆儿	qù;gd má;cm ér;pe
+耳矢	ěr;qe shǐ;os
+𢱟耳矢	chǎn;uc ěr;qe shǐ;os
+𬲹𬲹	māng; māng;
+#吴方言
+交春	jiāo;ab chūn;ao
+交秋	jiāo;ab qiū;xc
+借手	jiè;jo shǒu;us
+济手	jì;kq shǒu;us
+顺手	shùn;ow shǒu;us
+借眼	jiè;jo yǎn;qi
+济眼	jì;kq yǎn;qi
+顺眼	shùn;ow yǎn;qi
+借脚	jiè;jo jiǎo;vz
+济脚	jì;kq jiǎo;vz
+顺脚	shùn;ow jiǎo;vz
+借手面	jiè;jo shǒu;us miàn;bm
+济手面	jì;kq shǒu;us miàn;bm
+顺手面	shùn;ow shǒu;us miàn;bm
+姆妈	mǔ;bk mā;bn
+阿姆	ā;tz mǔ;bk
+娘妗	niáng;bi jìn;ba
+老嬬	lǎo;ql rú;bl
+老嬬儿	lǎo;ql rú;bl ér;pe
+木卵	mù;em luǎn;bl
+呆大	dāi;de dà;md
+呆大头	dāi;de dà;md tóu;wm
+戆大	gàng;xh dà;md
+青𬲼	qīng;av yè;
+菜蕻	cài;le hóng;lh
+上蕻	shàng;yf hóng;lh
+树蕻	shù;ek hóng;lh
+坞堂	wù;gx táng;sg
+楐排	jiè;ep pái;ur
+楐棚	jiè;ep péng;ev
+忖忖	cǔn;hk cǔn;hk
+小揢	xiǎo;yx ké;us
+剩落来	shèng;xp luò;ls lái;ah
+望相	wàng;fn xiāng;eq
+样个	yàng;eg gè;jg
+#湘方言
+娭毑	āi;bo jiě;ke
+撩撇	liāo;uy piē;uh
+了难	liǎo;rl nán;ru
+恰得苦	qià;hd dé;wk kǔ;lc
+恰点酒	qià;hd diǎn;yc jiǔ;ky
+恰点东西	qià;hd diǎn;yc dōng;ry xi;vx
+#粤方言
+饱咗	bǎo;qv zuo;du
+睇戏	dì;qt xì;rp
+埋数	mái;gd shù;ph
+闹热	nào;ar rè;uc
+恰酒	qià;hd jiǔ;ky
+唔该	wú;dd gāi;sk
+正嘢	zhèng;fs yě;di
+系哩度	xì;ti lī;dd dù;xr
+到屋企	dào;yp wū;cy qǐ;js
+掂过碌蔗	diān;ud guò;ku lù;mk zhè;lc
+裹筋	guǒ;te jīn;rs
+便靓正	biàn;jb liàng;ae zhèng;fs
+唔够靓仔	wú;dd gòu;gl liàng;ae zǎi;jh
+最靓嘅猪腩肉	zuì;or liàng;ae kǎi;dd zhū;mo nǎn;vg ròu;mj
+都睇唔清	dōu;qt dì;qt wú;dd qīng;kv

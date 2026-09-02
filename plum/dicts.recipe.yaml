@@ -1,0 +1,9 @@
+# encoding: utf-8
+---
+recipe:
+  Rx: plum/dicts
+  args:
+  description: >-
+    万象拼音 tiger-fuzhu 版，仅词库（dicts-only）- 分支 wanxiang-tiger-fuzhu
+install_files: >-
+  dicts/*.*
