@@ -3,46 +3,6 @@
 > **先解决问题，再解释原理。**  
 > 本页收集万象用户最容易遇到的安装、更新、配置、词库、辅助码、英文混输与 Lua 功能问题。问题选题会参考 Rime 社区中的高频讨论，但**答案统一以万象当前的 Schema、Lua 与项目文档实现为准**，不会直接套用其他方案的配置。
 
-<div class="grid cards" markdown>
-
--   :material-rocket-launch: **安装 · 更新 · 部署**
-
-    从 Base / Pro 选型，到“改了为什么不生效”、首次部署为什么慢。
-
-    [:octicons-arrow-right-24: 跳转](#安装更新与部署)
-
--   :material-tune-variant: **配置 · Patch**
-
-    `*.custom.yaml` 怎么写、列表怎么改、快捷键为什么改了还在。
-
-    [:octicons-arrow-right-24: 跳转](#配置与-patch)
-
--   :material-database: **词库 · 用户数据**
-
-    `custom_phrase.txt`、用户词库、自造词、专业词库、同步到底怎么选。
-
-    [:octicons-arrow-right-24: 跳转](#词库自造词与同步)
-
--   :material-filter-variant: **辅助码 · 反查 · 生僻字**
-
-    Base 与 Pro 的差异、反引号怎么用、Super Lookup 为什么不是传统逐字对齐。
-
-    [:octicons-arrow-right-24: 跳转](#辅助码反查与字符集)
-
--   :material-translate: **英文 · 混输 · 动态功能**
-
-    英文自动空格、英文词库、时间日期、计算器、Unicode、超级符号。
-
-    [:octicons-arrow-right-24: 跳转](#英文混输与内置功能)
-
--   :material-stethoscope: **异常排查**
-
-    没候选、Lua 不工作、快捷键冲突、缓存与 Prism 等常见排查思路。
-
-    [:octicons-arrow-right-24: 跳转](#异常排查)
-
-</div>
-
 !!! info "FAQ 使用原则"
     **先确认版本，再确认配置来源，最后重新部署。**  
     万象的大量能力并不是单个 YAML 字段独立完成的，而是 Schema、挂接方案、词库、Lua 与 Rime 编译结果共同工作。遇到问题时，不建议先删除用户词库或大范围改配置。
@@ -404,6 +364,7 @@ custom_phrase:
 如果你替换的是独立挂接词库，例如英文，还要同时保证挂接方案与主方案的调用名称一致。
 
 相关文档：[词库管理与同步](../dicts_sync.md)
+
 ---
 
 ### Q：为什么 Base 默认会调频，而 Pro 更强调关闭自动调频？
