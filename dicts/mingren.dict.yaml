@@ -470,6 +470,7 @@ sort: by_weight
 顾诚	gù chéng	603
 顾况	gù kuàng	522
 古龙	gǔ lóng	5184
+瞽叟	gǔ sǒu	22
 孤影	gū yǐng	257
 关帝	guān dì	537
 关公	guān gōng	1391
@@ -677,6 +678,7 @@ sort: by_weight
 霍峻	huò jùn	81
 霍弋	huò yì	29
 霍禹	huò yǔ	66
+箕伯	jī bó	6
 姬昌	jī chāng	68
 济慈	jì cí	86
 姬旦	jī dàn	77
@@ -1548,6 +1550,7 @@ sort: by_weight
 陶铸	táo zhù	651
 特伟	tè wěi	128
 滕飞	téng fēi	594
+滕六	téng liù	14
 藤森	téng sēn	60
 滕胤	téng yìn	9
 提香	tí xiāng	210
@@ -1840,6 +1843,7 @@ sort: by_weight
 许哲	xǔ zhé	876
 玄德	xuán dé	536
 宣帝	xuān dì	2355
+玄穹	xuán qióng	28
 玄烨	xuán yè	795
 玄奘	xuán zàng	1269
 玄宗	xuán zōng	2047
@@ -4994,6 +4998,8 @@ sort: by_weight
 黄百家	huáng bǎi jiā	315
 黄百韬	huáng bǎi tāo	308
 黄宝妹	huáng bǎo mèi	194
+黄葆戊	huáng bǎo wù	162
+黄葆戉	huáng bǎo yuè	238
 黄蓓佳	huáng bèi jiā	16
 黄碧端	huáng bì duān	292
 黄碧云	huáng bì yún	572
@@ -5030,11 +5036,33 @@ sort: by_weight
 黄大宪	huáng dà xiàn	139
 黄道婆	huáng dào pó	35
 黄道周	huáng dào zhōu	78
+黄登贤	huáng dēng xián	144
+黄荻钧	huáng dí jūn	266
+黄鼎凤	huáng dǐng fèng	292
+黄东赫	huáng dōng hè	179
+黄东萍	huáng dōng píng	490
+黄恩彤	huáng ēn tóng	324
+黄芳雯	huáng fāng wén	202
 黄飞鸿	huáng fēi hóng	2653
+黄飞虎	huáng fēi hǔ	44
+黄凤荣	huáng fèng róng	243
+黄凤涛	huáng fèng tāo	302
+黄凤翔	huáng fèng xiáng	315
+皇甫曾	huáng fǔ céng	248
+皇甫澈	huáng fǔ chè	117
 皇甫端	huáng fǔ duān	31
+皇甫规	huáng fǔ guī	346
+皇甫晖	huáng fǔ huī	454
 皇甫谧	huáng fǔ mì	195
+皇甫冉	huáng fǔ rǎn	351
+黄复生	huáng fù shēng	423
+皇甫湜	huáng fǔ shí	364
+皇甫曙	huáng fǔ shǔ	130
 皇甫嵩	huáng fǔ sōng	308
+皇甫松	huáng fǔ sōng	277
+皇甫镛	huáng fǔ yōng	189
 黄公略	huáng gōng lüè	464
+黄公绍	huáng gōng shào	360
 黄公望	huáng gōng wàng	173
 黄光锐	huáng guāng ruì	284
 黄光裕	huáng guāng yù	188
@@ -5077,10 +5105,15 @@ sort: by_weight
 黄介正	huáng jiè zhèng	243
 黄金宝	huáng jīn bǎo	17
 黄金荣	huáng jīn róng	129
+黄锦炎	huáng jǐn yán	193
+黄锦云	huáng jǐn yún	180
+荒井聪	huāng jǐng cōng	202
+黄景昉	huáng jǐng fǎng	279
 黄景仁	huáng jǐng rén	104
 黄静远	huáng jìng yuǎn	306
 黄九郎	huáng jiǔ láng	13
 黄久生	huáng jiǔ shēng	297
+黄居采	huáng jū cǎi	279
 黄君璧	huáng jūn bì	3
 黄君壁	huáng jūn bì	2
 黄俊华	huáng jùn huá	3
@@ -5091,6 +5124,7 @@ sort: by_weight
 黄克功	huáng kè gōng	22
 黄克强	huáng kè qiáng	364
 黄克武	huáng kè wǔ	428
+黄克缵	huáng kè zuǎn	230
 黄宽重	huáng kuān zhòng	212
 黄坤明	huáng kūn míng	6
 黄昆岩	huáng kūn yán	266
@@ -5146,6 +5180,7 @@ sort: by_weight
 黄山谷	huáng shān gǔ	60
 黄善洪	huáng shàn hóng	9
 黄世芳	huáng shì fāng	130
+黄士峰	huáng shì fēng	392
 黄石公	huáng shí gōng	110
 黄士衡	huáng shì héng	243
 黄士陵	huáng shì líng	9
@@ -14492,9 +14527,9 @@ sort: by_weight
 干将莫邪	gān jiāng mò yé	204
 甘宁兴霸	gān níng xīng bà	117
 冈村宁次	gāng cūn níng cì	119
-岗村宁次	gǎng cūn níng cì	107
 纲岛志朗	gāng dǎo zhì lǎng	189
 冈崎慎司	gāng qí shèn sī	522
+冈崎武士	gāng qí wǔ shì	162
 冈萨雷斯	gāng sà léi sī	355
 冈瑟四世	gāng sè sì shì	45
 冈田启介	gāng tián qǐ jiè	14

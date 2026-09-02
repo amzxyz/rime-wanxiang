@@ -31,7 +31,7 @@ jobs:
       - name: Release build
         run: bash .github/workflows/scripts/release-build.sh
 
-      # 1. 用 dist/ 里的产物拼出 snapshot 目录 (用于后面的分支推送)
+      # 1. 用 dist/ 里的产物拼出 snapshot 目录
       - name: Prepare snapshot tree from dist
         run: |
           set -euo pipefail
@@ -52,7 +52,7 @@ jobs:
             exit 1
           fi
 
-      # 2. 每次强制打包最新词库 zip (耗时极短，直接与方案一起打包)
+      # 2. 每次强制打包最新词库 zip
       - name: Pack nightly dict zips
         run: |
           set -euo pipefail
@@ -90,7 +90,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const tag = "dict-nightly"; // 统一使用这个原有的标签
+            const tag = "dict-nightly";
             try {
               const releases = await github.rest.repos.listReleases({
                 owner: context.repo.owner,
@@ -129,7 +129,7 @@ jobs:
           echo "$LOGS" >> $GITHUB_ENV
           echo "$EOF" >> $GITHUB_ENV
 
-      # 5. 创建统一的 Nightly 预览版 Release，上传所有方案与词库产物
+      # 5. 创建统一的 Nightly 预览版 Release
       - name: Create Unified Nightly Release
         uses: softprops/action-gh-release@v3
         with:
@@ -170,8 +170,8 @@ jobs:
           draft: false
           prerelease: true
 
-      # 6. 为每个方案生成独立分支：wanxiang-base / wanxiang-lite / wanxiang-moqi-fuzhu / ...
-      - name: Commit and force push per-scheme snapshots
+      # 6. 更新每个方案的独立发布分支，保留原有提交历史
+      - name: Commit and push per-scheme snapshots
         env:
           GIT_AUTHOR_NAME: ci-bot
           GIT_AUTHOR_EMAIL: ci@example.com
@@ -179,7 +179,7 @@ jobs:
           GIT_COMMITTER_EMAIL: ci@example.com
         run: |
           set -euo pipefail
-          ORIG_BRANCH="$(git rev-parse --abbrev-ref HEAD || echo 'wanxiang')"
+
           schemes=("base" "lite" "pure" "wx-fuzhu" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu" "shyplus-fuzhu")
 
           COMMON_FILES=(
@@ -197,22 +197,28 @@ jobs:
 
           TAG_NAME="${{ github.event_name == 'release' && github.event.release.tag_name || 'manual-build' }}"
 
+          SNAPSHOT_ROOT="${RUNNER_TEMP}/rime-wanxiang-snapshot"
+          rm -rf "${SNAPSHOT_ROOT}"
+          mv snapshot "${SNAPSHOT_ROOT}"
+
           for scheme in "${schemes[@]}"; do
             branch="wanxiang-${scheme}"
-            src_dir="snapshot/rime-wanxiang-${scheme}"
+            src_dir="${SNAPSHOT_ROOT}/rime-wanxiang-${scheme}"
 
             if [ ! -d "${src_dir}" ]; then
+              echo "Skip ${branch}: ${src_dir} does not exist."
               continue
             fi
 
-            if git show-ref --verify --quiet "refs/heads/${branch}"; then
-              git checkout "${branch}"
-            else
-              git checkout --orphan "${branch}"
-            fi
+            git fetch --no-tags --depth=1 origin \
+              "refs/heads/${branch}:refs/remotes/origin/${branch}"
 
-            find . -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "snapshot" -exec rm -rf {} +
-            cp -a "${src_dir}"/. .
+            git checkout -B "${branch}" "refs/remotes/origin/${branch}"
+
+            rsync -a --delete \
+              --exclude='.git/' \
+              "${src_dir}/" ./
+
             mkdir -p plum
 
             {
@@ -241,15 +247,15 @@ jobs:
               echo "  dicts/*.*"
             } > "plum/dicts.recipe.yaml"
 
-            git add .
-            git reset snapshot || true
-            git rm -r --cached snapshot 2>/dev/null || true
+            git add -A
 
-            git commit -m "chore(${branch}): snapshot for ${TAG_NAME}" \
-              || echo "Nothing to commit for ${branch}."
+            if git diff --cached --quiet; then
+              echo "No changes for ${branch}, skip commit."
+            else
+              git commit -m "chore(${branch}): update release snapshot for ${TAG_NAME}"
+            fi
 
-            git push -f origin "${branch}"
+            git push origin "${branch}"
           done
 
-          git checkout "${ORIG_BRANCH}" || true
-          rm -rf snapshot
+          rm -rf "${SNAPSHOT_ROOT}"
