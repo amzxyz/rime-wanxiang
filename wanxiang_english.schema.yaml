@@ -1,0 +1,143 @@
+# Rime schema
+# encoding: utf-8
+schema:
+  schema_id: wanxiang_english
+  name: 万象英文
+  version: "lts"
+  author: amzxyz
+  description: |
+    支持整句输入英文的语句流方案，拥有更加智能的词组上屏加空格策略，支持单词组、语句任意词组中首字母大写或者全大写格式化。
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [整句, 字母]
+  - name: full_shape
+    states: [半角, 全角]
+  - name: emoji
+    states: [表情关, 表情开]
+  - name: chinese_english
+    states: [翻译关, 翻译开]
+
+engine:
+  processors:
+    - lua_processor@*wanxiang.super_english*P
+    - ascii_composer
+    - key_binder
+    - speller
+    - recognizer
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - matcher
+    - ascii_segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - table_translator
+    - lua_translator@*wanxiang.super_english*T
+    - punct_translator
+  filters:
+    - lua_filter@*wanxiang.super_english*F
+    - lua_filter@*wanxiang.auto_phrase
+    - lua_filter@*wanxiang.super_replacer
+    - uniquifier
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/\
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/
+  delimiter: " '"
+  algebra:
+    __include: wanxiang_algebra:/english/通用规则
+    __patch: wanxiang_algebra:/english/全拼  #可选的选项有（全拼, 自然码, 小鹤双拼, 微软双拼, 搜狗双拼, 智能ABC, 紫光双拼, 拼音加加）
+translator:
+  dictionary: wanxiang_english
+  enable_user_dict: false
+  initial_quality: 2
+  comment_format:
+    - xform/^~.+$//
+key_binder:
+  import_preset: default
+  bindings:
+    #- { when: always, accept: Shift+space, select: wanxiang }  #直接跳转指定方案
+    #- { when: always, accept: Shift+space, select: wanxiang_pro }  #直接跳转指定方案
+    - {when: always, accept: Shift+space, select: .next}  #下一个方案
+    #使用Control+e进入翻译模式
+    - {when: has_menu, accept: "Control+e", toggle: chinese_english}
+punctuator:
+  __include: wanxiang_symbols:/ascii_symbol_table
+  __patch: wanxiang_symbols:/symbols
+recognizer:
+  import_preset: default
+  patterns:
+    punct: "^/([0-9]|10|[A-Za-z]+)$"
+wanxiang_english:
+  dictionary: wanxiang_english
+  user_dict: en
+  enable_completion: true
+  enable_sentence: true
+  initial_quality: 3
+  comment_format:  #这里很重要如果残留带声调字母，剩余编码提示计算出错引发程序崩溃
+    - xform/^~.+$//
+  #英文自动加空格，除关闭外共有3种模式可供选择
+  #off: 关闭; before: 总是前加; after: 总是后加;
+  #smart: 智能模式连续输入英文时第二个单词前开始加空格，非输入状态的回车与空格都能打断加空格状态
+  #支持设置延时销毁加空格状态，单位秒,0不超时，大于0为超时时间，极大的保证了连续输入的体验。
+  english_spacing: smart
+  spacing_timeout: 5
+
+# super_replacer处理插件 - 配置说明书
+
+# 【基础配置】
+# db_name:        数据库存储路径
+# delimiter:      txt词库中一键多词的分割符，默认 "Tab"
+# comment_format: 注释内容的显示格式，例如 "〔%s〕"
+#
+# 【触发条件】
+# option:         触发开关。支持单值 (如 emoji), 列表 (如 [s2t, s2hk]), 或常驻 (true)
+# tags:           生效的引擎 tag 范围 (如 [abc])
+#
+# 【核心模式 (mode)】
+#   - append  : 新增候选模式。保留原候选，在后面追加新词 (如输入'哈哈' -> 1.哈哈 2.😄)
+#   - replace : 替换候选模式。直接覆盖原候选文本，并自动向下一个滤镜传递 (如简繁转换)
+#   - comment : 纯注释模式。不改文本，仅在原词条旁追加注释 (词库提示等于已输入编码时不显示)
+#   - abbrev  : 简码/自定义短语模式。根据输入码精准匹配，提取词条并插队置顶
+#
+# 【注释策略 (comment_mode)】
+#   - none    : 不处理原词注释 (默认)
+#   - text    : 狸猫换太子，将【原候选文本】变成【新候选的注释】 (如 'hello' -> '你好〔hello〕')
+#   - append  : 继承保留原候选自带的系统注释 (简繁转换时推荐使用)
+#
+# 【附加高级选项】
+# sentence:         (true/false) 开启长句分词(FMM)匹配，适用于简繁转换等整句处理场景
+# cand_type:        自定义候选词的 type 名称 (如 custom_emoji)，方便给不同候选词挂载独立皮肤样式
+# t9_optimization:  (true/false) T9九宫格优化，自动将词库里的字母键转换为数字键，携带预编辑码
+# abbrev_rule:      (仅 abbrev 模式生效) 格式为 "数量,位置"。(如 "1,6" 表示将词库前 1 个词插队到第 6 候选位，其余全部放在最后面兜底)
+# files:            要读取的 txt 词库文件列表 (支持多文件合并，UserDir 优先于 SharedDir)
+# exclude_types: [pinyin]  # 让当前节点排除特定类型的输入类型例如：全拼，这样他就能在非全拼的输入类型下自动生效
+# only_types: [pinyin]  # 仅对特定类型的候选词生效，其他类型候选词不受影响
+
+super_replacer:
+  db_name: enreplacer
+  comment_format: "〔%s〕"
+  chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
+  rules:
+    # 场景1：输入 '哈哈' -> 变成 '1.哈哈 2.😄'
+    - option: emoji  # 开关名称与上面开关名称保持一致
+      mode: append  # 新增候选append 替换原候选replace 替换注释comment 简码模式abbrev匹配输入编码置顶词组
+      comment_mode: none  # 注释模式: "append"(原候选注释继承), "text"(原候选文本放在注释), "none"(空，默认)
+      tags: [abc]  # 生效的tag
+      prefix: "_em_"  # 前缀用于区分同一个数据库的不同用途数据
+      files:
+        - lua/data/emoji.txt
+    # 场景2：输入 'hello' -> 显示 'hello 〔你好 | 哈喽〕'
+    - option: chinese_english
+      mode: append  # <--- 添加注释模式
+      comment_mode: none
+      tags: [abc]
+      prefix: "_en_"
+      files:
+        - lua/data/english_chinese.txt
