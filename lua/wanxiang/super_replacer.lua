@@ -18,7 +18,7 @@ local s_upper = string.upper
 local t_sort = table.sort
 local type = type
 local tonumber = tonumber
-local DB_FORMAT_VERSION = "9"
+local DB_FORMAT_VERSION = "10"
 local MERGED_SCHEMA_IDS = {"wanxiang_pro", "wanxiang", "wanxiang_lite", "wanxiang_english", "wanxiang_t9", "wanxiang_t9i"}
 local build_task_map = {}
 local runtime_initialized = false
@@ -415,7 +415,6 @@ end
 
 local function rebuild(tasks, db)
     local written_db_keys = {}
-    local seen_converted_keys = nil
     local converted_groups = nil
     local converted_order = nil
     local prefix_profiles = {}
@@ -449,18 +448,10 @@ local function rebuild(tasks, db)
     for _, task in ipairs(tasks) do
         local prefix = task.prefix or ""
         local conversion = task.conversion
-        local seen_source_keys = nil
 
         if conversion then
-            seen_converted_keys = seen_converted_keys or {}
             converted_groups = converted_groups or {}
             converted_order = converted_order or {}
-            seen_source_keys = seen_converted_keys[prefix]
-
-            if not seen_source_keys then
-                seen_source_keys = {}
-                seen_converted_keys[prefix] = seen_source_keys
-            end
         end
 
         local file, close = wanxiang.load_file_with_fallback(task.path, "r")
@@ -473,28 +464,26 @@ local function rebuild(tasks, db)
                     if key and value then
                         if conversion then
                             local original_key = key
+                            key = s_gsub(key, ".", conversion)
+                            update_prefix_profile(prefix, key)
+                            value = append_preedit(
+                                value,
+                                task.preedit_delim,
+                                original_key
+                            )
 
-                            if not seen_source_keys[original_key] then
-                                seen_source_keys[original_key] = true
-                                key = s_gsub(key, ".", conversion)
-                                update_prefix_profile(prefix, key)
-                                value = append_preedit(
-                                    value,
-                                    task.preedit_delim,
-                                    original_key
-                                )
+                            -- T9 的多个源文件统一聚合：
+                            -- 不按原字母编码去重，只按转换后的 prefix + 数字 key 分组追加。
+                            local db_key = prefix .. key
+                            local group = converted_groups[db_key]
 
-                                local db_key = prefix .. key
-                                local group = converted_groups[db_key]
-
-                                if not group then
-                                    group = {}
-                                    converted_groups[db_key] = group
-                                    converted_order[#converted_order + 1] = db_key
-                                end
-
-                                group[#group + 1] = value
+                            if not group then
+                                group = {}
+                                converted_groups[db_key] = group
+                                converted_order[#converted_order + 1] = db_key
                             end
+
+                            group[#group + 1] = value
                         else
                             update_prefix_profile(prefix, key)
                             local db_key = prefix .. key
