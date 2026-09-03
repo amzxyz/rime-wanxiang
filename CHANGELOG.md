@@ -1,5 +1,24 @@
 # Changelog
 
+## [17.9.5](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.4...v17.9.5) (2026-09-03)
+
+
+### 📚 词库更新
+
+* 词库调整 ([3ef0098](https://github.com/amzxyz/rime-wanxiang/commit/3ef00986fdb63d0e904c7cd7756d804d8f8f874f))
+
+
+### 🐛 Bug 修复
+
+* **english:** 修复跨方案option状态污染，以及删除太极符号 ([ef100eb](https://github.com/amzxyz/rime-wanxiang/commit/ef100ebccf856247b957c77d13c57e571b1ae393))
+* **english:** 规避可能存在的问题 ([6694d4a](https://github.com/amzxyz/rime-wanxiang/commit/6694d4a209d62745e3790b2d8c7ff126ab2ad3c6))
+* tips、replacer恢复fetch查询，并将数据库默认设置在build，这既能解决折叠且无文件夹的问题，在一定程度上能解决旧版本Windows小狼毫在前缀查询可能引发的内存泄露问题，其余需要用户数据的统计、上下文、排序暂时依然按根目录设计 ([7f9bada](https://github.com/amzxyz/rime-wanxiang/commit/7f9bada313df6dae19bad06a5d0a560691e0ddf1))
+
+
+### 🏡 杂项
+
+* 修改文档 ([526fec9](https://github.com/amzxyz/rime-wanxiang/commit/526fec92154ef8aabb0782cb95a88ce1932ac381))
+
 ## [17.9.4](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.3...v17.9.4) (2026-09-02)
 
 
