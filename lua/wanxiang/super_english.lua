@@ -134,7 +134,8 @@ function T.init(env)
 end
 
 function T.func(input, seg, env)
-    if not env.engine.context:get_option("english")
+    if (env.engine.schema.schema_id ~= "wanxiang_english"
+            and not env.engine.context:get_option("english"))
         or env.engine.context:get_option("ascii_mode") then
         return
     end
