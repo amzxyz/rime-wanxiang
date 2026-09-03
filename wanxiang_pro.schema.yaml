@@ -410,7 +410,6 @@ context_reorder:
     - 米寸尺里斤两吨克升元角毛笔百千万亿
 
 super_tips:
-  db_name: "tips"  # 可选字段，不写的话默认使用 "tips"，相对路径
   tips_key: "comma"  # key英文单词不清楚去default找
   files:  # 自定义数据文件列表（可选，不配置则使用默认文件）
     - lua/data/tips_show.txt  # 仍可保留默认文件
@@ -514,7 +513,6 @@ input_stats:
 # only_types: [pinyin]  # 仅对特定类型的候选词生效，其他类型候选词不受影响
 
 super_replacer:
-  db_name: replacer
   comment_format: "〔%s〕"
   chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
   rules:
