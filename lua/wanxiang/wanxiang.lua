@@ -262,6 +262,72 @@ function wanxiang.get_user_id()
     installation_file:close()
     return user_id
 end
+---@class WanxiangRegexMatcher
+---@field projection Projection
+---@field pattern string
+
+-- Projection 没有直接暴露 bool match 接口；这里用单条 erase 规则把
+-- “完整匹配 / 不匹配”映射为“空字符串 / 原字符串”。
+-- matcher 在初始化时构建一次，热路径只执行已编译正则的匹配。
+-- 此做法缘起规避直接暴露的接口在一些Linux机型上导致fcitx5异常退出，但其缓存初始化的做法其实在性能上更优。
+local REGEX_DELIMITERS = { "#", "%", ";", "~", "|", "@", "/", "!", ",", "=", "_" }
+
+---@param pattern string
+---@return WanxiangRegexMatcher|nil matcher
+---@return string|nil error_message
+function wanxiang.compile_regex(pattern)
+    if type(pattern) ~= "string" or pattern == "" then
+        return nil, "pattern must be a non-empty string"
+    end
+
+    local delimiter = nil
+    for _, candidate in ipairs(REGEX_DELIMITERS) do
+        if not pattern:find(candidate, 1, true) then
+            delimiter = candidate
+            break
+        end
+    end
+
+    if not delimiter then
+        return nil, "pattern contains every supported projection delimiter"
+    end
+
+    local projection = Projection()
+    local rule = "erase" .. delimiter .. pattern .. delimiter
+    local ok, loaded = pcall(function()
+        return projection:load({ rule })
+    end)
+
+    if not ok then
+        return nil, tostring(loaded)
+    end
+    if not loaded then
+        return nil, "projection rejected pattern: " .. pattern
+    end
+
+    return {
+        projection = projection,
+        pattern = pattern,
+    }
+end
+
+---@param matcher WanxiangRegexMatcher|nil
+---@param input string
+---@return boolean
+function wanxiang.regex_matches(matcher, input)
+    if not matcher or not matcher.projection or type(input) ~= "string" then
+        return false
+    end
+
+    -- erase 匹配成功和“空输入未匹配”都会得到空字符串，因此该兼容层
+    -- 明确只用于当前两处非空编码匹配场景。
+    if input == "" then
+        return false
+    end
+
+    return matcher.projection:apply(input, true) == ""
+end
+
 wanxiang.INPUT_METHOD_MARKERS = {
     ["Ⅰ"] = "pinyin",   -- 全拼
     ["Ⅱ"] = "zrm",      -- 自然码双拼
@@ -294,104 +360,6 @@ local INPUT_METHOD_MARKER_ORDER = {
 }
 
 local INPUT_METHOD_MD_MARKER = "ⅲ"
-
----@class WanxiangRegexMatcher
----@field backend "native"|"projection"
----@field pattern string|nil
----@field projection Projection|nil
-
-local REGEX_DELIMITERS = { "#", "%", ";", "~", "|", "@", "/", "!", ",", "=", "_" }
-local regex_backend = nil
-
-local function is_opensuse()
-    local file = io.open("/etc/os-release", "r")
-    if not file then file = io.open("/usr/lib/os-release", "r") end
-    if not file then return false end
-
-    local matched = false
-    for line in file:lines() do
-        local key, value = line:match("^([A-Z_]+)=(.*)$")
-        if key == "ID" or key == "ID_LIKE" then
-            value = value:gsub("^['\"]", ""):gsub("['\"]$", ""):lower()
-            if value:find("opensuse", 1, true) or value:match("%f[%a]suse%f[%A]") then
-                matched = true
-                break
-            end
-        end
-    end
-    file:close()
-    return matched
-end
-
---- openSUSE's current librime-lua package crashes inside rime_api.regex_match.
---- Other platforms keep the native backend unless explicitly overridden.
----@return "native"|"projection"
-function wanxiang.get_regex_backend()
-    if regex_backend then return regex_backend end
-
-    local override = os.getenv("WANXIANG_REGEX_BACKEND")
-    if override == "native" or override == "projection" then
-        regex_backend = override
-    else
-        regex_backend = is_opensuse() and "projection" or "native"
-    end
-    return regex_backend
-end
-
----@param pattern string
----@return WanxiangRegexMatcher|nil matcher
----@return string|nil error_message
-function wanxiang.compile_regex(pattern)
-    if type(pattern) ~= "string" or pattern == "" then
-        return nil, "pattern must be a non-empty string"
-    end
-
-    if wanxiang.get_regex_backend() == "native" then
-        local ok, err = pcall(rime_api.regex_match, "", pattern)
-        if not ok then return nil, tostring(err) end
-        return { backend = "native", pattern = pattern }
-    end
-
-    local delimiter = nil
-    for _, candidate in ipairs(REGEX_DELIMITERS) do
-        if not pattern:find(candidate, 1, true) then
-            delimiter = candidate
-            break
-        end
-    end
-    if not delimiter then
-        return nil, "pattern contains every supported projection delimiter"
-    end
-
-    local projection = Projection()
-    local rule = "erase" .. delimiter .. pattern .. delimiter
-    local ok, loaded = pcall(function()
-        return projection:load({ rule })
-    end)
-    if not ok or not loaded then
-        return nil, ok and "projection rejected the pattern" or tostring(loaded)
-    end
-    return { backend = "projection", projection = projection }
-end
-
----@param matcher WanxiangRegexMatcher|nil
----@param input string
----@return boolean
-function wanxiang.regex_matches(matcher, input)
-    if not matcher or type(input) ~= "string" then return false end
-
-    if matcher.backend == "native" then
-        return matcher.pattern ~= nil and rime_api.regex_match(input, matcher.pattern)
-    end
-
-    -- Projection cannot distinguish an empty match from an unchanged empty input.
-    -- Current callers always match non-empty composing input.
-    if input == "" or not matcher.projection then return false end
-    local ok, result = pcall(function()
-        return matcher.projection:apply(input, true)
-    end)
-    return ok and result == ""
-end
 
 --- 返回形式：
 ---   id
