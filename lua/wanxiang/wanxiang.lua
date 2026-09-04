@@ -262,6 +262,72 @@ function wanxiang.get_user_id()
     installation_file:close()
     return user_id
 end
+---@class WanxiangRegexMatcher
+---@field projection Projection
+---@field pattern string
+
+-- Projection 没有直接暴露 bool match 接口；这里用单条 erase 规则把
+-- “完整匹配 / 不匹配”映射为“空字符串 / 原字符串”。
+-- matcher 在初始化时构建一次，热路径只执行已编译正则的匹配。
+-- 此做法缘起规避直接暴露的接口在一些Linux机型上导致fcitx5异常退出，但其缓存初始化的做法其实在性能上更优。
+local REGEX_DELIMITERS = { "#", "%", ";", "~", "|", "@", "/", "!", ",", "=", "_" }
+
+---@param pattern string
+---@return WanxiangRegexMatcher|nil matcher
+---@return string|nil error_message
+function wanxiang.compile_regex(pattern)
+    if type(pattern) ~= "string" or pattern == "" then
+        return nil, "pattern must be a non-empty string"
+    end
+
+    local delimiter = nil
+    for _, candidate in ipairs(REGEX_DELIMITERS) do
+        if not pattern:find(candidate, 1, true) then
+            delimiter = candidate
+            break
+        end
+    end
+
+    if not delimiter then
+        return nil, "pattern contains every supported projection delimiter"
+    end
+
+    local projection = Projection()
+    local rule = "erase" .. delimiter .. pattern .. delimiter
+    local ok, loaded = pcall(function()
+        return projection:load({ rule })
+    end)
+
+    if not ok then
+        return nil, tostring(loaded)
+    end
+    if not loaded then
+        return nil, "projection rejected pattern: " .. pattern
+    end
+
+    return {
+        projection = projection,
+        pattern = pattern,
+    }
+end
+
+---@param matcher WanxiangRegexMatcher|nil
+---@param input string
+---@return boolean
+function wanxiang.regex_matches(matcher, input)
+    if not matcher or not matcher.projection or type(input) ~= "string" then
+        return false
+    end
+
+    -- erase 匹配成功和“空输入未匹配”都会得到空字符串，因此该兼容层
+    -- 明确只用于当前两处非空编码匹配场景。
+    if input == "" then
+        return false
+    end
+
+    return matcher.projection:apply(input, true) == ""
+end
+
 wanxiang.INPUT_METHOD_MARKERS = {
     ["Ⅰ"] = "pinyin",   -- 全拼
     ["Ⅱ"] = "zrm",      -- 自然码双拼
