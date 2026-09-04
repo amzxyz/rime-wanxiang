@@ -12,6 +12,7 @@ local this = {}
 
 ---@class Binding
 ---@field match string|nil
+---@field matcher WanxiangRegexMatcher|nil
 ---@field accept KeyEvent|nil
 ---@field actions SequenceAction[]
 
@@ -161,8 +162,26 @@ local function parse(value)
         return nil
     end
 
+    local match_pattern = match and match:get_string() or nil
+    local matcher = nil
+
+    if match_pattern ~= nil then
+        local err = nil
+        matcher, err = wanxiang.compile_regex(match_pattern)
+        if not matcher then
+            log.error(
+                "failed to compile key binding pattern '"
+                .. tostring(match_pattern)
+                .. "': "
+                .. tostring(err)
+            )
+            return nil
+        end
+    end
+
     return {
-        match = match and match:get_string() or nil,
+        match = match_pattern,
+        matcher = matcher,
         accept = accept and KeyEvent(accept:get_string()) or nil,
         actions = actions,
     }
@@ -282,7 +301,7 @@ function this.func(key_event, env)
 
         local match_ok =
             binding.match == nil
-            or rime_api.regex_match(input, binding.match)
+            or wanxiang.regex_matches(binding.matcher, input)
 
         if key_ok and match_ok then
             env.redirecting = true
