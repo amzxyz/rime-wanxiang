@@ -1,5 +1,22 @@
 # Changelog
 
+## [17.9.7](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.6...v17.9.7) (2026-09-04)
+
+
+### 📚 词库更新
+
+* 词库调整 ([b935515](https://github.com/amzxyz/rime-wanxiang/commit/b935515d77c70a4d0249f3392180185652ba5135))
+
+
+### 🐛 Bug 修复
+
+* **wanxiang:** use projection backend for regex on openSUSE ([8ad8469](https://github.com/amzxyz/rime-wanxiang/commit/8ad84697cc711b2d7b6092e4432bf7a5a79c7bb8))
+
+
+### 💅 重构
+
+* unify regex matching with Projection ([6369abc](https://github.com/amzxyz/rime-wanxiang/commit/6369abc46ae9ec74746271badda43737a949b937))
+
 ## [17.9.6](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.5...v17.9.6) (2026-09-04)
 
 
