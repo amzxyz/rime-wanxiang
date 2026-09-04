@@ -164,11 +164,17 @@ local function parse(value)
 
     local match_pattern = match and match:get_string() or nil
     local matcher = nil
-    if match_pattern then
+
+    if match_pattern ~= nil then
         local err = nil
         matcher, err = wanxiang.compile_regex(match_pattern)
         if not matcher then
-            log.error("failed to compile key binding pattern: " .. tostring(err))
+            log.error(
+                "failed to compile key binding pattern '"
+                .. tostring(match_pattern)
+                .. "': "
+                .. tostring(err)
+            )
             return nil
         end
     end
