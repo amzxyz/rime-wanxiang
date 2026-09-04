@@ -1,5 +1,18 @@
 # Changelog
 
+## [17.9.6](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.5...v17.9.6) (2026-09-04)
+
+
+### 📚 词库更新
+
+* 词库调整 ([c7d11cc](https://github.com/amzxyz/rime-wanxiang/commit/c7d11ccddc81e85aeb34c00ff3b68f6f3c2c7cd5))
+
+
+### 🐛 Bug 修复
+
+* other.txt分隔符变更 ([4964c93](https://github.com/amzxyz/rime-wanxiang/commit/4964c93b94f4ecb2578a2b70f27b987f5908307d))
+* 优化九键读取数据策略 ([a94e820](https://github.com/amzxyz/rime-wanxiang/commit/a94e820e0e61cd9c87f46398d1bf7cff5f2447d9))
+
 ## [17.9.5](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.4...v17.9.5) (2026-09-03)
 
 
