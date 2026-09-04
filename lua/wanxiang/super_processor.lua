@@ -128,7 +128,7 @@ local function ulen(s)
     return #s
 end
 
--- 直接读取 Rime recognizer 的原生正则，不再转换为 Lua Pattern。
+-- 初始化时编译并缓存 recognizer 正则，热路径只执行匹配。
 local function load_rime_regex_patterns(config, path)
     local patterns, seen = {}, {}
     local map = config and config:get_map(path)
@@ -141,11 +141,12 @@ local function load_rime_regex_patterns(config, path)
         local value = map:get_value(keys[i])
         local regex = value and value.value
         if type(regex) == "string" and regex ~= "" and not seen[regex] then
-            -- 初始化时只编译验证一次；运行时直接走 rime_api.regex_match。
-            local ok = pcall(rime_api.regex_match, "", regex)
-            if ok then
+            local matcher, err = wanxiang.compile_regex(regex)
+            if matcher then
                 seen[regex] = true
-                patterns[#patterns + 1] = regex
+                patterns[#patterns + 1] = matcher
+            else
+                log.error("failed to compile recognizer pattern: " .. tostring(err))
             end
         end
     end
@@ -155,11 +156,11 @@ end
 -- 检查数字后是否紧跟功能编码 (KpNumber 使用)
 local function is_function_code_after_digit(env, context, digit_char)
     if not context or not digit_char or digit_char == "" then return false end
-    local s = (context.input or "") .. digit_char
-    local pats = env.kp_func_patterns
-    if not pats then return false end
-    for _, pat in ipairs(pats) do
-        if rime_api.regex_match(s, pat) then return true end
+    local input = (context.input or "") .. digit_char
+    local patterns = env.kp_func_patterns
+    if not patterns then return false end
+    for _, matcher in ipairs(patterns) do
+        if wanxiang.regex_matches(matcher, input) then return true end
     end
     return false
 end
