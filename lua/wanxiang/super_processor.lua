@@ -128,14 +128,14 @@ local function ulen(s)
     return #s
 end
 
--- 初始化时编译并缓存 recognizer 正则，热路径只执行匹配。
-local function load_rime_regex_patterns(config, path)
-    local patterns, seen = {}, {}
+-- 初始化时编译并缓存 Rime recognizer 正则；热路径只执行已编译匹配。
+local function load_rime_regex_matchers(config, path)
+    local matchers, seen = {}, {}
     local map = config and config:get_map(path)
-    if not map then return patterns end
+    if not map then return matchers end
 
     local keys = map:keys()
-    if not keys then return patterns end
+    if not keys then return matchers end
 
     for i = 1, #keys do
         local value = map:get_value(keys[i])
@@ -144,24 +144,36 @@ local function load_rime_regex_patterns(config, path)
             local matcher, err = wanxiang.compile_regex(regex)
             if matcher then
                 seen[regex] = true
-                patterns[#patterns + 1] = matcher
+                matchers[#matchers + 1] = matcher
             else
-                log.error("failed to compile recognizer pattern: " .. tostring(err))
+                log.error(
+                    "failed to compile recognizer pattern '"
+                    .. tostring(regex)
+                    .. "': "
+                    .. tostring(err)
+                )
             end
         end
     end
-    return patterns
+
+    return matchers
 end
 
 -- 检查数字后是否紧跟功能编码 (KpNumber 使用)
 local function is_function_code_after_digit(env, context, digit_char)
     if not context or not digit_char or digit_char == "" then return false end
+
+    -- digit_char 必为数字，因此这里传入 regex_matches() 的 input 保证非空。
     local input = (context.input or "") .. digit_char
-    local patterns = env.kp_func_patterns
-    if not patterns then return false end
-    for _, matcher in ipairs(patterns) do
-        if wanxiang.regex_matches(matcher, input) then return true end
+    local matchers = env.kp_func_matchers
+    if not matchers then return false end
+
+    for _, matcher in ipairs(matchers) do
+        if wanxiang.regex_matches(matcher, input) then
+            return true
+        end
     end
+
     return false
 end
 
@@ -309,7 +321,7 @@ function M.init(env)
     env.kp_page_size = config:get_int("menu/page_size") or 6
     local m = config:get_string("super_processor/kp_number_mode") or "select"
     env.kp_mode = (m == "auto" or m == "compose" or m == "select") and m or "select"
-    env.kp_func_patterns = load_rime_regex_patterns(config, "recognizer/patterns")
+    env.kp_func_matchers = load_rime_regex_matchers(config, "recognizer/patterns")
 
     -- [LetterSelector] 字母选词状态位
     env.ls_active = false 
