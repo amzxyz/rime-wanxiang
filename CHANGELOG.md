@@ -1,5 +1,15 @@
 # Changelog
 
+## [17.9.8](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.7...v17.9.8) (2026-09-05)
+
+
+### 🐛 Bug 修复
+
+* **english:** 不在反查等模式工作 ([ba8a06e](https://github.com/amzxyz/rime-wanxiang/commit/ba8a06e88f2e132402791acdd8536ae2f2292900))
+* **replacer:** 缓存表采用64固定槽位不销毁不重建避免Lua延迟gc ([3e0ab70](https://github.com/amzxyz/rime-wanxiang/commit/3e0ab702725ffeec790bce5959fdd8319fe4bf64))
+* 简纯皮肤增加几个快捷键 ([1952b8e](https://github.com/amzxyz/rime-wanxiang/commit/1952b8ee06e8cba7ba81d507fa4ccbe7fd68f06b))
+* 缓存表采用64固定槽位不销毁不重建避免Lua延迟gc ([74f4263](https://github.com/amzxyz/rime-wanxiang/commit/74f42631ee405d6f96e9d646c9728e7f398406d7))
+
 ## [17.9.7](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.6...v17.9.7) (2026-09-04)
 
 
