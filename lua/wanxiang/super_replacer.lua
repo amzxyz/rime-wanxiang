@@ -49,6 +49,71 @@ local function clear_map(t)
     for key in pairs(t) do t[key] = nil end
 end
 
+
+-- 固定64槽运行缓存。
+-- 保持 cache 对象不变，只循环覆盖内容，避免频繁创建 table。
+local function init_cache64()
+    return {
+        slots = {},
+        lookup = {},
+        index = 1,
+    }
+end
+
+local function cache64_get(cache, key)
+    if not cache or not key then return nil end
+
+    local pos = cache.lookup[key]
+    if not pos then return nil end
+
+    local item = cache.slots[pos]
+    if item and item.key == key then
+        return item.value
+    end
+
+    return nil
+end
+
+local function cache64_put(cache, key, value)
+    if not cache or not key then return end
+
+    local index = cache.index
+    local old = cache.slots[index]
+
+    if old then
+        cache.lookup[old.key] = nil
+    end
+
+    cache.slots[index] = {
+        key = key,
+        value = value,
+    }
+
+    cache.lookup[key] = index
+
+    index = index + 1
+    if index > 64 then
+        index = 1
+    end
+
+    cache.index = index
+end
+
+-- 清除缓存内容，但不替换 table。
+local function clear_cache64(cache)
+    if not cache then return end
+
+    for key in pairs(cache.lookup) do
+        cache.lookup[key] = nil
+    end
+
+    for i = 1, #cache.slots do
+        cache.slots[i] = nil
+    end
+
+    cache.index = 1
+end
+
 -- 清空仅供单次 M.func 使用的工作缓冲；保留 table 本身供下轮复用。
 local function clear_work_buffers(env)
     if env.result_buffer then clear_array(env.result_buffer) end
@@ -654,8 +719,12 @@ end
 
 local function clear_runtime_cache(env)
     if not env.runtime_cache_active then return end
-    env.fetch_cache = {}
-    env.fmm_cache = {}
+
+    -- 不重新创建 cache table。
+    -- 只清除 ring buffer 内容，保留 slots/lookup 容器，避免 GC 抖动。
+    clear_cache64(env.fetch_cache)
+    clear_cache64(env.fmm_cache)
+
     env.runtime_cache_active = false
 end
 
@@ -664,13 +733,13 @@ local function fetch_runtime_aggregate(env, db, key)
     env.runtime_cache_active = true
 
     local cache = env.fetch_cache
-    local cached = cache[key]
+    local cached = cache64_get(cache, key)
     if cached ~= nil then
         return cached or nil
     end
 
     local value = fetch_aggregate_db(db, key)
-    cache[key] = value or false
+    cache64_put(cache, key, value or false)
     return value
 end
 
@@ -744,11 +813,11 @@ local function convert_sentence_fmm(text, db, rule, env, offsets, result_parts)
 
     local prefix = rule.prefix
     local cache_key = prefix .. "\0" .. text
-    local cached = env.fmm_cache[cache_key]
+    local cached = cache64_get(env.fmm_cache, cache_key)
     if cached ~= nil then return cached end
 
     if not rule.has_ascii_source and is_ascii_only(text) then
-        env.fmm_cache[cache_key] = text
+        cache64_put(env.fmm_cache, cache_key, text)
         return text
     end
 
@@ -817,7 +886,7 @@ local function convert_sentence_fmm(text, db, rule, env, offsets, result_parts)
     end
 
     local result = concat(result_parts, "", 1, result_count)
-    env.fmm_cache[cache_key] = result
+    cache64_put(env.fmm_cache, cache_key, result)
     return result
 end
 
@@ -825,8 +894,8 @@ end
 function M.init(env)
     env.fmm_offsets = nil
     env.fmm_result_parts = nil
-    env.fetch_cache = {}
-    env.fmm_cache = {}
+    env.fetch_cache = init_cache64()
+    env.fmm_cache = init_cache64()
     env.runtime_cache_active = false
     env.active_rules = {}
     env.active_abbrev_rules = {}
