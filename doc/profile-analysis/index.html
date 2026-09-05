@@ -1,0 +1,4401 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="万象拼音 Rime 输入方案与配置文档">
+      
+      
+      
+        <link rel="canonical" href="https://amzxyz.github.io/rime-wanxiang/doc/profile-analysis/">
+      
+      
+        <link rel="prev" href="../RUNV/">
+      
+      
+        <link rel="next" href="../random_tools/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../material/leaf">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>性能评测 - 万象拼音</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rime" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="万象拼音" class="md-header__button md-logo" aria-label="万象拼音" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            万象拼音
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              性能评测
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="切换到暗黑模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗黑模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/amzxyz/rime-wanxiang" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    amzxyz/rime-wanxiang
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  快速上手
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  常见问题
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../rime_tree/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  特色功能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../shijian/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Lua 扩展
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../Rime%E8%AE%BE%E8%AE%A1%E9%80%BB%E8%BE%91%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%93%B2%E5%AD%A6/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  进阶配置
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../2026-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  项目动态
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="万象拼音" class="md-nav__button md-logo" aria-label="万象拼音" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    万象拼音
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/amzxyz/rime-wanxiang" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    amzxyz/rime-wanxiang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速上手
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    快速上手
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方案介绍与版本对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weasel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Weasel 小狼毫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    macOS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    macOS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../squirrel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Squirrel 鼠须管
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-mac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 macOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ibus-rime.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBus Rime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iOS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    iOS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hamster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hamster 仓输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hamster3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hamster3 元书输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Android
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trime 同文输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HarmonyOS NEXT
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    HarmonyOS NEXT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chaoyue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超越输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进阶安装
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进阶安装
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    万象工具链
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    东风破 Plum
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手动设置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特色功能
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    特色功能
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rime_tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    万象目录架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dicts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英词库说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shortcut/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快捷键说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aux_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    辅助码系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reverse_lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生僻字反查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英与混合编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../layouts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9/14/18键转写
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fuzzy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模糊音配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom_words/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高阶造词
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../word_creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    错音错字提示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../XCompose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    符号合成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua 扩展
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lua 扩展
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shijian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    时间日期
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_comment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级注释
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级提示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    候选辅筛
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context_reorder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    下文调频
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input_statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    输入统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_replacer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级替换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_sequence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手动排序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_symbol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paired_symbols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    成对符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_symbols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_processor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按键处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../charset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符过滤
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../candidate_slicer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    候选切割
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RUNV/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    魔法字母
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    性能评测
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    性能评测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总体统计
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-processkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 按键延迟分布 (ProcessKey)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Phase 标记 — 整体耗时分解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 各类型组件完整统计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 各类型组件完整统计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 引擎阶段 (engine)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 处理器 (Processor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 翻译器 (Translator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 过滤器 (Filter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-segmentor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 分词器 (Segmentor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-menu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 菜单 (Menu)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-post-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 后处理器 (Post Processor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-formatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 格式化器 (Formatter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-lua-vs-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Lua vs C++ 组件开销对比
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Lua vs C++ 组件开销对比">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按类型分解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        扣除处理器膨胀后的真实对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        各 Lua 组件开销排名
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-top-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C++ 组件开销排名 (Top 10)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 典型按键时间线分解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-p99-36ms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 延迟尖峰分析 (P99 &gt; 36ms 的按键)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 结论与建议
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 结论与建议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        瓶颈排序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可操作建议
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-vs-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lua vs C++ 最终结论
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../random_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    随机工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进阶配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进阶配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rime%E8%AE%BE%E8%AE%A1%E9%80%BB%E8%BE%91%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%93%B2%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 工作机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patch%E6%96%B9%E6%B3%95%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch 方法论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema_custom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义万象方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dicts_sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    词库管理与同步
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIME%E9%85%8D%E7%BD%AE%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 配置手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIME%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 配置指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按键映射列表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目动态
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    项目动态
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2026-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 年中词库报告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../400%2Bgram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 年中模型更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总体统计
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-processkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 按键延迟分布 (ProcessKey)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Phase 标记 — 整体耗时分解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 各类型组件完整统计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 各类型组件完整统计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 引擎阶段 (engine)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 处理器 (Processor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 翻译器 (Translator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 过滤器 (Filter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-segmentor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 分词器 (Segmentor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-menu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 菜单 (Menu)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-post-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 后处理器 (Post Processor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-formatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 格式化器 (Formatter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-lua-vs-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Lua vs C++ 组件开销对比
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Lua vs C++ 组件开销对比">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按类型分解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        扣除处理器膨胀后的真实对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        各 Lua 组件开销排名
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-top-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C++ 组件开销排名 (Top 10)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 典型按键时间线分解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-p99-36ms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 延迟尖峰分析 (P99 &gt; 36ms 的按键)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 结论与建议
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 结论与建议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        瓶颈排序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可操作建议
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua-vs-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lua vs C++ 最终结论
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="rime">📊 Rime 万象拼音方案性能分析报告<a class="headerlink" href="#rime" title="Permanent link">&para;</a></h1>
+<p>该报告整体评估万象拼音输入方案的性能消耗，除了正常的词典消耗，由于万象纳入了很多lua插件，带来了一些讨论；</p>
+<p>由于rime在客户端、内核、方案插件等多个环节都有可能造成bug，最终性能异常，但往往背锅最多的就是lua插件；</p>
+<p>lua面对C暴露的接口，需要一定的经验才能应用好，也确实容易造成性能问题，这个在于人；</p>
+<p>因此这里给出一些数据，避免人云亦云。</p>
+<h2 id="_1">总体统计<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Profile 记录行数: 61,756</li>
+<li>总采集按键次数: 1,997</li>
+<li>触发 Compose（作文）次数: 968</li>
+<li>总耗时: 35.48 秒</li>
+</ul>
+<hr />
+<h2 id="1-processkey">1. 按键延迟分布 (ProcessKey)<a class="headerlink" href="#1-processkey" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>采样次数</td>
+<td>1,997</td>
+</tr>
+<tr>
+<td>最小</td>
+<td>12 µs</td>
+</tr>
+<tr>
+<td>中位数 (P50)</td>
+<td>479 µs</td>
+</tr>
+<tr>
+<td>平均</td>
+<td>3,929 µs</td>
+</tr>
+<tr>
+<td>P95</td>
+<td>14,339 µs</td>
+</tr>
+<tr>
+<td>P99</td>
+<td>36,424 µs</td>
+</tr>
+<tr>
+<td>最大</td>
+<td>67,605 µs</td>
+</tr>
+<tr>
+<td>总耗时</td>
+<td>7,846.6 ms (7.8 秒)</td>
+</tr>
+</tbody>
+</table>
+<p>P50=479µs 说明大部分普通按键（空格、BackSpace 等不触发作文的键）延迟极低。<br />
+平均 3.9ms 被触发作文的按键拉高。<br />
+P99=36ms 的按键对应复杂场景（多候选过滤 + 用户预测）。</p>
+<hr />
+<h2 id="2-phase">2. Phase 标记 — 整体耗时分解<a class="headerlink" href="#2-phase" title="Permanent link">&para;</a></h2>
+<p>每次触发作文的按键，时间分配：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>平均 (µs)</th>
+<th>总计 (ms)</th>
+<th>占总耗时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>engine CalcSeg</td>
+<td>109.7</td>
+<td>106.2</td>
+<td>0.4%</td>
+</tr>
+<tr>
+<td>engine TransSeg</td>
+<td>6,798.8</td>
+<td>6,581.2</td>
+<td>25.2%</td>
+</tr>
+<tr>
+<td>engine Compose</td>
+<td>6,936.4</td>
+<td>6,714.4</td>
+<td>25.7%</td>
+</tr>
+<tr>
+<td>engine ProcessKey</td>
+<td>3,929.2</td>
+<td>7,846.6</td>
+<td>30.0%</td>
+</tr>
+<tr>
+<td>menu Prepare</td>
+<td>23.6</td>
+<td>44.1</td>
+<td>0.2%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键结论</strong>: TransSeg（翻译+过滤）占 Compose 的 98%，是唯一有意义的优化目标。CalcSeg（分词）和 Menu::Prepare（候选取词）可忽略。</p>
+<hr />
+<h2 id="3">3. 各类型组件完整统计<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="31-engine">3.1 引擎阶段 (engine)<a class="headerlink" href="#31-engine" title="Permanent link">&para;</a></h3>
+<p>总计 21,248 ms，占总体 59.9%</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>次数</th>
+<th>平均 (µs)</th>
+<th>总计 (µs)</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compose</td>
+<td>968</td>
+<td>6,936.4</td>
+<td>6,714,422.7</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>TransSeg</td>
+<td>968</td>
+<td>6,798.8</td>
+<td>6,581,218.9</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>ProcessKey</td>
+<td>1,997</td>
+<td>3,929.2</td>
+<td>7,846,568.6</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>CalcSeg</td>
+<td>968</td>
+<td>109.7</td>
+<td>106,218.5</td>
+<td>C++</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-processor">3.2 处理器 (Processor)<a class="headerlink" href="#32-processor" title="Permanent link">&para;</a></h3>
+<p>总计 7,649 ms，占总体 21.6%</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>次数</th>
+<th>平均 (µs)</th>
+<th>总计 (µs)</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>processor (speller/switcher)</td>
+<td>10,113</td>
+<td>603.3</td>
+<td>6,101,160.1</td>
+<td>C++</td>
+</tr>
+<tr>
+<td><em>wanxiang.super_sequence</em>P</td>
+<td>1,844</td>
+<td>338.6</td>
+<td>624,371.9</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.super_processor</td>
+<td>1,963</td>
+<td>240.7</td>
+<td>472,541.4</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>recognizer</td>
+<td>1,837</td>
+<td>124.3</td>
+<td>228,427.9</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>*wanxiang.force_upper_aux</td>
+<td>1,964</td>
+<td>57.4</td>
+<td>112,793.7</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.key_binder</td>
+<td>1,791</td>
+<td>23.5</td>
+<td>42,040.5</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td><em>wanxiang.user_predict</em>P</td>
+<td>1,963</td>
+<td>17.7</td>
+<td>34,690.0</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.super_tips</td>
+<td>1,838</td>
+<td>10.3</td>
+<td>18,918.8</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.partial_commit</td>
+<td>1,844</td>
+<td>5.3</td>
+<td>9,849.9</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>(匿名 switcher)</td>
+<td>1,998</td>
+<td>2.1</td>
+<td>4,208.3</td>
+<td>C++</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意</strong>: C++ <code>processor</code> 条目 (6,101ms) 包含 speller 内部触发 Compose 的嵌套时间。<br />
+剔除膨胀后，真实 Processor 开销约 <strong>232ms</strong>（匿名 4.2ms + recognizer 228ms）。<br />
+剩余约 5,869ms 来自嵌套的 Compose / TransSeg 时间。</p>
+</blockquote>
+<h3 id="33-translator">3.3 翻译器 (Translator)<a class="headerlink" href="#33-translator" title="Permanent link">&para;</a></h3>
+<p>总计 4,060 ms，占总体 11.4%，但T阶段的只有在调用的时候才会产生性能消耗，不输入相应指令消耗等价于0</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>次数</th>
+<th>平均 (µs)</th>
+<th>总计 (µs)</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>translator (script_translator)</td>
+<td>1,626</td>
+<td>1,396.8</td>
+<td>2,271,162.4</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>user_dict_set</td>
+<td>813</td>
+<td>976.5</td>
+<td>793,858.9</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>*wanxiang.shijian</td>
+<td>813</td>
+<td>330.2</td>
+<td>268,425.8</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.unicode</td>
+<td>813</td>
+<td>135.0</td>
+<td>109,734.3</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.input_statistics</td>
+<td>813</td>
+<td>134.0</td>
+<td>108,913.6</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td><em>wanxiang.user_predict</em>T</td>
+<td>813</td>
+<td>122.5</td>
+<td>99,581.1</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.number_translator</td>
+<td>813</td>
+<td>113.8</td>
+<td>92,481.9</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>wanxiang_english</td>
+<td>813</td>
+<td>108.5</td>
+<td>88,181.4</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>*wanxiang.version_display</td>
+<td>813</td>
+<td>93.7</td>
+<td>76,178.8</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.super_calculator</td>
+<td>813</td>
+<td>77.2</td>
+<td>62,794.5</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.set_schema</td>
+<td>813</td>
+<td>43.2</td>
+<td>35,156.7</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>add_user_dict</td>
+<td>813</td>
+<td>25.9</td>
+<td>21,067.5</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>wanxiang_mixedcode</td>
+<td>813</td>
+<td>24.0</td>
+<td>19,491.9</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>custom_phrase</td>
+<td>813</td>
+<td>12.3</td>
+<td>10,017.7</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>wanxiang_reverse</td>
+<td>813</td>
+<td>4.0</td>
+<td>3,272.9</td>
+<td>C++</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-filter">3.4 过滤器 (Filter)<a class="headerlink" href="#34-filter" title="Permanent link">&para;</a></h3>
+<p>总计 2,398 ms，占总体 6.8%</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>次数</th>
+<th>平均 (µs)</th>
+<th>总计 (µs)</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*wanxiang.super_filter</td>
+<td>813</td>
+<td>1,279.6</td>
+<td>1,040,322.1</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td><em>wanxiang.super_sequence</em>F</td>
+<td>813</td>
+<td>843.8</td>
+<td>686,000.6</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.super_replacer</td>
+<td>813</td>
+<td>337.9</td>
+<td>274,723.2</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.super_comment_preedit</td>
+<td>813</td>
+<td>120.5</td>
+<td>98,001.5</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.super_lookup</td>
+<td>813</td>
+<td>115.6</td>
+<td>94,009.4</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.charset_filter</td>
+<td>813</td>
+<td>84.0</td>
+<td>68,317.1</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.super_english</td>
+<td>813</td>
+<td>71.5</td>
+<td>58,145.1</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>*wanxiang.auto_phrase</td>
+<td>813</td>
+<td>55.7</td>
+<td>45,310.7</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td><em>wanxiang.user_predict</em>F</td>
+<td>813</td>
+<td>39.3</td>
+<td>31,956.7</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>filter (uniquifier/simplifier)</td>
+<td>813</td>
+<td>2.0</td>
+<td>1,636.6</td>
+<td>C++</td>
+</tr>
+</tbody>
+</table>
+<h3 id="35-segmentor">3.5 分词器 (Segmentor)<a class="headerlink" href="#35-segmentor" title="Permanent link">&para;</a></h3>
+<p>总计 79 ms，占总体 0.2%</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>次数</th>
+<th>平均 (µs)</th>
+<th>总计 (µs)</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>segmentor (abc/affix/fallback)</td>
+<td>3,183</td>
+<td>20.4</td>
+<td>65,036.7</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>recognizer</td>
+<td>813</td>
+<td>15.8</td>
+<td>12,853.9</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>wanxiang_reverse</td>
+<td>813</td>
+<td>1.3</td>
+<td>1,092.8</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>add_user_dict</td>
+<td>806</td>
+<td>0.3</td>
+<td>281.7</td>
+<td>C++</td>
+</tr>
+</tbody>
+</table>
+<h3 id="36-menu">3.6 菜单 (Menu)<a class="headerlink" href="#36-menu" title="Permanent link">&para;</a></h3>
+<p>总计 44 ms，占总体 0.1%</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>次数</th>
+<th>平均 (µs)</th>
+<th>总计 (µs)</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prepare</td>
+<td>1,871</td>
+<td>23.6</td>
+<td>44,089.9</td>
+<td>C++</td>
+</tr>
+</tbody>
+</table>
+<h3 id="37-post-processor">3.7 后处理器 (Post Processor)<a class="headerlink" href="#37-post-processor" title="Permanent link">&para;</a></h3>
+<p>总计 1 ms，占总体 0.0%</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>次数</th>
+<th>平均 (µs)</th>
+<th>总计 (µs)</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(匿名 shape_processor)</td>
+<td>987</td>
+<td>0.9</td>
+<td>934.5</td>
+<td>C++</td>
+</tr>
+</tbody>
+</table>
+<h3 id="38-formatter">3.8 格式化器 (Formatter)<a class="headerlink" href="#38-formatter" title="Permanent link">&para;</a></h3>
+<p>总计 0 ms，占总体 0.0%</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>次数</th>
+<th>平均 (µs)</th>
+<th>总计 (µs)</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(匿名 shape_formatter)</td>
+<td>89</td>
+<td>1.0</td>
+<td>90.9</td>
+<td>C++</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-lua-vs-c">4. Lua vs C++ 组件开销对比<a class="headerlink" href="#4-lua-vs-c" title="Permanent link">&para;</a></h2>
+<h3 id="_2">按类型分解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>Lua 总计 (ms)</th>
+<th>C++ 总计 (ms)</th>
+<th>Lua 占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>processor</td>
+<td>1,315.2</td>
+<td>6,333.8</td>
+<td>17%</td>
+</tr>
+<tr>
+<td>segmentor</td>
+<td>0.0</td>
+<td>79.3</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>translator</td>
+<td>853.3</td>
+<td>3,207.1</td>
+<td>21%</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>2,396.8</td>
+<td>1.6</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><strong>组件合计</strong></td>
+<td><strong>4,565.3</strong></td>
+<td><strong>9,621.8</strong></td>
+<td><strong>32%</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注：C++ processor 总计 6,333.8ms 中有约 6,101ms 为嵌套 Compose 膨胀（见 3.2 节注释）。</p>
+</blockquote>
+<h3 id="_3">扣除处理器膨胀后的真实对比<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>总计 (ms)</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lua 组件</td>
+<td>4,565</td>
+<td>16%</td>
+</tr>
+<tr>
+<td>C++ 组件 (不含 processor 膨胀)</td>
+<td>24,814</td>
+<td>84%</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>29,379</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="lua">各 Lua 组件开销排名<a class="headerlink" href="#lua" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>总计 (µs)</th>
+<th>次数</th>
+<th>平均 (µs)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*wanxiang.super_filter</td>
+<td>1,040,322</td>
+<td>813</td>
+<td>1,279.6</td>
+</tr>
+<tr>
+<td><em>wanxiang.super_sequence</em>F</td>
+<td>686,001</td>
+<td>813</td>
+<td>843.8</td>
+</tr>
+<tr>
+<td><em>wanxiang.super_sequence</em>P</td>
+<td>624,372</td>
+<td>1,844</td>
+<td>338.6</td>
+</tr>
+<tr>
+<td>*wanxiang.super_processor</td>
+<td>472,541</td>
+<td>1,963</td>
+<td>240.7</td>
+</tr>
+<tr>
+<td>*wanxiang.super_replacer</td>
+<td>274,723</td>
+<td>813</td>
+<td>337.9</td>
+</tr>
+<tr>
+<td>*wanxiang.shijian</td>
+<td>268,426</td>
+<td>813</td>
+<td>330.2</td>
+</tr>
+<tr>
+<td>*wanxiang.force_upper_aux</td>
+<td>112,794</td>
+<td>1,964</td>
+<td>57.4</td>
+</tr>
+<tr>
+<td>*wanxiang.unicode</td>
+<td>109,734</td>
+<td>813</td>
+<td>135.0</td>
+</tr>
+<tr>
+<td>*wanxiang.input_statistics</td>
+<td>108,914</td>
+<td>813</td>
+<td>134.0</td>
+</tr>
+<tr>
+<td><em>wanxiang.user_predict</em>T</td>
+<td>99,581</td>
+<td>813</td>
+<td>122.5</td>
+</tr>
+<tr>
+<td>*wanxiang.super_comment_preedit</td>
+<td>98,002</td>
+<td>813</td>
+<td>120.5</td>
+</tr>
+<tr>
+<td>*wanxiang.super_lookup</td>
+<td>94,009</td>
+<td>813</td>
+<td>115.6</td>
+</tr>
+<tr>
+<td>*wanxiang.number_translator</td>
+<td>92,482</td>
+<td>813</td>
+<td>113.8</td>
+</tr>
+<tr>
+<td>*wanxiang.version_display</td>
+<td>76,179</td>
+<td>813</td>
+<td>93.7</td>
+</tr>
+<tr>
+<td>*wanxiang.charset_filter</td>
+<td>68,317</td>
+<td>813</td>
+<td>84.0</td>
+</tr>
+<tr>
+<td>*wanxiang.super_calculator</td>
+<td>62,795</td>
+<td>813</td>
+<td>77.2</td>
+</tr>
+<tr>
+<td>*wanxiang.super_english</td>
+<td>58,145</td>
+<td>813</td>
+<td>71.5</td>
+</tr>
+<tr>
+<td>*wanxiang.auto_phrase</td>
+<td>45,311</td>
+<td>813</td>
+<td>55.7</td>
+</tr>
+<tr>
+<td>*wanxiang.key_binder</td>
+<td>42,040</td>
+<td>1,791</td>
+<td>23.5</td>
+</tr>
+<tr>
+<td>*wanxiang.set_schema</td>
+<td>35,157</td>
+<td>813</td>
+<td>43.2</td>
+</tr>
+<tr>
+<td><em>wanxiang.user_predict</em>P</td>
+<td>34,690</td>
+<td>1,963</td>
+<td>17.7</td>
+</tr>
+<tr>
+<td><em>wanxiang.user_predict</em>F</td>
+<td>31,957</td>
+<td>813</td>
+<td>39.3</td>
+</tr>
+<tr>
+<td>*wanxiang.super_tips</td>
+<td>18,919</td>
+<td>1,838</td>
+<td>10.3</td>
+</tr>
+<tr>
+<td>*wanxiang.partial_commit</td>
+<td>9,850</td>
+<td>1,844</td>
+<td>5.3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="c-top-10">C++ 组件开销排名 (Top 10)<a class="headerlink" href="#c-top-10" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>总计 (µs)</th>
+<th>次数</th>
+<th>平均 (µs)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>translator (script_translator)</td>
+<td>2,271,162</td>
+<td>1,626</td>
+<td>1,396.8</td>
+</tr>
+<tr>
+<td>user_dict_set</td>
+<td>793,859</td>
+<td>813</td>
+<td>976.5</td>
+</tr>
+<tr>
+<td>recognizer</td>
+<td>228,428</td>
+<td>1,837</td>
+<td>124.3</td>
+</tr>
+<tr>
+<td>wanxiang_english</td>
+<td>88,181</td>
+<td>813</td>
+<td>108.5</td>
+</tr>
+<tr>
+<td>segmentor</td>
+<td>65,037</td>
+<td>3,183</td>
+<td>20.4</td>
+</tr>
+<tr>
+<td>add_user_dict</td>
+<td>21,068</td>
+<td>813</td>
+<td>25.9</td>
+</tr>
+<tr>
+<td>wanxiang_mixedcode</td>
+<td>19,492</td>
+<td>813</td>
+<td>24.0</td>
+</tr>
+<tr>
+<td>recognizer (segmentor)</td>
+<td>12,854</td>
+<td>813</td>
+<td>15.8</td>
+</tr>
+<tr>
+<td>custom_phrase</td>
+<td>10,018</td>
+<td>813</td>
+<td>12.3</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5">5. 典型按键时间线分解<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>以一次触发作文的按键为例（约 7.7ms），时间分配如下：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ProcessKey                                       7,739 µs  (100%)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── processor 循环 (11个)                          239 µs   ( 3%)  按键分发
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── engine CalcSeg                                 55 µs   ( 1%)  分词
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── engine TransSeg                             5,871 µs   (76%)  翻译+过滤
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   ├── script_translator (C++)                 1,747 µs   (23%)  字典查词
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   ├── *wanxiang.user_predict*T (Lua)          1,067 µs   (14%)  用户预测
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── *wanxiang.super_filter (Lua)            1,729 µs   (22%)  候选过滤
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── *wanxiang.super_replacer (Lua)            336 µs   ( 4%)  替换
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── *wanxiang.super_comment_preedit (Lua)     138 µs   ( 2%)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   └── 其余 (英语/混合码/auto_phrase 等)        ~854 µs   (11%)
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├── engine Compose                              5,931 µs   (CalcSeg + TransSeg)
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├── processor                                                                  (speller 收尾)    269 µs   ( 3%)
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>└── menu Prepare                                   56 µs   ( 1%)
+</code></pre></div>
+<hr />
+<h2 id="6-p99-36ms">6. 延迟尖峰分析 (P99 &gt; 36ms 的按键)<a class="headerlink" href="#6-p99-36ms" title="Permanent link">&para;</a></h2>
+<p>P99 延迟约 36ms，超过部分由偶发尖峰拉高。Top 10 尖峰均为 &gt;49ms。</p>
+<p>这些高延迟按键的共同特征：均触发完整 Compose + TransSeg，主翻译器字典查询耗时（script_translator 3-4ms）和 user_predict*T 偶发 &gt;1.5ms 尖峰叠加。同时存在 <code>set_schema</code> 偶发尖峰（见 line 432 出现 2505µs，是正常 43µs 的 58 倍）。</p>
+<hr />
+<h2 id="7">7. 结论与建议<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<h3 id="_4">瓶颈排序<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>组件</th>
+<th>平均延迟</th>
+<th>类型</th>
+<th>优化空间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>script_translator (字典查词)</td>
+<td>1,397 µs</td>
+<td>C++ LevelDB I/O</td>
+<td>无法在代码层面优化</td>
+</tr>
+<tr>
+<td>2</td>
+<td>super_filter</td>
+<td>1,280 µs</td>
+<td>Lua + FFI</td>
+<td>值 2%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>user_dict_set</td>
+<td>977 µs</td>
+<td>C++ LevelDB</td>
+<td>无法优化</td>
+</tr>
+<tr>
+<td>4</td>
+<td>super_sequence*F</td>
+<td>844 µs</td>
+<td>Lua</td>
+<td>需检查 Lua 源码</td>
+</tr>
+<tr>
+<td>5</td>
+<td>super_sequence*P</td>
+<td>339 µs</td>
+<td>Lua</td>
+<td>需检查 Lua 源码</td>
+</tr>
+<tr>
+<td>6</td>
+<td>super_replacer</td>
+<td>338 µs</td>
+<td>Lua</td>
+<td>需检查 Lua 源码</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">可操作建议<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Lua filter 链长度优化</strong> — 9 个 Lua filter 串行处理每轮候选。<code>super_filter</code> (1,280µs) 排最前面，其 yield 等待后续 8 个 filter 完成才继续。考虑合并 <code>super_sequence*F</code> (844µs) 和 <code>super_replacer</code> (338µs) 入 <code>super_filter</code>。</li>
+<li><strong><code>super_filter.lua:538</code> os.date 缓存</strong> — 同一按键内不重复调用系统时间。</li>
+<li><strong><code>set_schema</code> 偶发尖峰排查</strong> — line 432 出现 2,505µs 异常值（正常均值 43µs），可能是配置读取出错重试。</li>
+<li><strong>user_predict*T 偶发尖峰</strong> — 正常均值 122µs，但出现过 &gt;1.6ms，可能是用户词库大规模查重。</li>
+</ol>
+<h3 id="lua-vs-c">Lua vs C++ 最终结论<a class="headerlink" href="#lua-vs-c" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Lua 调用开销</strong>: 简单 processor（key_binder, partial_commit）为 5-58 µs，是等效 C++ 的 10-50 倍，但绝对值小，不影响体验。</li>
+<li><strong>Lua 业务逻辑</strong>: <code>super_filter</code> (1,280µs) 是大头，主要来自 FFI 调用累计（<code>get_genuine</code>、<code>Candidate()</code>、<code>clone_candidate</code>）和 10 个候选的两轮遍历。</li>
+<li><strong>C++ 字典 I/O</strong>: <code>script_translator</code> (1,397µs) 和 <code>user_dict_set</code> (977µs) 是最大单项，纯 I/O 瓶颈，无法在 Lua 侧优化。</li>
+<li><strong>整体 Lua 占比</strong>: 扣除 processor 膨胀后，Lua 组件占真实组件时间的 <strong>16%</strong>。整体方案的瓶颈不在 Lua，而在 C++ 字典查词（84%）。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024-2026 万象拼音 · 开源项目文档  Q群：11033572 / 11631066
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
