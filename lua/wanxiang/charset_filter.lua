@@ -348,10 +348,20 @@ local function get_previous_history(env, code, text_len)
     if not code or #code <= 1 then return nil end
 
     local history = env.phrase_history
-    local previous = history and history[sub(code, 1, -2)]
-    if not previous or previous.text_len ~= text_len then return nil end
+    if not history then return nil end
 
-    return previous
+    local key = sub(code, 1, -2)
+    local pos = history.lookup[key]
+
+    if not pos then return nil end
+
+    local item = history.slots[pos]
+
+    if item and item.text_len == text_len then
+        return item
+    end
+
+    return nil
 end
 
 -- 兜底时复用上一稳定状态的预编辑切分，只把本轮新增编码作为新尾段追加。
@@ -375,7 +385,11 @@ function M.init(env)
     env.filters = {}
     env.active_rules = {}
     env.valid_cache = {}
-    env.phrase_history = {}
+    env.phrase_history = {
+        slots = {},
+        lookup = {},
+        index = 1,
+    }
 
     if cfg then env.filters = load_rules(cfg) end
 
@@ -424,11 +438,6 @@ function M.func(input, env)
 
     clear_map(cache)
 
-    -- 输入清空时结束当前兜底历史上下文。
-    if code == "" or (comp and comp:empty()) then
-        clear_map(env.phrase_history)
-    end
-
     local active_rules = get_active_rules(env, ctx)
     local charset_on = active_rules ~= nil
 
@@ -448,11 +457,27 @@ function M.func(input, env)
             and covers_current_segment(cand, comp, code_len)
             and text and text ~= "" and (text_len or 0) >= 1
         then
-            env.phrase_history[code] = {
+            local history = env.phrase_history
+            local index = history.index
+
+            local old = history.slots[index]
+            if old then
+                history.lookup[old.code] = nil
+            end
+
+            history.slots[index] = {
+                code = code,
                 text = text,
                 text_len = text_len,
                 preedit = cand.preedit or code,
             }
+
+            history.lookup[code] = index
+
+            history.index = index + 1
+            if history.index > 64 then
+                history.index = 1
+            end
             recorded = true
         end
 
