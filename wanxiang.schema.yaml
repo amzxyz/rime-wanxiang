@@ -239,7 +239,7 @@ recognizer:
   import_preset: default  # 从 default.yaml 继承通用的
   patterns:  # 再增加方案专有的：
     # 排除 /sym /emoji 开头（含单独 /sym /emoji），交给 super_sym / super_emoji tag 处理
-    punct: "^/(?!/)(?:[A-Za-z]+|[!-/:-@\\[-`{-~][!-/:-~]?[A-Za-z]?|[A-Za-z][!-\\+/:-<>-@\\\\\\^-`{-~][A-Za-z]?|[ADEIKLOTUadeilotu]-[A-Za-z]?|[CEHLNPRTWYc-ehpry]=[A-Za-z]?|[AC-EG-IKLNOR-Ua-eg-iklnor-u],[A-Za-z]?|[B-GIMPS-UZb-gimpstz]\\.[A-Za-z]?|\\([)A-Za-z]\\)|--[-.]|\\\\o/|e1(?:7)?|[0-9]|0[3*~]|1(?:[0-9^]|10)|2[35^]|3[458^]|45|5[68]|78|88|\\*0|<3|\\^[0-9]|_[0-9]|~0|\\((?:[0-9]|[1-4][0-9]|50)\\)?)$"
+    punct: "^/(?!/)(?:[A-Za-z]+|[!-/:-@\\[-`{-~][!-/:-~]?[A-Za-z]?|[A-Za-z][!-\\+/:-<>-@\\\\\\^-`{-~][A-Za-z]?|[ADEIKLOTUadeilotu]-[A-Za-z]?|[CEHLNPRTWYc-ehpry]=[A-Za-z]?|[AC-EG-IKLNOR-Ua-eg-iklnor-u],[A-Za-z]?|[B-GIMPS-UZb-gimpstz]\\.[A-Za-z]?|\\([)A-Za-z]\\)|--[-.]|\\\\o/|[0-9]|0[3*~]|1(?:[0-9^]|10)|2[35^]|3[458^]|45|5[68]|78|88|\\*0|<3|\\^[0-9]|_[0-9]|~0|\\((?:[0-9]|[1-4][0-9]|50)\\)?)$"
     super_sym: "^/sym[.?/][A-Za-z.]+$"  # /sym.arrow.r.double 精确  /sym?keyword 或 /sym/keyword 模糊
     super_emoji: "^/emoji[.?/][A-Za-z.]+$"  # /emoji.apple.red  /emoji?keyword  /emoji/keyword
     super_sym_pre: "^/sym[.?/]?$"  # 仅 /sym /sym. /sym? /sym/ 模式提示
