@@ -619,11 +619,16 @@ local function process_adjustment(context)
     curr_state.selected_phrase = candidate and candidate.text or nil
     context:refresh_non_confirmed_composition()
 
-    if context.highlight
-        and curr_state.highlight_index
-        and curr_state.highlight_index >= 0
-    then
-        context:highlight(curr_state.highlight_index)
+    if curr_state.highlight_index and curr_state.highlight_index >= 0 then
+        if context.highlight then
+            pcall(function() context:highlight(curr_state.highlight_index) end)
+        end
+        if not context.composition:empty() then
+            local segment = context.composition:back()
+            if segment then
+                segment.selected_index = curr_state.highlight_index
+            end
+        end
     end
 end
 
@@ -650,22 +655,8 @@ function P.func(key_event, env)
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
-    -- Ctrl 监听，用于开关可视化标记。
+    -- 忽略单独按下或释放 Ctrl 键，避免破坏当前已选中的候选高亮焦点
     if is_ctrl_key then
-        if context.composition:empty() then
-            return wanxiang.RIME_PROCESS_RESULTS.kNoop
-        end
-
-        local current = context:get_option("_seq_show_markers")
-        local target = not key_event:release()
-
-        if current ~= target then
-            local segment = context.composition:back()
-            curr_state.highlight_index = segment.selected_index
-            context:set_option("_seq_show_markers", target)
-            process_adjustment(context)
-        end
-
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
