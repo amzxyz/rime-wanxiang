@@ -4181,7 +4181,6 @@ sort: by_weight
 箦藻	zé;gb zǎo;cu	58
 泽蛭	zé;uy zhì;oh	97
 贼鸥	zéi;bh ōu;hn	89
-柞木	zhà;mp mù;md	60
 栅藻	zhà;mp zǎo;cu	93
 栅蛛	zhà;mp zhū;op	59
 窄螳	zhǎi;bh táng;os	72
@@ -4429,6 +4428,7 @@ sort: by_weight
 嘴雀	zuǐ;ks què;xq	90
 醉猿	zuì;sw yuán;qt	63
 柞蚕	zuò;mp cán;ho	76
+柞木	zuò;mp mù;md	60
 左鲆	zuǒ;hh píng;gh	95
 阿波鳅	ā;eh bō;uv qiū;ge	5
 阿波鱼	ā;eh bō;uv yú;gh	6
@@ -20793,13 +20793,13 @@ sort: by_weight
 长叶野桐	cháng;pd yè;kf yě;lv tóng;ms	7
 长叶远志	cháng;pd yè;kf yuǎn;hz zhì;tx	9
 长叶云杉	cháng;pd yè;kf yún;hi shān;mp	11
-长叶柞木	cháng;pd yè;kf zhà;mp mù;md	12
 长叶竹柏	cháng;pd yè;kf zhú;gs bǎi;mp	14
 长叶苎麻	cháng;pd yè;kf zhù;ch má;xm	11
 长叶紫茎	cháng;pd yè;kf zǐ;si jīng;ch	7
 长叶紫菊	cháng;pd yè;kf zǐ;si jú;cj	10
 长叶紫菀	cháng;pd yè;kf zǐ;si wǎn;cv	10
 长叶紫珠	cháng;pd yè;kf zǐ;si zhū;wp	14
+长叶柞木	cháng;pd yè;kf zuò;mp mù;md	12
 长银斧鱼	cháng;pd yín;jx fǔ;bs yú;gh	6
 畅游仙鱼	chàng;lv yóu;uw xiān;rg yú;gh	7
 长羽盗龙	cháng;pd yǔ;vv dào;dh lóng;hd	1
@@ -27700,8 +27700,8 @@ sort: by_weight
 尾叶鱼藤	wěi;sv yè;kf yú;gh téng;cu	14
 尾叶远志	wěi;sv yè;kf yuǎn;hz zhì;tx	10
 尾叶越桔	wěi;sv yè;kf yuè;td jú;mt	7
-尾叶柞木	wěi;sv yè;kf zhà;mp mù;md	5
 尾叶紫薇	wěi;sv yè;kf zǐ;si wēi;cw	9
+尾叶柞木	wěi;sv yè;kf zuò;mp mù;md	5
 伪翼尺蛾	wěi;rd yì;vb chǐ;sd é;op	1
 伪翼手参	wěi;rd yì;vb shǒu;fs cān;ip	1
 伪鱼腥藻	wěi;rd yú;gh xīng;yl zǎo;cu	1
@@ -54398,8 +54398,8 @@ sort: by_weight
 优美瓜状肢虫	yōu;rh měi;dl guā;pd zhuàng;dl zhī;yf chóng;od	1
 有名扁线油鲶	yǒu;hy míng;pk biǎn;dc xiàn;ih yóu;us nián;gr	1
 尤纳氏下口鲶	yóu;hd nà;is shì;pv xià;hd kǒu;kh nián;gr	1
-犹疑棘隙吸虫	yóu;qh nǐ;pv jí;hh xì;ex xī;kp chóng;od	1
 尤斯克毛鼻鲶	yóu;hd sī;cp kè;fv máo;pv bí;ps nián;gr	1
+犹疑棘隙吸虫	yóu;qh yí;pv jí;hh xì;ex xī;kp chóng;od	1
 又原氏拟雀鲷	yòu;yd yuán;hx shì;pv nǐ;fv què;xq diāo;gp	1
 游在深海的鱼	yóu;uw zài;ht shēn;ud hǎi;up de;pb yú;gh	1
 游走丸川冰鱼	yóu;uw zǒu;tr wán;pd chuān;ps bīng;du yú;gh	1
