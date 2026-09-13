@@ -441,7 +441,7 @@ super_replacer:
       tags: [abc]
       prefix: "_ling_"
       files:
-        - lua/data/ling.txt
+        - lua/data/sentence.txt
     - option: abbrev  # 常规简码
       exclude_types: [pinyin]   # 该节点排除全拼使用
       mode: abbrev
