@@ -437,7 +437,7 @@ super_replacer:
       tags: [abc]
       prefix: "_ling_"
       files:
-        - lua/data/ling.txt
+        - lua/data/sentence.txt
     - option: abbrev
       mode: abbrev  # <--- 新增的简码模式
       tags: [abc]
