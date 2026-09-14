@@ -42,7 +42,38 @@ local function get_scheme_info(env)
     return nil, nil
 end
 
-local function replace_schema(file_path, target_schema, profile)
+local schema_map = {
+        ["/flypy"]   = "小鹤双拼",
+        ["/mspy"]    = "微软双拼",
+        ["/zrm"]     = "自然码",
+        ["/sogou"]   = "搜狗双拼",
+        ["/znabc"]   = "智能ABC",
+        ["/ziguang"] = "紫光双拼",
+        ["/pyjj"]    = "拼音加加",
+        ["/gbpy"]    = "国标双拼",
+        ["/lxsq"]    = "乱序17",
+        ["/ltsp"]    = "蓝天双拼",
+        ["/zrlong"]  = "自然龙",
+        ["/hxlong"]  = "汉心龙",
+        ["/pinyin"]  = "全拼",
+        ["/sdpy"]    = "首道双拼",
+        ["/dnsp"]    = "大牛双拼",
+    }
+
+local function is_schema_name(name)
+
+    for _, value in pairs(schema_map) do
+
+        if name == value then
+            return true
+        end
+
+    end
+
+    return false
+end
+
+local function replace_schema(file_path, target_schema)
     local f = io.open(file_path, "r")
     if not f then
         return false
@@ -51,30 +82,16 @@ local function replace_schema(file_path, target_schema, profile)
     local content = f:read("*a")
     f:close()
 
-    if file_path:find("wanxiang_reverse", 1, true) then
-        content = content:gsub(
-            "([%s]*__include:%s*wanxiang_algebra:/reverse/)%S+",
-            "%1" .. target_schema
-        )
-    elseif file_path:find("wanxiang_mixedcode", 1, true) then
-        content = content:gsub(
-            "([%s]*__patch:%s*wanxiang_algebra:/mixed/)%S+",
-            "%1" .. target_schema
-        )
-    elseif file_path:find("wanxiang_english", 1, true) then
-        content = content:gsub(
-            "([%s]*__patch:%s*wanxiang_algebra:/english/)%S+",
-            "%1" .. target_schema
-        )
-    elseif file_path:find("wanxiang", 1, true)
-        and file_path:find(".custom", 1, true)
-    then
-        content = content:gsub(
-            "([%s%-]*wanxiang_algebra:/" .. profile .. "/)%S+",
-            "%1" .. target_schema,
-            1
-        )
-    end
+    content = content:gsub(
+        "(wanxiang_algebra:/[^/]+/)([^%s#]+)",
+        function(prefix, name)
+            if is_schema_name(name) then
+                return prefix .. target_schema
+            end
+
+            return prefix .. name
+        end
+    )
 
     f = io.open(file_path, "w")
     if not f then
@@ -94,17 +111,18 @@ local function translator(input, seg, env)
 
     if input == "/zjf" or input == "/jjf" then
         if profile == "lite" then
-            yield(Candidate(
-                "switch",
-                seg.start,
-                seg._end,
-                "Lite 方案不使用辅助码，无需切换",
-                ""
-            ))
+            yield(Candidate("switch", seg.start, seg._end, "Lite 方案不使用辅助码，无需切换", ""))
             return
         end
 
-        local target_aux = (input == "/zjf") and "直接辅助" or "间接辅助"
+        local target_aux
+
+        if input == "/zjf" then
+            target_aux = "直接辅助"
+        else
+            target_aux = "间接辅助"
+        end
+
         local user_dir = rime_api.get_user_data_dir()
         local p = user_dir .. "/" .. main_file
 
@@ -129,52 +147,16 @@ local function translator(input, seg, env)
                     w:write(content)
                     w:close()
                 end
-
-                yield(Candidate(
-                    "switch",
-                    seg.start,
-                    seg._end,
-                    "当前方案已切换到〔" .. target_aux .. "〕，请重新部署",
-                    ""
-                ))
+                local msg = "当前方案已切换到〔" .. target_aux .. "〕，请重新部署"
+                yield(Candidate("switch", seg.start, seg._end, msg, ""))
             else
-                yield(Candidate(
-                    "switch",
-                    seg.start,
-                    seg._end,
-                    "当前配置未找到可切换的条目",
-                    ""
-                ))
+                yield(Candidate("switch", seg.start, seg._end, "当前配置未找到可切换的条目", ""))
             end
         else
-            yield(Candidate(
-                "switch",
-                seg.start,
-                seg._end,
-                "未找到当前配置，请先切换双拼方案",
-                ""
-            ))
+            yield(Candidate("switch", seg.start, seg._end, "未找到当前配置，请先切换双拼方案", ""))
         end
         return
     end
-
-    local schema_map = {
-        ["/flypy"]   = "小鹤双拼",
-        ["/mspy"]    = "微软双拼",
-        ["/zrm"]     = "自然码",
-        ["/sogou"]   = "搜狗双拼",
-        ["/znabc"]   = "智能ABC",
-        ["/ziguang"] = "紫光双拼",
-        ["/pyjj"]    = "拼音加加",
-        ["/gbpy"]    = "国标双拼",
-        ["/lxsq"]    = "乱序17",
-        ["/ltsp"]    = "蓝天双拼",
-        ["/zrlong"]  = "自然龙",
-        ["/hxlong"]  = "汉心龙",
-        ["/pinyin"]  = "全拼",
-        ["/sdpy"]    = "首道双拼",
-        ["/dnsp"]    = "大牛双拼",
-    }
 
     local target_schema = schema_map[input]
     if not target_schema then
@@ -197,7 +179,7 @@ local function translator(input, seg, env)
         local dest = user_dir .. "/" .. name
 
         if name == main_file and main_exists then
-            replace_schema(dest, target_schema, profile)
+            replace_schema(dest, target_schema)
         else
             local src = shared_dir .. "/custom/" .. name
             if not file_exists(src) then
@@ -205,16 +187,19 @@ local function translator(input, seg, env)
             end
 
             if file_exists(src) and copy_file(src, dest) then
-                replace_schema(dest, target_schema, profile)
+                replace_schema(dest, target_schema)
             end
         end
     end
 
-    local msg = main_exists
-        and ("检测到专属配置，已切换到〔" .. target_schema .. "〕，请手动重新部署")
-        or ("已从系统目录构建配置并切换到〔" .. target_schema .. "〕，请手动重新部署")
+    local msg
+
+    if main_exists then
+        msg = "检测到专属配置，已切换到〔" .. target_schema .. "〕，请手动重新部署"
+    else
+        msg = "已从系统目录构建配置并切换到〔" .. target_schema .. "〕，请手动重新部署"
+    end
 
     yield(Candidate("switch", seg.start, seg._end, msg, ""))
 end
-
 return translator
