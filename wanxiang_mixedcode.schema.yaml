@@ -31,7 +31,7 @@ speller:
   algebra:
     __patch:
       - wanxiang_algebra:/mixed/混合派生
-      - wanxiang_algebra:/mixed/全拼  #可选的选项有（全拼, 自然码, 小鹤双拼, 微软双拼, 搜狗双拼, 智能ABC, 紫光双拼, 拼音加加, 自然龙, 汉心龙）
+      - wanxiang_algebra:/mixed/全拼  #可选的选项有（全拼, 自然码, 小鹤双拼, 微软双拼, 搜狗双拼, 智能ABC, 紫光双拼, 拼音加加, 自然龙, 汉心龙, 蓝天双拼, 大牛双拼, 乱序17, 首道双拼）
 translator:
   dictionary: wanxiang_mixedcode
   enable_user_dict: false
