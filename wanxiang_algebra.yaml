@@ -818,7 +818,7 @@ base:
       - xform/[vu]an(\d)$/Ⓦ$1/
       - xform/iu(\d)$/Ⓨ$1/
       - xform/uai(\d)$/Ⓨ$1/
-      - xform/^(.)i?ong(\d)$/$1Ⓢ$2/
+      - xform/i?ong(\d)$/Ⓢ$1/
       - xform/ui(\d)$/Ⓥ$1/
       - xform/^zh/Ⓥ/
       - xform/^ch/Ⓘ/
@@ -1634,7 +1634,7 @@ lite:
       - xform/[vu]an$/Ⓦ/
       - xform/iu$/Ⓨ/
       - xform/uai$/Ⓨ/
-      - xform/^(.)i?ong$/$1Ⓢ/
+      - xform/i?ong$/Ⓢ/
       - xform/ui$/Ⓥ/
       - xform/^zh/Ⓥ/
       - xform/^ch/Ⓘ/
