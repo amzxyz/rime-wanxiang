@@ -1,5 +1,23 @@
 # Changelog
 
+## [17.10.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.10.1...v17.10.2) (2026-09-14)
+
+
+### 📚 词库更新
+
+* 词库调整 ([1a9e469](https://github.com/amzxyz/rime-wanxiang/commit/1a9e46902087ce79b864adb31222e33a93ae6692))
+
+
+### 🐛 Bug 修复
+
+* 14键等保留大写辅助 ([bbd5081](https://github.com/amzxyz/rime-wanxiang/commit/bbd5081adfbcf88cd6754ee12f1aa95c4200af16))
+* 补齐遗漏注释 ([857a05a](https://github.com/amzxyz/rime-wanxiang/commit/857a05a7eed8181c5a4312fd17d567a0330e9c87))
+
+
+### 💅 重构
+
+* 统一英文、反查、混合编码三个方案的custom使用方式，为未来用户减少理解负担，老用户更新后用custom目录对应的这三个自定义文件覆盖用户目录后重新手动或者指令初始化一次即可 ([6a355ee](https://github.com/amzxyz/rime-wanxiang/commit/6a355ee8f8f3b2d15f1c55e67fa8e6f24e3b1982))
+
 ## [17.10.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.10.0...v17.10.1) (2026-09-14)
 
 
