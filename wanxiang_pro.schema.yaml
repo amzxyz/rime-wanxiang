@@ -238,7 +238,6 @@ speller:
   delimiter: " '"  # 第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
   algebra:
     __patch:
-      #- 模糊音             #模糊音选择性开启
       - wanxiang_algebra:/pro/自然码  #拼音转双拼码
       - wanxiang_algebra:/pro/直接辅助  #辅助码部分
 
