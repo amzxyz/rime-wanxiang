@@ -375,8 +375,6 @@ end
 
 -- 26键处理：简码按配置保留或转全拼，其他音节维持原有转换语义。
 local function convert_alpha_syllable(part, py, state)
-    if state.is_pro then return py end
-
     if is_alpha_abbreviation(part, state) then
         return render_abbreviation(
             part, py, state.convert_abbrev_preedit
@@ -384,7 +382,9 @@ local function convert_alpha_syllable(part, py, state)
     end
 
     local _, tone = part:match("([%a]+)([^%a]+)")
-    if state.tone_isolate then return py .. (tone or "") end
+    if state.tone_isolate then 
+        return py .. (tone or "") 
+    end
     return py
 end
 
