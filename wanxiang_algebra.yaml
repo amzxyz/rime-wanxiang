@@ -2831,6 +2831,89 @@ pro:
       - xform/^zh/Ⓥ/
       - xlit/ⓆⓌⒺⓇⓉⓎⓊⒾⓄⓅⒶⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwertyuiopasdfghjklzxcvbnm/
 
+  乱序17:
+    __append:
+      - xform/Ⅼ//
+      - xform/ü/v/
+      - xform/^([a-z]+);/$1④;/
+      - xform/ā([^;]*);/a$1①;/
+      - xform/á([^;]*);/a$1②;/
+      - xform/ǎ([^;]*);/a$1③;/
+      - xform/à([^;]*);/a$1④;/
+      - xform/ō([^;]*);/o$1①;/
+      - xform/ó([^;]*);/o$1②;/
+      - xform/ǒ([^;]*);/o$1③;/
+      - xform/ò([^;]*);/o$1④;/
+      - xform/ē([^;]*);/e$1①;/
+      - xform/é([^;]*);/e$1②;/
+      - xform/ě([^;]*);/e$1③;/
+      - xform/è([^;]*);/e$1④;/
+      - xform/ī([^;]*);/i$1①;/
+      - xform/í([^;]*);/i$1②;/
+      - xform/ǐ([^;]*);/i$1③;/
+      - xform/ì([^;]*);/i$1④;/
+      - xform/ū([^;]*);/u$1①;/
+      - xform/ú([^;]*);/u$1②;/
+      - xform/ǔ([^;]*);/u$1③;/
+      - xform/ù([^;]*);/u$1④;/
+      - xform/ǖ([^;]*);/v$1①;/
+      - xform/ǘ([^;]*);/v$1②;/
+      - xform/ǚ([^;]*);/v$1③;/
+      - xform/ǜ([^;]*);/v$1④;/
+      - xform/ń([^;]*);/n$1②;/
+      - xform/ň([^;]*);/n$1③;/
+      - xform/ǹ([^;]*);/n$1④;/
+      - xform/ḿ([^;]*);/m$1②;/
+      - xform/m̀([^;]*);/m$1④;/
+      - xlit/①②③④/7890/
+      - xform/^ng(\d);/eng$1;/
+      - xform/^n(\d);/en$1;/
+      - xform/^m(\d);/me$1;/
+      - xform/^ch/Ⓒ/
+      - xform/^c/Ⓕ/
+      - xform/^k/Ⓙ/
+      - xform/^([aoe].*;)/Ⓠ$1/
+      - xform/^p/Ⓗ/
+      - xform/^r/Ⓝ/
+      - xform/^sh/Ⓢ/
+      - xform/^s/Ⓜ/
+      - xform/^zh/Ⓩ/
+      - xform/^z/Ⓦ/
+      - xform/uang(\d);/Ⓠ$1;/
+      - xform/iang(\d);/Ⓒ$1;/
+      - xform/iong(\d);/Ⓑ$1;/
+      - xform/ang(\d);/Ⓩ$1;/
+      - xform/eng(\d);/Ⓨ$1;/
+      - xform/ian(\d);/Ⓠ$1;/
+      - xform/iao(\d);/Ⓩ$1;/
+      - xform/ing(\d);/Ⓨ$1;/
+      - xform/ong(\d);/Ⓣ$1;/
+      - xform/uai(\d);/Ⓧ$1;/
+      - xform/uan(\d);/Ⓧ$1;/
+      - xform/ai(\d);/Ⓛ$1;/
+      - xform/an(\d);/Ⓝ$1;/
+      - xform/ao(\d);/Ⓑ$1;/
+      - xform/ei(\d);/Ⓖ$1;/
+      - xform/en(\d);/Ⓢ$1;/
+      - xform/er(\d);/Ⓣ$1;/
+      - xform/ua(\d);/Ⓗ$1;/
+      - xform/ie(\d);/Ⓜ$1;/
+      - xform/in(\d);/Ⓢ$1;/
+      - xform/iu(\d);/Ⓕ$1;/
+      - xform/ou(\d);/Ⓕ$1;/
+      - xform/ia(\d);/Ⓗ$1;/
+      - xform/[uv]e(\d);/Ⓛ$1;/
+      - xform/ui(\d);/Ⓒ$1;/
+      - xform/un(\d);/Ⓖ$1;/
+      - xform/uo(\d);/Ⓜ$1;/
+      - xform/a(\d);/Ⓗ$1;/
+      - xform/e(\d);/Ⓦ$1;/
+      - xform/i(\d);/Ⓙ$1;/
+      - xform/o(\d);/Ⓧ$1;/
+      - xform/u(\d);/Ⓓ$1;/
+      - xform/v(\d);/Ⓧ$1;/
+      - xlit/ⓆⓌⓉⓎⓈⒹⒻⒼⒽⒿⓁⓏⓍⒸⒷⓃⓂ/qwtysdfghjlzxcbnm/
+
   直接辅助:
     __append:
       - derive/^([a-z◯]+)(\d?);.*$/$1/  # 纯双拼的情况
@@ -3314,6 +3397,93 @@ reverse:
     - xform/([a-z>])u(?=^|$|')/$1<d>/
     - xform/([a-z>])v(?=^|$|')/$1<x>/
     - xform/'|<|>//
+
+  蓝天双拼:
+    - derive/^([jqxy])u(?=^|$|')/$1v/
+    - derive/'([jqxy])u(?=^|$|')/'$1v/
+    - derive/^([aoe])([ioun])(?=^|$|')/$1$1$2/
+    - derive/'([aoe])([ioun])(?=^|$|')/'$1$1$2/
+    - xform/^([aoe])(ng)?(?=^|$|')/$1$1$2/
+    - xform/'([aoe])(ng)?(?=^|$|')/'$1$1$2/
+    - xform/^sh/<u>/
+    - xform/^ch/<i>/
+    - xform/^zh/<v>/
+    - xform/'sh/'<u>/
+    - xform/'ch/'<i>/
+    - xform/'zh/'<v>/
+    - xform/([a-z>])i?ong(?=^|$|')/$1<s>/
+    - xform/[iu]ang(?=^|$|')/<l>/
+    - xform/iao(?=^|$|')/<n>/
+    - xform/ing(?=^|$|')|uai(?=^|$|')/<f>/
+    - xform/uan(?=^|$|')/<h>/
+    - xform/ian(?=^|$|')/<m>/
+    - xform/eng(?=^|$|')/<z>/
+    - xform/ang(?=^|$|')/<g>/
+    - xform/ua(?=^|$|')/<q>/
+    - xform/iu(?=^|$|')/<t>/
+    - xform/[uv]e(?=^|$|')/<y>/
+    - xform/uo(?=^|$|')/<o>/
+    - xform/ie(?=^|$|')/<p>/
+    - xform/ia(?=^|$|')/<k>/
+    - xform/in(?=^|$|')/<x>/
+    - xform/ui(?=^|$|')/<v>/
+    - xform/un(?=^|$|')/<b>/
+    - xform/([a-z>])ei(?=^|$|')/$1<w>/
+    - xform/([a-z>])ou(?=^|$|')/$1<r>/
+    - xform/([a-z>])ao(?=^|$|')/$1<c>/
+    - xform/([a-z>])ai(?=^|$|')/$1<d>/
+    - xform/([a-z>])an(?=^|$|')/$1<j>/
+    - xform/([a-z>])en(?=^|$|')/$1<k>/
+    - xform/['<>]//
+
+  大牛双拼:
+    - derive/^([jqxy])u(?=^|$|')/$1v/
+    - derive/'([jqxy])u(?=^|$|')/'$1v/
+    - derive/^([aoe])([ioun])(?=^|$|')/$1$1$2/
+    - derive/'([aoe])([ioun])(?=^|$|')/'$1$1$2/
+    - xform/^([aoe])(ng)?(?=^|$|')/$1$1$2/
+    - xform/'([aoe])(ng)?(?=^|$|')/'$1$1$2/
+    - derive/^zh/<a>/
+    - derive/'zh/'<a>/
+    - derive/^sh/<v>/
+    - derive/'sh/'<v>/
+    - xform/^zh/<o>/
+    - xform/^ch/<i>/
+    - xform/^sh/<u>/
+    - xform/'zh/'<o>/
+    - xform/'ch/'<i>/
+    - xform/'sh/'<u>/
+    - xform/uang(?=^|$|')/<x>/
+    - xform/uai(?=^|$|')/<g>/
+    - xform/uan(?=^|$|')/<z>/
+    - xform/van(?=^|$|')/<j>/
+    - xform/ua(?=^|$|')/<q>/
+    - xform/iang(?=^|$|')/<n>/
+    - xform/i?ong(?=^|$|')/<l>/
+    - xform/ian(?=^|$|')/<c>/
+    - xform/iao(?=^|$|')/<m>/
+    - xform/ing(?=^|$|')/<g>/
+    - xform/iu(?=^|$|')/<t>/
+    - xform/ia(?=^|$|')/<k>/
+    - xform/ie(?=^|$|')/<p>/
+    - xform/in(?=^|$|')/<b>/
+    - xform/eng(?=^|$|')/<j>/
+    - xform/ang(?=^|$|')/<f>/
+    - xform/uo(?=^|$|')/<o>/
+    - xform/un(?=^|$|')/<y>/
+    - xform/[uv]e(?=^|$|')/<h>/
+    - xform/vn(?=^|$|')/<w>/
+    - xform/ui(?=^|$|')/<n>/
+    - derive/<n>(?=^|$|')/<v>/
+    - derive/<c>(?=^|$|')/<q>/
+    - xform/([a-z>])ao(?=^|$|')/$1<s>/
+    - xform/([a-z>])ai(?=^|$|')/$1<h>/
+    - xform/([a-z>])ei(?=^|$|')/$1<w>/
+    - xform/([a-z>])an(?=^|$|')/$1<d>/
+    - xform/([a-z>])en(?=^|$|')/$1<k>/
+    - xform/([a-z>])ou(?=^|$|')/$1<r>/
+    - xform/er(?=^|$|')/<u>/
+    - xform/['<>]//
 
 #混合编码转写段落
 mixed:
