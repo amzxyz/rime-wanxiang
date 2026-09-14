@@ -187,8 +187,7 @@ speller:
   delimiter: " '"  # 系统配置，第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
   algebra:
     __patch:
-      #- 模糊音             #模糊音选择性开启
-      - wanxiang_algebra:/lite/全拼  #拼音转双拼码
+      - wanxiang_algebra:/lite/全拼
 
 # 处理符合特定规则的输入码，如网址、反查
 recognizer:
