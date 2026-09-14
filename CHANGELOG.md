@@ -1,5 +1,21 @@
 # Changelog
 
+## [17.10.1](https://github.com/amzxyz/rime-wanxiang/compare/v17.10.0...v17.10.1) (2026-09-14)
+
+
+### 📚 词库更新
+
+* 词库调整 ([de96efc](https://github.com/amzxyz/rime-wanxiang/commit/de96efc834e50ee3022adb876db56ae34e8f56a1))
+* 词库调整 ([786570c](https://github.com/amzxyz/rime-wanxiang/commit/786570c4e141159f9ab470cc3e6d14309d58f099))
+* 词库调整 ([1b66a70](https://github.com/amzxyz/rime-wanxiang/commit/1b66a704d0ddb3dfcac10d92bbf384b9209621ab))
+
+
+### 🐛 Bug 修复
+
+* pro转换preedit单码不转换 ([2dfea9b](https://github.com/amzxyz/rime-wanxiang/commit/2dfea9ba58a4fc40d31031fe42d81586af83975c))
+* 日期格式化补齐短描述格式化，如今天、明天等 ([275c61b](https://github.com/amzxyz/rime-wanxiang/commit/275c61be289b57e7cc3fe854312e449bae82578c))
+* 补齐转写 ([69f14df](https://github.com/amzxyz/rime-wanxiang/commit/69f14df0cd1cf09e8132cb0a25dac8a9660b3749))
+
 ## [17.10.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.9.9...v17.10.0) (2026-09-12)
 
 
