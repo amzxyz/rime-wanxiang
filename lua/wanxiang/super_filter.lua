@@ -110,6 +110,16 @@ local relative_week_tokens = {
     ["\\下周日"] = { week =  1, weekday = 7 },
 }
 
+local relative_day_tokens = {
+    ["\\大前天"] = -3,
+    ["\\前天"]   = -2,
+    ["\\昨天"]   = -1,
+    ["\\今天"]   = 0,
+    ["\\明天"]   = 1,
+    ["\\后天"]   = 2,
+    ["\\大后天"] = 3,
+}
+
 local function get_shichen_and_ke(hour, min)
     local total_minutes = hour * 60 + min
     for _, shichen in ipairs(shichen_data) do
@@ -245,6 +255,30 @@ local function format_relative_week_token(token)
     return map.N .. "月" .. map.j .. "日"
 end
 
+local function format_relative_day_token(token)
+    local offset = relative_day_tokens[token]
+    if not offset then return nil end
+
+    local now = os.date("*t")
+
+    local target_ts = os.time({
+        year = now.year,
+        month = now.month,
+        day = now.day + offset,
+        hour = 12,
+        min = 0,
+        sec = 0,
+        isdst = nil
+    })
+
+    if not target_ts then return nil end
+
+    local target_dt = os.date("*t", target_ts)
+    local map = build_datetime_map(target_dt)
+
+    return map.N .. "月" .. map.j .. "日"
+end
+
 local function match_relative_week_token(text, pos)
     for token in pairs(relative_week_tokens) do
         if sub(text, pos, pos + #token - 1) == token then
@@ -254,6 +288,15 @@ local function match_relative_week_token(text, pos)
     return nil
 end
 
+local function match_relative_day_token(text, pos)
+    for token in pairs(relative_day_tokens) do
+        if sub(text, pos, pos + #token - 1) == token then
+            return token
+        end
+    end
+
+    return nil
+end
 -- 3. 转义处理：严格按源文本从左到右消费，每个片段只解释一次。
 local function apply_escape_fast(text)
     if not text or not find(text, "\\", 1, true) then return text, false end
@@ -300,6 +343,17 @@ local function apply_escape_fast(text)
                     push(relative_text)
                     changed = true
                     i = i + #relative_token
+                    goto continue
+                end
+            end
+
+            local relative_day_token = match_relative_day_token(text, i)
+            if relative_day_token then
+                local relative_text = format_relative_day_token(relative_day_token)
+                if relative_text then
+                    push(relative_text)
+                    changed = true
+                    i = i + #relative_day_token
                     goto continue
                 end
             end
