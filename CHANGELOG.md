@@ -1,5 +1,27 @@
 # Changelog
 
+## [17.10.3](https://github.com/amzxyz/rime-wanxiang/compare/v17.10.2...v17.10.3) (2026-09-15)
+
+
+### 📚 词库更新
+
+* 词库调整 ([18cc1d6](https://github.com/amzxyz/rime-wanxiang/commit/18cc1d6266c333b5e16a0ed5fa0caee8aae9f889))
+
+
+### 🐛 Bug 修复
+
+* 修复国标双拼遗漏转写bug ([5e2e9d7](https://github.com/amzxyz/rime-wanxiang/commit/5e2e9d787487f3a73cbc495652a5360b55ab027f))
+
+
+### 💅 重构
+
+* 移除 Ctrl 查看排序词信息功能 ([fa75749](https://github.com/amzxyz/rime-wanxiang/commit/fa75749afb2c813145d65aabfac66924fdf19152))
+
+
+### 🏡 杂项
+
+* 修改文档 ([6925779](https://github.com/amzxyz/rime-wanxiang/commit/692577999ea122fb6b781cea722052099ebc00a1))
+
 ## [17.10.2](https://github.com/amzxyz/rime-wanxiang/compare/v17.10.1...v17.10.2) (2026-09-14)
 
 
