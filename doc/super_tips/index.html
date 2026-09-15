@@ -1,0 +1,4449 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="万象拼音 Rime 输入方案与配置文档">
+      
+      
+      
+        <link rel="canonical" href="https://amzxyz.github.io/rime-wanxiang/doc/super_tips/">
+      
+      
+        <link rel="prev" href="../super_comment/">
+      
+      
+        <link rel="next" href="../super_lookup/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../material/leaf">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>超级提示 - 万象拼音</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tips-super-tips" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="万象拼音" class="md-header__button md-logo" aria-label="万象拼音" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            万象拼音
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              超级提示
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="切换到暗黑模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗黑模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/amzxyz/rime-wanxiang" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    amzxyz/rime-wanxiang
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  快速上手
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  常见问题
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../rime_tree/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  特色功能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../shijian/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Lua 扩展
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../Rime%E8%AE%BE%E8%AE%A1%E9%80%BB%E8%BE%91%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%93%B2%E5%AD%A6/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  进阶配置
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../2026-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  项目动态
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="万象拼音" class="md-nav__button md-logo" aria-label="万象拼音" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    万象拼音
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/amzxyz/rime-wanxiang" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    amzxyz/rime-wanxiang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速上手
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    快速上手
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方案介绍与版本对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weasel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Weasel 小狼毫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    macOS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    macOS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../squirrel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Squirrel 鼠须管
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-mac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 macOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ibus-rime.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBus Rime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iOS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    iOS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hamster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hamster 仓输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hamster3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hamster3 元书输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Android
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trime 同文输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HarmonyOS NEXT
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    HarmonyOS NEXT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chaoyue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超越输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进阶安装
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进阶安装
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    万象工具链
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    东风破 Plum
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手动设置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特色功能
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    特色功能
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rime_tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    万象目录架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dicts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英词库说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shortcut/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快捷键说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aux_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    辅助码系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reverse_lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生僻字反查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英与混合编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../layouts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9/14/18键转写
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fuzzy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模糊音配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom_words/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高阶造词
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../word_creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    错音错字提示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../XCompose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    符号合成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua 扩展
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lua 扩展
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shijian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    时间日期
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_comment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级注释
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级提示
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级提示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、显示效果
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#super-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、Super Tips 实际显示在哪里？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、什么时候会查询 Tips？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、Tips 不只匹配输入编码
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、Tips 不只匹配输入编码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一页候选
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        后续候选页
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、tips_key：提示内容直接上屏
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、tips_key：提示内容直接上屏">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么情况下会拦截这个按键？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、为什么逗号既能上屏 Tips，又不影响正常功能？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、什么样的 Tips 才能直接上屏？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、数据文件格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="八、数据文件格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        只有一个真正的 Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九、同一个 key 建议保持唯一
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disabled_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十、disabled_types 如何工作？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十一、数据文件与 files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十一、数据文件与 files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lua 自身的回退文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通过 Custom 追加文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十二、配置参数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十二、配置参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#db_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        db_name 的两个“默认”不要混淆
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十三、完整 Patch 示例
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十四、如何设置默认开启？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十五、数据库什么时候会重建？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十五、数据库什么时候会重建？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据量应该怎样理解？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十六、多方案共享同名 Tips 数据库
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codex-emoji-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十七、Codex 符号与 Emoji Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十八、移动端与前端兼容性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十八、移动端与前端兼容性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        临时排查
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十九、常见排错
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十九、常见排错">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 有输入，但完全没有 Tips
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-txt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 自定义 TXT 没生效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Tips 能看到，但按逗号不上屏
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 某类 Tips 消失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 修改数据后仍像旧内容
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二十、适合与不适合放进 Tips 的内容
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二十、适合与不适合放进 Tips 的内容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        适合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不适合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    候选辅筛
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context_reorder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    下文调频
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input_statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    输入统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_replacer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级替换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_sequence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手动排序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_symbol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paired_symbols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    成对符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_symbols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_processor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按键处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../charset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符过滤
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../candidate_slicer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    候选切割
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RUNV/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    魔法字母
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profile-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    性能评测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../random_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    随机工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进阶配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进阶配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rime%E8%AE%BE%E8%AE%A1%E9%80%BB%E8%BE%91%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%93%B2%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 工作机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patch%E6%96%B9%E6%B3%95%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch 方法论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema_custom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义万象方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dicts_sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    词库管理与同步
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIME%E9%85%8D%E7%BD%AE%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 配置手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIME%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 配置指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按键映射列表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目动态
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    项目动态
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2026-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 年中词库报告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../400%2Bgram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 年中模型更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、显示效果
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#super-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、Super Tips 实际显示在哪里？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、什么时候会查询 Tips？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、Tips 不只匹配输入编码
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、Tips 不只匹配输入编码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一页候选
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        后续候选页
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、tips_key：提示内容直接上屏
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、tips_key：提示内容直接上屏">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么情况下会拦截这个按键？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、为什么逗号既能上屏 Tips，又不影响正常功能？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、什么样的 Tips 才能直接上屏？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、数据文件格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="八、数据文件格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        只有一个真正的 Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九、同一个 key 建议保持唯一
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disabled_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十、disabled_types 如何工作？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十一、数据文件与 files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十一、数据文件与 files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lua 自身的回退文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通过 Custom 追加文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十二、配置参数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十二、配置参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#db_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        db_name 的两个“默认”不要混淆
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十三、完整 Patch 示例
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十四、如何设置默认开启？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十五、数据库什么时候会重建？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十五、数据库什么时候会重建？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据量应该怎样理解？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十六、多方案共享同名 Tips 数据库
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codex-emoji-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十七、Codex 符号与 Emoji Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十八、移动端与前端兼容性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十八、移动端与前端兼容性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        临时排查
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十九、常见排错
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十九、常见排错">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 有输入，但完全没有 Tips
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-txt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 自定义 TXT 没生效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Tips 能看到，但按逗号不上屏
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 某类 Tips 消失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 修改数据后仍像旧内容
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二十、适合与不适合放进 Tips 的内容
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二十、适合与不适合放进 Tips 的内容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        适合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不适合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tips-super-tips">超级 Tips (Super Tips)：输入提示与快捷上屏<a class="headerlink" href="#tips-super-tips" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Super Tips 用于在不新增普通候选的情况下，根据当前输入编码或高亮候选显示一条辅助提示；当提示内容具有可提交部分时，还可以通过指定按键直接上屏。</strong></p>
+</blockquote>
+<p>万象通过 <code>super_tips.lua</code> 将化学式、翻译、符号、表情、单位等辅助信息写入当前输入段的 <code>segment.prompt</code>。</p>
+<p>因此，它与“把 Emoji、翻译结果继续塞进候选列表”的思路不同：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>正常候选
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    +
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>当前输入对应的一条 Tips 提示
+</code></pre></div>
+<p>Tips 本身不会作为普通候选插入候选序列，也不会改变原候选的排序。</p>
+<hr />
+<h2 id="_1">一、显示效果<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Super Tips 可以根据当前输入内容显示不同类型的辅助信息。</p>
+<div style="display: flex; gap: 20px; justify-content: center; align-items: flex-end; flex-wrap: wrap; margin-top: 2rem; margin-bottom: 2rem;">
+    <div style="text-align: center;">
+        <img src="https://storage.deepin.org/thread/202509260128462735_tips化学式.jpg" style="height: 100px; width: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05);">
+        <p style="font-size: 0.85em; color: #666; margin-top: 0.8rem;">化学式提示示例</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="https://storage.deepin.org/thread/202509260128454675_tips符号.jpg" style="height: 100px; width: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05);">
+        <p style="font-size: 0.85em; color: #666; margin-top: 0.8rem;">符号提示示例</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="https://storage.deepin.org/thread/202509260128457494_tips表情.jpg" style="height: 100px; width: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05);">
+        <p style="font-size: 0.85em; color: #666; margin-top: 0.8rem;">Emoji 提示示例</p>
+    </div>
+</div>
+
+<hr />
+<h2 id="super-tips">二、Super Tips 实际显示在哪里？<a class="headerlink" href="#super-tips" title="Permanent link">&para;</a></h2>
+<p>当前 Lua 并不会创建一个新的普通候选，而是把提示写入当前 Segment 的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>segment.prompt
+</code></pre></div>
+<p>最终显示形式由 Rime 前端决定。</p>
+<p>Lua 写入的内容形如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>〔提示内容〕
+</code></pre></div>
+<p>可以把整体流程理解为：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>当前输入发生变化
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>      ↓
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>查询 Tips 数据库
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>      ↓
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>找到对应提示
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>      ↓
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>写入 segment.prompt
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>      ↓
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>由当前 Rime 前端显示
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">不同前端的显示位置可能不同</p>
+<p>Super Tips 负责的是 <code>segment.prompt</code> 内容本身。</p>
+<p>鼠须管、小狼毫、Fcitx5、iOS 前端等如何摆放或呈现这段 Prompt，取决于前端自身的候选窗、Preedit 和内嵌编码显示方式。</p>
+<p>因此不应把 Super Tips 固定描述成“所有平台都会显示在某个独立扩展区”。</p>
+</div>
+<hr />
+<h2 id="tips">三、什么时候会查询 Tips？<a class="headerlink" href="#tips" title="Permanent link">&para;</a></h2>
+<p>Super Tips 依赖方案中的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>super_tips
+</code></pre></div>
+<p>Option。</p>
+<p>只有这个开关处于开启状态时，Lua 才会继续查询提示。</p>
+<p>当前 Base 方案定义：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">super_tips</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">states</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">提示关</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">提示开</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>并绑定：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="nv">has_menu</span><span class="p p-Indicator">,</span><span class="nt"> accept</span><span class="p">:</span><span class="w"> </span><span class="s">"Control+t"</span><span class="p p-Indicator">,</span><span class="nt"> toggle</span><span class="p">:</span><span class="w"> </span><span class="nv">super_tips</span><span class="p p-Indicator">}</span>
+</code></pre></div>
+<p>因此在出现候选菜单时，可以通过：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Ctrl + t
+</code></pre></div>
+<p>切换 Tips 的开启与关闭。</p>
+<div class="admonition info">
+<p class="admonition-title">关闭后不会继续查询和显示 Tips</p>
+<p><code>super_tips</code> Option 关闭时，当前更新函数会直接返回，不再生成新的 Tips Prompt。</p>
+</div>
+<hr />
+<h2 id="tips_1">四、Tips 不只匹配输入编码<a class="headerlink" href="#tips_1" title="Permanent link">&para;</a></h2>
+<p>当前实现支持两类查询来源：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>当前输入编码
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>当前高亮候选文本
+</code></pre></div>
+<p>这也是 Super Tips 能够同时处理“编码提示”和“候选内容提示”的基础。</p>
+<h3 id="_2">第一页候选<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>当前高亮仍位于第一页时，查询顺序是：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>1. 当前完整输入编码
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>2. 当前高亮候选文本
+</code></pre></div>
+<p>也就是说，如果输入编码本身已经有 Tips，会优先使用编码对应的提示。</p>
+<p>如果输入编码没有命中，再尝试当前高亮候选文字。</p>
+<h3 id="_3">后续候选页<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>当选中位置已经超过第一页范围后，只按照：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>当前高亮候选文本
+</code></pre></div>
+<p>查询。</p>
+<p>因此移动候选高亮时，Tips 也可以随当前候选变化。</p>
+<p>可以简化理解为：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>第一页：
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>输入编码 → 高亮候选
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>后续页：
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>高亮候选
+</code></pre></div>
+<hr />
+<h2 id="tips_key">五、<code>tips_key</code>：提示内容直接上屏<a class="headerlink" href="#tips_key" title="Permanent link">&para;</a></h2>
+<p>Super Tips 除了显示 Prompt，还可以使用指定按键直接提交提示中的有效内容。</p>
+<p>当前方案配置：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">super_tips</span><span class="p">:</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">tips_key</span><span class="p">:</span><span class="w"> </span><span class="s">"comma"</span>
+</code></pre></div>
+<p>也就是：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>,
+</code></pre></div>
+<p>对应的 Rime Key 名称：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>comma
+</code></pre></div>
+<h3 id="_4">什么情况下会拦截这个按键？<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>必须同时满足：</p>
+<ol>
+<li><code>super_tips</code> 已开启</li>
+<li>配置了 <code>tips_key</code></li>
+<li>当前按下的按键与 <code>tips_key</code> 完全一致</li>
+<li>当前不处于其他万象功能模式</li>
+<li>当前确实存在 Tips</li>
+<li>Tips 中能够提取出冒号后的可提交内容</li>
+</ol>
+<p>全部成立后，Lua 才会：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>提交 Tips 内容
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>→ 清空当前输入
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>→ 吞掉这次按键
+</code></pre></div>
+<p>否则返回：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kNoop
+</code></pre></div>
+<p>让按键继续进入后面的 Rime 处理流程。</p>
+<hr />
+<h2 id="tips_2">六、为什么逗号既能上屏 Tips，又不影响正常功能？<a class="headerlink" href="#tips_2" title="Permanent link">&para;</a></h2>
+<p>当前默认：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nt">tips_key</span><span class="p">:</span><span class="w"> </span><span class="s">"comma"</span>
+</code></pre></div>
+<p>并不是把逗号全局占用。</p>
+<p>例如当前存在：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>〔化学式：H₂O〕
+</code></pre></div>
+<p>按下 <code>,</code> 时，Lua 会从提示中提取：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>H₂O
+</code></pre></div>
+<p>并直接提交。</p>
+<p>但如果：</p>
+<ul>
+<li>Super Tips 已关闭</li>
+<li>当前没有匹配 Tips</li>
+<li>当前 Tips 没有可提交内容</li>
+<li>当前处于其他功能模式</li>
+</ul>
+<p>则 Super Tips 不处理这个逗号，按键继续交给后续 Rime 组件。</p>
+<p>因此原有的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>翻页
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>标点
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>其他 Key Binder 行为
+</code></pre></div>
+<p>仍有机会继续处理。</p>
+<div class="admonition tip">
+<p class="admonition-title">按键复用的关键不是固定优先级，而是条件拦截</p>
+<p><code>tips_key</code> 只有在“当前确实可以提交 Tips”时才被 Super Tips 接受。</p>
+<p>没有 Tips 时，它不会为了等待提示而长期占住这个按键。</p>
+</div>
+<hr />
+<h2 id="tips_3">七、什么样的 Tips 才能直接上屏？<a class="headerlink" href="#tips_3" title="Permanent link">&para;</a></h2>
+<p>当前 Lua 从提示文本中查找：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>：
+</code></pre></div>
+<p>或：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>:
+</code></pre></div>
+<p>并把<strong>第一个冒号之后的内容</strong>作为提交文本。</p>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>化学式：H₂O
+</code></pre></div>
+<p>按下 <code>tips_key</code> 后提交：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>H₂O
+</code></pre></div>
+<p>再例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>翻译：hello
+</code></pre></div>
+<p>提交：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>hello
+</code></pre></div>
+<p>如果提示只是：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>某段说明文字
+</code></pre></div>
+<p>完全没有中英文冒号，那么它仍然可以作为 Prompt 显示，但按 <code>tips_key</code> 时不会直接上屏。</p>
+<div class="admonition warning">
+<p class="admonition-title">类型前缀与可提交内容由冒号连接</p>
+<p>推荐将可直接上屏的 Tips 写成：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>类型：内容
+</code></pre></div>
+<p>这样同一条数据可以同时用于：</p>
+<ul>
+<li>显示类型</li>
+<li><code>disabled_types</code> 分类过滤</li>
+<li>提取冒号后的提交文本</li>
+</ul>
+</div>
+<hr />
+<h2 id="_5">八、数据文件格式<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>当前 <code>super_tips.lua</code> 读取的数据格式是：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>提示内容&lt;Tab&gt;查询键
+</code></pre></div>
+<p>注意顺序：</p>
+<p><strong>左边是显示内容，右边才是查询 key。</strong></p>
+<p>例如自定义一条：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>符号：→    jt
+</code></pre></div>
+<p>其中：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>value = 符号：→
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>key   = jt
+</code></pre></div>
+<p>输入：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>jt
+</code></pre></div>
+<p>命中后可以显示：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>〔符号：→〕
+</code></pre></div>
+<p>再按 <code>tips_key</code>，则提交：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>→
+</code></pre></div>
+<h3 id="tab">只有一个真正的 Tab<a class="headerlink" href="#tab" title="Permanent link">&para;</a></h3>
+<p>当前每一行解析为两个字段：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>非 Tab 内容&lt;Tab&gt;非 Tab 内容
+</code></pre></div>
+<p>因此一条普通 Tips 数据不要继续塞入额外的真实 Tab。</p>
+<p>推荐格式始终保持：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>类型：内容&lt;Tab&gt;查询键
+</code></pre></div>
+<hr />
+<h2 id="key">九、同一个 key 建议保持唯一<a class="headerlink" href="#key" title="Permanent link">&para;</a></h2>
+<p>当前版本的代码注释明确要求：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>数据文件应自行保证 key 唯一
+</code></pre></div>
+<p>构建数据库时，一条记录实际按照：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>key + value
+</code></pre></div>
+<p>写入 UserDb 风格的 LevelDB。</p>
+<p>运行时查询某个 key 时，只读取该前缀下遇到的第一条记录作为当前 Tips。</p>
+<p>因此不要依赖：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>同一个 key 写很多行
+</code></pre></div>
+<p>实现“多个 Tips 候选”。</p>
+<p>Super Tips 的定位就是：</p>
+<p><strong>当前状态只显示一条提示。</strong></p>
+<p>如果一个查询键对应多个可能内容，更适合：</p>
+<ul>
+<li>在数据生成阶段先决定唯一提示</li>
+<li>使用普通候选功能</li>
+<li>使用 Super Replacer 的 <code>append</code></li>
+<li>使用专门的 Translator</li>
+</ul>
+<p>而不是把 Super Tips 当作多候选列表。</p>
+<hr />
+<h2 id="disabled_types">十、<code>disabled_types</code> 如何工作？<a class="headerlink" href="#disabled_types" title="Permanent link">&para;</a></h2>
+<p><code>disabled_types</code> 并不是在每次输入时临时隐藏提示。</p>
+<p>它是在构建 Tips 数据库时，根据提示文本开头的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>类型：
+</code></pre></div>
+<p>或：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>类型:
+</code></pre></div>
+<p>决定是否将该条数据写入数据库。</p>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>化学式：H₂O
+</code></pre></div>
+<p>会识别类型：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>化学式
+</code></pre></div>
+<p>如果配置：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="nt">super_tips</span><span class="p">:</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">  </span><span class="nt">disabled_types</span><span class="p">:</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"化学式"</span>
+</code></pre></div>
+<p>那么这类记录在数据库重建时会被直接忽略。</p>
+<p>当前方案中常见类型包括：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>偏旁
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>符号
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>化学式
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>时间
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>组字
+<a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>翻译
+<a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>表情
+<a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a>货币
+<a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a>车牌
+<a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a>单位
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">disabled_types 不是写死的枚举</p>
+<p>Lua 并没有把上述类型硬编码成固定列表。</p>
+<p>它只是提取提示文本第一个冒号前的类型名称。</p>
+<p>因此如果自定义数据使用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>编程：lambda
+</code></pre></div>
+<p>那么同样可以配置：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="nt">disabled_types</span><span class="p">:</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"编程"</span>
+</code></pre></div>
+<p>禁用这一自定义类别。</p>
+</div>
+<hr />
+<h2 id="files">十一、数据文件与 <code>files</code><a class="headerlink" href="#files" title="Permanent link">&para;</a></h2>
+<p>Super Tips 支持：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="l l-Scalar l-Scalar-Plain">super_tips/files</span>
+</code></pre></div>
+<p>列表配置。</p>
+<p>当前 Base 方案显式配置：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="nt">super_tips</span><span class="p">:</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/tips_show.txt</span>
+</code></pre></div>
+<p>因此当前实际加载的是这个列表中明确写出的文件。</p>
+<h3 id="lua">Lua 自身的回退文件<a class="headerlink" href="#lua" title="Permanent link">&para;</a></h3>
+<p>如果方案中<strong>完全没有有效的 <code>super_tips/files</code></strong>，Lua 才会回退到：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>lua/data/tips_show.txt
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>lua/data/tips_user.txt
+</code></pre></div>
+<p>两个默认文件。</p>
+<p>这意味着：</p>
+<div class="admonition warning">
+<p class="admonition-title">显式配置 files 后，不会自动再追加 tips_user.txt</p>
+<p>当前方案已经显式配置：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/tips_show.txt</span>
+</code></pre></div>
+<p>因此 Lua 不会再自动帮你补上：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>lua/data/tips_user.txt
+</code></pre></div>
+<p>如果希望加载自己的 Tips 文件，需要显式加入列表。</p>
+</div>
+<h3 id="custom">通过 Custom 追加文件<a class="headerlink" href="#custom" title="Permanent link">&para;</a></h3>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">  </span><span class="s">"super_tips/files/+"</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/my_tips.txt</span>
+</code></pre></div>
+<p>这样可以在保留现有：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>lua/data/tips_show.txt
+</code></pre></div>
+<p>的基础上继续加载自己的数据文件。</p>
+<hr />
+<h2 id="_6">十二、配置参数<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>当前用户真正需要关注的参数主要有四个：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>作用</th>
+<th>当前 Base 方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>db_name</code></td>
+<td><code>string</code></td>
+<td>Tips LevelDB 名称</td>
+<td><code>lua/tips</code></td>
+</tr>
+<tr>
+<td><code>tips_key</code></td>
+<td><code>string</code></td>
+<td>有有效 Tips 时用于直接上屏的按键</td>
+<td><code>comma</code></td>
+</tr>
+<tr>
+<td><code>files</code></td>
+<td><code>list</code></td>
+<td>数据文件列表</td>
+<td><code>[lua/data/tips_show.txt]</code></td>
+</tr>
+<tr>
+<td><code>disabled_types</code></td>
+<td><code>list</code></td>
+<td>构建数据库时排除指定类型</td>
+<td>以方案实际配置为准</td>
+</tr>
+</tbody>
+</table>
+<h3 id="db_name"><code>db_name</code> 的两个“默认”不要混淆<a class="headerlink" href="#db_name" title="Permanent link">&para;</a></h3>
+<p>当前方案文件明确写了：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="nt">db_name</span><span class="p">:</span><span class="w"> </span><span class="s">"lua/tips"</span>
+</code></pre></div>
+<p>所以正常使用万象 Base 时，实际数据库名称是：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>lua/tips
+</code></pre></div>
+<p>但 <code>super_tips.lua</code> 自己的代码级回退值是：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>tips
+</code></pre></div>
+<p>也就是说，只有方案完全没有提供 <code>super_tips/db_name</code> 时，Lua 才会使用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>tips
+</code></pre></div>
+<p>文档中应区分：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>当前方案配置值 ≠ Lua 内建回退值
+</code></pre></div>
+<hr />
+<h2 id="patch">十三、完整 Patch 示例<a class="headerlink" href="#patch" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">  </span><span class="c1"># Tips 数据库</span>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="w">  </span><span class="s">"super_tips/db_name"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"lua/tips"</span>
+<a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a>
+<a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a><span class="w">  </span><span class="c1"># 提示直接上屏按键</span>
+<a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a><span class="w">  </span><span class="s">"super_tips/tips_key"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"comma"</span>
+<a id="__codelineno-60-7" name="__codelineno-60-7" href="#__codelineno-60-7"></a>
+<a id="__codelineno-60-8" name="__codelineno-60-8" href="#__codelineno-60-8"></a><span class="w">  </span><span class="c1"># 禁用不需要的提示类型</span>
+<a id="__codelineno-60-9" name="__codelineno-60-9" href="#__codelineno-60-9"></a><span class="w">  </span><span class="s">"super_tips/disabled_types"</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-60-10" name="__codelineno-60-10" href="#__codelineno-60-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"化学式"</span>
+<a id="__codelineno-60-11" name="__codelineno-60-11" href="#__codelineno-60-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"车牌"</span>
+<a id="__codelineno-60-12" name="__codelineno-60-12" href="#__codelineno-60-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"货币"</span>
+<a id="__codelineno-60-13" name="__codelineno-60-13" href="#__codelineno-60-13"></a>
+<a id="__codelineno-60-14" name="__codelineno-60-14" href="#__codelineno-60-14"></a><span class="w">  </span><span class="c1"># 在现有数据文件基础上追加自己的 Tips</span>
+<a id="__codelineno-60-15" name="__codelineno-60-15" href="#__codelineno-60-15"></a><span class="w">  </span><span class="s">"super_tips/files/+"</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-60-16" name="__codelineno-60-16" href="#__codelineno-60-16"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/my_tips.txt</span>
+</code></pre></div>
+<p>如果希望把 Tips 上屏键改成句号：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">  </span><span class="s">"super_tips/tips_key"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"period"</span>
+</code></pre></div>
+<p>或者改成分号：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="w">  </span><span class="s">"super_tips/tips_key"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"semicolon"</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">修改 tips_key 时要检查现有按键职责</p>
+<p><code>tips_key</code> 使用的是 Rime 的按键名称。</p>
+<p>改成 <code>period</code>、<code>semicolon</code>、<code>space</code> 等按键前，应先确认当前方案里该键是否承担：</p>
+<ul>
+<li>翻页</li>
+<li>次选</li>
+<li>标点</li>
+<li>其他 Processor / Key Binder 功能</li>
+</ul>
+<p>Super Tips 虽然只在“存在有效 Tips”时拦截，但命中时仍会优先执行 Tips 上屏。</p>
+</div>
+<hr />
+<h2 id="_7">十四、如何设置默认开启？<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>当前 Base 的 <code>switches</code> 顺序中，<code>super_tips</code> 位于第 11 项。</p>
+<p>因为列表索引从 <code>0</code> 开始，所以当前版本对应：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="w">  </span><span class="s">"switches/@10/reset"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</code></pre></div>
+<p>表示初始化时默认进入：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>提示开
+</code></pre></div>
+<p>不过不建议把这个索引当成长期固定接口。</p>
+<div class="admonition warning">
+<p class="admonition-title">switches 索引会随方案结构变化</p>
+<p><code>@10</code> 只代表<strong>当前版本 <code>switches</code> 列表的第 11 项</strong>。</p>
+<p>如果未来上游新增、删除或调整 Switch 顺序，<code>@10</code> 可能不再对应 <code>super_tips</code>。</p>
+<p>因此跨版本维护 Custom 时，应重新检查当前 <code>switches</code> 列表后再确认索引。</p>
+</div>
+<p>日常临时切换则直接使用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>Ctrl + t
+</code></pre></div>
+<p>更方便。</p>
+<hr />
+<h2 id="_8">十五、数据库什么时候会重建？<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>当前 Super Tips 不会每次启动都重新逐行导入 TXT。</p>
+<p>初始化时会检查：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>数据库格式版本
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>disabled_types 配置指纹
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>数据文件特征
+</code></pre></div>
+<p>如果这些信息与数据库中记录的一致，就直接以只读方式复用现有 LevelDB。</p>
+<p>只有以下情况发生变化时，才会重新构建：</p>
+<ul>
+<li>Tips 数据库不存在</li>
+<li>数据格式版本变化</li>
+<li><code>disabled_types</code> 变化</li>
+<li><code>files</code> 对应的数据内容变化</li>
+</ul>
+<p>可以简化为：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>配置和数据没变
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>→ 直接打开现有 DB
+<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a>
+<a id="__codelineno-67-4" name="__codelineno-67-4" href="#__codelineno-67-4"></a>配置或数据变化
+<a id="__codelineno-67-5" name="__codelineno-67-5" href="#__codelineno-67-5"></a>→ 清空并重新构建 DB
+<a id="__codelineno-67-6" name="__codelineno-67-6" href="#__codelineno-67-6"></a>→ 再以只读方式运行
+</code></pre></div>
+<h3 id="_9">数据量应该怎样理解？<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>Super Tips 仍然适合保存：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>短提示
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a>唯一映射
+<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a>查询型辅助信息
+</code></pre></div>
+<p>但原因不应描述成“运行时每次都扫描整个大文件”。</p>
+<p>当前正常输入阶段是：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>LevelDB 按 key 查询
+</code></pre></div>
+<p>较大的 TXT 数据主要会增加：</p>
+<ul>
+<li>首次构建时间</li>
+<li>数据变更后的重建时间</li>
+<li>数据库占用</li>
+<li>无必要提示数据的维护成本</li>
+</ul>
+<p>因此仍建议控制数据质量和用途，但不需要把 Super Tips 限制成只能容纳极少量记录。</p>
+<hr />
+<h2 id="tips_4">十六、多方案共享同名 Tips 数据库<a class="headerlink" href="#tips_4" title="Permanent link">&para;</a></h2>
+<p>当前 Lua 使用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a>db_name
+</code></pre></div>
+<p>维护模块内的数据库状态。</p>
+<p>如果多个组件实例使用相同：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="nt">db_name</span><span class="p">:</span><span class="w"> </span><span class="s">"lua/tips"</span>
+</code></pre></div>
+<p>会复用同一个已打开的数据库实例，并通过引用计数管理生命周期。</p>
+<p>最后一个使用者退出时才关闭数据库。</p>
+<p>这一机制主要用于减少同名 Tips 数据库被多个方案重复打开。</p>
+<p>对于普通用户来说，不需要额外配置；保持相关方案使用同一个 <code>db_name</code> 即可。</p>
+<hr />
+<h2 id="codex-emoji-tips">十七、Codex 符号与 Emoji Tips<a class="headerlink" href="#codex-emoji-tips" title="Permanent link">&para;</a></h2>
+<p>当前 <code>tips_show.txt</code> 已加入 Super Symbols / Codex 相关的中文提示数据。</p>
+<p>例如可以出现类似：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a>符号：⇒
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>表情：🍎
+</code></pre></div>
+<p>并配合中文说明帮助识别对应内容。</p>
+<p>当前这批数据记录为：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>1090 条符号 Tips
+<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a>341 条 Emoji Tips
+<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a>合计 1431 条
+</code></pre></div>
+<p>这些数字属于当前数据快照，后续更新 Codex 或重新生成 Tips 数据后可能变化。</p>
+<p>Super Symbols 与 Super Tips 的职责不同：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>Super Symbols
+<a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a>→ /sym、/emoji 按 Typst/Codex 名称主动检索字符
+<a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a>
+<a id="__codelineno-74-4" name="__codelineno-74-4" href="#__codelineno-74-4"></a>Super Tips
+<a id="__codelineno-74-5" name="__codelineno-74-5" href="#__codelineno-74-5"></a>→ 在普通输入过程中根据编码或候选被动显示辅助提示
+</code></pre></div>
+<p>两者可以共存。</p>
+<hr />
+<h2 id="_10">十八、移动端与前端兼容性<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>Super Tips 的核心输出位置是：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a>segment.prompt
+</code></pre></div>
+<p>因此不同 Rime 前端的显示效果可能存在差异。</p>
+<p>如果遇到：</p>
+<ul>
+<li>Prompt 不显示</li>
+<li>Prompt 位置与桌面端不同</li>
+<li>内嵌编码模式下布局拥挤</li>
+<li>某些 App 中候选窗展示方式不同</li>
+</ul>
+<p>应优先检查当前前端对：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a>Segment Prompt
+<a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a>Preedit
+<a id="__codelineno-76-3" name="__codelineno-76-3" href="#__codelineno-76-3"></a>候选窗口
+<a id="__codelineno-76-4" name="__codelineno-76-4" href="#__codelineno-76-4"></a>内嵌编码
+</code></pre></div>
+<p>的呈现方式。</p>
+<p>这类问题不一定意味着 Tips 数据库或 Lua 查询失败。</p>
+<h3 id="_11">临时排查<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>可以先按：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a>Ctrl + t
+</code></pre></div>
+<p>切换 Super Tips。</p>
+<p>如果关闭后输入恢复正常，再继续检查：</p>
+<ol>
+<li>当前前端的 Prompt 展示方式</li>
+<li><code>tips_key</code> 是否和其他按键行为冲突</li>
+<li>自定义数据格式是否正确</li>
+<li><code>disabled_types</code> 是否误过滤了需要的数据</li>
+<li>Custom 修改后是否已经重新部署</li>
+</ol>
+<hr />
+<h2 id="_12">十九、常见排错<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h3 id="1-tips">1. 有输入，但完全没有 Tips<a class="headerlink" href="#1-tips" title="Permanent link">&para;</a></h3>
+<p>检查：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a>super_tips Option 是否开启
+</code></pre></div>
+<p>可以按：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a>Ctrl + t
+</code></pre></div>
+<p>切换一次。</p>
+<h3 id="2-txt">2. 自定义 TXT 没生效<a class="headerlink" href="#2-txt" title="Permanent link">&para;</a></h3>
+<p>检查是否已经加入：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a><span class="l l-Scalar l-Scalar-Plain">super_tips/files</span>
+</code></pre></div>
+<p>当前方案显式指定了 <code>tips_show.txt</code>，因此仅仅创建：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a>lua/data/tips_user.txt
+</code></pre></div>
+<p>并不代表它一定会自动加载。</p>
+<h3 id="3-tips">3. Tips 能看到，但按逗号不上屏<a class="headerlink" href="#3-tips" title="Permanent link">&para;</a></h3>
+<p>检查数据是否包含：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a>类型：内容
+</code></pre></div>
+<p>当前直接上屏逻辑需要从 <code>:</code> 或 <code>：</code> 后提取提交文本。</p>
+<p>如果没有冒号，只显示 Prompt，不直接提交。</p>
+<h3 id="4-tips">4. 某类 Tips 消失<a class="headerlink" href="#4-tips" title="Permanent link">&para;</a></h3>
+<p>检查：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a><span class="l l-Scalar l-Scalar-Plain">super_tips/disabled_types</span>
+</code></pre></div>
+<p>类型匹配取自提示文本冒号前的内容。</p>
+<h3 id="5">5. 修改数据后仍像旧内容<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<p>保存数据并重新部署。</p>
+<p>数据库会根据文件特征判断是否需要重新构建。</p>
+<hr />
+<h2 id="tips_5">二十、适合与不适合放进 Tips 的内容<a class="headerlink" href="#tips_5" title="Permanent link">&para;</a></h2>
+<h3 id="_13">适合<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>化学式</li>
+<li>单位换算提示</li>
+<li>车牌简称</li>
+<li>简短翻译</li>
+<li>符号</li>
+<li>Emoji</li>
+<li>部件 / 偏旁说明</li>
+<li>短文本映射</li>
+<li>Codex 中文提示</li>
+</ul>
+<p>共同特点是：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a>一个查询键
+<a id="__codelineno-84-2" name="__codelineno-84-2" href="#__codelineno-84-2"></a>→ 一条明确提示
+</code></pre></div>
+<h3 id="_14">不适合<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li>一个 key 对应大量候选</li>
+<li>需要候选分页的数据</li>
+<li>长篇文本</li>
+<li>需要复杂排序的数据</li>
+<li>需要上下文连续生成的内容</li>
+</ul>
+<p>这些场景更适合使用 Translator、Super Replacer 或其他专用模块。</p>
+<hr />
+<div align="center" style="opacity: 0.5; font-size: 0.85em; margin-top: 2rem; font-style: italic;">
+    <em>Super Tips 的定位是一条随输入变化的辅助提示：不改变原候选顺序，需要时再通过指定按键直接提交其中的有效内容。</em>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024-2026 万象拼音 · 开源项目文档  Q群：11033572 / 11631066
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

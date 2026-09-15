@@ -1,0 +1,4501 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="万象拼音 Rime 输入方案与配置文档">
+      
+      
+      
+        <link rel="canonical" href="https://amzxyz.github.io/rime-wanxiang/doc/super_replacer/">
+      
+      
+        <link rel="prev" href="../input_statistics/">
+      
+      
+        <link rel="next" href="../super_sequence/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../material/leaf">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>超级替换 - 万象拼音</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#super-replacer" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="万象拼音" class="md-header__button md-logo" aria-label="万象拼音" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            万象拼音
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              超级替换
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="切换到暗黑模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗黑模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/amzxyz/rime-wanxiang" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    amzxyz/rime-wanxiang
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  快速上手
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  常见问题
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../rime_tree/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  特色功能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../shijian/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Lua 扩展
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../Rime%E8%AE%BE%E8%AE%A1%E9%80%BB%E8%BE%91%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%93%B2%E5%AD%A6/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  进阶配置
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../2026-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  项目动态
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="万象拼音" class="md-nav__button md-logo" aria-label="万象拼音" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    万象拼音
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/amzxyz/rime-wanxiang" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    amzxyz/rime-wanxiang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速上手
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    快速上手
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方案介绍与版本对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weasel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Weasel 小狼毫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    macOS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    macOS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../squirrel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Squirrel 鼠须管
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-mac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 macOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ibus-rime.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBus Rime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iOS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    iOS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hamster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hamster 仓输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hamster3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hamster3 元书输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Android
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trime 同文输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HarmonyOS NEXT
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    HarmonyOS NEXT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chaoyue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超越输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进阶安装
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进阶安装
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    万象工具链
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    东风破 Plum
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手动设置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特色功能
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    特色功能
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rime_tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    万象目录架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dicts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英词库说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shortcut/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快捷键说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aux_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    辅助码系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reverse_lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生僻字反查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英与混合编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../layouts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9/14/18键转写
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fuzzy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模糊音配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom_words/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高阶造词
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../word_creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    错音错字提示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../XCompose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    符号合成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua 扩展
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lua 扩展
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shijian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    时间日期
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_comment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级注释
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级提示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    候选辅筛
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context_reorder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    下文调频
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input_statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    输入统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级替换
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级替换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#super-replacer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Super Replacer 增强替换器配置手册
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Super Replacer 增强替换器配置手册">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 根节点全局参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. chain：串行与并行的区别
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. chain：串行与并行的区别">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chain-true" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        chain: true
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain-false" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        chain: false
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 四种核心模式 (mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-append" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. append：新增候选
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-replace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. replace：替换候选
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-comment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. comment：生成候选注释
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-abbrev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. abbrev：简码与自定义编码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-abbrev_rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. abbrev_rule：简码插入规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-comment_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. comment_mode：派生候选如何处理来源注释
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. comment_mode：派生候选如何处理来源注释">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#append" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关于旧配置中的 append
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. rules 规则参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-option-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. option / options：规则开关
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-tag-tags-segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. tag / tags：限制生效 Segment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-only_types-exclude_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. only_types / exclude_types：按输入类型加载规则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. only_types / exclude_types：按输入类型加载规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#only_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        only_types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exclude_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        exclude_types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. prefix：同一数据库中的数据隔离
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-sentence-fmm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. sentence：整句 FMM 转换
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-cand_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. cand_type：自定义候选类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. 数据文件编写规范
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一个 key 对应多个候选
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        同 key 多行不会自动合并
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="同 key 多行不会自动合并">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#18-t9-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. T9 Optimization：九宫格简码构建
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九宫格编码碰撞会自动聚合
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="九宫格编码碰撞会自动聚合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. 多方案联合数据库
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. 一个较完整的规则示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-custom-patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. 如何通过 Custom Patch 修改？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        追加一条新规则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="追加一条新规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. 当前参数总表
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="22. 当前参数总表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        根节点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rule 通用参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abbrev-t9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        abbrev / T9 相关
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_sequence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手动排序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_symbol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paired_symbols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    成对符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_symbols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_processor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按键处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../charset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符过滤
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../candidate_slicer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    候选切割
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RUNV/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    魔法字母
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profile-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    性能评测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../random_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    随机工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进阶配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进阶配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rime%E8%AE%BE%E8%AE%A1%E9%80%BB%E8%BE%91%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%93%B2%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 工作机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patch%E6%96%B9%E6%B3%95%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch 方法论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema_custom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义万象方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dicts_sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    词库管理与同步
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIME%E9%85%8D%E7%BD%AE%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 配置手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIME%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 配置指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按键映射列表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目动态
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    项目动态
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2026-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 年中词库报告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../400%2Bgram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 年中模型更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#super-replacer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Super Replacer 增强替换器配置手册
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Super Replacer 增强替换器配置手册">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 根节点全局参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. chain：串行与并行的区别
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. chain：串行与并行的区别">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chain-true" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        chain: true
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain-false" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        chain: false
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 四种核心模式 (mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-append" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. append：新增候选
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-replace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. replace：替换候选
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-comment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. comment：生成候选注释
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-abbrev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. abbrev：简码与自定义编码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-abbrev_rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. abbrev_rule：简码插入规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-comment_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. comment_mode：派生候选如何处理来源注释
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. comment_mode：派生候选如何处理来源注释">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#append" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关于旧配置中的 append
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. rules 规则参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-option-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. option / options：规则开关
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-tag-tags-segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. tag / tags：限制生效 Segment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-only_types-exclude_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. only_types / exclude_types：按输入类型加载规则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. only_types / exclude_types：按输入类型加载规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#only_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        only_types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exclude_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        exclude_types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. prefix：同一数据库中的数据隔离
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-sentence-fmm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. sentence：整句 FMM 转换
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-cand_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. cand_type：自定义候选类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. 数据文件编写规范
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一个 key 对应多个候选
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        同 key 多行不会自动合并
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="同 key 多行不会自动合并">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#18-t9-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. T9 Optimization：九宫格简码构建
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九宫格编码碰撞会自动聚合
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="九宫格编码碰撞会自动聚合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. 多方案联合数据库
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. 一个较完整的规则示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-custom-patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. 如何通过 Custom Patch 修改？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        追加一条新规则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="追加一条新规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. 当前参数总表
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="22. 当前参数总表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        根节点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rule 通用参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abbrev-t9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        abbrev / T9 相关
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>超级替换</h1>
+
+<h3 id="super-replacer">Super Replacer 增强替换器配置手册<a class="headerlink" href="#super-replacer" title="Permanent link">&para;</a></h3>
+<p><code>super_replacer.lua</code> 是万象用于候选替换、派生、注释、简码插队以及整句转换的统一 Filter。</p>
+<p>它会把多个 TXT 数据源构建到共享 LevelDB 中，再根据当前方案状态、输入类型、Segment Tag 和规则顺序决定哪些规则参与处理。</p>
+<p>当前主要支持四种模式：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>append   新增候选
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>replace  替换候选
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>comment  生成候选注释
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>abbrev   按输入编码查询简码并插入候选
+</code></pre></div>
+<hr />
+<h4 id="1">1. 根节点全局参数<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p>当前 <code>super_replacer</code> 根节点实际支持以下全局参数：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">数据类型</th>
+<th style="text-align: left;">说明</th>
+<th style="text-align: left;">当前万象配置 / Lua 缺省值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>db_name</code></strong></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">Super Replacer 使用的 LevelDB 名称。多个万象相关方案可以共享同名数据库。</td>
+<td style="text-align: left;"><code>lua/replacer</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>comment_format</code></strong></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;"><code>append</code> / <code>replace</code> 派生候选需要附加来源注释时的格式模板，<code>%s</code> 为内容占位符；<code>comment</code> 模式最终注释也使用此格式。</td>
+<td style="text-align: left;"><code>"〔%s〕"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>chain</code></strong></td>
+<td style="text-align: left;"><code>boolean</code></td>
+<td style="text-align: left;">是否启用串行替换。<code>true</code> 时，前一条 <code>replace</code> 产生的主结果继续交给后续规则查询；<code>false</code> 时，各规则都以原候选文本为查询对象。</td>
+<td style="text-align: left;">万象当前配置 <code>true</code>；Lua 未配置时为 <code>false</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">当前没有 delimiter 根参数</p>
+<p>旧版说明中的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">super_replacer/delimiter</span><span class="p">:</span><span class="w"> </span><span class="s">"|"</span>
+</code></pre></div>
+<p>当前 Lua 已不再读取这个参数，应从自定义配置和文档中删除。</p>
+<p>Super Replacer 内部的数据分隔方式现在是固定的，具体格式见后文“数据文件编写规范”。</p>
+</div>
+<hr />
+<h4 id="2-chain">2. <code>chain</code>：串行与并行的区别<a class="headerlink" href="#2-chain" title="Permanent link">&para;</a></h4>
+<p><code>chain</code> 主要影响普通的 <code>append / replace / comment</code> 规则。</p>
+<h5 id="chain-true"><code>chain: true</code><a class="headerlink" href="#chain-true" title="Permanent link">&para;</a></h5>
+<p>后续规则查询时使用当前已经被前一条 <code>replace</code> 修改后的文本。</p>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>软件
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a> ↓ s2t
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>軟件
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a> ↓ t2hk
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>軟件 / 香港字形结果
+</code></pre></div>
+<p>因此简体转通繁、再转港繁或台繁这类连续转换适合使用流水线模式。</p>
+<h5 id="chain-false"><code>chain: false</code><a class="headerlink" href="#chain-false" title="Permanent link">&para;</a></h5>
+<p>每条规则都直接查询原候选：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>原候选 ─→ 规则 A
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>       ├→ 规则 B
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>       └→ 规则 C
+</code></pre></div>
+<p>前一条规则产生的替换文本不会成为后一条规则的查询输入。</p>
+<div class="admonition note">
+<p class="admonition-title">abbrev 不依赖 chain 查询输入</p>
+<p><code>abbrev</code> 会根据当前输入编码单独查询简码数据库，再把命中的结果插入候选序列。</p>
+<p>因此它与普通候选的 <code>replace</code> 流水线属于不同处理路径。</p>
+</div>
+<hr />
+<h4 id="3-mode">3. 四种核心模式 (<code>mode</code>)<a class="headerlink" href="#3-mode" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模式</th>
+<th style="text-align: left;">查询对象</th>
+<th style="text-align: left;">主要行为</th>
+<th style="text-align: left;">典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>append</code></strong></td>
+<td style="text-align: left;">候选文本</td>
+<td style="text-align: left;">保留原候选，同时新增映射结果</td>
+<td style="text-align: left;">Emoji、同义派生、其他扩展候选</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>replace</code></strong></td>
+<td style="text-align: left;">候选文本</td>
+<td style="text-align: left;">用映射结果替换原候选；流水线开启时首个结果继续传给下一规则</td>
+<td style="text-align: left;">简繁、港繁、台繁等文字转换</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>comment</code></strong></td>
+<td style="text-align: left;">候选文本</td>
+<td style="text-align: left;">不改变候选文字，把映射结果整理为候选注释</td>
+<td style="text-align: left;">翻译、释义、提示</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>abbrev</code></strong></td>
+<td style="text-align: left;">当前输入编码</td>
+<td style="text-align: left;">直接按编码查询数据，并按 <code>abbrev_rule</code> 插入候选</td>
+<td style="text-align: left;">简码、固定短语、英文简码</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="4-append">4. <code>append</code>：新增候选<a class="headerlink" href="#4-append" title="Permanent link">&para;</a></h4>
+<p>例如数据中存在：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>哈哈&lt;Tab&gt;😄
+</code></pre></div>
+<p>规则：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">emoji</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">append</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">comment_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">abc</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"_em_"</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/emoji.txt</span>
+</code></pre></div>
+<p>输入“哈哈”时，原候选仍然保留，同时新增：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>哈哈
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>😄
+</code></pre></div>
+<p>如果一个 key 对应多个结果，则会依次生成多个新增候选。</p>
+<hr />
+<h4 id="5-replace">5. <code>replace</code>：替换候选<a class="headerlink" href="#5-replace" title="Permanent link">&para;</a></h4>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">s2t</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">s2hk</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">s2tw</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">comment_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">comment</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">sentence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">abc</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"_s2t_"</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/STCharacters.txt</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/STPhrases.txt</span>
+</code></pre></div>
+<p>当规则命中时，候选文本会被对应数据替换。</p>
+<p>在：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">chain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p>的情况下，映射值中的<strong>第一个结果</strong>会成为新的主候选文本，并继续参与后续替换规则。</p>
+<p>如果同一个 key 配置了多个映射结果：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>A&lt;Tab&gt;B\tC
+</code></pre></div>
+<p>流水线模式下：</p>
+<ul>
+<li><code>B</code> 成为主替换结果；</li>
+<li><code>C</code> 作为额外候选输出。</li>
+</ul>
+<hr />
+<h4 id="6-comment">6. <code>comment</code>：生成候选注释<a class="headerlink" href="#6-comment" title="Permanent link">&para;</a></h4>
+<p><code>comment</code> 模式不会改变候选本身，只读取数据文件中的映射值作为注释。</p>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>hello&lt;Tab&gt;你好\t哈喽
+</code></pre></div>
+<p>规则：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chinese_english</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">comment</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">abc</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"_en_"</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/english_chinese.txt</span>
+</code></pre></div>
+<p>候选可以显示为：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>hello〔你好 哈喽〕
+</code></pre></div>
+<p>多个注释结果最终使用空格连接，并统一套用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">comment_format</span><span class="p">:</span><span class="w"> </span><span class="s">"〔%s〕"</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">与输入编码相同的注释会被忽略</p>
+<p><code>comment</code> 模式在生成注释时，会跳过与当前输入编码完全相同的值，避免把已经输入的编码再次作为无意义注释显示。</p>
+</div>
+<hr />
+<h4 id="7-abbrev">7. <code>abbrev</code>：简码与自定义编码<a class="headerlink" href="#7-abbrev" title="Permanent link">&para;</a></h4>
+<p><code>abbrev</code> 与前三种模式不同，它查询的是<strong>输入编码</strong>，不是候选文字。</p>
+<p>例如数据：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>zm&lt;Tab&gt;怎么\t在吗
+</code></pre></div>
+<p>规则：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abbrev</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abbrev</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">abc</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"_abbr_"</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span><span class="nt">abbrev_rule</span><span class="p">:</span><span class="w"> </span><span class="s">"1,6"</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/abbrev.txt</span>
+</code></pre></div>
+<p>输入：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>zm
+</code></pre></div>
+<p>后，Super Replacer 会直接查询：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>_abbr_zm
+</code></pre></div>
+<p>再将命中的简码候选插入正常候选序列。</p>
+<hr />
+<h4 id="8-abbrev_rule">8. <code>abbrev_rule</code>：简码插入规则<a class="headerlink" href="#8-abbrev_rule" title="Permanent link">&para;</a></h4>
+<p>格式：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>"前置数量, 起始位置"
+</code></pre></div>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nt">abbrev_rule</span><span class="p">:</span><span class="w"> </span><span class="s">"1,6"</span>
+</code></pre></div>
+<p>表示：</p>
+<ul>
+<li>数据值中的前 <code>1</code> 个候选属于优先候选；</li>
+<li>从第 <code>6</code> 个候选位置开始插入。</li>
+</ul>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>zm&lt;Tab&gt;怎么\t在吗\t怎么了
+</code></pre></div>
+<p>其中第一个结果“怎么”属于固定插入候选，其余结果作为后备简码候选。</p>
+<p>再例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nt">abbrev_rule</span><span class="p">:</span><span class="w"> </span><span class="s">"2,3"</span>
+</code></pre></div>
+<p>表示前两个结果从第 3 个候选位置开始依次插入。</p>
+<p>未配置时，Lua 使用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>1,1
+</code></pre></div>
+<p>作为缺省值。</p>
+<div class="admonition note">
+<p class="admonition-title">后备简码并不等于永远全部显示</p>
+<p><code>abbrev</code> 会结合当前正常候选序列进行去重和插入。</p>
+<p>当前面设定的简码结果已经成功插入正常候选序列后，同组后备结果不会无条件全部追加；当缺少合适的正常候选结构时，后备结果才承担兜底显示作用。</p>
+</div>
+<hr />
+<h4 id="9-comment_mode">9. <code>comment_mode</code>：派生候选如何处理来源注释<a class="headerlink" href="#9-comment_mode" title="Permanent link">&para;</a></h4>
+<p><code>comment_mode</code> 主要用于 <code>append</code> 和 <code>replace</code>。</p>
+<p>当前 Lua 真正单独处理的值是：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">值</th>
+<th style="text-align: left;">行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>none</code></strong></td>
+<td style="text-align: left;">不为派生候选附加来源注释；流水线 <code>replace</code> 的主结果会清空原 comment</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>text</code></strong></td>
+<td style="text-align: left;">把<strong>原候选文本</strong>作为新候选注释，并套用 <code>comment_format</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>comment</code></strong></td>
+<td style="text-align: left;">把<strong>原候选已有 comment</strong> 作为新候选注释，并套用 <code>comment_format</code></td>
+</tr>
+</tbody>
+</table>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nt">comment_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text</span>
+</code></pre></div>
+<p>原候选：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>hello
+</code></pre></div>
+<p>映射为：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>你好
+</code></pre></div>
+<p>可以得到：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>你好〔hello〕
+</code></pre></div>
+<h5 id="append">关于旧配置中的 <code>append</code><a class="headerlink" href="#append" title="Permanent link">&para;</a></h5>
+<p>当前万象 Schema 中部分简繁规则仍存在：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nt">comment_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">append</span>
+</code></pre></div>
+<p>但当前 Lua 并没有把 <code>append</code> 作为独立分支处理。</p>
+<p>在 <code>chain: true + mode: replace</code> 的主结果场景中，它会因为“不清空原 comment”而表现为保留原注释，因此现有简繁流水线仍可使用。</p>
+<p>但如果新建自定义规则，希望明确继承原候选 comment，建议使用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nt">comment_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">comment</span>
+</code></pre></div>
+<p>而不是继续把 <code>append</code> 当成通用注释模式。</p>
+<hr />
+<h4 id="10-rules">10. <code>rules</code> 规则参数<a class="headerlink" href="#10-rules" title="Permanent link">&para;</a></h4>
+<p>当前每一条 <code>rules</code> 支持以下主要参数：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">数据类型</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>option</code> / <code>options</code></strong></td>
+<td style="text-align: left;"><code>string / list / boolean</code></td>
+<td style="text-align: left;">规则触发条件。可以绑定一个或多个 Rime Option；写 <code>true</code> 表示常驻启用</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>mode</code></strong></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;"><code>append</code>、<code>replace</code>、<code>comment</code>、<code>abbrev</code>；缺省为 <code>append</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>comment_mode</code></strong></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">派生候选的来源注释策略，推荐使用 <code>none</code>、<code>text</code>、<code>comment</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>sentence</code></strong></td>
+<td style="text-align: left;"><code>boolean</code></td>
+<td style="text-align: left;">对候选文本启用整句 FMM 转换；主要用于 <code>append / replace</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>tag</code> / <code>tags</code></strong></td>
+<td style="text-align: left;"><code>string / list</code></td>
+<td style="text-align: left;">限制规则只在指定 Segment Tag 中生效</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>prefix</code></strong></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">数据库 key 前缀，用于隔离不同功能的数据</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>file</code> / <code>files</code></strong></td>
+<td style="text-align: left;"><code>string / list</code></td>
+<td style="text-align: left;">数据源文件；支持一个或多个 TXT 文件</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>cand_type</code></strong></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">自定义生成候选的 <code>type</code>；未指定时普通派生默认 <code>derived</code>，简码默认 <code>abbrev</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>abbrev_rule</code></strong></td>
+<td style="text-align: left;"><code>string</code></td>
+<td style="text-align: left;">仅 <code>abbrev</code> 使用，格式 <code>"数量,位置"</code>，缺省 <code>"1,1"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>t9_optimization</code></strong></td>
+<td style="text-align: left;"><code>boolean</code></td>
+<td style="text-align: left;">构建数据时把字母 key 转为九宫格数字，并为候选保存原始编码 Preedit</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>only_types</code></strong></td>
+<td style="text-align: left;"><code>list</code></td>
+<td style="text-align: left;">仅在当前输入类型属于列表时加载这条规则</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>exclude_types</code></strong></td>
+<td style="text-align: left;"><code>list</code></td>
+<td style="text-align: left;">当前输入类型属于列表时跳过这条规则</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="11-option-options">11. <code>option / options</code>：规则开关<a class="headerlink" href="#11-option-options" title="Permanent link">&para;</a></h4>
+<p>可以绑定单个 Option：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">emoji</span>
+</code></pre></div>
+<p>也可以绑定多个：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">s2t</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">s2hk</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">s2tw</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>或：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nt">options</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">s2t</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">s2hk</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">s2tw</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>多个 Option 的判断关系是：</p>
+<p><strong>其中任意一个为 <code>true</code>，这条规则即可启用。</strong></p>
+<p>如果希望规则始终生效：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">rules 不能省略 option</p>
+<p>当前 Lua 在初始化规则时，如果 <code>option / options</code> 没有解析出任何触发条件，会直接跳过这条规则。</p>
+<p>因此需要常驻执行的规则，应明确写：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+</div>
+<hr />
+<h4 id="12-tag-tags-segment">12. <code>tag / tags</code>：限制生效 Segment<a class="headerlink" href="#12-tag-tags-segment" title="Permanent link">&para;</a></h4>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">abc</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>表示只有当前 Segment 带有 <code>abc</code> Tag 时，这条规则才执行。</p>
+<p>也支持：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abc</span>
+</code></pre></div>
+<p>以及多 Tag：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">abc</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">add_user_dict</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>多个 Tag 采用“任意命中”逻辑。</p>
+<p>如果不配置 <code>tag / tags</code>，则不会额外进行 Tag 限制。</p>
+<hr />
+<h4 id="13-only_types-exclude_types">13. <code>only_types / exclude_types</code>：按输入类型加载规则<a class="headerlink" href="#13-only_types-exclude_types" title="Permanent link">&para;</a></h4>
+<p>这是当前版本已经支持、旧说明中缺失的参数。</p>
+<p>它们根据万象当前的拼音 / 键盘类型决定一条规则是否参与运行。</p>
+<h5 id="only_types"><code>only_types</code><a class="headerlink" href="#only_types" title="Permanent link">&para;</a></h5>
+<p>只允许指定输入类型加载：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nt">only_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">t9</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>表示仅九宫格方案加载这条规则。</p>
+<p>也可以：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nt">only_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">zrm</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">flypy</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>表示仅自然码、小鹤双拼加载。</p>
+<h5 id="exclude_types"><code>exclude_types</code><a class="headerlink" href="#exclude_types" title="Permanent link">&para;</a></h5>
+<p>排除指定输入类型：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nt">exclude_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">pinyin</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>表示全拼不加载这条规则，其他输入类型仍可使用。</p>
+<p>当前万象常见输入类型标识包括：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>pinyin
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>zrm
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>flypy
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>mspy
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>sogou
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>abc
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>ziguang
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>pyjj
+<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a>gbpy
+<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a>zrlong
+<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a>hxlong
+<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a>ltsp
+<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a>lxsq
+<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a>sdpy
+<a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a>t9
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">only_types / exclude_types 必须写成列表</p>
+<p>当前 Lua 对这两个参数只读取 YAML List。</p>
+<p>正确：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nt">only_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">t9</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="nt">exclude_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">pinyin</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>不建议写成单个字符串：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nt">only_types</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t9</span>
+</code></pre></div>
+<p>这种写法当前不会按照预期执行输入类型筛选。</p>
+</div>
+<hr />
+<h4 id="14-prefix">14. <code>prefix</code>：同一数据库中的数据隔离<a class="headerlink" href="#14-prefix" title="Permanent link">&para;</a></h4>
+<p>Super Replacer 的不同功能可以共用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nt">db_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/replacer</span>
+</code></pre></div>
+<p>真正用于区分 Emoji、翻译、简繁、简码等数据的是每条规则的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="l l-Scalar l-Scalar-Plain">prefix</span>
+</code></pre></div>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>_em_
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>_en_
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>_s2t_
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>_s2hk_
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>_abbr_
+</code></pre></div>
+<p>数据库查询时实际使用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>prefix + key
+</code></pre></div>
+<p>因此：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>_em_火
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>_s2t_火
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>_abbr_h
+</code></pre></div>
+<p>属于完全不同的数据记录。</p>
+<div class="admonition tip">
+<p class="admonition-title">重复判断也是按 prefix + key 维度区分</p>
+<p>同一个业务 key 只要位于不同 <code>prefix</code> 下，就属于不同功能的数据，不会因为 key 文本相同而互相冲突。</p>
+</div>
+<hr />
+<h4 id="15-sentence-fmm">15. <code>sentence</code>：整句 FMM 转换<a class="headerlink" href="#15-sentence-fmm" title="Permanent link">&para;</a></h4>
+<p>普通模式优先对整个候选文本进行精确匹配。</p>
+<p>如果没有精确命中，并且：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="nt">sentence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p>则会进一步启用 FMM 分段转换。</p>
+<p>例如简繁转换中：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">s2t</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">s2hk</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">s2tw</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="w">  </span><span class="nt">sentence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="w">  </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"_s2t_"</span>
+</code></pre></div>
+<p>可以对较长候选逐段查找转换数据，而不是要求整句话必须作为一个完整 key 存在。</p>
+<p>当前 FMM 会优先匹配较长词条，再处理较短片段和单字，因此适合简繁、地区字形等文字转换任务。</p>
+<hr />
+<h4 id="16-cand_type">16. <code>cand_type</code>：自定义候选类型<a class="headerlink" href="#16-cand_type" title="Permanent link">&para;</a></h4>
+<p>普通派生候选未设置 <code>cand_type</code> 时使用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>derived
+</code></pre></div>
+<p><code>abbrev</code> 未设置时使用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>abbrev
+</code></pre></div>
+<p>可以自行覆盖：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="nt">cand_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">emoji</span>
+</code></pre></div>
+<p>或：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="nt">cand_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t9</span>
+</code></pre></div>
+<p>该字段主要用于区分候选来源，方便后续 Filter、注释逻辑或其他处理模块识别不同类型的候选。</p>
+<hr />
+<h4 id="17">17. 数据文件编写规范<a class="headerlink" href="#17" title="Permanent link">&para;</a></h4>
+<p>当前数据源格式已经固定，不再使用旧版可配置 <code>delimiter: "|"</code>。</p>
+<p>每一行必须满足：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>key&lt;真实 Tab&gt;value
+</code></pre></div>
+<p>也就是：</p>
+<p><strong>第一个字段分隔必须使用真正的 Tab 制表符。</strong></p>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>火   🔥
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>apple   苹果
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>zm  怎么
+</code></pre></div>
+<h3 id="key">一个 key 对应多个候选<a class="headerlink" href="#key" title="Permanent link">&para;</a></h3>
+<p>多个候选不再使用 <code>|</code> 分隔，而是在 value 内使用<strong>字面量 <code>\t</code></strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>zm  怎么\t在吗\t怎么了
+</code></pre></div>
+<p>这里需要特别区分：</p>
+<ul>
+<li><code>key</code> 与 <code>value</code> 之间：<strong>真实 Tab</strong></li>
+<li>多个 value 之间：<strong>两个普通字符 <code>\</code> + <code>t</code></strong></li>
+</ul>
+<p>可以概念化写成：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>zm&lt;Tab&gt;怎么\t在吗\t怎么了
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">value 中不要再放第二个真实 Tab</p>
+<p>当前解析器只允许第一处字段分隔使用真实 Tab。</p>
+<p>如果 value 部分再次出现真正的 Tab，这一行会被判定为无效数据。</p>
+<p>多候选必须使用字面量：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>\t
+</code></pre></div>
+<p>进行分隔。</p>
+</div>
+<h3 id="key_1">同 key 多行不会自动合并<a class="headerlink" href="#key_1" title="Permanent link">&para;</a></h3>
+<p>旧说明中的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>zm&lt;Tab&gt;怎么
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>zm&lt;Tab&gt;在吗
+</code></pre></div>
+<p>“导入时自动合并”已经不符合当前实现。</p>
+<p>普通数据构建时，同一 <code>prefix + key</code> 重复出现，只保留先写入的记录，后续同 key 不会继续自动拼接。</p>
+<p>因此需要多个候选时，应直接写成同一行：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>zm&lt;Tab&gt;怎么\t在吗
+</code></pre></div>
+<hr />
+<h4 id="18-t9-optimization">18. T9 Optimization：九宫格简码构建<a class="headerlink" href="#18-t9-optimization" title="Permanent link">&para;</a></h4>
+<p><code>t9_optimization</code> 主要用于把现有字母简码数据直接复用到九宫格。</p>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abbrev</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="w">  </span><span class="nt">only_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">t9</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a><span class="w">  </span><span class="nt">t9_optimization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a><span class="w">  </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"_t9_"</span>
+<a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a><span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-61-7" name="__codelineno-61-7" href="#__codelineno-61-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/abbrev.txt</span>
+</code></pre></div>
+<p>源文件仍然维护字母编码：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>zdtp    重大突破
+</code></pre></div>
+<p>构建时会按照九宫格映射：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>abcdefghijklmnopqrstuvwxyz
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>22233344455566677778889999
+</code></pre></div>
+<p>把：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>zdtp
+</code></pre></div>
+<p>转换为对应数字 key。</p>
+<p>同时，候选内部会保存：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>候选文本==原始字母编码
+</code></pre></div>
+<p>用于恢复候选 Preedit。</p>
+<p>例如数据库中的逻辑结果可以理解为：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>数字编码 → 重大突破==zdtp
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">T9 的 == 是内部 Preedit 分隔，不需要手工维护</p>
+<p>普通源文件仍然只需要写：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>zdtp&lt;Tab&gt;重大突破
+</code></pre></div>
+<p>开启 <code>t9_optimization: true</code> 后，构建过程会自动追加：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>==zdtp
+</code></pre></div>
+<p>不需要在 TXT 数据中手工添加。</p>
+</div>
+<h3 id="_1">九宫格编码碰撞会自动聚合<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>多个不同字母编码可能映射成同一串 T9 数字。</p>
+<p>当前构建逻辑会识别这种数字 key 碰撞，并将这些不同来源的候选聚合到同一个数字编码下，同时分别保存各自的原始字母 Preedit。</p>
+<p>这属于 T9 转换产生的正常聚合，与普通数据文件中“重复 key 多行”不是同一机制。</p>
+<hr />
+<h4 id="19">19. 多方案联合数据库<a class="headerlink" href="#19" title="Permanent link">&para;</a></h4>
+<p>当前 Super Replacer 不再只根据正在运行的单一方案构建数据。</p>
+<p>它会读取已经部署的 <code>build/default.yaml</code>，检查当前启用的万象相关方案，并合并这些方案中的 Super Replacer 数据任务。</p>
+<p>当前参与联合处理的方案范围包括：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>wanxiang_pro
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a>wanxiang
+<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a>wanxiang_english
+<a id="__codelineno-69-4" name="__codelineno-69-4" href="#__codelineno-69-4"></a>wanxiang_t9
+<a id="__codelineno-69-5" name="__codelineno-69-5" href="#__codelineno-69-5"></a>wanxiang_t9i
+</code></pre></div>
+<p>因此多个已启用方案可以共享同一个：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="nt">db_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/replacer</span>
+</code></pre></div>
+<p>而不需要每个方案分别维护一份重复数据库。</p>
+<p>联合构建时，完全相同的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>数据文件 + prefix + T9 转换方式
+</code></pre></div>
+<p>会进行任务去重。</p>
+<hr />
+<h4 id="20">20. 一个较完整的规则示例<a class="headerlink" href="#20" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="nt">super_replacer</span><span class="p">:</span>
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a><span class="w">  </span><span class="nt">db_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/replacer</span>
+<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="w">  </span><span class="nt">comment_format</span><span class="p">:</span><span class="w"> </span><span class="s">"〔%s〕"</span>
+<a id="__codelineno-72-4" name="__codelineno-72-4" href="#__codelineno-72-4"></a><span class="w">  </span><span class="nt">chain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-72-5" name="__codelineno-72-5" href="#__codelineno-72-5"></a>
+<a id="__codelineno-72-6" name="__codelineno-72-6" href="#__codelineno-72-6"></a><span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<a id="__codelineno-72-7" name="__codelineno-72-7" href="#__codelineno-72-7"></a><span class="w">    </span><span class="c1"># Emoji 派生</span>
+<a id="__codelineno-72-8" name="__codelineno-72-8" href="#__codelineno-72-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">emoji</span>
+<a id="__codelineno-72-9" name="__codelineno-72-9" href="#__codelineno-72-9"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">append</span>
+<a id="__codelineno-72-10" name="__codelineno-72-10" href="#__codelineno-72-10"></a><span class="w">      </span><span class="nt">comment_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<a id="__codelineno-72-11" name="__codelineno-72-11" href="#__codelineno-72-11"></a><span class="w">      </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">abc</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-72-12" name="__codelineno-72-12" href="#__codelineno-72-12"></a><span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"_em_"</span>
+<a id="__codelineno-72-13" name="__codelineno-72-13" href="#__codelineno-72-13"></a><span class="w">      </span><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-72-14" name="__codelineno-72-14" href="#__codelineno-72-14"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/emoji.txt</span>
+<a id="__codelineno-72-15" name="__codelineno-72-15" href="#__codelineno-72-15"></a>
+<a id="__codelineno-72-16" name="__codelineno-72-16" href="#__codelineno-72-16"></a><span class="w">    </span><span class="c1"># 简体 → 通繁，作为后续港繁 / 台繁的流水线基础</span>
+<a id="__codelineno-72-17" name="__codelineno-72-17" href="#__codelineno-72-17"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">s2t</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">s2hk</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">s2tw</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-72-18" name="__codelineno-72-18" href="#__codelineno-72-18"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span>
+<a id="__codelineno-72-19" name="__codelineno-72-19" href="#__codelineno-72-19"></a><span class="w">      </span><span class="nt">comment_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">comment</span>
+<a id="__codelineno-72-20" name="__codelineno-72-20" href="#__codelineno-72-20"></a><span class="w">      </span><span class="nt">sentence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-72-21" name="__codelineno-72-21" href="#__codelineno-72-21"></a><span class="w">      </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">abc</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-72-22" name="__codelineno-72-22" href="#__codelineno-72-22"></a><span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"_s2t_"</span>
+<a id="__codelineno-72-23" name="__codelineno-72-23" href="#__codelineno-72-23"></a><span class="w">      </span><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-72-24" name="__codelineno-72-24" href="#__codelineno-72-24"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/STCharacters.txt</span>
+<a id="__codelineno-72-25" name="__codelineno-72-25" href="#__codelineno-72-25"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/STPhrases.txt</span>
+<a id="__codelineno-72-26" name="__codelineno-72-26" href="#__codelineno-72-26"></a>
+<a id="__codelineno-72-27" name="__codelineno-72-27" href="#__codelineno-72-27"></a><span class="w">    </span><span class="c1"># 常规简码：排除全拼</span>
+<a id="__codelineno-72-28" name="__codelineno-72-28" href="#__codelineno-72-28"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abbrev</span>
+<a id="__codelineno-72-29" name="__codelineno-72-29" href="#__codelineno-72-29"></a><span class="w">      </span><span class="nt">exclude_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">pinyin</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-72-30" name="__codelineno-72-30" href="#__codelineno-72-30"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abbrev</span>
+<a id="__codelineno-72-31" name="__codelineno-72-31" href="#__codelineno-72-31"></a><span class="w">      </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">abc</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-72-32" name="__codelineno-72-32" href="#__codelineno-72-32"></a><span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"_abbr_"</span>
+<a id="__codelineno-72-33" name="__codelineno-72-33" href="#__codelineno-72-33"></a><span class="w">      </span><span class="nt">abbrev_rule</span><span class="p">:</span><span class="w"> </span><span class="s">"1,6"</span>
+<a id="__codelineno-72-34" name="__codelineno-72-34" href="#__codelineno-72-34"></a><span class="w">      </span><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-72-35" name="__codelineno-72-35" href="#__codelineno-72-35"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/abbrev.txt</span>
+<a id="__codelineno-72-36" name="__codelineno-72-36" href="#__codelineno-72-36"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/chengyu.txt</span>
+<a id="__codelineno-72-37" name="__codelineno-72-37" href="#__codelineno-72-37"></a>
+<a id="__codelineno-72-38" name="__codelineno-72-38" href="#__codelineno-72-38"></a><span class="w">    </span><span class="c1"># T9 专用简码</span>
+<a id="__codelineno-72-39" name="__codelineno-72-39" href="#__codelineno-72-39"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-72-40" name="__codelineno-72-40" href="#__codelineno-72-40"></a><span class="w">      </span><span class="nt">only_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">t9</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-72-41" name="__codelineno-72-41" href="#__codelineno-72-41"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abbrev</span>
+<a id="__codelineno-72-42" name="__codelineno-72-42" href="#__codelineno-72-42"></a><span class="w">      </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">abc</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-72-43" name="__codelineno-72-43" href="#__codelineno-72-43"></a><span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"_t9_abbr_"</span>
+<a id="__codelineno-72-44" name="__codelineno-72-44" href="#__codelineno-72-44"></a><span class="w">      </span><span class="nt">abbrev_rule</span><span class="p">:</span><span class="w"> </span><span class="s">"1,3"</span>
+<a id="__codelineno-72-45" name="__codelineno-72-45" href="#__codelineno-72-45"></a><span class="w">      </span><span class="nt">t9_optimization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-72-46" name="__codelineno-72-46" href="#__codelineno-72-46"></a><span class="w">      </span><span class="nt">cand_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t9</span>
+<a id="__codelineno-72-47" name="__codelineno-72-47" href="#__codelineno-72-47"></a><span class="w">      </span><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-72-48" name="__codelineno-72-48" href="#__codelineno-72-48"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/abbrev.txt</span>
+</code></pre></div>
+<hr />
+<h4 id="21-custom-patch">21. 如何通过 Custom Patch 修改？<a class="headerlink" href="#21-custom-patch" title="Permanent link">&para;</a></h4>
+<p>如果只是修改现有规则中的某个参数，可以按列表索引 Patch。</p>
+<p>例如修改第一条规则的 Emoji 数据：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a><span class="w">  </span><span class="s">"super_replacer/rules/@0/files"</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/my_emoji.txt</span>
+</code></pre></div>
+<p>修改全局数据库名：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a><span class="w">  </span><span class="s">"super_replacer/db_name"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/my_replacer</span>
+</code></pre></div>
+<h3 id="_2">追加一条新规则<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><code>rules</code> 是列表。</p>
+<p>追加一条规则时，应把新增规则作为一个完整列表项加入：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a><span class="w">  </span><span class="s">"super_replacer/rules/+"</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-75-4" name="__codelineno-75-4" href="#__codelineno-75-4"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">append</span>
+<a id="__codelineno-75-5" name="__codelineno-75-5" href="#__codelineno-75-5"></a><span class="w">      </span><span class="nt">comment_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<a id="__codelineno-75-6" name="__codelineno-75-6" href="#__codelineno-75-6"></a><span class="w">      </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">abc</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-75-7" name="__codelineno-75-7" href="#__codelineno-75-7"></a><span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"_ki_"</span>
+<a id="__codelineno-75-8" name="__codelineno-75-8" href="#__codelineno-75-8"></a><span class="w">      </span><span class="nt">files</span><span class="p">:</span>
+<a id="__codelineno-75-9" name="__codelineno-75-9" href="#__codelineno-75-9"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/kaomoji.txt</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">追加列表项时注意 YAML 层级</p>
+<p><code>super_replacer/rules/+</code> 的目标本身是一个列表，因此新增完整 Rule 时建议保留：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</code></pre></div>
+<p>这一层列表短横线。</p>
+<p>如果只是修改已有规则的某一个字段，则使用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a><span class="l l-Scalar l-Scalar-Plain">super_replacer/rules/@索引/字段</span>
+</code></pre></div>
+<p>直接定位即可。</p>
+</div>
+<hr />
+<h4 id="22">22. 当前参数总表<a class="headerlink" href="#22" title="Permanent link">&para;</a></h4>
+<h5 id="_3">根节点<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a>db_name
+<a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a>comment_format
+<a id="__codelineno-78-3" name="__codelineno-78-3" href="#__codelineno-78-3"></a>chain
+<a id="__codelineno-78-4" name="__codelineno-78-4" href="#__codelineno-78-4"></a>rules
+</code></pre></div>
+<h5 id="rule">Rule 通用参数<a class="headerlink" href="#rule" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a>option / options
+<a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a>mode
+<a id="__codelineno-79-3" name="__codelineno-79-3" href="#__codelineno-79-3"></a>comment_mode
+<a id="__codelineno-79-4" name="__codelineno-79-4" href="#__codelineno-79-4"></a>sentence
+<a id="__codelineno-79-5" name="__codelineno-79-5" href="#__codelineno-79-5"></a>tag / tags
+<a id="__codelineno-79-6" name="__codelineno-79-6" href="#__codelineno-79-6"></a>prefix
+<a id="__codelineno-79-7" name="__codelineno-79-7" href="#__codelineno-79-7"></a>file / files
+<a id="__codelineno-79-8" name="__codelineno-79-8" href="#__codelineno-79-8"></a>cand_type
+<a id="__codelineno-79-9" name="__codelineno-79-9" href="#__codelineno-79-9"></a>only_types
+<a id="__codelineno-79-10" name="__codelineno-79-10" href="#__codelineno-79-10"></a>exclude_types
+</code></pre></div>
+<h5 id="abbrev-t9">abbrev / T9 相关<a class="headerlink" href="#abbrev-t9" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>abbrev_rule
+<a id="__codelineno-80-2" name="__codelineno-80-2" href="#__codelineno-80-2"></a>t9_optimization
+</code></pre></div>
+<p>当前版本<strong>没有</strong>需要用户配置的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a>super_replacer/delimiter
+</code></pre></div>
+<p>数据候选分隔也已经固定为字面量：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a>\t
+</code></pre></div>
+<hr />
+<div align="center" style="opacity: 0.5; font-size: 0.85em; margin-top: 2rem; font-style: italic;">
+    <em>Super Replacer 的配置核心是：用 option 决定何时工作，用 tag 与输入类型限定作用范围，用 prefix 隔离数据，再由 mode 决定候选如何输出。</em>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024-2026 万象拼音 · 开源项目文档  Q群：11033572 / 11631066
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

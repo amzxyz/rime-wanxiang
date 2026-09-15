@@ -1,0 +1,4573 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="万象拼音 Rime 输入方案与配置文档">
+      
+      
+      
+        <link rel="canonical" href="https://amzxyz.github.io/rime-wanxiang/doc/faq/">
+      
+      
+        <link rel="prev" href="../manual/">
+      
+      
+        <link rel="next" href="../rime_tree/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../material/leaf">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>常见问题 - 万象拼音</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="万象拼音" class="md-header__button md-logo" aria-label="万象拼音" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            万象拼音
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              常见问题
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="切换到暗黑模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到暗黑模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="切换到亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/amzxyz/rime-wanxiang" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    amzxyz/rime-wanxiang
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  快速上手
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  常见问题
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../rime_tree/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  特色功能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../shijian/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Lua 扩展
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../Rime%E8%AE%BE%E8%AE%A1%E9%80%BB%E8%BE%91%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%93%B2%E5%AD%A6/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  进阶配置
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../2026-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  项目动态
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="万象拼音" class="md-nav__button md-logo" aria-label="万象拼音" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    万象拼音
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/amzxyz/rime-wanxiang" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    amzxyz/rime-wanxiang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速上手
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    快速上手
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方案介绍与版本对比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weasel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Weasel 小狼毫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    macOS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    macOS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../squirrel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Squirrel 鼠须管
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-mac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 macOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ibus-rime.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBus Rime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iOS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    iOS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hamster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hamster 仓输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hamster3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hamster3 元书输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Android
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trime 同文输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fcitx5-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fcitx5 Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HarmonyOS NEXT
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    HarmonyOS NEXT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chaoyue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超越输入法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进阶安装
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进阶安装
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    万象工具链
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    东风破 Plum
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手动设置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装、更新与部署
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装、更新与部署">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qbaseprolitepure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：第一次用万象，Base、Pro、Lite、Pure 应该怎么选？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：万象更新时，怎样避免自己的配置被覆盖？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我修改了 YAML，为什么输入法一点变化都没有？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么第一次部署万象会比较慢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：方案已经出现在方案选单里了，但切过去完全打不了字，怎么办？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：切换全拼、小鹤、自然码后，为什么有些挂接功能还是原来的编码？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置与 Patch
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配置与 Patch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-wanxiangcustomyaml-wanxiangschemayaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么推荐 wanxiang.custom.yaml，而不是直接改 wanxiang.schema.yaml？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-custom-patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：一个 custom 文件里是不是每改一段都要再写一个 patch:？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q0next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：@0、@next、/+ 到底是什么意思？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我已经改了翻页快捷键，为什么原来的 -、= 还是能翻页？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-engineprocessorstranslatorsfilters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：可以随便调整 engine/processors、translators、filters 的顺序吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-switches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我只想修改一个开关默认状态，需要把整段 switches 复制过来吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么有些配置改的是主方案，有些还要改挂接方案？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        词库、自造词与同步
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="词库、自造词与同步">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我只是想加邮箱、地址、签名、固定短语，应该改主词库吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qcustom_phrasetxt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：custom_phrase.txt 明明写了内容，为什么不生效？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qcustom_phrase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：custom_phrase、专业固定词典、用户词库、自造词，分别适合什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我有自己的专业词库，怎样挂载才不怕以后更新万象被覆盖？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-base-pro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么 Base 默认会调频，而 Pro 更强调关闭自动调频？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qpro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：PRO版本我造了一个私人名字，为什么没有自动压过系统高频词？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：多设备同步用户词，应该同步哪个文件？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qcustom_phrasetxt-userdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：custom_phrase.txt 会跟着 UserDB 自动同步吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-rime-db_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：从别的 Rime 方案迁移用户词库，只改 db_name 就一定能用吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        辅助码、反查与字符集
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="辅助码、反查与字符集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qbase-pro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：Base 没有 Pro 的专属辅助码，那是不是完全不能辅助筛选？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：反引号 ` 到底是干什么的？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qsuper-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：Super Lookup 为什么不像传统辅助码那样必须“第一个码对第一个字”？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我不想看辅助码提示，但还想保留反查 / 辅筛，可以吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么有些生僻字完全不出现，有些却出现成方框或问号？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：小字集里缺一个我常用的字，能不能只加这一个？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：反查时我更想先看单字，不想先看词组，能切吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        英文混输与内置功能
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="英文混输与内置功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：万象为什么有时候会自动给英文加空格？可以关吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-wanxiang_englishdictyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我替换了 wanxiang_english.dict.yaml，为什么主方案还是在用旧英文词库？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：AI绘画、型号、品牌、英文缩写这类中英混合词应该放哪里？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：日期、时间的显示格式能自己改吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qsjrqn20250101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：/sj、/rq、N20250101 是同一套东西吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-vru" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：大写 V、R、U 分别是什么？总记混。
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我知道一个符号长什么样，但不知道怎么输入，万象有搜索吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：候选词后面输入反斜杠，为什么会出现括号包裹功能？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：怎么判断是不是 Lua 没加载成功？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-prism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么同一个词典，多个方案部署时还会各自出现 Prism？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-custom_phrase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么我的 custom_phrase、英文词、主词库候选优先级看起来不一样？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：输入一个不存在的三编码时，为什么偶尔还能吐出前面两码的单字？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么我把候选包裹、动态时间占位之类功能删掉后，其他地方也开始异常？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        还没找到你的问题？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQ 编写说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特色功能
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    特色功能
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rime_tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    万象目录架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dicts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英词库说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shortcut/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快捷键说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aux_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    辅助码系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reverse_lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生僻字反查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../english/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中英与混合编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../layouts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9/14/18键转写
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fuzzy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模糊音配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom_words/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高阶造词
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../word_creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    错音错字提示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../XCompose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    符号合成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua 扩展
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lua 扩展
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shijian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    时间日期
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_comment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级注释
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级提示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    候选辅筛
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context_reorder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    下文调频
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input_statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    输入统计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_replacer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级替换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_sequence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    手动排序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_symbol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paired_symbols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    成对符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_symbols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超级符号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../super_processor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按键处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../charset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符过滤
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../candidate_slicer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    候选切割
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RUNV/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    魔法字母
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profile-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    性能评测
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../random_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    随机工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进阶配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进阶配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rime%E8%AE%BE%E8%AE%A1%E9%80%BB%E8%BE%91%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%93%B2%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 工作机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patch%E6%96%B9%E6%B3%95%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch 方法论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema_custom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义万象方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dicts_sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    词库管理与同步
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIME%E9%85%8D%E7%BD%AE%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 配置手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RIME%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rime 配置指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    按键映射列表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目动态
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    项目动态
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2026-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 年中词库报告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../400%2Bgram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 年中模型更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装、更新与部署
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装、更新与部署">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qbaseprolitepure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：第一次用万象，Base、Pro、Lite、Pure 应该怎么选？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：万象更新时，怎样避免自己的配置被覆盖？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我修改了 YAML，为什么输入法一点变化都没有？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么第一次部署万象会比较慢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：方案已经出现在方案选单里了，但切过去完全打不了字，怎么办？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：切换全拼、小鹤、自然码后，为什么有些挂接功能还是原来的编码？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置与 Patch
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配置与 Patch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-wanxiangcustomyaml-wanxiangschemayaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么推荐 wanxiang.custom.yaml，而不是直接改 wanxiang.schema.yaml？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-custom-patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：一个 custom 文件里是不是每改一段都要再写一个 patch:？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q0next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：@0、@next、/+ 到底是什么意思？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我已经改了翻页快捷键，为什么原来的 -、= 还是能翻页？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-engineprocessorstranslatorsfilters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：可以随便调整 engine/processors、translators、filters 的顺序吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-switches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我只想修改一个开关默认状态，需要把整段 switches 复制过来吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么有些配置改的是主方案，有些还要改挂接方案？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        词库、自造词与同步
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="词库、自造词与同步">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我只是想加邮箱、地址、签名、固定短语，应该改主词库吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qcustom_phrasetxt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：custom_phrase.txt 明明写了内容，为什么不生效？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qcustom_phrase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：custom_phrase、专业固定词典、用户词库、自造词，分别适合什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我有自己的专业词库，怎样挂载才不怕以后更新万象被覆盖？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-base-pro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么 Base 默认会调频，而 Pro 更强调关闭自动调频？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qpro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：PRO版本我造了一个私人名字，为什么没有自动压过系统高频词？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：多设备同步用户词，应该同步哪个文件？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qcustom_phrasetxt-userdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：custom_phrase.txt 会跟着 UserDB 自动同步吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-rime-db_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：从别的 Rime 方案迁移用户词库，只改 db_name 就一定能用吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        辅助码、反查与字符集
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="辅助码、反查与字符集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qbase-pro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：Base 没有 Pro 的专属辅助码，那是不是完全不能辅助筛选？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：反引号 ` 到底是干什么的？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qsuper-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：Super Lookup 为什么不像传统辅助码那样必须“第一个码对第一个字”？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我不想看辅助码提示，但还想保留反查 / 辅筛，可以吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么有些生僻字完全不出现，有些却出现成方框或问号？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：小字集里缺一个我常用的字，能不能只加这一个？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：反查时我更想先看单字，不想先看词组，能切吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        英文混输与内置功能
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="英文混输与内置功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：万象为什么有时候会自动给英文加空格？可以关吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-wanxiang_englishdictyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我替换了 wanxiang_english.dict.yaml，为什么主方案还是在用旧英文词库？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：AI绘画、型号、品牌、英文缩写这类中英混合词应该放哪里？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：日期、时间的显示格式能自己改吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qsjrqn20250101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：/sj、/rq、N20250101 是同一套东西吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-vru" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：大写 V、R、U 分别是什么？总记混。
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：我知道一个符号长什么样，但不知道怎么输入，万象有搜索吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：候选词后面输入反斜杠，为什么会出现括号包裹功能？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：怎么判断是不是 Lua 没加载成功？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-prism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么同一个词典，多个方案部署时还会各自出现 Prism？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-custom_phrase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么我的 custom_phrase、英文词、主词库候选优先级看起来不一样？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：输入一个不存在的三编码时，为什么偶尔还能吐出前面两码的单字？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q：为什么我把候选包裹、动态时间占位之类功能删掉后，其他地方也开始异常？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        还没找到你的问题？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQ 编写说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">❓ 常见问题<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>先解决问题，再解释原理。</strong><br />
+本页收集万象用户最容易遇到的安装、更新、配置、词库、辅助码、英文混输与 Lua 功能问题。问题选题会参考 Rime 社区中的高频讨论，但<strong>答案统一以万象当前的 Schema、Lua 与项目文档实现为准</strong>，不会直接套用其他方案的配置。</p>
+</blockquote>
+<div class="admonition info">
+<p class="admonition-title">FAQ 使用原则</p>
+<p><strong>先确认版本，再确认配置来源，最后重新部署。</strong><br />
+万象的大量能力并不是单个 YAML 字段独立完成的，而是 Schema、挂接方案、词库、Lua 与 Rime 编译结果共同工作。遇到问题时，不建议先删除用户词库或大范围改配置。</p>
+</div>
+<hr />
+<h2 id="_2">安装、更新与部署<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="qbaseprolitepure">Q：第一次用万象，Base、Pro、Lite、Pure 应该怎么选？<a class="headerlink" href="#qbaseprolitepure" title="Permanent link">&para;</a></h3>
+<p><strong>大多数用户先从 Base 开始。</strong></p>
+<ul>
+<li><strong>Base</strong>：适合全拼、常规双拼，以及希望保留自动调频习惯的用户,词库带声调还能通过声调筛选，也能用反查数据进行lookup辅筛。</li>
+<li><strong>Pro</strong>：面向双拼 + 专属辅助码用户，词库本身携带辅助码信息，更强调精确筛选和可控造词，万象全功能安排。</li>
+<li><strong>Lite</strong>：在base的基础上简化词库声调去掉部分lua，主要面向不常用声调用户以及可以作为前端OEM首选。</li>
+<li><strong>Pure</strong>：适合低版本环境、不能正常使用 Lua，或者只需要基础输入能力的场景。</li>
+</ul>
+<p>如果你只是想“先稳定用起来”，选 Base；如果你明确知道自己需要哪一种辅助码，再选对应的 Pro 分包。</p>
+<blockquote>
+<p>Pro 不是“Base 的绝对升级版”，而是不同输入哲学。</p>
+</blockquote>
+<p>相关文档：<a href="../intro.md">方案介绍与版本对比</a></p>
+<hr />
+<h3 id="q">Q：万象更新时，怎样避免自己的配置被覆盖？<a class="headerlink" href="#q" title="Permanent link">&para;</a></h3>
+<p><strong>不要长期直接改仓库自带的 <code>*.schema.yaml</code>、<code>default.yaml</code>。个人配置尽量写进对应的 <code>*.custom.yaml</code>。</strong></p>
+<p>例如修改主方案时：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># wanxiang.custom.yaml</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">menu/page_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span>
+</code></pre></div>
+<p>更新时可以替换项目原文件，而自己的 <code>wanxiang.custom.yaml</code> 继续保留。</p>
+<p>词库也一样：个人固定短语、专业词库、用户数据应放在自己的文件或数据库中，不要把长期个人内容直接塞进万象官方词库。</p>
+<p>总之就是仓库有的文明你不要与之重名，重名就会被覆盖这是计算机规律。</p>
+<p>相关文档：<a href="../schema_custom.md">自定义万象方案</a> · <a href="../dicts_sync/">词库管理与同步</a></p>
+<hr />
+<h3 id="q-yaml">Q：我修改了 YAML，为什么输入法一点变化都没有？<a class="headerlink" href="#q-yaml" title="Permanent link">&para;</a></h3>
+<p>先确认三件事：</p>
+<ol>
+<li>改的是<strong>用户目录里实际正在使用的文件</strong>；</li>
+<li>修改写在正确的方案或正确的 <code>*.custom.yaml</code>；</li>
+<li>保存后执行了<strong>重新部署</strong>。</li>
+</ol>
+<p>Rime 工作时使用的是部署后生成的编译结果，不会因为你保存了一份 YAML 就立刻热更新。</p>
+<p>其次任何schema、custom文件都不支持折叠到其他路径中，只能在用户目录最上层。</p>
+<p>如果只是改皮肤、前端候选布局，则还要注意：这些往往属于小狼毫、鼠须管、Fcitx5 等前端自己的配置，不一定由 <code>wanxiang.schema.yaml</code> 控制。</p>
+<p>相关文档：<a href="../Rime设计逻辑与配置哲学.md">Rime 工作机制</a></p>
+<hr />
+<h3 id="q_1">Q：为什么第一次部署万象会比较慢？<a class="headerlink" href="#q_1" title="Permanent link">&para;</a></h3>
+<p>这是正常现象。首次部署需要编译词典、生成拼写映射 / Prism、加载语法模型，并初始化相关组件。</p>
+<p>其中根据转写的复杂度，部署速度各有不同，虽然我们提倡一次部署后就好好用就好了，但使用rime不可避免地想要自定义和多次部署。</p>
+<p><strong>部署过程中不要连续重复点击“重新部署”</strong>。尤其词库较大、语法模型已启用时，第一次编译本来就需要时间。</p>
+<p>后续如果源文件没有变化，正常情况下不应该每次都完整重建所有内容。</p>
+<hr />
+<h3 id="q_2">Q：方案已经出现在方案选单里了，但切过去完全打不了字，怎么办？<a class="headerlink" href="#q_2" title="Permanent link">&para;</a></h3>
+<p>“能看到方案名”只说明方案被发现了，<strong>不代表它的依赖、Lua、词典和编译结果都正常</strong>。</p>
+<p>优先检查：</p>
+<ul>
+<li>部署日志有没有 <code>error</code>、依赖缺失或 Lua 加载错误；</li>
+<li>使用的平台是否支持当前万象版本所需的 librime / Lua；</li>
+<li>Base / Pro 的词库和语法模型是否放完整；</li>
+<li>Linux / Fcitx5 是否存在前端快捷键或组件冲突。</li>
+</ul>
+<p>不要因为“方案名能看到”就把问题直接归到词库。</p>
+<p>相关文档：<a href="../weasel.md">Windows</a> · <a href="../squirrel.md">macOS</a> · <a href="../fcitx5-linux.md">Fcitx5 Linux</a></p>
+<hr />
+<h3 id="q_3">Q：切换全拼、小鹤、自然码后，为什么有些挂接功能还是原来的编码？<a class="headerlink" href="#q_3" title="Permanent link">&para;</a></h3>
+<p>万象的拼音类型不只影响主翻译器，还可能影响英文、反查等挂接方案。</p>
+<p>因此推荐使用万象提供的方案切换指令，例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/flypy    → 小鹤双拼
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/mspy     → 微软双拼
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>/zrm      → 自然码
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>/sogou    → 搜狗双拼
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>/znabc    → 智能ABC
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>/ziguang  → 紫光双拼
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>/pyjj     → 拼音加加
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>/gbpy     → 国标双拼
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>/lxsq     → 乱序17
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>/ltsp     → 蓝天双拼
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>/sdpy     → 首道双拼
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>/pinyin   → 全拼
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>/zrlong   → 自然龙(反查是全拼)
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>/hxlong   → 汉心龙(反查是全拼)
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>/jjf      → 间接辅助
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>/zjf      → 直接辅助
+</code></pre></div>
+<p>执行切换后再重新部署，让主方案与相关挂接方案保持一致。</p>
+<p><strong>不要只改主方案的一行 algebra，就默认整个万象生态已经全部切换。</strong></p>
+<p>这只是一种自动方式，其背后的真正原理是把custom目录中携带的预设文件帮你复制到了根目录，原则上这些都要自己打开文件进行修改，可在文档--快速上手--手动设置阅读相关内容</p>
+<hr />
+<h2 id="patch">配置与 Patch<a class="headerlink" href="#patch" title="Permanent link">&para;</a></h2>
+<h3 id="q-wanxiangcustomyaml-wanxiangschemayaml">Q：为什么推荐 <code>wanxiang.custom.yaml</code>，而不是直接改 <code>wanxiang.schema.yaml</code>？<a class="headerlink" href="#q-wanxiangcustomyaml-wanxiangschemayaml" title="Permanent link">&para;</a></h3>
+<p>因为 <code>*.custom.yaml</code> 是 Rime 原生的覆盖机制。</p>
+<p>官方文件负责提供“默认实现”，你的 custom 只写“我与默认值不同的部分”。这样做有两个好处：</p>
+<ul>
+<li>更新万象时不容易覆盖个人配置；</li>
+<li>出问题时可以快速判断是官方默认还是个人 Patch 导致的。</li>
+</ul>
+<p>对于长期使用，这比直接魔改主方案文件更容易维护。</p>
+<hr />
+<h3 id="q-custom-patch">Q：一个 custom 文件里是不是每改一段都要再写一个 <code>patch:</code>？<a class="headerlink" href="#q-custom-patch" title="Permanent link">&para;</a></h3>
+<p><strong>不是。一个 custom 文件顶部只需要一个 <code>patch:</code>。</strong></p>
+<p>正确：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">menu/page_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">super_processor/enable_backspace_limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">super_comment/candidate_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</code></pre></div>
+<p>不要写成：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</code></pre></div>
+<p>后者会让 YAML 顶层键发生覆盖或产生与你预期不同的结果。</p>
+<p>别人写文档、教程是为了体现段落层级，不要看见每一个都有patch: 就都写上。</p>
+<p>相关文档：<a href="../schema_custom.md">自定义万象方案</a></p>
+<hr />
+<h3 id="q0next">Q：<code>@0</code>、<code>@next</code>、<code>/+</code> 到底是什么意思？<a class="headerlink" href="#q0next" title="Permanent link">&para;</a></h3>
+<p>它们主要用于处理 YAML 列表。</p>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">switches/@0/reset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</code></pre></div>
+<p>表示修改 <code>switches</code> 列表中的第 1 项。</p>
+<p>追加内容可以使用类似：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">super_tips/files/+</span><span class="p">:</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lua/data/my_tips.txt</span>
+</code></pre></div>
+<p>如果你想彻底接管一个数组，而且数组顺序本身决定行为，<strong>直接整体覆盖往往比不断插入更清楚</strong>。但官方有更新的时候你同样也不是万事大吉，可能需要解构冲突。</p>
+<hr />
+<h3 id="q-">Q：我已经改了翻页快捷键，为什么原来的 <code>-</code>、<code>=</code> 还是能翻页？<a class="headerlink" href="#q-" title="Permanent link">&para;</a></h3>
+<p>优先检查：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">key_binder</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">import_preset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</code></pre></div>
+<p><code>import_preset: default</code> 会把 <code>default.yaml</code> 中的快捷键一起导入。你只修改主方案自己的 <code>key_binder/bindings</code>，并不代表继承进来的规则自动消失。</p>
+<p>如果冲突来自 <code>default.yaml</code>，应在 <code>default.custom.yaml</code> 中一并处理。</p>
+<p>这也是“明明改了，旧快捷键却还在”的高频原因。</p>
+<p>其次是你使用的<strong>/+</strong>这样的命令来修改的按键，这个表示在原来的末尾追加因此相当于有了两种翻页的按键存在。</p>
+<p>相关文档：<a href="../shortcut.md">快捷键说明</a> · <a href="../schema_custom.md">自定义万象方案</a></p>
+<hr />
+<h3 id="q-engineprocessorstranslatorsfilters">Q：可以随便调整 <code>engine/processors</code>、<code>translators</code>、<code>filters</code> 的顺序吗？<a class="headerlink" href="#q-engineprocessorstranslatorsfilters" title="Permanent link">&para;</a></h3>
+<p><strong>不建议。</strong></p>
+<p>rime的很多 Lua 组件有明确的先后关系。例如字符过滤、注释处理、替换、英文格式化、手动排序、最终去重，各自依赖上游候选的状态。</p>
+<p>尤其：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uniquifier</span>
+</code></pre></div>
+<p>通常应当留在过滤链最后完成最终去重。</p>
+<p>如果只是修改某个功能的参数，优先 Patch 对应配置项，不要为了“看起来整齐”重排整个引擎流水线。</p>
+<hr />
+<h3 id="q-switches">Q：我只想修改一个开关默认状态，需要把整段 <code>switches</code> 复制过来吗？<a class="headerlink" href="#q-switches" title="Permanent link">&para;</a></h3>
+<p>不用。</p>
+<p>例如修改第一个开关：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">switches/@0/reset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</code></pre></div>
+<p>只有当你要大幅重排、删除、重建整个列表时，才考虑整体覆盖。</p>
+<p><strong>局部修改尽量局部 Patch，结构变化再整体接管。</strong></p>
+<hr />
+<h3 id="q_4">Q：为什么有些配置改的是主方案，有些还要改挂接方案？<a class="headerlink" href="#q_4" title="Permanent link">&para;</a></h3>
+<p>因为万象不是一个单文件方案。</p>
+<p>例如英文词库可以由 <code>wanxiang_english.schema.yaml</code> 负责独立编译，主方案再通过：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">wanxiang_english</span><span class="p">:</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">dictionary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wanxiang_english</span>
+</code></pre></div>
+<p>调用它。</p>
+<p>所以当你把英文词典换成另一个名字时，通常需要同时保证：</p>
+<ol>
+<li>挂接方案编译的是新词典；</li>
+<li>主方案调用的也是同一个新词典名。</li>
+</ol>
+<p>只改一头，就可能出现“文件明明存在，主方案就是不用”的情况。</p>
+<p>相关文档：<a href="../dicts_sync.md">词库管理与同步</a></p>
+<hr />
+<h2 id="_3">词库、自造词与同步<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="q_5">Q：我只是想加邮箱、地址、签名、固定短语，应该改主词库吗？<a class="headerlink" href="#q_5" title="Permanent link">&para;</a></h3>
+<p><strong>不用，优先使用 <code>custom_phrase.txt</code>。</strong></p>
+<p>它就是给固定内容和短编码准备的，例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>example@example.com mail    100
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>万象拼音    wx  100
+</code></pre></div>
+<p>三个字段之间使用 <strong>Tab 制表符</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>上屏文本&lt;Tab&gt;编码&lt;Tab&gt;权重
+</code></pre></div>
+<p>不要拿普通空格冒充 Tab。</p>
+<p>万象默认给 <code>custom_phrase</code> 较高初始质量，本来就适合做快捷置顶短语。</p>
+<p>相关文档：<a href="../dicts_sync.md">词库管理与同步</a></p>
+<hr />
+<h3 id="qcustom_phrasetxt">Q：<code>custom_phrase.txt</code> 明明写了内容，为什么不生效？<a class="headerlink" href="#qcustom_phrasetxt" title="Permanent link">&para;</a></h3>
+<p>依次检查：</p>
+<ul>
+<li>文件是否真的叫 <code>custom_phrase.txt</code>，有没有被系统保存成 <code>custom_phrase.txt.txt</code>；</li>
+<li>列与列之间是不是 <strong>Tab</strong>；</li>
+<li>文件编码是否正常；</li>
+<li><code>custom_phrase/user_dict</code> 是否仍然指向 <code>custom_phrase</code>；</li>
+<li>是否擅自修改了 <code>db_class</code>；</li>
+<li>保存后有没有重新部署。</li>
+</ul>
+<p>万象当前默认：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">custom_phrase</span><span class="p">:</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">dictionary</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="nt">user_dict</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom_phrase</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="nt">db_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stabledb</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="nt">enable_completion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span><span class="nt">enable_sentence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">  </span><span class="nt">initial_quality</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">99</span>
+</code></pre></div>
+<p>如果你的目标只是固定快捷短语，没必要为了“同步”或“调频”随意改变这套数据库类型。</p>
+<hr />
+<h3 id="qcustom_phrase">Q：<code>custom_phrase</code>、专业固定词典、用户词库、自造词，分别适合什么？<a class="headerlink" href="#qcustom_phrase" title="Permanent link">&para;</a></h3>
+<p>可以这样理解：</p>
+<p><strong>固定少量内容</strong> → <code>custom_phrase.txt</code><br />
+<strong>大量专业词、长期维护的数据</strong> → 独立 <code>.dict.yaml</code> 并通过 Patch 挂载<br />
+<strong>日常输入产生的动态学习</strong> → 主翻译器用户词库<br />
+<strong>我明确想记住一个新词</strong> → 万象的自造词 / 无感造词机制</p>
+<p>不要把所有个人数据都塞进一种机制里。用途分开后，更新、同步和排错都会轻松很多。</p>
+<p>相关文档：<a href="../dicts_sync.md">词库管理与同步</a> · <a href="../custom_words.md">高阶造词</a></p>
+<hr />
+<h3 id="q_6">Q：我有自己的专业词库，怎样挂载才不怕以后更新万象被覆盖？<a class="headerlink" href="#q_6" title="Permanent link">&para;</a></h3>
+<p>不要直接编辑万象官方 <code>.dict.yaml</code>。</p>
+<p>更稳妥的方式是：</p>
+<ol>
+<li>给自己的词典单独命名；</li>
+<li>放在用户目录；</li>
+<li>通过 <code>*.custom.yaml</code> 修改对应 <code>dictionary</code> 或扩展关系；</li>
+<li>重新部署。</li>
+</ol>
+<p>如果你替换的是独立挂接词库，例如英文，还要同时保证挂接方案与主方案的调用名称一致。</p>
+<p>相关文档：<a href="../dicts_sync.md">词库管理与同步</a></p>
+<hr />
+<h3 id="q-base-pro">Q：为什么 Base 默认会调频，而 Pro 更强调关闭自动调频？<a class="headerlink" href="#q-base-pro" title="Permanent link">&para;</a></h3>
+<p>这是两个版本输入哲学上的差异。</p>
+<p>Base 更接近普通拼音用户熟悉的体验：输入、选择、逐渐学习。</p>
+<p>Pro 面向重度辅助码用户，强调“词库和排序本身尽量稳定”，避免无差别学习不断改变精确候选。需要某个私人词明显提前时，可以通过造词和手动排序解决，而不是让所有候选都持续漂移。</p>
+<p>所以不要简单理解为：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>enable_user_dict: true = 一定更高级
+</code></pre></div>
+<p>对 Pro 来说，稳定和可控本身就是设计目标。</p>
+<hr />
+<h3 id="qpro">Q：PRO版本我造了一个私人名字，为什么没有自动压过系统高频词？<a class="headerlink" href="#qpro" title="Permanent link">&para;</a></h3>
+<p>这是预期行为之一。</p>
+<p>私人名字对你可能极重要，但对于正常语句来说，系统高频词也不能因为一次造词就永久失去合理排序。</p>
+<p>万象提供了更明确的方式：<strong>先造词，再手动置顶或移动候选</strong>。</p>
+<p>默认手动排序配置：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">super_sequence</span><span class="p">:</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="nt">up</span><span class="p">:</span><span class="w"> </span><span class="s">"Control+j"</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="nt">down</span><span class="p">:</span><span class="w"> </span><span class="s">"Control+k"</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="nt">reset</span><span class="p">:</span><span class="w"> </span><span class="s">"Control+l"</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span><span class="nt">pin</span><span class="p">:</span><span class="w"> </span><span class="s">"Control+p"</span>
+</code></pre></div>
+<p>这样可以把“私人偏好”与“系统词库整体排序”分开管理。</p>
+<p>相关文档：<a href="../super_sequence.md">手动排序</a></p>
+<hr />
+<h3 id="q_7">Q：多设备同步用户词，应该同步哪个文件？<a class="headerlink" href="#q_7" title="Permanent link">&para;</a></h3>
+<p>Rime 的动态用户词通过 UserDB 同步。</p>
+<p>重点配置在：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="l l-Scalar l-Scalar-Plain">installation.yaml</span>
+</code></pre></div>
+<p>建议每台设备设置不同、容易识别的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nt">installation_id</span><span class="p">:</span><span class="w"> </span><span class="s">"windows"</span>
+</code></pre></div>
+<p>并把：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nt">sync_dir</span><span class="p">:</span>
+</code></pre></div>
+<p>指向同一个同步目录。</p>
+<p>执行“同步用户数据”后，Rime 会把用户数据库导出为文本形式，例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>wanxiang.userdb.txt
+</code></pre></div>
+<p>再由其他设备导入、合并。</p>
+<p>相关文档：<a href="../dicts_sync.md">词库管理与同步</a></p>
+<hr />
+<h3 id="qcustom_phrasetxt-userdb">Q：<code>custom_phrase.txt</code> 会跟着 UserDB 自动同步吗？<a class="headerlink" href="#qcustom_phrasetxt-userdb" title="Permanent link">&para;</a></h3>
+<p>它本质上是你自己维护的固定文本文件，不等同于输入过程中产生的 UserDB。</p>
+<p>如果你希望多设备共用同一份 <code>custom_phrase.txt</code>，可以用自己的网盘、Git 或其他文件同步方式管理；不要把“Rime 用户词同步”和“任意配置文件同步”当成一回事。你可以选择在一个地方维护变更，其他设备都只是单向下载你的更新。这与UserDB多个设备文件夹合并数据是不同的。</p>
+<hr />
+<h3 id="q-rime-db_name">Q：从别的 Rime 方案迁移用户词库，只改 <code>db_name</code> 就一定能用吗？<a class="headerlink" href="#q-rime-db_name" title="Permanent link">&para;</a></h3>
+<p><strong>不一定。</strong></p>
+<p>用户词不仅有“词文本”，还与原方案的编码、拼写规则、数据库结构有关。</p>
+<p>如果来源方案和万象的编码体系不同，尤其涉及带调编码、双拼转写或不同拼写运算时，单纯改数据库名可能把数据导进去了，却无法按你当前输入方式正常召回。</p>
+<p>迁移时应先小批量验证，不要直接覆盖现有万象 UserDB。</p>
+<hr />
+<h2 id="_4">辅助码、反查与字符集<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="qbase-pro">Q：Base 没有 Pro 的专属辅助码，那是不是完全不能辅助筛选？<a class="headerlink" href="#qbase-pro" title="Permanent link">&para;</a></h3>
+<p>不是。</p>
+<p>Base 仍然可以利用万象的：</p>
+<ul>
+<li>声调；</li>
+<li>两分 / 多分部件；</li>
+<li>笔画；</li>
+<li>反查数据库；</li>
+</ul>
+<p>进行筛选。</p>
+<p>Pro 的核心增强是：<strong>词库编码本身进一步携带专属辅助码信息</strong>，因此能在更多输入场景里直接使用对应辅助码。</p>
+<p>简单说：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Base：拼音为主，反查 / 声调辅助
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Pro：双拼 + 专属辅助码深度参与
+</code></pre></div>
+<p>相关文档：<a href="../aux_code.md">辅助码系统</a></p>
+<hr />
+<h3 id="q_8">Q：反引号 <code>`</code> 到底是干什么的？<a class="headerlink" href="#q_8" title="Permanent link">&para;</a></h3>
+<p>它是万象默认的反查 / 辅筛引导键之一。</p>
+<p>主方案中：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nt">wanxiang_reverse</span><span class="p">:</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"`"</span>
+</code></pre></div>
+<p>而 <code>wanxiang_lookup</code> 也使用：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">"`"</span>
+</code></pre></div>
+<p>因此它既连接部件 / 笔画反查，也参与候选中的辅助筛选。</p>
+<p>如果你自行修改这个键，要同时理解 <code>speller/alphabet</code>、<code>recognizer</code>、reverse translator 和 <code>super_lookup</code> 之间的关系，不能只改一个地方就结束。</p>
+<p>相关文档：<a href="../reverse_lookup.md">生僻字反查</a> · <a href="../super_lookup.md">候选辅筛</a></p>
+<hr />
+<h3 id="qsuper-lookup">Q：Super Lookup 为什么不像传统辅助码那样必须“第一个码对第一个字”？<a class="headerlink" href="#qsuper-lookup" title="Permanent link">&para;</a></h3>
+<p>因为万象采用的是<strong>有序模糊匹配</strong>思路。</p>
+<p>对于词组，它更关注你输入的辅助信息是否按顺序出现在候选的辅助序列中，而不是强迫你每一个码都严格标明属于第几个汉字。</p>
+<p>这样做的目的，是让用户“知道多少打多少”，减少为了筛词反而先计算位置的负担。</p>
+<p>相关文档：<a href="../super_lookup.md">候选辅筛</a></p>
+<hr />
+<h3 id="q_9">Q：我不想看辅助码提示，但还想保留反查 / 辅筛，可以吗？<a class="headerlink" href="#q_9" title="Permanent link">&para;</a></h3>
+<p>可以把“显示提示”和“筛选能力”分开理解。</p>
+<p>例如超级注释中的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nt">super_comment</span><span class="p">:</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="nt">candidate_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</code></pre></div>
+<p>控制的是辅助码等注释显示范围。把显示关闭，并不等于必须删除 <code>super_lookup</code> 或 <code>wanxiang_reverse</code>。</p>
+<p>因此如果你只是嫌候选注释太多，优先调整 <code>super_comment</code>，不要直接拆掉整套反查组件。</p>
+<p>相关文档：<a href="../super_comment.md">超级注释</a></p>
+<hr />
+<h3 id="q_10">Q：为什么有些生僻字完全不出现，有些却出现成方框或问号？<a class="headerlink" href="#q_10" title="Permanent link">&para;</a></h3>
+<p>这是两个不同问题。</p>
+<p><strong>完全不出现</strong>：先检查字符集过滤。万象的 <code>charset_filter</code> 可以按不同字符集合、白名单、黑名单控制候选范围。</p>
+<p><strong>候选存在但显示成方框 / 问号</strong>：更可能是当前前端或字体没有对应字形，这不是把字符加入白名单就一定能解决的。</p>
+<p>排查时先分清楚是“候选被过滤”，还是“候选已经有了但字体画不出来”。</p>
+<p>相关文档：<a href="../charset.md">字符过滤</a> · <a href="../reverse_lookup.md">生僻字反查</a></p>
+<hr />
+<h3 id="q_11">Q：小字集里缺一个我常用的字，能不能只加这一个？<a class="headerlink" href="#q_11" title="Permanent link">&para;</a></h3>
+<p>可以。</p>
+<p>万象的字符集配置支持 <code>addlist</code> 和 <code>blacklist</code> 微调，而不要求为了一个字彻底关闭过滤。</p>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nt">charset_filter</span><span class="p">:</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charset_filter</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="nt">base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="nt">addlist</span><span class="p">:</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"你的常用字"</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="nt">blacklist</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</code></pre></div>
+<p>实际使用时建议通过 custom Patch 修改，避免更新覆盖。</p>
+<hr />
+<h3 id="q_12">Q：反查时我更想先看单字，不想先看词组，能切吗？<a class="headerlink" href="#q_12" title="Permanent link">&para;</a></h3>
+<p>万象提供了对应的候选优先策略开关。</p>
+<p>当前方案中有：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="l l-Scalar l-Scalar-Plain">char_priority</span>
+</code></pre></div>
+<p>用于在特定编码重合、反查 / 辅筛场景下控制“词组先”或“单字先”。</p>
+<p>这类需求优先使用已有开关，不需要为了排序单独重写反查词典。</p>
+<hr />
+<h2 id="_5">英文混输与内置功能<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="q_13">Q：万象为什么有时候会自动给英文加空格？可以关吗？<a class="headerlink" href="#q_13" title="Permanent link">&para;</a></h3>
+<p>可以。</p>
+<p>万象英文 Lua 提供四种策略：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nt">wanxiang_english</span><span class="p">:</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span><span class="nt">english_spacing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">smart</span>
+</code></pre></div>
+<p>可选：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>off
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>before
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>after
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>smart
+</code></pre></div>
+<p><code>smart</code> 是默认思路：连续英文输入时智能维护单词间空格，同时允许回车、空格或超时打断状态。</p>
+<p>还可以设置：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nt">spacing_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</code></pre></div>
+<p>相关文档：<a href="../english.md">中英与混合编码</a></p>
+<hr />
+<h3 id="q-wanxiang_englishdictyaml">Q：我替换了 <code>wanxiang_english.dict.yaml</code>，为什么主方案还是在用旧英文词库？<a class="headerlink" href="#q-wanxiang_englishdictyaml" title="Permanent link">&para;</a></h3>
+<p>因为英文是“挂接方案编译 + 主方案调用”的结构。</p>
+<p>如果新词典叫：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>wanxiang_english_user
+</code></pre></div>
+<p>通常要同时让：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># wanxiang_english.custom.yaml</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="nt">translator/dictionary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wanxiang_english_user</span>
+</code></pre></div>
+<p>和：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># wanxiang.custom.yaml</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="nt">wanxiang_english/dictionary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wanxiang_english_user</span>
+</code></pre></div>
+<p>指向同一个名字。</p>
+<p>只改词典文件名，不同步修改调用关系，很容易出现“编译了一套，主方案叫的是另一套”。</p>
+<p>相关文档：<a href="../dicts_sync.md">词库管理与同步</a></p>
+<hr />
+<h3 id="qai">Q：<code>AI绘画</code>、型号、品牌、英文缩写这类中英混合词应该放哪里？<a class="headerlink" href="#qai" title="Permanent link">&para;</a></h3>
+<p>少量固定内容可以直接放 <code>custom_phrase.txt</code>。</p>
+<p>如果是成体系的中文 + 英文 + 数字 + 符号混合词汇，则更适合使用万象的 <code>wanxiang_mixedcode</code> 数据体系，而不是把所有混合词都塞进普通中文用户词。</p>
+<p>这样可以保留不同 Translator 之间更清楚的职责边界。</p>
+<hr />
+<h3 id="q_14">Q：日期、时间的显示格式能自己改吗？<a class="headerlink" href="#q_14" title="Permanent link">&para;</a></h3>
+<p>可以。</p>
+<p>万象把常用格式直接开放在 YAML：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nt">date_formats</span><span class="p">:</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="nt">time_formats</span><span class="p">:</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="nt">datetime_formats</span><span class="p">:</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="nt">english_date_formats</span><span class="p">:</span>
+</code></pre></div>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nt">date_formats</span><span class="p">:</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"Y年m月d日"</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"Y-m-d"</span>
+</code></pre></div>
+<p>写几行，就会生成几种候选；顺序就是候选顺序。</p>
+<p>时间插件还支持中文星期、英文星期、ISO 周数、时区、12 / 24 小时等占位符。</p>
+<p>相关文档：<a href="../shijian.md">时间日期</a></p>
+<hr />
+<h3 id="qsjrqn20250101">Q：<code>/sj</code>、<code>/rq</code>、<code>N20250101</code> 是同一套东西吗？<a class="headerlink" href="#qsjrqn20250101" title="Permanent link">&para;</a></h3>
+<p>它们都由时间日期体系处理，但入口不同。</p>
+<ul>
+<li><code>/sj</code>：当前时间；</li>
+<li><code>/rq</code>：当前日期；</li>
+<li><code>/dt</code>：日期 + 时间；</li>
+<li><code>/ed</code>：英文日期；</li>
+<li><code>N...</code>：数字日期输入 / 查询模式。</li>
+</ul>
+<p>其中 <code>/sj</code>、<code>/rq</code> 等前缀来自：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="l l-Scalar l-Scalar-Plain">key_binder/shijian_keys</span>
+</code></pre></div>
+<p>默认可以使用 <code>/</code> 和 <code>o</code> 两种引导方式。</p>
+<p>相关文档：<a href="../shijian.md">时间日期</a></p>
+<hr />
+<h3 id="q-vru">Q：大写 <code>V</code>、<code>R</code>、<code>U</code> 分别是什么？总记混。<a class="headerlink" href="#q-vru" title="Permanent link">&para;</a></h3>
+<p>记住它们是不同 Translator 的入口：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>V  → 超级计算器
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>R  → 数字 / 金额大写
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>U  → Unicode / 码点转换
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>N  → 日期输入
+</code></pre></div>
+<p>它们在 <code>recognizer/patterns</code> 中分别分发，不要把 <code>R</code> 的金额转换和 <code>N</code> 的日期模式混在一起。</p>
+<p>相关文档：<a href="../RUNV.md">魔法字母</a></p>
+<hr />
+<h3 id="q_15">Q：我知道一个符号长什么样，但不知道怎么输入，万象有搜索吗？<a class="headerlink" href="#q_15" title="Permanent link">&para;</a></h3>
+<p>有。</p>
+<p>超级符号支持精确和模糊两种思路，例如：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>/sym.arrow.r.double
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>/sym?arrow
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>/sym/arrow
+</code></pre></div>
+<p>Emoji 也使用类似规则：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>/emoji?heart
+</code></pre></div>
+<p>模糊模式可以按关键词搜索 Codex 名称，多关键词还能使用 <code>.</code> 组合。</p>
+<p>相关文档：<a href="../super_symbols.md">超级符号</a></p>
+<hr />
+<h3 id="q_16">Q：候选词后面输入反斜杠，为什么会出现括号包裹功能？<a class="headerlink" href="#q_16" title="Permanent link">&para;</a></h3>
+<p>这是万象的 <code>paired_symbols</code> / <code>super_filter</code> 能力。</p>
+<p>默认触发符：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nt">paired_symbols</span><span class="p">:</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">  </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="s">"\\"</span>
+</code></pre></div>
+<p>在已有候选的情况下输入触发符，再追加映射键，可以把当前候选包进：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>[]
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>【】
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>「」
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>《》
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>()
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>{}
+</code></pre></div>
+<p>等成对符号中。</p>
+<p>它不是普通标点替换，而是对当前候选进行包装。</p>
+<p>相关文档：<a href="../paired_symbols.md">成对符号</a></p>
+<hr />
+<h3 id="q-lua">Q：怎么判断是不是 Lua 没加载成功？<a class="headerlink" href="#q-lua" title="Permanent link">&para;</a></h3>
+<p>如果只是一个词打不出来，不足以说明 Lua 有问题。</p>
+<p>更有价值的现象是：<strong>多个彼此独立的 Lua 功能同时失效</strong>，例如时间、计算器、随机工具、超级符号等都没有反应。</p>
+<p>这时再结合部署 / 前端日志查看 Lua 模块加载错误，会比盯着某一个候选可靠得多。</p>
+<hr />
+<h3 id="q-prism">Q：为什么同一个词典，多个方案部署时还会各自出现 Prism？<a class="headerlink" href="#q-prism" title="Permanent link">&para;</a></h3>
+<p>因为<strong>词典和 Prism 不是同一个东西</strong>。</p>
+<p>词典提供“有哪些词、编码是什么”；Prism 更接近某个方案经过 <code>speller/algebra</code> 后的拼写映射结果。</p>
+<p>不同方案即使共用同一个 dictionary，只要拼写规则不同，也可能需要不同的 Prism。</p>
+<p>万象的主翻译器也预留了：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># prism: wanxiang</span>
+</code></pre></div>
+<p>用于明确指定共享 Prism 的场景。</p>
+<p>所以“词典一样”并不自动等于“所有方案只编译一个 Prism”。</p>
+<hr />
+<h3 id="q-custom_phrase">Q：为什么我的 <code>custom_phrase</code>、英文词、主词库候选优先级看起来不一样？<a class="headerlink" href="#q-custom_phrase" title="Permanent link">&para;</a></h3>
+<p>这是设计如此。</p>
+<p>不同 Translator 有各自的：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="l l-Scalar l-Scalar-Plain">initial_quality</span>
+</code></pre></div>
+<p>例如 <code>custom_phrase</code> 默认就是为了固定短语快速上屏，因此质量通常高于普通拼音、英文候选。</p>
+<p>不要只用“第三列权重”解释所有跨 Translator 排序；<strong>词条内部权重和 Translator 初始质量是两个层次。</strong></p>
+<hr />
+<h3 id="q_17">Q：输入一个不存在的三编码时，为什么偶尔还能吐出前面两码的单字？<a class="headerlink" href="#q_17" title="Permanent link">&para;</a></h3>
+<p>这是 <code>super_filter</code> 的轻量兜底逻辑。</p>
+<p>它会在特定情况下记录两码首选单字；当第三码导致完全无候选时，再把之前的单字作为 fallback 候选吐出来，避免输入突然“断掉”。</p>
+<p>这类候选属于兜底，不应误认为主词库真的存在对应三码。</p>
+<hr />
+<h3 id="q_18">Q：为什么我把候选包裹、动态时间占位之类功能删掉后，其他地方也开始异常？<a class="headerlink" href="#q_18" title="Permanent link">&para;</a></h3>
+<p>因为 <code>super_filter</code> 并不只负责一件事。</p>
+<p>当前实现中它同时承担：</p>
+<ul>
+<li>文本转义；</li>
+<li>动态时间占位；</li>
+<li>成对符号包裹；</li>
+<li>候选锁定；</li>
+<li>三码空候选兜底；</li>
+</ul>
+<p>等能力。</p>
+<p>如果你只是“不想用某一种效果”，优先关闭对应配置或映射，不要随手把整个过滤器从 <code>engine/filters</code> 删除。</p>
+<hr />
+<h2 id="_6">还没找到你的问题？<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">建议先这样描述问题</p>
+<p>尽量同时提供：<strong>平台 / Rime 前端、万象版本、Base / Pro / Lite / Pure、当前输入方案、复现输入、期望结果、实际结果、相关 custom 配置、部署或运行日志</strong>。<br />
+“不能用”“突然坏了”通常不足以定位问题，而一条完整的复现路径往往几分钟就能判断出问题在哪一层。</p>
+</div>
+<hr />
+<h2 id="faq">FAQ 编写说明<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
+<p>本页的问题池会持续吸收万象自身 Issue / Discussion，以及社区中反复出现的共性问题，有什么特定问题也可以进行PR共建</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024-2026 万象拼音 · 开源项目文档  Q群：11033572 / 11631066
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
