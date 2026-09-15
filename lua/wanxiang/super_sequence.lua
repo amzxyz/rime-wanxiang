@@ -587,7 +587,7 @@ local function apply_current_adjustment(state, input, entries, records)
 end
 
 ------------------------------------------------------------
--- 七、Processor（含 Ctrl 标记）
+-- 七、Processor
 ------------------------------------------------------------
 local P = {}
 
@@ -637,29 +637,9 @@ function P.func(key_event, env)
     local down = seq_keys.down
     local reset = seq_keys.reset
     local pin = seq_keys.pin
-    local is_ctrl_key = code == 0xffe3 or code == 0xffe4
 
     if wanxiang.is_function_mode(context) then
         curr_state.reset()
-        return wanxiang.RIME_PROCESS_RESULTS.kNoop
-    end
-
-    -- Ctrl 监听，用于开关可视化标记。
-    if is_ctrl_key then
-        if context.composition:empty() then
-            return wanxiang.RIME_PROCESS_RESULTS.kNoop
-        end
-
-        local current = context:get_option("_seq_show_markers")
-        local target = not key_event:release()
-
-        if current ~= target then
-            local segment = context.composition:back()
-            curr_state.highlight_index = segment.selected_index
-            context:set_option("_seq_show_markers", target)
-            process_adjustment(context)
-        end
-
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
@@ -671,10 +651,6 @@ function P.func(key_event, env)
         or not selected_candidate
         or not selected_candidate.text
     then
-        if context:get_option("_seq_show_markers") then
-            context:set_option("_seq_show_markers", false)
-        end
-
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
@@ -701,11 +677,6 @@ function P.func(key_event, env)
         curr_state.offset = nil
         curr_state.mode = curr_state.ADJUST_MODE.Pin
     else
-        if context:get_option("_seq_show_markers") then
-            context:set_option("_seq_show_markers", false)
-            process_adjustment(context)
-        end
-
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
 
@@ -717,7 +688,7 @@ function P.func(key_event, env)
 end
 
 ------------------------------------------------------------
--- 八、Filter（含标记可视化）
+-- 八、Filter
 ------------------------------------------------------------
 local F = {}
 
@@ -798,7 +769,6 @@ function F.func(input, env)
 
     local entries = {}
     local seen = {}
-    local show_markers = context:get_option("_seq_show_markers")
     local iterator, iterator_state, iterator_control = input:iter()
     local raw_position = 0
     local scanned = 0
@@ -834,25 +804,6 @@ function F.func(input, env)
     for position, entry in ipairs(ordered) do
         entry.final_position = position
         local candidate = entry.cand
-
-        if show_markers then
-            local record = records[entry.sort_key]
-
-            if record and record.active then
-                local diff = position - entry.raw_position
-                local mark
-
-                if diff > 0 then
-                    mark = "+" .. diff
-                elseif diff < 0 then
-                    mark = tostring(diff)
-                else
-                    mark = " ●"
-                end
-
-                candidate.comment = (candidate.comment or "") .. mark
-            end
-        end
 
         if not has_symbol and bottom_count < cache_limit then
             page_cache[#page_cache + 1] = clone_candidate(candidate)
