@@ -1,5 +1,18 @@
 # Changelog
 
+## [17.10.4](https://github.com/amzxyz/rime-wanxiang/compare/v17.10.3...v17.10.4) (2026-09-15)
+
+
+### 🐛 Bug 修复
+
+* 反查模式支持字本身声调筛选，同时支持声调回退 ([b153b51](https://github.com/amzxyz/rime-wanxiang/commit/b153b51115eeeed80d1f35151880fb6203d11ddd))
+
+
+### 🤖 持续集成
+
+* 对lite版本zi.dict去重 ([c2f00f4](https://github.com/amzxyz/rime-wanxiang/commit/c2f00f4fa90ae1d96d56656eb73d22d51a5bb095))
+* 对lite版本zi.dict去重 ([e84588a](https://github.com/amzxyz/rime-wanxiang/commit/e84588aa599be27d3330189b83c1449f0995f9d2))
+
 ## [17.10.3](https://github.com/amzxyz/rime-wanxiang/compare/v17.10.2...v17.10.3) (2026-09-15)
 
 
