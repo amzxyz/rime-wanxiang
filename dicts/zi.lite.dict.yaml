@@ -1,6 +1,3 @@
-# Rime dictionary
-# encoding: utf-8
-#https://github.com/amzxyz/RIME-LMDG
 ---
 name: zi.lite
 version: "LTS"
@@ -8,14 +5,10 @@ sort: by_weight
 ...
 啊	a	759839
 阿	a	11249
-啊	a	11024
 锕	a	1384
-啊	a	1356
 嗄	a	702
 腌	a	666
 吖	a	632
-啊	a	600
-啊	a	570
 呵	a	1
 錒	a	1
 𠼞	a	1
@@ -31,14 +24,12 @@ sort: by_weight
 碍	ai	909
 哀	ai	863
 矮	ai	819
-挨	ai	798
 隘	ai	565
 蔼	ai	543
 暧	ai	473
 皑	ai	457
 霭	ai	422
 嗳	ai	376
-嗳	ai	356
 嗌	ai	350
 砹	ai	335
 嫒	ai	324
@@ -66,7 +57,6 @@ sort: by_weight
 譪	ai	116
 餲	ai	113
 欸	ai	106
-嗳	ai	102
 瞹	ai	101
 溰	ai	85
 靉	ai	77
@@ -81,7 +71,6 @@ sort: by_weight
 銰	ai	40
 馤	ai	40
 凒	ai	40
-唉	ai	36
 皧	ai	30
 皚	ai	30
 堨	ai	26
@@ -98,9 +87,6 @@ sort: by_weight
 躷	ai	1
 𠊎	ai	1
 䶣	ai	1
-噯	ai	1
-噯	ai	1
-娾	ai	1
 嵦	ai	1
 欬	ai	1
 焥	ai	1
@@ -203,7 +189,6 @@ sort: by_weight
 犴	an	275
 盦	an	209
 𩽾	an	183
-垵	an	168
 菴	an	154
 闇	an	148
 鵪	an	140
@@ -241,21 +226,17 @@ sort: by_weight
 㟁	an	1
 䢿	an	1
 偣	an	1
-儑	an	1
 厈	an	1
 咹	an	1
-啽	an	1
 屽	an	1
 屵	an	1
 廠	an	1
 廣	an	1
-晻	an	1
 裺	an	1
 鉗	an	1
 隌	an	1
 鮟	an	1
 㛺	an	1
-㜝	an	1
 㜝	an	1
 㞄	an	1
 㫨	an	1
@@ -303,7 +284,6 @@ sort: by_weight
 𧩸	an	1
 𧫥	an	1
 𧫧	an	1
-𧫧	an	1
 𧮍	an	1
 𨲊	an	1
 𩅝	an	1
@@ -312,7 +292,6 @@ sort: by_weight
 𩭢	an	1
 𩹎	an	1
 𪁟	an	1
-𪒠	an	1
 𪒠	an	1
 𪘒	an	1
 昂	ang	2082
@@ -334,7 +313,6 @@ sort: by_weight
 䩕	ang	1
 䬓	ang	1
 䭺	ang	1
-䭹	ang	1
 䭹	ang	1
 𠵫	ang	1
 𠹃	ang	1
@@ -384,8 +362,6 @@ sort: by_weight
 奧	ao	182
 鼇	ao	171
 爊	ao	154
-拗	ao	145
-熬	ao	142
 鿫	ao	142
 翺	ao	138
 磝	ao	137
@@ -403,7 +379,6 @@ sort: by_weight
 慠	ao	47
 岰	ao	35
 驁	ao	28
-嶅	ao	22
 镺	ao	20
 擙	ao	20
 扷	ao	10
@@ -425,19 +400,13 @@ sort: by_weight
 㤇	ao	1
 䥝	ao	1
 墽	ao	1
-慠	ao	1
-抝	ao	1
-柪	ao	1
 泑	ao	1
 澚	ao	1
 熝	ao	1
 眑	ao	1
-眑	ao	1
 磽	ao	1
-軪	ao	1
 郩	ao	1
 鏕	ao	1
-鷔	ao	1
 㑃	ao	1
 㕭	ao	1
 㘬	ao	1
@@ -449,14 +418,12 @@ sort: by_weight
 㿰	ao	1
 䁱	ao	1
 䐿	ao	1
-䐿	ao	1
 䚫	ao	1
 䜒	ao	1
 䞝	ao	1
 䫜	ao	1
 䫨	ao	1
 䮯	ao	1
-䯠	ao	1
 䯠	ao	1
 䵅	ao	1
 𠱃	ao	1
@@ -467,7 +434,6 @@ sort: by_weight
 𢕟	ao	1
 𢧴	ao	1
 𢲷	ao	1
-𢳆	ao	1
 𢳆	ao	1
 𣊁	ao	1
 𣷫	ao	1
@@ -502,7 +468,6 @@ sort: by_weight
 把	ba	934740
 吧	ba	899095
 爸	ba	733503
-吧	ba	701153
 八	ba	522796
 扒	ba	43849
 捌	ba	1799
@@ -516,7 +481,6 @@ sort: by_weight
 叭	ba	673
 靶	ba	653
 跋	ba	567
-把	ba	560
 耙	ba	541
 伯	ba	449
 粑	ba	424
@@ -535,7 +499,6 @@ sort: by_weight
 朳	ba	206
 胈	ba	194
 哱	ba	180
-鲃	ba	164
 峇	ba	159
 抜	ba	156
 罷	ba	141
@@ -561,7 +524,6 @@ sort: by_weight
 魞	ba	68
 哵	ba	68
 炦	ba	50
-罢	ba	40
 詙	ba	23
 欛	ba	1
 鼥	ba	1
@@ -574,8 +536,6 @@ sort: by_weight
 扷	ba	1
 抪	ba	1
 皅	ba	1
-罷	ba	1
-魞	ba	1
 鮁	ba	1
 鿱	ba	1
 㖠	ba	1
@@ -663,7 +623,6 @@ sort: by_weight
 贁	bai	68
 猈	bai	50
 瓸	bai	38
-拜	bai	29
 竡	bai	1
 庍	bai	1
 㿟	bai	1
@@ -779,7 +738,6 @@ sort: by_weight
 𡌶	ban	1
 𡯘	ban	1
 𢲔	ban	1
-𢲔	ban	1
 𢴬	ban	1
 𣪂	ban	1
 𤡰	ban	1
@@ -837,7 +795,6 @@ sort: by_weight
 垹	bang	50
 幚	bang	38
 旁	bang	33
-榜	bang	23
 蜯	bang	23
 鞤	bang	18
 艕	bang	1
@@ -851,7 +808,6 @@ sort: by_weight
 並	bang	1
 挷	bang	1
 硥	bang	1
-縍	bang	1
 蛖	bang	1
 㔙	bang	1
 㙃	bang	1
@@ -971,7 +927,6 @@ sort: by_weight
 𡧖	bao	1
 剝	bao	1
 嚗	bao	1
-怉	bao	1
 犦	bao	1
 犳	bao	1
 砲	bao	1
@@ -1015,7 +970,6 @@ sort: by_weight
 𧘑	bao	1
 𧝘	bao	1
 𧭤	bao	1
-𧭤	bao	1
 𧵢	bao	1
 𨇅	bao	1
 𨚔	bao	1
@@ -1044,7 +998,6 @@ sort: by_weight
 悲	bei	3465
 碑	bei	887
 卑	bei	682
-背	bei	680
 惫	bei	545
 悖	bei	543
 狈	bei	525
@@ -1064,7 +1017,6 @@ sort: by_weight
 糒	bei	248
 鞁	bei	229
 棓	bei	214
-棓	bei	208
 𬇙	bei	194
 備	bei	192
 貝	bei	172
@@ -1091,7 +1043,6 @@ sort: by_weight
 偹	bei	60
 偝	bei	50
 犕	bei	38
-北	bei	37
 勃	bei	29
 珼	bei	1
 鵯	bei	1
@@ -1193,7 +1144,6 @@ sort: by_weight
 奔	ben	13008
 笨	ben	8331
 苯	ben	2435
-奔	ben	2386
 贲	ben	1003
 犇	ben	394
 锛	ben	355
@@ -1215,7 +1165,6 @@ sort: by_weight
 桳	ben	1
 喯	ben	1
 夲	ben	1
-泍	ben	1
 炃	ben	1
 蟦	ben	1
 賁	ben	1
@@ -1251,7 +1200,6 @@ sort: by_weight
 嘣	beng	399
 镚	beng	334
 甏	beng	270
-绷	beng	246
 琫	beng	236
 堋	beng	175
 祊	beng	164
@@ -1261,10 +1209,8 @@ sort: by_weight
 琣	beng	116
 菶	beng	113
 逬	beng	109
-綳	beng	104
 伻	beng	92
 塴	beng	82
-绷	beng	80
 奟	beng	75
 埲	beng	68
 閍	beng	60
@@ -1279,9 +1225,6 @@ sort: by_weight
 嗙	beng	1
 揼	beng	1
 甮	beng	1
-綳	beng	1
-繃	beng	1
-繃	beng	1
 跰	beng	1
 㑟	beng	1
 㛝	beng	1
@@ -1292,7 +1235,6 @@ sort: by_weight
 䑫	beng	1
 䙀	beng	1
 䩬	beng	1
-䭰	beng	1
 䭰	beng	1
 䳞	beng	1
 𠊵	beng	1
@@ -1328,7 +1270,6 @@ sort: by_weight
 𨆊	beng	1
 𨓁	beng	1
 𨕧	beng	1
-𨹹	beng	1
 𨹹	beng	1
 𨻱	beng	1
 𩂦	beng	1
@@ -1412,7 +1353,6 @@ sort: by_weight
 贲	bi	27
 咇	bi	14
 祕	bi	9
-芘	bi	1
 芘	bi	1
 筆	bi	1
 畢	bi	1
@@ -1519,11 +1459,9 @@ sort: by_weight
 紴	bi	1
 翍	bi	1
 肶	bi	1
-肶	bi	1
 胇	bi	1
 蓽	bi	1
 費	bi	1
-鎞	bi	1
 閈	bi	1
 闬	bi	1
 鶝	bi	1
@@ -1554,7 +1492,6 @@ sort: by_weight
 㹃	bi	1
 㻫	bi	1
 㻶	bi	1
-㻶	bi	1
 㿫	bi	1
 䀣	bi	1
 䁅	bi	1
@@ -1575,16 +1512,13 @@ sort: by_weight
 䚜	bi	1
 䟆	bi	1
 䟤	bi	1
-䠋	bi	1
 䣥	bi	1
 䦘	bi	1
 䧗	bi	1
 䨆	bi	1
-䨆	bi	1
 䩛	bi	1
 䪐	bi	1
 䫁	bi	1
-䫾	bi	1
 䫾	bi	1
 䬛	bi	1
 䭮	bi	1
@@ -1679,7 +1613,6 @@ sort: by_weight
 𦔆	bi	1
 𦠞	bi	1
 𦤫	bi	1
-𦤫	bi	1
 𦭼	bi	1
 𦯛	bi	1
 𦰙	bi	1
@@ -1695,7 +1628,6 @@ sort: by_weight
 𧥑	bi	1
 𧫤	bi	1
 𧲜	bi	1
-𧳠	bi	1
 𧳠	bi	1
 𧼱	bi	1
 𨅗	bi	1
@@ -1732,7 +1664,6 @@ sort: by_weight
 𪏺	bi	1
 𪐄	bi	1
 𫞾	bi	1
-𫠈	bi	1
 𫠈	bi	1
 变	bian	93924
 边	bian	34738
@@ -1805,7 +1736,6 @@ sort: by_weight
 炞	bian	1
 疺	bian	1
 籓	bian	1
-糄	bian	1
 臱	bian	1
 覵	bian	1
 諚	bian	1
@@ -1869,7 +1799,6 @@ sort: by_weight
 𧾫	bian	1
 𨐾	bian	1
 𨖠	bian	1
-𨖠	bian	1
 𨖾	bian	1
 𨘢	bian	1
 𨥧	bian	1
@@ -1913,7 +1842,6 @@ sort: by_weight
 蔈	biao	202
 幖	biao	182
 瘭	biao	174
-脿	biao	171
 灬	biao	161
 錶	biao	143
 髟	biao	134
@@ -1924,7 +1852,6 @@ sort: by_weight
 猋	biao	110
 鏢	biao	106
 飇	biao	103
-摽	biao	101
 褾	biao	91
 謤	biao	79
 鑣	biao	74
@@ -1948,7 +1875,6 @@ sort: by_weight
 㟽	biao	1
 僄	biao	1
 嫑	biao	1
-檦	biao	1
 篻	biao	1
 膔	biao	1
 麃	biao	1
@@ -1964,7 +1890,6 @@ sort: by_weight
 𠔂	biao	1
 𠚠	biao	1
 𠬪	biao	1
-𢅚	biao	1
 𢅚	biao	1
 𢒯	biao	1
 𢢼	biao	1
@@ -1992,7 +1917,6 @@ sort: by_weight
 𩽁	biao	1
 别	bie	66257
 憋	bie	3794
-别	bie	3718
 別	bie	1921
 鳖	bie	1656
 瘪	bie	1074
@@ -2003,7 +1927,6 @@ sort: by_weight
 鱉	bie	190
 蟞	bie	159
 莂	bie	159
-瘪	bie	144
 虌	bie	113
 龞	bie	101
 襒	bie	92
@@ -2015,8 +1938,6 @@ sort: by_weight
 䭱	bie	1
 柭	bie	1
 柲	bie	1
-癟	bie	1
-蟞	bie	1
 㔡	bie	1
 㢼	bie	1
 㭭	bie	1
@@ -2026,8 +1947,6 @@ sort: by_weight
 䇷	bie	1
 䉲	bie	1
 䋢	bie	1
-䋢	bie	1
-䏟	bie	1
 䘷	bie	1
 䳤	bie	1
 𠍯	bie	1
@@ -2110,7 +2029,6 @@ sort: by_weight
 砏	bin	1
 璸	bin	1
 顮	bin	1
-儐	bin	1
 頻	bin	1
 㟗	bin	1
 㯽	bin	1
@@ -2172,7 +2090,6 @@ sort: by_weight
 苪	bing	163
 棅	bing	160
 屏	bing	150
-并	bing	148
 靐	bing	148
 槟	bing	146
 鉼	bing	141
@@ -2185,7 +2102,6 @@ sort: by_weight
 偋	bing	60
 庰	bing	60
 鮩	bing	38
-蛃	bing	20
 眪	bing	1
 栤	bing	1
 誁	bing	1
@@ -2193,10 +2109,7 @@ sort: by_weight
 怲	bing	1
 䴵	bing	1
 𡹾	bing	1
-偋	bing	1
-寎	bing	1
 屛	bing	1
-幷	bing	1
 梹	bing	1
 檳	bing	1
 琕	bing	1
@@ -2261,7 +2174,6 @@ sort: by_weight
 泊	bo	533
 舶	bo	526
 渤	bo	516
-薄	bo	512
 菠	bo	510
 簸	bo	500
 膊	bo	492
@@ -2295,9 +2207,7 @@ sort: by_weight
 般	bo	165
 艴	bo	165
 嚗	bo	164
-柏	bo	160
 剝	bo	154
-簸	bo	150
 駁	bo	148
 撥	bo	139
 瓟	bo	137
@@ -2371,7 +2281,6 @@ sort: by_weight
 柭	bo	1
 檘	bo	1
 殕	bo	1
-癷	bo	1
 發	bo	1
 皪	bo	1
 礡	bo	1
@@ -2643,7 +2552,6 @@ sort: by_weight
 𩌏	bu	1
 𩏮	bu	1
 𩏵	bu	1
-𩏵	bu	1
 𩢕	bu	1
 𩣝	bu	1
 𩯏	bu	1
@@ -2694,20 +2602,16 @@ sort: by_weight
 婇	cai	162
 埰	cai	132
 啋	cai	127
-采	cai	126
 跴	cai	124
 倸	cai	119
 毝	cai	68
 縩	cai	50
 䌽	cai	1
 䐆	cai	1
-埰	cai	1
-寀	cai	1
 棌	cai	1
 㒲	cai	1
 㥒	cai	1
 䌨	cai	1
-䐆	cai	1
 䞗	cai	1
 䟀	cai	1
 䠕	cai	1
@@ -2776,7 +2680,6 @@ sort: by_weight
 嬠	can	1
 𥮾	can	1
 䘉	can	1
-傪	can	1
 嘇	can	1
 囋	can	1
 戔	can	1
@@ -2789,7 +2692,6 @@ sort: by_weight
 㜗	can	1
 㣓	can	1
 㥇	can	1
-㥇	can	1
 㦧	can	1
 㨻	can	1
 㱚	can	1
@@ -2797,7 +2699,6 @@ sort: by_weight
 㻮	can	1
 㽩	can	1
 㾜	can	1
-㿊	can	1
 㿊	can	1
 䉔	can	1
 䍼	can	1
@@ -2809,7 +2710,6 @@ sort: by_weight
 䛹	can	1
 䝳	can	1
 䣟	can	1
-䫮	can	1
 䫮	can	1
 䬫	can	1
 䳻	can	1
@@ -3062,14 +2962,11 @@ sort: by_weight
 差	cha	58820
 茶	cha	34722
 察	cha	2697
-差	cha	2643
 插	cha	2510
 叉	cha	2384
 岔	cha	509
 诧	cha	489
 茬	cha	480
-叉	cha	458
-叉	cha	441
 搽	cha	404
 碴	cha	368
 姹	cha	353
@@ -3083,7 +2980,6 @@ sort: by_weight
 锸	cha	274
 衩	cha	222
 𥻗	cha	200
-衩	cha	183
 檫	cha	176
 侘	cha	170
 垞	cha	163
@@ -3094,9 +2990,7 @@ sort: by_weight
 嚓	cha	124
 挿	cha	109
 詧	cha	109
-杈	cha	106
 揷	cha	105
-碴	cha	101
 詫	cha	97
 扠	cha	97
 靫	cha	82
@@ -3104,7 +2998,6 @@ sort: by_weight
 臿	cha	38
 楂	cha	30
 苴	cha	29
-叉	cha	24
 偛	cha	23
 秅	cha	1
 奼	cha	1
@@ -3124,7 +3017,6 @@ sort: by_weight
 捈	cha	1
 摖	cha	1
 査	cha	1
-紁	cha	1
 芆	cha	1
 鉏	cha	1
 鎈	cha	1
@@ -3151,7 +3043,6 @@ sort: by_weight
 䶪	cha	1
 𠇔	cha	1
 𠝞	cha	1
-𠞊	cha	1
 𠞊	cha	1
 𠽹	cha	1
 𡋨	cha	1
@@ -3183,7 +3074,6 @@ sort: by_weight
 𥑥	cha	1
 𥥸	cha	1
 𥫢	cha	1
-𦉆	cha	1
 𦉆	cha	1
 𦑈	cha	1
 𦑣	cha	1
@@ -3302,8 +3192,6 @@ sort: by_weight
 儳	chan	121
 冁	chan	117
 𬊤	chan	99
-儳	chan	94
-刬	chan	91
 產	chan	75
 産	chan	71
 禪	chan	68
@@ -3377,20 +3265,13 @@ sort: by_weight
 𡍌	chan	1
 𡎻	chan	1
 𡝫	chan	1
-剗	chan	1
 單	chan	1
-嘽	chan	1
-嚵	chan	1
 嶃	chan	1
 嶄	chan	1
 幝	chan	1
-幝	chan	1
-幨	chan	1
 摻	chan	1
 漸	chan	1
-燀	chan	1
 緂	chan	1
-繟	chan	1
 繵	chan	1
 苂	chan	1
 螹	chan	1
@@ -3413,7 +3294,6 @@ sort: by_weight
 䐮	chan	1
 䑎	chan	1
 䜛	chan	1
-䜛	chan	1
 䠨	chan	1
 䡪	chan	1
 䡲	chan	1
@@ -3428,9 +3308,7 @@ sort: by_weight
 䱿	chan	1
 䳻	chan	1
 䴼	chan	1
-䴼	chan	1
 䴺	chan	1
-䵐	chan	1
 䵐	chan	1
 𠁷	chan	1
 𠋷	chan	1
@@ -3525,7 +3403,6 @@ sort: by_weight
 常	chang	36860
 长	chang	36122
 场	chang	14815
-场	chang	5159
 尝	chang	2836
 唱	chang	2779
 厂	chang	2027
@@ -3573,7 +3450,6 @@ sort: by_weight
 焻	chang	166
 琩	chang	154
 倘	chang	152
-倡	chang	149
 鯧	chang	142
 甞	chang	136
 長	chang	134
@@ -3598,8 +3474,6 @@ sort: by_weight
 㫤	chang	1
 䠆	chang	1
 冐	chang	1
-場	chang	1
-塲	chang	1
 闛	chang	1
 龦	chang	1
 㙊	chang	1
@@ -3641,7 +3515,6 @@ sort: by_weight
 𩲹	chang	1
 𩳤	chang	1
 𪁺	chang	1
-𪁺	chang	1
 𪂇	chang	1
 𪄹	chang	1
 𪉨	chang	1
@@ -3658,7 +3531,6 @@ sort: by_weight
 嘲	chao	589
 钞	chao	559
 焯	chao	531
-吵	chao	505
 剿	chao	493
 耖	chao	235
 弨	chao	227
@@ -3691,9 +3563,7 @@ sort: by_weight
 鼂	chao	1
 㷅	chao	1
 劋	chao	1
-勦	chao	1
 摷	chao	1
-樔	chao	1
 窼	chao	1
 粆	chao	1
 綽	chao	1
@@ -3788,14 +3658,12 @@ sort: by_weight
 㯙	che	1
 㱌	che	1
 㵔	che	1
-㵔	che	1
 䋲	che	1
 䑲	che	1
 䒆	che	1
 䚢	che	1
 䛸	che	1
 䜠	che	1
-䞣	che	1
 䞣	che	1
 䤁	che	1
 䧪	che	1
@@ -3925,7 +3793,6 @@ sort: by_weight
 䑣	chen	1
 䒞	chen	1
 䚘	chen	1
-䜟	chen	1
 䞋	chen	1
 䟢	chen	1
 䠳	chen	1
@@ -3949,7 +3816,6 @@ sort: by_weight
 𥗒	chen	1
 𥞁	chen	1
 𥫹	chen	1
-𦁟	chen	1
 𦁟	chen	1
 𧆂	chen	1
 𧡬	chen	1
@@ -4009,7 +3875,6 @@ sort: by_weight
 牚	cheng	191
 庱	cheng	173
 盛	cheng	166
-牚	cheng	160
 稱	cheng	152
 乗	cheng	151
 誠	cheng	144
@@ -4054,13 +3919,11 @@ sort: by_weight
 挰	cheng	40
 樘	cheng	39
 净	cheng	34
-裎	cheng	33
 棦	cheng	30
 塖	cheng	30
 摚	cheng	18
 緽	cheng	18
 荿	cheng	18
-称	cheng	13
 鯎	cheng	3
 阷	cheng	3
 靗	cheng	3
@@ -4078,16 +3941,12 @@ sort: by_weight
 搶	cheng	1
 撜	cheng	1
 晿	cheng	1
-朾	cheng	1
 橖	cheng	1
 氶	cheng	1
 浧	cheng	1
 淨	cheng	1
 矃	cheng	1
 碀	cheng	1
-稱	cheng	1
-穪	cheng	1
-竀	cheng	1
 觕	cheng	1
 鎗	cheng	1
 鐺	cheng	1
@@ -4161,7 +4020,6 @@ sort: by_weight
 𨁎	cheng	1
 𨅝	cheng	1
 𨋬	cheng	1
-𨌤	cheng	1
 𨌤	cheng	1
 𨎋	cheng	1
 𨞐	cheng	1
@@ -4332,7 +4190,6 @@ sort: by_weight
 耛	chi	1
 菭	chi	1
 誃	chi	1
-誃	chi	1
 跢	chi	1
 迡	chi	1
 邌	chi	1
@@ -4369,9 +4226,7 @@ sort: by_weight
 䊼	chi	1
 䐤	chi	1
 䔟	chi	1
-䔟	chi	1
 䙙	chi	1
-䛂	chi	1
 䛂	chi	1
 䜄	chi	1
 䜉	chi	1
@@ -4455,7 +4310,6 @@ sort: by_weight
 𦏿	chi	1
 𦐉	chi	1
 𦑡	chi	1
-𦑡	chi	1
 𦔫	chi	1
 𦘪	chi	1
 𦙆	chi	1
@@ -4474,7 +4328,6 @@ sort: by_weight
 𧠫	chi	1
 𧤍	chi	1
 𧩚	chi	1
-𧩴	chi	1
 𧩴	chi	1
 𧩼	chi	1
 𧪡	chi	1
@@ -4533,7 +4386,6 @@ sort: by_weight
 宠	chong	2230
 崇	chong	1460
 憧	chong	560
-冲	chong	532
 舂	chong	430
 忡	chong	428
 铳	chong	359
@@ -4571,7 +4423,6 @@ sort: by_weight
 𧐍	chong	1
 樁	chong	1
 痋	chong	1
-衝	chong	1
 㓽	chong	1
 㓼	chong	1
 㧤	chong	1
@@ -4583,7 +4434,6 @@ sort: by_weight
 䘪	chong	1
 䝑	chong	1
 䡴	chong	1
-䳯	chong	1
 𠑙	chong	1
 𠑽	chong	1
 𠖥	chong	1
@@ -4606,8 +4456,6 @@ sort: by_weight
 𦑝	chong	1
 𦟛	chong	1
 𧘂	chong	1
-𧘂	chong	1
-𧝎	chong	1
 𧝎	chong	1
 𧩃	chong	1
 𧼙	chong	1
@@ -4705,7 +4553,6 @@ sort: by_weight
 檮	chou	1
 牰	chou	1
 盩	chou	1
-紬	chou	1
 詶	chou	1
 诪	chou	1
 跾	chou	1
@@ -4723,7 +4570,6 @@ sort: by_weight
 䀺	chou	1
 䇺	chou	1
 䊭	chou	1
-䌷	chou	1
 䌧	chou	1
 䓓	chou	1
 䔏	chou	1
@@ -4772,7 +4618,6 @@ sort: by_weight
 𨖬	chou	1
 𨞪	chou	1
 𨡑	chou	1
-𨡑	chou	1
 𨡲	chou	1
 𨤷	chou	1
 𩋄	chou	1
@@ -4784,7 +4629,6 @@ sort: by_weight
 出	chu	139717
 处	chu	33725
 除	chu	8983
-处	chu	8803
 初	chu	5210
 础	chu	1644
 触	chu	1034
@@ -4875,7 +4719,6 @@ sort: by_weight
 㛀	chu	1
 䠧	chu	1
 𨼪	chu	1
-処	chu	1
 慉	chu	1
 摢	chu	1
 榋	chu	1
@@ -4885,7 +4728,6 @@ sort: by_weight
 禇	chu	1
 耝	chu	1
 菆	chu	1
-處	chu	1
 蠩	chu	1
 觕	chu	1
 詘	chu	1
@@ -4914,7 +4756,6 @@ sort: by_weight
 䜴	chu	1
 䟞	chu	1
 䟣	chu	1
-䠂	chu	1
 䠂	chu	1
 䦌	chu	1
 䧁	chu	1
@@ -4991,11 +4832,9 @@ sort: by_weight
 𣹶	chua	1
 𤁫	chua	1
 揣	chuai	4453
-揣	chuai	2218
 踹	chuai	2173
 啜	chuai	1548
 搋	chuai	924
-揣	chuai	285
 嘬	chuai	107
 膪	chuai	101
 膗	chuai	95
@@ -5050,8 +4889,6 @@ sort: by_weight
 𨩴	chuan	1
 剶	chuan	1
 椯	chuan	1
-歂	chuan	1
-猭	chuan	1
 膞	chuan	1
 㯌	chuan	1
 㱛	chuan	1
@@ -5078,7 +4915,6 @@ sort: by_weight
 𧑝	chuan	1
 𨂦	chuan	1
 𨔡	chuan	1
-𨔡	chuan	1
 𨘼	chuan	1
 𪫖	chuan	1
 𪭶	chuan	1
@@ -5086,7 +4922,6 @@ sort: by_weight
 床	chuang	12668
 窗	chuang	4279
 闯	chuang	2340
-创	chuang	2293
 疮	chuang	1295
 怆	chuang	465
 創	chuang	423
@@ -5113,7 +4948,6 @@ sort: by_weight
 𪭢	chuang	1
 䃥	chuang	1
 𠳹	chuang	1
-創	chuang	1
 喠	chuang	1
 囪	chuang	1
 朣	chuang	1
@@ -5324,7 +5158,6 @@ sort: by_weight
 孎	chuo	1
 拺	chuo	1
 箹	chuo	1
-繛	chuo	1
 趠	chuo	1
 踀	chuo	1
 鋜	chuo	1
@@ -5385,8 +5218,6 @@ sort: by_weight
 堲	ci	235
 𫚖	ci	221
 粢	ci	182
-粢	ci	174
-刺	ci	157
 茈	ci	150
 詞	ci	141
 餈	ci	134
@@ -5415,8 +5246,6 @@ sort: by_weight
 濨	ci	50
 鮆	ci	50
 辝	ci	50
-跐	ci	26
-玼	ci	26
 蚝	ci	25
 縒	ci	1
 蛓	ci	1
@@ -5434,7 +5263,6 @@ sort: by_weight
 呰	ci	1
 啙	ci	1
 茲	ci	1
-㓨	ci	1
 㘂	ci	1
 㘹	ci	1
 㞖	ci	1
@@ -5453,7 +5281,6 @@ sort: by_weight
 䗹	ci	1
 䛐	ci	1
 䦻	ci	1
-䧳	ci	1
 䧳	ci	1
 䨏	ci	1
 䭣	ci	1
@@ -5822,7 +5649,6 @@ sort: by_weight
 漼	cui	269
 缞	cui	245
 崒	cui	244
-漼	cui	196
 隹	cui	196
 粋	cui	190
 伜	cui	172
@@ -5935,7 +5761,6 @@ sort: by_weight
 籿	cun	60
 𨚲	cun	1
 壿	cun	1
-澊	cun	1
 䍎	cun	1
 䞭	cun	1
 𡵭	cun	1
@@ -5990,7 +5815,6 @@ sort: by_weight
 酇	cuo	1
 鎈	cuo	1
 㟇	cuo	1
-㟇	cuo	1
 㭫	cuo	1
 㽨	cuo	1
 㿷	cuo	1
@@ -6002,9 +5826,7 @@ sort: by_weight
 䣜	cuo	1
 䥘	cuo	1
 䰈	cuo	1
-䰈	cuo	1
 䱜	cuo	1
-䴾	cuo	1
 䴾	cuo	1
 𠦏	cuo	1
 𢒐	cuo	1
@@ -6035,8 +5857,6 @@ sort: by_weight
 达	da	22478
 答	da	8400
 搭	da	5977
-答	da	5678
-打	da	5394
 嗒	da	488
 達	da	441
 妲	da	439
@@ -6056,13 +5876,11 @@ sort: by_weight
 垯	da	226
 溚	da	222
 鿎	da	185
-垯	da	183
 撘	da	171
 逹	da	170
 迚	da	156
 噠	da	148
 龘	da	148
-瘩	da	141
 呾	da	139
 沓	da	136
 汏	da	134
@@ -6074,7 +5892,6 @@ sort: by_weight
 眔	da	75
 咑	da	60
 鎝	da	50
-跶	da	39
 迖	da	38
 羍	da	23
 鐽	da	23
@@ -6094,7 +5911,6 @@ sort: by_weight
 憚	da	1
 荅	da	1
 鎉	da	1
-㙮	da	1
 㙮	da	1
 㜓	da	1
 㟷	da	1
@@ -6119,7 +5935,6 @@ sort: by_weight
 𡌩	da	1
 𡍲	da	1
 𡐿	da	1
-𡐿	da	1
 𡚻	da	1
 𢘇	da	1
 𢛁	da	1
@@ -6140,7 +5955,6 @@ sort: by_weight
 𦑻	da	1
 𦖿	da	1
 𦗧	da	1
-𦞂	da	1
 𦞂	da	1
 𦪭	da	1
 𦬹	da	1
@@ -6168,8 +5982,6 @@ sort: by_weight
 大	dai	530
 逮	dai	529
 怠	dai	516
-逮	dai	515
-待	dai	512
 殆	dai	460
 傣	dai	447
 岱	dai	411
@@ -6234,7 +6046,6 @@ sort: by_weight
 䲦	dai	1
 𠯈	dai	1
 𠯪	dai	1
-𠯪	dai	1
 𠰺	dai	1
 𠷂	dai	1
 𡧹	dai	1
@@ -6274,9 +6085,7 @@ sort: by_weight
 诞	dan	953
 耽	dan	594
 氮	dan	588
-担	dan	587
 石	dan	510
-担	dan	502
 郸	dan	476
 惮	dan	469
 疸	dan	463
@@ -6320,7 +6129,6 @@ sort: by_weight
 窞	dan	110
 鄲	dan	104
 禫	dan	99
-瘅	dan	94
 髧	dan	89
 撢	dan	85
 甔	dan	85
@@ -6340,7 +6148,6 @@ sort: by_weight
 匰	dan	48
 頕	dan	48
 砃	dan	40
-儋	dan	37
 伔	dan	30
 僤	dan	30
 癚	dan	30
@@ -6349,7 +6156,6 @@ sort: by_weight
 繵	dan	30
 狚	dan	30
 惔	dan	29
-亶	dan	26
 觛	dan	18
 嚪	dan	18
 蓞	dan	18
@@ -6370,15 +6176,12 @@ sort: by_weight
 唌	dan	1
 嘼	dan	1
 愖	dan	1
-擔	dan	1
 燀	dan	1
-癉	dan	1
 皽	dan	1
 訑	dan	1
 賧	dan	1
 醈	dan	1
 餤	dan	1
-馾	dan	1
 黮	dan	1
 黵	dan	1
 㔊	dan	1
@@ -6436,7 +6239,6 @@ sort: by_weight
 𤢏	dan	1
 𤲭	dan	1
 𤺺	dan	1
-𤺺	dan	1
 𥄦	dan	1
 𥐹	dan	1
 𥨎	dan	1
@@ -6457,7 +6259,6 @@ sort: by_weight
 𧂄	dan	1
 𧙇	dan	1
 𧡪	dan	1
-𧡪	dan	1
 𧭃	dan	1
 𧴸	dan	1
 𨂽	dan	1
@@ -6467,7 +6268,6 @@ sort: by_weight
 𩅾	dan	1
 𩈉	dan	1
 𩈊	dan	1
-𩈊	dan	1
 𩏥	dan	1
 𩕤	dan	1
 𩩧	dan	1
@@ -6476,7 +6276,6 @@ sort: by_weight
 𪒾	dan	1
 当	dang	417736
 党	dang	42907
-当	dang	42048
 档	dang	14811
 荡	dang	2282
 挡	dang	2167
@@ -6505,7 +6304,6 @@ sort: by_weight
 襠	dang	146
 铛	dang	142
 簹	dang	139
-挡	dang	134
 潒	dang	132
 愓	dang	132
 嵣	dang	126
@@ -6532,13 +6330,7 @@ sort: by_weight
 簜	dang	1
 瞊	dang	1
 偒	dang	1
-儅	dang	1
 崵	dang	1
-擋	dang	1
-當	dang	1
-當	dang	1
-當	dang	1
-闣	dang	1
 㜭	dang	1
 㼕	dang	1
 㽆	dang	1
@@ -6593,7 +6385,6 @@ sort: by_weight
 岛	dao	3247
 倒	dao	3182
 刀	dao	3022
-倒	dao	2870
 盗	dao	2726
 捣	dao	634
 叨	dao	623
@@ -6636,7 +6427,6 @@ sort: by_weight
 擣	dao	50
 翢	dao	50
 釖	dao	38
-叨	dao	32
 椡	dao	1
 衟	dao	1
 隝	dao	1
@@ -6660,12 +6450,10 @@ sort: by_weight
 㨶	dao	1
 㿒	dao	1
 䆃	dao	1
-䆃	dao	1
 䊭	dao	1
 䌦	dao	1
 䣣	dao	1
 䧂	dao	1
-䮻	dao	1
 䮻	dao	1
 䲽	dao	1
 𠐵	dao	1
@@ -6704,7 +6492,6 @@ sort: by_weight
 𫄝	dao	1
 的	de	48288412
 得	de	3325433
-得	de	3108656
 地	de	3046482
 德	de	61471
 嘚	de	1540
@@ -6724,7 +6511,6 @@ sort: by_weight
 㝶	de	1
 㥀	de	1
 㯖	de	1
-䙸	de	1
 䙸	de	1
 䙷	de	1
 𠮊	de	1
@@ -6765,7 +6551,6 @@ sort: by_weight
 墱	deng	168
 豋	deng	134
 鐙	deng	116
-蹬	deng	115
 澄	deng	111
 竳	deng	87
 嬁	deng	68
@@ -6774,7 +6559,6 @@ sort: by_weight
 僜	deng	1
 瀓	deng	1
 覴	deng	1
-鐙	deng	1
 㔁	deng	1
 㲪	deng	1
 䒭	deng	1
@@ -6814,7 +6598,6 @@ sort: by_weight
 敌	di	1702
 弟	di	811
 的	di	770
-的	di	680
 抵	di	666
 帝	di	657
 滴	di	650
@@ -6822,13 +6605,10 @@ sort: by_weight
 堤	di	629
 笛	di	622
 迪	di	613
-的	di	591
 缔	di	549
 涤	di	546
 提	di	542
 嘀	di	522
-嘀	di	514
-提	di	503
 狄	di	501
 邸	di	499
 睇	di	497
@@ -6867,7 +6647,6 @@ sort: by_weight
 茋	di	135
 遆	di	116
 䗖	di	109
-茋	di	95
 啲	di	88
 遞	di	70
 旳	di	66
@@ -6877,9 +6656,7 @@ sort: by_weight
 磾	di	46
 締	di	40
 俤	di	39
-氐	di	36
 坔	di	34
-镝	di	32
 隄	di	30
 滌	di	30
 啻	di	27
@@ -6958,10 +6735,8 @@ sort: by_weight
 扚	di	1
 揥	di	1
 楴	di	1
-楴	di	1
 樀	di	1
 櫂	di	1
-渧	di	1
 碮	di	1
 秪	di	1
 肑	di	1
@@ -6969,7 +6744,6 @@ sort: by_weight
 蓧	di	1
 蝭	di	1
 諟	di	1
-鏑	di	1
 鬄	di	1
 㐧	di	1
 㓳	di	1
@@ -6993,7 +6767,6 @@ sort: by_weight
 䞶	di	1
 䟡	di	1
 䢑	di	1
-䨀	di	1
 䨀	di	1
 䨤	di	1
 䨢	di	1
@@ -7155,8 +6928,6 @@ sort: by_weight
 痶	dian	1
 窴	dian	1
 鈿	dian	1
-顛	dian	1
-顛	dian	1
 㒹	dian	1
 㓠	dian	1
 㚲	dian	1
@@ -7168,7 +6939,6 @@ sort: by_weight
 㼭	dian	1
 䍄	dian	1
 䓦	dian	1
-䟍	dian	1
 䟍	dian	1
 䧃	dian	1
 䩇	dian	1
@@ -7217,7 +6987,6 @@ sort: by_weight
 𦽄	dian	1
 𧄺	dian	1
 𧍿	dian	1
-𧽍	dian	1
 𧽍	dian	1
 𨈀	dian	1
 𩂵	dian	1
@@ -7518,11 +7287,9 @@ sort: by_weight
 矴	ding	173
 椗	ding	170
 奵	ding	156
-钉	ding	154
 錠	ding	130
 帄	ding	130
 濎	ding	130
-酊	ding	127
 铤	ding	113
 鼑	ding	92
 飣	ding	92
@@ -7538,11 +7305,9 @@ sort: by_weight
 磸	ding	1
 𤐣	ding	1
 㝎	ding	1
-奵	ding	1
 掟	ding	1
 甼	ding	1
 艼	ding	1
-釘	ding	1
 㐉	ding	1
 㝪	ding	1
 㣔	ding	1
@@ -7643,8 +7408,6 @@ sort: by_weight
 㑈	dong	1
 𩧲	dong	1
 勭	dong	1
-娻	dong	1
-崠	dong	1
 揰	dong	1
 燑	dong	1
 狪	dong	1
@@ -7709,7 +7472,6 @@ sort: by_weight
 痘	dou	5606
 抖	dou	5493
 逗	dou	5218
-斗	dou	4957
 兜	dou	4709
 窦	dou	1714
 陡	dou	1628
@@ -7764,7 +7526,6 @@ sort: by_weight
 䄈	dou	1
 䕆	dou	1
 䕱	dou	1
-䕱	dou	1
 䛠	dou	1
 䬦	dou	1
 𠁁	dou	1
@@ -7798,7 +7559,6 @@ sort: by_weight
 𧡸	dou	1
 𧮡	dou	1
 𧯞	dou	1
-𧯞	dou	1
 𧯤	dou	1
 𧯠	dou	1
 𧱓	dou	1
@@ -7806,7 +7566,6 @@ sort: by_weight
 𨥪	dou	1
 𨪐	dou	1
 𨴜	dou	1
-𨶜	dou	1
 𨶜	dou	1
 𨷖	dou	1
 𨹜	dou	1
@@ -7833,7 +7592,6 @@ sort: by_weight
 妒	du	610
 堵	du	604
 镀	du	592
-肚	du	583
 嘟	du	571
 笃	du	515
 渎	du	505
@@ -8218,7 +7976,6 @@ sort: by_weight
 𥫱	dun	1
 𥭒	dun	1
 𦎧	dun	1
-𦎧	dun	1
 𦪔	dun	1
 𦰭	dun	1
 𦼿	dun	1
@@ -8286,7 +8043,6 @@ sort: by_weight
 鵽	duo	40
 嚉	duo	40
 敪	duo	30
-垛	duo	26
 隳	duo	25
 驮	duo	21
 椯	duo	18
@@ -8311,11 +8067,8 @@ sort: by_weight
 䤪	duo	1
 𡶲	duo	1
 仛	duo	1
-垜	duo	1
 媠	duo	1
 崜	duo	1
-挆	duo	1
-挅	duo	1
 杝	duo	1
 枤	duo	1
 柂	duo	1
@@ -8323,15 +8076,12 @@ sort: by_weight
 沲	duo	1
 硾	duo	1
 袳	duo	1
-跢	duo	1
 隓	duo	1
 馱	duo	1
 駄	duo	1
 鬌	duo	1
 鿳	duo	1
 㛆	duo	1
-㛆	duo	1
-㣞	duo	1
 㣞	duo	1
 㥩	duo	1
 㧷	duo	1
@@ -8346,9 +8096,7 @@ sort: by_weight
 䒳	duo	1
 䙃	duo	1
 䙤	duo	1
-䙤	duo	1
 䙟	duo	1
-䠤	duo	1
 䠤	duo	1
 䤻	duo	1
 䩔	duo	1
@@ -8396,10 +8144,8 @@ sort: by_weight
 𨉡	duo	1
 𨍏	duo	1
 𨦃	duo	1
-𨦃	duo	1
 𨬍	duo	1
 𨲉	duo	1
-𨹃	duo	1
 𨹃	duo	1
 𩃒	duo	1
 𩊜	duo	1
@@ -8422,7 +8168,6 @@ sort: by_weight
 恶	e	2507
 饿	e	2456
 鹅	e	1438
-恶	e	1398
 厄	e	584
 鳄	e	541
 阿	e	536
@@ -8498,7 +8243,6 @@ sort: by_weight
 堊	e	47
 鶚	e	42
 卾	e	42
-呃	e	36
 鑩	e	35
 吪	e	35
 砐	e	28
@@ -8541,13 +8285,10 @@ sort: by_weight
 㮙	e	1
 軛	e	1
 亞	e	1
-娿	e	1
 娾	e	1
 峉	e	1
-惡	e	1
 搕	e	1
 敋	e	1
-枙	e	1
 椏	e	1
 洝	e	1
 痷	e	1
@@ -8616,7 +8357,6 @@ sort: by_weight
 𢼛	e	1
 𣄰	e	1
 𣘨	e	1
-𣘨	e	1
 𣢛	e	1
 𣤲	e	1
 𣦵	e	1
@@ -8672,7 +8412,6 @@ sort: by_weight
 𩖀	e	1
 𩚬	e	1
 𩣣	e	1
-𩣣	e	1
 𩤩	e	1
 𩨮	e	1
 𩪤	e	1
@@ -8688,15 +8427,6 @@ sort: by_weight
 诶	ei	16658
 誒	ei	1264
 欸	ei	1238
-欸	ei	1213
-欸	ei	1188
-欸	ei	1128
-诶	ei	37
-诶	ei	35
-诶	ei	33
-誒	ei	31
-誒	ei	1
-誒	ei	1
 𡅅	ei	1
 恩	en	31821
 摁	en	18421
@@ -8820,7 +8550,6 @@ sort: by_weight
 𫝃	er	1
 发	fa	70710
 法	fa	50285
-发	fa	49279
 乏	fa	2608
 罚	fa	2555
 伐	fa	1428
@@ -8959,7 +8688,6 @@ sort: by_weight
 羳	fan	38
 匥	fan	38
 棥	fan	38
-氾	fan	34
 鱕	fan	23
 訉	fan	1
 舧	fan	1
@@ -8994,14 +8722,11 @@ sort: by_weight
 䉊	fan	1
 䉒	fan	1
 䊩	fan	1
-䊩	fan	1
 䋦	fan	1
 䌓	fan	1
 䐪	fan	1
 䕰	fan	1
-䕰	fan	1
 䛀	fan	1
-䡊	fan	1
 䡊	fan	1
 䣲	fan	1
 䪛	fan	1
@@ -9023,7 +8748,6 @@ sort: by_weight
 𢗰	fan	1
 𢬵	fan	1
 𢶃	fan	1
-𣔶	fan	1
 𣔶	fan	1
 𣳜	fan	1
 𤄑	fan	1
@@ -9075,7 +8799,6 @@ sort: by_weight
 芳	fang	626
 纺	fang	614
 坊	fang	607
-坊	fang	563
 妨	fang	507
 舫	fang	436
 枋	fang	428
@@ -9107,7 +8830,6 @@ sort: by_weight
 旊	fang	1
 堏	fang	1
 眪	fang	1
-趽	fang	1
 㑂	fang	1
 㕫	fang	1
 㤃	fang	1
@@ -9130,7 +8852,6 @@ sort: by_weight
 𩷸	fang	1
 𪕃	fang	1
 𪦀	fang	1
-𪦀	fang	1
 非	fei	121104
 费	fei	22681
 飞	fei	22227
@@ -9144,7 +8865,6 @@ sort: by_weight
 妃	fei	625
 诽	fei	580
 吠	fei	544
-菲	fei	528
 翡	fei	523
 斐	fei	506
 绯	fei	473
@@ -9178,7 +8898,6 @@ sort: by_weight
 渄	fei	122
 飝	fei	122
 誹	fei	119
-蜚	fei	113
 胐	fei	100
 萉	fei	93
 馡	fei	77
@@ -9192,8 +8911,6 @@ sort: by_weight
 疿	fei	48
 昲	fei	48
 騛	fei	48
-斐	fei	36
-痱	fei	36
 蜰	fei	30
 靟	fei	30
 曊	fei	30
@@ -9213,7 +8930,6 @@ sort: by_weight
 橃	fei	1
 橨	fei	1
 犻	fei	1
-疿	fei	1
 砩	fei	1
 笰	fei	1
 胏	fei	1
@@ -9293,7 +9009,6 @@ sort: by_weight
 𩇽	fei	1
 𩙲	fei	1
 𩡷	fei	1
-𩦎	fei	1
 𩯃	fei	1
 𩰲	fei	1
 𩰾	fei	1
@@ -9304,7 +9019,6 @@ sort: by_weight
 𪂏	fei	1
 𫂈	fei	1
 分	fen	319291
-分	fen	312905
 份	fen	202331
 粉	fen	30206
 纷	fen	2356
@@ -9382,13 +9096,9 @@ sort: by_weight
 𫔁	fen	1
 𦰛	fen	1
 坆	fen	1
-墳	fen	1
 梤	fen	1
-橨	fen	1
-獖	fen	1
 獖	fen	1
 砏	fen	1
-賁	fen	1
 賁	fen	1
 馚	fen	1
 鳻	fen	1
@@ -9430,8 +9140,6 @@ sort: by_weight
 𤆶	fen	1
 𤔟	fen	1
 𤖘	fen	1
-𤖘	fen	1
-𤗸	fen	1
 𤗸	fen	1
 𤘝	fen	1
 𤰪	fen	1
@@ -9461,7 +9169,6 @@ sort: by_weight
 𩰟	fen	1
 𩸂	fen	1
 𩿈	fen	1
-𩿈	fen	1
 𫔃	fen	1
 风	feng	27384
 丰	feng	3240
@@ -9476,7 +9183,6 @@ sort: by_weight
 蜂	feng	643
 讽	feng	637
 枫	feng	630
-缝	feng	623
 冯	feng	610
 烽	feng	474
 俸	feng	459
@@ -9531,7 +9237,6 @@ sort: by_weight
 溄	feng	60
 碸	feng	50
 蘴	feng	50
-风	feng	39
 賵	feng	38
 鴌	feng	38
 艂	feng	38
@@ -9546,16 +9251,11 @@ sort: by_weight
 䏎	feng	1
 𩙣	feng	1
 埄	feng	1
-夆	feng	1
-桻	feng	1
 渢	feng	1
 炐	feng	1
 熢	feng	1
-縫	feng	1
 莑	feng	1
 豊	feng	1
-風	feng	1
-風	feng	1
 㒥	feng	1
 㜂	feng	1
 㠦	feng	1
@@ -9579,13 +9279,11 @@ sort: by_weight
 𢇫	feng	1
 𢐴	feng	1
 𢓱	feng	1
-𢓱	feng	1
 𢪋	feng	1
 𣿝	feng	1
 𤖀	feng	1
 𤣖	feng	1
 𥊒	feng	1
-𥍮	feng	1
 𥍮	feng	1
 𥛝	feng	1
 𥷜	feng	1
@@ -9601,7 +9299,6 @@ sort: by_weight
 𨲫	feng	1
 𨺢	feng	1
 𩉧	feng	1
-𩊩	feng	1
 𩊩	feng	1
 𩋮	feng	1
 𩐯	feng	1
@@ -9712,11 +9409,8 @@ sort: by_weight
 绂	fu	167
 拂	fu	162
 郛	fu	150
-服	fu	149
 黼	fu	147
-夫	fu	145
 脯	fu	143
-父	fu	139
 鲋	fu	131
 稃	fu	120
 桴	fu	102
@@ -9729,7 +9423,6 @@ sort: by_weight
 怫	fu	65
 呒	fu	65
 宓	fu	54
-跗	fu	36
 𫖯	fu	33
 芣	fu	23
 鄜	fu	8
@@ -9747,9 +9440,6 @@ sort: by_weight
 㳇	fu	1
 垺	fu	1
 枹	fu	1
-榑	fu	1
-洑	fu	1
-琈	fu	1
 䓛	fu	1
 復	fu	1
 複	fu	1
@@ -9887,31 +9577,21 @@ sort: by_weight
 䔰	fu	1
 䱐	fu	1
 𤙭	fu	1
-姇	fu	1
 婏	fu	1
 帗	fu	1
 彿	fu	1
 払	fu	1
 抙	fu	1
 捊	fu	1
-捬	fu	1
 暊	fu	1
-枎	fu	1
-柎	fu	1
-柎	fu	1
 柭	fu	1
 璷	fu	1
 畗	fu	1
 箁	fu	1
-粰	fu	1
-紨	fu	1
 纀	fu	1
 胕	fu	1
-胕	fu	1
 蓲	fu	1
-蚥	fu	1
 袚	fu	1
-褔	fu	1
 豧	fu	1
 費	fu	1
 軵	fu	1
@@ -9931,9 +9611,7 @@ sort: by_weight
 㚕	fu	1
 㜑	fu	1
 㠅	fu	1
-㠅	fu	1
 㡝	fu	1
-㤔	fu	1
 㤔	fu	1
 㤱	fu	1
 㩤	fu	1
@@ -9951,11 +9629,9 @@ sort: by_weight
 䄮	fu	1
 䋨	fu	1
 䋹	fu	1
-䋹	fu	1
 䌗	fu	1
 䌿	fu	1
 䍌	fu	1
-䍖	fu	1
 䍖	fu	1
 䎅	fu	1
 䎔	fu	1
@@ -9965,7 +9641,6 @@ sort: by_weight
 䒄	fu	1
 䓏	fu	1
 䓵	fu	1
-䔰	fu	1
 䕎	fu	1
 䗄	fu	1
 䘀	fu	1
@@ -9980,7 +9655,6 @@ sort: by_weight
 䟮	fu	1
 䠵	fu	1
 䡍	fu	1
-䡍	fu	1
 䥤	fu	1
 䦣	fu	1
 䧞	fu	1
@@ -9989,9 +9663,7 @@ sort: by_weight
 䩉	fu	1
 䪔	fu	1
 䪙	fu	1
-䪙	fu	1
 䫍	fu	1
-䫝	fu	1
 䫝	fu	1
 䬪	fu	1
 䭮	fu	1
@@ -10142,9 +9814,7 @@ sort: by_weight
 𩅿	fu	1
 𩉽	fu	1
 𩋟	fu	1
-𩋟	fu	1
 𩋨	fu	1
-𩌏	fu	1
 𩌏	fu	1
 𩍏	fu	1
 𩎛	fu	1
@@ -10161,7 +9831,6 @@ sort: by_weight
 𩢿	fu	1
 𩣜	fu	1
 𩣸	fu	1
-𩬙	fu	1
 𩬙	fu	1
 𩭺	fu	1
 𩳎	fu	1
@@ -10197,11 +9866,9 @@ sort: by_weight
 伽	ga	1813
 旮	ga	945
 尕	ga	452
-嘎	ga	321
 钆	ga	289
 尜	ga	164
 轧	ga	91
-嘎	ga	60
 戛	ga	38
 胳	ga	35
 夹	ga	33
@@ -10209,8 +9876,6 @@ sort: by_weight
 玍	ga	1
 魀	ga	1
 錷	ga	1
-嘠	ga	1
-嘠	ga	1
 夾	ga	1
 朒	ga	1
 軋	ga	1
@@ -10290,13 +9955,11 @@ sort: by_weight
 𩕭	gai	1
 干	gan	68151
 感	gan	35279
-干	gan	34573
 敢	gan	30290
 赶	gan	13364
 甘	gan	2284
 肝	gan	2169
 杆	gan	2060
-杆	gan	1957
 橄	gan	621
 赣	gan	613
 竿	gan	589
@@ -10359,7 +10022,6 @@ sort: by_weight
 澸	gan	1
 玵	gan	1
 篢	gan	1
-簳	gan	1
 芉	gan	1
 龩	gan	1
 龫	gan	1
@@ -10407,8 +10069,6 @@ sort: by_weight
 𥾍	gan	1
 𦪧	gan	1
 𦼮	gan	1
-𦼮	gan	1
-𦾮	gan	1
 𦾮	gan	1
 𧆐	gan	1
 𧹳	gan	1
@@ -10429,7 +10089,6 @@ sort: by_weight
 𪉦	gan	1
 𪉿	gan	1
 𪊄	gan	1
-𪊄	gan	1
 𪊇	gan	1
 𪔆	gan	1
 𪚬	gan	1
@@ -10443,7 +10102,6 @@ sort: by_weight
 杠	gang	1337
 缸	gang	1270
 肛	gang	1031
-杠	gang	979
 罡	gang	363
 堽	gang	332
 冮	gang	331
@@ -10457,7 +10115,6 @@ sort: by_weight
 綱	gang	200
 釭	gang	183
 崗	gang	174
-岗	gang	145
 扛	gang	142
 戆	gang	120
 堈	gang	119
@@ -10469,19 +10126,15 @@ sort: by_weight
 戅	gang	97
 焹	gang	75
 犅	gang	75
-钢	gang	23
 疘	gang	1
 鎠	gang	1
 㧏	gang	1
 䴚	gang	1
 掆	gang	1
-崗	gang	1
 戇	gang	1
-掆	gang	1
 摃	gang	1
 犺	gang	1
 碙	gang	1
-鋼	gang	1
 阬	gang	1
 㟠	gang	1
 㟵	gang	1
@@ -10494,7 +10147,6 @@ sort: by_weight
 𡇬	gang	1
 𢭈	gang	1
 𢰌	gang	1
-𣗵	gang	1
 𣗵	gang	1
 𣦐	gang	1
 𤭛	gang	1
@@ -10537,7 +10189,6 @@ sort: by_weight
 櫜	gao	159
 镐	gao	146
 峼	gao	141
-膏	gao	131
 鋯	gao	116
 餻	gao	116
 縞	gao	113
@@ -10614,15 +10265,11 @@ sort: by_weight
 葛	ge	877
 阁	ge	592
 鸽	ge	586
-葛	ge	580
 搁	ge	578
 戈	ge	558
 疙	ge	541
 胳	ge	533
 蛤	ge	529
-个	ge	526
-搁	ge	511
-胳	ge	466
 骼	ge	440
 铬	ge	421
 嗝	ge	408
@@ -10648,7 +10295,6 @@ sort: by_weight
 搿	ge	185
 鴿	ge	179
 閤	ge	173
-各	ge	165
 槅	ge	156
 鎶	ge	144
 鿔	ge	126
@@ -10693,17 +10339,14 @@ sort: by_weight
 𥺊	ge	1
 亇	ge	1
 佫	ge	1
-個	ge	1
 吤	ge	1
 嘅	ge	1
 扢	ge	1
-擱	ge	1
 笴	ge	1
 紇	ge	1
 臈	ge	1
 茖	ge	1
 蓋	ge	1
-鉻	ge	1
 鉻	ge	1
 鎑	ge	1
 鎘	ge	1
@@ -10731,12 +10374,10 @@ sort: by_weight
 䛿	ge	1
 䨣	ge	1
 䩐	ge	1
-䩐	ge	1
 䪂	ge	1
 䪺	ge	1
 䫦	ge	1
 䬣	ge	1
-𠇂	ge	1
 𠇂	ge	1
 𠛊	ge	1
 𠛢	ge	1
@@ -10814,7 +10455,6 @@ sort: by_weight
 茛	gen	1474
 艮	gen	862
 亙	gen	38
-艮	gen	35
 揯	gen	23
 搄	gen	1
 㫔	gen	1
@@ -10830,7 +10470,6 @@ sort: by_weight
 𩒝	gen	1
 𩓓	gen	1
 更	geng	394764
-更	geng	386868
 耕	geng	2474
 梗	geng	2227
 庚	geng	1946
@@ -10845,7 +10484,6 @@ sort: by_weight
 鹒	geng	233
 𬒔	geng	211
 暅	geng	194
-𬒔	geng	143
 畊	geng	139
 颈	geng	136
 賡	geng	136
@@ -10871,10 +10509,7 @@ sort: by_weight
 䱭	geng	1
 恆	geng	1
 絙	geng	1
-緪	geng	1
-縆	geng	1
 頸	geng	1
-㪅	geng	1
 㪅	geng	1
 㹹	geng	1
 㾘	geng	1
@@ -10920,7 +10555,6 @@ sort: by_weight
 功	gong	4729
 攻	gong	4492
 宫	gong	4267
-供	gong	784
 巩	gong	732
 拱	gong	718
 贡	gong	701
@@ -10935,7 +10569,6 @@ sort: by_weight
 觥	gong	374
 珙	gong	358
 唝	gong	345
-唝	gong	320
 䢼	gong	244
 宮	gong	207
 栱	gong	193
@@ -10955,7 +10588,6 @@ sort: by_weight
 杛	gong	38
 拲	gong	38
 躳	gong	38
-共	gong	22
 輁	gong	1
 匑	gong	1
 幊	gong	1
@@ -10974,9 +10606,6 @@ sort: by_weight
 𩃙	gong	1
 侊	gong	1
 嗊	gong	1
-嗊	gong	1
-愩	gong	1
-慐	gong	1
 慐	gong	1
 澒	gong	1
 熕	gong	1
@@ -11072,7 +10701,6 @@ sort: by_weight
 岣	gou	338
 觏	gou	332
 鞲	gou	324
-枸	gou	285
 遘	gou	275
 芶	gou	257
 笱	gou	229
@@ -11083,7 +10711,6 @@ sort: by_weight
 構	gou	189
 溝	gou	170
 搆	gou	162
-勾	gou	149
 句	gou	145
 鉤	gou	145
 鈎	gou	137
@@ -11101,7 +10728,6 @@ sort: by_weight
 豿	gou	48
 褠	gou	40
 煹	gou	30
-芶	gou	27
 拘	gou	23
 覯	gou	18
 袧	gou	1
@@ -11157,7 +10783,6 @@ sort: by_weight
 𧵈	gou	1
 𨩦	gou	1
 𪀊	gou	1
-𪀊	gou	1
 𪃺	gou	1
 𪚭	gou	1
 𪜩	gou	1
@@ -11179,8 +10804,6 @@ sort: by_weight
 沽	gu	582
 姑	gu	557
 贾	gu	546
-骨	gu	541
-估	gu	529
 毂	gu	464
 蛊	gu	460
 箍	gu	440
@@ -11237,7 +10860,6 @@ sort: by_weight
 泒	gu	56
 鈷	gu	56
 糓	gu	45
-蛄	gu	40
 棝	gu	32
 軱	gu	32
 濲	gu	13
@@ -11283,7 +10905,6 @@ sort: by_weight
 㧽	gu	1
 㯏	gu	1
 㼋	gu	1
-㼋	gu	1
 㽽	gu	1
 㾶	gu	1
 䀇	gu	1
@@ -11293,14 +10914,12 @@ sort: by_weight
 䅽	gu	1
 䊺	gu	1
 䍍	gu	1
-䍍	gu	1
 䍛	gu	1
 䐨	gu	1
 䐻	gu	1
 䓢	gu	1
 䜼	gu	1
 䡩	gu	1
-䮩	gu	1
 䮩	gu	1
 䵻	gu	1
 䶜	gu	1
@@ -11315,7 +10934,6 @@ sort: by_weight
 𢝳	gu	1
 𢡇	gu	1
 𢪏	gu	1
-𢫈	gu	1
 𢫈	gu	1
 𣀐	gu	1
 𣖫	gu	1
@@ -11393,7 +11011,6 @@ sort: by_weight
 緺	gua	119
 颳	gua	116
 括	gua	113
-呱	gua	92
 剮	gua	92
 絓	gua	82
 踻	gua	75
@@ -11487,13 +11104,11 @@ sort: by_weight
 馆	guan	2603
 惯	guan	2474
 冠	guan	2350
-冠	guan	2232
 灌	guan	881
 贯	guan	613
 罐	guan	593
 棺	guan	582
 莞	guan	574
-观	guan	574
 鹳	guan	488
 盥	guan	455
 倌	guan	442
@@ -11537,7 +11152,6 @@ sort: by_weight
 鱞	guan	55
 鏆	guan	48
 潅	guan	48
-莞	guan	37
 躀	guan	30
 斡	guan	23
 癏	guan	18
@@ -11558,9 +11172,6 @@ sort: by_weight
 璭	guan	1
 矝	guan	1
 綸	guan	1
-覌	guan	1
-観	guan	1
-觀	guan	1
 閞	guan	1
 鸞	guan	1
 䂯	guan	1
@@ -11618,7 +11229,6 @@ sort: by_weight
 𫔢	guan	1
 𫞞	guan	1
 𫟜	guan	1
-𫟜	guan	1
 𫩙	guan	1
 光	guang	55653
 广	guang	21893
@@ -11632,7 +11242,6 @@ sort: by_weight
 桄	guang	418
 珖	guang	273
 垙	guang	260
-桄	guang	171
 𨐈	guang	151
 撗	guang	116
 僙	guang	109
@@ -11652,8 +11261,6 @@ sort: by_weight
 俇	guang	1
 輄	guang	1
 㫛	guang	1
-廣	guang	1
-廣	guang	1
 挄	guang	1
 硄	guang	1
 㤮	guang	1
@@ -11779,7 +11386,6 @@ sort: by_weight
 匭	gui	1
 㧪	gui	1
 𣷾	gui	1
-攱	gui	1
 槣	gui	1
 樻	gui	1
 櫰	gui	1
@@ -11803,7 +11409,6 @@ sort: by_weight
 㲹	gui	1
 㸵	gui	1
 䁛	gui	1
-䁛	gui	1
 䃽	gui	1
 䅅	gui	1
 䇈	gui	1
@@ -11813,7 +11418,6 @@ sort: by_weight
 䐴	gui	1
 䙆	gui	1
 䝿	gui	1
-䞈	gui	1
 䞈	gui	1
 䞨	gui	1
 䠩	gui	1
@@ -11826,7 +11430,6 @@ sort: by_weight
 䳏	gui	1
 𠁴	gui	1
 𠐽	gui	1
-𠐽	gui	1
 𠜾	gui	1
 𠪑	gui	1
 𠱓	gui	1
@@ -11834,7 +11437,6 @@ sort: by_weight
 𡃩	gui	1
 𡌲	gui	1
 𡗤	gui	1
-𡧭	gui	1
 𡧭	gui	1
 𡬂	gui	1
 𡷺	gui	1
@@ -11862,7 +11464,6 @@ sort: by_weight
 𤿡	gui	1
 𥇳	gui	1
 𥈸	gui	1
-𥍁	gui	1
 𥍁	gui	1
 𥍨	gui	1
 𥎛	gui	1
@@ -11935,10 +11536,8 @@ sort: by_weight
 㫎	gun	1
 㯻	gun	1
 䃂	gun	1
-䃂	gun	1
 䎾	gun	1
 䙛	gun	1
-䜇	gun	1
 䜇	gun	1
 䵪	gun	1
 𠃌	gun	1
@@ -11964,7 +11563,6 @@ sort: by_weight
 锅	guo	4571
 郭	guo	2526
 裹	guo	2399
-过	guo	614
 過	guo	558
 帼	guo	542
 國	guo	542
@@ -12010,7 +11608,6 @@ sort: by_weight
 幗	guo	38
 掴	guo	32
 褁	guo	23
-过	guo	22
 慖	guo	1
 蟈	guo	1
 嘓	guo	1
@@ -12029,9 +11626,6 @@ sort: by_weight
 矌	guo	1
 簂	guo	1
 腂	guo	1
-過	guo	1
-過	guo	1
-鍋	guo	1
 鐹	guo	1
 㕵	guo	1
 㖪	guo	1
@@ -12113,8 +11707,6 @@ sort: by_weight
 𬪇	guo	1
 哈	ha	51801
 蛤	ha	2349
-哈	ha	2302
-哈	ha	2255
 铪	ha	1110
 虾	ha	32
 奤	ha	6
@@ -12224,7 +11816,6 @@ sort: by_weight
 悍	han	593
 焊	han	580
 翰	han	568
-汗	han	566
 捍	han	556
 憨	han	544
 憾	han	532
@@ -12254,8 +11845,6 @@ sort: by_weight
 犴	han	170
 蔊	han	170
 㘎	han	167
-㘎	han	162
-蔊	han	151
 漢	han	146
 韓	han	128
 鋡	han	114
@@ -12321,7 +11910,6 @@ sort: by_weight
 𠵸	han	1
 仠	han	1
 厈	han	1
-唅	han	1
 幹	han	1
 忓	han	1
 攼	han	1
@@ -12330,10 +11918,8 @@ sort: by_weight
 汵	han	1
 澣	han	1
 笒	han	1
-肣	han	1
 鈐	han	1
 闞	han	1
-馯	han	1
 魽	han	1
 鳱	han	1
 鿰	han	1
@@ -12353,13 +11939,11 @@ sort: by_weight
 㵄	han	1
 㵎	han	1
 㶰	han	1
-㸁	han	1
 㼨	han	1
 㽉	han	1
 䁔	han	1
 䈄	han	1
 䌍	han	1
-䍐	han	1
 䍑	han	1
 䎏	han	1
 䎯	han	1
@@ -12367,19 +11951,16 @@ sort: by_weight
 䏷	han	1
 䐄	han	1
 䓿	han	1
-䓿	han	1
 䕿	han	1
 䖔	han	1
 䗙	han	1
 䗣	han	1
 䘶	han	1
 䛞	han	1
-䛞	han	1
 䣻	han	1
 䤴	han	1
 䥁	han	1
 䨡	han	1
-䮧	han	1
 䮧	han	1
 䶃	han	1
 𠗙	han	1
@@ -12393,7 +11974,6 @@ sort: by_weight
 𠳾	han	1
 𠹄	han	1
 𠽦	han	1
-𠿑	han	1
 𠿑	han	1
 𡁀	han	1
 𡇜	han	1
@@ -12452,7 +12032,6 @@ sort: by_weight
 𧯘	han	1
 𧰪	han	1
 𧵊	han	1
-𧵊	han	1
 𧹣	han	1
 𧾔	han	1
 𨁄	han	1
@@ -12504,8 +12083,6 @@ sort: by_weight
 㤚	hang	1
 妔	hang	1
 忼	hang	1
-忼	hang	1
-笐	hang	1
 裄	hang	1
 邟	hang	1
 䀪	hang	1
@@ -12540,7 +12117,6 @@ sort: by_weight
 𪗜	hang	1
 好	hao	6391074
 号	hao	36961
-好	hao	36221
 豪	hao	2631
 毫	hao	2368
 耗	hao	1534
@@ -12549,7 +12125,6 @@ sort: by_weight
 蒿	hao	570
 蚝	hao	559
 嚎	hao	559
-号	hao	555
 镐	hao	513
 壕	hao	505
 濠	hao	503
@@ -12610,7 +12185,6 @@ sort: by_weight
 暠	hao	1
 滜	hao	1
 藃	hao	1
-號	hao	1
 㕺	hao	1
 㘪	hao	1
 㚪	hao	1
@@ -12632,11 +12206,9 @@ sort: by_weight
 𠚃	hao	1
 𠢕	hao	1
 𡐒	hao	1
-𡐒	hao	1
 𡚌	hao	1
 𡚽	hao	1
 𡠖	hao	1
-𡥆	hao	1
 𡥆	hao	1
 𡽝	hao	1
 𢫩	hao	1
@@ -12693,11 +12265,7 @@ sort: by_weight
 褐	he	656
 赫	he	650
 盒	he	617
-荷	he	586
-和	he	577
-喝	he	577
 吓	he	572
-何	he	503
 盖	he	481
 颌	he	460
 劾	he	447
@@ -12765,7 +12333,6 @@ sort: by_weight
 欱	he	35
 螛	he	35
 魺	he	35
-何	he	30
 敆	he	28
 柇	he	20
 澕	he	20
@@ -12791,14 +12358,11 @@ sort: by_weight
 㿥	he	1
 䒩	he	1
 䫘	he	1
-咊	he	1
 咼	he	1
 哬	he	1
 喛	he	1
 噈	he	1
 嚇	he	1
-惒	he	1
-抲	he	1
 朅	he	1
 猲	he	1
 蓋	he	1
@@ -12811,11 +12375,9 @@ sort: by_weight
 㓭	he	1
 㔠	he	1
 㕡	he	1
-㕡	he	1
 㕰	he	1
 㙳	he	1
 㚘	he	1
-㥺	he	1
 㥺	he	1
 㦦	he	1
 㪃	he	1
@@ -12844,7 +12406,6 @@ sort: by_weight
 䢗	he	1
 䢔	he	1
 䪚	he	1
-䮤	he	1
 䮤	he	1
 䯨	he	1
 䳚	he	1
@@ -12970,7 +12531,6 @@ sort: by_weight
 鞎	hen	1
 㯊	hen	1
 噷	hen	1
-噷	hen	1
 䓳	hen	1
 𦚣	hen	1
 哼	heng	9137
@@ -12978,7 +12538,6 @@ sort: by_weight
 横	heng	2677
 恒	heng	2409
 亨	heng	2065
-横	heng	1120
 桁	heng	440
 蘅	heng	370
 橫	heng	348
@@ -12998,10 +12557,7 @@ sort: by_weight
 悙	heng	1
 涥	heng	1
 㶇	heng	1
-啈	heng	1
-悙	heng	1
 撗	heng	1
-橫	heng	1
 㔰	heng	1
 䄓	heng	1
 䒛	heng	1
@@ -13034,7 +12590,6 @@ sort: by_weight
 烘	hong	576
 哄	hong	547
 泓	hong	545
-哄	hong	519
 薨	hong	432
 讧	hong	419
 訇	hong	405
@@ -13066,7 +12621,6 @@ sort: by_weight
 闂	hong	153
 焢	hong	151
 鈜	hong	151
-哄	hong	150
 霟	hong	139
 灴	hong	136
 閎	hong	134
@@ -13100,7 +12654,6 @@ sort: by_weight
 宖	hong	50
 潂	hong	38
 唝	hong	37
-蕻	hong	32
 浲	hong	23
 撔	hong	23
 耾	hong	23
@@ -13117,7 +12670,6 @@ sort: by_weight
 𡺭	hong	1
 𨥺	hong	1
 厷	hong	1
-叿	hong	1
 屸	hong	1
 巆	hong	1
 愩	hong	1
@@ -13229,7 +12781,6 @@ sort: by_weight
 猴	hou	13999
 喉	hou	13299
 吼	hou	12634
-侯	hou	10184
 逅	hou	9674
 齁	hou	682
 骺	hou	555
@@ -13262,14 +12813,11 @@ sort: by_weight
 㤧	hou	1
 㸸	hou	1
 呴	hou	1
-矦	hou	1
 茩	hou	1
 銗	hou	1
 㕈	hou	1
 㖃	hou	1
-㖃	hou	1
 㗋	hou	1
-㤧	hou	1
 㫗	hou	1
 㬋	hou	1
 㮢	hou	1
@@ -13317,7 +12865,6 @@ sort: by_weight
 𨒙	hou	1
 𨒥	hou	1
 𨜫	hou	1
-𨜫	hou	1
 𨩀	hou	1
 𩃺	hou	1
 𩄬	hou	1
@@ -13348,8 +12895,6 @@ sort: by_weight
 弧	hu	555
 狐	hu	546
 葫	hu	539
-糊	hu	522
-糊	hu	518
 和	hu	516
 唬	hu	515
 核	hu	508
@@ -13406,7 +12951,6 @@ sort: by_weight
 许	hu	30
 壷	hu	30
 沍	hu	28
-瓠	hu	21
 虍	hu	9
 綔	hu	8
 膴	hu	6
@@ -13489,14 +13033,12 @@ sort: by_weight
 戲	hu	1
 枦	hu	1
 淲	hu	1
-淲	hu	1
 瓡	hu	1
 礐	hu	1
 縎	hu	1
 芔	hu	1
 觷	hu	1
 豰	hu	1
-雽	hu	1
 鶮	hu	1
 鶻	hu	1
 㕆	hu	1
@@ -13592,7 +13134,6 @@ sort: by_weight
 𣡾	hu	1
 𣫈	hu	1
 𣫅	hu	1
-𣲑	hu	1
 𣲑	hu	1
 𣹬	hu	1
 𤇠	hu	1
@@ -13708,8 +13249,6 @@ sort: by_weight
 华	hua	3792
 划	hua	3602
 滑	hua	3368
-划	hua	3199
-华	hua	603
 桦	hua	512
 哗	hua	508
 猾	hua	499
@@ -13728,8 +13267,6 @@ sort: by_weight
 椛	hua	199
 糀	hua	197
 嘩	hua	192
-华	hua	166
-哗	hua	154
 豁	hua	152
 樺	hua	148
 釪	hua	148
@@ -13759,7 +13296,6 @@ sort: by_weight
 黊	hua	23
 鷨	hua	23
 芲	hua	23
-化	hua	21
 諙	hua	1
 硴	hua	1
 嫿	hua	1
@@ -13771,15 +13307,11 @@ sort: by_weight
 䛡	hua	1
 𫍩	hua	1
 䅿	hua	1
-劃	hua	1
 吪	hua	1
 呚	hua	1
-嘩	hua	1
 學	hua	1
 枠	hua	1
 澮	hua	1
-華	hua	1
-華	hua	1
 㓰	hua	1
 㕦	hua	1
 㕲	hua	1
@@ -13797,7 +13329,6 @@ sort: by_weight
 䊐	hua	1
 䋀	hua	1
 䏦	hua	1
-䔢	hua	1
 䔢	hua	1
 䔯	hua	1
 䠉	hua	1
@@ -13828,8 +13359,6 @@ sort: by_weight
 𦧹	hua	1
 𦧵	hua	1
 𦪠	hua	1
-𦰗	hua	1
-𦰗	hua	1
 𦰗	hua	1
 𦶎	hua	1
 𦽊	hua	1
@@ -13967,7 +13496,6 @@ sort: by_weight
 嵈	huan	50
 繯	huan	38
 垸	huan	35
-貆	huan	34
 肒	huan	23
 愌	huan	23
 鵍	huan	1
@@ -13982,20 +13510,16 @@ sort: by_weight
 㵹	huan	1
 䈠	huan	1
 䠉	huan	1
-嚾	huan	1
 圂	huan	1
 堚	huan	1
 孉	huan	1
 巜	huan	1
 懁	huan	1
 攌	huan	1
-狟	huan	1
 獂	huan	1
 睆	huan	1
 瞏	huan	1
-綄	huan	1
 蒝	huan	1
-讙	huan	1
 轘	huan	1
 還	huan	1
 雚	huan	1
@@ -14022,9 +13546,7 @@ sort: by_weight
 䦡	huan	1
 䭴	huan	1
 䮝	huan	1
-䮝	huan	1
 䯘	huan	1
-䴟	huan	1
 䴟	huan	1
 𠂄	huan	1
 𠄔	huan	1
@@ -14040,7 +13562,6 @@ sort: by_weight
 𡚜	huan	1
 𡩂	huan	1
 𡱌	huan	1
-𡷗	huan	1
 𡷗	huan	1
 𢟿	huan	1
 𣌓	huan	1
@@ -14088,7 +13609,6 @@ sort: by_weight
 𪈩	huan	1
 𪊥	huan	1
 𪍺	huan	1
-𪍺	huan	1
 𪺏	huan	1
 𪾕	huan	1
 黄	huang	18347
@@ -14099,7 +13619,6 @@ sort: by_weight
 凰	huang	1352
 谎	huang	630
 晃	huang	598
-晃	huang	568
 潢	huang	544
 簧	huang	533
 惶	huang	518
@@ -14169,10 +13688,8 @@ sort: by_weight
 䀮	huang	1
 㞷	huang	1
 𡧽	huang	1
-宺	huang	1
 揘	huang	1
 汻	huang	1
-熿	huang	1
 爌	huang	1
 㠵	huang	1
 㡃	huang	1
@@ -14184,10 +13701,8 @@ sort: by_weight
 㾠	huang	1
 㾮	huang	1
 䁜	huang	1
-䁜	huang	1
 䄓	huang	1
 䅣	huang	1
-䊗	huang	1
 䊗	huang	1
 䊣	huang	1
 䌙	huang	1
@@ -14204,7 +13719,6 @@ sort: by_weight
 𡉚	huang	1
 𡜋	huang	1
 𡡄	huang	1
-𡧽	huang	1
 𡴍	huang	1
 𡿰	huang	1
 𢁹	huang	1
@@ -14295,7 +13809,6 @@ sort: by_weight
 烠	hui	238
 𬤝	hui	223
 廆	hui	204
-烠	hui	190
 硊	hui	180
 蒐	hui	168
 溃	hui	164
@@ -14327,7 +13840,6 @@ sort: by_weight
 囬	hui	31
 滙	hui	25
 徊	hui	23
-虺	hui	22
 燴	hui	17
 薈	hui	17
 缋	hui	10
@@ -14430,9 +13942,6 @@ sort: by_weight
 沬	hui	1
 潰	hui	1
 琿	hui	1
-繢	hui	1
-缋	hui	1
-藱	hui	1
 螝	hui	1
 銊	hui	1
 韋	hui	1
@@ -14480,7 +13989,6 @@ sort: by_weight
 𠃐	hui	1
 𠍗	hui	1
 𠓊	hui	1
-𠧩	hui	1
 𠧩	hui	1
 𠱥	hui	1
 𠲛	hui	1
@@ -14585,7 +14093,6 @@ sort: by_weight
 浑	hun	2072
 馄	hun	1320
 荤	hun	1254
-混	hun	1191
 诨	hun	389
 溷	hun	308
 阍	hun	276
@@ -14641,9 +14148,7 @@ sort: by_weight
 䊐	hun	1
 䎜	hun	1
 䐊	hun	1
-䐊	hun	1
 䚠	hun	1
-䛰	hun	1
 䛰	hun	1
 䡣	hun	1
 䧰	hun	1
@@ -14651,7 +14156,6 @@ sort: by_weight
 䰟	hun	1
 䴷	hun	1
 𠇌	hun	1
-𠉣	hun	1
 𠉣	hun	1
 𡇯	hun	1
 𡨩	hun	1
@@ -14692,9 +14196,7 @@ sort: by_weight
 豁	huo	649
 霍	huo	634
 和	huo	624
-豁	huo	621
 祸	huo	571
-和	huo	542
 藿	huo	429
 嚯	huo	427
 镬	huo	384
@@ -14703,7 +14205,6 @@ sort: by_weight
 耠	huo	316
 嚄	huo	297
 瓠	huo	274
-嚄	huo	272
 夥	huo	254
 钬	huo	237
 佸	huo	228
@@ -14712,11 +14213,8 @@ sort: by_weight
 劐	huo	185
 𬴃	huo	175
 㸌	huo	160
-和	huo	156
 彟	huo	146
-漷	huo	143
 锪	huo	142
-锪	huo	140
 貨	huo	130
 獲	huo	110
 禍	huo	104
@@ -14772,7 +14270,6 @@ sort: by_weight
 鍃	huo	1
 雘	huo	1
 韄	huo	1
-㓉	huo	1
 㓉	huo	1
 㕡	huo	1
 㗲	huo	1
@@ -14837,7 +14334,6 @@ sort: by_weight
 𧆑	huo	1
 𧤴	huo	1
 𧯆	huo	1
-𧯆	huo	1
 𧯱	huo	1
 𧵻	huo	1
 𧷴	huo	1
@@ -14888,7 +14384,6 @@ sort: by_weight
 绩	ji	759
 吉	ji	742
 疾	ji	738
-几	ji	720
 肌	ji	720
 籍	ji	708
 迹	ji	691
@@ -14899,7 +14394,6 @@ sort: by_weight
 寄	ji	646
 忌	ji	641
 祭	ji	640
-济	ji	624
 寂	ji	609
 脊	ji	595
 饥	ji	580
@@ -14962,7 +14456,6 @@ sort: by_weight
 罽	ji	33
 齑	ji	27
 其	ji	26
-纪	ji	24
 殛	ji	23
 蕺	ji	15
 𫓹	ji	1
@@ -14998,7 +14491,6 @@ sort: by_weight
 脔	ji	1
 䓫	ji	1
 㴔	ji	1
-嵴	ji	1
 幾	ji	1
 機	ji	1
 記	ji	1
@@ -15192,30 +14684,22 @@ sort: by_weight
 尐	ji	1
 屰	ji	1
 帺	ji	1
-幾	ji	1
 庴	ji	1
 憿	ji	1
 懠	ji	1
-懠	ji	1
 摖	ji	1
 撽	ji	1
-擊	ji	1
 攲	ji	1
 楖	ji	1
 橶	ji	1
-櫅	ji	1
 櫭	ji	1
 汥	ji	1
 淁	ji	1
-済	ji	1
-濟	ji	1
 璾	ji	1
 畟	ji	1
 疒	ji	1
 瞉	ji	1
 磼	ji	1
-禨	ji	1
-穖	ji	1
 簎	ji	1
 給	ji	1
 綨	ji	1
@@ -15226,7 +14710,6 @@ sort: by_weight
 蟻	ji	1
 襀	ji	1
 詰	ji	1
-諅	ji	1
 諔	ji	1
 趞	ji	1
 跡	ji	1
@@ -15241,7 +14724,6 @@ sort: by_weight
 鶺	ji	1
 鷑	ji	1
 齊	ji	1
-齎	ji	1
 龮	ji	1
 㑧	ji	1
 㑑	ji	1
@@ -15275,7 +14757,6 @@ sort: by_weight
 㭲	ji	1
 㮟	ji	1
 㮨	ji	1
-㮨	ji	1
 㮷	ji	1
 㰟	ji	1
 㱞	ji	1
@@ -15299,7 +14780,6 @@ sort: by_weight
 䐀	ji	1
 䐕	ji	1
 䐚	ji	1
-䐚	ji	1
 䒁	ji	1
 䓽	ji	1
 䓧	ji	1
@@ -15316,9 +14796,7 @@ sort: by_weight
 䠏	ji	1
 䢋	ji	1
 䢳	ji	1
-䢳	ji	1
 䣢	ji	1
-䤒	ji	1
 䤒	ji	1
 䤠	ji	1
 䦇	ji	1
@@ -15397,7 +14875,6 @@ sort: by_weight
 𡽉	ji	1
 𡿙	ji	1
 𢁂	ji	1
-𢁂	ji	1
 𢃺	ji	1
 𢆻	ji	1
 𢉗	ji	1
@@ -15430,7 +14907,6 @@ sort: by_weight
 𣜇	ji	1
 𣢆	ji	1
 𣣝	ji	1
-𣪠	ji	1
 𣪠	ji	1
 𣬠	ji	1
 𣯅	ji	1
@@ -15615,16 +15091,13 @@ sort: by_weight
 佳	jia	3525
 驾	jia	1639
 甲	jia	1557
-假	jia	1479
 夹	jia	913
 贾	jia	898
 嫁	jia	883
 钾	jia	865
 颊	jia	855
 嘉	jia	620
-夹	jia	614
 稼	jia	569
-家	jia	501
 伽	jia	474
 迦	jia	460
 戛	jia	452
@@ -15708,14 +15181,11 @@ sort: by_weight
 䕒	jia	1
 䴥	jia	1
 価	jia	1
-夾	jia	1
 宊	jia	1
 徍	jia	1
 挾	jia	1
 擖	jia	1
-椵	jia	1
 脥	jia	1
-賈	jia	1
 鴐	jia	1
 龿	jia	1
 鿼	jia	1
@@ -15770,7 +15240,6 @@ sort: by_weight
 𦎮	jia	1
 𦎱	jia	1
 𦙺	jia	1
-𦙺	jia	1
 𦣯	jia	1
 𦧮	jia	1
 𦨦	jia	1
@@ -15782,7 +15251,6 @@ sort: by_weight
 𧿵	jia	1
 𨒇	jia	1
 𨔗	jia	1
-𨔣	jia	1
 𨔣	jia	1
 𩉡	jia	1
 𩊏	jia	1
@@ -15819,7 +15287,6 @@ sort: by_weight
 践	jian	737
 剪	jian	733
 煎	jian	717
-间	jian	711
 肩	jian	710
 箭	jian	695
 监	jian	677
@@ -15832,7 +15299,6 @@ sort: by_weight
 歼	jian	606
 俭	jian	581
 柬	jian	568
-监	jian	562
 拣	jian	511
 溅	jian	498
 茧	jian	494
@@ -15862,7 +15328,6 @@ sort: by_weight
 踺	jian	186
 搛	jian	184
 牮	jian	184
-鞬	jian	175
 翦	jian	159
 浅	jian	158
 硷	jian	157
@@ -15876,17 +15341,14 @@ sort: by_weight
 谫	jian	105
 犍	jian	91
 𬣡	jian	87
-篯	jian	74
 靬	jian	74
 間	jian	71
 見	jian	69
 簡	jian	67
 薦	jian	65
 減	jian	46
-渐	jian	39
 剣	jian	37
 鍵	jian	33
-溅	jian	31
 槛	jian	24
 堅	jian	16
 検	jian	14
@@ -16027,23 +15489,16 @@ sort: by_weight
 傔	jian	1
 僣	jian	1
 帴	jian	1
-帴	jian	1
-揃	jian	1
-揵	jian	1
 揵	jian	1
 攕	jian	1
 朁	jian	1
 橏	jian	1
 檻	jian	1
-漸	jian	1
-濺	jian	1
-監	jian	1
 瞯	jian	1
 礆	jian	1
 礷	jian	1
 稴	jian	1
 籈	jian	1
-籛	jian	1
 纖	jian	1
 聻	jian	1
 蔪	jian	1
@@ -16055,12 +15510,8 @@ sort: by_weight
 釰	jian	1
 鋄	jian	1
 鋑	jian	1
-鋻	jian	1
 鎫	jian	1
 鐧	jian	1
-鐧	jian	1
-間	jian	1
-閒	jian	1
 閒	jian	1
 雃	jian	1
 鰔	jian	1
@@ -16105,7 +15556,6 @@ sort: by_weight
 䮿	jian	1
 䯛	jian	1
 䯡	jian	1
-䯡	jian	1
 䵖	jian	1
 䵛	jian	1
 䵤	jian	1
@@ -16142,7 +15592,6 @@ sort: by_weight
 𢳚	jian	1
 𢵈	jian	1
 𣘷	jian	1
-𣚙	jian	1
 𣚙	jian	1
 𣜭	jian	1
 𣝕	jian	1
@@ -16224,7 +15673,6 @@ sort: by_weight
 𨷓	jian	1
 𩃔	jian	1
 𩅼	jian	1
-𩅼	jian	1
 𩆯	jian	1
 𩆷	jian	1
 𩇏	jian	1
@@ -16244,14 +15692,12 @@ sort: by_weight
 𪃛	jian	1
 𪆿	jian	1
 𪉦	jian	1
-𪉦	jian	1
 𪋁	jian	1
 𪋱	jian	1
 𪏊	jian	1
 𪐻	jian	1
 𪒫	jian	1
 𪒹	jian	1
-𪙨	jian	1
 𪙨	jian	1
 𫌙	jian	1
 𫌸	jian	1
@@ -16267,7 +15713,6 @@ sort: by_weight
 降	jiang	4326
 奖	jiang	4239
 酱	jiang	1930
-将	jiang	1833
 姜	jiang	1741
 蒋	jiang	712
 僵	jiang	699
@@ -16319,7 +15764,6 @@ sort: by_weight
 韁	jiang	62
 夅	jiang	48
 摪	jiang	40
-浆	jiang	38
 港	jiang	31
 櫤	jiang	30
 虹	jiang	25
@@ -16332,11 +15776,7 @@ sort: by_weight
 糡	jiang	1
 謽	jiang	1
 𣚦	jiang	1
-勥	jiang	1
 塂	jiang	1
-將	jiang	1
-漿	jiang	1
-畺	jiang	1
 㢡	jiang	1
 㯍	jiang	1
 㹔	jiang	1
@@ -16362,7 +15802,6 @@ sort: by_weight
 𣩴	jiang	1
 𣫳	jiang	1
 𤕯	jiang	1
-𤕭	jiang	1
 𤕭	jiang	1
 𤖅	jiang	1
 𤖛	jiang	1
@@ -16413,9 +15852,7 @@ sort: by_weight
 礁	jiao	562
 嚼	jiao	556
 矫	jiao	548
-教	jiao	544
 绞	jiao	539
-矫	jiao	527
 跤	jiao	507
 侥	jiao	505
 狡	jiao	487
@@ -16436,9 +15873,6 @@ sort: by_weight
 藠	jiao	361
 噍	jiao	359
 敫	jiao	340
-徼	jiao	324
-徼	jiao	320
-敫	jiao	303
 滘	jiao	284
 漖	jiao	279
 峧	jiao	273
@@ -16458,7 +15892,6 @@ sort: by_weight
 膠	jiao	168
 澆	jiao	166
 剿	jiao	162
-嚼	jiao	156
 憍	jiao	152
 驕	jiao	142
 攪	jiao	136
@@ -16540,15 +15973,10 @@ sort: by_weight
 悎	jiao	1
 憢	jiao	1
 摎	jiao	1
-撟	jiao	1
-敎	jiao	1
 斍	jiao	1
 樔	jiao	1
 灂	jiao	1
 癄	jiao	1
-矯	jiao	1
-笅	jiao	1
-筊	jiao	1
 筊	jiao	1
 覐	jiao	1
 覚	jiao	1
@@ -16574,7 +16002,6 @@ sort: by_weight
 䆗	jiao	1
 䌭	jiao	1
 䘨	jiao	1
-䚩	jiao	1
 䚩	jiao	1
 䚯	jiao	1
 䜈	jiao	1
@@ -16709,7 +16136,6 @@ sort: by_weight
 芥	jie	638
 借	jie	614
 睫	jie	554
-结	jie	549
 诫	jie	537
 秸	jie	521
 藉	jie	517
@@ -16746,8 +16172,6 @@ sort: by_weight
 節	jie	165
 家	jie	160
 桔	jie	157
-解	jie	156
-节	jie	156
 堺	jie	147
 階	jie	143
 蝔	jie	126
@@ -16764,7 +16188,6 @@ sort: by_weight
 袷	jie	37
 她	jie	33
 喼	jie	33
-价	jie	31
 岕	jie	31
 鎅	jie	24
 誡	jie	23
@@ -16858,15 +16281,11 @@ sort: by_weight
 洯	jie	1
 狤	jie	1
 瑎	jie	1
-節	jie	1
 紇	jie	1
 紒	jie	1
-紒	jie	1
-結	jie	1
 蛣	jie	1
 袓	jie	1
 裓	jie	1
-觧	jie	1
 趌	jie	1
 跲	jie	1
 镼	jie	1
@@ -17057,7 +16476,6 @@ sort: by_weight
 仅	jin	7311
 紧	jin	6945
 尽	jin	6597
-尽	jin	6267
 津	jin	1206
 禁	jin	1145
 斤	jin	929
@@ -17068,9 +16486,7 @@ sort: by_weight
 筋	jin	783
 巾	jin	713
 浸	jin	705
-禁	jin	697
 襟	jin	569
-仅	jin	549
 瑾	jin	537
 槿	jin	496
 靳	jin	496
@@ -17130,7 +16546,6 @@ sort: by_weight
 厪	jin	37
 漌	jin	32
 琻	jin	32
-慬	jin	29
 荕	jin	27
 璡	jin	27
 賮	jin	22
@@ -17158,16 +16573,11 @@ sort: by_weight
 䋮	jin	1
 䌍	jin	1
 仐	jin	1
-僅	jin	1
-儘	jin	1
 婜	jin	1
-嫤	jin	1
 嬐	jin	1
 榗	jin	1
-盡	jin	1
 竻	jin	1
 笒	jin	1
-紟	jin	1
 臸	jin	1
 菳	jin	1
 馸	jin	1
@@ -17175,7 +16585,6 @@ sort: by_weight
 㦗	jin	1
 㧆	jin	1
 㨷	jin	1
-㬐	jin	1
 㬐	jin	1
 㬜	jin	1
 㯲	jin	1
@@ -17238,7 +16647,6 @@ sort: by_weight
 𥂵	jin	1
 𥖜	jin	1
 𥧲	jin	1
-𥧲	jin	1
 𥯑	jin	1
 𦈟	jin	1
 𦎷	jin	1
@@ -17290,7 +16698,6 @@ sort: by_weight
 茎	jing	592
 鲸	jing	576
 兢	jing	563
-经	jing	530
 阱	jing	513
 憬	jing	495
 菁	jing	489
@@ -17380,14 +16787,12 @@ sort: by_weight
 𦳲	jing	1
 劤	jing	1
 勁	jing	1
-憼	jing	1
 擏	jing	1
 殌	jing	1
 殑	jing	1
 澋	jing	1
 粇	jing	1
 綡	jing	1
-經	jing	1
 莖	jing	1
 鋞	jing	1
 鵛	jing	1
@@ -17492,8 +16897,6 @@ sort: by_weight
 駫	jiong	1
 䢛	jiong	1
 扄	jiong	1
-浻	jiong	1
-絅	jiong	1
 臦	jiong	1
 臩	jiong	1
 銄	jiong	1
@@ -17596,7 +16999,6 @@ sort: by_weight
 𨳊	jiu	1
 剹	jiu	1
 稵	jiu	1
-糺	jiu	1
 繆	jiu	1
 肍	jiu	1
 鿐	jiu	1
@@ -17709,7 +17111,6 @@ sort: by_weight
 沮	ju	535
 驹	ju	518
 炬	ju	513
-据	ju	504
 飓	ju	439
 焗	ju	421
 咀	ju	407
@@ -17736,7 +17137,6 @@ sort: by_weight
 屦	ju	222
 犋	ju	201
 瞿	ju	189
-锔	ju	188
 钜	ju	180
 醵	ju	175
 车	ju	162
@@ -17754,15 +17154,12 @@ sort: by_weight
 𬶋	ju	89
 枸	ju	84
 岨	ju	83
-岨	ju	83
 趄	ju	72
 珇	ju	65
 䴗	ju	61
 車	ju	59
 據	ju	42
 柜	ju	37
-俱	ju	35
-沮	ju	30
 劇	ju	30
 且	ju	29
 舉	ju	27
@@ -17874,7 +17271,6 @@ sort: by_weight
 忂	ju	1
 挶	ju	1
 揟	ju	1
-據	ju	1
 檋	ju	1
 櫃	ju	1
 毱	ju	1
@@ -17886,11 +17282,8 @@ sort: by_weight
 蓻	ju	1
 處	ju	1
 螶	ju	1
-跙	ju	1
 蹻	ju	1
 躹	ju	1
-鋦	ju	1
-鋸	ju	1
 驕	ju	1
 龾	ju	1
 㐝	ju	1
@@ -17915,7 +17308,6 @@ sort: by_weight
 䅕	ju	1
 䅓	ju	1
 䆽	ju	1
-䈮	ju	1
 䈮	ju	1
 䋰	ju	1
 䎤	ju	1
@@ -17991,7 +17383,6 @@ sort: by_weight
 𥂃	ju	1
 𥄷	ju	1
 𥇛	ju	1
-𥇛	ju	1
 𥈋	ju	1
 𥉁	ju	1
 𥕑	ju	1
@@ -18017,7 +17408,6 @@ sort: by_weight
 𦜛	ju	1
 𦞇	ju	1
 𦟳	ju	1
-𦥑	ju	1
 𦱅	ju	1
 𦺖	ju	1
 𦼈	ju	1
@@ -18076,7 +17466,6 @@ sort: by_weight
 𫈹	ju	1
 𢤹	ju	1
 卷	juan	34710
-卷	juan	33359
 捐	juan	4899
 倦	juan	2216
 娟	juan	1894
@@ -18122,7 +17511,6 @@ sort: by_weight
 淃	juan	40
 棬	juan	32
 婘	juan	26
-圈	juan	23
 睊	juan	1
 獧	juan	1
 勌	juan	1
@@ -18137,22 +17525,16 @@ sort: by_weight
 龹	juan	1
 㷷	juan	1
 𧯦	juan	1
-勌	juan	1
-圏	juan	1
 圏	juan	1
 奍	juan	1
 巂	juan	1
-巻	juan	1
-帣	juan	1
 弮	juan	1
 悁	juan	1
 梋	juan	1
 椦	juan	1
-瓹	juan	1
 腃	juan	1
 讂	juan	1
 鋑	juan	1
-鋗	juan	1
 鋗	juan	1
 闂	juan	1
 鞙	juan	1
@@ -18216,7 +17598,6 @@ sort: by_weight
 𩔱	juan	1
 𩘒	juan	1
 𩜇	juan	1
-𩜇	juan	1
 𩟥	juan	1
 𩠉	juan	1
 觉	jue	6663
@@ -18230,7 +17611,6 @@ sort: by_weight
 覺	jue	527
 诀	jue	520
 倔	jue	518
-倔	jue	516
 蕨	jue	509
 抉	jue	505
 撅	jue	468
@@ -18284,8 +17664,6 @@ sort: by_weight
 泬	jue	42
 捔	jue	42
 鐍	jue	42
-蹶	jue	39
-撅	jue	35
 蹷	jue	35
 鐝	jue	35
 鳜	jue	33
@@ -18482,7 +17860,6 @@ sort: by_weight
 峻	jun	560
 浚	jun	518
 钧	jun	504
-菌	jun	501
 竣	jun	454
 龟	jun	449
 皲	jun	416
@@ -18594,7 +17971,6 @@ sort: by_weight
 佧	ka	193
 垰	ka	127
 裃	ka	127
-咔	ka	39
 㮟	ka	1
 䘔	ka	1
 开	kai	93861
@@ -18682,7 +18058,6 @@ sort: by_weight
 槛	kan	2076
 坎	kan	1359
 侃	kan	622
-看	kan	590
 勘	kan	500
 龛	kan	476
 嵌	kan	450
@@ -18707,7 +18082,6 @@ sort: by_weight
 歁	kan	87
 矙	kan	75
 惂	kan	38
-嵌	kan	36
 阚	kan	35
 轗	kan	1
 輡	kan	1
@@ -18715,7 +18089,6 @@ sort: by_weight
 𧇦	kan	1
 凵	kan	1
 扻	kan	1
-竷	kan	1
 薟	kan	1
 鬫	kan	1
 㘛	kan	1
@@ -18773,7 +18146,6 @@ sort: by_weight
 闶	kang	289
 𩾌	kang	289
 𡐓	kang	289
-闶	kang	179
 鱇	kang	164
 槺	kang	146
 囥	kang	127
@@ -18793,7 +18165,6 @@ sort: by_weight
 閌	kang	1
 㝩	kang	1
 䆲	kang	1
-閌	kang	1
 阬	kang	1
 㢜	kang	1
 㰠	kang	1
@@ -18831,7 +18202,6 @@ sort: by_weight
 洘	kao	277
 攷	kao	277
 㸆	kao	173
-洘	kao	173
 丂	kao	154
 鲓	kao	124
 銬	kao	97
@@ -18839,7 +18209,6 @@ sort: by_weight
 髛	kao	1
 鯌	kao	1
 嵪	kao	1
-槀	kao	1
 槀	kao	1
 焅	kao	1
 燺	kao	1
@@ -18877,7 +18246,6 @@ sort: by_weight
 磕	ke	827
 苛	ke	813
 坷	ke	572
-可	ke	570
 蝌	ke	502
 呵	ke	479
 氪	ke	470
@@ -18909,12 +18277,10 @@ sort: by_weight
 尅	ke	182
 钶	ke	178
 砢	ke	173
-坷	ke	164
 榼	ke	154
 渇	ke	146
 敤	ke	134
 搕	ke	130
-嗑	ke	128
 愙	ke	128
 薖	ke	122
 萪	ke	119
@@ -18932,7 +18298,6 @@ sort: by_weight
 軻	ke	68
 娔	ke	50
 嵑	ke	50
-颏	ke	37
 铪	ke	24
 礚	ke	23
 揢	ke	1
@@ -18956,7 +18321,6 @@ sort: by_weight
 蚵	ke	1
 衉	ke	1
 袔	ke	1
-軻	ke	1
 鉿	ke	1
 錁	ke	1
 閜	ke	1
@@ -18968,7 +18332,6 @@ sort: by_weight
 㞹	ke	1
 㤩	ke	1
 㥛	ke	1
-㪙	ke	1
 㪙	ke	1
 㪡	ke	1
 㪼	ke	1
@@ -19103,12 +18466,10 @@ sort: by_weight
 坈	keng	1
 揁	keng	1
 殸	keng	1
-硻	keng	1
 㧶	keng	1
 㰢	keng	1
 䃘	keng	1
 䡩	keng	1
-䡰	keng	1
 䡰	keng	1
 𠠷	keng	1
 𠡮	keng	1
@@ -19133,7 +18494,6 @@ sort: by_weight
 控	kong	3420
 恐	kong	2885
 孔	kong	2827
-空	kong	2770
 崆	kong	853
 箜	kong	351
 倥	kong	276
@@ -19141,15 +18501,11 @@ sort: by_weight
 硿	kong	179
 埪	kong	171
 矼	kong	148
-硿	kong	105
-倥	kong	79
 悾	kong	50
 鞚	kong	50
-空	kong	14
 涳	kong	1
 躻	kong	1
 錓	kong	1
-悾	kong	1
 椌	kong	1
 羫	kong	1
 㑋	kong	1
@@ -19283,7 +18639,6 @@ sort: by_weight
 捁	ku	1
 楛	ku	1
 硞	ku	1
-秙	ku	1
 窋	ku	1
 胐	ku	1
 龲	ku	1
@@ -19355,7 +18710,6 @@ sort: by_weight
 挎	kua	1564
 侉	kua	727
 姱	kua	331
-夸	kua	170
 誇	kua	153
 骻	kua	150
 銙	kua	138
@@ -19367,13 +18721,11 @@ sort: by_weight
 晇	kua	1
 楇	kua	1
 絓	kua	1
-誇	kua	1
 趶	kua	1
 㡁	kua	1
 䋀	kua	1
 䓙	kua	1
 䠸	kua	1
-䦚	kua	1
 䦚	kua	1
 䯞	kua	1
 𡇚	kua	1
@@ -19545,7 +18897,6 @@ sort: by_weight
 㚚	kuang	1
 㤮	kuang	1
 㫛	kuang	1
-㫛	kuang	1
 㾠	kuang	1
 䂄	kuang	1
 䊯	kuang	1
@@ -19564,7 +18915,6 @@ sort: by_weight
 𤝿	kuang	1
 𥈏	kuang	1
 𦙿	kuang	1
-𦚞	kuang	1
 𦚞	kuang	1
 𦥰	kuang	1
 𧥌	kuang	1
@@ -19665,8 +19015,6 @@ sort: by_weight
 䠑	kui	1
 䫥	kui	1
 匱	kui	1
-尯	kui	1
-巋	kui	1
 殨	kui	1
 瞶	kui	1
 磈	kui	1
@@ -19674,7 +19022,6 @@ sort: by_weight
 膭	kui	1
 㒑	kui	1
 㕟	kui	1
-㚍	kui	1
 㚍	kui	1
 㚝	kui	1
 㛻	kui	1
@@ -19738,7 +19085,6 @@ sort: by_weight
 𧝷	kui	1
 𧡦	kui	1
 𧡫	kui	1
-𧢦	kui	1
 𧢦	kui	1
 𧷛	kui	1
 𧻜	kui	1
@@ -19820,7 +19166,6 @@ sort: by_weight
 𡈋	kun	1
 𡖉	kun	1
 𢈛	kun	1
-𣏔	kun	1
 𣏔	kun	1
 𣤿	kun	1
 𣰘	kun	1
@@ -19906,7 +19251,6 @@ sort: by_weight
 蜡	la	2105
 喇	la	623
 落	la	591
-啦	la	561
 邋	la	468
 剌	la	436
 旯	la	411
@@ -19916,9 +19260,7 @@ sort: by_weight
 砬	la	230
 蝲	la	212
 𬶟	la	205
-砬	la	169
 菈	la	156
-拉	la	150
 臘	la	142
 蠟	la	136
 臈	la	132
@@ -19927,7 +19269,6 @@ sort: by_weight
 蝋	la	109
 楋	la	105
 溂	la	92
-剌	la	83
 鯻	la	82
 癞	la	81
 磖	la	75
@@ -19944,12 +19285,9 @@ sort: by_weight
 㻋	la	1
 䓥	la	1
 䗶	la	1
-揦	la	1
 擸	la	1
 櫴	la	1
-磖	la	1
 翋	la	1
-㕇	la	1
 㕇	la	1
 㡴	la	1
 㸊	la	1
@@ -20019,7 +19357,6 @@ sort: by_weight
 赉	lai	387
 崃	lai	378
 铼	lai	355
-徕	lai	336
 梾	lai	331
 俫	lai	317
 釐	lai	275
@@ -20056,15 +19393,10 @@ sort: by_weight
 婡	lai	1
 㚓	lai	1
 䋱	lai	1
-來	lai	1
 娕	lai	1
-婡	lai	1
-徠	lai	1
 攋	lai	1
 襰	lai	1
 誺	lai	1
-逨	lai	1
-㚓	lai	1
 㠣	lai	1
 㥎	lai	1
 㸊	lai	1
@@ -20075,8 +19407,6 @@ sort: by_weight
 䅘	lai	1
 䓶	lai	1
 䚅	lai	1
-䚅	lai	1
-䠭	lai	1
 䠭	lai	1
 䧒	lai	1
 䲚	lai	1
@@ -20204,14 +19534,11 @@ sort: by_weight
 䦨	lan	1
 坔	lan	1
 壏	lan	1
-爦	lan	1
-藍	lan	1
 蘫	lan	1
 鑭	lan	1
 钄	lan	1
 㑣	lan	1
 㑑	lan	1
-㔋	lan	1
 㔋	lan	1
 㘓	lan	1
 㘕	lan	1
@@ -20219,7 +19546,6 @@ sort: by_weight
 㛦	lan	1
 㜮	lan	1
 㞩	lan	1
-㦨	lan	1
 㦨	lan	1
 㨫	lan	1
 㩜	lan	1
@@ -20231,7 +19557,6 @@ sort: by_weight
 䌫	lan	1
 䑌	lan	1
 䧒	lan	1
-䪍	lan	1
 䪍	lan	1
 䰐	lan	1
 䲚	lan	1
@@ -20304,12 +19629,7 @@ sort: by_weight
 筤	lang	234
 㮾	lang	224
 崀	lang	185
-筤	lang	178
 㫰	lang	173
-㫰	lang	127
-崀	lang	127
-郎	lang	122
-阆	lang	107
 瑯	lang	107
 閬	lang	104
 郞	lang	96
@@ -20337,19 +19657,16 @@ sort: by_weight
 𩷕	lang	1
 哴	lang	1
 樃	lang	1
-誏	lang	1
 鿶	lang	1
 㓪	lang	1
 㟍	lang	1
 㢃	lang	1
 㱢	lang	1
 鿾	lang	1
-㾿	lang	1
 䀶	lang	1
 䁁	lang	1
 䃹	lang	1
 䕞	lang	1
-䆡	lang	1
 䆡	lang	1
 䡙	lang	1
 䯖	lang	1
@@ -20408,7 +19725,6 @@ sort: by_weight
 磱	lao	157
 嘮	lao	157
 蟧	lao	154
-唠	lao	153
 狫	lao	148
 落	lao	146
 络	lao	142
@@ -20429,7 +19745,6 @@ sort: by_weight
 軂	lao	50
 恅	lao	38
 僗	lao	38
-潦	lao	29
 憦	lao	23
 憥	lao	23
 乐	lao	21
@@ -20438,8 +19753,6 @@ sort: by_weight
 橯	lao	1
 哰	lao	1
 髝	lao	1
-嘮	lao	1
-憦	lao	1
 樂	lao	1
 絡	lao	1
 㐗	lao	1
@@ -20454,7 +19767,6 @@ sort: by_weight
 䃕	lao	1
 䇭	lao	1
 䕩	lao	1
-䜎	lao	1
 䜎	lao	1
 䝁	lao	1
 䝤	lao	1
@@ -20479,10 +19791,8 @@ sort: by_weight
 𤩂	lao	1
 𤶁	lao	1
 𥢒	lao	1
-𥢒	lao	1
 𦒴	lao	1
 𦛨	lao	1
-𦺜	lao	1
 𦺜	lao	1
 𧢋	lao	1
 𧯍	lao	1
@@ -20537,7 +19847,6 @@ sort: by_weight
 雷	lei	5248
 累	lei	5143
 泪	lei	5040
-累	lei	4939
 蕾	lei	1387
 垒	lei	894
 磊	lei	569
@@ -20569,7 +19878,6 @@ sort: by_weight
 絫	lei	154
 蕌	lei	150
 勒	lei	148
-擂	lei	142
 嘞	lei	141
 鑸	lei	136
 纇	lei	134
@@ -20597,18 +19905,15 @@ sort: by_weight
 誄	lei	60
 厽	lei	60
 纝	lei	60
-累	lei	51
 攂	lei	50
 樏	lei	50
 矋	lei	50
 瓃	lei	38
 洡	lei	38
-礌	lei	33
 禷	lei	23
 蠝	lei	23
 讄	lei	23
 虆	lei	10
-壘	lei	1
 儽	lei	1
 頛	lei	1
 𧒽	lei	1
@@ -20618,28 +19923,13 @@ sort: by_weight
 㙼	lei	1
 䍣	lei	1
 𡔇	lei	1
-壘	lei	1
 壨	lei	1
-攂	lei	1
-樏	lei	1
-櫑	lei	1
-洡	lei	1
 瘣	lei	1
 盧	lei	1
-磥	lei	1
-礧	lei	1
-礧	lei	1
 祱	lei	1
-絫	lei	1
-絫	lei	1
-纍	lei	1
-纍	lei	1
 㑍	lei	1
-㑍	lei	1
-㒍	lei	1
 㒍	lei	1
 㒦	lei	1
-㔣	lei	1
 㔣	lei	1
 㗊	lei	1
 㡞	lei	1
@@ -20648,7 +19938,6 @@ sort: by_weight
 㲕	lei	1
 㲺	lei	1
 㴃	lei	1
-㵢	lei	1
 㹎	lei	1
 㻋	lei	1
 㼍	lei	1
@@ -20662,9 +19951,7 @@ sort: by_weight
 䛶	lei	1
 䢮	lei	1
 䣂	lei	1
-䣂	lei	1
 䣦	lei	1
-䨓	lei	1
 䨓	lei	1
 䮑	lei	1
 䴎	lei	1
@@ -20675,7 +19962,6 @@ sort: by_weight
 𡻭	lei	1
 𡻱	lei	1
 𡼊	lei	1
-𡾋	lei	1
 𡾋	lei	1
 𡾖	lei	1
 𡿉	lei	1
@@ -20692,7 +19978,6 @@ sort: by_weight
 𤃻	lei	1
 𤜖	lei	1
 𤡂	lei	1
-𤡂	lei	1
 𤢹	lei	1
 𤮎	lei	1
 𤮚	lei	1
@@ -20707,7 +19992,6 @@ sort: by_weight
 𥗬	lei	1
 𥗶	lei	1
 𥣬	lei	1
-𥤐	lei	1
 𥤐	lei	1
 𦇄	lei	1
 𦓥	lei	1
@@ -20733,7 +20017,6 @@ sort: by_weight
 愣	leng	2385
 楞	leng	1952
 崚	leng	1015
-棱	leng	628
 堎	leng	289
 塄	leng	256
 稜	leng	230
@@ -20744,7 +20027,6 @@ sort: by_weight
 碐	leng	50
 㘄	leng	1
 唥	leng	1
-稜	leng	1
 䉄	leng	1
 䚏	leng	1
 䬋	leng	1
@@ -20783,14 +20065,12 @@ sort: by_weight
 狸	li	555
 璃	li	537
 吏	li	533
-丽	li	527
 犁	li	522
 俐	li	507
 雳	li	487
 篱	li	470
 砾	li	456
 痢	li	438
-哩	li	428
 喱	li	412
 锂	li	395
 罹	li	392
@@ -20831,17 +20111,14 @@ sort: by_weight
 篥	li	109
 跞	li	104
 栎	li	97
-蜊	li	95
 悝	li	91
 镉	li	72
 鬲	li	66
-蠡	li	62
 坜	li	61
 浬	li	45
 釐	li	27
 轹	li	26
 醨	li	25
-哩	li	24
 朸	li	11
 凓	li	1
 珕	li	1
@@ -21025,11 +20302,9 @@ sort: by_weight
 𡫯	li	1
 𧰡	li	1
 叓	li	1
-孋	li	1
 扐	li	1
 扚	li	1
 擽	li	1
-杝	li	1
 柂	li	1
 沵	li	1
 濼	li	1
@@ -21037,14 +20312,11 @@ sort: by_weight
 犛	li	1
 睙	li	1
 纅	li	1
-纚	li	1
 蟸	li	1
 迣	li	1
 銐	li	1
 鬴	li	1
 鱱	li	1
-麗	li	1
-麗	li	1
 㑦	li	1
 㒿	li	1
 㓯	li	1
@@ -21067,7 +20339,6 @@ sort: by_weight
 㴃	li	1
 㷰	li	1
 㷴	li	1
-㸚	li	1
 㹈	li	1
 㺡	li	1
 㻎	li	1
@@ -21077,7 +20348,6 @@ sort: by_weight
 㽝	li	1
 㾐	li	1
 㾖	li	1
-㿛	li	1
 㿛	li	1
 㿨	li	1
 䁻	li	1
@@ -21097,8 +20367,6 @@ sort: by_weight
 䔉	li	1
 䔣	li	1
 䔧	li	1
-䔧	li	1
-䕻	li	1
 䕻	li	1
 䔆	li	1
 䖿	li	1
@@ -21128,7 +20396,6 @@ sort: by_weight
 䵩	li	1
 䶘	li	1
 𠃞	li	1
-𠌯	li	1
 𠌯	li	1
 𠘞	li	1
 𠘟	li	1
@@ -21187,7 +20454,6 @@ sort: by_weight
 𢻠	li	1
 𣀂	li	1
 𣀥	li	1
-𣀷	li	1
 𣀷	li	1
 𣁟	li	1
 𣌅	li	1
@@ -21277,7 +20543,6 @@ sort: by_weight
 𧅯	li	1
 𧉲	li	1
 𧋎	li	1
-𧋠	li	1
 𧋠	li	1
 𧍀	li	1
 𧑇	li	1
@@ -21476,7 +20741,6 @@ sort: by_weight
 螊	lian	38
 媡	lian	38
 嗹	lian	38
-梿	lian	27
 慩	lian	23
 羷	lian	23
 蹥	lian	23
@@ -21490,16 +20754,11 @@ sort: by_weight
 䏈	lian	1
 𦈐	lian	1
 孌	lian	1
-慩	lian	1
-摙	lian	1
 攣	lian	1
 槏	lian	1
-槤	lian	1
 檶	lian	1
-櫣	lian	1
 欄	lian	1
 歛	lian	1
-溓	lian	1
 瀮	lian	1
 稴	lian	1
 薟	lian	1
@@ -21519,13 +20778,11 @@ sort: by_weight
 㯬	lian	1
 㰈	lian	1
 㰸	lian	1
-㰸	lian	1
 㱨	lian	1
 㶌	lian	1
 㶑	lian	1
 㺦	lian	1
 㼑	lian	1
-㼓	lian	1
 㼓	lian	1
 㾾	lian	1
 䁠	lian	1
@@ -21533,7 +20790,6 @@ sort: by_weight
 䆂	lian	1
 䇜	lian	1
 䌞	lian	1
-䙺	lian	1
 䙺	lian	1
 䥥	lian	1
 䨬	lian	1
@@ -21562,7 +20818,6 @@ sort: by_weight
 𤗛	lian	1
 𤣆	lian	1
 𤬓	lian	1
-𤬓	lian	1
 𤹨	lian	1
 𤼏	lian	1
 𤾲	lian	1
@@ -21574,7 +20829,6 @@ sort: by_weight
 𦖾	lian	1
 𦣸	lian	1
 𧍴	lian	1
-𧐖	lian	1
 𧐖	lian	1
 𧡙	lian	1
 𧡴	lian	1
@@ -21605,7 +20859,6 @@ sort: by_weight
 辆	liang	2936
 凉	liang	2789
 梁	liang	2649
-量	liang	2516
 粮	liang	1531
 靓	liang	625
 晾	liang	618
@@ -21625,7 +20878,6 @@ sort: by_weight
 両	liang	169
 樑	liang	163
 俩	liang	162
-凉	liang	159
 輛	liang	155
 糧	liang	153
 諒	liang	147
@@ -21633,7 +20885,6 @@ sort: by_weight
 裲	liang	140
 喨	liang	136
 哴	liang	136
-踉	liang	119
 魎	liang	119
 莨	liang	117
 唡	liang	105
@@ -21651,13 +20902,10 @@ sort: by_weight
 䓣	liang	1
 𡑆	liang	1
 倆	liang	1
-兩	liang	1
 匁	liang	1
-涼	liang	1
 靚	liang	1
 駺	liang	1
 鿄	liang	1
-鿌	liang	1
 鿌	liang	1
 㔝	liang	1
 㹁	liang	1
@@ -21669,7 +20917,6 @@ sort: by_weight
 䣼	liang	1
 䩫	liang	1
 䭪	liang	1
-𠒨	liang	1
 𠒨	liang	1
 𠓜	liang	1
 𠯱	liang	1
@@ -21698,7 +20945,6 @@ sort: by_weight
 撩	liao	617
 寥	liao	541
 缭	liao	515
-撩	liao	512
 僚	liao	491
 瞭	liao	487
 嘹	liao	471
@@ -21723,11 +20969,9 @@ sort: by_weight
 藔	liao	193
 療	liao	177
 敹	liao	169
-瞭	liao	155
 暸	liao	151
 繚	liao	151
 遼	liao	132
-燎	liao	123
 尞	liao	115
 嵺	liao	104
 璙	liao	102
@@ -21743,8 +20987,6 @@ sort: by_weight
 爎	liao	55
 膫	liao	40
 憀	liao	40
-憭	liao	39
-钌	liao	37
 釕	liao	30
 鷯	liao	30
 屪	liao	30
@@ -21758,25 +21000,18 @@ sort: by_weight
 鄝	liao	1
 㙩	liao	1
 㝋	liao	1
-尞	liao	1
 摎	liao	1
 樛	liao	1
-爎	liao	1
-爒	liao	1
 窌	liao	1
 繆	liao	1
-繆	liao	1
 蟧	liao	1
-釕	liao	1
 鐐	liao	1
 飂	liao	1
 㜃	liao	1
-㝋	liao	1
 㞠	liao	1
 㡻	liao	1
 㨓	liao	1
 㵳	liao	1
-㶫	liao	1
 㶫	liao	1
 㺒	liao	1
 䄦	liao	1
@@ -21814,7 +21049,6 @@ sort: by_weight
 𣩢	liao	1
 𣬝	liao	1
 𤊽	liao	1
-𤊽	liao	1
 𤑗	liao	1
 𤵠	liao	1
 𤻲	liao	1
@@ -21848,11 +21082,9 @@ sort: by_weight
 劣	lie	2457
 猎	lie	2184
 咧	lie	1393
-咧	lie	1323
 冽	lie	460
 鬣	lie	411
 洌	lie	347
-咧	lie	347
 捩	lie	296
 趔	lie	277
 埒	lie	232
@@ -21879,9 +21111,7 @@ sort: by_weight
 巤	lie	60
 煭	lie	38
 挘	lie	38
-咧	lie	23
 聗	lie	23
-裂	lie	22
 浖	lie	1
 迾	lie	1
 劽	lie	1
@@ -22026,7 +21256,6 @@ sort: by_weight
 鱗	lin	157
 凜	lin	157
 賃	lin	152
-淋	lin	151
 疄	lin	151
 暽	lin	134
 躙	lin	130
@@ -22056,7 +21285,6 @@ sort: by_weight
 懍	lin	38
 厸	lin	38
 轔	lin	38
-箖	lin	33
 亃	lin	23
 崊	lin	1
 閵	lin	1
@@ -22065,14 +21293,10 @@ sort: by_weight
 㐭	lin	1
 惏	lin	1
 㝝	lin	1
-亃	lin	1
 僯	lin	1
-獜	lin	1
 玪	lin	1
-疄	lin	1
 痳	lin	1
 綝	lin	1
-蹸	lin	1
 㔂	lin	1
 㖁	lin	1
 㖼	lin	1
@@ -22088,7 +21312,6 @@ sort: by_weight
 䢧	lin	1
 䢯	lin	1
 䫐	lin	1
-䫰	lin	1
 䫰	lin	1
 䮼	lin	1
 𠄈	lin	1
@@ -22106,7 +21329,6 @@ sort: by_weight
 𣇰	lin	1
 𤂶	lin	1
 𤌎	lin	1
-𤌎	lin	1
 𤎭	lin	1
 𤗷	lin	1
 𥓆	lin	1
@@ -22115,7 +21337,6 @@ sort: by_weight
 𥷖	lin	1
 𥻋	lin	1
 𥼭	lin	1
-𦺸	lin	1
 𦺸	lin	1
 𧃮	lin	1
 𧖔	lin	1
@@ -22152,8 +21373,6 @@ sort: by_weight
 伶	ling	539
 铃	ling	528
 羚	ling	526
-令	ling	512
-令	ling	505
 苓	ling	435
 绫	ling	415
 呤	ling	400
@@ -22220,8 +21439,6 @@ sort: by_weight
 欞	ling	30
 竛	ling	30
 錂	ling	30
-呤	ling	25
-岭	ling	22
 跉	ling	18
 秢	ling	3
 彾	ling	3
@@ -22235,12 +21452,9 @@ sort: by_weight
 𫠂	ling	1
 閝	ling	1
 䙥	ling	1
-岺	ling	1
 稜	ling	1
 蘦	ling	1
-袊	ling	1
 輘	ling	1
-阾	ling	1
 㖫	ling	1
 㡵	ling	1
 㦭	ling	1
@@ -22251,7 +21465,6 @@ sort: by_weight
 㱥	ling	1
 㲆	ling	1
 㸳	ling	1
-㻏	ling	1
 㻏	ling	1
 㾉	ling	1
 䄥	ling	1
@@ -22279,9 +21492,7 @@ sort: by_weight
 𠏡	ling	1
 𠗲	ling	1
 𠟨	ling	1
-𠟨	ling	1
 𠠢	ling	1
-𠡭	ling	1
 𠡭	ling	1
 𠱠	ling	1
 𠻠	ling	1
@@ -22294,7 +21505,6 @@ sort: by_weight
 𢔁	ling	1
 𢩗	ling	1
 𢹝	ling	1
-𢺰	ling	1
 𢺰	ling	1
 𣌟	ling	1
 𣎎	ling	1
@@ -22403,7 +21613,6 @@ sort: by_weight
 罶	liu	174
 漻	liu	171
 瑠	liu	170
-溜	liu	157
 劉	liu	151
 瀏	liu	147
 碌	liu	142
@@ -22434,10 +21643,8 @@ sort: by_weight
 驑	liu	48
 鶹	liu	48
 桞	liu	48
-镏	liu	40
 癅	liu	40
 裗	liu	40
-馏	liu	37
 鋶	liu	30
 橮	liu	30
 麍	liu	30
@@ -22462,14 +21669,9 @@ sort: by_weight
 䄂	liu	1
 𨻧	liu	1
 憀	liu	1
-懰	liu	1
 摎	liu	1
 斿	liu	1
-澑	liu	1
-磂	liu	1
 窌	liu	1
-藰	liu	1
-鎦	liu	1
 陸	liu	1
 㙀	liu	1
 㝋	liu	1
@@ -22482,7 +21684,6 @@ sort: by_weight
 㽌	liu	1
 㽞	liu	1
 䉧	liu	1
-䉧	liu	1
 䉹	liu	1
 䋷	liu	1
 䒥	liu	1
@@ -22492,7 +21693,6 @@ sort: by_weight
 䬟	liu	1
 䭷	liu	1
 䰘	liu	1
-䱖	liu	1
 䱖	liu	1
 䱞	liu	1
 䶉	liu	1
@@ -22538,7 +21738,6 @@ sort: by_weight
 𦊗	liu	1
 𦊿	liu	1
 𦌁	liu	1
-𦌁	liu	1
 𦑾	liu	1
 𧏓	liu	1
 𧮗	liu	1
@@ -22574,7 +21773,6 @@ sort: by_weight
 拢	long	1908
 聋	long	1198
 咙	long	572
-笼	long	543
 胧	long	500
 泷	long	489
 窿	long	464
@@ -22608,7 +21806,6 @@ sort: by_weight
 弄	long	159
 巃	long	152
 隴	long	150
-隆	long	146
 篭	long	144
 蠪	long	141
 竉	long	119
@@ -22642,16 +21839,9 @@ sort: by_weight
 㟖	long	1
 㡣	long	1
 㦕	long	1
-儱	long	1
-儱	long	1
 寵	long	1
-徿	long	1
 硦	long	1
-篭	long	1
-籠	long	1
 衖	long	1
-躘	long	1
-龓	long	1
 㑝	long	1
 㙙	long	1
 㚅	long	1
@@ -22681,7 +21871,6 @@ sort: by_weight
 𣫣	long	1
 𤵸	long	1
 𤼃	long	1
-𤼃	long	1
 𤾭	long	1
 𥦌	long	1
 𥪢	long	1
@@ -22691,7 +21880,6 @@ sort: by_weight
 𥳌	long	1
 𥸉	long	1
 𦨩	long	1
-𦪽	long	1
 𦪽	long	1
 𧍰	long	1
 𧙥	long	1
@@ -22747,7 +21935,6 @@ sort: by_weight
 嘍	lou	168
 婁	lou	148
 髏	lou	136
-搂	lou	133
 摟	lou	127
 鏤	lou	116
 廔	lou	116
@@ -22761,7 +21948,6 @@ sort: by_weight
 耬	lou	23
 瘺	lou	23
 熡	lou	23
-喽	lou	20
 瘻	lou	1
 漊	lou	1
 甊	lou	1
@@ -22775,10 +21961,7 @@ sort: by_weight
 謱	lou	1
 𤋏	lou	1
 𤠋	lou	1
-嘍	lou	1
 寠	lou	1
-摟	lou	1
-瞜	lou	1
 瞜	lou	1
 褸	lou	1
 貗	lou	1
@@ -22790,16 +21973,12 @@ sort: by_weight
 㲎	lou	1
 㺏	lou	1
 䅹	lou	1
-䅹	lou	1
-䝏	lou	1
 䝏	lou	1
 䣚	lou	1
-䫫	lou	1
 䫫	lou	1
 䱾	lou	1
 𠖛	lou	1
 𠗩	lou	1
-𠞭	lou	1
 𠞭	lou	1
 𠳴	lou	1
 𡀔	lou	1
@@ -22807,7 +21986,6 @@ sort: by_weight
 𡗆	lou	1
 𡡎	lou	1
 𡪅	lou	1
-𡰌	lou	1
 𡰌	lou	1
 𢈢	lou	1
 𣏥	lou	1
@@ -22825,7 +22003,6 @@ sort: by_weight
 𧯨	lou	1
 𧰃	lou	1
 𧲕	lou	1
-𧷡	lou	1
 𧷡	lou	1
 𨄋	lou	1
 𨝢	lou	1
@@ -22881,7 +22058,6 @@ sort: by_weight
 轳	lu	230
 氇	lu	214
 蓼	lu	197
-氇	lu	184
 甪	lu	168
 绿	lu	162
 蕗	lu	157
@@ -22901,7 +22077,6 @@ sort: by_weight
 爐	lu	50
 虜	lu	48
 滷	lu	45
-芦	lu	37
 盧	lu	37
 鹵	lu	36
 蘆	lu	35
@@ -23176,8 +22351,6 @@ sort: by_weight
 𪢮	luan	1
 𤲶	luan	1
 乿	luan	1
-孌	luan	1
-灓	luan	1
 臡	luan	1
 薍	luan	1
 覶	luan	1
@@ -23193,8 +22366,6 @@ sort: by_weight
 䜌	luan	1
 𠦨	luan	1
 𡄹	luan	1
-𡡗	luan	1
-𡡗	luan	1
 𡡗	luan	1
 𡭸	luan	1
 𡰠	luan	1
@@ -23221,7 +22392,6 @@ sort: by_weight
 仑	lun	2312
 沦	lun	1950
 纶	lun	1132
-论	lun	1075
 抡	lun	476
 論	lun	476
 囵	lun	452
@@ -23246,22 +22416,14 @@ sort: by_weight
 溣	lun	38
 鯩	lun	38
 埨	lun	38
-抡	lun	23
 婨	lun	23
 腀	lun	1
 陯	lun	1
 踚	lun	1
 菕	lun	1
 㷍	lun	1
-侖	lun	1
 惀	lun	1
-惀	lun	1
-掄	lun	1
-碖	lun	1
-碖	lun	1
-耣	lun	1
 芲	lun	1
-論	lun	1
 㖮	lun	1
 㤻	lun	1
 䈁	lun	1
@@ -23289,7 +22451,6 @@ sort: by_weight
 骡	luo	506
 骆	luo	503
 箩	luo	485
-啰	luo	448
 珞	luo	400
 摞	luo	398
 雒	luo	374
@@ -23328,7 +22489,6 @@ sort: by_weight
 儸	luo	37
 曪	luo	37
 驘	luo	32
-啰	luo	29
 硌	luo	25
 鸁	luo	22
 籮	luo	22
@@ -23350,13 +22510,8 @@ sort: by_weight
 㼈	luo	1
 捰	luo	1
 䇔	luo	1
-囉	luo	1
-囉	luo	1
-囖	luo	1
-囖	luo	1
 囖	luo	1
 寽	luo	1
-捰	luo	1
 擽	luo	1
 攊	luo	1
 攭	luo	1
@@ -23365,8 +22520,6 @@ sort: by_weight
 皪	luo	1
 砢	luo	1
 磱	luo	1
-羅	luo	1
-羅	luo	1
 蛒	luo	1
 詻	luo	1
 躒	luo	1
@@ -23380,10 +22533,8 @@ sort: by_weight
 㮝	luo	1
 㰁	luo	1
 㱻	luo	1
-㱻	luo	1
 㴖	luo	1
 㵣	luo	1
-㽋	luo	1
 㽋	luo	1
 㾖	luo	1
 㿚	luo	1
@@ -23630,7 +22781,6 @@ sort: by_weight
 𪅅	lve	1
 呒	me	4
 呣	me	4
-呣	me	3
 吗	ma	601332
 马	ma	29716
 码	ma	11972
@@ -23639,11 +22789,9 @@ sort: by_weight
 嘛	ma	3898
 玛	ma	729
 骂	ma	692
-吗	ma	570
 蚂	ma	555
 抹	ma	527
 蟆	ma	469
-蚂	ma	444
 么	ma	405
 犸	ma	380
 麽	ma	364
@@ -23658,10 +22806,8 @@ sort: by_weight
 罵	ma	182
 蔴	ma	173
 痲	ma	167
-吗	ma	151
 摩	ma	140
 蟇	ma	139
-蚂	ma	138
 螞	ma	138
 鎷	ma	105
 犘	ma	82
@@ -23670,8 +22816,6 @@ sort: by_weight
 溤	ma	68
 傌	ma	68
 鰢	ma	50
-杩	ma	33
-嘛	ma	23
 遤	ma	23
 閁	ma	1
 禡	ma	1
@@ -23685,19 +22829,12 @@ sort: by_weight
 䗫	ma	1
 𨰾	ma	1
 亇	ma	1
-嗎	ma	1
-嗎	ma	1
-嫲	ma	1
 嫲	ma	1
 庅	ma	1
-榪	ma	1
 獁	ma	1
 痳	ma	1
 菻	ma	1
-螞	ma	1
-螞	ma	1
 㐃	ma	1
-㐷	ma	1
 㑻	ma	1
 㦄	ma	1
 㨸	ma	1
@@ -23705,7 +22842,6 @@ sort: by_weight
 䀣	ma	1
 䠋	ma	1
 䠨	ma	1
-䣕	ma	1
 䣖	ma	1
 䧞	ma	1
 䯦	ma	1
@@ -23831,7 +22967,6 @@ sort: by_weight
 鄤	man	113
 屘	man	113
 姏	man	109
-谩	man	100
 蟎	man	92
 槾	man	68
 摱	man	60
@@ -23840,8 +22975,6 @@ sort: by_weight
 蘰	man	50
 矕	man	50
 樠	man	38
-蔓	man	26
-嫚	man	24
 獌	man	23
 慲	man	15
 襔	man	1
@@ -23853,13 +22986,9 @@ sort: by_weight
 㒼	man	1
 僈	man	1
 娨	man	1
-摱	man	1
 澫	man	1
-矕	man	1
 絻	man	1
 顢	man	1
-㒼	man	1
-㗄	man	1
 㗄	man	1
 㗈	man	1
 㙢	man	1
@@ -23872,7 +23001,6 @@ sort: by_weight
 䑱	man	1
 䒥	man	1
 䕕	man	1
-䛲	man	1
 䛲	man	1
 䜱	man	1
 䝢	man	1
@@ -23892,23 +23020,19 @@ sort: by_weight
 𤅎	man	1
 𤜘	man	1
 𥊑	man	1
-𥊑	man	1
 𥧭	man	1
 𥬈	man	1
 𥲈	man	1
 𥲑	man	1
 𦎌	man	1
 𦔔	man	1
-𦔔	man	1
 𧆏	man	1
 𧖵	man	1
-𧜞	man	1
 𧜞	man	1
 𧱼	man	1
 𨲛	man	1
 𨲾	man	1
 𩅍	man	1
-𩆓	man	1
 𩆓	man	1
 𩈦	man	1
 𩛎	man	1
@@ -23969,9 +23093,7 @@ sort: by_weight
 㟐	mang	1
 㟌	mang	1
 㟿	mang	1
-㟿	mang	1
 㡛	mang	1
-㤶	mang	1
 㤶	mang	1
 㬒	mang	1
 㴇	mang	1
@@ -24028,7 +23150,6 @@ sort: by_weight
 卯	mao	576
 锚	mao	558
 茅	mao	557
-猫	mao	544
 髦	mao	490
 懋	mao	467
 牦	mao	462
@@ -24072,8 +23193,6 @@ sort: by_weight
 鶜	mao	50
 愗	mao	50
 軞	mao	38
-旄	mao	37
-芼	mao	35
 笷	mao	23
 毷	mao	23
 覒	mao	23
@@ -24082,18 +23201,15 @@ sort: by_weight
 萺	mao	1
 罞	mao	1
 務	mao	1
-務	mao	1
 嵍	mao	1
 秏	mao	1
 緢	mao	1
 貇	mao	1
-貓	mao	1
 鉾	mao	1
 鉚	mao	1
 㒵	mao	1
 㒻	mao	1
 㚹	mao	1
-㝟	mao	1
 㝟	mao	1
 㡌	mao	1
 㧇	mao	1
@@ -24130,7 +23246,6 @@ sort: by_weight
 𣊃	mao	1
 𣔺	mao	1
 𣨇	mao	1
-𣬵	mao	1
 𣬵	mao	1
 𣭮	mao	1
 𣯀	mao	1
@@ -24259,10 +23374,7 @@ sort: by_weight
 櫗	mei	1
 殙	mei	1
 羙	mei	1
-黴	mei	1
 㙁	mei	1
-㙁	mei	1
-㜫	mei	1
 㜫	mei	1
 㡌	mei	1
 㭑	mei	1
@@ -24318,7 +23430,6 @@ sort: by_weight
 们	men	57790
 闷	men	2621
 焖	men	2208
-闷	men	2163
 扪	men	1095
 門	men	476
 懑	men	470
@@ -24332,9 +23443,7 @@ sort: by_weight
 燜	men	124
 椚	men	116
 暪	men	75
-们	men	38
 惛	men	37
-瞒	men	31
 瞒	men	31
 汶	men	21
 鍆	men	1
@@ -24347,9 +23456,7 @@ sort: by_weight
 們	men	1
 怋	men	1
 悗	men	1
-悶	men	1
 斖	men	1
-瞞	men	1
 瞞	men	1
 穈	men	1
 㙢	men	1
@@ -24383,7 +23490,6 @@ sort: by_weight
 孟	meng	1408
 檬	meng	654
 懵	meng	621
-蒙	meng	589
 锰	meng	494
 朦	meng	460
 勐	meng	447
@@ -24401,7 +23507,6 @@ sort: by_weight
 礞	meng	189
 鹲	meng	163
 𫑡	meng	163
-蒙	meng	159
 氓	meng	152
 尨	meng	141
 㠓	meng	119
@@ -24421,8 +23526,6 @@ sort: by_weight
 霥	meng	50
 蟒	meng	39
 靀	meng	38
-獴	meng	32
-瞢	meng	24
 溕	meng	23
 顭	meng	23
 饛	meng	1
@@ -24441,18 +23544,13 @@ sort: by_weight
 𨮒	meng	1
 冡	meng	1
 庬	meng	1
-懞	meng	1
-懜	meng	1
-懜	meng	1
 掹	meng	1
 癦	meng	1
 矇	meng	1
-矒	meng	1
 鋂	meng	1
 雺	meng	1
 霧	meng	1
 髳	meng	1
-黽	meng	1
 黽	meng	1
 鼆	meng	1
 㒱	meng	1
@@ -24463,13 +23561,11 @@ sort: by_weight
 㽇	meng	1
 䀄	meng	1
 䁅	meng	1
-䁅	meng	1
 䇇	meng	1
 䉚	meng	1
 䑅	meng	1
 䑃	meng	1
 䒐	meng	1
-䓝	meng	1
 䓝	meng	1
 䖟	meng	1
 䗈	meng	1
@@ -24492,7 +23588,6 @@ sort: by_weight
 𡒯	meng	1
 𡚔	meng	1
 𡬆	meng	1
-𡬆	meng	1
 𡬌	meng	1
 𢄐	meng	1
 𢕙	meng	1
@@ -24511,7 +23606,6 @@ sort: by_weight
 𥂂	meng	1
 𥄁	meng	1
 𥉕	meng	1
-𥉕	meng	1
 𥋝	meng	1
 𥌯	meng	1
 𥌱	meng	1
@@ -24525,7 +23619,6 @@ sort: by_weight
 𦳶	meng	1
 𦴔	meng	1
 𦷹	meng	1
-𦿏	meng	1
 𦿏	meng	1
 𧀆	meng	1
 𧀧	meng	1
@@ -24582,7 +23675,6 @@ sort: by_weight
 汨	mi	352
 縻	mi	333
 脒	mi	321
-弥	mi	299
 芈	mi	295
 蘼	mi	293
 祕	mi	276
@@ -24630,13 +23722,10 @@ sort: by_weight
 塓	mi	40
 爢	mi	40
 幎	mi	40
-咪	mi	39
-眯	mi	38
 攠	mi	30
 蔝	mi	30
 濗	mi	30
 詸	mi	30
-靡	mi	28
 蓂	mi	26
 淧	mi	18
 孊	mi	18
@@ -24654,14 +23743,11 @@ sort: by_weight
 䕷	mi	1
 𢆯	mi	1
 䥸	mi	1
-彌	mi	1
 怽	mi	1
 摵	mi	1
-攠	mi	1
 枈	mi	1
 檷	mi	1
 獮	mi	1
-瞇	mi	1
 瞴	mi	1
 藌	mi	1
 蘪	mi	1
@@ -24672,7 +23758,6 @@ sort: by_weight
 㜷	mi	1
 㝥	mi	1
 㟜	mi	1
-㠧	mi	1
 㠧	mi	1
 㣆	mi	1
 㥝	mi	1
@@ -24696,7 +23781,6 @@ sort: by_weight
 䉲	mi	1
 䊫	mi	1
 䊳	mi	1
-䋛	mi	1
 䋛	mi	1
 䋳	mi	1
 䌏	mi	1
@@ -24728,13 +23812,10 @@ sort: by_weight
 𡓭	mi	1
 𡝠	mi	1
 𡬍	mi	1
-𡬍	mi	1
 𡲼	mi	1
 𡾱	mi	1
 𢇲	mi	1
 𢘺	mi	1
-𢘺	mi	1
-𢞞	mi	1
 𢞞	mi	1
 𢱮	mi	1
 𣓔	mi	1
@@ -24848,7 +23929,6 @@ sort: by_weight
 櫋	mian	68
 芇	mian	50
 汅	mian	38
-眄	mian	37
 瞑	mian	32
 臱	mian	23
 矊	mian	23
@@ -24862,7 +23942,6 @@ sort: by_weight
 㮌	mian	1
 㴐	mian	1
 𡒳	mian	1
-媔	mian	1
 牑	mian	1
 睌	mian	1
 緡	mian	1
@@ -24877,7 +23956,6 @@ sort: by_weight
 㥝	mian	1
 㨺	mian	1
 㫘	mian	1
-㬆	mian	1
 㬆	mian	1
 㰃	mian	1
 㻰	mian	1
@@ -25093,7 +24171,6 @@ sort: by_weight
 琘	min	60
 笽	min	38
 玟	min	23
-忞	min	21
 鰵	min	1
 痻	min	1
 簢	min	1
@@ -25104,19 +24181,15 @@ sort: by_weight
 呡	min	1
 垊	min	1
 忟	min	1
-忟	min	1
-暋	min	1
 渂	min	1
 湏	min	1
 賯	min	1
 黽	min	1
 㞶	min	1
 㟩	min	1
-㟩	min	1
 㟭	min	1
 㢯	min	1
 㥸	min	1
-㨉	min	1
 㨉	min	1
 㬆	min	1
 㮌	min	1
@@ -25131,7 +24204,6 @@ sort: by_weight
 䡑	min	1
 䡻	min	1
 䪸	min	1
-䲄	min	1
 䲄	min	1
 䶔	min	1
 𠊟	min	1
@@ -25193,7 +24265,6 @@ sort: by_weight
 覭	ming	23
 猽	ming	1
 䄙	ming	1
-嫇	ming	1
 掵	ming	1
 詺	ming	1
 㝠	ming	1
@@ -25239,7 +24310,6 @@ sort: by_weight
 磨	mo	740
 沫	mo	728
 没	mo	693
-磨	mo	664
 墨	mo	661
 漠	mo	622
 膜	mo	620
@@ -25273,7 +24343,6 @@ sort: by_weight
 脉	mo	158
 眜	mo	151
 饃	mo	150
-抹	mo	149
 冒	mo	143
 万	mo	141
 謩	mo	136
@@ -25346,7 +24415,6 @@ sort: by_weight
 䁼	mo	1
 䁿	mo	1
 䃺	mo	1
-䃺	mo	1
 䉑	mo	1
 䌕	mo	1
 䏞	mo	1
@@ -25358,7 +24426,6 @@ sort: by_weight
 䬴	mo	1
 䭩	mo	1
 䮬	mo	1
-䯢	mo	1
 䯢	mo	1
 䱅	mo	1
 䳟	mo	1
@@ -25375,7 +24442,6 @@ sort: by_weight
 𡈗	mo	1
 𡊉	mo	1
 𡖶	mo	1
-𡠜	mo	1
 𡠜	mo	1
 𡡉	mo	1
 𡢜	mo	1
@@ -25440,7 +24506,6 @@ sort: by_weight
 𩢷	mo	1
 𩢖	mo	1
 𩥔	mo	1
-𩪮	mo	1
 𩪮	mo	1
 𩿣	mo	1
 𪍇	mo	1
@@ -25558,7 +24623,6 @@ sort: by_weight
 縸	mu	1
 䀲	mu	1
 䥈	mu	1
-坶	mu	1
 娒	mu	1
 暯	mu	1
 朷	mu	1
@@ -25585,7 +24649,6 @@ sort: by_weight
 𡜿	mu	1
 𡵬	mu	1
 𢘃	mu	1
-𢜯	mu	1
 𢜯	mu	1
 𢟨	mu	1
 𢟽	mu	1
@@ -25620,8 +24683,6 @@ sort: by_weight
 𫠏	mu	1
 𬰃	mu	1
 嗯	en	731821
-嗯	en	3249
-嗯	en	93
 㕶	en	2
 𠮾	en	1
 那	na	592374
@@ -25633,7 +24694,6 @@ sort: by_weight
 钠	na	2052
 内	na	1949
 南	na	1851
-那	na	423
 捺	na	405
 衲	na	354
 镎	na	314
@@ -25653,9 +24713,7 @@ sort: by_weight
 豽	na	50
 魶	na	50
 軜	na	38
-那	na	37
 笝	na	23
-哪	na	20
 貀	na	1
 袦	na	1
 靹	na	1
@@ -25778,7 +24836,6 @@ sort: by_weight
 㾍	nai	1
 䅞	nai	1
 䘅	nai	1
-䘅	nai	1
 䯮	nai	1
 䱞	nai	1
 𠄕	nai	1
@@ -25807,7 +24864,6 @@ sort: by_weight
 难	nan	40968
 南	nan	11740
 男	nan	11505
-难	nan	11274
 楠	nan	1992
 腩	nan	1276
 喃	nan	548
@@ -25830,14 +24886,11 @@ sort: by_weight
 暔	nan	68
 畘	nan	38
 戁	nan	38
-萳	nan	32
 抩	nan	1
 䛁	nan	1
 囝	nan	1
 妠	nan	1
 嫨	nan	1
-諵	nan	1
-難	nan	1
 㓓	nan	1
 㫱	nan	1
 㬮	nan	1
@@ -25880,14 +24933,12 @@ sort: by_weight
 𪚮	nan	1
 囊	nang	879
 馕	nang	791
-囊	nang	775
 囔	nang	641
 攮	nang	577
 曩	nang	519
 齉	nang	254
 嚢	nang	207
 乪	nang	202
-馕	nang	186
 擃	nang	167
 饢	nang	146
 灢	nang	75
@@ -25896,9 +24947,7 @@ sort: by_weight
 儾	nang	38
 瀼	nang	23
 㶞	nang	1
-儾	nang	1
 憹	nang	1
-搑	nang	1
 搑	nang	1
 涳	nang	1
 饟	nang	1
@@ -25958,10 +25007,8 @@ sort: by_weight
 碙	nao	1
 𥐻	nao	1
 㑎	nao	1
-憹	nao	1
 摎	nao	1
 橈	nao	1
-獶	nao	1
 獿	nao	1
 㛴	nao	1
 㞪	nao	1
@@ -26110,8 +25157,6 @@ sort: by_weight
 𨃳	neng	1
 𨶙	neng	1
 嗯	eng	434765
-嗯	eng	31262
-嗯	eng	35
 㕶	eng	2
 你	ni	1547364
 泥	ni	4154
@@ -26137,7 +25182,6 @@ sort: by_weight
 麑	ni	320
 薿	ni	312
 𫐐	ni	302
-伲	ni	283
 𨺙	ni	279
 𫠜	ni	252
 妳	ni	211
@@ -26146,7 +25190,6 @@ sort: by_weight
 擬	ni	179
 伱	ni	170
 籾	ni	166
-泥	ni	162
 貎	ni	162
 郳	ni	157
 狔	ni	156
@@ -26178,7 +25221,6 @@ sort: by_weight
 聣	ni	50
 嫟	ni	38
 隬	ni	38
-伲	ni	30
 蚭	ni	23
 跜	ni	23
 鿭	ni	23
@@ -26190,15 +25232,11 @@ sort: by_weight
 胒	ni	1
 齯	ni	1
 㹸	ni	1
-婗	ni	1
 彌	ni	1
 懝	ni	1
 抐	ni	1
-抳	ni	1
 掜	ni	1
-棿	ni	1
 濔	ni	1
-秜	ni	1
 蛪	ni	1
 鈮	ni	1
 鉨	ni	1
@@ -26216,13 +25254,9 @@ sort: by_weight
 䀑	ni	1
 䁥	ni	1
 䍲	ni	1
-䍲	ni	1
 䕥	ni	1
 䘌	ni	1
 䘦	ni	1
-䘦	ni	1
-䘽	ni	1
-䘽	ni	1
 䘽	ni	1
 䛏	ni	1
 䝚	ni	1
@@ -26338,7 +25372,6 @@ sort: by_weight
 蹨	nian	38
 簐	nian	23
 鵇	nian	1
-姩	nian	1
 悥	nian	1
 惗	nian	1
 榐	nian	1
@@ -26612,14 +25645,12 @@ sort: by_weight
 宁	ning	4434
 凝	ning	2794
 柠	ning	2507
-宁	ning	2456
 拧	ning	2406
 泞	ning	1012
 狞	ning	466
 甯	ning	407
 寧	ning	405
 咛	ning	366
-拧	ning	334
 佞	ning	323
 聍	ning	306
 苧	ning	252
@@ -26631,7 +25662,6 @@ sort: by_weight
 嚀	ning	127
 薴	ning	127
 侫	ning	122
-拧	ning	109
 儜	ning	109
 寍	ning	107
 濘	ning	92
@@ -26641,20 +25671,11 @@ sort: by_weight
 倿	ning	45
 𡩋	ning	38
 鑏	ning	38
-甯	ning	31
 鸋	ning	23
 澝	ning	23
 聹	ning	1
 矃	ning	1
-寍	ning	1
-寕	ning	1
-寗	ning	1
-寜	ning	1
-寧	ning	1
-擰	ning	1
-擰	ning	1
 橣	ning	1
-𡩋	ning	1
 㝕	ning	1
 㣷	ning	1
 㩶	ning	1
@@ -26679,7 +25700,6 @@ sort: by_weight
 𧍖	ning	1
 𧑗	ning	1
 𧕝	ning	1
-𧭈	ning	1
 𧭈	ning	1
 𩕳	ning	1
 𪥰	ning	1
@@ -26762,7 +25782,6 @@ sort: by_weight
 𩅽	nong	1
 蕽	nong	1
 䢉	nong	1
-癑	nong	1
 繷	nong	1
 莀	nong	1
 譨	nong	1
@@ -26831,7 +25850,6 @@ sort: by_weight
 駑	nu	11
 𧗈	nu	1
 㚢	nu	1
-伮	nu	1
 㐐	nu	1
 䢞	nu	1
 䢪	nu	1
@@ -26853,7 +25871,6 @@ sort: by_weight
 渜	nuan	404
 煗	nuan	304
 餪	nuan	53
-渜	nuan	37
 湪	nuan	35
 㬉	nuan	1
 䎡	nuan	1
@@ -26972,7 +25989,6 @@ sort: by_weight
 哦	o	165984
 噢	o	9292
 喔	o	6046
-哦	o	5925
 嚄	o	14
 欧	ou	10817
 偶	ou	3100
@@ -26983,10 +25999,8 @@ sort: by_weight
 耦	ou	519
 瓯	ou	412
 歐	ou	377
-呕	ou	371
 讴	ou	351
 怄	ou	256
-沤	ou	230
 沤	ou	230
 禺	ou	200
 𬉼	ou	186
@@ -27002,7 +26016,6 @@ sort: by_weight
 毆	ou	82
 謳	ou	60
 甌	ou	60
-呕	ou	40
 漚	ou	38
 吽	ou	23
 腢	ou	23
@@ -27014,10 +26027,6 @@ sort: by_weight
 藲	ou	1
 筽	ou	1
 區	ou	1
-嘔	ou	1
-嘔	ou	1
-漚	ou	1
-熰	ou	1
 㒖	ou	1
 㛏	ou	1
 㸸	ou	1
@@ -27031,9 +26040,7 @@ sort: by_weight
 䳼	ou	1
 𠢔	ou	1
 𠥝	ou	1
-𠥝	ou	1
 𠴰	ou	1
-𡂿	ou	1
 𡂿	ou	1
 𡈆	ou	1
 𡩾	ou	1
@@ -27081,8 +26088,6 @@ sort: by_weight
 袙	pa	97
 皅	pa	1
 𤆵	pa	1
-帊	pa	1
-汃	pa	1
 汃	pa	1
 苩	pa	1
 㞎	pa	1
@@ -27119,7 +26124,6 @@ sort: by_weight
 簲	pai	175
 廹	pai	101
 渒	pai	84
-排	pai	75
 犤	pai	75
 鎃	pai	60
 猅	pai	50
@@ -27129,7 +26133,6 @@ sort: by_weight
 沠	pai	1
 箄	pai	1
 㭛	pai	1
-㵺	pai	1
 䃻	pai	1
 䖰	pai	1
 䮘	pai	1
@@ -27190,7 +26193,6 @@ sort: by_weight
 拌	pan	40
 柈	pan	38
 瀊	pan	38
-胖	pan	35
 卞	pan	29
 冸	pan	23
 蒰	pan	23
@@ -27210,7 +26212,6 @@ sort: by_weight
 眫	pan	1
 籓	pan	1
 肨	pan	1
-肨	pan	1
 膰	pan	1
 賁	pan	1
 闆	pan	1
@@ -27222,12 +26223,10 @@ sort: by_weight
 㽃	pan	1
 䃑	pan	1
 䃲	pan	1
-䃲	pan	1
 䆺	pan	1
 䈲	pan	1
 䙃	pan	1
 䙪	pan	1
-䰉	pan	1
 䰉	pan	1
 䰔	pan	1
 𠬜	pan	1
@@ -27243,7 +26242,6 @@ sort: by_weight
 𤠍	pan	1
 𤺏	pan	1
 𤻷	pan	1
-𥈼	pan	1
 𥈼	pan	1
 𥉟	pan	1
 𥌊	pan	1
@@ -27283,7 +26281,6 @@ sort: by_weight
 舽	pang	60
 龎	pang	60
 胮	pang	50
-膀	pang	34
 嫎	pang	23
 沗	pang	1
 覫	pang	1
@@ -27347,9 +26344,6 @@ sort: by_weight
 萢	pao	219
 鞄	pao	218
 麃	pao	151
-炮	pao	145
-泡	pao	138
-跑	pao	138
 炰	pao	136
 皰	pao	130
 麭	pao	127
@@ -27367,7 +26361,6 @@ sort: by_weight
 烰	pao	1
 瓟	pao	1
 穮	pao	1
-袌	pao	1
 袌	pao	1
 跁	pao	1
 鉋	pao	1
@@ -27500,7 +26493,6 @@ sort: by_weight
 𩵣	pei	1
 喷	pen	32581
 盆	pen	17907
-喷	pen	17548
 噴	pen	1296
 湓	pen	1004
 葐	pen	368
@@ -27509,7 +26501,6 @@ sort: by_weight
 喯	pen	112
 歕	pen	101
 翸	pen	38
-噴	pen	1
 濆	pen	1
 㾦	pen	1
 𠺔	pen	1
@@ -27590,11 +26581,9 @@ sort: by_weight
 槰	peng	1
 漨	peng	1
 痭	peng	1
-磞	peng	1
 絣	peng	1
 胓	peng	1
 袶	peng	1
-閛	peng	1
 駍	peng	1
 㑟	peng	1
 㔙	peng	1
@@ -27629,7 +26618,6 @@ sort: by_weight
 𤖳	peng	1
 𤘾	peng	1
 𤡭	peng	1
-𥕱	peng	1
 𥕱	peng	1
 𥕽	peng	1
 𦚝	peng	1
@@ -27671,7 +26659,6 @@ sort: by_weight
 劈	pi	538
 僻	pi	518
 霹	pi	517
-劈	pi	507
 坯	pi	492
 罢	pi	465
 貔	pi	464
@@ -27696,8 +26683,6 @@ sort: by_weight
 圮	pi	291
 蚍	pi	278
 鼙	pi	252
-纰	pi	216
-铍	pi	196
 芘	pi	195
 嚭	pi	195
 被	pi	191
@@ -27711,7 +26696,6 @@ sort: by_weight
 狉	pi	135
 苉	pi	116
 䴙	pi	107
-仳	pi	102
 𬳵	pi	97
 裨	pi	96
 毘	pi	88
@@ -27737,7 +26721,6 @@ sort: by_weight
 副	pi	27
 濞	pi	27
 吡	pi	25
-埤	pi	24
 潎	pi	22
 膍	pi	22
 羆	pi	15
@@ -27789,14 +26772,12 @@ sort: by_weight
 岯	pi	1
 嶏	pi	1
 怶	pi	1
-悂	pi	1
 枈	pi	1
 榌	pi	1
 猈	pi	1
 痺	pi	1
 禆	pi	1
 笓	pi	1
-紕	pi	1
 罷	pi	1
 螕	pi	1
 釽	pi	1
@@ -27810,15 +26791,12 @@ sort: by_weight
 㔥	pi	1
 㡙	pi	1
 㨢	pi	1
-㨽	pi	1
 㯅	pi	1
-㱟	pi	1
 㱟	pi	1
 㳪	pi	1
 㵨	pi	1
 㼰	pi	1
 㿙	pi	1
-䏘	pi	1
 䏘	pi	1
 䑀	pi	1
 䑄	pi	1
@@ -27833,7 +26811,6 @@ sort: by_weight
 䪐	pi	1
 䫌	pi	1
 䫠	pi	1
-䰦	pi	1
 䰦	pi	1
 䴽	pi	1
 𠒱	pi	1
@@ -27932,7 +26909,6 @@ sort: by_weight
 𩣚	pi	1
 𩫫	pi	1
 𪄆	pi	1
-𪄆	pi	1
 𪇊	pi	1
 𪉔	pi	1
 𪊕	pi	1
@@ -27946,7 +26922,6 @@ sort: by_weight
 片	pian	59826
 偏	pian	15400
 篇	pian	15092
-片	pian	14892
 骗	pian	8829
 骈	pian	5390
 便	pian	4594
@@ -28009,10 +26984,8 @@ sort: by_weight
 票	piao	19057
 飘	piao	5952
 漂	piao	2604
-漂	piao	2344
 朴	piao	1900
 嫖	piao	1187
-漂	piao	1127
 瓢	piao	704
 瞟	piao	461
 缥	piao	433
@@ -28022,16 +26995,12 @@ sort: by_weight
 螵	piao	270
 莩	piao	170
 嘌	piao	169
-嫖	piao	143
-嘌	piao	143
 薸	piao	136
 蔈	piao	130
-票	piao	101
 飄	piao	97
 慓	piao	92
 僄	piao	92
 縹	piao	92
-缥	piao	83
 顠	piao	82
 飃	piao	82
 闝	piao	68
@@ -28045,8 +27014,6 @@ sort: by_weight
 犥	piao	1
 醥	piao	1
 勡	piao	1
-彯	piao	1
-縹	piao	1
 驃	piao	1
 鰾	piao	1
 㩠	piao	1
@@ -28075,18 +27042,14 @@ sort: by_weight
 𩄷	piao	1
 𩗏	piao	1
 𩙒	piao	1
-𩙒	piao	1
 𩛞	piao	1
 𩡦	piao	1
 𩮳	piao	1
-𩮳	piao	1
-𪅃	piao	1
 𪅃	piao	1
 𪋖	piao	1
 𪏫	piao	1
 撇	pie	2141
 瞥	pie	2098
-撇	pie	1734
 丿	pie	1352
 苤	pie	1074
 氕	pie	559
@@ -28167,8 +27130,6 @@ sort: by_weight
 𩕵	pin	1
 𩖓	pin	1
 𩰗	pin	1
-𩰗	pin	1
-𩰝	pin	1
 𩰝	pin	1
 𪬚	pin	1
 𫍐	pin	1
@@ -28240,7 +27201,6 @@ sort: by_weight
 𠗦	ping	1
 𠗥	ping	1
 𡊞	ping	1
-𡊞	ping	1
 𢆟	ping	1
 𢖊	ping	1
 𤭔	ping	1
@@ -28284,7 +27244,6 @@ sort: by_weight
 䥽	po	257
 泺	po	179
 钷	po	136
-朴	po	129
 哱	po	122
 酦	po	119
 桲	po	105
@@ -28414,7 +27373,6 @@ sort: by_weight
 裒	pou	490
 掊	pou	441
 垺	pou	232
-掊	pou	132
 棓	pou	111
 犃	pou	101
 婄	pou	100
@@ -28424,10 +27382,7 @@ sort: by_weight
 哣	pou	60
 抙	pou	38
 娝	pou	23
-抙	pou	1
-捊	pou	1
 㟝	pou	1
-㧵	pou	1
 㧵	pou	1
 㰴	pou	1
 㼜	pou	1
@@ -28455,7 +27410,6 @@ sort: by_weight
 蒲	pu	537
 仆	pu	523
 菩	pu	517
-铺	pu	504
 堡	pu	494
 圃	pu	475
 脯	pu	461
@@ -28483,7 +27437,6 @@ sort: by_weight
 攴	pu	219
 撲	pu	187
 攵	pu	169
-仆	pu	163
 贌	pu	163
 暴	pu	156
 圑	pu	109
@@ -28506,16 +27459,13 @@ sort: by_weight
 痡	pu	1
 𤆝	pu	1
 𪖈	pu	1
-僕	pu	1
 抪	pu	1
 捗	pu	1
 擈	pu	1
 柨	pu	1
-樸	pu	1
 砲	pu	1
 秿	pu	1
 箁	pu	1
-鋪	pu	1
 㒒	pu	1
 㙸	pu	1
 㬥	pu	1
@@ -28530,7 +27480,6 @@ sort: by_weight
 䧤	pu	1
 䪬	pu	1
 䮒	pu	1
-䲕	pu	1
 䲕	pu	1
 䴆	pu	1
 𠣾	pu	1
@@ -28644,7 +27593,6 @@ sort: by_weight
 恓	qi	40
 槭	qi	38
 枝	qi	37
-妻	qi	33
 缉	qi	33
 埼	qi	27
 玘	qi	23
@@ -28660,7 +27608,6 @@ sort: by_weight
 欹	qi	1
 洓	qi	1
 觭	qi	1
-跂	qi	1
 踦	qi	1
 䓫	qi	1
 𨙸	qi	1
@@ -28786,7 +27733,6 @@ sort: by_weight
 䟄	qi	1
 𡫁	qi	1
 丌	qi	1
-倛	qi	1
 傶	qi	1
 呚	qi	1
 喰	qi	1
@@ -28839,10 +27785,8 @@ sort: by_weight
 㦢	qi	1
 㩩	qi	1
 㩻	qi	1
-㩻	qi	1
 㩽	qi	1
 㫅	qi	1
-㫓	qi	1
 㫓	qi	1
 㬤	qi	1
 㮑	qi	1
@@ -28966,7 +27910,6 @@ sort: by_weight
 𢦽	qi	1
 𢩡	qi	1
 𢴰	qi	1
-𢺵	qi	1
 𢺵	qi	1
 𢺷	qi	1
 𢻋	qi	1
@@ -29118,7 +28061,6 @@ sort: by_weight
 匼	qia	159
 帢	qia	159
 拤	qia	153
-拤	qia	143
 冾	qia	129
 硈	qia	105
 鞐	qia	97
@@ -29149,7 +28091,6 @@ sort: by_weight
 䠍	qia	1
 䨐	qia	1
 䯊	qia	1
-䶗	qia	1
 䶗	qia	1
 䶝	qia	1
 𠕣	qia	1
@@ -29351,7 +28292,6 @@ sort: by_weight
 煔	qian	1
 玪	qian	1
 籖	qian	1
-縴	qian	1
 葥	qian	1
 蚙	qian	1
 鉆	qian	1
@@ -29398,7 +28338,6 @@ sort: by_weight
 䥅	qian	1
 䦲	qian	1
 䨿	qian	1
-䪈	qian	1
 䪈	qian	1
 䫡	qian	1
 䭑	qian	1
@@ -29511,7 +28450,6 @@ sort: by_weight
 抢	qiang	7280
 墙	qiang	7134
 腔	qiang	2208
-强	qiang	2097
 呛	qiang	1113
 羌	qiang	502
 锵	qiang	486
@@ -29537,18 +28475,14 @@ sort: by_weight
 搶	qiang	162
 墻	qiang	162
 羗	qiang	156
-呛	qiang	151
 嶈	qiang	151
-抢	qiang	150
 薔	qiang	139
 唴	qiang	132
 獇	qiang	116
 墏	qiang	113
 熗	qiang	113
-戗	qiang	110
 漒	qiang	109
 蹡	qiang	109
-跄	qiang	102
 斨	qiang	92
 鏘	qiang	92
 椌	qiang	87
@@ -29563,7 +28497,6 @@ sort: by_weight
 鸧	qiang	39
 蹌	qiang	38
 爿	qiang	31
-镪	qiang	31
 疆	qiang	27
 謒	qiang	23
 艢	qiang	1
@@ -29576,17 +28509,11 @@ sort: by_weight
 溬	qiang	1
 牄	qiang	1
 羻	qiang	1
-搶	qiang	1
 繈	qiang	1
 啌	qiang	1
-嗆	qiang	1
-強	qiang	1
 彊	qiang	1
-彊	qiang	1
-戧	qiang	1
 摤	qiang	1
 摪	qiang	1
-鏹	qiang	1
 鶬	qiang	1
 㛨	qiang	1
 㩖	qiang	1
@@ -29645,7 +28572,6 @@ sort: by_weight
 壳	qiao	550
 俏	qiao	522
 峭	qiao	511
-悄	qiao	504
 撬	qiao	499
 翘	qiao	495
 跷	qiao	482
@@ -29676,9 +28602,7 @@ sort: by_weight
 竅	qiao	170
 骹	qiao	170
 殻	qiao	168
-翘	qiao	162
 荍	qiao	160
-雀	qiao	144
 墝	qiao	136
 趫	qiao	119
 槗	qiao	116
@@ -29726,9 +28650,7 @@ sort: by_weight
 偢	qiao	1
 勪	qiao	1
 喿	qiao	1
-嘺	qiao	1
 噭	qiao	1
-墝	qiao	1
 墧	qiao	1
 嶠	qiao	1
 帩	qiao	1
@@ -29741,18 +28663,13 @@ sort: by_weight
 煍	qiao	1
 碻	qiao	1
 磝	qiao	1
-磽	qiao	1
-磽	qiao	1
-礉	qiao	1
 礉	qiao	1
 箾	qiao	1
 繰	qiao	1
-翹	qiao	1
 譙	qiao	1
 蹻	qiao	1
 鏒	qiao	1
 驕	qiao	1
-㚁	qiao	1
 㚁	qiao	1
 㚽	qiao	1
 㝯	qiao	1
@@ -29761,7 +28678,6 @@ sort: by_weight
 㤍	qiao	1
 㨽	qiao	1
 㩰	qiao	1
-㪣	qiao	1
 㪣	qiao	1
 㱶	qiao	1
 㴥	qiao	1
@@ -29787,7 +28703,6 @@ sort: by_weight
 𢩨	qiao	1
 𢮉	qiao	1
 𢶡	qiao	1
-𢻤	qiao	1
 𢻤	qiao	1
 𢿣	qiao	1
 𢿲	qiao	1
@@ -29827,7 +28742,6 @@ sort: by_weight
 𫞎	qiao	1
 且	qie	232090
 切	qie	87021
-切	qie	85280
 茄	qie	2445
 窃	qie	2086
 惬	qie	1265
@@ -30016,7 +28930,6 @@ sort: by_weight
 兓	qin	1
 埐	qin	1
 寖	qin	1
-寴	qin	1
 嵰	qin	1
 嶜	qin	1
 忴	qin	1
@@ -30025,9 +28938,6 @@ sort: by_weight
 矝	qin	1
 肣	qin	1
 臤	qin	1
-菳	qin	1
-㓎	qin	1
-㓎	qin	1
 㕋	qin	1
 㘦	qin	1
 㛙	qin	1
@@ -30072,7 +28982,6 @@ sort: by_weight
 𣖯	qin	1
 𣜣	qin	1
 𣢐	qin	1
-𣨠	qin	1
 𣨠	qin	1
 𣪄	qin	1
 𤙋	qin	1
@@ -30170,8 +29079,6 @@ sort: by_weight
 㷫	qing	1
 㵾	qing	1
 啨	qing	1
-廎	qing	1
-廎	qing	1
 渹	qing	1
 硘	qing	1
 綪	qing	1
@@ -30191,8 +29098,6 @@ sort: by_weight
 䞍	qing	1
 䨝	qing	1
 䯧	qing	1
-䯧	qing	1
-䲔	qing	1
 䲔	qing	1
 䵞	qing	1
 𠑴	qing	1
@@ -30440,7 +29345,6 @@ sort: by_weight
 䔔	qiu	1
 䜪	qiu	1
 䞭	qiu	1
-䞭	qiu	1
 䟬	qiu	1
 䟵	qiu	1
 䠗	qiu	1
@@ -30476,7 +29380,6 @@ sort: by_weight
 𧏋	qiu	1
 𧒔	qiu	1
 𧔭	qiu	1
-𧔭	qiu	1
 𧣕	qiu	1
 𧤕	qiu	1
 𧲰	qiu	1
@@ -30511,7 +29414,6 @@ sort: by_weight
 趣	qu	3793
 曲	qu	3717
 趋	qu	3531
-曲	qu	3354
 驱	qu	3186
 渠	qu	1440
 屈	qu	1368
@@ -30564,7 +29466,6 @@ sort: by_weight
 闃	qu	31
 嶇	qu	29
 戌	qu	28
-觑	qu	28
 臞	qu	12
 髷	qu	5
 軀	qu	1
@@ -30627,16 +29528,11 @@ sort: by_weight
 欪	qu	1
 煀	qu	1
 爠	qu	1
-紶	qu	1
 翵	qu	1
 蚼	qu	1
-覰	qu	1
-覷	qu	1
-覻	qu	1
 趍	qu	1
 趜	qu	1
 鶌	qu	1
-㖆	qu	1
 㖆	qu	1
 㘗	qu	1
 㚁	qu	1
@@ -30660,7 +29556,6 @@ sort: by_weight
 䈌	qu	1
 䋧	qu	1
 䌌	qu	1
-䏣	qu	1
 䏣	qu	1
 䒧	qu	1
 䒼	qu	1
@@ -30687,7 +29582,6 @@ sort: by_weight
 𡡥	qu	1
 𡱅	qu	1
 𡱺	qu	1
-𡳆	qu	1
 𡳆	qu	1
 𢂁	qu	1
 𢌄	qu	1
@@ -30811,7 +29705,6 @@ sort: by_weight
 婘	quan	267
 𨟠	quan	252
 桊	quan	242
-𨟠	quan	238
 韏	quan	223
 權	quan	218
 権	quan	205
@@ -30863,14 +29756,11 @@ sort: by_weight
 恮	quan	1
 捲	quan	1
 椦	quan	1
-椦	quan	1
 槫	quan	1
-灥	quan	1
 灥	quan	1
 狋	quan	1
 矔	quan	1
 箞	quan	1
-腃	quan	1
 腃	quan	1
 駩	quan	1
 㒽	quan	1
@@ -30909,7 +29799,6 @@ sort: by_weight
 𤰝	quan	1
 𤱶	quan	1
 𤷄	quan	1
-𥁠	quan	1
 𥁠	quan	1
 𥁸	quan	1
 𥤊	quan	1
@@ -30953,7 +29842,6 @@ sort: by_weight
 汋	que	169
 𨟠	que	154
 卻	que	150
-阙	que	135
 塙	que	119
 闕	que	97
 礐	que	97
@@ -30981,7 +29869,6 @@ sort: by_weight
 敪	que	1
 缼	que	1
 蚗	que	1
-闕	que	1
 㩁	que	1
 㰌	que	1
 㱋	que	1
@@ -31025,7 +29912,6 @@ sort: by_weight
 𨴊	que	1
 𨴒	que	1
 𨵗	que	1
-𨶔	que	1
 𨶔	que	1
 𩍷	que	1
 𩤈	que	1
@@ -31117,7 +30003,6 @@ sort: by_weight
 𠯍	ran	1
 𡖝	ran	1
 𡜉	ran	1
-𡜉	ran	1
 𡜫	ran	1
 𢓒	ran	1
 𣰦	ran	1
@@ -31148,13 +30033,11 @@ sort: by_weight
 攘	rang	2690
 讓	rang	2636
 嚷	rang	2583
-嚷	rang	2453
 瓤	rang	2330
 穰	rang	1539
 禳	rang	1462
 瀼	rang	299
 蘘	rang	299
-瀼	rang	231
 譲	rang	192
 勷	rang	187
 穣	rang	183
@@ -31167,7 +30050,6 @@ sort: by_weight
 獽	rang	1
 躟	rang	1
 㚂	rang	1
-䉴	rang	1
 䉴	rang	1
 䑋	rang	1
 𣩽	rang	1
@@ -31194,13 +30076,10 @@ sort: by_weight
 橈	rao	141
 嬈	rao	136
 隢	rao	60
-娆	rao	20
 蕘	rao	1
 襓	rao	1
-嬈	rao	1
 穘	rao	1
 㑱	rao	1
-㹛	rao	1
 㹛	rao	1
 䫞	rao	1
 𠒸	rao	1
@@ -31221,7 +30100,6 @@ sort: by_weight
 𢞇	re	1
 𤍠	re	1
 𤑄	re	1
-𧧏	re	1
 𧧏	re	1
 𩭿	re	1
 人	ren	1423478
@@ -31258,7 +30136,6 @@ sort: by_weight
 刄	ren	162
 棯	ren	154
 靱	ren	154
-任	ren	150
 芢	ren	144
 忎	ren	143
 姙	ren	141
@@ -31290,7 +30167,6 @@ sort: by_weight
 釰	ren	1
 釼	ren	1
 鈓	ren	1
-銋	ren	1
 㠴	ren	1
 㣼	ren	1
 㤛	ren	1
@@ -31417,9 +30293,6 @@ sort: by_weight
 傛	rong	1
 槦	rong	1
 穃	rong	1
-縙	rong	1
-縙	rong	1
-軵	rong	1
 㘇	rong	1
 㝐	rong	1
 㣑	rong	1
@@ -31431,18 +30304,15 @@ sort: by_weight
 㼸	rong	1
 䄧	rong	1
 䇀	rong	1
-䇀	rong	1
 䇯	rong	1
 䈶	rong	1
 䋴	rong	1
 䘬	rong	1
 䠜	rong	1
 䡆	rong	1
-䡆	rong	1
 䡥	rong	1
 䢇	rong	1
 䤊	rong	1
-䩸	rong	1
 䩸	rong	1
 𠌚	rong	1
 𠞕	rong	1
@@ -31462,7 +30332,6 @@ sort: by_weight
 𣮪	rong	1
 𣯍	rong	1
 𣯐	rong	1
-𣯏	rong	1
 𣯏	rong	1
 𣰇	rong	1
 𣲽	rong	1
@@ -31525,7 +30394,6 @@ sort: by_weight
 韖	rou	60
 腬	rou	23
 鶔	rou	1
-楺	rou	1
 楺	rou	1
 脜	rou	1
 㖻	rou	1
@@ -31605,15 +30473,11 @@ sort: by_weight
 㐈	ru	1
 㐵	ru	1
 㦺	ru	1
-㦺	ru	1
-㨌	ru	1
 㨌	ru	1
 㨎	ru	1
 㱶	ru	1
 㹘	ru	1
-㹘	ru	1
 㼋	ru	1
-㾒	ru	1
 㾒	ru	1
 䋈	ru	1
 䋴	ru	1
@@ -31679,7 +30543,6 @@ sort: by_weight
 礝	ruan	60
 𨬔	ruan	1
 檽	ruan	1
-緛	ruan	1
 腝	ruan	1
 蝡	ruan	1
 㐾	ruan	1
@@ -31750,7 +30613,6 @@ sort: by_weight
 䂱	rui	1
 兊	rui	1
 兌	rui	1
-壡	rui	1
 惢	rui	1
 抐	rui	1
 梲	rui	1
@@ -31836,7 +30698,6 @@ sort: by_weight
 仨	sa	1987
 飒	sa	1788
 萨	sa	1609
-撒	sa	1051
 卅	sa	998
 隡	sa	457
 潵	sa	413
@@ -31866,11 +30727,9 @@ sort: by_weight
 蕯	sa	1
 鏾	sa	1
 鞈	sa	1
-㒎	sa	1
 㪪	sa	1
 㳐	sa	1
 㽂	sa	1
-䊛	sa	1
 䊛	sa	1
 䊝	sa	1
 䑥	sa	1
@@ -31915,7 +30774,6 @@ sort: by_weight
 𫂿	sa	1
 塞	sai	9329
 赛	sai	9142
-塞	sai	6485
 腮	sai	2011
 鳃	sai	1610
 噻	sai	1021
@@ -31944,7 +30802,6 @@ sort: by_weight
 三	san	135522
 叁	san	3600
 散	san	3528
-散	san	3457
 伞	san	3387
 馓	san	819
 糁	san	372
@@ -31974,7 +30831,6 @@ sort: by_weight
 叅	san	1
 叄	san	1
 參	san	1
-糝	san	1
 㤾	san	1
 㧲	san	1
 㪚	san	1
@@ -31987,7 +30843,6 @@ sort: by_weight
 𠮿	san	1
 𡙘	san	1
 𢁘	san	1
-𢕕	san	1
 𢕕	san	1
 𢚗	san	1
 𢿱	san	1
@@ -32019,7 +30874,6 @@ sort: by_weight
 桑	sang	3231
 丧	sang	2772
 嗓	sang	2314
-丧	sang	2020
 搡	sang	1428
 颡	sang	715
 磉	sang	319
@@ -32029,7 +30883,6 @@ sort: by_weight
 顙	sang	87
 鎟	sang	60
 褬	sang	23
-喪	sang	1
 䘮	sang	1
 䡦	sang	1
 䫙	sang	1
@@ -32053,7 +30906,6 @@ sort: by_weight
 骚	sao	2696
 嫂	sao	2293
 瘙	sao	2008
-扫	sao	1967
 搔	sao	1023
 臊	sao	488
 缫	sao	326
@@ -32062,14 +30914,11 @@ sort: by_weight
 溞	sao	178
 騷	sao	171
 騒	sao	139
-臊	sao	136
 髞	sao	127
 鳋	sao	82
 掻	sao	60
 梢	sao	39
 矂	sao	38
-埽	sao	37
-骚	sao	36
 缲	sao	23
 慅	sao	23
 繅	sao	1
@@ -32079,8 +30928,6 @@ sort: by_weight
 㛮	sao	1
 𤢖	sao	1
 懆	sao	1
-懆	sao	1
-掃	sao	1
 繰	sao	1
 颾	sao	1
 鰠	sao	1
@@ -32104,7 +30951,6 @@ sort: by_weight
 𥰱	sao	1
 𦏛	sao	1
 𦕏	sao	1
-𦞣	sao	1
 𦞣	sao	1
 𦟄	sao	1
 𦺋	sao	1
@@ -32239,7 +31085,6 @@ sort: by_weight
 厦	sha	671
 纱	sha	637
 煞	sha	611
-煞	sha	611
 刹	sha	605
 鲨	sha	504
 霎	sha	490
@@ -32271,7 +31116,6 @@ sort: by_weight
 啑	sha	60
 桬	sha	38
 硰	sha	38
-沙	sha	33
 嗄	sha	20
 鯋	sha	1
 猀	sha	1
@@ -32374,7 +31218,6 @@ sort: by_weight
 𢄌	shai	1
 𣻑	shai	1
 𧜁	shai	1
-𧜁	shai	1
 𨢦	shai	1
 𩂃	shai	1
 𩂝	shai	1
@@ -32420,9 +31263,7 @@ sort: by_weight
 晱	shan	210
 𫮃	shan	195
 嶦	shan	191
-钐	shan	173
 鳣	shan	167
-扇	shan	164
 烻	shan	161
 刪	shan	160
 閃	shan	158
@@ -32437,7 +31278,6 @@ sort: by_weight
 柵	shan	111
 笘	shan	111
 羶	shan	108
-苫	shan	100
 墠	shan	94
 訕	shan	92
 姍	shan	90
@@ -32451,7 +31291,6 @@ sort: by_weight
 僐	shan	41
 敾	shan	37
 炶	shan	37
-姗	shan	32
 煔	shan	32
 潬	shan	32
 椫	shan	32
@@ -32496,19 +31335,14 @@ sort: by_weight
 傓	shan	1
 儃	shan	1
 單	shan	1
-姍	shan	1
 摻	shan	1
 撣	shan	1
 擔	shan	1
-炶	shan	1
-煔	shan	1
 禪	shan	1
 穇	shan	1
-釤	shan	1
 閄	shan	1
 㚲	shan	1
 㣌	shan	1
-㣣	shan	1
 㣣	shan	1
 㨛	shan	1
 㨻	shan	1
@@ -32517,13 +31351,10 @@ sort: by_weight
 㰑	shan	1
 㱚	shan	1
 㹽	shan	1
-㺑	shan	1
-㺑	shan	1
 㾆	shan	1
 䆄	shan	1
 䚲	shan	1
 䛸	shan	1
-䠾	shan	1
 䠾	shan	1
 䡪	shan	1
 䥇	shan	1
@@ -32595,7 +31426,6 @@ sort: by_weight
 伤	shang	10662
 尚	shang	10448
 赏	shang	5289
-上	shang	5024
 熵	shang	1901
 汤	shang	1805
 殇	shang	429
@@ -32642,10 +31472,8 @@ sort: by_weight
 𤔚	shang	1
 𤳈	shang	1
 𤵼	shang	1
-𤵼	shang	1
 𥏫	shang	1
 𧡮	shang	1
-𧶜	shang	1
 𧶜	shang	1
 𨢩	shang	1
 𨶼	shang	1
@@ -32657,7 +31485,6 @@ sort: by_weight
 少	shao	88372
 绍	shao	3226
 烧	shao	3161
-少	shao	3097
 稍	shao	3035
 勺	shao	2883
 邵	shao	693
@@ -32673,11 +31500,9 @@ sort: by_weight
 潲	shao	316
 艄	shao	316
 睄	shao	299
-稍	shao	230
 玿	shao	178
 柖	shao	153
 召	shao	138
-柖	shao	134
 燒	shao	130
 紹	shao	122
 焼	shao	119
@@ -32691,13 +31516,11 @@ sort: by_weight
 輎	shao	68
 袑	shao	61
 娋	shao	60
-捎	shao	40
 旓	shao	38
 蕱	shao	1
 綤	shao	1
 𤉎	shao	1
 佋	shao	1
-娋	shao	1
 燿	shao	1
 萷	shao	1
 韒	shao	1
@@ -32726,11 +31549,9 @@ sort: by_weight
 𥵦	shao	1
 𦄏	shao	1
 𦓴	shao	1
-𦓴	shao	1
 𦡱	shao	1
 𦯐	shao	1
 𦿃	shao	1
-𧣪	shao	1
 𧣪	shao	1
 𧳹	shao	1
 𨈘	shao	1
@@ -32746,7 +31567,6 @@ sort: by_weight
 射	she	2864
 涉	she	2426
 舍	she	1733
-舍	she	1646
 舌	she	980
 蛇	she	931
 慑	she	547
@@ -32909,7 +31729,6 @@ sort: by_weight
 審	shen	178
 鯓	shen	176
 腎	shen	171
-甚	shen	161
 信	shen	155
 蔘	shen	152
 滲	shen	146
@@ -32995,7 +31814,6 @@ sort: by_weight
 㚞	shen	1
 㚨	shen	1
 㛙	shen	1
-㛙	shen	1
 㜤	shen	1
 㡎	shen	1
 㥲	shen	1
@@ -33011,7 +31829,6 @@ sort: by_weight
 䧵	shen	1
 䫖	shen	1
 䯂	shen	1
-䰠	shen	1
 𠂧	shen	1
 𠃫	shen	1
 𠗿	shen	1
@@ -33044,7 +31861,6 @@ sort: by_weight
 𥎪	shen	1
 𥏖	shen	1
 𥤡	shen	1
-𥥍	shen	1
 𥥍	shen	1
 𥥿	shen	1
 𥬐	shen	1
@@ -33141,7 +31957,6 @@ sort: by_weight
 㞼	sheng	1
 㮐	sheng	1
 㱡	sheng	1
-㹌	sheng	1
 㹌	sheng	1
 㼳	sheng	1
 䁞	sheng	1
@@ -33309,7 +32124,6 @@ sort: by_weight
 亊	shi	28
 峙	shi	27
 硕	shi	26
-莳	shi	25
 諡	shi	22
 鰤	shi	21
 耆	shi	20
@@ -33413,7 +32227,6 @@ sort: by_weight
 秲	shi	1
 箷	shi	1
 篩	shi	1
-蒔	shi	1
 辻	shi	1
 醳	shi	1
 釃	shi	1
@@ -33439,7 +32252,6 @@ sort: by_weight
 䂖	shi	1
 䂠	shi	1
 䄷	shi	1
-䈕	shi	1
 䈕	shi	1
 䊓	shi	1
 䌳	shi	1
@@ -33573,7 +32385,6 @@ sort: by_weight
 𧧅	shi	1
 𧩹	shi	1
 𧳅	shi	1
-𧳅	shi	1
 𧵋	shi	1
 𧻸	shi	1
 𨒍	shi	1
@@ -33686,7 +32497,6 @@ sort: by_weight
 熟	shu	4658
 树	shu	4425
 舒	shu	3605
-数	shu	3424
 束	shu	907
 署	shu	901
 蔬	shu	686
@@ -33731,7 +32541,6 @@ sort: by_weight
 婌	shu	205
 悆	shu	198
 稌	shu	196
-婌	shu	194
 書	shu	192
 數	shu	173
 術	shu	165
@@ -33761,7 +32570,6 @@ sort: by_weight
 蒁	shu	52
 鱰	shu	42
 侸	shu	42
-术	shu	40
 掓	shu	35
 潻	shu	35
 倐	shu	28
@@ -33806,7 +32614,6 @@ sort: by_weight
 忬	shu	1
 怸	shu	1
 捈	shu	1
-數	shu	1
 朮	shu	1
 疋	shu	1
 籔	shu	1
@@ -33842,7 +32649,6 @@ sort: by_weight
 䜹	shu	1
 䝂	shu	1
 䝪	shu	1
-䝪	shu	1
 䜿	shu	1
 䞖	shu	1
 䠱	shu	1
@@ -33853,7 +32659,6 @@ sort: by_weight
 䨹	shu	1
 䩳	shu	1
 䩱	shu	1
-䭭	shu	1
 䭭	shu	1
 䱙	shu	1
 䴰	shu	1
@@ -33944,7 +32749,6 @@ sort: by_weight
 刷	shua	71042
 耍	shua	12105
 唰	shua	1743
-刷	shua	1708
 誜	shua	598
 㕞	shua	2
 𠛚	shua	1
@@ -34037,10 +32841,8 @@ sort: by_weight
 䫪	shuang	1
 𠗾	shuang	1
 𠙠	shuang	1
-𠙠	shuang	1
 𡑽	shuang	1
 𣏪	shuang	1
-𤕤	shuang	1
 𤕤	shuang	1
 𥡠	shuang	1
 𥱶	shuang	1
@@ -34279,7 +33081,6 @@ sort: by_weight
 𥯨	si	1
 傂	si	1
 愢	si	1
-愢	si	1
 枱	si	1
 梩	si	1
 榹	si	1
@@ -34368,7 +33169,6 @@ sort: by_weight
 𧝤	si	1
 𧣛	si	1
 𧬊	si	1
-𧬊	si	1
 𧱅	si	1
 𧳙	si	1
 𨮭	si	1
@@ -34441,8 +33241,6 @@ sort: by_weight
 摗	song	1
 棇	song	1
 漎	song	1
-鬆	song	1
-鬆	song	1
 㕬	song	1
 㣝	song	1
 㨦	song	1
@@ -34520,7 +33318,6 @@ sort: by_weight
 傁	sou	50
 摗	sou	50
 醙	sou	38
-擞	sou	24
 櫢	sou	23
 廀	sou	1
 䉤	sou	1
@@ -34530,10 +33327,8 @@ sort: by_weight
 䗏	sou	1
 捒	sou	1
 撨	sou	1
-擻	sou	1
 棷	sou	1
 欶	sou	1
-蓃	sou	1
 鏉	sou	1
 㖩	sou	1
 㟬	sou	1
@@ -34571,9 +33366,7 @@ sort: by_weight
 𦺌	sou	1
 𧔅	sou	1
 𧩮	sou	1
-𧩮	sou	1
 𧳶	sou	1
-𧼭	sou	1
 𧼭	sou	1
 𧽏	sou	1
 𨜛	sou	1
@@ -34650,7 +33443,6 @@ sort: by_weight
 榡	su	60
 縤	su	60
 樎	su	60
-苏	su	40
 藗	su	38
 鋉	su	23
 鱐	su	23
@@ -34818,7 +33610,6 @@ sort: by_weight
 歲	sui	182
 穂	sui	168
 歳	sui	168
-遂	sui	151
 尿	sui	148
 夊	sui	141
 砕	sui	134
@@ -35036,7 +33827,6 @@ sort: by_weight
 挲	suo	27
 蜶	suo	23
 琑	suo	23
-溹	suo	22
 暛	suo	1
 溑	suo	1
 莏	suo	1
@@ -35052,7 +33842,6 @@ sort: by_weight
 魦	suo	1
 㛖	suo	1
 㪽	suo	1
-㪽	suo	1
 㮦	suo	1
 㱔	suo	1
 䂹	suo	1
@@ -35060,13 +33849,11 @@ sort: by_weight
 䈗	suo	1
 䌇	suo	1
 䐝	suo	1
-䐝	suo	1
 䓾	suo	1
 䔋	suo	1
 䖛	suo	1
 䞆	suo	1
 䞽	suo	1
-䣔	suo	1
 䣔	suo	1
 䯯	suo	1
 䵀	suo	1
@@ -35152,7 +33939,6 @@ sort: by_weight
 褟	ta	206
 嗒	ta	188
 佗	ta	179
-遢	ta	158
 鞳	ta	151
 溚	ta	143
 鿎	ta	141
@@ -35177,7 +33963,6 @@ sort: by_weight
 橽	ta	38
 誻	ta	38
 嚺	ta	38
-踏	ta	36
 躢	ta	23
 狧	ta	1
 侤	ta	1
@@ -35307,7 +34092,6 @@ sort: by_weight
 汰	tai	654
 苔	tai	535
 钛	tai	515
-台	tai	508
 大	tai	501
 肽	tai	482
 跆	tai	443
@@ -35327,7 +34111,6 @@ sort: by_weight
 擡	tai	189
 坮	tai	188
 旲	tai	182
-苔	tai	162
 炲	tai	134
 溙	tai	130
 鈦	tai	122
@@ -35364,7 +34147,6 @@ sort: by_weight
 㷘	tai	1
 㸀	tai	1
 䈚	tai	1
-䑓	tai	1
 䢰	tai	1
 䣭	tai	1
 𡇷	tai	1
@@ -35456,7 +34238,6 @@ sort: by_weight
 襢	tan	50
 墵	tan	38
 舑	tan	38
-倓	tan	31
 婒	tan	23
 貚	tan	23
 舕	tan	1
@@ -35472,11 +34253,9 @@ sort: by_weight
 䉡	tan	1
 䦔	tan	1
 𩡝	tan	1
-僋	tan	1
 儃	tan	1
 嘾	tan	1
 嘽	tan	1
-埮	tan	1
 弾	tan	1
 彈	tan	1
 橝	tan	1
@@ -35486,17 +34265,14 @@ sort: by_weight
 繵	tan	1
 㒎	tan	1
 㛶	tan	1
-㛶	tan	1
 㪔	tan	1
 㫜	tan	1
-㲜	tan	1
 㲜	tan	1
 㲭	tan	1
 㳩	tan	1
 㴂	tan	1
 㵅	tan	1
 㶒	tan	1
-㷋	tan	1
 㺥	tan	1
 㽑	tan	1
 䀡	tan	1
@@ -35608,12 +34384,10 @@ sort: by_weight
 螗	tang	233
 鄌	tang	214
 铴	tang	201
-铴	tang	186
 䣘	tang	186
 埫	tang	179
 湯	tang	165
 醣	tang	161
-趟	tang	159
 燙	tang	155
 禟	tang	140
 劏	tang	139
@@ -35623,7 +34397,6 @@ sort: by_weight
 踼	tang	121
 餹	tang	116
 橖	tang	112
-镗	tang	110
 榶	tang	99
 啺	tang	99
 煻	tang	85
@@ -35644,7 +34417,6 @@ sort: by_weight
 摥	tang	48
 糛	tang	48
 糃	tang	40
-耥	tang	36
 傏	tang	30
 薚	tang	30
 鼞	tang	30
@@ -35657,14 +34429,11 @@ sort: by_weight
 曭	tang	1
 㓥	tang	1
 㑽	tang	1
-儻	tang	1
 嵣	tang	1
 愓	tang	1
 漡	tang	1
 灙	tang	1
-鏜	tang	1
 鐋	tang	1
-闛	tang	1
 黨	tang	1
 㒉	tang	1
 㙶	tang	1
@@ -35776,7 +34545,6 @@ sort: by_weight
 㢭	tao	1
 㫦	tao	1
 㴞	tao	1
-㹗	tao	1
 㹗	tao	1
 䀞	tao	1
 䀺	tao	1
@@ -35944,7 +34712,6 @@ sort: by_weight
 䴘	ti	176
 𫘨	ti	176
 媂	ti	172
-体	ti	161
 媞	ti	160
 禔	ti	159
 䏲	ti	156
@@ -35979,8 +34746,6 @@ sort: by_weight
 棣	ti	32
 俶	ti	29
 碮	ti	28
-绨	ti	26
-醍	ti	20
 挮	ti	20
 骵	ti	20
 歒	ti	20
@@ -36013,7 +34778,6 @@ sort: by_weight
 奃	ti	1
 屟	ti	1
 徥	ti	1
-挮	ti	1
 桋	ti	1
 渧	ti	1
 珶	ti	1
@@ -36021,9 +34785,7 @@ sort: by_weight
 睼	ti	1
 磃	ti	1
 穉	ti	1
-綈	ti	1
 銻	ti	1
-體	ti	1
 鬄	ti	1
 㔸	ti	1
 㖒	ti	1
@@ -36042,7 +34804,6 @@ sort: by_weight
 䖙	ti	1
 䙗	ti	1
 䚣	ti	1
-䚣	ti	1
 䛱	ti	1
 䝰	ti	1
 䞶	ti	1
@@ -36059,7 +34820,6 @@ sort: by_weight
 䬾	ti	1
 䯜	ti	1
 䶍	ti	1
-䶏	ti	1
 䶏	ti	1
 䶑	ti	1
 𠞄	ti	1
@@ -36159,7 +34919,6 @@ sort: by_weight
 盷	tian	182
 淟	tian	165
 瑱	tian	154
-瑱	tian	151
 鴫	tian	141
 兲	tian	141
 觍	tian	136
@@ -36206,12 +34965,9 @@ sort: by_weight
 呑	tian	1
 奵	tian	1
 沗	tian	1
-琠	tian	1
 紾	tian	1
-菾	tian	1
 銛	tian	1
 铦	tian	1
-餂	tian	1
 㤁	tian	1
 㧂	tian	1
 㬲	tian	1
@@ -36289,7 +35045,6 @@ sort: by_weight
 调	tiao	9061
 跳	tiao	8879
 挑	tiao	7296
-挑	tiao	7150
 眺	tiao	1145
 迢	tiao	513
 窕	tiao	436
@@ -36324,7 +35079,6 @@ sort: by_weight
 誂	tiao	38
 鋚	tiao	38
 萔	tiao	38
-条	tiao	33
 糶	tiao	23
 铫	tiao	22
 啁	tiao	20
@@ -36337,7 +35091,6 @@ sort: by_weight
 齠	tiao	1
 䖺	tiao	1
 朷	tiao	1
-條	tiao	1
 蓧	tiao	1
 調	tiao	1
 趒	tiao	1
@@ -36387,8 +35140,6 @@ sort: by_weight
 铁	tie	30697
 贴	tie	30083
 帖	tie	2461
-帖	tie	2215
-帖	tie	1834
 餮	tie	1063
 萜	tie	449
 鐵	tie	385
@@ -36468,8 +35219,6 @@ sort: by_weight
 鞓	ting	40
 楟	ting	38
 甼	ting	38
-梃	ting	31
-渟	ting	31
 耓	ting	1
 鼮	ting	1
 脡	ting	1
@@ -36483,23 +35232,19 @@ sort: by_weight
 忊	ting	1
 濎	ting	1
 鋌	ting	1
-閮	ting	1
 㓅	ting	1
 㹶	ting	1
 㼗	ting	1
 䅍	ting	1
 䋼	ting	1
-䋼	ting	1
 䦐	ting	1
 䫖	ting	1
 䯕	ting	1
-䱓	ting	1
 䱓	ting	1
 𠄚	ting	1
 𠕊	ting	1
 𠘋	ting	1
 𠯸	ting	1
-𡈼	ting	1
 𡉂	ting	1
 𡔛	ting	1
 𢬫	ting	1
@@ -36549,7 +35294,6 @@ sort: by_weight
 桶	tong	2340
 铜	tong	2223
 筒	tong	1354
-同	tong	637
 彤	tong	612
 瞳	tong	609
 捅	tong	590
@@ -36598,8 +35342,6 @@ sort: by_weight
 晍	tong	50
 穜	tong	38
 眮	tong	38
-侗	tong	37
-通	tong	34
 垌	tong	30
 犝	tong	1
 膧	tong	1
@@ -36616,14 +35358,11 @@ sort: by_weight
 㣚	tong	1
 䳋	tong	1
 偅	tong	1
-痌	tong	1
 硧	tong	1
 筩	tong	1
 絧	tong	1
-絧	tong	1
 蟲	tong	1
 㠽	tong	1
-㣚	tong	1
 㣠	tong	1
 㤏	tong	1
 㪌	tong	1
@@ -36666,7 +35405,6 @@ sort: by_weight
 𧙥	tong	1
 𧚔	tong	1
 𧳆	tong	1
-𧳆	tong	1
 𧳿	tong	1
 𨀜	tong	1
 𨈹	tong	1
@@ -36706,7 +35444,6 @@ sort: by_weight
 埱	tou	1
 斢	tou	1
 緰	tou	1
-頭	tou	1
 㓱	tou	1
 㕻	tou	1
 㖣	tou	1
@@ -36714,7 +35451,6 @@ sort: by_weight
 㢏	tou	1
 㤟	tou	1
 㪗	tou	1
-㰯	tou	1
 㰯	tou	1
 㼥	tou	1
 䕱	tou	1
@@ -36749,7 +35485,6 @@ sort: by_weight
 涂	tu	2574
 吐	tu	2445
 兔	tu	2322
-吐	tu	826
 秃	tu	824
 屠	tu	823
 凸	tu	781
@@ -36764,7 +35499,6 @@ sort: by_weight
 梌	tu	220
 𬳿	tu	213
 㻬	tu	205
-㻬	tu	178
 圖	tu	169
 図	tu	162
 塗	tu	144
@@ -36787,7 +35521,6 @@ sort: by_weight
 蒤	tu	28
 堗	tu	28
 汢	tu	28
-菟	tu	21
 筡	tu	20
 捈	tu	20
 跿	tu	20
@@ -36812,13 +35545,11 @@ sort: by_weight
 鵚	tu	1
 㭸	tu	1
 唋	tu	1
-唋	tu	1
 啚	tu	1
 墿	tu	1
 摕	tu	1
 檡	tu	1
 瑹	tu	1
-莵	tu	1
 趃	tu	1
 鋀	tu	1
 㐋	tu	1
@@ -36847,7 +35578,6 @@ sort: by_weight
 𠸂	tu	1
 𠻬	tu	1
 𡇩	tu	1
-𡸂	tu	1
 𡸂	tu	1
 𡺴	tu	1
 𢉜	tu	1
@@ -36910,7 +35640,6 @@ sort: by_weight
 篿	tuan	75
 剸	tuan	38
 鹑	tuan	35
-猯	tuan	31
 揣	tuan	26
 褖	tuan	1
 鷒	tuan	1
@@ -36921,7 +35650,6 @@ sort: by_weight
 墥	tuan	1
 畽	tuan	1
 蓴	tuan	1
-貒	tuan	1
 鶉	tuan	1
 㩛	tuan	1
 䊜	tuan	1
@@ -36983,7 +35711,6 @@ sort: by_weight
 藬	tui	1
 㷟	tui	1
 㢈	tui	1
-僓	tui	1
 墤	tui	1
 橔	tui	1
 聉	tui	1
@@ -37128,8 +35855,6 @@ sort: by_weight
 柝	tuo	354
 鼍	tuo	335
 酡	tuo	319
-佗	tuo	316
-佗	tuo	301
 柁	tuo	294
 棁	tuo	284
 舄	tuo	283
@@ -37201,9 +35926,7 @@ sort: by_weight
 撱	tuo	1
 杝	tuo	1
 梲	tuo	1
-涶	tuo	1
 牠	tuo	1
-袉	tuo	1
 詑	tuo	1
 說	tuo	1
 鉈	tuo	1
@@ -37315,7 +36038,6 @@ sort: by_weight
 娃	wa	3539
 蛙	wa	2090
 袜	wa	1313
-哇	wa	1247
 洼	wa	523
 娲	wa	450
 佤	wa	405
@@ -37338,7 +36060,6 @@ sort: by_weight
 鼃	wa	105
 韤	wa	101
 攨	wa	87
-瓦	wa	85
 穵	wa	60
 咓	wa	50
 溛	wa	1
@@ -37354,13 +36075,10 @@ sort: by_weight
 啘	wa	1
 帓	wa	1
 徍	wa	1
-搲	wa	1
-搲	wa	1
 瓸	wa	1
 瓾	wa	1
 窐	wa	1
 譌	wa	1
-韈	wa	1
 韎	wa	1
 㒝	wa	1
 㧚	wa	1
@@ -37420,7 +36138,6 @@ sort: by_weight
 䠿	wai	1
 䶐	wai	1
 𠨃	wai	1
-𠰻	wai	1
 𠰻	wai	1
 𢱉	wai	1
 𤟷	wai	1
@@ -37525,14 +36242,10 @@ sort: by_weight
 䩊	wan	1
 𡩄	wan	1
 𩅦	wan	1
-埦	wan	1
-夗	wan	1
 夗	wan	1
 夘	wan	1
 忨	wan	1
 惌	wan	1
-捥	wan	1
-捥	wan	1
 掔	wan	1
 杬	wan	1
 槾	wan	1
@@ -37541,7 +36254,6 @@ sort: by_weight
 綄	wan	1
 莬	wan	1
 蚖	wan	1
-鋺	wan	1
 鋺	wan	1
 關	wan	1
 骫	wan	1
@@ -37611,7 +36323,6 @@ sort: by_weight
 𨈊	wan	1
 𨉝	wan	1
 𨌔	wan	1
-𨌔	wan	1
 𨞼	wan	1
 𨥧	wan	1
 𨩯	wan	1
@@ -37652,7 +36363,6 @@ sort: by_weight
 莣	wang	214
 尫	wang	189
 亾	wang	157
-王	wang	155
 暀	wang	154
 朢	wang	130
 迋	wang	127
@@ -37674,9 +36384,7 @@ sort: by_weight
 徍	wang	1
 忹	wang	1
 抂	wang	1
-暀	wang	1
 朚	wang	1
-瀇	wang	1
 罓	wang	1
 罖	wang	1
 迬	wang	1
@@ -37700,7 +36408,6 @@ sort: by_weight
 𢓯	wang	1
 𢛛	wang	1
 𢼟	wang	1
-𣢫	wang	1
 𣢫	wang	1
 𣥊	wang	1
 𣶈	wang	1
@@ -37730,7 +36437,6 @@ sort: by_weight
 𪁘	wang	1
 𪴸	wang	1
 为	wei	963744
-为	wei	944469
 未	wei	93080
 位	wei	91218
 味	wei	10496
@@ -37763,7 +36469,6 @@ sort: by_weight
 苇	wei	548
 偎	wei	528
 猬	wei	521
-委	wei	516
 韦	wei	499
 渭	wei	496
 玮	wei	478
@@ -37808,13 +36513,10 @@ sort: by_weight
 崴	wei	94
 𬱟	wei	85
 廆	wei	65
-硙	wei	59
-碨	wei	59
 隹	wei	45
 遗	wei	40
 隗	wei	36
 㧑	wei	36
-㧑	wei	33
 爲	wei	29
 倭	wei	22
 衛	wei	20
@@ -37945,20 +36647,14 @@ sort: by_weight
 𧴖	wei	1
 𨱖	wei	1
 唩	wei	1
-喡	wei	1
 囲	wei	1
 壝	wei	1
-媁	wei	1
-嵔	wei	1
 嶉	wei	1
 巋	wei	1
 捼	wei	1
 撝	wei	1
 渨	wei	1
-為	wei	1
-爲	wei	1
 猚	wei	1
-瓗	wei	1
 瓗	wei	1
 癐	wei	1
 癓	wei	1
@@ -37966,8 +36662,6 @@ sort: by_weight
 矀	wei	1
 磑	wei	1
 霺	wei	1
-㕒	wei	1
-㕒	wei	1
 㕒	wei	1
 㖐	wei	1
 㛱	wei	1
@@ -37997,9 +36691,7 @@ sort: by_weight
 䉠	wei	1
 䋿	wei	1
 䍴	wei	1
-䍴	wei	1
 䍷	wei	1
-䑊	wei	1
 䑊	wei	1
 䓕	wei	1
 䓺	wei	1
@@ -38026,7 +36718,6 @@ sort: by_weight
 䫥	wei	1
 䬑	wei	1
 䬐	wei	1
-䬿	wei	1
 䬿	wei	1
 䭳	wei	1
 䮹	wei	1
@@ -38057,7 +36748,6 @@ sort: by_weight
 𢲴	wei	1
 𢸦	wei	1
 𢼸	wei	1
-𢼸	wei	1
 𢾁	wei	1
 𢾝	wei	1
 𣁋	wei	1
@@ -38066,14 +36756,12 @@ sort: by_weight
 𣈎	wei	1
 𣍟	wei	1
 𣨙	wei	1
-𣨙	wei	1
 𣩪	wei	1
 𣫪	wei	1
 𣽴	wei	1
 𤀷	wei	1
 𤁿	wei	1
 𤈫	wei	1
-𤛲	wei	1
 𤛲	wei	1
 𤜂	wei	1
 𤡪	wei	1
@@ -38118,7 +36806,6 @@ sort: by_weight
 𧞸	wei	1
 𧟼	wei	1
 𧢒	wei	1
-𧢒	wei	1
 𧢧	wei	1
 𧤖	wei	1
 𧲄	wei	1
@@ -38149,11 +36836,9 @@ sort: by_weight
 𩁌	wei	1
 𩆁	wei	1
 𩋾	wei	1
-𩋾	wei	1
 𩎵	wei	1
 𩎮	wei	1
 𩏉	wei	1
-𩏏	wei	1
 𩏏	wei	1
 𩏐	wei	1
 𩏿	wei	1
@@ -38197,7 +36882,6 @@ sort: by_weight
 汶	wen	527
 紊	wen	512
 瘟	wen	512
-纹	wen	502
 刎	wen	482
 璺	wen	405
 韫	wen	404
@@ -38266,7 +36950,6 @@ sort: by_weight
 呅	wen	1
 歾	wen	1
 熅	wen	1
-紋	wen	1
 絻	wen	1
 緼	wen	1
 縕	wen	1
@@ -38286,8 +36969,6 @@ sort: by_weight
 㵮	wen	1
 㼂	wen	1
 㼔	wen	1
-䎽	wen	1
-䘇	wen	1
 䘇	wen	1
 䦤	wen	1
 䦷	wen	1
@@ -38339,7 +37020,6 @@ sort: by_weight
 𬭩	weng	215
 鎓	weng	210
 奣	weng	201
-滃	weng	194
 螉	weng	187
 瞈	weng	175
 甕	weng	175
@@ -38379,7 +37059,6 @@ sort: by_weight
 𨜺	weng	1
 𨞑	weng	1
 𩄘	weng	1
-𩔚	weng	1
 𩔚	weng	1
 𩡓	weng	1
 𩮬	weng	1
@@ -38526,7 +37205,6 @@ sort: by_weight
 诬	wu	541
 蜈	wu	531
 亡	wu	518
-恶	wu	509
 唔	wu	507
 坞	wu	498
 毋	wu	492
@@ -38565,7 +37243,6 @@ sort: by_weight
 珸	wu	138
 𣲘	wu	134
 峿	wu	132
-旿	wu	113
 無	wu	110
 務	wu	97
 誤	wu	96
@@ -38654,15 +37331,10 @@ sort: by_weight
 㮧	wu	1
 俉	wu	1
 僫	wu	1
-僫	wu	1
-務	wu	1
 噁	wu	1
 堥	wu	1
 墲	wu	1
 娒	wu	1
-娪	wu	1
-廡	wu	1
-惡	wu	1
 惡	wu	1
 扝	wu	1
 扜	wu	1
@@ -38672,13 +37344,11 @@ sort: by_weight
 橆	wu	1
 沕	wu	1
 渞	wu	1
-烏	wu	1
 瞴	wu	1
 膴	wu	1
 趶	wu	1
 逜	wu	1
 釫	wu	1
-鋘	wu	1
 鋘	wu	1
 鋙	wu	1
 陚	wu	1
@@ -38700,7 +37370,6 @@ sort: by_weight
 䅶	wu	1
 䉑	wu	1
 䍢	wu	1
-䍢	wu	1
 䎸	wu	1
 䑁	wu	1
 䒉	wu	1
@@ -38712,7 +37381,6 @@ sort: by_weight
 䟼	wu	1
 䡧	wu	1
 䦍	wu	1
-䦜	wu	1
 䦜	wu	1
 䨁	wu	1
 䫓	wu	1
@@ -38752,7 +37420,6 @@ sort: by_weight
 𢩈	wu	1
 𢪱	wu	1
 𢫸	wu	1
-𢫸	wu	1
 𣞤	wu	1
 𣟒	wu	1
 𣠮	wu	1
@@ -38772,13 +37439,11 @@ sort: by_weight
 𥏒	wu	1
 𥒀	wu	1
 𥕻	wu	1
-𥕻	wu	1
 𥟽	wu	1
 𥭠	wu	1
 𥲐	wu	1
 𥾕	wu	1
 𦆞	wu	1
-𦌬	wu	1
 𦌬	wu	1
 𦎦	wu	1
 𦥁	wu	1
@@ -38940,17 +37605,13 @@ sort: by_weight
 裼	xi	1
 𠅤	xi	1
 𬭳	xi	1
-傒	xi	1
 咥	xi	1
 憙	xi	1
-暿	xi	1
 碏	xi	1
 诶	xi	1
 釐	xi	1
-釐	xi	1
 㴔	xi	1
 𫘬	xi	1
-咥	xi	1
 係	xi	1
 喺	xi	1
 習	xi	1
@@ -39109,7 +37770,6 @@ sort: by_weight
 屓	xi	1
 巂	xi	1
 愾	xi	1
-憘	xi	1
 戯	xi	1
 扢	xi	1
 摡	xi	1
@@ -39127,7 +37787,6 @@ sort: by_weight
 義	xi	1
 脅	xi	1
 臘	xi	1
-蒵	xi	1
 覡	xi	1
 訢	xi	1
 誒	xi	1
@@ -39154,7 +37813,6 @@ sort: by_weight
 㛓	xi	1
 㛭	xi	1
 㛫	xi	1
-㜎	xi	1
 㜎	xi	1
 㜯	xi	1
 㞒	xi	1
@@ -39192,7 +37850,6 @@ sort: by_weight
 㺣	xi	1
 㽯	xi	1
 㾷	xi	1
-㿇	xi	1
 㿇	xi	1
 㿽	xi	1
 䀌	xi	1
@@ -39237,7 +37894,6 @@ sort: by_weight
 𠔃	xi	1
 𠔍	xi	1
 𠘕	xi	1
-𠜗	xi	1
 𠜗	xi	1
 𠟊	xi	1
 𠤴	xi	1
@@ -39285,13 +37941,11 @@ sort: by_weight
 𢤋	xi	1
 𢧽	xi	1
 𢨟	xi	1
-𢨟	xi	1
 𢬾	xi	1
 𢭁	xi	1
 𢹍	xi	1
 𣅾	xi	1
 𣎮	xi	1
-𣒃	xi	1
 𣒃	xi	1
 𣚔	xi	1
 𣟵	xi	1
@@ -39516,7 +38170,6 @@ sort: by_weight
 筪	xia	60
 懗	xia	50
 磍	xia	32
-瘕	xia	25
 珨	xia	18
 炠	xia	18
 颬	xia	3
@@ -39538,9 +38191,7 @@ sort: by_weight
 芐	xia	1
 螛	xia	1
 諕	xia	1
-閕	xia	1
 㗇	xia	1
-㗿	xia	1
 㗿	xia	1
 㘡	xia	1
 㙈	xia	1
@@ -39550,7 +38201,6 @@ sort: by_weight
 㦆	xia	1
 㭱	xia	1
 㰨	xia	1
-㰺	xia	1
 㰺	xia	1
 㵤	xia	1
 㽠	xia	1
@@ -39567,7 +38217,6 @@ sort: by_weight
 䨐	xia	1
 䪗	xia	1
 䫗	xia	1
-䫗	xia	1
 䯟	xia	1
 䶝	xia	1
 𠀼	xia	1
@@ -39576,7 +38225,6 @@ sort: by_weight
 𠖹	xia	1
 𠢆	xia	1
 𠩘	xia	1
-𠽫	xia	1
 𠽫	xia	1
 𡈮	xia	1
 𡏘	xia	1
@@ -39634,7 +38282,6 @@ sort: by_weight
 𪗾	xia	1
 𪘘	xia	1
 𪡛	xia	1
-𪡛	xia	1
 𪾌	xia	1
 先	xian	236558
 现	xian	31834
@@ -39652,7 +38299,6 @@ sort: by_weight
 咸	xian	881
 纤	xian	679
 腺	xian	668
-鲜	xian	657
 贤	xian	655
 宪	xian	645
 馅	xian	628
@@ -39850,22 +38496,18 @@ sort: by_weight
 𦭶	xian	1
 俔	xian	1
 咁	xian	1
-咞	xian	1
 嗛	xian	1
 埳	xian	1
 塪	xian	1
 姺	xian	1
 孯	xian	1
 彡	xian	1
-憪	xian	1
 懢	xian	1
 搚	xian	1
-搟	xian	1
 摻	xian	1
 槏	xian	1
 橺	xian	1
 欦	xian	1
-溓	xian	1
 溓	xian	1
 綅	xian	1
 綖	xian	1
@@ -39874,14 +38516,11 @@ sort: by_weight
 臤	xian	1
 蜆	xian	1
 見	xian	1
-賢	xian	1
 軐	xian	1
 醶	xian	1
 鏾	xian	1
 鑦	xian	1
 闞	xian	1
-顯	xian	1
-鮮	xian	1
 㔓	xian	1
 㔵	xian	1
 㘅	xian	1
@@ -39906,7 +38545,6 @@ sort: by_weight
 㭹	xian	1
 㮭	xian	1
 㯀	xian	1
-㯗	xian	1
 㯗	xian	1
 㯠	xian	1
 㱹	xian	1
@@ -39946,10 +38584,8 @@ sort: by_weight
 䤼	xian	1
 䥪	xian	1
 䦘	xian	1
-䦘	xian	1
 䦥	xian	1
 䧋	xian	1
-䧮	xian	1
 䧮	xian	1
 䨘	xian	1
 䨷	xian	1
@@ -39978,7 +38614,6 @@ sort: by_weight
 𠫄	xian	1
 𠯟	xian	1
 𠷢	xian	1
-𠿢	xian	1
 𠿢	xian	1
 𡒓	xian	1
 𡗏	xian	1
@@ -40065,7 +38700,6 @@ sort: by_weight
 𧻒	xian	1
 𧼏	xian	1
 𧾨	xian	1
-𧾨	xian	1
 𨁅	xian	1
 𨃩	xian	1
 𨇤	xian	1
@@ -40114,7 +38748,6 @@ sort: by_weight
 象	xiang	5515
 享	xiang	5043
 乡	xiang	3148
-相	xiang	1136
 箱	xiang	1133
 详	xiang	801
 祥	xiang	791
@@ -40187,7 +38820,6 @@ sort: by_weight
 蠁	xiang	1
 勷	xiang	1
 啍	xiang	1
-嚮	xiang	1
 夅	xiang	1
 曏	xiang	1
 樣	xiang	1
@@ -40260,7 +38892,6 @@ sort: by_weight
 𧞻	xiang	1
 𧨢	xiang	1
 𧬰	xiang	1
-𧬰	xiang	1
 𨀘	xiang	1
 𨉽	xiang	1
 𨖶	xiang	1
@@ -40331,7 +38962,6 @@ sort: by_weight
 効	xiao	167
 削	xiao	164
 暁	xiao	162
-肖	xiao	154
 傚	xiao	142
 蕭	xiao	141
 篠	xiao	133
@@ -40401,9 +39031,7 @@ sort: by_weight
 䥵	xiao	1
 䒕	xiao	1
 嗃	xiao	1
-嗃	xiao	1
 撨	xiao	1
-殽	xiao	1
 澩	xiao	1
 烋	xiao	1
 獟	xiao	1
@@ -40500,7 +39128,6 @@ sort: by_weight
 𧢬	xiao	1
 𧩮	xiao	1
 𧮻	xiao	1
-𧱐	xiao	1
 𧱐	xiao	1
 𧳍	xiao	1
 𧵱	xiao	1
@@ -40667,7 +39294,6 @@ sort: by_weight
 嚡	xie	1
 娎	xie	1
 孈	xie	1
-寫	xie	1
 慀	xie	1
 搚	xie	1
 枻	xie	1
@@ -40729,7 +39355,6 @@ sort: by_weight
 䍖	xie	1
 䏮	xie	1
 䔑	xie	1
-䕵	xie	1
 䕵	xie	1
 䙊	xie	1
 䙎	xie	1
@@ -40931,7 +39556,6 @@ sort: by_weight
 訫	xin	175
 鋅	xin	174
 杺	xin	169
-芯	xin	166
 焮	xin	164
 釁	xin	146
 廞	xin	144
@@ -40949,7 +39573,6 @@ sort: by_weight
 脪	xin	38
 顖	xin	38
 镡	xin	34
-炘	xin	30
 孞	xin	23
 邤	xin	1
 軐	xin	1
@@ -41033,7 +39656,6 @@ sort: by_weight
 形	xing	8116
 兴	xing	1965
 幸	xing	1126
-兴	xing	1069
 醒	xing	1015
 刑	xing	985
 杏	xing	823
@@ -41091,11 +39713,8 @@ sort: by_weight
 哘	xing	1
 巠	xing	1
 狌	xing	1
-睲	xing	1
-興	xing	1
 葕	xing	1
 蛵	xing	1
-鋞	xing	1
 餳	xing	1
 㐩	xing	1
 㒷	xing	1
@@ -41252,7 +39871,6 @@ sort: by_weight
 鏅	xiu	199
 俢	xiu	196
 鏽	xiu	164
-宿	xiu	153
 繍	xiu	151
 銹	xiu	151
 褎	xiu	148
@@ -41281,7 +39899,6 @@ sort: by_weight
 嚊	xiu	1
 綉	xiu	1
 茠	xiu	1
-鏅	xiu	1
 㗜	xiu	1
 㩰	xiu	1
 㱗	xiu	1
@@ -41369,11 +39986,8 @@ sort: by_weight
 㳚	xu	237
 冔	xu	236
 欻	xu	206
-湑	xu	196
 矞	xu	195
 砉	xu	189
-冔	xu	172
-湑	xu	172
 續	xu	169
 続	xu	168
 須	xu	152
@@ -41417,7 +40031,6 @@ sort: by_weight
 獝	xu	28
 鱮	xu	28
 卹	xu	28
-旴	xu	21
 銊	xu	20
 朂	xu	20
 慉	xu	20
@@ -41458,7 +40071,6 @@ sort: by_weight
 喐	xu	1
 嘼	xu	1
 妶	xu	1
-姁	xu	1
 惐	xu	1
 掝	xu	1
 晇	xu	1
@@ -41469,14 +40081,11 @@ sort: by_weight
 滸	xu	1
 燸	xu	1
 眗	xu	1
-稰	xu	1
 綇	xu	1
 緰	xu	1
 蓲	xu	1
-藇	xu	1
 蚼	xu	1
 蛡	xu	1
-許	xu	1
 諿	xu	1
 鉏	xu	1
 鉥	xu	1
@@ -41682,16 +40291,12 @@ sort: by_weight
 𫍽	xuan	206
 𫓶	xuan	193
 伭	xuan	192
-咺	xuan	183
 夐	xuan	163
 嬛	xuan	161
-旋	xuan	159
 券	xuan	156
-嬛	xuan	141
 晅	xuan	138
 暅	xuan	137
 𫠊	xuan	135
-晅	xuan	132
 選	xuan	132
 蝖	xuan	117
 軒	xuan	110
@@ -41771,7 +40376,6 @@ sort: by_weight
 㯀	xuan	1
 㳙	xuan	1
 㹡	xuan	1
-㹡	xuan	1
 㻹	xuan	1
 㻽	xuan	1
 㾌	xuan	1
@@ -41788,7 +40392,6 @@ sort: by_weight
 䚭	xuan	1
 䚯	xuan	1
 䝮	xuan	1
-䠣	xuan	1
 䠣	xuan	1
 䥧	xuan	1
 䧎	xuan	1
@@ -41819,7 +40422,6 @@ sort: by_weight
 𢙂	xuan	1
 𢪂	xuan	1
 𢰊	xuan	1
-𢳄	xuan	1
 𢳄	xuan	1
 𢿌	xuan	1
 𣉖	xuan	1
@@ -42008,7 +40610,6 @@ sort: by_weight
 勋	xun	543
 驯	xun	531
 殉	xun	524
-熏	xun	506
 薰	xun	467
 荀	xun	461
 荨	xun	454
@@ -42098,13 +40699,10 @@ sort: by_weight
 䞊	xun	1
 𧸩	xun	1
 咰	xun	1
-壎	xun	1
 姰	xun	1
 孫	xun	1
-毥	xun	1
 濬	xun	1
 煇	xun	1
-爋	xun	1
 爓	xun	1
 眴	xun	1
 筍	xun	1
@@ -42149,7 +40747,6 @@ sort: by_weight
 𣖼	xun	1
 𣹯	xun	1
 𤃺	xun	1
-𤑕	xun	1
 𤑕	xun	1
 𤛧	xun	1
 𤟤	xun	1
@@ -42202,7 +40799,6 @@ sort: by_weight
 讶	ya	562
 衙	ya	550
 轧	ya	547
-压	ya	490
 娅	ya	434
 垭	ya	414
 蚜	ya	399
@@ -42222,8 +40818,6 @@ sort: by_weight
 亜	ya	198
 壓	ya	179
 鴨	ya	163
-哑	ya	160
-呀	ya	156
 犽	ya	148
 氬	ya	145
 圧	ya	135
@@ -42243,7 +40837,6 @@ sort: by_weight
 枒	ya	67
 婭	ya	67
 厊	ya	56
-玡	ya	40
 唖	ya	39
 碣	ya	30
 襾	ya	29
@@ -42272,16 +40865,9 @@ sort: by_weight
 䆘	ya	1
 䦪	ya	1
 𡶦	ya	1
-亞	ya	1
 冴	ya	1
-啞	ya	1
 埡	ya	1
-壓	ya	1
 拁	ya	1
-挜	ya	1
-掗	ya	1
-枒	ya	1
-枒	ya	1
 椻	ya	1
 潝	ya	1
 烏	ya	1
@@ -42291,14 +40877,11 @@ sort: by_weight
 覀	ya	1
 輵	ya	1
 釾	ya	1
-铔	ya	1
 顏	ya	1
-齖	ya	1
 㗇	ya	1
 㝞	ya	1
 㝦	ya	1
 㤉	ya	1
-㧎	ya	1
 㧎	ya	1
 㮞	ya	1
 㰳	ya	1
@@ -42365,7 +40948,6 @@ sort: by_weight
 𧧝	ya	1
 𧬬	ya	1
 𨁶	ya	1
-𨁶	ya	1
 𨓴	ya	1
 𨖭	ya	1
 𨨙	ya	1
@@ -42383,8 +40965,6 @@ sort: by_weight
 𪖐	ya	1
 𪗹	ya	1
 𪘬	ya	1
-𪘬	ya	1
-𪘲	ya	1
 𪘲	ya	1
 言	yan	20790
 研	yan	3492
@@ -42404,13 +40984,11 @@ sort: by_weight
 延	yan	696
 衍	yan	675
 烟	yan	669
-燕	yan	661
 盐	yan	655
 咽	yan	639
 焰	yan	627
 雁	yan	620
 淹	yan	608
-咽	yan	597
 阎	yan	584
 焉	yan	572
 堰	yan	555
@@ -42465,7 +41043,6 @@ sort: by_weight
 芫	yan	97
 戭	yan	89
 阏	yan	79
-奄	yan	78
 扊	yan	75
 虤	yan	66
 䶮	yan	61
@@ -42474,17 +41051,12 @@ sort: by_weight
 𫄧	yan	52
 埏	yan	43
 广	yan	40
-研	yan	38
 𬸘	yan	32
 掞	yan	29
 剡	yan	24
-掞	yan	16
 梴	yan	3
-棪	yan	2
 歅	yan	2
-渰	yan	1
 龂	yan	1
-墕	yan	1
 驗	yan	1
 嚴	yan	1
 啱	yan	1
@@ -42638,35 +41210,25 @@ sort: by_weight
 𧞣	yan	1
 𧬌	yan	1
 𩸞	yan	1
-傿	yan	1
-匽	yan	1
 厃	yan	1
 唌	yan	1
 喦	yan	1
 嚈	yan	1
 囐	yan	1
 嬐	yan	1
-嬮	yan	1
 孍	yan	1
 晻	yan	1
 橪	yan	1
 殗	yan	1
-殗	yan	1
 洝	yan	1
 炏	yan	1
 猏	yan	1
-硏	yan	1
-硽	yan	1
-礹	yan	1
 窴	yan	1
 羬	yan	1
 薟	yan	1
 豣	yan	1
-酓	yan	1
 閼	yan	1
-隁	yan	1
 鳱	yan	1
-鹽	yan	1
 黬	yan	1
 黰	yan	1
 鼴	yan	1
@@ -42676,10 +41238,8 @@ sort: by_weight
 㒆	yan	1
 㓧	yan	1
 㕣	yan	1
-㕣	yan	1
 㗴	yan	1
 㘖	yan	1
-㘙	yan	1
 㘙	yan	1
 㚧	yan	1
 㛪	yan	1
@@ -42706,7 +41266,6 @@ sort: by_weight
 䀋	yan	1
 䀽	yan	1
 䁙	yan	1
-䁙	yan	1
 䂩	yan	1
 䂴	yan	1
 䄋	yan	1
@@ -42724,7 +41283,6 @@ sort: by_weight
 䓂	yan	1
 䕾	yan	1
 䖗	yan	1
-䖗	yan	1
 䗎	yan	1
 䗡	yan	1
 䗺	yan	1
@@ -42733,10 +41291,8 @@ sort: by_weight
 䞁	yan	1
 䞛	yan	1
 䢥	yan	1
-䢥	yan	1
 䢭	yan	1
 䣍	yan	1
-䤷	yan	1
 䤷	yan	1
 䦧	yan	1
 䦲	yan	1
@@ -42750,7 +41306,6 @@ sort: by_weight
 䳡	yan	1
 䳺	yan	1
 䴏	yan	1
-䶫	yan	1
 䶫	yan	1
 𠉬	yan	1
 𠍛	yan	1
@@ -42773,10 +41328,8 @@ sort: by_weight
 𢌨	yan	1
 𢔂	yan	1
 𢜰	yan	1
-𢜰	yan	1
 𢤍	yan	1
 𢯼	yan	1
-𢸴	yan	1
 𢸴	yan	1
 𢾑	yan	1
 𣃧	yan	1
@@ -42797,7 +41350,6 @@ sort: by_weight
 𣼠	yan	1
 𤂠	yan	1
 𤅊	yan	1
-𤅸	yan	1
 𤅸	yan	1
 𤆌	yan	1
 𤋠	yan	1
@@ -42879,7 +41431,6 @@ sort: by_weight
 𨡎	yan	1
 𨡣	yan	1
 𨣻	yan	1
-𨣻	yan	1
 𨤎	yan	1
 𨪶	yan	1
 𨴣	yan	1
@@ -42888,7 +41439,6 @@ sort: by_weight
 𨸮	yan	1
 𨺥	yan	1
 𨻂	yan	1
-𨻳	yan	1
 𨻳	yan	1
 𨽑	yan	1
 𩃀	yan	1
@@ -42971,7 +41521,6 @@ sort: by_weight
 珜	yang	154
 楧	yang	141
 敭	yang	139
-烊	yang	138
 氱	yang	136
 眏	yang	134
 炴	yang	134
@@ -43001,8 +41550,6 @@ sort: by_weight
 卬	yang	39
 抰	yang	38
 傟	yang	38
-鞅	yang	37
-咉	yang	33
 玚	yang	29
 详	yang	25
 䱀	yang	4
@@ -43023,13 +41570,7 @@ sort: by_weight
 勜	yang	1
 婸	yang	1
 愓	yang	1
-柍	yang	1
-柍	yang	1
-楧	yang	1
-瀁	yang	1
-煬	yang	1
 瑒	yang	1
-眏	yang	1
 詳	yang	1
 鍈	yang	1
 飬	yang	1
@@ -43047,7 +41588,6 @@ sort: by_weight
 䑆	yang	1
 䒋	yang	1
 䖹	yang	1
-䞁	yang	1
 䞁	yang	1
 䬗	yang	1
 䬬	yang	1
@@ -43123,7 +41663,6 @@ sort: by_weight
 𫝥	yang	1
 要	yao	829340
 药	yao	26559
-要	yao	26027
 邀	yao	3387
 腰	yao	3319
 摇	yao	3153
@@ -43215,7 +41754,6 @@ sort: by_weight
 楆	yao	40
 銚	yao	40
 瀹	yao	37
-崾	yao	37
 么	yao	34
 軺	yao	30
 倄	yao	30
@@ -43258,9 +41796,7 @@ sort: by_weight
 徺	yao	1
 怮	yao	1
 恌	yao	1
-愮	yao	1
 撽	yao	1
-枖	yao	1
 樂	yao	1
 殽	yao	1
 烄	yao	1
@@ -43330,7 +41866,6 @@ sort: by_weight
 𡔜	yao	1
 𡚸	yao	1
 𡛙	yao	1
-𡛙	yao	1
 𡝛	yao	1
 𡝩	yao	1
 𡢗	yao	1
@@ -43354,7 +41889,6 @@ sort: by_weight
 𢝍	yao	1
 𢺇	yao	1
 𣣳	yao	1
-𣣳	yao	1
 𣣵	yao	1
 𣨘	yao	1
 𤂼	yao	1
@@ -43372,7 +41906,6 @@ sort: by_weight
 𥃯	yao	1
 𥌺	yao	1
 𥤣	yao	1
-𥤹	yao	1
 𥤹	yao	1
 𥦖	yao	1
 𥪯	yao	1
@@ -43429,7 +41962,6 @@ sort: by_weight
 液	ye	14585
 爷	ye	13855
 耶	ye	5473
-耶	ye	600
 冶	ye	582
 椰	ye	534
 腋	ye	533
@@ -43467,7 +41999,6 @@ sort: by_weight
 謁	ye	136
 壄	ye	134
 鄴	ye	130
-掖	ye	127
 燁	ye	124
 爗	ye	122
 擫	ye	119
@@ -43549,7 +42080,6 @@ sort: by_weight
 䅬	ye	1
 䊦	ye	1
 䎨	ye	1
-䓉	ye	1
 䓉	ye	1
 䔑	ye	1
 䝟	ye	1
@@ -43646,10 +42176,8 @@ sort: by_weight
 姨	yi	2916
 意	yi	1820
 宜	yi	1729
-一	yi	1642
 亦	yi	1559
 易	yi	1023
-一	yi	1015
 议	yi	1010
 医	yi	1001
 义	yi	996
@@ -43740,7 +42268,6 @@ sort: by_weight
 射	yi	90
 眙	yi	80
 佾	yi	80
-迤	yi	77
 圯	yi	76
 肄	yi	73
 浥	yi	57
@@ -43749,7 +42276,6 @@ sort: by_weight
 蛾	yi	32
 疙	yi	28
 匜	yi	22
-椅	yi	21
 異	yi	17
 螠	yi	16
 燚	yi	1
@@ -43787,7 +42313,6 @@ sort: by_weight
 嗌	yi	1
 圪	yi	1
 昳	yi	1
-猗	yi	1
 霅	yi	1
 㑊	yi	1
 㴔	yi	1
@@ -44002,7 +42527,6 @@ sort: by_weight
 欭	yi	1
 跠	yi	1
 隿	yi	1
-迆	yi	1
 瓵	yi	1
 榏	yi	1
 稦	yi	1
@@ -44050,7 +42574,6 @@ sort: by_weight
 弬	yi	1
 彵	yi	1
 忔	yi	1
-悘	yi	1
 懝	yi	1
 扡	yi	1
 撎	yi	1
@@ -44062,16 +42585,11 @@ sort: by_weight
 煕	yi	1
 狏	yi	1
 篒	yi	1
-義	yi	1
 衪	yi	1
-袘	yi	1
 褘	yi	1
 謚	yi	1
-貤	yi	1
-迱	yi	1
 迱	yi	1
 鄓	yi	1
-醫	yi	1
 釶	yi	1
 阣	yi	1
 鮐	yi	1
@@ -44093,9 +42611,7 @@ sort: by_weight
 㖂	yi	1
 㘁	yi	1
 㘈	yi	1
-㘈	yi	1
 㘊	yi	1
-㙠	yi	1
 㙪	yi	1
 㙯	yi	1
 㚤	yi	1
@@ -44115,7 +42631,6 @@ sort: by_weight
 㢞	yi	1
 㣂	yi	1
 㥋	yi	1
-㥴	yi	1
 㥴	yi	1
 㥷	yi	1
 㦉	yi	1
@@ -44183,7 +42698,6 @@ sort: by_weight
 䘝	yi	1
 䘸	yi	1
 䚷	yi	1
-䚷	yi	1
 䛖	yi	1
 䝝	yi	1
 䝘	yi	1
@@ -44195,7 +42709,6 @@ sort: by_weight
 䤭	yi	1
 䦴	yi	1
 䧅	yi	1
-䧇	yi	1
 䧇	yi	1
 䧧	yi	1
 䩟	yi	1
@@ -44229,7 +42742,6 @@ sort: by_weight
 𠋣	yi	1
 𠍫	yi	1
 𠍳	yi	1
-𠍳	yi	1
 𠏩	yi	1
 𠐀	yi	1
 𠓋	yi	1
@@ -44240,7 +42752,6 @@ sort: by_weight
 𠡔	yi	1
 𠡝	yi	1
 𠤕	yi	1
-𠤘	yi	1
 𠤘	yi	1
 𠤗	yi	1
 𠥦	yi	1
@@ -44549,9 +43060,6 @@ sort: by_weight
 寅	yin	557
 荫	yin	543
 蚓	yin	527
-饮	yin	523
-荫	yin	515
-隐	yin	508
 尹	yin	428
 胤	yin	402
 鄞	yin	390
@@ -44586,7 +43094,6 @@ sort: by_weight
 𬮱	yin	170
 硍	yin	152
 龈	yin	138
-硍	yin	138
 飲	yin	122
 銀	yin	119
 隱	yin	106
@@ -44620,7 +43127,6 @@ sort: by_weight
 凐	yin	29
 闉	yin	25
 噖	yin	25
-殷	yin	24
 滛	yin	21
 湮	yin	20
 璌	yin	17
@@ -44686,23 +43192,16 @@ sort: by_weight
 𡐔	yin	1
 伒	yin	1
 唫	yin	1
-廴	yin	1
 梀	yin	1
 檼	yin	1
 欭	yin	1
 濦	yin	1
 玪	yin	1
-磤	yin	1
 粌	yin	1
 縯	yin	1
-蔭	yin	1
 蘟	yin	1
 訢	yin	1
 酓	yin	1
-隠	yin	1
-隱	yin	1
-飲	yin	1
-飮	yin	1
 齦	yin	1
 㐆	yin	1
 㕂	yin	1
@@ -44717,7 +43216,6 @@ sort: by_weight
 㥼	yin	1
 㦩	yin	1
 㧈	yin	1
-㧈	yin	1
 㧢	yin	1
 㪦	yin	1
 㮒	yin	1
@@ -44726,7 +43224,6 @@ sort: by_weight
 㶣	yin	1
 㸒	yin	1
 㸧	yin	1
-㹞	yin	1
 㹞	yin	1
 㹜	yin	1
 㼉	yin	1
@@ -44741,7 +43238,6 @@ sort: by_weight
 䕃	yin	1
 䕾	yin	1
 䖐	yin	1
-䖜	yin	1
 䖜	yin	1
 䚿	yin	1
 䜾	yin	1
@@ -44768,7 +43264,6 @@ sort: by_weight
 𡇂	yin	1
 𡈲	yin	1
 𡋪	yin	1
-𡓓	yin	1
 𡓓	yin	1
 𡓿	yin	1
 𡖣	yin	1
@@ -44855,7 +43350,6 @@ sort: by_weight
 𫂾	yin	1
 𫡑	yin	1
 应	ying	36502
-应	ying	35771
 硬	ying	5537
 影	ying	2876
 英	ying	2818
@@ -45001,16 +43495,10 @@ sort: by_weight
 夃	ying	1
 嵤	ying	1
 巆	ying	1
-応	ying	1
-應	ying	1
 旲	ying	1
 柍	ying	1
 楧	ying	1
-浧	ying	1
 滎	ying	1
-滎	ying	1
-瀴	ying	1
-瀴	ying	1
 瀴	ying	1
 焸	ying	1
 焽	ying	1
@@ -45018,13 +43506,11 @@ sort: by_weight
 眏	ying	1
 禜	ying	1
 耺	ying	1
-覮	ying	1
 韹	ying	1
 㑞	ying	1
 㕲	ying	1
 㜲	ying	1
 㡕	ying	1
-㢍	ying	1
 㢍	ying	1
 㦹	ying	1
 㨕	ying	1
@@ -45034,12 +43520,10 @@ sort: by_weight
 㴄	ying	1
 㵬	ying	1
 㶈	ying	1
-㶈	ying	1
 㿘	ying	1
 䀰	ying	1
 䀴	ying	1
 䁐	ying	1
-䁝	ying	1
 䁝	ying	1
 䃷	ying	1
 䊔	ying	1
@@ -45125,7 +43609,6 @@ sort: by_weight
 𩋹	ying	1
 𩖍	ying	1
 𩘑	ying	1
-𩘑	ying	1
 𩳍	ying	1
 𩸥	ying	1
 𩹅	ying	1
@@ -45140,8 +43623,6 @@ sort: by_weight
 哟	yo	9737
 唷	yo	1840
 喲	yo	1432
-哟	yo	1403
-喲	yo	86
 嚛	yo	2
 𪠸	yo	1
 用	yong	870866
@@ -45154,7 +43635,6 @@ sort: by_weight
 庸	yong	5511
 雍	yong	5235
 佣	yong	2834
-佣	yong	629
 踊	yong	602
 俑	yong	534
 慵	yong	518
@@ -45212,7 +43692,6 @@ sort: by_weight
 柡	yong	38
 嫞	yong	23
 鷛	yong	23
-澭	yong	22
 勈	yong	1
 鰫	yong	1
 愑	yong	1
@@ -45223,7 +43702,6 @@ sort: by_weight
 㝘	yong	1
 㴩	yong	1
 䗤	yong	1
-噰	yong	1
 牗	yong	1
 蒏	yong	1
 銿	yong	1
@@ -45281,7 +43759,6 @@ sort: by_weight
 𩔔	yong	1
 𩜳	yong	1
 𩟀	yong	1
-𩟀	yong	1
 𩟷	yong	1
 𩤛	yong	1
 𩫏	yong	1
@@ -45309,7 +43786,6 @@ sort: by_weight
 诱	you	724
 佑	you	612
 酉	you	601
-有	you	597
 鱿	you	592
 柚	you	591
 釉	you	586
@@ -45340,7 +43816,6 @@ sort: by_weight
 耰	you	270
 𬨎	you	255
 浟	you	243
-浟	you	233
 蝤	you	230
 遊	you	225
 優	you	221
@@ -45357,7 +43832,6 @@ sort: by_weight
 牗	you	159
 栯	you	154
 沋	you	144
-柚	you	125
 梄	you	125
 逰	you	119
 狖	you	116
@@ -45413,13 +43887,9 @@ sort: by_weight
 峳	you	1
 庮	you	1
 怞	you	1
-懮	you	1
 揂	you	1
 梎	you	1
-楢	you	1
-櫾	you	1
 汼	you	1
-泑	you	1
 獶	you	1
 獿	you	1
 甴	you	1
@@ -45430,7 +43900,6 @@ sort: by_weight
 㑸	you	1
 㔽	you	1
 㕗	you	1
-㕛	you	1
 㕛	you	1
 㕱	you	1
 㗀	you	1
@@ -45475,7 +43944,6 @@ sort: by_weight
 𠧠	you	1
 𠧪	you	1
 𠧴	you	1
-𠧴	you	1
 𠨦	you	1
 𠮫	you	1
 𡇀	you	1
@@ -45502,8 +43970,6 @@ sort: by_weight
 𣓐	you	1
 𣓛	you	1
 𣢄	you	1
-𣢄	you	1
-𣢜	you	1
 𣢜	you	1
 𣣜	you	1
 𣣸	you	1
@@ -45521,7 +43987,6 @@ sort: by_weight
 𤤬	you	1
 𤪎	you	1
 𤱎	you	1
-𤴨	you	1
 𤴨	you	1
 𤸈	you	1
 𥙫	you	1
@@ -45554,7 +44019,6 @@ sort: by_weight
 𧡹	you	1
 𧰰	you	1
 𧳫	you	1
-𧳫	you	1
 𨑫	you	1
 𨗰	you	1
 𨘁	you	1
@@ -45581,7 +44045,6 @@ sort: by_weight
 𩽇	you	1
 𩿬	you	1
 𪠥	you	1
-𪠥	you	1
 𪸅	you	1
 𪾏	you	1
 𫚸	you	1
@@ -45598,7 +44061,6 @@ sort: by_weight
 鱼	yu	1444
 遇	yu	1371
 余	yu	935
-与	yu	927
 娱	yu	776
 予	yu	757
 宇	yu	752
@@ -45611,7 +44073,6 @@ sort: by_weight
 愉	yu	667
 狱	yu	658
 浴	yu	649
-与	yu	630
 裕	yu	616
 豫	yu	606
 渔	yu	590
@@ -45655,15 +44116,11 @@ sort: by_weight
 俣	yu	87
 揄	yu	72
 谀	yu	57
-语	yu	39
 臾	yu	38
 奥	yu	37
 粥	yu	35
-吁	yu	34
 蔚	yu	33
 蝓	yu	27
-雨	yu	25
-予	yu	24
 吾	yu	23
 圄	yu	9
 妪	yu	5
@@ -45709,17 +44166,13 @@ sort: by_weight
 圫	yu	1
 滪	yu	1
 㺄	yu	1
-俞	yu	1
 汩	yu	1
 琟	yu	1
 畬	yu	1
-禺	yu	1
 隃	yu	1
 隩	yu	1
 㳚	yu	1
-㺄	yu	1
 喁	yu	1
-於	yu	1
 語	yu	1
 與	yu	1
 魚	yu	1
@@ -45901,9 +44354,7 @@ sort: by_weight
 奧	yu	1
 娪	yu	1
 婾	yu	1
-媀	yu	1
 媮	yu	1
-懙	yu	1
 扝	yu	1
 捓	yu	1
 捥	yu	1
@@ -45914,17 +44365,12 @@ sort: by_weight
 痏	yu	1
 硢	yu	1
 穥	yu	1
-穻	yu	1
 粖	yu	1
 翑	yu	1
-與	yu	1
-與	yu	1
-菸	yu	1
 菸	yu	1
 藇	yu	1
 蘌	yu	1
 虶	yu	1
-語	yu	1
 轝	yu	1
 釪	yu	1
 雤	yu	1
@@ -45933,7 +44379,6 @@ sort: by_weight
 龽	yu	1
 㑨	yu	1
 㒁	yu	1
-㒜	yu	1
 㔱	yu	1
 㙑	yu	1
 㚜	yu	1
@@ -45943,29 +44388,23 @@ sort: by_weight
 㠘	yu	1
 㡰	yu	1
 㣃	yu	1
-㣃	yu	1
 㤜	yu	1
-㤤	yu	1
 㤤	yu	1
 㤢	yu	1
 㥔	yu	1
-㥔	yu	1
 㥚	yu	1
 㥥	yu	1
-㦛	yu	1
 㦛	yu	1
 㦽	yu	1
 㧒	yu	1
 㧕	yu	1
 㪀	yu	1
 㪌	yu	1
-㪌	yu	1
 㫹	yu	1
 㬰	yu	1
 㭌	yu	1
 㮋	yu	1
 㰲	yu	1
-㲾	yu	1
 㲾	yu	1
 㵄	yu	1
 㶛	yu	1
@@ -45984,7 +44423,6 @@ sort: by_weight
 䂊	yu	1
 䂛	yu	1
 䃋	yu	1
-䄨	yu	1
 䄨	yu	1
 䆰	yu	1
 䆷	yu	1
@@ -46020,7 +44458,6 @@ sort: by_weight
 䧕	yu	1
 䨁	yu	1
 䨒	yu	1
-䨞	yu	1
 䨞	yu	1
 䩒	yu	1
 䩽	yu	1
@@ -46096,7 +44533,6 @@ sort: by_weight
 𣄊	yu	1
 𣍛	yu	1
 𣝑	yu	1
-𣝑	yu	1
 𣟰	yu	1
 𣡉	yu	1
 𣢒	yu	1
@@ -46140,14 +44576,11 @@ sort: by_weight
 𦎘	yu	1
 𦏜	yu	1
 𦏻	yu	1
-𦏻	yu	1
-𦐛	yu	1
 𦐛	yu	1
 𦡭	yu	1
 𦥉	yu	1
 𦦫	yu	1
 𦦩	yu	1
-𦦲	yu	1
 𦦲	yu	1
 𦩞	yu	1
 𦭳	yu	1
@@ -46160,7 +44593,6 @@ sort: by_weight
 𧉣	yu	1
 𧊠	yu	1
 𧍪	yu	1
-𧐄	yu	1
 𧐄	yu	1
 𧗪	yu	1
 𧗱	yu	1
@@ -46229,7 +44661,6 @@ sort: by_weight
 𩱱	yu	1
 𩲾	yu	1
 𩵎	yu	1
-𩵎	yu	1
 𩵋	yu	1
 𩺰	yu	1
 𩼪	yu	1
@@ -46279,8 +44710,6 @@ sort: by_weight
 猿	yuan	604
 鸳	yuan	593
 宛	yuan	547
-远	yuan	541
-媛	yuan	503
 垣	yuan	473
 辕	yuan	459
 鸢	yuan	454
@@ -46381,14 +44810,11 @@ sort: by_weight
 㟶	yuan	1
 䏍	yuan	1
 䬇	yuan	1
-傆	yuan	1
 喛	yuan	1
-夗	yuan	1
 弲	yuan	1
 楥	yuan	1
 肙	yuan	1
 褤	yuan	1
-鋺	yuan	1
 㐾	yuan	1
 㘣	yuan	1
 㛪	yuan	1
@@ -46700,10 +45126,8 @@ sort: by_weight
 涢	yun	251
 馧	yun	233
 𫖳	yun	214
-煴	yun	199
 蕰	yun	181
 伝	yun	171
-晕	yun	164
 運	yun	158
 雲	yun	151
 韻	yun	145
@@ -46736,8 +45160,6 @@ sort: by_weight
 傊	yun	42
 薀	yun	42
 韞	yun	42
-员	yun	38
-缊	yun	37
 榅	yun	37
 蝹	yun	36
 韗	yun	35
@@ -46774,22 +45196,16 @@ sort: by_weight
 𦈉	yun	1
 䢵	yun	1
 員	yun	1
-員	yun	1
 惌	yun	1
 抣	yun	1
-暈	yun	1
 涒	yun	1
 溫	yun	1
 煇	yun	1
 煾	yun	1
 熅	yun	1
-熅	yun	1
 玧	yun	1
 筍	yun	1
-緼	yun	1
-縕	yun	1
 褞	yun	1
-貟	yun	1
 貟	yun	1
 贠	yun	1
 鄆	yun	1
@@ -46886,8 +45302,6 @@ sort: by_weight
 䪞	za	1
 𢶍	za	1
 𣴖	za	1
-偺	za	1
-喒	za	1
 噈	za	1
 囃	za	1
 桚	za	1
@@ -46935,7 +45349,6 @@ sort: by_weight
 再	zai	4443586
 载	zai	3432995
 灾	zai	2452656
-载	zai	12690
 仔	zai	1477
 宰	zai	1403
 栽	zai	1332
@@ -47042,8 +45455,6 @@ sort: by_weight
 劗	zan	1
 喒	zan	1
 囋	zan	1
-撍	zan	1
-攢	zan	1
 橵	zan	1
 穳	zan	1
 篸	zan	1
@@ -47061,7 +45472,6 @@ sort: by_weight
 䟃	zan	1
 䟅	zan	1
 䥄	zan	1
-䥄	zan	1
 䬤	zan	1
 𠼗	zan	1
 𡡖	zan	1
@@ -47070,7 +45480,6 @@ sort: by_weight
 𣸄	zan	1
 𥎑	zan	1
 𥜙	zan	1
-𥳋	zan	1
 𥳋	zan	1
 𥸢	zan	1
 𧄽	zan	1
@@ -47083,14 +45492,12 @@ sort: by_weight
 脏	zang	5354
 藏	zang	5246
 臧	zang	2605
-脏	zang	2344
 葬	zang	2110
 赃	zang	1171
 奘	zang	497
 牂	zang	331
 臟	zang	331
 髒	zang	309
-臧	zang	298
 驵	zang	276
 臓	zang	268
 弉	zang	217
@@ -47104,7 +45511,6 @@ sort: by_weight
 贜	zang	23
 匨	zang	1
 蔵	zang	1
-髒	zang	1
 㘸	zang	1
 㮜	zang	1
 䍧	zang	1
@@ -47167,7 +45573,6 @@ sort: by_weight
 䒃	zao	1
 䖣	zao	1
 䗢	zao	1
-䜊	zao	1
 䜊	zao	1
 䥣	zao	1
 𠙬	zao	1
@@ -47354,7 +45759,6 @@ sort: by_weight
 橧	zeng	92
 譄	zeng	68
 综	zeng	37
-缯	zeng	32
 繒	zeng	1
 鱛	zeng	1
 鋥	zeng	1
@@ -47365,7 +45769,6 @@ sort: by_weight
 竲	zeng	1
 綜	zeng	1
 縡	zeng	1
-繒	zeng	1
 鬵	zeng	1
 㽪	zeng	1
 䇸	zeng	1
@@ -47384,11 +45787,9 @@ sort: by_weight
 扎	zha	4127
 诈	zha	2629
 渣	zha	2366
-炸	zha	2318
 榨	zha	1309
 闸	zha	624
 札	zha	601
-扎	zha	592
 楂	zha	535
 眨	zha	528
 栅	zha	511
@@ -47416,12 +45817,7 @@ sort: by_weight
 䃎	zha	154
 奓	zha	151
 霅	zha	150
-劄	zha	144
-奓	zha	126
-霅	zha	116
-鲊	zha	103
 喋	zha	99
-䃎	zha	87
 査	zha	85
 詐	zha	77
 搾	zha	77
@@ -47463,7 +45859,6 @@ sort: by_weight
 諎	zha	1
 軋	zha	1
 飵	zha	1
-鮓	zha	1
 齟	zha	1
 㑵	zha	1
 㒀	zha	1
@@ -47472,12 +45867,10 @@ sort: by_weight
 㚫	zha	1
 㞚	zha	1
 㡸	zha	1
-㡸	zha	1
 㦋	zha	1
 㩹	zha	1
 㪥	zha	1
 㱜	zha	1
-㳐	zha	1
 㳐	zha	1
 㴙	zha	1
 㷢	zha	1
@@ -47561,7 +45954,6 @@ sort: by_weight
 𨡗	zha	1
 𨢦	zha	1
 𩃡	zha	1
-𩃹	zha	1
 𩃹	zha	1
 𩥠	zha	1
 𩩥	zha	1
@@ -47675,7 +46067,6 @@ sort: by_weight
 绽	zhan	572
 盏	zhan	565
 栈	zhan	559
-占	zhan	548
 崭	zhan	523
 辗	zhan	517
 毡	zhan	487
@@ -47748,7 +46139,6 @@ sort: by_weight
 欃	zhan	1
 皽	zhan	1
 碊	zhan	1
-覱	zhan	1
 讝	zhan	1
 飦	zhan	1
 驏	zhan	1
@@ -47758,7 +46148,6 @@ sort: by_weight
 㜊	zhan	1
 㞡	zhan	1
 㟞	zhan	1
-㠭	zhan	1
 㣶	zhan	1
 㺘	zhan	1
 㻵	zhan	1
@@ -47769,7 +46158,6 @@ sort: by_weight
 䎒	zhan	1
 䐤	zhan	1
 䘺	zhan	1
-䟋	zhan	1
 䟋	zhan	1
 䡀	zhan	1
 䦅	zhan	1
@@ -47833,7 +46221,6 @@ sort: by_weight
 𧸪	zhan	1
 𧽆	zhan	1
 𧾍	zhan	1
-𧾍	zhan	1
 𨇩	zhan	1
 𨊈	zhan	1
 𨣁	zhan	1
@@ -47875,7 +46262,6 @@ sort: by_weight
 胀	zhang	564
 樟	zhang	557
 帐	zhang	548
-涨	zhang	539
 漳	zhang	519
 璋	zhang	508
 蟑	zhang	486
@@ -47917,11 +46303,8 @@ sort: by_weight
 仧	zhang	1
 兏	zhang	1
 弡	zhang	1
-張	zhang	1
-漲	zhang	1
 竜	zhang	1
 鏱	zhang	1
-長	zhang	1
 鞝	zhang	1
 㕩	zhang	1
 㙊	zhang	1
@@ -47937,7 +46320,6 @@ sort: by_weight
 𡑄	zhang	1
 𡚹	zhang	1
 𢕎	zhang	1
-𢕔	zhang	1
 𢕔	zhang	1
 𢩰	zhang	1
 𢪾	zhang	1
@@ -47968,7 +46350,6 @@ sort: by_weight
 爪	zhao	589
 肇	zhao	580
 沼	zhao	574
-着	zhao	573
 兆	zhao	566
 朝	zhao	547
 嘲	zhao	519
@@ -47977,7 +46358,6 @@ sort: by_weight
 啁	zhao	337
 棹	zhao	319
 笊	zhao	314
-晁	zhao	308
 晁	zhao	308
 曌	zhao	242
 旐	zhao	213
@@ -48009,7 +46389,6 @@ sort: by_weight
 鉊	zhao	1
 䍜	zhao	1
 啅	zhao	1
-炤	zhao	1
 箌	zhao	1
 罀	zhao	1
 菬	zhao	1
@@ -48075,7 +46454,6 @@ sort: by_weight
 𪭛	zhao	1
 𪸲	zhao	1
 𫞃	zhao	1
-𫞃	zhao	1
 这	zhe	1014823
 者	zhe	67013
 着	zhe	65672
@@ -48083,7 +46461,6 @@ sort: by_weight
 浙	zhe	2286
 哲	zhe	1488
 遮	zhe	1406
-折	zhe	1335
 褶	zhe	1268
 這	zhe	588
 蔗	zhe	536
@@ -48112,7 +46489,6 @@ sort: by_weight
 嗻	zhe	171
 轍	zhe	168
 嚞	zhe	167
-蜇	zhe	154
 鷓	zhe	154
 埑	zhe	151
 晣	zhe	146
@@ -48141,8 +46517,6 @@ sort: by_weight
 䜆	zhe	1
 𪚥	zhe	1
 乇	zhe	1
-嗻	zhe	1
-嗻	zhe	1
 慹	zhe	1
 扸	zhe	1
 搩	zhe	1
@@ -48171,7 +46545,6 @@ sort: by_weight
 䂞	zhe	1
 䆛	zhe	1
 䊞	zhe	1
-䊮	zhe	1
 䊮	zhe	1
 䋲	zhe	1
 䎲	zhe	1
@@ -48330,7 +46703,6 @@ sort: by_weight
 酙	zhen	35
 侲	zhen	35
 薽	zhen	35
-揕	zhen	29
 鉁	zhen	28
 鴆	zhen	28
 溱	zhen	27
@@ -48355,14 +46727,11 @@ sort: by_weight
 誫	zhen	1
 㐱	zhen	1
 𩒪	zhen	1
-侲	zhen	1
 姫	zhen	1
-嫃	zhen	1
 幀	zhen	1
 枮	zhen	1
 桭	zhen	1
 榐	zhen	1
-槙	zhen	1
 槙	zhen	1
 竧	zhen	1
 縝	zhen	1
@@ -48421,7 +46790,6 @@ sort: by_weight
 𣒅	zhen	1
 𣒁	zhen	1
 𣓀	zhen	1
-𣓀	zhen	1
 𣘘	zhen	1
 𣦵	zhen	1
 𣬻	zhen	1
@@ -48476,10 +46844,8 @@ sort: by_weight
 蒸	zheng	1517
 挣	zheng	1441
 拯	zheng	582
-挣	zheng	563
 睁	zheng	553
 筝	zheng	534
-正	zheng	520
 狰	zheng	484
 怔	zheng	447
 峥	zheng	422
@@ -48504,11 +46870,9 @@ sort: by_weight
 睜	zheng	196
 姃	zheng	195
 炡	zheng	184
-症	zheng	166
 撜	zheng	166
 凧	zheng	160
 氶	zheng	151
-怔	zheng	147
 錚	zheng	146
 篜	zheng	127
 崝	zheng	124
@@ -48523,7 +46887,6 @@ sort: by_weight
 鉦	zheng	60
 丁	zheng	40
 猙	zheng	38
-钲	zheng	23
 鬇	zheng	23
 徰	zheng	1
 抍	zheng	1
@@ -48535,10 +46898,7 @@ sort: by_weight
 埥	zheng	1
 幁	zheng	1
 徎	zheng	1
-掙	zheng	1
 朾	zheng	1
-氶	zheng	1
-糽	zheng	1
 綪	zheng	1
 脀	zheng	1
 鏳	zheng	1
@@ -48577,7 +46937,6 @@ sort: by_weight
 𢓞	zheng	1
 𢘫	zheng	1
 𢮐	zheng	1
-𢹑	zheng	1
 𢹑	zheng	1
 𢾧	zheng	1
 𤇏	zheng	1
@@ -48644,7 +47003,6 @@ sort: by_weight
 址	zhi	744
 脂	zhi	728
 汁	zhi	709
-只	zhi	698
 芝	zhi	696
 殖	zhi	665
 枝	zhi	661
@@ -48689,7 +47047,6 @@ sort: by_weight
 骘	zhi	188
 卮	zhi	172
 踯	zhi	171
-知	zhi	162
 觯	zhi	159
 吱	zhi	157
 摭	zhi	157
@@ -48708,7 +47065,6 @@ sort: by_weight
 拓	zhi	40
 扺	zhi	35
 晊	zhi	28
-织	zhi	21
 黹	zhi	9
 忮	zhi	4
 梽	zhi	1
@@ -48725,7 +47081,6 @@ sort: by_weight
 𦭜	zhi	1
 擿	zhi	1
 痓	zhi	1
-禔	zhi	1
 𨙸	zhi	1
 質	zhi	1
 鉄	zhi	1
@@ -48879,12 +47234,10 @@ sort: by_weight
 剬	zhi	1
 呮	zhi	1
 嚔	zhi	1
-坁	zhi	1
 坧	zhi	1
 墌	zhi	1
 實	zhi	1
 徴	zhi	1
-憄	zhi	1
 戠	zhi	1
 捗	zhi	1
 摨	zhi	1
@@ -48895,15 +47248,12 @@ sort: by_weight
 槯	zhi	1
 歭	zhi	1
 潪	zhi	1
-潪	zhi	1
 璏	zhi	1
 瘈	zhi	1
 眰	zhi	1
 秇	zhi	1
 秖	zhi	1
-筫	zhi	1
 絺	zhi	1
-織	zhi	1
 聜	zhi	1
 臷	zhi	1
 菭	zhi	1
@@ -48918,14 +47268,12 @@ sort: by_weight
 㛿	zhi	1
 㜱	zhi	1
 㜼	zhi	1
-㜼	zhi	1
 㝂	zhi	1
 㡶	zhi	1
 㣥	zhi	1
 㥁	zhi	1
 㧗	zhi	1
 㧻	zhi	1
-㨁	zhi	1
 㨁	zhi	1
 㨖	zhi	1
 㩼	zhi	1
@@ -48954,7 +47302,6 @@ sort: by_weight
 䉅	zhi	1
 䉜	zhi	1
 䌤	zhi	1
-䎺	zhi	1
 䎺	zhi	1
 䏄	zhi	1
 䏑	zhi	1
@@ -49242,10 +47589,8 @@ sort: by_weight
 众	zhong	17195
 终	zhong	5838
 钟	zhong	3655
-中	zhong	3472
 仲	zhong	773
 忠	zhong	658
-种	zhong	625
 衷	zhong	625
 肿	zhong	621
 蚣	zhong	593
@@ -49259,7 +47604,6 @@ sort: by_weight
 舯	zhong	364
 穜	zhong	356
 茽	zhong	338
-穜	zhong	330
 種	zhong	314
 終	zhong	307
 眾	zhong	288
@@ -49304,10 +47648,8 @@ sort: by_weight
 夂	zhong	1
 徸	zhong	1
 斔	zhong	1
-種	zhong	1
 緟	zhong	1
 蟲	zhong	1
-衆	zhong	1
 㐺	zhong	1
 㣫	zhong	1
 㲁	zhong	1
@@ -49378,7 +47720,6 @@ sort: by_weight
 肘	zhou	628
 昼	zhou	627
 皱	zhou	623
-轴	zhou	614
 咒	zhou	591
 帚	zhou	509
 纣	zhou	456
@@ -49451,12 +47792,9 @@ sort: by_weight
 駎	zhou	1
 疛	zhou	1
 嚋	zhou	1
-皺	zhou	1
-縐	zhou	1
 翢	zhou	1
 胕	zhou	1
 薵	zhou	1
-軸	zhou	1
 㑳	zhou	1
 㔌	zhou	1
 㗙	zhou	1
@@ -49610,7 +47948,6 @@ sort: by_weight
 疰	zhu	194
 𬣞	zhu	189
 柷	zhu	180
-砫	zhu	177
 苧	zhu	174
 丶	zhu	161
 属	zhu	160
@@ -49641,7 +47978,6 @@ sort: by_weight
 壴	zhu	33
 櫧	zhu	33
 袾	zhu	29
-筑	zhu	26
 紵	zhu	25
 宁	zhu	23
 銖	zhu	21
@@ -49708,7 +48044,6 @@ sort: by_weight
 櫡	zhu	1
 燝	zhu	1
 磩	zhu	1
-築	zhu	1
 篴	zhu	1
 芧	zhu	1
 蓫	zhu	1
@@ -49738,7 +48073,6 @@ sort: by_weight
 䇠	zhu	1
 䍆	zhu	1
 䌵	zhu	1
-䌵	zhu	1
 䎝	zhu	1
 䎷	zhu	1
 䐢	zhu	1
@@ -49763,7 +48097,6 @@ sort: by_weight
 𠧀	zhu	1
 𠩈	zhu	1
 𠮌	zhu	1
-𠰍	zhu	1
 𠰍	zhu	1
 𠴦	zhu	1
 𠴫	zhu	1
@@ -49806,7 +48139,6 @@ sort: by_weight
 𥵟	zhu	1
 𥹍	zhu	1
 𥾅	zhu	1
-𦅷	zhu	1
 𦅷	zhu	1
 𦉐	zhu	1
 𦙴	zhu	1
@@ -49861,7 +48193,6 @@ sort: by_weight
 𥬲	zhua	1
 𥮣	zhua	1
 拽	zhuai	5272
-拽	zhuai	2007
 转	zhuai	1966
 跩	zhuai	1224
 睉	zhuai	4
@@ -49871,7 +48202,6 @@ sort: by_weight
 专	zhuan	47011
 赚	zhuan	20718
 传	zhuan	19165
-转	zhuan	18781
 砖	zhuan	4581
 撰	zhuan	657
 篆	zhuan	497
@@ -49880,7 +48210,6 @@ sort: by_weight
 馔	zhuan	431
 啭	zhuan	407
 䏝	zhuan	396
-䏝	zhuan	368
 僎	zhuan	347
 瑑	zhuan	320
 耑	zhuan	272
@@ -49918,16 +48247,12 @@ sort: by_weight
 𫍱	zhuan	1
 僝	zhuan	1
 剸	zhuan	1
-剸	zhuan	1
 恮	zhuan	1
 漙	zhuan	1
 篿	zhuan	1
 簨	zhuan	1
 縳	zhuan	1
-膞	zhuan	1
 贃	zhuan	1
-転	zhuan	1
-轉	zhuan	1
 䉵	zhuan	1
 䏙	zhuan	1
 䚈	zhuan	1
@@ -50114,8 +48439,6 @@ sort: by_weight
 綧	zhun	1
 啍	zhun	1
 旽	zhun	1
-稕	zhun	1
-綧	zhun	1
 㡒	zhun	1
 𥇜	zhun	1
 𥚠	zhun	1
@@ -50304,7 +48627,6 @@ sort: by_weight
 仔	zi	553
 吱	zi	552
 齐	zi	547
-仔	zi	502
 孜	zi	500
 梓	zi	490
 淄	zi	460
@@ -50356,7 +48678,6 @@ sort: by_weight
 緇	zi	47
 榟	zi	44
 禌	zi	44
-訾	zi	36
 孶	zi	36
 齍	zi	36
 秄	zi	33
@@ -50402,12 +48723,9 @@ sort: by_weight
 嗭	zi	1
 沝	zi	1
 畠	zi	1
-秄	zi	1
 紪	zi	1
 緕	zi	1
 纃	zi	1
-芓	zi	1
-菑	zi	1
 菑	zi	1
 薋	zi	1
 齜	zi	1
@@ -50565,7 +48883,6 @@ sort: by_weight
 燪	zong	38
 瘲	zong	38
 朡	zong	38
-纵	zong	31
 蝬	zong	23
 傯	zong	23
 翪	zong	23
@@ -50585,12 +48902,7 @@ sort: by_weight
 潈	zong	1
 潨	zong	1
 焧	zong	1
-稯	zong	1
 緫	zong	1
-緵	zong	1
-縱	zong	1
-總	zong	1
-繌	zong	1
 繌	zong	1
 㢔	zong	1
 㣭	zong	1
@@ -50620,7 +48932,6 @@ sort: by_weight
 𣀒	zong	1
 𣯨	zong	1
 𤡆	zong	1
-𤡆	zong	1
 𥍺	zong	1
 𥓻	zong	1
 𥚾	zong	1
@@ -50637,8 +48948,6 @@ sort: by_weight
 𩤗	zong	1
 𩦲	zong	1
 𩭤	zong	1
-𩭤	zong	1
-𩮀	zong	1
 𩮀	zong	1
 𩰽	zong	1
 𪖁	zong	1
@@ -50724,7 +49033,6 @@ sort: by_weight
 倅	zu	1
 怚	zu	1
 柤	zu	1
-柤	zu	1
 椊	zu	1
 稡	zu	1
 鉏	zu	1
@@ -50795,7 +49103,6 @@ sort: by_weight
 𫟾	zu	1
 𫟽	zu	1
 钻	zuan	8428
-钻	zuan	8259
 纂	zuan	2045
 攥	zuan	2004
 缵	zuan	1222
@@ -50816,7 +49123,6 @@ sort: by_weight
 躦	zuan	1
 鉆	zuan	1
 鑚	zuan	1
-鑽	zuan	1
 㷪	zuan	1
 㸇	zuan	1
 䂎	zuan	1
@@ -50930,7 +49236,6 @@ sort: by_weight
 拵	zun	1
 栫	zun	1
 瀳	zun	1
-繜	zun	1
 袸	zun	1
 䔿	zun	1
 𠟃	zun	1
@@ -50953,7 +49258,6 @@ sort: by_weight
 昨	zuo	2126
 佐	zuo	690
 琢	zuo	539
-作	zuo	512
 唑	zuo	489
 祚	zuo	436
 胙	zuo	296
@@ -51000,7 +49304,6 @@ sort: by_weight
 㭮	zuo	1
 㵶	zuo	1
 㶡	zuo	1
-㸲	zuo	1
 䇥	zuo	1
 䋏	zuo	1
 䎰	zuo	1
