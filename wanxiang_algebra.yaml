@@ -3001,6 +3001,7 @@ reverse:
       - derive/'([nl])ue$/'$1ve/
       - derive/^([jqxy])u/$1v/
       - derive/'([jqxy])u/'$1v/
+      - derive/(.*)[\d~]$/$1/
   自然龙:
     __append:
       - xform/'//
@@ -3008,6 +3009,7 @@ reverse:
       - derive/'([nl])ue$/'$1ve/
       - derive/^([jqxy])u/$1v/
       - derive/'([jqxy])u/'$1v/
+      - derive/(.*)[\d~]$/$1/
   汉心龙:
     __append:
       - xform/'//
@@ -3015,6 +3017,7 @@ reverse:
       - derive/'([nl])ue$/'$1ve/
       - derive/^([jqxy])u/$1v/
       - derive/'([jqxy])u/'$1v/
+      - derive/(.*)[\d~]$/$1/
   自然码:
     __append:
       - derive/^([jqxy])u(?=^|$|')/$1v/
@@ -3052,6 +3055,7 @@ reverse:
       - xform/([a-z>])ou(?=^|$|')/$1<b>/
       - xform/in(?=^|$|')/<n>/
       - xform/'|<|>//
+      - derive/(.*)[\d~]$/$1/
 
   小鹤双拼:
     __append:
@@ -3090,6 +3094,7 @@ reverse:
       - xform/ui(?=^|$|')/<v>/
       - xform/in(?=^|$|')/<b>/
       - xform/'|<|>//
+      - derive/(.*)[\d~]$/$1/
 
   微软双拼:
     __append:
@@ -3130,6 +3135,7 @@ reverse:
       - xform/in(?=^|$|')/<n>/
       - xform/ing(?=^|$|')/;/
       - xform/'|<|>//
+      - derive/(.*)[\d~]$/$1/
 
   搜狗双拼:
     __append:
@@ -3169,6 +3175,7 @@ reverse:
       - xform/in(?=^|$|')/<n>/
       - xform/ing(?=^|$|')/;/
       - xform/'|<|>//
+      - derive/(.*)[\d~]$/$1/
 
   智能ABC:
     __append:
@@ -3202,6 +3209,7 @@ reverse:
       - xform/un(?=^|$|')/<n>/
       - xform/[uv]e(?=^|$|')|ui(?=^|$|')/<m>/
       - xform/'|<|>//
+      - derive/(.*)[\d~]$/$1/
 
   紫光双拼:
     __append:
@@ -3237,6 +3245,7 @@ reverse:
       - xform/ao(?=^|$|')/<q>/
       - xform/an(?=^|$|')/<r>/
       - xform/'|<|>//
+      - derive/(.*)[\d~]$/$1/
 
   拼音加加:
     __append:
@@ -3276,6 +3285,7 @@ reverse:
       - xform/([a-z>])ou(?=^|$|')/$1<p>/
       - xform/in(?=^|$|')/<l>/
       - xform/'|<|>//
+      - derive/(.*)[\d~]$/$1/
 
   国标双拼:
     __append:
@@ -3312,6 +3322,7 @@ reverse:
       - xform/ui(?=^|$|')/<v>/
       - xform/in(?=^|$|')/<l>/
       - xform/'|<|>//
+      - derive/(.*)[\d~]$/$1/
 
   首道双拼:
     __append:
@@ -3350,6 +3361,7 @@ reverse:
       - xform/ui(?=^|$|')/<v>/
       - xform/in(?=^|$|')/<c>/
       - xform/'|<|>//
+      - derive/(.*)[\d~]$/$1/
   乱序17:
     __append:
       - derive/^([jqxy])u(?=^|$|')/$1v/
@@ -3410,6 +3422,7 @@ reverse:
       - xform/([a-z>])u(?=^|$|')/$1<d>/
       - xform/([a-z>])v(?=^|$|')/$1<x>/
       - xform/'|<|>//
+      - derive/(.*)[\d~]$/$1/
 
   蓝天双拼:
     __append:
@@ -3449,6 +3462,7 @@ reverse:
       - xform/([a-z>])an(?=^|$|')/$1<j>/
       - xform/([a-z>])en(?=^|$|')/$1<k>/
       - xform/['<>]//
+      - derive/(.*)[\d~]$/$1/
 
   大牛双拼:
     __append:
@@ -3498,7 +3512,8 @@ reverse:
       - xform/([a-z>])en(?=^|$|')/$1<k>/
       - xform/([a-z>])ou(?=^|$|')/$1<r>/
       - xform/er(?=^|$|')/<u>/
-      - xform/['<>]//
+      - xform/'|<|>//
+      - derive/(.*)[\d~]$/$1/
 
 #混合编码转写段落
 mixed:
