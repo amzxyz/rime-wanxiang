@@ -1,0 +1,37 @@
+# Rime schema settings
+# encoding: utf-8
+schema:
+  schema_id: wanxiang_abbrev
+  name: "万象：简码词库转换"
+  version: "LTS"
+  author: amzxyz
+  description: |
+    提供基础简码库
+engine:
+  processors:
+    - key_binder
+    - speller
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - abc_segmentor
+  translators:
+    - table_translator
+  filters:
+    - uniquifier
+
+key_binder:
+  __include: default:/key_binder?
+
+speller:
+  alphabet: "abcdefghijklmnopqrstuvwxyz;"
+  delimiter: " '"
+  algebra:
+    __patch:
+      - wanxiang_algebra:/26jian  #共键选一个任意自定义
+
+translator:
+  dictionary: wanxiang_abbrev
+  prism: wanxiang_abbrev
+  enable_user_dict: false
