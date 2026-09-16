@@ -1,0 +1,12 @@
+# Rime dictionary
+# encoding: utf-8
+#https://github.com/amzxyz/RIME-LMDG
+#简码库
+---
+name: wanxiang_abbrev_t9
+version: "LTS"
+sort: by_weight
+use_preset_vocabulary: false
+import_tables:
+  - dicts/t9_abbrev  #预设中文公共简码
+...

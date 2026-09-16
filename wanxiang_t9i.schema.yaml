@@ -9,7 +9,8 @@ schema:
   description: |
     万象拼音九宫格方案，适用于iOS元书、仓输入法的技术路线
   dependencies:
-
+    - wanxiang_abbrev_t9  #公共简码库
+    - wanxiang_custom_phrase_t9  #自定义词库
 # 开关
 # reset: 默认状态。注释掉后，切换窗口时不会重置到默认状态。
 # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
@@ -79,6 +80,7 @@ engine:
     - reverse_lookup_translator@wanxiang_reverse  #挂接部件组字和笔画反查
   filters:
     - lua_filter@*wanxiang.super_lookup  #字词输入中反查辅助筛选
+    - lua_filter@*wanxiang.custom_phrase  #用户自定义置顶词与简码前置
     - lua_filter@*wanxiang.context_reorder*F  #用于输入编码后的上下文调频
     - lua_filter@*wanxiang.super_comment_preedit  #超级注释模块、超级preedit，支持错词提示、辅助码显示，部件组字读音注释，有声调、无声调全拼编码的转换，支持个性化配置和关闭相应的功能，详情搜索super_comment_preedit进行详细配置
     - lua_filter@*wanxiang.super_replacer  #OpenCC替代器，更灵活的处理方式，更自由的自定义方式，支持简繁转换、简码模式、支持候选替换、注释替换、候选派生等等
@@ -119,6 +121,25 @@ translator:
   #disable_user_dict_for_patterns:  #如果你开启调频，需要一并考虑这个配置是否需要，基本的6码3字不调频，你可以自定义，目前的逻辑是依然记录用户词但满足规则的不输出不被使用
   #  - "^[a-z]{1,6}"
 
+# 自定义短语，用来置顶
+custom_phrase:
+  dictionary: custom_phrase
+  prism: custom_phrase_t9
+  enable_user_dict: false
+  enable_completion: false
+  always_show_comments: true
+  spelling_hints: 50
+
+# 自定义简码，用来游走在候选任意位置
+abbrev_phrase:
+  dictionary: wanxiang_abbrev_t9
+  prism: wanxiang_abbrev_t9
+  enable_user_dict: false
+  enable_completion: false
+  always_show_comments: true
+  spelling_hints: 50
+  insert_position: 3  #前置简码到候选3
+  max_candidates: 3  #前置3个简码
 
 wanxiang_lookup:  #设置归属于super_lookup.lua
   tags: [abc]  # 检索当前tag的候选
@@ -439,14 +460,3 @@ super_replacer:
       prefix: "_ling_"
       files:
         - lua/data/sentence.txt
-    - option: abbrev
-      mode: abbrev  # <--- 新增的简码模式
-      tags: [abc]
-      abbrev_rule: "2,3"
-      # 前置数量2，前置位置3,数量说的是你维护得数据库编码后面分割了几个词前几个要前置显示,位置说的是你要前置到第二候选还是第几
-      # 然后空码或只有英文等自定义词组的时候直接全部兜底显示,这个新的设计简化的应用层面,我们只需要维护一个数据库即可.
-      t9_optimization: true  #t9优化,从txt里编码转换为实际打字需要的编码，例如九键维护用字母加载数据库变数字,源编码
-      prefix: "_abr_"
-      files:
-        - lua/data/t9_abbrev.txt  # 格式：打开文件看
-        #- lua/data/t9_custom.txt #你可以这样patch一个新的文本代替根目录custom_phrase.txt，九键就有了自己的自定义词典
