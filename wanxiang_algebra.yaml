@@ -4461,7 +4461,7 @@ english:
 #使用方案跟在拼写运算后面，九键只适用于table引用
 26jian:
   __append:
-    - xform///
+    - xlit/abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz/
 18jian:
   __append:
     - xlit/qwertyuiopasdfghjklzxcvbnm/qwwrryuiipassffhjjlzxxvbbm/
