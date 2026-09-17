@@ -115,8 +115,6 @@ function M.func(input, env)
 
     local selected = {}
 
-    -- 延迟生成 abbrev：
-    -- 必须先知道原始 idx0 类型，才能决定是否全量输出。
     local abbrev_loaded = false
     local function load_abbrev(full_mode)
         if abbrev_loaded then return end
@@ -152,18 +150,17 @@ function M.func(input, env)
     local special_checked = false
     local special_first = false
     local emitted = 0
-    local custom_index = 0
     local inserted = false
 
     local function emit_special()
         load_abbrev(true)
 
-        for i = 1,#custom do
+        for i = 1, #custom do
             emitted = emitted + 1
             yield(custom[i])
         end
 
-        for i = 1,#selected do
+        for i = 1, #selected do
             emitted = emitted + 1
             yield(selected[i])
         end
@@ -173,7 +170,7 @@ function M.func(input, env)
         load_abbrev(false)
         inserted = true
         local limit = env.max_candidates
-        for i = 1,#selected do
+        for i = 1, #selected do
             if i > limit then break end
             emitted = emitted + 1
             yield(selected[i])
@@ -188,19 +185,24 @@ function M.func(input, env)
                 emit_special()
                 yield(cand)
                 goto continue
+            else
+                -- 非特殊类型：先输出所有自定义候选（置顶）
+                for i = 1, #custom do
+                    emitted = emitted + 1
+                    yield(custom[i])
+                end
             end
         end
 
         if not special_first then
-            if custom_index < #custom then
-                custom_index = custom_index + 1
-                emitted = emitted + 1
-                yield(custom[custom_index])
-                goto continue
-            end
             if not inserted and emitted >= env.insert_position - 1 then
                 insert_selected()
             end
+        end
+
+        -- 如果候选文本已在自定义候选中，跳过以避免重复
+        if reserved[cand.text] then
+            goto continue
         end
 
         emitted = emitted + 1
