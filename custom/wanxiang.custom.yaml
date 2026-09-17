@@ -15,6 +15,7 @@ patch:
       #- wanxiang_algebra:/模糊音_s_sh
       - wanxiang_algebra:/base/全拼  
       # 可选输入方案名称：全拼，自然码, 自然龙, 汉心龙，小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 国标双拼，拼音加加，乱序17
+      - wanxiang_algebra:/26jian
       #- wanxiang_algebra:/18jian
       #- wanxiang_algebra:/14jian
 
