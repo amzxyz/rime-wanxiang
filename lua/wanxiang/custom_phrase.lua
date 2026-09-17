@@ -111,6 +111,7 @@ function M.func(input, env)
 
     -- 2. 简码只保留配置数量；与自定义短语冲突的名额取消、不补取。
     local selected = {}
+    local selected_pending = {}
     if abbrev_enabled then
         if not env.abbrev_translator then
             env.abbrev_translator = Component.Translator(
@@ -127,7 +128,9 @@ function M.func(input, env)
                     seen[text] = true
                     count = count + 1
                     if not reserved[text] then
-                        selected[#selected + 1] = prepare_candidate(cand, source, "abbrev")
+                        local item = prepare_candidate(cand, source, "abbrev")
+                        selected[#selected + 1] = item
+                        selected_pending[text] = item
                         reserved[text] = true
                     end
                     if count >= env.max_candidates then break end
@@ -145,8 +148,12 @@ function M.func(input, env)
     local function insert_selected()
         inserted = true
         for i = 1, #selected do
-            emitted = emitted + 1
-            yield(selected[i])
+            local item = selected[i]
+            if selected_pending[item.text] then
+                selected_pending[item.text] = nil
+                emitted = emitted + 1
+                yield(item)
+            end
         end
     end
 
@@ -157,8 +164,19 @@ function M.func(input, env)
 
     -- 3. 原候选流只遍历一次；达到位置就插入简码，不重新比较质量或排序。
     for cand in input:iter() do
-        local duplicate = reserved[cand.text]
+        local text = cand.text
+        -- 简码词若本就在插入点之前自然出现，就保留它的自然排序、取消这次前置；
+        -- 否则会把本该靠前的候选（尤其用户调频过的高频词）反而拉到后面去。
+        local keep_natural = false
+        if not inserted and selected_pending[text] then
+            keep_natural = cand.start == 0 and cand._end == input_end
+                and emitted + 1 <= env.insert_position
+        end
+        local duplicate = not keep_natural and reserved[text]
             and cand.start == 0 and cand._end == input_end
+        if keep_natural then
+            selected_pending[text] = nil
+        end
         if not duplicate then
             emitted = emitted + 1
             yield(cand)
