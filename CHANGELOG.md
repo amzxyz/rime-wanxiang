@@ -1,5 +1,42 @@
 # Changelog
 
+## [18.0.0](https://github.com/amzxyz/rime-wanxiang/compare/v17.10.3...v18.0.0) (2026-09-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* 重构 custom_phrase 与 abbrev_phrase 候选处理体系
+
+### 📚 词库更新
+
+* 词库调整 ([ada95ec](https://github.com/amzxyz/rime-wanxiang/commit/ada95ecf9a2fc07c1798ad97f2b1530384b3cf93))
+
+
+### 🐛 Bug 修复
+
+* 26jian转换占位 ([469262e](https://github.com/amzxyz/rime-wanxiang/commit/469262edc6fec1ef1a1c768e805b762035c78668))
+* 26key转写保留形式，留空避免潜在的性能消耗 ([7718bc3](https://github.com/amzxyz/rime-wanxiang/commit/7718bc30d4357339b8563ade2531498c7f0e13eb))
+* 修复转写 ([9512bb9](https://github.com/amzxyz/rime-wanxiang/commit/9512bb93add3a7a520007756547a32de9a5f67d8))
+* 反查模式使其全部工作在completion以保证同等状态排序 ([cefdcfe](https://github.com/amzxyz/rime-wanxiang/commit/cefdcfe91e660b5b70c079cb1b30654089dd30c5))
+* 反查模式支持字本身声调筛选，同时支持声调回退 ([b153b51](https://github.com/amzxyz/rime-wanxiang/commit/b153b51115eeeed80d1f35151880fb6203d11ddd))
+* 变更方案名称 ([bb6aa74](https://github.com/amzxyz/rime-wanxiang/commit/bb6aa7407f071772a06c1166ac0bdd735580672e))
+* 填充合法转换规则 ([c2af6e9](https://github.com/amzxyz/rime-wanxiang/commit/c2af6e9467f6f157a0f854d71e76f9ff557094ed))
+* 对用户词和简码方案的custom自定义在执行指令的时候就一同复制，先不添加14 18等的切换，暂时保留手动编辑 ([e0bb905](https://github.com/amzxyz/rime-wanxiang/commit/e0bb905dd9da7986939cdb86107bd86c16aa84ce))
+* 新增新方案的custom ([cad3b07](https://github.com/amzxyz/rime-wanxiang/commit/cad3b0709d2ae62bc018d7046c27c4749c6077a6))
+
+
+### 💅 重构
+
+* 重构 custom_phrase 与 abbrev_phrase 候选处理体系 ([be108b2](https://github.com/amzxyz/rime-wanxiang/commit/be108b2be7134ac59f2782654256d7ec524ac91e))
+
+
+### 🤖 持续集成
+
+* 修复 ([d4fe223](https://github.com/amzxyz/rime-wanxiang/commit/d4fe2238a5d3470eaf10ddee70a363f379268a9d))
+* 完善排除项 ([5878461](https://github.com/amzxyz/rime-wanxiang/commit/5878461b804b5930fb7e466a8411f513cfc741d6))
+* 对lite版本zi.dict去重 ([c2f00f4](https://github.com/amzxyz/rime-wanxiang/commit/c2f00f4fa90ae1d96d56656eb73d22d51a5bb095))
+* 对lite版本zi.dict去重 ([e84588a](https://github.com/amzxyz/rime-wanxiang/commit/e84588aa599be27d3330189b83c1449f0995f9d2))
+
 ## [17.10.3](https://github.com/amzxyz/rime-wanxiang/compare/v17.10.2...v17.10.3) (2026-09-15)
 
 
