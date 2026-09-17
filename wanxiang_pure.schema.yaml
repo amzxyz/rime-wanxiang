@@ -51,7 +51,6 @@ engine:
     - simplifier@s2hk  #简转港
     - simplifier@s2tw  #简转台
     - simplifier@emoji  #候选表情
-    - simplifier@sentence  #造句派生
     - uniquifier                                    # 去重
 
 # 主翻译器，拼音
@@ -112,10 +111,6 @@ s2tw:
   tips: none
   tags: [abc]
 
-sentence:
-  opencc_config: wanxiang_sentence.json
-  tips: none
-  tags: [abc]
 
 # 处理符合特定规则的输入码，如网址、反查
 recognizer:
