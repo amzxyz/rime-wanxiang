@@ -10,7 +10,7 @@ schema:
     万象拼音九宫格方案，适用于iOS元书、仓输入法的技术路线
   dependencies:
     - wanxiang_abbrev_t9  #公共简码库
-    - wanxiang_custom_phrase_t9  #自定义词库
+    - wanxiang_phrase_t9  #自定义词库
 # 开关
 # reset: 默认状态。注释掉后，切换窗口时不会重置到默认状态。
 # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
@@ -124,7 +124,7 @@ translator:
 # 自定义短语，用来置顶
 custom_phrase:
   dictionary: custom_phrase
-  prism: custom_phrase_t9
+  prism: wanxiang_phrase_t9
   enable_user_dict: false
   enable_completion: false
   always_show_comments: true
