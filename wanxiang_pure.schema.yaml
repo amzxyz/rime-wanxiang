@@ -87,7 +87,7 @@ custom_phrase:
 recognizer:
   import_preset: default  # 从 default.yaml 继承通用的
   patterns:  # 再增加方案专有的：
-    punct: "^/([0-9]|10|[A-Za-z]+)$"    # 响应 symbols.yaml 的 symbols
+    punct: "^/(?!/)(?:[A-Za-z]+|[!-/:-@\\[-`{-~][!-/:-~]?[A-Za-z]?|[A-Za-z][!-\\+/:-<>-@\\\\\\^-`{-~][A-Za-z]?|[ADEIKLOTUadeilotu]-[A-Za-z]?|[CEHLNPRTWYc-ehpry]=[A-Za-z]?|[AC-EG-IKLNOR-Ua-eg-iklnor-u],[A-Za-z]?|[B-GIMPS-UZb-gimpstz]\\.[A-Za-z]?|\\([)A-Za-z]\\)|--[-.]|\\\\o/|[0-9]|0[3*~]|1(?:[0-9^]|10)|2[35^]|3[458^]|45|5[68]|78|88|\\*0|<3|\\^[0-9]|_[0-9]|~0|\\((?:[0-9]|[1-4][0-9]|50)\\)?)$"
 
 # 标点符号
 # punctuator 下面有三个子项：
@@ -102,7 +102,6 @@ punctuator:
   digit_separators: ",."  #数字分隔符，系统逻辑是在中文状态下输入数字后继续输入句号按下两次即输入半角状态
   __include: wanxiang_symbols:/symbol_table  # 从 wanxiang_symbols.yaml 导入所有符号配置
   __patch: wanxiang_symbols:/symbols
-
 # 从 default 继承快捷键
 key_binder:
   import_preset: default  # 从 default.yaml 继承通用的
