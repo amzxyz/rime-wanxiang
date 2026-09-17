@@ -47,6 +47,10 @@ engine:
     - script_translator                    #脚本翻译器，用于拼音、粤拼等基于音节表的输入方案
     - table_translator@custom_phrase       #自定义短语 custom_phrase.txt，用于置顶自定义编码候选词
   filters:
+    - simplifier@s2t  #简转繁
+    - simplifier@s2hk  #简转港
+    - simplifier@s2tw  #简转台
+    - simplifier@emoji  #候选表情
     - uniquifier                                    # 去重
 
 # 主翻译器，拼音
@@ -82,6 +86,30 @@ custom_phrase:
   enable_completion: false  #补全提示
   enable_sentence: false    #禁止造句
   initial_quality: 99       #custom_phrase 的权重应该比 pinyin 和 wanxiang_en 大
+
+emoji:
+  option_name: emoji
+  opencc_config: wanxiang_emoji.json
+  tips: none
+  inherit_comment: false
+
+s2t:
+  option_name: s2t
+  opencc_config: wanxiang_s2t.json
+  tips: none
+  tags: [abc]
+
+s2hk:
+  option_name: s2hk
+  opencc_config: wanxiang_s2hk.json
+  tips: none
+  tags: [abc]
+
+s2tw:
+  option_name: s2tw
+  opencc_config: wanxiang_s2tw.json
+  tips: none
+  tags: [abc]
 
 # 处理符合特定规则的输入码，如网址、反查
 recognizer:
