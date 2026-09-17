@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.2](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.1...v18.0.2) (2026-09-17)
+
+
+### 🐛 Bug 修复
+
+* 修复跳过原始候选的问题 ([688346c](https://github.com/amzxyz/rime-wanxiang/commit/688346c83cf69e11eb3a30e5138ed24d6fc81e15))
+
 ## [18.0.1](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.0...v18.0.1) (2026-09-17)
 
 
