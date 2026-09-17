@@ -1,7 +1,7 @@
 # Rime schema settings
 # encoding: utf-8
 schema:
-  schema_id: wanxiang_custom_phrase
+  schema_id: wanxiang_phrase
   name: "万象：自定义词库转换"
   version: "LTS"
   author: amzxyz
@@ -33,5 +33,5 @@ speller:
 
 translator:
   dictionary: custom_phrase
-  prism: custom_phrase
+  prism: wanxiang_phrase
   enable_user_dict: false
