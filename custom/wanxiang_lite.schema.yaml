@@ -15,7 +15,7 @@ schema:
     - wanxiang_reverse  #部件拆字，反查及辅码
     - wanxiang_english  #英文
     - wanxiang_abbrev  #公共简码库
-    - wanxiang_custom_phrase  #用户词库
+    - wanxiang_phrase  #用户词库
 # 开关
 # reset: 默认状态。注释掉后，切换窗口时不会重置到默认状态。
 # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
@@ -127,7 +127,7 @@ translator:
 # 自定义短语，用来置顶
 custom_phrase:
   dictionary: custom_phrase
-  prism: custom_phrase
+  prism: wanxiang_phrase
   enable_user_dict: false
   enable_completion: false
   always_show_comments: true
