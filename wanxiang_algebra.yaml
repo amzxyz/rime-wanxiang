@@ -4459,9 +4459,7 @@ english:
     - derive/^(.*?)(\d?);.*?,(jb|wq|aq|av|dn|xh|bv|jz|hm|sn|cd|iw|xl|ak|zy|fy|uz|yx|wb|wr|yw|qz|ms|at|xf|gi|gn|or|ux|ww|nw|fs|qk|rl|cq|sw|jv|cy|sq|dd|fp|ae|ix|td|ep|ar|wm|pd|et|yz|eh|ct|os|hx|zq|ew|fm|ab|kc|tf|fx|we|sz|wx|bq|ic|ez|bs|ej|oh|ps|pw|fr|pq|au|wc|wp|dt|qf|zc|vx|im|br|mw|un|qb|fi|zm|vn|oz|kt|rq|ay|fn|yc|um|eq|eu|cz|yq|tq|oi|ek|az|fv|zx|ut|vz|ry|ac|ws|af|qv|ea|qj|al|ol|on|sx|ap|df|eg|rz|ey|em|ag|hi|iz|ki|xz|xj|ad|ft|pt|op|vt|oj|kn|pr|hq|eb|ev|cx|zd|am|ov|oq|ym|ef|ot|mr|rd|sy|oc|rc|oe|fq|cn|ok|rn|bp|yv|uc|wk|oy|bt|je|ow|xg|jj|rw|pp|ja|wt|lf|xe|wy|kx|sm|qe|fw|gc|xa|cw|zn|tn|cc|jo|md|sd|ql|kq|it|bd|sc|wv|fc|dw|ob|vm|ed|jl|xo|fl|gq|gt|of|pv|wd|qa|xk|yd|fe|og|iq|oa|uq|om|xv|mv|as|ox|km|zt|od|ht|el|hn|st|wn|mt|wi|tz|aj|yg|bw|jf|jg|kz|es|xb|ax|rt|gx|bb|qo|yf|ex|rx|tt|us|qg|pe|zw|mp|qh|rm|hc|np|jh|cm|yl|eo|ra|vc|aw|tw|fk|gm|ec|be|vq|fd|jk|in)$/$1$3/
 
 #使用方案跟在拼写运算后面，九键只适用于table引用
-26jian:
-  __append:
-    - xlit/abcdefghijklmnopqrstuvwxyz/abcdefghijklmnopqrstuvwxyz/
+26jian: []
 18jian:
   __append:
     - xlit/qwertyuiopasdfghjklzxcvbnm/qwwrryuiipassffhjjlzxxvbbm/
