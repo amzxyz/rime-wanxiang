@@ -18,6 +18,7 @@ patch:
       - wanxiang_algebra:/pro/直接辅助
       #辅助码升级为：直接辅助和间接辅助两种类型，都是句中任意，不同点在于直接辅助是nire=你  而间接则需要/引导  ni/re=你 ，在这个基础上直接辅助支持拼音后任意位置数字声调参与，间接辅助声调在/引导前参与
       #- wanxiang_algebra:/自然码提权             #自然码提权、小鹤双拼提权 可选
+      - wanxiang_algebra:/26jian
       #- wanxiang_algebra:/18jian
       #- wanxiang_algebra:/14jian
 
