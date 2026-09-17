@@ -125,14 +125,6 @@ super_replacer:
   comment_format: "〔%s〕"
   chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
   rules:
-    # 场景1：输入 '哈哈' -> 变成 '1.哈哈 2.😄'
-    - option: emoji  # 开关名称与上面开关名称保持一致
-      mode: append  # 新增候选append 替换原候选replace 替换注释comment 简码模式abbrev匹配输入编码置顶词组
-      comment_mode: none  # 注释模式: "append"(原候选注释继承), "text"(原候选文本放在注释), "none"(空，默认)
-      tags: [abc]  # 生效的tag
-      prefix: "_em_"  # 前缀用于区分同一个数据库的不同用途数据
-      files:
-        - lua/data/emoji.txt
     # 场景2：输入 'hello' -> 显示 'hello 〔你好 | 哈喽〕'
     - option: chinese_english
       mode: append  # <--- 添加注释模式
