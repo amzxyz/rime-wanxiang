@@ -1,5 +1,13 @@
 # Changelog
 
+## [18.0.3](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.2...v18.0.3) (2026-09-18)
+
+
+### 🐛 Bug 修复
+
+* 优化用户词输出逻辑 ([a885dd6](https://github.com/amzxyz/rime-wanxiang/commit/a885dd6190f18db140ab57b7108c0a6ac1e5c1fc))
+* 忘记了OpenCC不能派生句子移除掉 ([6000474](https://github.com/amzxyz/rime-wanxiang/commit/6000474cc2e9d41696b11e2c47b47a952e0b97bf))
+
 ## [18.0.2](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.1...v18.0.2) (2026-09-17)
 
 
