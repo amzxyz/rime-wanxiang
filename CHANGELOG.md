@@ -1,5 +1,17 @@
 # Changelog
 
+## [18.0.5](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.4...v18.0.5) (2026-09-18)
+
+
+### 📚 词库更新
+
+* 词库调整 ([aa0c7b1](https://github.com/amzxyz/rime-wanxiang/commit/aa0c7b15de3cab2e1e430c61be0babf92935082c))
+
+
+### 🐛 Bug 修复
+
+* set_schema不再无辜覆盖附属custom文件 ([f1db912](https://github.com/amzxyz/rime-wanxiang/commit/f1db91273a4a946e06734f1f2c708e2a2d4aae30))
+
 ## [18.0.4](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.3...v18.0.4) (2026-09-18)
 
 
