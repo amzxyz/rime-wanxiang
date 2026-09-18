@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.4](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.3...v18.0.4) (2026-09-18)
+
+
+### 🤖 持续集成
+
+* 修复 ([4c238b3](https://github.com/amzxyz/rime-wanxiang/commit/4c238b3f2126d93e6130665b44529448c0ba5bf4))
+
 ## [18.0.3](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.2...v18.0.3) (2026-09-18)
 
 
