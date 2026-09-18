@@ -178,17 +178,21 @@ local function translator(input, seg, env)
     }
 
     for _, name in ipairs(files) do
-        local dest = user_dir .. "/" .. name
+        local dest       = user_dir .. "/" .. name
+        local user_src   = user_dir .. "/custom/" .. name
+        local shared_src = shared_dir .. "/custom/" .. name
 
-        if name == main_file and main_exists then
+        if file_exists(dest) then
+            -- 1. 外部已存在：只改，绝不复制覆盖
             replace_schema(dest, target_schema)
-        else
-            local src = shared_dir .. "/custom/" .. name
-            if not file_exists(src) then
-                src = user_dir .. "/custom/" .. name
+        elseif file_exists(user_src) then
+            -- 2. 用户自己放在 custom 里的模板优先
+            if copy_file(user_src, dest) then
+                replace_schema(dest, target_schema)
             end
-
-            if file_exists(src) and copy_file(src, dest) then
+        elseif file_exists(shared_src) then
+            -- 3. 系统自带模板兜底
+            if copy_file(shared_src, dest) then
                 replace_schema(dest, target_schema)
             end
         end
