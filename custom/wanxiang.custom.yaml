@@ -20,9 +20,11 @@ patch:
       #- wanxiang_algebra:/14jian
 
     
-  #这里改成什么就需要手动创建同名的 custom_phrasexx.txt 文件在用户目录，这个文件主要用于置顶，编码为自定义编码的词汇
-  #custom_phrase/user_dict: custom_phrasexx
-    
+  #这个文件主要用于置顶，编码为自定义编码的词汇，取消注释用自己的词库名称避免覆盖，须与wanxiang_phrase.custom.yaml一同修改
+  #custom_phrase/dictionary: wanxiang_phrase_my
+  #这个文件主要用于自定义简码词汇，取消注释用自己的词库名称避免覆盖，须与wanxiang_abbrev.custom.yaml一同修改
+  #abbrev_phrase/dictionary: wanxiang_abbrev_my
+
   #导入根目录下名称为userxx.dict.yaml的自定义固定词典，编码要与固定词库一致，编码权重都不要少，形如姓名、专有名词公司名称等等
   #translator/packs/+:
   #  - userxx
