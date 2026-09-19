@@ -20,3 +20,7 @@ patch:
 
   #下面是候选数量
   menu/page_size: 6
+  #这个文件主要用于置顶，编码为自定义编码的词汇，取消注释用自己的词库名称避免覆盖，须与wanxiang_phrase.custom.yaml一同修改
+  #custom_phrase/dictionary: wanxiang_phrase_my
+  #这个文件主要用于自定义简码词汇，取消注释用自己的词库名称避免覆盖，须与wanxiang_abbrev.custom.yaml一同修改
+  #abbrev_phrase/dictionary: wanxiang_abbrev_my
