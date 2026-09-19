@@ -4,3 +4,5 @@ patch:
       - wanxiang_algebra:/26jian
       #- wanxiang_algebra:/18jian
       #- wanxiang_algebra:/14jian
+  #translator/dictionary: wanxiang_phrase_my
+  #自定义词库名避免覆盖，须与wanxiang.custom.yaml一同修改，pro、lite同
