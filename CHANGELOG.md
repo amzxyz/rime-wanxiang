@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.6](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.5...v18.0.6) (2026-09-19)
+
+
+### 🐛 Bug 修复
+
+* 英文前置迁入replacer ([b23057e](https://github.com/amzxyz/rime-wanxiang/commit/b23057e4b6af6721230c0a3d0b2ec8da42d82e97))
+
 ## [18.0.5](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.4...v18.0.5) (2026-09-18)
 
 
