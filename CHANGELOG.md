@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.7](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.6...v18.0.7) (2026-09-19)
+
+
+### 🐛 Bug 修复
+
+* 添加自定义说明 ([87dc36c](https://github.com/amzxyz/rime-wanxiang/commit/87dc36cce62e6a04c889dd0a501c71291e0e5579))
+
 ## [18.0.6](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.5...v18.0.6) (2026-09-19)
 
 
