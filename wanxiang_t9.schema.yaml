@@ -88,7 +88,7 @@ engine:
     - simplifier@s2hk  #简转港
     - simplifier@s2tw  #简转台
     - simplifier@emoji  #候选表情
-    - lua_filter@*wanxiang.super_replacer  #OpenCC替代器，更灵活的处理方式，更自由的自定义方式，支持简繁转换、简码模式、支持候选替换、注释替换、候选派生等等
+    - lua_filter@*wanxiang.super_replacer  #自由自定义，支持简繁转换、简码模式、候选替换、注释替换、候选派生、句子派生 等等
     - lua_filter@*wanxiang.super_filter  #replacer后面，先进行转换后过滤，这样能繁体继承简体权重。本质功能相关功能见Lua文件
     - uniquifier  # 去重
 
@@ -454,3 +454,10 @@ super_replacer:
       prefix: "_ling_"
       files:
         - lua/data/sentence.txt
+    - option: true  # 英文简码用于应对abbrev状态下table跑到前面的问题
+      mode: abbrev
+      tags: [abc]
+      prefix: "_enabb_"
+      abbrev_rule: "1,3"
+      files:
+        - lua/data/en_abbrev.txt
