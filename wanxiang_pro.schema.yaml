@@ -416,6 +416,7 @@ super_comment:  # 超级注释模块，子项配置 true 开启，false 关闭
     phrase: ""
     table: ""
     user_table: ""
+    custom_phrase: ""
     completion: ""
     abbrev: ""
     predict: ""

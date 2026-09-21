@@ -1642,7 +1642,7 @@ function M.func(input, env)
     while cand do
         local candidate_type = cand.type or ""
         local is_user = candidate_type == "user_phrase" or candidate_type == "user_table"
-        local is_regular = candidate_type == "phrase" or (candidate_type == "table" and has_phrase)
+        local is_regular = candidate_type == "phrase" or candidate_type == "custom_phrase" or (candidate_type == "table" and has_phrase)
         local processed_cands = process_main(cand)
 
         if not processed_cands then
