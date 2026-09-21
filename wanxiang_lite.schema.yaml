@@ -354,7 +354,8 @@ super_comment:
     sentence: ""  # 造句结果，展示这一标记说明词库中没有对应内容
     phrase: ""  # 主翻译器里的词（cn词库里的词）
     table: ""  # mix词库里的词
-    user_table: ""  # 自定义短语，通过custom_phrase.txt手动设置的词库
+    user_table: ""  # 表用户词
+    custom_phrase: ""  #通过custom_phrase.dict.yaml手动设置的词库
     completion: ""  # 长词联想，即补全标记
     predict: ""  # 预测标记
     abbrev: ""  # 简码标记
