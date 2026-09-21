@@ -1,5 +1,23 @@
 # Changelog
 
+## [18.0.9](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.8...v18.0.9) (2026-09-21)
+
+
+### 📚 词库更新
+
+* 词库调整 ([663370a](https://github.com/amzxyz/rime-wanxiang/commit/663370a8f9824e0cd0d2df4f2014f1dcf1295286))
+* 词库调整 ([0338829](https://github.com/amzxyz/rime-wanxiang/commit/03388299ae354ed2eda7a5a38364ce206222fa2e))
+
+
+### 🐛 Bug 修复
+
+* 修复replacer没有识别新增的custom_phrase的type标签问题，同时注释标记加上custom_phrase这个type标记 ([9cdd975](https://github.com/amzxyz/rime-wanxiang/commit/9cdd975c25a1dfcae062287caa83ea305bf5f6cd))
+
+
+### 🤖 持续集成
+
+* 排除 ([1aa3864](https://github.com/amzxyz/rime-wanxiang/commit/1aa38644d9ef462a8294386456e4adb1ff7ed93a))
+
 ## [18.0.8](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.7...v18.0.8) (2026-09-19)
 
 
