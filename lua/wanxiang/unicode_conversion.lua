@@ -105,8 +105,6 @@ local function get_prefix_hint(text)
         return "八进制 Unicode 码点", "〔提示〕"
     elseif lower == "+" then
         return "Unicode 标准码点", "〔提示〕"
-    elseif text == "c" then
-        return "词库编码转 Unicode", "〔提示〕"
     end
 
     return nil
@@ -439,63 +437,9 @@ local function extract_payload(input, seg, env)
     return nil
 end
 
-local function collect_dictionary_entries(memory, code)
-    if not memory or not memory:dict_lookup(code, true, 50) then
-        return {}
-    end
+-- Uc 词库编码反查曾通过 Memory 查询词典。
+-- 测试版彻底移除 Memory，以验证额外 Memory 是否为 Ctrl+Delete 异常的根因。
 
-    local by_text = {}
-    for entry in memory:iter_dict() do
-        local weight = tonumber(entry.weight) or 0
-        local saved = by_text[entry.text]
-
-        if not saved or weight > saved.weight then
-            by_text[entry.text] = {
-                text = entry.text,
-                weight = weight,
-            }
-        end
-    end
-
-    local entries = {}
-    for _, entry in pairs(by_text) do
-        entries[#entries + 1] = entry
-    end
-
-    table.sort(entries, function(a, b)
-        if a.weight == b.weight then
-            return a.text < b.text
-        end
-        return a.weight > b.weight
-    end)
-
-    return entries
-end
-
-local function get_unicode_memory(env)
-    if env.unicode_memory then
-        return env.unicode_memory
-    end
-
-    -- Uc 仅借用 Memory 查询词典；不参与 Context 的提交、删除、按键等事件。
-    -- 创建后立即断开 notifier，避免额外 Memory 重复响应 Ctrl+Delete。
-    local memory = Memory(env.engine, env.engine.schema)
-    memory:disconnect()
-    env.unicode_memory = memory
-    return memory
-end
-
-local function yield_dictionary_conversion(code, seg, env)
-    local entries = collect_dictionary_entries(get_unicode_memory(env), code)
-
-    for _, entry in ipairs(entries) do
-        local candidates = build_text_candidates(entry.text)
-
-        for _, item in ipairs(candidates) do
-            yield(Candidate("unicode", seg.start, seg._end, item[1], "〔" .. entry.text .. "〕" .. item[2]))
-        end
-    end
-end
 
 -- ----------------------
 -- P：当前候选字符 -> Uxxxx
@@ -603,15 +547,9 @@ end
 -- ----------------------
 
 function T.init(env)
-    -- 普通 Uxxxx 转换完全不需要 Memory；只有 Uc... 词库反查时才懒加载。
-    env.unicode_memory = nil
 end
 
 function T.fini(env)
-    if env.unicode_memory then
-        env.unicode_memory:disconnect()
-        env.unicode_memory = nil
-    end
 end
 
 function T.func(input, seg, env)
@@ -625,12 +563,7 @@ function T.func(input, seg, env)
         yield(Candidate("unicode", seg.start, seg._end, hint_text, hint_comment))
         return
     end
-
     if payload:sub(1, 1) == "c" then
-        local code = payload:sub(2)
-        if code ~= "" then
-            yield_dictionary_conversion(code, seg, env)
-        end
         return
     end
 
