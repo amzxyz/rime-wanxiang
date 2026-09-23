@@ -472,8 +472,21 @@ local function collect_dictionary_entries(memory, code)
     return entries
 end
 
+local function get_unicode_memory(env)
+    if env.unicode_memory then
+        return env.unicode_memory
+    end
+
+    -- Uc 仅借用 Memory 查询词典；不参与 Context 的提交、删除、按键等事件。
+    -- 创建后立即断开 notifier，避免额外 Memory 重复响应 Ctrl+Delete。
+    local memory = Memory(env.engine, env.engine.schema)
+    memory:disconnect()
+    env.unicode_memory = memory
+    return memory
+end
+
 local function yield_dictionary_conversion(code, seg, env)
-    local entries = collect_dictionary_entries(env.unicode_memory, code)
+    local entries = collect_dictionary_entries(get_unicode_memory(env), code)
 
     for _, entry in ipairs(entries) do
         local candidates = build_text_candidates(entry.text)
@@ -590,7 +603,8 @@ end
 -- ----------------------
 
 function T.init(env)
-    env.unicode_memory = Memory(env.engine, env.engine.schema)
+    -- 普通 Uxxxx 转换完全不需要 Memory；只有 Uc... 词库反查时才懒加载。
+    env.unicode_memory = nil
 end
 
 function T.fini(env)
