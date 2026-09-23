@@ -1,5 +1,14 @@
 # Changelog
 
+## [18.0.10](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.9...v18.0.10) (2026-09-23)
+
+
+### 🐛 Bug 修复
+
+* U码转换移除Memory兜底 ([a02cabe](https://github.com/amzxyz/rime-wanxiang/commit/a02cabe1aab2fb43f3fab4bd8a495b74bee9fd09))
+* 优化Memory借口调用范围避免其造成二次监控ctrl+del多删除用户词 ([6556eaa](https://github.com/amzxyz/rime-wanxiang/commit/6556eaa22fd18282f74cc72b4b48d6cdeee2a058))
+* 变更首道双拼 ([fd60c25](https://github.com/amzxyz/rime-wanxiang/commit/fd60c2502b8b523aa84fe63b5bc8e65ea25415c2))
+
 ## [18.0.9](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.8...v18.0.9) (2026-09-21)
 
 
