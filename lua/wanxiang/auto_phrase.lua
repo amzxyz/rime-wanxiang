@@ -87,6 +87,10 @@ function AP.init(env)
     local enable_user_dict  =
         config:get_bool("add_user_dict/enable_user_dict") or false
 
+    -- add_user_dict 的控制前缀会单独形成一个无候选 Segment。
+    -- 提交造词时需要识别并跳过它，不能把它当成正文 Segment。
+    env.add_user_dict_prefix = config:get_string("add_user_dict/prefix") or "``"
+
     -- 中文：add_user_dict（受 add_* 开关影响）
     if enable_auto_phrase and enable_user_dict then
         env.memory = Memory(env.engine, env.engine.schema, "add_user_dict")
@@ -210,10 +214,18 @@ function AP.commit_handler(ctx, env)
         local seg  = segments[i]
         local cand = seg:get_selected_candidate()
 
-        -- 无候选：可能是符号段
+        -- 无候选：先判断是否只是 add_user_dict 的控制前缀段。
+        -- Segment.start/_end 是 context.input 中的 0 起始区间，Lua sub 为 1 起始且右端包含。
         if not cand then
+            local seg_input = raw_input:sub(seg.start + 1, seg._end)
+
+            if seg_input == env.add_user_dict_prefix then
+                -- 例如开头的 `` 会独立形成一个无候选 Segment；它不属于造词正文。
+                goto continue
+            end
+
             if i == segments_count then
-                -- 最后一个 segment 无候选，允许跳过
+                -- 最后一个 segment 无候选，允许跳过（保留原逻辑）
                 goto continue
             else
                 clear_comment_cache(env)
