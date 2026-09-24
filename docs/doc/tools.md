@@ -15,7 +15,7 @@
 | :material-android: **Android** | **安卓原生 App** | 同文、小企鹅 Android 用户 |
 | :material-linux: **Linux** | **.deb (通用)** / **Arch Linux** | Ubuntu、Deepin、Arch 用户 |
 
-[:octicons-download-24: 前往获取万象工具箱](https://github.com/amzxyz/RIME-LMDG/releases/tag/tool){ .md-button .md-button--primary style="margin-top: 10px;" }
+[:octicons-download-24: 前往获取万象工具箱](https://github.com/amzxyz/RIME-LMDG/releases/tag/tool){ .html-button .html-button--primary style="margin-top: 10px;" }
 
 ---
 
@@ -49,7 +49,7 @@
     * **操作内容**：仅更新 `wanxiang-lts-zh-hans.gram` 语法模型。
     * **适用场景**：当底层语义理解模型有精度提升或体积优化时使用。
 
-![万象更新](../image/万象更新.png)
+![万象更新](./image/万象更新.png)
 
 ---
 

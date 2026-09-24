@@ -24,7 +24,7 @@
 
 > Pro 不是“Base 的绝对升级版”，而是不同输入哲学。
 
-相关文档：[方案介绍与版本对比](../intro.html)
+相关文档：[方案介绍与版本对比](./intro.html)
 
 ---
 
@@ -46,7 +46,7 @@ patch:
 
 总之就是仓库有的文明你不要与之重名，重名就会被覆盖这是计算机规律。
 
-相关文档：[自定义万象方案](../schema_custom.html) · [词库管理与同步](dicts_sync.html)
+相关文档：[自定义万象方案](./schema_custom.html) · [词库管理与同步](dicts_sync.html)
 
 ---
 
@@ -64,7 +64,7 @@ Rime 工作时使用的是部署后生成的编译结果，不会因为你保存
 
 如果只是改皮肤、前端候选布局，则还要注意：这些往往属于小狼毫、鼠须管、Fcitx5 等前端自己的配置，不一定由 `wanxiang.schema.yaml` 控制。
 
-相关文档：[Rime 工作机制](../Rime设计逻辑与配置哲学.html)
+相关文档：[Rime 工作机制](./Rime设计逻辑与配置哲学.html)
 
 ---
 
@@ -93,7 +93,7 @@ Rime 工作时使用的是部署后生成的编译结果，不会因为你保存
 
 不要因为“方案名能看到”就把问题直接归到词库。
 
-相关文档：[Windows](../weasel.html) · [macOS](../squirrel.html) · [Fcitx5 Linux](../fcitx5-linux.html)
+相关文档：[Windows](./weasel.html) · [macOS](./squirrel.html) · [Fcitx5 Linux](./fcitx5-linux.html)
 
 ---
 
@@ -172,7 +172,7 @@ patch:
 
 别人写文档、教程是为了体现段落层级，不要看见每一个都有patch: 就都写上。
 
-相关文档：[自定义万象方案](../schema_custom.html)
+相关文档：[自定义万象方案](./schema_custom.html)
 
 ---
 
@@ -218,7 +218,7 @@ key_binder:
 
 其次是你使用的**/+**这样的命令来修改的按键，这个表示在原来的末尾追加因此相当于有了两种翻页的按键存在。
 
-相关文档：[快捷键说明](../shortcut.html) · [自定义万象方案](../schema_custom.html)
+相关文档：[快捷键说明](./shortcut.html) · [自定义万象方案](./schema_custom.html)
 
 ---
 
@@ -277,7 +277,7 @@ wanxiang_english:
 
 只改一头，就可能出现“文件明明存在，主方案就是不用”的情况。
 
-相关文档：[词库管理与同步](../dicts_sync.html)
+相关文档：[词库管理与同步](./dicts_sync.html)
 
 ---
 
@@ -304,7 +304,7 @@ example@example.com	mail	100
 
 万象默认给 `custom_phrase` 较高初始质量，本来就适合做快捷置顶短语。
 
-相关文档：[词库管理与同步](../dicts_sync.html)
+相关文档：[词库管理与同步](./dicts_sync.html)
 
 ---
 
@@ -342,7 +342,7 @@ custom_phrase:
 
 不要把所有个人数据都塞进一种机制里。用途分开后，更新、同步和排错都会轻松很多。
 
-相关文档：[词库管理与同步](../dicts_sync.html) · [高阶造词](../custom_words.html)
+相关文档：[词库管理与同步](./dicts_sync.html) · [高阶造词](./custom_words.html)
 
 ---
 
@@ -359,7 +359,7 @@ custom_phrase:
 
 如果你替换的是独立挂接词库，例如英文，还要同时保证挂接方案与主方案的调用名称一致。
 
-相关文档：[词库管理与同步](../dicts_sync.html)
+相关文档：[词库管理与同步](./dicts_sync.html)
 
 ---
 
@@ -401,7 +401,7 @@ super_sequence:
 
 这样可以把“私人偏好”与“系统词库整体排序”分开管理。
 
-相关文档：[手动排序](../super_sequence.html)
+相关文档：[手动排序](./super_sequence.html)
 
 ---
 
@@ -437,7 +437,7 @@ wanxiang.userdb.txt
 
 再由其他设备导入、合并。
 
-相关文档：[词库管理与同步](../dicts_sync.html)
+相关文档：[词库管理与同步](./dicts_sync.html)
 
 ---
 
@@ -485,7 +485,7 @@ Base：拼音为主，反查 / 声调辅助
 Pro：双拼 + 专属辅助码深度参与
 ```
 
-相关文档：[辅助码系统](../aux_code.html)
+相关文档：[辅助码系统](./aux_code.html)
 
 ---
 
@@ -510,7 +510,7 @@ key: "`"
 
 如果你自行修改这个键，要同时理解 `speller/alphabet`、`recognizer`、reverse translator 和 `super_lookup` 之间的关系，不能只改一个地方就结束。
 
-相关文档：[生僻字反查](../reverse_lookup.html) · [候选辅筛](../super_lookup.html)
+相关文档：[生僻字反查](./reverse_lookup.html) · [候选辅筛](./super_lookup.html)
 
 ---
 
@@ -522,7 +522,7 @@ key: "`"
 
 这样做的目的，是让用户“知道多少打多少”，减少为了筛词反而先计算位置的负担。
 
-相关文档：[候选辅筛](../super_lookup.html)
+相关文档：[候选辅筛](./super_lookup.html)
 
 ---
 
@@ -541,7 +541,7 @@ super_comment:
 
 因此如果你只是嫌候选注释太多，优先调整 `super_comment`，不要直接拆掉整套反查组件。
 
-相关文档：[超级注释](../super_comment.html)
+相关文档：[超级注释](./super_comment.html)
 
 ---
 
@@ -555,7 +555,7 @@ super_comment:
 
 排查时先分清楚是“候选被过滤”，还是“候选已经有了但字体画不出来”。
 
-相关文档：[字符过滤](../charset.html) · [生僻字反查](../reverse_lookup.html)
+相关文档：[字符过滤](./charset.html) · [生僻字反查](./reverse_lookup.html)
 
 ---
 
@@ -626,7 +626,7 @@ smart
 spacing_timeout: 5
 ```
 
-相关文档：[中英与混合编码](../english.html)
+相关文档：[中英与混合编码](./english.html)
 
 ---
 
@@ -658,7 +658,7 @@ wanxiang_english/dictionary: wanxiang_english_user
 
 只改词典文件名，不同步修改调用关系，很容易出现“编译了一套，主方案叫的是另一套”。
 
-相关文档：[词库管理与同步](../dicts_sync.html)
+相关文档：[词库管理与同步](./dicts_sync.html)
 
 ---
 
@@ -697,7 +697,7 @@ date_formats:
 
 时间插件还支持中文星期、英文星期、ISO 周数、时区、12 / 24 小时等占位符。
 
-相关文档：[时间日期](../shijian.html)
+相关文档：[时间日期](./shijian.html)
 
 ---
 
@@ -719,7 +719,7 @@ key_binder/shijian_keys
 
 默认可以使用 `/` 和 `o` 两种引导方式。
 
-相关文档：[时间日期](../shijian.html)
+相关文档：[时间日期](./shijian.html)
 
 ---
 
@@ -736,7 +736,7 @@ N  → 日期输入
 
 它们在 `recognizer/patterns` 中分别分发，不要把 `R` 的金额转换和 `N` 的日期模式混在一起。
 
-相关文档：[魔法字母](../RUNV.html)
+相关文档：[魔法字母](./RUNV.html)
 
 ---
 
@@ -760,7 +760,7 @@ Emoji 也使用类似规则：
 
 模糊模式可以按关键词搜索 Codex 名称，多关键词还能使用 `.` 组合。
 
-相关文档：[超级符号](../super_symbols.html)
+相关文档：[超级符号](./super_symbols.html)
 
 ---
 
@@ -790,7 +790,7 @@ paired_symbols:
 
 它不是普通标点替换，而是对当前候选进行包装。
 
-相关文档：[成对符号](../paired_symbols.html)
+相关文档：[成对符号](./paired_symbols.html)
 
 
 ---

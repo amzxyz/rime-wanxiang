@@ -30,7 +30,7 @@ schema:
     - amzxyz
   description: |
     请勾选【万象拼音】以启用，万象拼音标准版本，带声调的词库，支持语法模型，全拼、简拼、整句、声调辅助筛选。
-    【文本框输入：/pinyin全拼，/zrm自然码,/flypy小鹤，/mspy,/sogou,/pyjj等，详见README.md】
+    【文本框输入：/pinyin全拼，/zrm自然码,/flypy小鹤，/mspy,/sogou,/pyjj等，详见README.html】
   dependencies:
     - wanxiang_mixedcode    # 混合编码
     - wanxiang_reverse      # 部件拆字、反查及辅码

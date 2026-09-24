@@ -96,7 +96,7 @@
         * **version_display.lua** —— `版本与项目信息显示模块`
         * **wanxiang.lua** —— `万象 Lua 公共函数与模块挂载入口`
 
-* **README.md** —— `项目主页与总体说明文档`
+* **README.html** —— `项目主页与总体说明文档`
 
 * **version.txt** —— `项目版本标识文件`
 

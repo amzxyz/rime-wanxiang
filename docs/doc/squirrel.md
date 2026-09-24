@@ -37,7 +37,7 @@
 
 万象的方案文件、Custom 配置以及语法模型都需要放入鼠须管的 Rime 用户目录。
 
-![用户目录](../image/user_dir_squirrel.jpg){ width="600" style="display: block; margin: 1rem auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(97, 161, 101, 0.15);" }
+![用户目录](./image/user_dir_squirrel.jpg){ width="600" style="display: block; margin: 1rem auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(97, 161, 101, 0.15);" }
 
 * **通过鼠须管菜单进入**：点击 macOS 顶部菜单栏中的鼠须管图标，在菜单中选择 **【用户设定...】**。
 
@@ -67,7 +67,7 @@
 
     * `squirrel.yaml`：用于鼠须管前端的界面和外观配置。直接覆盖可能改变现有候选窗口样式，因此已有自定义外观时建议先备份或改用 `squirrel.custom.yaml` 维护个人修改。
 
-![鼠须管用户目录](../image/wxconfig.png){ width="600" style="display: block; margin: 1rem auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(97, 161, 101, 0.15);" }
+![鼠须管用户目录](./image/wxconfig.png){ width="600" style="display: block; margin: 1rem auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(97, 161, 101, 0.15);" }
 
 *全部放入后，目录结构应与上图大致一致。若用户目录中存在其他方案留下的 `luna*` 文件，请先确认是否仍在使用对应方案，再决定是否清理。`build` 目录属于部署生成内容，需要排查旧缓存时可以删除，之后重新部署会再次生成。*
 
@@ -105,7 +105,7 @@
 * **Pro 增强版**：默认开启 **自然码双拼**。
 
 !!! tip "建议执行一次方案切换指令"
-    即使当前默认输入方式已经符合使用习惯，也建议通过 [斜杠指令](../slash_commands.md) 主动选择一次需要的拼音方案。
+    即使当前默认输入方式已经符合使用习惯，也建议通过 [斜杠指令](./slash_commands.html) 主动选择一次需要的拼音方案。
 
     该切换不仅涉及主方案，还会同步调整英文、混输、反查等相关方案中的输入类型配置。具体原理可以参考 Custom Patch 相关说明。
 

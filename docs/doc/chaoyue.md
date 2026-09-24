@@ -39,7 +39,7 @@ HarmonyOS NEXT 无法直接使用传统 Android 输入法。在该平台使用�
 2. **准备皮肤包 (`VGHFly.zip`)**：
    请通过下方按钮下载适用于超越输入法的万象主题皮肤包：
 
-   [:octicons-download-24: 点击下载 VGHFly「万象」皮肤包](../files/VGHFly.zip){ .md-button .md-button--primary style="margin-top: 10px;" }
+   [:octicons-download-24: 点击下载 VGHFly「万象」皮肤包](./files/VGHFly.zip){ .html-button .html-button--primary style="margin-top: 10px;" }
 
 ---
 
