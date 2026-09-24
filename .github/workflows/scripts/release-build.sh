@@ -1,11 +1,25 @@
 #!/bin/bash
 # 打包对应方案到 zip 文件，放到 dist 目录
-set -e
+set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "$0")/../../../" && pwd)"
 DIST_DIR="$ROOT_DIR/dist"
 CUSTOM_DIR="$ROOT_DIR/custom"
 PURE_FUZHU="zrm"  # Pure 默认使用哪套 Pro 辅助码词库；只影响打包时默认词库
+
+# 默认保持原来的 -9；CI 想更快可临时使用 ZIP_LEVEL=6 或 ZIP_LEVEL=1。
+ZIP_LEVEL="${ZIP_LEVEL:-9}"
+# 完整方案目录全部生成后再并行压缩，默认最多 4 路，避免 12 个 zip 一起抢磁盘。
+if command -v nproc >/dev/null 2>&1; then
+  DEFAULT_ZIP_JOBS="$(nproc)"
+else
+  DEFAULT_ZIP_JOBS=2
+fi
+(( DEFAULT_ZIP_JOBS > 4 )) && DEFAULT_ZIP_JOBS=4
+ZIP_JOBS="${ZIP_JOBS:-$DEFAULT_ZIP_JOBS}"
+
+SCHEMA_LIST=("wx" "base" "lite" "pure" "flypy" "hanxin" "moqi" "tiger" "wubi" "zrm" "shouyou" "shyplus")
+REQUESTED_SCHEMA="${1:-${SCHEMA_NAME:-}}"
 
 EXCLUDE_DICT_FILES=(
   "xxx.dict.yaml"
@@ -15,12 +29,40 @@ EXCLUDE_DICT_FILES=(
   # "renming.pro.dict.yaml"
 )
 
-# 生成 PRO 分包文件
-echo "▶️ PRO 分包开始"
-python3 "$ROOT_DIR/.github/workflows/scripts/aux_go.py"
-echo "✅ PRO 分包完毕"
-echo
+if [[ ! "$ZIP_LEVEL" =~ ^[0-9]$ ]]; then
+  echo "ZIP_LEVEL 必须是 0-9，当前: $ZIP_LEVEL" >&2
+  exit 1
+fi
+if [[ ! "$ZIP_JOBS" =~ ^[1-9][0-9]*$ ]]; then
+  echo "ZIP_JOBS 必须是正整数，当前: $ZIP_JOBS" >&2
+  exit 1
+fi
 
+if [[ -n "$REQUESTED_SCHEMA" && ! " ${SCHEMA_LIST[*]} " =~ " ${REQUESTED_SCHEMA} " ]]; then
+  echo "参数错误: 只支持 ${SCHEMA_LIST[*]}" >&2
+  exit 1
+fi
+
+prepare_pro_dicts() {
+  # 无参数（CI 全量构建）仍生成全部 Pro；单独构建 Base/Lite 时不再白跑 aux_go.py。
+  if [[ -z "$REQUESTED_SCHEMA" ]]; then
+    echo "▶️ PRO 分包开始（全部辅助码）"
+    python3 "$ROOT_DIR/.github/workflows/scripts/aux_go.py"
+  elif [[ "$REQUESTED_SCHEMA" == "base" || "$REQUESTED_SCHEMA" == "lite" ]]; then
+    echo "⏩ $REQUESTED_SCHEMA 不需要 Pro 词库，跳过 aux_go.py"
+    return
+  elif [[ "$REQUESTED_SCHEMA" == "pure" ]]; then
+    echo "▶️ PRO 分包开始（Pure 只生成 $PURE_FUZHU）"
+    python3 "$ROOT_DIR/.github/workflows/scripts/aux_go.py" \
+      --schemes "$PURE_FUZHU" --no-chaifen
+  else
+    echo "▶️ PRO 分包开始（只生成 $REQUESTED_SCHEMA）"
+    python3 "$ROOT_DIR/.github/workflows/scripts/aux_go.py" \
+      --schemes "$REQUESTED_SCHEMA"
+  fi
+  echo "✅ PRO 分包完毕"
+  echo
+}
 
 build_opencc_wanxiang() {
   OPENCC_DIR="$ROOT_DIR/opencc/wanxiang"
@@ -611,11 +653,11 @@ package_schema_pure() {
   sed -i -E 's/^([[:space:]]*)-\s*schema:\s*wanxiang\s*$/\1- schema: wanxiang_pure/' "$OUT_DIR/default.yaml"
 }
 
-package_schema() {
-  build_opencc_wanxiang
+PACKAGE_DIRS=()
 
+build_schema() {
   SCHEMA_NAME="$1"
-  echo "▶️ 开始打包方案：$SCHEMA_NAME"
+  echo "▶️ 开始生成方案目录：$SCHEMA_NAME"
 
   if [[ "$SCHEMA_NAME" == "base" ]]; then
     OUT_DIR="$DIST_DIR/rime-wanxiang-base"
@@ -631,29 +673,64 @@ package_schema() {
     package_schema_pro "$SCHEMA_NAME" "$OUT_DIR"
   fi
 
-  # 所有方案统一在这里打包
-  ZIP_NAME=$(basename "$OUT_DIR").zip
-  ZIP_EXCLUDE_ARGS=()
-  for file in "${EXCLUDE_DICT_FILES[@]}"; do
-    ZIP_EXCLUDE_ARGS+=("dicts/$file")
-  done
-  (cd "$OUT_DIR" && zip -r -9 -q ../"$ZIP_NAME" . -x "${ZIP_EXCLUDE_ARGS[@]}" && cd ..)
-  echo "✅ 完成打包: $ZIP_NAME"
+  PACKAGE_DIRS+=("$OUT_DIR")
+  echo "✅ 方案目录完成: $(basename "$OUT_DIR")"
 }
 
-SCHEMA_LIST=("wx" "base" "lite" "pure" "flypy" "hanxin" "moqi" "tiger" "wubi" "zrm" "shouyou" "shyplus")
+zip_package() {
+  local out_dir="$1"
+  local zip_name
+  local file
+  local -a zip_exclude_args=()
 
-# 如果没有传入参数，则循环 package 所有的
-if [[ -z "$SCHEMA_NAME" ]]; then
-  for name in "${SCHEMA_LIST[@]}"; do
-    package_schema "$name"
+  zip_name="$(basename "$out_dir").zip"
+  for file in "${EXCLUDE_DICT_FILES[@]}"; do
+    zip_exclude_args+=("dicts/$file")
   done
-  exit 0
+
+  # CI 是干净环境，但本地重复运行时先删旧包，避免 zip 的“更新模式”留下旧文件。
+  rm -f "$DIST_DIR/$zip_name"
+  (
+    cd "$out_dir"
+    zip -r "-$ZIP_LEVEL" -q "$DIST_DIR/$zip_name" . -x "${zip_exclude_args[@]}"
+  )
+  echo "✅ 完成压缩: $zip_name"
+}
+
+zip_all_packages() {
+  local -a pids=()
+  local out_dir pid
+
+  echo "▶️ 并行压缩完整方案：ZIP_LEVEL=$ZIP_LEVEL, ZIP_JOBS=$ZIP_JOBS"
+
+  for out_dir in "${PACKAGE_DIRS[@]}"; do
+    zip_package "$out_dir" &
+    pids+=("$!")
+
+    if (( ${#pids[@]} >= ZIP_JOBS )); then
+      wait "${pids[0]}"
+      pids=("${pids[@]:1}")
+    fi
+  done
+
+  for pid in "${pids[@]}"; do
+    wait "$pid"
+  done
+}
+
+mkdir -p "$DIST_DIR"
+
+# 先只生成真正需要的 Pro 原始分包，再只编译一次 OpenCC。
+prepare_pro_dicts
+build_opencc_wanxiang
+
+# 先完成所有方案目录，最后统一并行压缩；避免原来 12 个 zip 串行占满单核。
+if [[ -z "$REQUESTED_SCHEMA" ]]; then
+  for name in "${SCHEMA_LIST[@]}"; do
+    build_schema "$name"
+  done
+else
+  build_schema "$REQUESTED_SCHEMA"
 fi
 
-if [[ ! " ${SCHEMA_LIST[*]} " =~ ${SCHEMA_NAME} ]]; then
-  echo "参数错误: 只支持 ${SCHEMA_LIST[*]}" >&2
-  exit 1
-fi
-
-package_schema "$SCHEMA_NAME"
+zip_all_packages
