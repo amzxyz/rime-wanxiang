@@ -7,9 +7,7 @@ DIST_DIR="$ROOT_DIR/dist"
 CUSTOM_DIR="$ROOT_DIR/custom"
 PURE_FUZHU="zrm"  # Pure 默认使用哪套 Pro 辅助码词库；只影响打包时默认词库
 
-# 默认保持原来的 -9；CI 想更快可临时使用 ZIP_LEVEL=6 或 ZIP_LEVEL=1。
 ZIP_LEVEL="${ZIP_LEVEL:-9}"
-# 完整方案目录全部生成后再并行压缩，默认最多 4 路，避免 12 个 zip 一起抢磁盘。
 if command -v nproc >/dev/null 2>&1; then
   DEFAULT_ZIP_JOBS="$(nproc)"
 else
@@ -44,7 +42,6 @@ if [[ -n "$REQUESTED_SCHEMA" && ! " ${SCHEMA_LIST[*]} " =~ " ${REQUESTED_SCHEMA}
 fi
 
 prepare_pro_dicts() {
-  # 无参数（CI 全量构建）仍生成全部 Pro；单独构建 Base/Lite 时不再白跑 aux_go.py。
   if [[ -z "$REQUESTED_SCHEMA" ]]; then
     echo "▶️ PRO 分包开始（全部辅助码）"
     python3 "$ROOT_DIR/.github/workflows/scripts/aux_go.py"
@@ -140,8 +137,7 @@ package_schema_base() {
     --exclude="/$OUT_BASE" \
     "$ROOT_DIR/" "$OUT_DIR/"
 
-  # 2.1) Base 内的 T9/T9i 强制挂载 Base 主词库。
-  #      只识别 translator: 块中的 dictionary 键，不依赖行尾注释内容。
+  # 2.1) Base 和 Lite 都携带 T9/T9i。
   python3 - \
     "$OUT_DIR/wanxiang_t9.schema.yaml" \
     "$OUT_DIR/wanxiang_t9i.schema.yaml" <<'PY'
@@ -258,7 +254,8 @@ package_schema_lite() {
     --exclude="/$OUT_BASE" \
     "$ROOT_DIR/" "$OUT_DIR/"
 
-  # 3.1) Lite 内的 T9/T9i：三态开关组裁成两态布尔开关
+  # 3.1) Lite 同样保留 T9/T9i，并继续使用 wanxiang_lite 词库；
+  #     这里只裁剪 T9/T9i 的开关组，不改 dictionary。
   python3 - \
     "$OUT_DIR/wanxiang_t9.schema.yaml" \
     "$OUT_DIR/wanxiang_t9i.schema.yaml" <<'PY'
@@ -348,35 +345,57 @@ def strip_tone(text):
 
 
 def dedup_zi_dict(path):
+    if not path.is_file():
+        return
+
+    if path.name != "zi.lite.dict.yaml":
+        return
+
     temp = path.with_name(path.name + ".dedup.tmp")
+    items = []
     best = {}
+    processing = False
 
     with path.open("r", encoding="utf-8", newline="") as src:
         for line in src:
-            if line.startswith("#"):
+            # 词典头（含 # 注释、---、name、version、sort、...）完全原样保留。
+            if not processing:
+                items.append(("raw", line))
+                if line.strip() == "...":
+                    processing = True
+                continue
+
+            # 数据区里的注释、空行或其他非标准行也原样保留。
+            if line.startswith("#") or "\t" not in line:
+                items.append(("raw", line))
                 continue
 
             parts = line.rstrip("\r\n").split("\t")
-
             if len(parts) < 3:
-                best.setdefault((line,), (line, -1))
+                items.append(("raw", line))
                 continue
 
             key = (parts[0], parts[1])
-
             try:
                 weight = float(parts[2])
             except ValueError:
                 weight = -1
 
             old = best.get(key)
-
-            if old is None or weight > old[1]:
+            if old is None:
+                # 去重后的词条仍放在第一次出现的位置。
+                best[key] = (line, weight)
+                items.append(("entry", key))
+            elif weight > old[1]:
+                # 仅替换内容，不改变该词条在文件中的位置。
                 best[key] = (line, weight)
 
     with temp.open("w", encoding="utf-8", newline="") as dst:
-        for line, _ in best.values():
-            dst.write(line)
+        for kind, value in items:
+            if kind == "raw":
+                dst.write(value)
+            else:
+                dst.write(best[value][0])
 
     os.replace(temp, path)
 
