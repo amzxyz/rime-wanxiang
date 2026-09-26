@@ -517,7 +517,8 @@ package_schema_pro() {
       cp "$ROOT_DIR/dicts/$f" "$OUT_DIR/dicts/"
     fi
   done
-
+  # 1.2) Pro 不携带 T9 简码词库
+  rm -f "$OUT_DIR/dicts/t9_abbrev.dict.yaml"
   # 2) 复制拆分表并重命名，同时拷贝 schema
   src="$ROOT_DIR/custom/${SCHEMA_NAME}_chaifen.txt"
   dst="$OUT_DIR/lua/data/chaifen.txt"
@@ -606,7 +607,7 @@ package_schema_pure() {
   fi
 
   cp "${PRO_DICT_FILES[@]}" "$OUT_DIR/dicts/"
-
+  rm -f "$OUT_DIR/dicts/t9_abbrev.dict.yaml"
   # 2) custom/：保留 Pure 所需的通用配置，排除其他主方案文件
   mkdir -p "$OUT_DIR/custom"
   rsync -av --prune-empty-dirs \
