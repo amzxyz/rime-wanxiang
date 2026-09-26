@@ -188,11 +188,13 @@ jobs:
             "lua/*.*"
             "lua/data/*.*"
             "lua/wanxiang/*.*"
+            "opencc/*.*"
+            "opencc/wanxiang/*.*"
             "default.yaml"
             "weasel.yaml"
             "wanxiang*.*yaml"
             "README.md"
-            "custom_phrase.txt"
+            "custom_phrase.dict.yaml"
           )
 
           TAG_NAME="${{ github.event_name == 'release' && github.event.release.tag_name || 'manual-build' }}"
