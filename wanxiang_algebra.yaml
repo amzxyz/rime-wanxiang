@@ -2221,13 +2221,13 @@ pro:
       - xform/(iong|ao)(\d);/Ⓑ$2;/
       - xform/(eng|ing)(\d);/Ⓨ$2;/
       - xform/(ong|er)(\d);/Ⓣ$2;/
+      - xform/(ie|uo)(\d);/Ⓜ$2;/
       - xform/(uai|uan|o|v)(\d);/Ⓧ$2;/
       - xform/(ai|[uv]e)(\d);/Ⓛ$2;/
       - xform/an(\d);/Ⓝ$1;/
       - xform/(ei|un)(\d);/Ⓖ$2;/
       - xform/(en|in)(\d);/Ⓢ$2;/
       - xform/(ua|ia|a)(\d);/Ⓗ$2;/
-      - xform/(ie|uo)(\d);/Ⓜ$2;/
       - xform/(iu|ou)(\d);/Ⓕ$2;/
       - xform/e(\d);/Ⓦ$1;/
       - xform/i(\d);/Ⓙ$1;/
