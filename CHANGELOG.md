@@ -1,5 +1,26 @@
 # Changelog
 
+## [18.0.12](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.11...v18.0.12) (2026-09-26)
+
+
+### 📚 词库更新
+
+* 词库调整 ([308eb61](https://github.com/amzxyz/rime-wanxiang/commit/308eb618ad5bfab0f7989c2df4a3654739902bf8))
+
+
+### 🐛 Bug 修复
+
+* 整理优化声调转换转写规则 ([481a436](https://github.com/amzxyz/rime-wanxiang/commit/481a43614aaa271fa05cd40a8e218866ab5f721a))
+* 首右部分转写变更 ([6304951](https://github.com/amzxyz/rime-wanxiang/commit/63049510a6e87dcb2f68d73f3f19c9d811a5133a))
+
+
+### 🤖 持续集成
+
+* plum更新 ([3bd28f2](https://github.com/amzxyz/rime-wanxiang/commit/3bd28f29a3828763b81457091bd5c7a20f6ef58a))
+* pro pure版本排除t9词库 ([7bac4c8](https://github.com/amzxyz/rime-wanxiang/commit/7bac4c84ad63f196439a4fcb6004ddaeeca8234a))
+* 优化 ([516b1bb](https://github.com/amzxyz/rime-wanxiang/commit/516b1bb66bdce1fd5785f5481c415f13ff736548))
+* 优化 ([0efbd3b](https://github.com/amzxyz/rime-wanxiang/commit/0efbd3b7e5ce87eac51dae33869e5c73e564619a))
+
 ## [18.0.11](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.10...v18.0.11) (2026-09-24)
 
 
