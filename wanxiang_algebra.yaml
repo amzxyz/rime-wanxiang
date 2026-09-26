@@ -2989,6 +2989,9 @@ reverse:
   hupvd:
     __append:
       - xlit/HSPZN/hupvd/
+  hspvd:
+    __append:
+      - xlit/HSPZN/hspvd/
   #适配乱序17按键映射的笔画映射（横在HP键，竖在Sh键，撇在L键，捺在Y键，折在Zh键）
   hslzy:
     __append:
@@ -4369,7 +4372,7 @@ english:
   首道双拼:
     __append:
       - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
-      - derive/([1-9])0000(?!0)/$1wf/
+      - derive/([1-9])0000(?!0)/$1wj/
       - derive/([1-9])000(?!0)/$1qn/
       - derive/([1-9])00(?!0)/$1bl/
       - derive/([2-9])0(?!0)/$1ui/
