@@ -6,38 +6,13 @@ base:
     __append:
       - xform/Ⅰ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - abbrev/^ng(\d)/ng/
@@ -94,19 +69,19 @@ base:
       - derive/([qjlxn])iang$/$1aing/
       - derive/([qjlxn])iang$/$1inag/
       # ua
-      - derive/([g|k|h|zh|sh])ua$/$1au/
+      - derive/(g|k|h|zh|sh)ua$/$1au/
       # uai
-      - derive/([g|h|k|zh|ch|sh])uai$/$1aui/
-      - derive/([g|h|k|zh|ch|sh])uai$/$1uia/
+      - derive/(g|h|k|zh|ch|sh)uai$/$1aui/
+      - derive/(g|h|k|zh|ch|sh)uai$/$1uia/
       # un
       - derive/([qrtysdghjklzxc])un$/$1nu/
       # ue
       - derive/([nlyjqx])ue$/$1eu/
       # uang
-      - derive/([g|h|k|zh|ch|sh])uang$/$1aung/
-      - derive/([g|h|k|zh|ch|sh])uang$/$1uagn/
-      - derive/([g|h|k|zh|ch|sh])uang$/$1unag/
-      - derive/([g|h|k|zh|ch|sh])uang$/$1augn/
+      - derive/(g|h|k|zh|ch|sh)uang$/$1aung/
+      - derive/(g|h|k|zh|ch|sh)uang$/$1uagn/
+      - derive/(g|h|k|zh|ch|sh)uang$/$1unag/
+      - derive/(g|h|k|zh|ch|sh)uang$/$1augn/
       # iong
       - derive/([jqx])iong$/$1inog/
       - derive/([jqx])iong$/$1oing/
@@ -120,37 +95,13 @@ base:
     __append:
       - xform/Ⅱ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -162,8 +113,7 @@ base:
       - xform/[iu]a(\d)$/Ⓦ$1/
       - xform/[uv]an(\d)$/Ⓡ$1/
       - xform/[uv]e(\d)$/Ⓣ$1/
-      - xform/ing(\d)$/Ⓨ$1/
-      - xform/uai(\d)$/Ⓨ$1/
+      - xform/(ing|uai)(\d)$/Ⓨ$2/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
@@ -330,37 +280,13 @@ base:
     __append:
       - xform/Ⅲ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -379,8 +305,7 @@ base:
       - xform/uo(\d)$/Ⓞ$1/
       - xform/ie(\d)$/Ⓟ$1/
       - xform/(.)i?ong(\d)$/$1Ⓢ$2/
-      - xform/ing(\d)$/Ⓚ$1/
-      - xform/uai(\d)$/Ⓚ$1/
+      - xform/(ing|uai)(\d)$/Ⓚ$2/
       - xform/(.)ai(\d)$/$1Ⓓ$2/
       - xform/(.)eng(\d)$/$1Ⓖ$2/
       - xform/(.)en(\d)$/$1Ⓕ$2/
@@ -404,37 +329,13 @@ base:
     __append:
       - xform/Ⅴ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -479,37 +380,13 @@ base:
     __append:
       - xform/Ⅳ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -555,37 +432,13 @@ base:
     __append:
       - xform/Ⅵ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -627,37 +480,13 @@ base:
     __append:
       - xform/Ⅶ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -701,37 +530,13 @@ base:
     __append:
       - xform/Ⅷ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -741,8 +546,7 @@ base:
       - xform/^([ae])(.*)(\d)$/$1$1$2$3/
       - xform/iu(\d)$/Ⓝ$1/
       - xform/[iu]a(\d)$/Ⓑ$1/
-      - xform/er(\d)$/Ⓠ$1/
-      - xform/ing(\d)$/Ⓠ$1/
+      - xform/(ing|er)(\d)$/Ⓠ$2/
       - xform/[uv]an(\d)$/Ⓒ$1/
       - xform/[uv]e(\d)$/Ⓧ$1/
       - xform/uai(\d)$/Ⓧ$1/
@@ -774,37 +578,13 @@ base:
     __append:
       - xform/Ⅸ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -845,38 +625,14 @@ base:
   乱序17:
     __append:
       - xform/Ⅼ//  #用于Lua判断输入类型的标记
-      - xform/ü/v/
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - xform/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -891,39 +647,23 @@ base:
       - xform/^s/Ⓜ/
       - xform/^zh/Ⓩ/
       - xform/^z/Ⓦ/
-      - xform/uang(\d)$/Ⓠ$1/
-      - xform/iang(\d)$/Ⓒ$1/
-      - xform/iong(\d)$/Ⓑ$1/
-      - xform/ang(\d)$/Ⓩ$1/
-      - xform/eng(\d)$/Ⓨ$1/
-      - xform/ian(\d)$/Ⓠ$1/
-      - xform/iao(\d)$/Ⓩ$1/
-      - xform/ing(\d)$/Ⓨ$1/
-      - xform/ong(\d)$/Ⓣ$1/
-      - xform/uai(\d)$/Ⓧ$1/
-      - xform/uan(\d)$/Ⓧ$1/
-      - xform/ai(\d)$/Ⓛ$1/
+      - xform/(uang|ian)(\d)$/Ⓠ$2/
+      - xform/(iang|ui)(\d)$/Ⓒ$2/
+      - xform/(iong|ao)(\d)$/Ⓑ$2/
+      - xform/(ang|iao)(\d)$/Ⓩ$2/
+      - xform/(eng|ing)(\d)$/Ⓨ$2/
+      - xform/(ong|er)(\d)$/Ⓣ$2/
+      - xform/(uai|uan|o|v)(\d)$/Ⓧ$2/
+      - xform/(ai|[uv]e)(\d)$/Ⓛ$2/
       - xform/an(\d)$/Ⓝ$1/
-      - xform/ao(\d)$/Ⓑ$1/
-      - xform/ei(\d)$/Ⓖ$1/
-      - xform/en(\d)$/Ⓢ$1/
-      - xform/er(\d)$/Ⓣ$1/
-      - xform/ua(\d)$/Ⓗ$1/
-      - xform/ie(\d)$/Ⓜ$1/
-      - xform/in(\d)$/Ⓢ$1/
-      - xform/iu(\d)$/Ⓕ$1/
-      - xform/ou(\d)$/Ⓕ$1/
-      - xform/ia(\d)$/Ⓗ$1/
-      - xform/[uv]e(\d)$/Ⓛ$1/
-      - xform/ui(\d)$/Ⓒ$1/
-      - xform/un(\d)$/Ⓖ$1/
-      - xform/uo(\d)$/Ⓜ$1/
-      - xform/a(\d)$/Ⓗ$1/
+      - xform/(ei|un)(\d)$/Ⓖ$2/
+      - xform/(en|in)(\d)$/Ⓢ$2/
+      - xform/(ua|ia|a)(\d)$/Ⓗ$2/
+      - xform/(ie|uo)(\d)$/Ⓜ$2/
+      - xform/(iu|ou)(\d)$/Ⓕ$2/
       - xform/e(\d)$/Ⓦ$1/
       - xform/i(\d)$/Ⓙ$1/
-      - xform/o(\d)$/Ⓧ$1/
       - xform/u(\d)$/Ⓓ$1/
-      - xform/v(\d)$/Ⓧ$1/
       - xlit/ⓆⓌⓉⓎⓈⒹⒻⒼⒽⒿⓁⓏⓍⒸⒷⓃⓂ/qwtysdfghjlzxcbnm/
       - derive/^(..)(\d)$/$1/
       - derive/^(.).+(\d)$/$1$2/
@@ -932,37 +672,13 @@ base:
     __append:
       - xform/Ⅿ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -973,10 +689,9 @@ base:
       - xform/i?ong(\d)$/Ⓢ$1/
       - xform/[iu]ang(\d)$/Ⓛ$1/
       - xform/iao(\d)$/Ⓝ$1/
-      - xform/uai(\d)$/Ⓕ$1/
       - xform/uan(\d)$/Ⓗ$1/
       - xform/ian(\d)$/Ⓜ$1/
-      - xform/ing(\d)$/Ⓕ$1/
+      - xform/(ing|uai)(\d)$/Ⓕ$2/
       - xform/eng(\d)$/Ⓩ$1/
       - xform/ang(\d)$/Ⓖ$1/
       - xform/ua(\d)$/Ⓠ$1/
@@ -1004,37 +719,13 @@ base:
     __append:
       - xform/Ⅽ//  # 用于 Lua 判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)$/en$1/
@@ -1088,37 +779,13 @@ base:
     __append:
       - xform/Ⅾ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+)$/$1④/
-      - xform/ā([a-z]*)$/a$1①/
-      - xform/á([a-z]*)$/a$1②/
-      - xform/ǎ([a-z]*)$/a$1③/
-      - xform/à([a-z]*)$/a$1④/
-      - xform/ō([a-z]*)$/o$1①/
-      - xform/ó([a-z]*)$/o$1②/
-      - xform/ǒ([a-z]*)$/o$1③/
-      - xform/ò([a-z]*)$/o$1④/
-      - xform/ē([a-z]*)$/e$1①/
-      - xform/é([a-z]*)$/e$1②/
-      - xform/ě([a-z]*)$/e$1③/
-      - xform/è([a-z]*)$/e$1④/
-      - xform/ī([a-z]*)$/i$1①/
-      - xform/í([a-z]*)$/i$1②/
-      - xform/ǐ([a-z]*)$/i$1③/
-      - xform/ì([a-z]*)$/i$1④/
-      - xform/ū([a-z]*)$/u$1①/
-      - xform/ú([a-z]*)$/u$1②/
-      - xform/ǔ([a-z]*)$/u$1③/
-      - xform/ù([a-z]*)$/u$1④/
-      - xform/ǖ([a-z]*)$/v$1①/
-      - xform/ǘ([a-z]*)$/v$1②/
-      - xform/ǚ([a-z]*)$/v$1③/
-      - xform/ǜ([a-z]*)$/v$1④/
-      - xform/ü/v/
-      - xform/ń([a-z]*)$/n$1②/
-      - xform/ň([a-z]*)$/n$1③/
-      - xform/ǹ([a-z]*)$/n$1④/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([a-z]*)$/$1$2①/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([a-z]*)$/$1$2②/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([a-z]*)$/$1$2③/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([a-z]*)$/$1$2④/
       - xform/m̄([a-z]*)$/m$1①/
-      - xform/ḿ([a-z]*)$/m$1②/
       - xform/m̀([a-z]*)$/m$1④/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -1138,8 +805,7 @@ base:
       - xform/[uv]an(\d)$/Ⓣ$1/
       - xform/ue(\d)$/Ⓛ$1/
       - xform/ve(\d)$/Ⓑ$1/
-      - xform/ing(\d)$/Ⓖ$1/
-      - xform/uai(\d)$/Ⓖ$1/
+      - xform/(ing|uai)(\d)$/Ⓖ$2/
       - xform/uo(\d)$/Ⓞ$1/
       - xform/[uv]n(\d)$/Ⓩ$1/
       - xform/(.)i?ong(\d)$/$1Ⓗ$2/
@@ -1212,19 +878,19 @@ lite:
       - derive/([qjlxn])iang$/$1aing/
       - derive/([qjlxn])iang$/$1inag/
       # ua
-      - derive/([g|k|h|zh|sh])ua$/$1au/
+      - derive/(g|k|h|zh|sh)ua$/$1au/
       # uai
-      - derive/([g|h|k|zh|ch|sh])uai$/$1aui/
-      - derive/([g|h|k|zh|ch|sh])uai$/$1uia/
+      - derive/(g|h|k|zh|ch|sh)uai$/$1aui/
+      - derive/(g|h|k|zh|ch|sh)uai$/$1uia/
       # un
       - derive/([qrtysdghjklzxc])un$/$1nu/
       # ue
       - derive/([nlyjqx])ue$/$1eu/
       # uang
-      - derive/([g|h|k|zh|ch|sh])uang$/$1aung/
-      - derive/([g|h|k|zh|ch|sh])uang$/$1uagn/
-      - derive/([g|h|k|zh|ch|sh])uang$/$1unag/
-      - derive/([g|h|k|zh|ch|sh])uang$/$1augn/
+      - derive/(g|h|k|zh|ch|sh)uang$/$1aung/
+      - derive/(g|h|k|zh|ch|sh)uang$/$1uagn/
+      - derive/(g|h|k|zh|ch|sh)uang$/$1unag/
+      - derive/(g|h|k|zh|ch|sh)uang$/$1augn/
       # iong
       - derive/([jqx])iong$/$1inog/
       - derive/([jqx])iong$/$1oing/
@@ -1244,8 +910,7 @@ lite:
       - xform/[iu]a$/Ⓦ/
       - xform/[uv]an$/Ⓡ/
       - xform/[uv]e$/Ⓣ/
-      - xform/ing$/Ⓨ/
-      - xform/uai$/Ⓨ/
+      - xform/(ing|uai)$/Ⓨ/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
@@ -1423,8 +1088,7 @@ lite:
       - xform/uo$/Ⓞ/
       - xform/ie$/Ⓟ/
       - xform/(.)i?ong$/$1Ⓢ/
-      - xform/ing$/Ⓚ/
-      - xform/uai$/Ⓚ/
+      - xform/(ing|uai)$/Ⓚ/
       - xform/(.)ai$/$1Ⓓ/
       - xform/(.)eng$/$1Ⓖ/
       - xform/(.)en$/$1Ⓕ/
@@ -1595,8 +1259,7 @@ lite:
       - xform/^([ae])(.*)$/$1$1$2/
       - xform/iu$/Ⓝ/
       - xform/[iu]a$/Ⓑ/
-      - xform/er$/Ⓠ/
-      - xform/ing$/Ⓠ/
+      - xform/(ing|er)$/Ⓠ/
       - xform/[uv]an$/Ⓒ/
       - xform/[uv]e$/Ⓧ/
       - xform/uai$/Ⓧ/
@@ -1669,39 +1332,23 @@ lite:
       - xform/^s/Ⓜ/
       - xform/^zh/Ⓩ/
       - xform/^z/Ⓦ/
-      - xform/uang$/Ⓠ/
-      - xform/iang$/Ⓒ/
-      - xform/iong$/Ⓑ/
-      - xform/ang$/Ⓩ/
-      - xform/eng$/Ⓨ/
-      - xform/ian$/Ⓠ/
-      - xform/iao$/Ⓩ/
-      - xform/ing$/Ⓨ/
-      - xform/ong$/Ⓣ/
-      - xform/uai$/Ⓧ/
-      - xform/uan$/Ⓧ/
-      - xform/ai$/Ⓛ/
+      - xform/(uang|ian)$/Ⓠ/
+      - xform/(iang|ui)$/Ⓒ/
+      - xform/(ang|iao)$/Ⓩ/
+      - xform/(iong|ao)$/Ⓑ/
+      - xform/(eng|ing)$/Ⓨ/
+      - xform/(ong|er)$/Ⓣ/
+      - xform/(ie|uo)$/Ⓜ/
+      - xform/(uai|uan|o|v)$/Ⓧ/
+      - xform/(ai|[uv]e)$/Ⓛ/
       - xform/an$/Ⓝ/
-      - xform/ao$/Ⓑ/
-      - xform/ei$/Ⓖ/
-      - xform/en$/Ⓢ/
-      - xform/er$/Ⓣ/
-      - xform/ua$/Ⓗ/
-      - xform/ie$/Ⓜ/
-      - xform/in$/Ⓢ/
-      - xform/iu$/Ⓕ/
-      - xform/ou$/Ⓕ/
-      - xform/ia$/Ⓗ/
-      - xform/[uv]e$/Ⓛ/
-      - xform/ui$/Ⓒ/
-      - xform/un$/Ⓖ/
-      - xform/uo$/Ⓜ/
-      - xform/a$/Ⓗ/
+      - xform/(ei|un)$/Ⓖ/
+      - xform/(en|in)$/Ⓢ/
+      - xform/(ua|ia|a)$/Ⓗ/
+      - xform/(iu|ou)$/Ⓕ/
       - xform/e$/Ⓦ/
       - xform/i$/Ⓙ/
-      - xform/o$/Ⓧ/
       - xform/u$/Ⓓ/
-      - xform/v$/Ⓧ/
       - xlit/ⓆⓌⓉⓎⓈⒹⒻⒼⒽⒿⓁⓏⓍⒸⒷⓃⓂ/qwtysdfghjlzxcbnm/
 
   蓝天双拼:
@@ -1833,37 +1480,13 @@ pro:
     __append:
       - xform/Ⅰ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)/eng$1/
       - xform/^n(\d)/en$1/
@@ -1873,37 +1496,13 @@ pro:
     __append:
       - xform/Ⅱ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d);$/eng$1;/
       - xform/^n(\d);/en$1;/
@@ -2079,37 +1678,13 @@ pro:
     __append:
       - xform/Ⅲ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d);$/eng$1;/
       - xform/^n(\d);/en$1;/
@@ -2148,37 +1723,13 @@ pro:
     __append:
       - xform/Ⅳ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d);$/eng$1;/
       - xform/^n(\d);/en$1;/
@@ -2220,37 +1771,13 @@ pro:
     __append:
       - xform/Ⅴ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d);/eng$1;/
       - xform/^n(\d);/en$1;/
@@ -2292,37 +1819,13 @@ pro:
     __append:
       - xform/Ⅶ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d);/eng$1;/
       - xform/^n(\d);/en$1;/
@@ -2363,37 +1866,13 @@ pro:
     __append:
       - xform/Ⅵ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d);/eng$1;/
       - xform/^n(\d);/en$1;/
@@ -2432,37 +1911,13 @@ pro:
     __append:
       - xform/Ⅷ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d);/eng$1;/
       - xform/^n(\d);/en$1;/
@@ -2501,37 +1956,13 @@ pro:
     __append:
       - xform/Ⅸ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d);/eng$1;/
       - xform/^n(\d);/en$1;/
@@ -2573,37 +2004,13 @@ pro:
     __append:
       - xform/Ⅿ//  #用于Lua判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d);$/eng$1;/
       - xform/^n(\d);/en$1;/
@@ -2641,37 +2048,13 @@ pro:
     __append:
       - xform/Ⅽ//  # 用于 Lua 判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d);$/eng$1;/
       - xform/^n(\d);/en$1;/
@@ -2724,37 +2107,13 @@ pro:
     __append:
       - xform/Ⅾ//  # 用于Lua判断输入类型的标记
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ü/v/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
       - xform/m̄([^;]*);/m$1①;/
-      - xform/ḿ([^;]*);/m$1②;/
       - xform/m̀([^;]*);/m$1④;/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
       - xlit/①②③④/7890
       - derive/^ng(\d)(;.*)$/eng$1$2/
       - xform/^a(\d)(;.*)$/aa$1$2/
@@ -2834,38 +2193,15 @@ pro:
   乱序17:
     __append:
       - xform/Ⅼ//
-      - xform/ü/v/
       - xform/^([a-z]+);/$1④;/
-      - xform/ā([^;]*);/a$1①;/
-      - xform/á([^;]*);/a$1②;/
-      - xform/ǎ([^;]*);/a$1③;/
-      - xform/à([^;]*);/a$1④;/
-      - xform/ō([^;]*);/o$1①;/
-      - xform/ó([^;]*);/o$1②;/
-      - xform/ǒ([^;]*);/o$1③;/
-      - xform/ò([^;]*);/o$1④;/
-      - xform/ē([^;]*);/e$1①;/
-      - xform/é([^;]*);/e$1②;/
-      - xform/ě([^;]*);/e$1③;/
-      - xform/è([^;]*);/e$1④;/
-      - xform/ī([^;]*);/i$1①;/
-      - xform/í([^;]*);/i$1②;/
-      - xform/ǐ([^;]*);/i$1③;/
-      - xform/ì([^;]*);/i$1④;/
-      - xform/ū([^;]*);/u$1①;/
-      - xform/ú([^;]*);/u$1②;/
-      - xform/ǔ([^;]*);/u$1③;/
-      - xform/ù([^;]*);/u$1④;/
-      - xform/ǖ([^;]*);/v$1①;/
-      - xform/ǘ([^;]*);/v$1②;/
-      - xform/ǚ([^;]*);/v$1③;/
-      - xform/ǜ([^;]*);/v$1④;/
-      - xform/ń([^;]*);/n$1②;/
-      - xform/ň([^;]*);/n$1③;/
-      - xform/ǹ([^;]*);/n$1④;/
-      - xform/ḿ([^;]*);/m$1②;/
+      - xform/(ā|ē|ī|ō|ū|ǖ)([^;]*);/$1$2①;/
+      - xform/(á|é|í|ó|ú|ǘ|ń|ḿ)([^;]*);/$1$2②;/
+      - xform/(ǎ|ě|ǐ|ǒ|ǔ|ǚ|ň)([^;]*);/$1$2③;/
+      - xform/(à|è|ì|ò|ù|ǜ|ǹ)([^;]*);/$1$2④;/
+      - xform/m̄([^;]*);/m$1①;/
       - xform/m̀([^;]*);/m$1④;/
-      - xlit/①②③④/7890/
+      - xlit/āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ/aaaaeeeeiiiioooouuuuvvvvvnnnm/
+      - xlit/①②③④/7890
       - xform/^ng(\d);/eng$1;/
       - xform/^n(\d);/en$1;/
       - xform/^m(\d);/me$1;/
@@ -2879,39 +2215,23 @@ pro:
       - xform/^s/Ⓜ/
       - xform/^zh/Ⓩ/
       - xform/^z/Ⓦ/
-      - xform/uang(\d);/Ⓠ$1;/
-      - xform/iang(\d);/Ⓒ$1;/
-      - xform/iong(\d);/Ⓑ$1;/
-      - xform/ang(\d);/Ⓩ$1;/
-      - xform/eng(\d);/Ⓨ$1;/
-      - xform/ian(\d);/Ⓠ$1;/
-      - xform/iao(\d);/Ⓩ$1;/
-      - xform/ing(\d);/Ⓨ$1;/
-      - xform/ong(\d);/Ⓣ$1;/
-      - xform/uai(\d);/Ⓧ$1;/
-      - xform/uan(\d);/Ⓧ$1;/
-      - xform/ai(\d);/Ⓛ$1;/
+      - xform/(uang|ian)(\d);/Ⓠ$2;/
+      - xform/(iang|ui)(\d);/Ⓒ$2;/
+      - xform/(iong|ao)(\d);/Ⓑ$2;/
+      - xform/(ang|iao)(\d);/Ⓩ$2;/
+      - xform/(eng|ing)(\d);/Ⓨ$2;/
+      - xform/(ong|er)(\d);/Ⓣ$2;/
+      - xform/(uai|uan|o|v)(\d);/Ⓧ$2;/
+      - xform/(ai|[uv]e)(\d);/Ⓛ$2;/
       - xform/an(\d);/Ⓝ$1;/
-      - xform/ao(\d);/Ⓑ$1;/
-      - xform/ei(\d);/Ⓖ$1;/
-      - xform/en(\d);/Ⓢ$1;/
-      - xform/er(\d);/Ⓣ$1;/
-      - xform/ua(\d);/Ⓗ$1;/
-      - xform/ie(\d);/Ⓜ$1;/
-      - xform/in(\d);/Ⓢ$1;/
-      - xform/iu(\d);/Ⓕ$1;/
-      - xform/ou(\d);/Ⓕ$1;/
-      - xform/ia(\d);/Ⓗ$1;/
-      - xform/[uv]e(\d);/Ⓛ$1;/
-      - xform/ui(\d);/Ⓒ$1;/
-      - xform/un(\d);/Ⓖ$1;/
-      - xform/uo(\d);/Ⓜ$1;/
-      - xform/a(\d);/Ⓗ$1;/
+      - xform/(ei|un)(\d);/Ⓖ$2;/
+      - xform/(en|in)(\d);/Ⓢ$2;/
+      - xform/(ua|ia|a)(\d);/Ⓗ$2;/
+      - xform/(ie|uo)(\d);/Ⓜ$2;/
+      - xform/(iu|ou)(\d);/Ⓕ$2;/
       - xform/e(\d);/Ⓦ$1;/
       - xform/i(\d);/Ⓙ$1;/
-      - xform/o(\d);/Ⓧ$1;/
       - xform/u(\d);/Ⓓ$1;/
-      - xform/v(\d);/Ⓧ$1;/
       - xlit/ⓆⓌⓉⓎⓈⒹⒻⒼⒽⒿⓁⓏⓍⒸⒷⓃⓂ/qwtysdfghjlzxcbnm/
 
   直接辅助:
