@@ -1,7 +1,7 @@
 # Rime dictionary
 # encoding: utf-8
 #https://github.com/amzxyz/RIME-LMDG
-#------行政区划、地理、地标、景区、实体------
+#------行政区划
 ---
 name: diming
 version: "LTS"
@@ -75,6 +75,8 @@ sort: by_weight
 道镇	dào;zu zhèn;jv	130
 道真	dào;zu zhēn;uj	100
 德宏	dé;xx hóng;bh,bs	10
+地标	dì;ty biāo;mu
+地理	dì;ty lǐ;wl
 迪庆	dí;zy qìng;gd	10
 翟镇	dí;yv zhèn;jv	345
 店镇	diàn;gv zhèn;jv	153
@@ -272,6 +274,7 @@ sort: by_weight
 江渚	jiāng;dg zhǔ;dv	374
 蒋庄	jiǎng;cj zhuāng;gt	441
 江孜	jiāng;dg zī;wz,zw	92
+景区	jǐng;oj qū;ki
 泾县	jīng;dg xiàn;sq,qs	128
 景县	jǐng;oj xiàn;sq,qs	125
 鸠江	jiū;nj jiāng;dg	279
@@ -2209,6 +2212,7 @@ sort: by_weight
 曹安店	cáo;oc,co ān;bn diàn;gv	243
 曹安路	cáo;oc,co ān;bn lù;zg	3
 曹庵镇	cáo;oc,co ān;gd,gy zhèn;jv	10
+曹岙村	cáo;oc,co ào;uy,yu cūn;mc	10
 草坝镇	cǎo;cz bà;tb zhèn;jv	10
 曹碑镇	cáo;oc,co bēi;ub zhèn;jv	120
 草碧镇	cǎo;cz bì;ub,up zhèn;jv	10
@@ -2932,6 +2936,7 @@ sort: by_weight
 陈新村	chén;ed xīn;jq cūn;mc	94
 陈杏村	chén;ed xìng;mk,km cūn;mc	213
 陈杨村	chén;ed yáng;my cūn;mc	69
+陈洋村	chén;ed yáng;dy cūn;mc	10
 辰阳镇	chén;iy yáng;eo zhèn;jv	10
 陈窑村	chén;ed yáo;xf,bf cūn;mc	237
 陈营村	chén;ed yíng;cl cūn;mc	210
@@ -4391,6 +4396,7 @@ sort: by_weight
 店头镇	diàn;gv tóu;dd zhèn;jv	10
 店湾镇	diàn;gv wān;dw zhèn;jv	10
 甸尾乡	diān;gt,tg wěi;um xiāng;ap,vp	10
+殿下村	diàn;ug xià;ab,ad cūn;mc	10
 店下镇	diàn;gv xià;ab,ad zhèn;jv	10
 店垭镇	diàn;gv yā;ty zhèn;jv	10
 甸阳镇	diān;gt,tg yáng;eo zhèn;jv	10
@@ -4534,6 +4540,7 @@ sort: by_weight
 丁字桥	dīng;aa zì;bz qiáo;mq	80
 丁字镇	dīng;aa zì;bz zhèn;jv	228
 东安村	dōng;ad,qx ān;bn cūn;mc	100
+东岸村	dōng;ad,qx àn;ug cūn;mc	10
 东安区	dōng;ad,qx ān;bn qū;ki	112
 东安县	dōng;ad,qx ān;bn xiàn;sq,qs	176
 东案乡	dōng;ad,qx àn;bm,ma xiāng;ap,vp	10
@@ -5331,6 +5338,7 @@ sort: by_weight
 房木镇	fáng;hf mù;ad zhèn;jv	10
 方前镇	fāng;dw qián;bd,qd zhèn;jv	10
 坊前镇	fāng;tf qián;bd,qd zhèn;jv	10
+方山村	fāng;dw shān;aa cūn;mc	10
 房山区	fáng;hf shān;aa qū;ki	250
 方山县	fāng;dw shān;aa xiàn;sq,qs	664
 房山县	fáng;hf shān;aa xiàn;sq,qs	634
@@ -5632,6 +5640,7 @@ sort: by_weight
 丰庄镇	fēng;aa zhuāng;gt zhèn;jv	10
 冯庄镇	féng;dm zhuāng;gt zhèn;jv	10
 佛冈县	fó;rf gāng;ki xiàn;sq,qs	172
+佛陇村	fó;rf lǒng;el cūn;mc	10
 佛楼镇	fó;rf lóu;ml zhèn;jv	10
 佛罗镇	fó;rf luó;sx zhèn;jv	10
 佛门乡	fó;rf mén;dg xiāng;ap,vp	10
@@ -6028,6 +6037,7 @@ sort: by_weight
 岗色乡	gǎng;ug sè;db xiāng;ap,vp	10
 冈山区	gāng;ki shān;aa qū;ki	655
 冈山县	gāng;ki shān;aa xiàn;sq,qs	252
+岗上村	gǎng;ug shàng;aa,ba cūn;mc	10
 岗上镇	gǎng;ug shàng;aa,ba zhèn;jv	10
 港上镇	gǎng;dx shàng;aa,ba zhèn;jv	10
 冈上镇	gāng;ki shàng;aa,ba zhèn;jv	10
@@ -7654,6 +7664,7 @@ sort: by_weight
 横岗站	héng;mh gǎng;ug zhàn;lv	297
 横港镇	héng;mh gǎng;dx zhèn;jv	10
 横河镇	héng;mh hé;dk zhèn;jv	10
+横后村	héng;mh hòu;pk cūn;mc	10
 恒济镇	héng;xg jì;dq zhèn;jv	10
 横涧乡	héng;mh jiàn;dj xiāng;ap,vp	10
 横江镇	héng;mh jiāng;dg zhèn;jv	10
@@ -10184,6 +10195,7 @@ sort: by_weight
 金星乡	jīn;ra,pa xīng;ou xiāng;ap,vp	282
 金星镇	jīn;ra,pa xīng;ou zhèn;jv	139
 锦星镇	jǐn;jb,jj xīng;ou zhèn;jv	10
+锦绣村	jǐn;jb,jj xiù;sx cūn;mc	10
 金秀县	jīn;ra,pa xiù;hn xiàn;sq,qs	146
 金秀镇	jīn;ra,pa xiù;hn zhèn;jv	367
 金鸭村	jīn;ra,pa yā;nj,jn cūn;mc	31
@@ -10638,6 +10650,7 @@ sort: by_weight
 堪嘉镇	kān;tu jiā;uj zhèn;jv	10
 坎市镇	kǎn;tq shì;wj zhèn;jv	10
 坎苏镇	kǎn;tq sū;cb zhèn;jv	10
+坎头村	kǎn;tq tóu;dd cūn;mc	10
 堪圩乡	kān;tu wéi;ty xiāng;ap,vp	10
 看庄镇	kàn;ou,uo zhuāng;gt zhèn;jv	10
 康保县	kāng;gl bǎo;rd xiàn;sq,qs	155
@@ -11274,6 +11287,7 @@ sort: by_weight
 黎安镇	lí;hu,ur ān;bn zhèn;jv	10
 礼安镇	lǐ;ug ān;bn zhèn;jv	10
 李岙村	lǐ;mz ào;uy,yu cūn;mc	185
+利岙村	lì;hd,dh ào;uy,yu cūn;mc	10
 李坝村	lǐ;mz bà;tb cūn;mc	133
 篱笆镇	lí;vl ba;vb zhèn;jv	10
 里坝镇	lǐ;aa,tt bà;tb zhèn;jv	10
@@ -11709,6 +11723,7 @@ sort: by_weight
 连五乡	lián;zi wǔ;aa xiāng;ap,vp	10
 濂溪区	lián;dl xī;dx qū;ki	3380
 莲下镇	lián;cl xià;ab,ad zhèn;jv	10
+联鑫村	lián;eg xīn;jj cūn;mc	10
 联兴乡	lián;eg xīng;ba,db xiāng;ap,vp	10
 联兴镇	lián;eg xīng;ba,db zhèn;jv	10
 涟源市	lián;dl yuán;dy shì;wj	588
@@ -11812,6 +11827,7 @@ sort: by_weight
 凉泉镇	liáng;dj quán;ub,bu zhèn;jv	10
 凉伞镇	liáng;dj sǎn;ru zhèn;jv	10
 梁山村	liáng;md shān;aa cūn;mc	163
+良山村	liáng;dg shān;aa cūn;mc	10
 梁山县	liáng;md shān;aa xiàn;sq,qs	190
 粱山县	liáng;md shān;aa xiàn;sq,qs	98
 两山乡	liǎng;ad shān;aa xiāng;ap,vp	10
@@ -12350,6 +12366,7 @@ sort: by_weight
 刘绮庄	liú;dw,wd qǐ;sq zhuāng;gt	8
 刘桥镇	liú;dw,wd qiáo;mq zhèn;jv	10
 柳桥镇	liǔ;mm qiáo;mq zhèn;jv	10
+流庆村	liú;di qìng;gd cūn;mc	10
 琉球乡	liú;wi qiú;wq xiāng;ap,vp	10
 流曲镇	liú;di qǔ;aa,oa zhèn;jv	10
 六泉乡	liù;wb quán;ub,bu xiāng;ap,vp	10
@@ -13343,6 +13360,7 @@ sort: by_weight
 玛艾镇	mǎ;wm ài;ci zhèn;jv	10
 马安村	mǎ;aa,vh ān;bn cūn;mc	224
 马鞍村	mǎ;aa,vh ān;ga cūn;mc	219
+马鞍村	mǎ;aa,vh ān;ga cūn;mc	10
 马鞍湖	mǎ;aa,vh ān;ga hú;dh	117
 马鞍桥	mǎ;aa,vh ān;ga qiáo;mq	6
 马鞍山	mǎ;aa,vh ān;ga shān;aa	367
@@ -14069,11 +14087,13 @@ sort: by_weight
 毛石镇	máo;pg shí;pk,kp zhèn;jv	-1
 茅塔乡	máo;cm tǎ;td,th xiāng;ap,vp	10
 茅台镇	máo;cm tái;sk zhèn;jv	442
+毛坦村	máo;pg tǎn;td cūn;mc	10
 毛堂乡	máo;pg táng;xt xiāng;ap,vp	10
 茅塘镇	máo;cm táng;tt zhèn;jv	10
 茅田乡	máo;cm tián;aa xiāng;ap,vp	10
 毛田镇	máo;pg tián;aa zhèn;jv	10
 茅天镇	máo;cm tiān;ad zhèn;jv	10
+毛头村	máo;pg tóu;dd cūn;mc	10
 茅溪镇	máo;cm xī;dx zhèn;jv	187
 茂兴镇	mào;cw xīng;ba,db zhèn;jv	10
 茅垭镇	máo;cm yā;ty zhèn;jv	10
@@ -15333,6 +15353,7 @@ sort: by_weight
 潘安乡	pān;df ān;bn xiāng;ap,vp	10
 磐安镇	pán;ub ān;bn zhèn;jv	10
 盘安镇	pán;mv,vm ān;bn zhèn;jv	10
+潘岙村	pān;df ào;uy,yu cūn;mc	10
 潘村镇	pān;df cūn;mc zhèn;jv	10
 潘店镇	pān;df diàn;gv zhèn;jv	10
 潘渡镇	pān;df dù;dd zhèn;jv	10
@@ -15353,12 +15374,14 @@ sort: by_weight
 泮境乡	pàn;db jìng;tj xiāng;ap,vp	10
 盘克镇	pán;mv,vm kè;eg,ux zhèn;jv	10
 潘口乡	pān;df kǒu;aa xiāng;ap,vp	10
+潘郎村	pān;df láng;el cūn;mc	10
 攀莲镇	pān;ud,mu,uf lián;cl zhèn;jv	10
 盘龙城	pán;mv,vm lóng;ad chéng;ti	117
 盘龙区	pán;mv,vm lóng;ad qū;ki	238
 蟠龙镇	pán;if lóng;ad zhèn;jv	283
 盘龙镇	pán;mv,vm lóng;ad zhèn;jv	236
 蟠猫乡	pán;if māo;qm xiāng;ap,vp	10
+盘山村	pán;mv,vm shān;aa cūn;mc	10
 盘山县	pán;mv,vm shān;aa xiàn;sq,qs	165
 磐石市	pán;ub shí;pk,kp shì;wj	506
 磐石县	pán;ub shí;pk,kp xiàn;sq,qs	125
@@ -16228,6 +16251,7 @@ sort: by_weight
 乔口镇	qiáo;pp kǒu;aa zhèn;jv	10
 乔拉克	qiáo;pp lā;fl kè;eg,ux	356
 乔乐乡	qiáo;pp lè;pd,px xiāng;ap,vp	10
+桥里村	qiáo;mq lǐ;aa,tt cūn;mc	10
 乔利乡	qiáo;pp lì;hd,dh xiāng;ap,vp	10
 乔李镇	qiáo;pp lǐ;mz zhèn;jv	10
 乔连河	qiáo;pp lián;zi hé;dk	130
@@ -16261,6 +16285,7 @@ sort: by_weight
 桥头镇	qiáo;mq tóu;dd zhèn;jv	385
 乔屯乡	qiáo;pp tún;ag xiāng;ap,vp	10
 乔瓦镇	qiáo;pp wǎ;ad zhèn;jv	10
+桥外村	qiáo;mq wài;xb cūn;mc	10
 桥湾站	qiáo;mq wān;dw zhàn;lv	234
 桥湾镇	qiáo;mq wān;dw zhèn;jv	10
 桥圩镇	qiáo;mq wéi;ty zhèn;jv	10
@@ -17440,6 +17465,7 @@ sort: by_weight
 杉山镇	shān;mp shān;aa zhèn;jv	10
 鄯善镇	shàn;eu shàn;yk,ka,kq zhèn;jv	10
 山上区	shān;aa shàng;aa,ba qū;ki	480
+山市村	shān;aa shì;wj cūn;mc	10
 闪石乡	shǎn;mr,rm shí;pk,kp xiāng;ap,vp	10
 山市站	shān;aa shì;wj zhàn;lv	518
 山市镇	shān;aa shì;wj zhèn;jv	10
@@ -17594,6 +17620,7 @@ sort: by_weight
 上饶站	shàng;aa,ba ráo;uy zhàn;lv	400
 上饶镇	shàng;aa,ba ráo;uy zhèn;jv	10
 上砂镇	shàng;aa,ba shā;uu zhèn;jv	10
+上山村	shàng;aa,ba shān;aa cūn;mc	10
 上衫乡	shàng;aa,ba shān;yp xiāng;ap,vp	10
 商山镇	shāng;wk shān;aa zhèn;jv	10
 上社镇	shàng;aa,ba shè;ut,tu zhèn;jv	10
@@ -17764,6 +17791,7 @@ sort: by_weight
 射阳县	shè;cu,uc yáng;eo xiàn;sq,qs	182
 社阳乡	shè;ut,tu yáng;eo xiāng;ap,vp	10
 社渚镇	shè;ut,tu zhǔ;dv zhèn;jv	10
+沈岙村	shěn;dg,dy ào;uy,yu cūn;mc	10
 深澳镇	shēn;dm ào;da zhèn;jv	10
 神坝镇	shén;uu bà;tb zhèn;jv	10
 沈坝镇	shěn;dg,dy bà;tb zhèn;jv	10
@@ -18436,6 +18464,7 @@ sort: by_weight
 双辽县	shuāng;yy liáo;zl xiàn;sq,qs	96
 双林站	shuāng;yy lín;mm zhàn;lv	297
 双林镇	shuāng;yy lín;mm zhèn;jv	296
+双凌村	shuāng;yy líng;dl,dw cūn;mc	10
 双流区	shuāng;yy liú;di qū;ki	208
 双流县	shuāng;yy liú;di xiàn;sq,qs	202
 双流镇	shuāng;yy liú;di zhèn;jv	10
@@ -18446,6 +18475,7 @@ sort: by_weight
 双录乡	shuāng;yy lù;au,ua xiāng;ap,vp	10
 双路镇	shuāng;yy lù;zg zhèn;jv	10
 双滦区	shuāng;yy luán;dl qū;ki	140
+双吕村	shuāng;yy lǚ;kk cūn;mc	10
 双庙乡	shuāng;yy miào;gy xiāng;ap,vp	10
 双庙镇	shuāng;yy miào;gy zhèn;jv	10
 双明镇	shuāng;yy míng;oo zhèn;jv	10
@@ -18475,6 +18505,7 @@ sort: by_weight
 双塔镇	shuāng;yy tǎ;td,th zhèn;jv	10
 双台乡	shuāng;yy tái;sk xiāng;ap,vp	10
 双台镇	shuāng;yy tái;sk zhèn;jv	10
+双塘村	shuāng;yy táng;tt cūn;mc	10
 双堂乡	shuāng;yy táng;xt xiāng;ap,vp	10
 双塘镇	shuāng;yy táng;tt zhèn;jv	10
 双田镇	shuāng;yy tián;aa zhèn;jv	10
@@ -18482,6 +18513,7 @@ sort: by_weight
 双湾镇	shuāng;yy wān;dw zhèn;jv	10
 双望镇	shuāng;yy wàng;wo zhèn;jv	10
 双旺镇	shuāng;yy wàng;ow zhèn;jv	10
+双溪村	shuāng;yy xī;dx cūn;mc	10
 双溪区	shuāng;yy xī;dx qū;ki	10
 双溪乡	shuāng;yy xī;dx xiāng;ap,vp	10
 双溪镇	shuāng;yy xī;dx zhèn;jv	10
@@ -18572,6 +18604,7 @@ sort: by_weight
 水寨乡	shuǐ;ad,uv zhài;mb,bm xiāng;ap,vp	10
 水寨镇	shuǐ;ad,uv zhài;mb,bm zhèn;jv	43
 税镇镇	shuì;hd zhèn;jv zhèn;jv	10
+水渚村	shuǐ;ad,uv zhǔ;dv cūn;mc	10
 水竹乡	shuǐ;ad,uv zhú;gg xiāng;ap,vp	10
 水字镇	shuǐ;ad,uv zì;bz zhèn;jv	10
 顺安镇	shùn;yi ān;bn zhèn;jv	10
@@ -19100,6 +19133,7 @@ sort: by_weight
 索珠乡	suǒ;sb,us zhū;wv xiāng;ap,vp	10
 所字镇	suǒ;hj,jh zì;bz zhèn;jv	10
 锁作乡	suǒ;jb zuò;rv xiāng;ap,vp	10
+塔岙村	tǎ;td,th ào;uy,yu cūn;mc	10
 塔城市	tǎ;td,th chéng;ti shì;wj	496
 塔城县	tǎ;td,th chéng;ti xiàn;sq,qs	480
 塔城乡	tǎ;td,th chéng;ti xiāng;ap,vp	10
@@ -19401,6 +19435,7 @@ sort: by_weight
 塘口镇	táng;tt kǒu;aa zhèn;jv	10
 汤郎乡	tāng;dy láng;el xiāng;ap,vp	10
 唐林镇	táng;gk lín;mm zhèn;jv	10
+塘岭村	táng;tt lǐng;ul cūn;mc	10
 唐马镇	táng;gk mǎ;aa,vh zhèn;jv	10
 唐庙镇	táng;gk miào;gy zhèn;jv	10
 塘南镇	táng;tt nán;ua,uy zhèn;jv	10
@@ -19543,6 +19578,7 @@ sort: by_weight
 桃溪乡	táo;mv xī;dx xiāng;ap,vp	10
 桃溪镇	táo;mv xī;dx zhèn;jv	10
 滔溪镇	tāo;dj,dy xī;dx zhèn;jv	10
+桃夏村	táo;mv xià;wz,aw cūn;mc	10
 陶辛镇	táo;ef,et xīn;lu zhèn;jv	127
 桃墟镇	táo;mv xū;tx zhèn;jv	10
 陶堰镇	táo;ef,et yàn;tn,ty zhèn;jv	199
@@ -20954,6 +20990,7 @@ sort: by_weight
 温州市	wēn;dm,dw zhōu;id,da shì;wj	66
 文竹镇	wén;wi,dd zhú;gg zhèn;jv	10
 瓮安县	wèng;wg ān;bn xiàn;sq,qs	168
+翁岙村	wēng;yg ào;uy,yu cūn;mc	10
 翁城镇	wēng;yg chéng;ti zhèn;jv	10
 翁达镇	wēng;yg dá;zd zhèn;jv	10
 瓮洞镇	wèng;wg dòng;dt zhèn;jv	10
@@ -21701,10 +21738,12 @@ sort: by_weight
 下仓镇	xià;ab,ad cāng;re zhèn;jv	100
 下长镇	xià;ab,ad cháng;pd zhèn;jv	10
 下车镇	xià;ab,ad chē;aa zhèn;jv	10
+下陈村	xià;ab,ad chén;ed cūn;mc	10
 峡城乡	xiá;uj chéng;ti xiāng;ap,vp	10
 下初镇	xià;ab,ad chū;yd zhèn;jv	10
 峡川镇	xiá;uj chuān;pa zhèn;jv	10
 夏祠村	xià;wz,aw cí;us cūn;mc	103
+下村村	xià;ab,ad cūn;mc cūn;mc	10
 下村乡	xià;ab,ad cūn;mc xiāng;ap,vp	10
 夏村镇	xià;wz,aw cūn;mc zhèn;jv	145
 下村镇	xià;ab,ad cūn;mc zhèn;jv	100
@@ -22615,6 +22654,7 @@ sort: by_weight
 新荣区	xīn;jq róng;cm,mb qū;ki	146
 新荣乡	xīn;jq róng;cm,mb xiāng;ap,vp	10
 新荣镇	xīn;jq róng;cm,mb zhèn;jv	10
+鑫山村	xīn;jj shān;aa cūn;mc	10
 欣山镇	xīn;qj,jq shān;aa zhèn;jv	10
 新邵县	xīn;jq shào;ev xiàn;sq,qs	183
 新韶镇	xīn;jq sháo;yv zhèn;jv	10
@@ -22642,6 +22682,7 @@ sort: by_weight
 新塘站	xīn;jq táng;tt zhàn;lv	477
 新塘镇	xīn;jq táng;tt zhèn;jv	10
 新棠镇	xīn;jq táng;dd,mk,xd,xm zhèn;jv	10
+新陶村	xīn;jq táo;ef,et cūn;mc	10
 新田村	xīn;jq tián;aa cūn;mc	286
 新田县	xīn;jq tián;aa xiàn;sq,qs	167
 新田乡	xīn;jq tián;aa xiāng;ap,vp	10
@@ -22861,6 +22902,7 @@ sort: by_weight
 兴义站	xīng;ba,db yì;di,id zhàn;lv	207
 邢邑镇	xíng;ek yì;kb zhèn;jv	10
 兴义镇	xīng;ba,db yì;di,id zhèn;jv	10
+兴宇村	xīng;ba,db yǔ;by cūn;mc	10
 兴原乡	xīng;ba,db yuán;ix xiāng;ap,vp	10
 杏园乡	xìng;mk,km yuán;ky xiāng;ap,vp	10
 兴源镇	xīng;ba,db yuán;dy zhèn;jv	10
@@ -23503,6 +23545,7 @@ sort: by_weight
 杨安乡	yáng;my ān;bn xiāng;ap,vp	10
 阳安乡	yáng;eo ān;bn xiāng;ap,vp	10
 杨安镇	yáng;my ān;bn zhèn;jv	185
+洋澳村	yáng;dy ào;da cūn;mc	10
 杨坝村	yáng;my bà;tb cūn;mc	52
 杨坝镇	yáng;my bà;tb zhèn;jv	242
 秧坝镇	yāng;hy bà;tb zhèn;jv	10
@@ -24309,6 +24352,7 @@ sort: by_weight
 英落镇	yīng;cy luò;cl zhèn;jv	10
 营盘乡	yíng;cl pán;mv,vm xiāng;ap,vp	10
 营盘镇	yíng;cl pán;mv,vm zhèn;jv	10
+应钱村	yīng;ga qián;jj cūn;mc	10
 营前镇	yíng;cl qián;bd,qd zhèn;jv	10
 英桥镇	yīng;cy qiáo;mq zhèn;jv	10
 樱丘站	yīng;my qiū;pa,ja zhàn;lv	346
@@ -24543,6 +24587,7 @@ sort: by_weight
 友谊乡	yǒu;yu,uy yì;yy xiāng;ap,vp	109
 友谊站	yǒu;yu,uy yì;yy zhàn;lv	324
 友谊镇	yǒu;yu,uy yì;yy zhèn;jv	582
+油屿村	yóu;dy yǔ;uy cūn;mc	10
 右玉县	yòu;ku,uk yù;ad,wd xiàn;sq,qs	177
 优云乡	yōu;ry yún;es,se xiāng;ap,vp	10
 友宰镇	yǒu;yu,uy zǎi;bx zhèn;jv	10
@@ -25068,6 +25113,7 @@ sort: by_weight
 云潭镇	yún;es,se tán;dt zhèn;jv	10
 云田镇	yún;es,se tián;aa zhèn;jv	10
 云雾镇	yún;es,se wù;yw zhèn;jv	10
+云溪村	yún;es,se xī;dx cūn;mc	10
 云溪区	yún;es,se xī;dx qū;ki	151
 郧西县	yún;ey xī;aa xiàn;sq,qs	172
 云溪乡	yún;es,se xī;dx xiāng;ap,vp	10
@@ -25766,6 +25812,7 @@ sort: by_weight
 赵行村	zhào;zi xíng;xd,xi cūn;mc	175
 肇兴镇	zhào;hy,yw xīng;ba,db zhèn;jv	10
 兆雅镇	zhào;ed,dd yǎ;vy,yv zhèn;jv	10
+照洋村	zhào;hv yáng;dy cūn;mc	10
 昭阳区	zhāo;ov yáng;eo qū;ki	172
 赵窑村	zhào;zi yáo;xf,bf cūn;mc	52
 赵营村	zhào;zi yíng;cl cūn;mc	103
@@ -25876,6 +25923,7 @@ sort: by_weight
 祯旺乡	zhēn;uv wàng;ow xiāng;ap,vp	10
 振文镇	zhèn;fi wén;wi,dd zhèn;jv	10
 真武镇	zhēn;uj wǔ;vy,yv zhèn;jv	10
+镇西村	zhèn;jv xī;aa cūn;mc	10
 珍溪镇	zhēn;wp xī;dx zhèn;jv	10
 镇西镇	zhèn;jv xī;aa zhèn;jv	10
 轸溪镇	zhěn;ip xī;dx zhèn;jv	10
@@ -26250,6 +26298,7 @@ sort: by_weight
 中旺镇	zhōng;aa,ka wàng;ow zhèn;jv	10
 中卫县	zhōng;aa,ka wèi;ea,ga xiàn;sq,qs	108
 中卫乡	zhōng;aa,ka wèi;ea,ga xiāng;ap,vp	10
+中溪村	zhōng;aa,ka xī;dx cūn;mc	10
 中西区	zhōng;aa,ka xī;aa qū;ki	51
 中溪镇	zhōng;aa,ka xī;dx zhèn;jv	10
 中仙镇	zhōng;aa,ka xiān;ru zhèn;jv	10
@@ -27863,8 +27912,10 @@ sort: by_weight
 白山抚松	bái;pa,po shān;aa fǔ;fw sōng;mg	10
 白山浑江	bái;pa,po shān;aa hún;dj jiāng;dg	10
 白山江源	bái;pa,po shān;aa jiāng;dg yuán;dy	10
+白山街村	bái;pa,po shān;aa jiē;xg,xi cūn;mc	10
 百善街道	bǎi;ab shàn;yk,ka,kq jiē;xg,xi dào;zu	10
 白山靖宇	bái;pa,po shān;aa jìng;lq yǔ;by	10
+白山里村	bái;pa,po shān;aa lǐ;aa,tt cūn;mc	10
 白山临江	bái;pa,po shān;aa lín;ao,do jiāng;dg	10
 柏山寺村	bǎi;mb shān;aa sì;ct,tc cūn;mc	10
 柏山寺乡	bǎi;mb shān;aa sì;ct,tc xiāng;ap,vp	10
@@ -40538,6 +40589,7 @@ sort: by_weight
 后头湾村	hòu;pk tou;dd wān;dw cūn;mc	10
 后屠桥村	hòu;pk tú;uv qiáo;mq cūn;mc	10
 后土桥村	hòu;pk tǔ;aa qiáo;mq cūn;mc	10
+后瓦屿村	hòu;pk wǎ;ad yǔ;uy cūn;mc	10
 后洼子村	hòu;pk wā;dg zi;aa,vh cūn;mc	10
 后王家村	hòu;pk wáng;aa jiā;bu cūn;mc	10
 后王家庄	hòu;pk wáng;aa jiā;bu zhuāng;gt	10
@@ -50820,6 +50872,7 @@ sort: by_weight
 南司竹村	nán;ua,uy sī;gk,ka zhú;gg cūn;mc	10
 南寺庄村	nán;ua,uy sì;ct,tc zhuāng;gt cūn;mc	10
 南松山村	nán;ua,uy sōng;mg shān;aa cūn;mc	10
+南嵩岩村	nán;ua,uy sōng;ug yán;uu cūn;mc	10
 南宋庄村	nán;ua,uy sòng;bm zhuāng;gt cūn;mc	10
 南酥酪村	nán;ua,uy sū;yh lào;yg cūn;mc	10
 南苏阳村	nán;ua,uy sū;cb yáng;eo cūn;mc	10
@@ -55535,6 +55588,7 @@ sort: by_weight
 上新城乡	shàng;aa,ba xīn;jq chéng;ti xiāng;ap,vp	10
 上新河镇	shàng;aa,ba xīn;jq hé;dk zhèn;jv	10
 上新集镇	shàng;aa,ba xīn;jq jí;mv,vm zhèn;jv	10
+上新建村	shàng;aa,ba xīn;jq jiàn;zy cūn;mc	10
 上辛口村	shàng;aa,ba xīn;lu kǒu;aa cūn;mc	10
 上新农村	shàng;aa,ba xīn;jq nóng;by,ny cūn;mc	10
 上新营村	shàng;aa,ba xīn;jq yíng;cl cūn;mc	10
@@ -58582,6 +58636,7 @@ sort: by_weight
 太湖街道	tài;dd hú;dh jiē;xg,xi dào;zu	10
 泰湖山庄	tài;fu,uf hú;dh shān;aa zhuāng;gt	10
 太湖山庄	tài;dd hú;dh shān;aa zhuāng;gt	10
+太湖新村	tài;dd hú;dh xīn;jq cūn;mc	10
 太湖源镇	tài;dd hú;dh yuán;dy zhèn;jv	10
 太华山庄	tài;dd huá;uh shān;aa zhuāng;gt	10
 太华社区	tài;dd huá;uh shè;ut,tu qū;ki	50
@@ -64253,6 +64308,7 @@ sort: by_weight
 下沙头村	xià;ab,ad shā;du tóu;dd cūn;mc	10
 峡山槽村	xiá;uj shān;aa cáo;mc cūn;mc	10
 霞山分站	xiá;yj,yy shān;aa fēn;bd,db zhàn;lv	50
+下山后村	xià;ab,ad shān;aa hòu;pk cūn;mc	10
 峡山街道	xiá;uj shān;aa jiē;xg,xi dào;zu	10
 峡山林场	xiá;uj shān;aa lín;mm chǎng;ty	10
 下山头村	xià;ab,ad shān;aa tóu;dd cūn;mc	10
@@ -64309,6 +64365,7 @@ sort: by_weight
 夏辛店村	xià;wz,aw xīn;lu diàn;gv cūn;mc	10
 下辛店镇	xià;ab,ad xīn;lu diàn;gv zhèn;jv	10
 下新沟村	xià;ab,ad xīn;jq gōu;dg cūn;mc	10
+下新建村	xià;ab,ad xīn;jq jiàn;zy cūn;mc	10
 下新农村	xià;ab,ad xīn;jq nóng;by,ny cūn;mc	10
 下新屋村	xià;ab,ad xīn;jq wū;uv cūn;mc	10
 下辛庄村	xià;ab,ad xīn;lu zhuāng;gt cūn;mc	10
@@ -64320,6 +64377,7 @@ sort: by_weight
 下崖社区	xià;ab,ad yá;uy shè;ut,tu qū;ki	180
 下岩贝村	xià;ab,ad yán;uu bèi;ad,kr cūn;mc	10
 夏阳街道	xià;wz,aw yáng;eo jiē;xg,xi dào;zu	10
+下洋张村	xià;ab,ad yáng;dy zhāng;gi cūn;mc	10
 下窑沟村	xià;ab,ad yáo;xf,bf gōu;dg cūn;mc	10
 下应街道	xià;ab,ad yīng;ga jiē;xg,xi dào;zu	10
 下英水村	xià;ab,ad yīng;cy shuǐ;ad,uv cūn;mc	10
@@ -81260,6 +81318,7 @@ sort: by_weight
 文昌市铺前镇	wén;wi,dd chāng;oo shì;wj pù;jf qián;bd,qd zhèn;jv	30
 文昌市文城镇	wén;wi,dd chāng;oo shì;wj wén;wi,dd chéng;ti zhèn;jv	71
 温都尔勒图镇	wēn;dm,dw dōu;ev ěr;dx,xd lè;lg,gl tú;kd zhèn;jv	10
+温岭市大溪镇	wēn;dm,dw lǐng;ul shì;wj dà;ad xī;dx zhèn;jv	10
 文明大道街道	wén;wi,dd míng;oo dà;ad dào;zu jiē;xg,xi dào;zu	10
 温图高勒苏木	wēn;dm,dw tú;kd gāo;wk lè;lg,gl sū;cb mù;ad	10
 温州市苍南县	wēn;dm,dw zhōu;id,da shì;wj cāng;cc nán;ua,uy xiàn;sq,qs	10
@@ -83521,6 +83580,7 @@ sort: by_weight
 市经济技术开发区	shì;wj jīng;sg jì;dq jì;fv shù;md kāi;ac fā;ay qū;ki	10
 市坪苗族仡佬族乡	shì;wj píng;tp miáo;ct zú;fu gē;rq lǎo;rl zú;fu xiāng;ap,vp	10
 石桥苗族土家族乡	shí;pk,kp qiáo;mq miáo;ct zú;fu tǔ;aa jiā;bu zú;fu xiāng;ap,vp	10
+实体------	shí;bt tǐ;rb
 石柱土家族自治县	shí;pk,kp zhù;mv tǔ;aa jiā;bu zú;fu zì;pa,po zhì;dt xiàn;sq,qs	10
 石嘴山市大武口区	shí;pk,kp zuǐ;kj,kz shān;aa shì;wj dà;ad wǔ;vy,yv kǒu;aa qū;ki	10
 蜀麓社区服务中心	shǔ;si lù;ll shè;ut,tu qū;ki fú;oy wù;wl zhōng;aa,ka xīn;dd	10
