@@ -60,7 +60,7 @@ patch:
 ```
 
 ```yaml
-# wanxiang_phrase.custom.yaml：生成端
+# wanxiang_abbrev.custom.yaml：生成端
 patch:
   "translator/dictionary": my_abbrev
 ```
