@@ -1,5 +1,13 @@
 # Changelog
 
+## [18.0.13](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.12...v18.0.13) (2026-09-26)
+
+
+### 🐛 Bug 修复
+
+* 整理优化直接辅助转换规则 ([7d6adf1](https://github.com/amzxyz/rime-wanxiang/commit/7d6adf1b7ed761cdafc2b44bafcf93d39c262481))
+* 整理优化转换规则 ([39cbd9a](https://github.com/amzxyz/rime-wanxiang/commit/39cbd9a8de9f62ea54f328f345a66b9837b93ee0))
+
 ## [18.0.12](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.11...v18.0.12) (2026-09-26)
 
 
