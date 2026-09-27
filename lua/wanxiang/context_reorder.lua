@@ -458,8 +458,6 @@ function P.init(env)
             end
         end
 
-        -- commit 可能刚写过当前上下文记录；无论新旧上下文字符串是否恰好相同，
-        -- 下一轮候选读取都必须重新取一次最新 DB 值。
         clear_context_score_cache()
         context_state.prev2 = context_state.prev1
         context_state.prev1 = text
@@ -615,96 +613,91 @@ local function make_candidate_reader(input)
     end
 end
 
-local function has_at_least_utf8_chars(text, count)
-    if not text or text == "" then return false end
-    local pos = utf8.offset(text, count)
-    return pos ~= nil and pos <= #text
+local function utf8_char_count(text)
+    if not text or text == "" or not (utf8 and utf8.codes) then return 0 end
+    local count = 0
+    for _ in utf8.codes(text) do count = count + 1 end
+    return count
 end
 
-local function protect_first_candidate(cand)
-    if not cand then return false end
-    local cand_type = cand.type or ""
-    local text = cand.text or ""
-    if cand_type == "sentence" then
-        return has_at_least_utf8_chars(text, 2)
-    end
-    if cand_type == "phrase" or cand_type == "user_phrase" then
-        return has_at_least_utf8_chars(text, 4)
-    end
-    return false
-end
-
-local function collect_scored_prefix(next_candidate, db, code2, code1, classifier_mode, limit, target_end)
-    local entries = {}
-    local boundary_cand = nil
-    local first_classifier = nil
-    local first_tier = nil
-    local first_c2 = nil
-    local first_c1 = nil
-    local needs_sort = false
-
-    while #entries < limit do
+local function collect_candidate_window(next_candidate, limit)
+    local window = {}
+    for i = 1, limit do
         local cand = next_candidate()
         if not cand then break end
-
-        local cand_type = cand.type or ""
-        if #entries == 0 then
-            if not REORDER_TYPE_WHITELIST[cand_type]
-                or (target_end ~= nil and cand._end ~= target_end)
-            then
-                boundary_cand = cand
-                break
-            end
-            if target_end == nil then target_end = cand._end end
-        elseif not REORDER_TYPE_WHITELIST[cand_type] or cand._end ~= target_end then
-            boundary_cand = cand
-            break
-        end
-
-        local text = cand.text or ""
-        local c2, c1 = get_context_counts_by_code(db, text, code2, code1)
-        local classifier = classifier_mode and CLASSIFIER_LOOKUP[text] or false
-        local tier = c2 > 0 and 2 or (c1 > 0 and 1 or 0)
-        local index = #entries + 1
-
-        if index == 1 then
-            first_classifier = classifier
-            first_tier = tier
-            first_c2 = c2
-            first_c1 = c1
-        elseif not needs_sort and (
-            classifier ~= first_classifier
-            or tier ~= first_tier
-            or c2 ~= first_c2
-            or c1 ~= first_c1
-        ) then
-            needs_sort = true
-        end
-
-        entries[index] = {
-            cand = cand,
-            c2 = c2,
-            c1 = c1,
-            classifier = classifier,
-            tier = tier,
-            raw_index = index,
-        }
-        remember_snapshot_candidate(text, c2 > 0 or c1 > 0)
+        window[i] = cand
     end
-
-    return entries, boundary_cand, needs_sort
+    return window
 end
 
-local function sort_scored_prefix(entries, classifier_mode)
-    sort(entries, function(a, b)
-        if classifier_mode and a.classifier ~= b.classifier then
-            return a.classifier
+local function is_reorderable_candidate(cand, target_end, target_length)
+    if not cand or not REORDER_TYPE_WHITELIST[cand.type or ""] then return false end
+    if cand._end ~= target_end then return false end
+
+    local text = cand.text or ""
+    if not is_valid_token(text) then return false end
+    if target_length and utf8_char_count(text) ~= target_length then return false end
+    return true
+end
+
+local function get_target_length(window, target_end, classifier_mode)
+    if classifier_mode then return 1 end
+
+    local target_length = nil
+    for i = 1, #window do
+        local cand = window[i]
+        if is_reorderable_candidate(cand, target_end, nil) then
+            local length = utf8_char_count(cand.text or "")
+            if length > 0 and (target_length == nil or length < target_length) then
+                target_length = length
+            end
         end
-        if a.tier ~= b.tier then return a.tier > b.tier end
-        if a.c2 ~= b.c2 then return a.c2 > b.c2 end
-        if a.c1 ~= b.c1 then return a.c1 > b.c1 end
-        return a.raw_index < b.raw_index
-    end)
+    end
+    return target_length
+end
+
+local function reorder_window(window, db, code2, code1, classifier_mode, target_end, target_length)
+    if not target_length then return end
+
+    local entries = {}
+    local slots = {}
+
+    for i = 1, #window do
+        local cand = window[i]
+        if is_reorderable_candidate(cand, target_end, target_length) then
+            local text = cand.text or ""
+            local c2, c1 = get_context_counts_by_code(db, text, code2, code1)
+            entries[#entries + 1] = {
+                cand = cand,
+                c2 = c2,
+                c1 = c1,
+                classifier = classifier_mode and CLASSIFIER_LOOKUP[text] or false,
+                tier = c2 > 0 and 2 or (c1 > 0 and 1 or 0),
+                raw_index = i,
+            }
+            slots[#slots + 1] = i
+            remember_snapshot_candidate(text, c2 > 0 or c1 > 0)
+        end
+    end
+
+    if #entries == 0 then return end
+
+    if #entries > 1 then
+        sort(entries, function(a, b)
+            if classifier_mode and a.classifier ~= b.classifier then
+                return a.classifier
+            end
+            if a.tier ~= b.tier then return a.tier > b.tier end
+            if a.c2 ~= b.c2 then return a.c2 > b.c2 end
+            if a.c1 ~= b.c1 then return a.c1 > b.c1 end
+            return a.raw_index < b.raw_index
+        end)
+    end
+
+    mark_learning_front(entries[1].cand.text or "")
+    for i = 1, #entries do
+        window[slots[i]] = entries[i].cand
+    end
 end
 
 function F.func(input, env)
@@ -726,10 +719,6 @@ function F.func(input, env)
         return
     end
 
-    local context1 = do_classifier and NUMBER_CONTEXT or context_state.prev1
-    local context2 = do_classifier and nil or context_state.prev2
-    local do_context = context1 ~= nil
-
     if do_fallback then
         clear_learning_snapshot()
         local next_candidate = make_candidate_reader(input)
@@ -743,11 +732,16 @@ function F.func(input, env)
             yield(first)
             if second then yield(second) end
         end
-        while true do local cand = next_candidate(); if not cand then break end; yield(cand) end
+        while true do
+            local cand = next_candidate()
+            if not cand then break end
+            yield(cand)
+        end
         return
     end
 
-    if not do_context and not do_classifier then
+    local context1 = do_classifier and NUMBER_CONTEXT or context_state.prev1
+    if not context1 then
         clear_learning_snapshot()
         for cand in input:iter() do yield(cand) end
         return
@@ -760,56 +754,25 @@ function F.func(input, env)
         return
     end
 
-    local next_candidate = make_candidate_reader(input)
+    local context2 = do_classifier and nil or context_state.prev2
     local code1 = ONE_PREFIX .. context1
     local code2 = context2 and (TWO_PREFIX .. context2 .. KEY_SEP .. context1) or nil
+    local target_end = #current_input
+    local next_candidate = make_candidate_reader(input)
+    local window = collect_candidate_window(next_candidate, FILTER_SCAN_LIMIT)
+
     begin_learning_snapshot(context2, context1)
-
-    local first = next_candidate()
-    if not first then return end
-
-    local protected_first = protect_first_candidate(first)
-    local protected_learnable = protected_first
-        and REORDER_TYPE_WHITELIST[first.type or ""] == true
-    local scan_limit = FILTER_SCAN_LIMIT
-    local target_end = nil
-    local yielded_first = false
-
-    if protected_first then
-        target_end = first._end
-        scan_limit = scan_limit - 1
-
-        if protected_learnable then
-            local text = first.text or ""
-            local c2, c1 = get_context_counts_by_code(db, text, code2, code1)
-            remember_snapshot_candidate(text, c2 > 0 or c1 > 0)
-            mark_learning_front(text)
-        else
-            yield(first)
-            yielded_first = true
-        end
-    else
-        local pending = first
-        local upstream = next_candidate
-        next_candidate = function()
-            if pending then
-                local cand = pending
-                pending = nil
-                return cand
-            end
-            return upstream()
-        end
+    if #window > 0 then
+        local target_length = get_target_length(window, target_end, do_classifier)
+        reorder_window(window, db, code2, code1, do_classifier, target_end, target_length)
+        for i = 1, #window do yield(window[i]) end
     end
 
-    local entries, boundary_cand, needs_sort = collect_scored_prefix(
-        next_candidate, db, code2, code1, do_classifier, scan_limit, target_end
-    )
-    if needs_sort then sort_scored_prefix(entries, do_classifier) end
-    if entries[1] then mark_learning_front(entries[1].cand.text or "") end
-    if protected_first and not yielded_first then yield(first) end
-    for i = 1, #entries do yield(entries[i].cand) end
-    if boundary_cand then yield(boundary_cand) end
-    while true do local cand = next_candidate(); if not cand then break end; yield(cand) end
+    while true do
+        local cand = next_candidate()
+        if not cand then break end
+        yield(cand)
+    end
 end
 
 function F.fini(env)
