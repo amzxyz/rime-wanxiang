@@ -180,7 +180,7 @@ base:
       - xform/^(.)(iàng|iǒng|uàng|ēn|en|īng|ing|é|ó)$/$1E/
       - xform/^(.)(iǎn|iōng|iong|uǎi|uò|ǎng|ō|o)$/$1P/
       - xform/^(.)(uāng|uang|ong|ǐng|ìng|uí|áng)$/$1W/
-      - xform/^(.)(uǎn|uái||uā|ua|én|uō|uo|ié|ǚ)$/$1S/
+      - xform/^(.)(uǎn|uái|uā|ua|én|uō|uo|ié|ǚ)$/$1S/
       - xform/^(.)(uán|ài|ěn|èn|uě|ǚe|ǎn|ǔn|iù)$/$1O/
       - xform/^(.)(uān|uan|àng|ái|iā|ia|uè|üè)$/$1D/
       - xform/^(.)(iáng|áo|ué|üé|ēi|ei|à|è|ǒ)$/$1I/
@@ -345,11 +345,9 @@ base:
       - xform/^([ae])(.*)(\d)$/$1$1$2$3/
       - xform/iu(\d)$/Ⓠ$1/
       - xform/[iu]a(\d)$/Ⓦ$1/
-      - xform/er(\d)$/Ⓡ$1/
-      - xform/[uv]an(\d)$/Ⓡ$1/
+      - xform/(?:er|[uv]an)(\d)$/Ⓡ$1/
       - xform/[uv]e(\d)$/Ⓣ$1/
-      - xform/v(\d)$/Ⓨ$1/
-      - xform/uai(\d)$/Ⓨ$1/
+      - xform/(?:v|uai)(\d)$/Ⓨ$1/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
@@ -396,11 +394,9 @@ base:
       - xform/^([ae])(.*)(\d)$/$1$1$2$3/
       - xform/iu(\d)$/Ⓠ$1/
       - xform/[iu]a(\d)$/Ⓦ$1/
-      - xform/er(\d)$/Ⓡ$1/
-      - xform/[uv]an(\d)$/Ⓡ$1/
+      - xform/(?:er|[uv]an)(\d)$/Ⓡ$1/
       - xform/[uv]e(\d)$/Ⓣ$1/
-      - xform/v(\d)$/Ⓨ$1/
-      - xform/uai(\d)$/Ⓨ$1/
+      - xform/(?:v|uai)(\d)$/Ⓨ$1/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
@@ -449,8 +445,7 @@ base:
       - xform/^([aoe].*)(\d)$/Ⓞ$1$2/
       - xform/ei(\d)$/Ⓠ$1/
       - xform/ian(\d)$/Ⓦ$1/
-      - xform/er(\d)$/Ⓡ$1/
-      - xform/iu(\d)$/Ⓡ$1/
+      - xform/(?:er|iu)(\d)$/Ⓡ$1/
       - xform/[iu]ang(\d)$/Ⓣ$1/
       - xform/ing(\d)$/Ⓨ$1/
       - xform/uo(\d)$/Ⓞ$1/
@@ -463,14 +458,12 @@ base:
       - xform/an(\d)$/Ⓙ$1/
       - xform/iao(\d)$/Ⓩ$1/
       - xform/ao(\d)$/Ⓚ$1/
-      - xform/in(\d)$/Ⓒ$1/
-      - xform/uai(\d)$/Ⓒ$1/
+      - xform/(?:in|uai)(\d)$/Ⓒ$1/
       - xform/ai(\d)$/Ⓛ$1/
       - xform/ie(\d)$/Ⓧ$1/
       - xform/ou(\d)$/Ⓑ$1/
       - xform/un(\d)$/Ⓝ$1/
-      - xform/[uv]e(\d)$/Ⓜ$1/
-      - xform/ui(\d)$/Ⓜ$1/
+      - xform/(?:[uv]e|ui)(\d)$/Ⓜ$1/
       - xlit/ⓆⓌⒺⓇⓉⓎⓄⓅⒶⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwertyopasdfghjklzxcvbnm/
       - derive/^(..)(\d)$/$1/
       - derive/^(.).+(\d)$/$1$2/
@@ -495,8 +488,7 @@ base:
       - xform/^([aoe].*)(\d)$/Ⓞ$1$2/
       - xform/en(\d)$/Ⓦ$1/
       - xform/eng(\d)$/Ⓣ$1/
-      - xform/in(\d)$/Ⓨ$1/
-      - xform/uai(\d)$/Ⓨ$1/
+      - xform/(?:in|uai)(\d)$/Ⓨ$1/
       - xform/^zh/Ⓤ/
       - xform/^sh/Ⓘ/
       - xform/uo(\d)$/Ⓞ$1/
@@ -507,17 +499,14 @@ base:
       - xform/ie(\d)$/Ⓓ$1/
       - xform/ian(\d)$/Ⓕ$1/
       - xform/(.)i?ong(\d)$/$1Ⓗ$2/
-      - xform/er(\d)$/Ⓙ$1/
-      - xform/iu(\d)$/Ⓙ$1/
+      - xform/(?:er|iu)(\d)$/Ⓙ$1/
       - xform/ei(\d)$/Ⓚ$1/
       - xform/uan(\d)$/Ⓛ$1/
       - xform/ing(\d)$/;$1/
       - xform/ou(\d)$/Ⓩ$1/
       - xform/[iu]a(\d)$/Ⓧ$1/
       - xform/iao(\d)$/Ⓑ$1/
-      - xform/ue(\d)$/Ⓝ$1/
-      - xform/ui(\d)$/Ⓝ$1/
-      - xform/ve(\d)$/Ⓝ$1/
+      - xform/(?:ue|ui|ve)(\d)$/Ⓝ$1/
       - xform/un(\d)$/Ⓜ$1/
       - xform/ao(\d)$/Ⓠ$1/
       - xform/an(\d)$/Ⓡ$1/
@@ -548,8 +537,7 @@ base:
       - xform/[iu]a(\d)$/Ⓑ$1/
       - xform/(ing|er)(\d)$/Ⓠ$2/
       - xform/[uv]an(\d)$/Ⓒ$1/
-      - xform/[uv]e(\d)$/Ⓧ$1/
-      - xform/uai(\d)$/Ⓧ$1/
+      - xform/(?:[uv]e|uai)(\d)$/Ⓧ$1/
       - xform/^sh/Ⓘ/
       - xform/^ch/Ⓤ/
       - xform/^zh/Ⓥ/
@@ -596,8 +584,7 @@ base:
       - xform/[vu]e(\d)$/Ⓧ$1/
       - xform/[iu]a(\d)$/Ⓠ$1/
       - xform/[vu]an(\d)$/Ⓦ$1/
-      - xform/iu(\d)$/Ⓨ$1/
-      - xform/uai(\d)$/Ⓨ$1/
+      - xform/(?:iu|uai)(\d)$/Ⓨ$1/
       - xform/i?ong(\d)$/Ⓢ$1/
       - xform/ui(\d)$/Ⓥ$1/
       - xform/^zh/Ⓥ/
@@ -1114,11 +1101,9 @@ lite:
       - xform/^([ae])(.*)$/$1$1$2/
       - xform/iu$/Ⓠ/
       - xform/[iu]a$/Ⓦ/
-      - xform/er$/Ⓡ/
-      - xform/[uv]an$/Ⓡ/
+      - xform/(?:er|[uv]an)$/Ⓡ/
       - xform/[uv]e$/Ⓣ/
-      - xform/v$/Ⓨ/
-      - xform/uai$/Ⓨ/
+      - xform/(?:v|uai)$/Ⓨ/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
@@ -1151,11 +1136,9 @@ lite:
       - xform/^([ae])(.*)$/$1$1$2/
       - xform/iu$/Ⓠ/
       - xform/[iu]a$/Ⓦ/
-      - xform/er$/Ⓡ/
-      - xform/[uv]an$/Ⓡ/
+      - xform/(?:er|[uv]an)$/Ⓡ/
       - xform/[uv]e$/Ⓣ/
-      - xform/v$/Ⓨ/
-      - xform/uai$/Ⓨ/
+      - xform/(?:v|uai)$/Ⓨ/
       - xform/^sh/Ⓤ/
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
@@ -1190,8 +1173,7 @@ lite:
       - xform/^([aoe].*)$/Ⓞ$1/
       - xform/ei$/Ⓠ/
       - xform/ian$/Ⓦ/
-      - xform/er$/Ⓡ/
-      - xform/iu$/Ⓡ/
+      - xform/(?:er|iu)$/Ⓡ/
       - xform/[iu]ang$/Ⓣ/
       - xform/ing$/Ⓨ/
       - xform/uo$/Ⓞ/
@@ -1204,14 +1186,12 @@ lite:
       - xform/an$/Ⓙ/
       - xform/iao$/Ⓩ/
       - xform/ao$/Ⓚ/
-      - xform/in$/Ⓒ/
-      - xform/uai$/Ⓒ/
+      - xform/(?:in|uai)$/Ⓒ/
       - xform/ai$/Ⓛ/
       - xform/ie$/Ⓧ/
       - xform/ou$/Ⓑ/
       - xform/un$/Ⓝ/
-      - xform/[uv]e$/Ⓜ/
-      - xform/ui$/Ⓜ/
+      - xform/(?:[uv]e|ui)$/Ⓜ/
       - xlit/ⓆⓌⒺⓇⓉⓎⓄⓅⒶⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwertyopasdfghjklzxcvbnm/
       #- abbrev/^([a-z]).+$/$1/   #简拼
 
@@ -1222,8 +1202,7 @@ lite:
       - xform/^([aoe].*)$/Ⓞ$1/
       - xform/en$/Ⓦ/
       - xform/eng$/Ⓣ/
-      - xform/in$/Ⓨ/
-      - xform/uai$/Ⓨ/
+      - xform/(?:in|uai)$/Ⓨ/
       - xform/^zh/Ⓤ/
       - xform/^sh/Ⓘ/
       - xform/uo$/Ⓞ/
@@ -1234,17 +1213,14 @@ lite:
       - xform/ie$/Ⓓ/
       - xform/ian$/Ⓕ/
       - xform/(.)i?ong$/$1Ⓗ/
-      - xform/er$/Ⓙ/
-      - xform/iu$/Ⓙ/
+      - xform/(?:er|iu)$/Ⓙ/
       - xform/ei$/Ⓚ/
       - xform/uan$/Ⓛ/
       - xform/ing$/;/
       - xform/ou$/Ⓩ/
       - xform/[iu]a$/Ⓧ/
       - xform/iao$/Ⓑ/
-      - xform/ue$/Ⓝ/
-      - xform/ui$/Ⓝ/
-      - xform/ve$/Ⓝ/
+      - xform/(?:ue|ui|ve)$/Ⓝ/
       - xform/un$/Ⓜ/
       - xform/ao$/Ⓠ/
       - xform/an$/Ⓡ/
@@ -1261,8 +1237,7 @@ lite:
       - xform/[iu]a$/Ⓑ/
       - xform/(ing|er)$/Ⓠ/
       - xform/[uv]an$/Ⓒ/
-      - xform/[uv]e$/Ⓧ/
-      - xform/uai$/Ⓧ/
+      - xform/(?:[uv]e|uai)$/Ⓧ/
       - xform/^sh/Ⓘ/
       - xform/^ch/Ⓤ/
       - xform/^zh/Ⓥ/
@@ -1295,8 +1270,7 @@ lite:
       - xform/[vu]e$/Ⓧ/
       - xform/[iu]a$/Ⓠ/
       - xform/[vu]an$/Ⓦ/
-      - xform/iu$/Ⓨ/
-      - xform/uai$/Ⓨ/
+      - xform/(?:iu|uai)$/Ⓨ/
       - xform/i?ong$/Ⓢ/
       - xform/ui$/Ⓥ/
       - xform/^zh/Ⓥ/
@@ -1451,8 +1425,7 @@ lite:
       - xform/[uv]an$/Ⓣ/
       - xform/ue$/Ⓛ/
       - xform/ve$/Ⓑ/
-      - xform/ing$/Ⓖ/
-      - xform/uai$/Ⓖ/
+      - xform/(?:ing|uai)$/Ⓖ/
       - xform/uo$/Ⓞ/
       - xform/[uv]n$/Ⓩ/
       - xform/(.)i?ong$/$1Ⓗ/
@@ -1738,11 +1711,9 @@ pro:
       - xform/^([aoe].*)(\d);/o$1$2;/
       - xform/^([ae])(.*)(\d);/$1$1$2$3;/
       - xform/iu(\d);/Ⓠ$1;/
-      - xform/er(\d);/Ⓡ$1;/
-      - xform/[uv]an(\d);/Ⓡ$1;/
+      - xform/(?:er|[uv]an)(\d);/Ⓡ$1;/
       - xform/[uv]e(\d);/Ⓣ$1;/
-      - xform/v(\d);/Ⓨ$1;/
-      - xform/uai(\d);/Ⓨ$1;/
+      - xform/(?:v|uai)(\d);/Ⓨ$1;/
       - xform/uo(\d);/Ⓞ$1;/
       - xform/[uv]n(\d);/Ⓟ$1;/
       - xform/i?ong(\d);/Ⓢ$1;/
@@ -1787,11 +1758,9 @@ pro:
       - xform/^([ae])(.*)(\d);/$1$1$2$3;/
       - xform/iu(\d);/Ⓠ$1;/
       - xform/[iu]a(\d);/Ⓦ$1;/
-      - xform/er(\d);/Ⓡ$1;/
-      - xform/[uv]an(\d);/Ⓡ$1;/
+      - xform/(?:er|[uv]an)(\d);/Ⓡ$1;/
       - xform/[uv]e(\d);/Ⓣ$1;/
-      - xform/v(\d);/Ⓨ$1;/
-      - xform/uai(\d);/Ⓨ$1;/
+      - xform/(?:v|uai)(\d);/Ⓨ$1;/
       - xform/uo(\d);/Ⓞ$1;/
       - xform/[uv]n(\d);/Ⓟ$1;/
       - xform/i?ong(\d);/Ⓢ$1;/
@@ -1834,8 +1803,7 @@ pro:
       - xform/^([aoe].*)(\d);/o$1$2;/
       - xform/en(\d);/Ⓦ$1;/
       - xform/eng(\d);/Ⓣ$1;/
-      - xform/in(\d);/Ⓨ$1;/
-      - xform/uai(\d);/Ⓨ$1;/
+      - xform/(?:in|uai)(\d);/Ⓨ$1;/
       - xform/uo(\d);/Ⓞ$1;/
       - xform/ai(\d);/Ⓟ$1;/
       - xform/[iu]ang(\d);/Ⓖ$1;/
@@ -1843,17 +1811,14 @@ pro:
       - xform/ie(\d);/Ⓓ$1;/
       - xform/ian(\d);/Ⓕ$1;/
       - xform/i?ong(\d);/Ⓗ$1;/
-      - xform/er(\d);/Ⓙ$1;/
-      - xform/iu(\d);/Ⓙ$1;/
+      - xform/(?:er|iu)(\d);/Ⓙ$1;/
       - xform/ei(\d);/Ⓚ$1;/
       - xform/uan(\d);/Ⓛ$1;/
       - xform/ing(\d);/◯$1;/  #注意这里的◯用来暂时替换分号
       - xform/ou(\d);/Ⓩ$1;/
       - xform/[iu]a(\d);/Ⓧ$1;/
       - xform/iao(\d);/Ⓑ$1;/
-      - xform/ue(\d);/Ⓝ$1;/
-      - xform/ui(\d);/Ⓝ$1;/
-      - xform/ve(\d);/Ⓝ$1;/
+      - xform/(?:ue|ui|ve)(\d);/Ⓝ$1;/
       - xform/un(\d);/Ⓜ$1;/
       - xform/ao(\d);/Ⓠ$1;/
       - xform/an(\d);/Ⓡ$1;/
@@ -1881,8 +1846,7 @@ pro:
       - xform/^([aoe].*)(\d);/Ⓞ$1$2;/
       - xform/ei(\d);/Ⓠ$1;/
       - xform/ian(\d);/Ⓦ$1;/
-      - xform/er(\d);/Ⓡ$1;/
-      - xform/iu(\d);/Ⓡ$1;/
+      - xform/(?:er|iu)(\d);/Ⓡ$1;/
       - xform/[iu]ang(\d);/Ⓣ$1;/
       - xform/ing(\d);/Ⓨ$1;/
       - xform/uo(\d);/Ⓞ$1;/
@@ -1895,14 +1859,12 @@ pro:
       - xform/an(\d);/Ⓙ$1;/
       - xform/iao(\d);/Ⓩ$1;/
       - xform/ao(\d);/Ⓚ$1;/
-      - xform/in(\d);/Ⓒ$1;/
-      - xform/uai(\d);/Ⓒ$1;/
+      - xform/(?:in|uai)(\d);/Ⓒ$1;/
       - xform/ai(\d);/Ⓛ$1;/
       - xform/ie(\d);/Ⓧ$1;/
       - xform/ou(\d);/Ⓑ$1;/
       - xform/un(\d);/Ⓝ$1;/
-      - xform/[uv]e(\d);/Ⓜ$1;/
-      - xform/ui(\d);/Ⓜ$1;/
+      - xform/(?:[uv]e|ui)(\d);/Ⓜ$1;/
       - xform/^zh/Ⓐ/
       - xform/^ch/Ⓔ/
       - xform/^sh/Ⓥ/
@@ -1927,8 +1889,7 @@ pro:
       - xform/^([ae])(.*)$/$1$1$2/
       - xform/iu(\d);/Ⓝ$1;/
       - xform/[iu]a(\d);/Ⓑ$1;/
-      - xform/er(\d);/Ⓠ$1;/
-      - xform/ing(\d);/Ⓠ$1;/
+      - xform/(?:er|ing)(\d);/Ⓠ$1;/
       - xform/[uv]an(\d);/Ⓒ$1;/
       - xform/(?:[uv]e|uai)(\d);/Ⓧ$1;/
       - xform/^sh/Ⓘ/
@@ -1973,8 +1934,7 @@ pro:
       - xform/[iu]a(\d);/Ⓠ$1;/
       - xform/[vu]an(\d);/Ⓦ$1;/
       - xform/ie(\d);/Ⓣ$1;/
-      - xform/iu(\d);/Ⓨ$1;/
-      - xform/uai(\d);/Ⓨ$1;/
+      - xform/(?:iu|uai)(\d);/Ⓨ$1;/
       - xform/uo(\d);/Ⓞ$1;/
       - xform/i?ong(\d);/Ⓢ$1;/
       - xform/ian(\d);/Ⓓ$1;/
@@ -1983,12 +1943,10 @@ pro:
       - xform/ang(\d);/Ⓖ$1;/
       - xform/eng(\d);/Ⓗ$1;/
       - xform/ing(\d);/Ⓙ$1;/
-      - xform/in(\d);/Ⓛ$1;/
-      - xform/er(\d);/Ⓛ$1;/
+      - xform/(?:in|er)(\d);/Ⓛ$1;/
       - xform/[vu]n(\d);/Ⓩ$1;/
       - xform/[vu]e(\d);/Ⓧ$1;/
-      - xform/v(\d);/Ⓥ$1;/
-      - xform/ui(\d);/Ⓥ$1;/
+      - xform/(?:v|ui)(\d);/Ⓥ$1;/
       - xform/([a-z]+)ao(\d);/$1Ⓒ$2;/
       - xform/([a-z]+)ai(\d);/$1Ⓚ$2;/
       - xform/([a-z]+)an(\d);/$1Ⓕ$2;/
@@ -2159,12 +2117,9 @@ pro:
       - xform/^([ao])(ng)?(\d)(;.*)$/$1$1$2$3$4/
       - xform/iao(\d)(;.*)$/Ⓟ$1$2/
       - xform/ian(\d)(;.*)$/Ⓝ$1$2/
-      - xform/iang(\d)(;.*)$/Ⓧ$1$2/
-      - xform/uang(\d)(;.*)$/Ⓧ$1$2/
-      - xform/iong(\d)(;.*)$/Ⓗ$1$2/
-      - xform/ong(\d)(;.*)$/Ⓗ$1$2/
-      - xform/ing(\d)(;.*)$/Ⓖ$1$2/
-      - xform/uai(\d)(;.*)$/Ⓖ$1$2/
+      - xform/[iu]ang(\d)(;.*)$/Ⓧ$1$2/
+      - xform/i?ong(\d)(;.*)$/Ⓗ$1$2/
+      - xform/(?:ing|uai)(\d)(;.*)$/Ⓖ$1$2/
       - xform/ua(\d)(;.*)$/Ⓦ$1$2/
       - xform/uo(\d)(;.*)$/Ⓞ$1$2/
       - xform/ue(\d)(;.*)$/Ⓛ$1$2/
@@ -2173,8 +2128,7 @@ pro:
       - xform/iu(\d)(;.*)$/Ⓠ$1$2/
       - xform/ui(\d)(;.*)$/Ⓥ$1$2/
       - xform/un(\d)(;.*)$/Ⓩ$1$2/
-      - xform/van(\d)(;.*)$/Ⓣ$1$2/
-      - xform/uan(\d)(;.*)$/Ⓣ$1$2/
+      - xform/[vu]an(\d)(;.*)$/Ⓣ$1$2/
       - xform/ang(\d)(;.*)$/Ⓨ$1$2/
       - xform/eng(\d)(;.*)$/Ⓕ$1$2/
       - xform/ia(\d)(;.*)$/Ⓚ$1$2/
@@ -2331,25 +2285,21 @@ reverse:
     __append:
       - derive/^([jqxy])u(?=^|$|')/$1v/
       - derive/'([jqxy])u(?=^|$|')/'$1v/
-      - derive/^([aoe])([ioun])(?=^|$|')/$1$1$2/
-      - derive/'([aoe])([ioun])(?=^|$|')/'$1$1$2/
-      - xform/^([aoe])(ng)?(?=^|$|')/$1$1$2/
-      - xform/'([aoe])(ng)?(?=^|$|')/'$1$1$2/
+      - derive/^(a|o|e)(i|o|u|n)(?=^|$|')/$1$1$2/
+      - derive/'(a|o|e)(i|o|u|n)(?=^|$|')/'$1$1$2/
+      - xform/('|^)(a|o|e)(ng)?(?=^|$|')/$1$2$2$3/
       - xform/iu(?=^|$|')/<q>/
-      - xform/[iu]a(?=^|$|')/<w>/
-      - xform/[uv]an(?=^|$|')/<r>/
-      - xform/[uv]e(?=^|$|')/<t>/
-      - xform/ing(?=^|$|')|uai(?=^|$|')/<y>/
-      - xform/^sh/<u>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<u>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - xform/(?:i|u)a(?=^|$|')/<w>/
+      - xform/(?:u|v)an(?=^|$|')/<r>/
+      - xform/(?:u|v)e(?=^|$|')/<t>/
+      - xform/(?:ing|uai)(?=^|$|')/<y>/
+      - xform/('|^)sh/$1<u>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/uo(?=^|$|')/<o>/
-      - xform/[uv]n(?=^|$|')/<p>/
+      - xform/(?:u|v)n(?=^|$|')/<p>/
       - xform/([a-z>])i?ong(?=^|$|')/$1<s>/
-      - xform/[iu]ang(?=^|$|')/<d>/
+      - xform/(?:i|u)ang(?=^|$|')/<d>/
       - xform/([a-z>])en(?=^|$|')/$1<f>/
       - xform/([a-z>])eng(?=^|$|')/$1<g>/
       - xform/([a-z>])ang(?=^|$|')/$1<h>/
@@ -2364,70 +2314,59 @@ reverse:
       - xform/([a-z>])ou(?=^|$|')/$1<b>/
       - xform/in(?=^|$|')/<n>/
       - xform/'|<|>//
-
-
   小鹤双拼:
     __append:
       - derive/^([jqxy])u(?=^|$|')/$1v/
       - derive/'([jqxy])u(?=^|$|')/'$1v/
-      - derive/^([aoe])([ioun])(?=^|$|')/$1$1$2/
-      - derive/'([aoe])([ioun])(?=^|$|')/'$1$1$2/
-      - xform/^([aoe])(ng)?(?=^|$|')/$1$1$2/
-      - xform/'([aoe])(ng)?(?=^|$|')/'$1$1$2/
+      - derive/^(a|o|e)(i|o|u|n)(?=^|$|')/$1$1$2/
+      - derive/'(a|o|e)(i|o|u|n)(?=^|$|')/'$1$1$2/
+      - xform/('|^)(a|o|e)(ng)?(?=^|$|')/$1$2$2$3/
       - xform/iu(?=^|$|')/<q>/
       - xform/(.)ei(?=^|$|')/$1<w>/
       - xform/uan(?=^|$|')/<r>/
-      - xform/[uv]e(?=^|$|')/<t>/
+      - xform/(?:u|v)e(?=^|$|')/<t>/
       - xform/un(?=^|$|')/<y>/
-      - xform/^sh/<u>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<u>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - xform/('|^)sh/$1<u>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/uo(?=^|$|')/<o>/
       - xform/ie(?=^|$|')/<p>/
       - xform/([a-z>])i?ong(?=^|$|')/$1<s>/
-      - xform/ing(?=^|$|')|uai(?=^|$|')/<k>/
+      - xform/(?:ing|uai)(?=^|$|')/<k>/
       - xform/([a-z>])ai(?=^|$|')/$1<d>/
       - xform/([a-z>])en(?=^|$|')/$1<f>/
       - xform/([a-z>])eng(?=^|$|')/$1<g>/
-      - xform/[iu]ang(?=^|$|')/<l>/
+      - xform/(?:i|u)ang(?=^|$|')/<l>/
       - xform/([a-z>])ang(?=^|$|')/$1<h>/
       - xform/ian(?=^|$|')/<m>/
       - xform/([a-z>])an(?=^|$|')/$1<j>/
       - xform/([a-z>])ou(?=^|$|')/$1<z>/
-      - xform/[iu]a(?=^|$|')/<x>/
+      - xform/(?:i|u)a(?=^|$|')/<x>/
       - xform/iao(?=^|$|')/<n>/
       - xform/([a-z>])ao(?=^|$|')/$1<c>/
       - xform/ui(?=^|$|')/<v>/
       - xform/in(?=^|$|')/<b>/
       - xform/'|<|>//
-
-
   微软双拼:
     __append:
       - derive/^([jqxy])u(?=^|$|')/$1v/
       - derive/'([jqxy])u(?=^|$|')/'$1v/
-      - derive/^([aoe].*)(?=^|$|')/o$1/
-      - derive/'([aoe].*)(?=^|$|')/'o$1/
-      - xform/^([ae])(.*)(?=^|$|')/$1$1$2/
-      - xform/'([ae])(.*)(?=^|$|')/'$1$1$2/
+      - derive/^((?:a|o|e).*)(?=^|$|')/o$1/
+      - derive/'((?:a|o|e).*)(?=^|$|')/'o$1/
+      - xform/^(a|e)(.*)(?=^|$|')/$1$1$2/
+      - xform/'(a|e)(.*)(?=^|$|')/'$1$1$2/
       - xform/iu(?=^|$|')/<q>/
-      - xform/[iu]a(?=^|$|')/<w>/
-      - xform/er(?=^|$|')|[uv]an(?=^|$|')/<r>/
-      - xform/[uv]e(?=^|$|')/<t>/
-      - xform/v(?=^|$|')|uai(?=^|$|')/<y>/
-      - xform/^sh/<u>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<u>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - xform/(?:i|u)a(?=^|$|')/<w>/
+      - xform/(?:er|(?:u|v)an)(?=^|$|')/<r>/
+      - xform/(?:u|v)e(?=^|$|')/<t>/
+      - xform/(?:v|uai)(?=^|$|')/<y>/
+      - xform/('|^)sh/$1<u>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/uo(?=^|$|')/<o>/
-      - xform/[uv]n(?=^|$|')/<p>/
+      - xform/(?:u|v)n(?=^|$|')/<p>/
       - xform/([a-z>])i?ong(?=^|$|')/$1<s>/
-      - xform/[iu]ang(?=^|$|')/<d>/
+      - xform/(?:i|u)ang(?=^|$|')/<d>/
       - xform/([a-z>])en(?=^|$|')/$1<f>/
       - xform/([a-z>])eng(?=^|$|')/$1<g>/
       - xform/([a-z>])ang(?=^|$|')/$1<h>/
@@ -2444,31 +2383,26 @@ reverse:
       - xform/in(?=^|$|')/<n>/
       - xform/ing(?=^|$|')/;/
       - xform/'|<|>//
-
-
   搜狗双拼:
     __append:
       - derive/^([jqxy])u(?=^|$|')/$1v/
       - derive/'([jqxy])u(?=^|$|')/'$1v/
-      - derive/^([aoe].*)(?=^|$|')/o$1/
-      - derive/'([aoe].*)(?=^|$|')/'o$1/
-      - xform/^([ae])(.*)(?=^|$|')/$1$1$2/
-      - xform/'([ae])(.*)(?=^|$|')/'$1$1$2/
+      - derive/^((?:a|o|e).*)(?=^|$|')/o$1/
+      - derive/'((?:a|o|e).*)(?=^|$|')/'o$1/
+      - xform/^(a|e)(.*)(?=^|$|')/$1$1$2/
+      - xform/'(a|e)(.*)(?=^|$|')/'$1$1$2/
       - xform/iu(?=^|$|')/<q>/
-      - xform/[iu]a(?=^|$|')/<w>/
-      - xform/er(?=^|$|')|[uv]an(?=^|$|')/<r>/
-      - xform/[uv]e(?=^|$|')/<t>/
-      - xform/v(?=^|$|')|uai(?=^|$|')/<y>/
-      - xform/^sh/<u>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<u>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - xform/(?:i|u)a(?=^|$|')/<w>/
+      - xform/(?:er|(?:u|v)an)(?=^|$|')/<r>/
+      - xform/(?:u|v)e(?=^|$|')/<t>/
+      - xform/(?:v|uai)(?=^|$|')/<y>/
+      - xform/('|^)sh/$1<u>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/uo(?=^|$|')/<o>/
-      - xform/[uv]n(?=^|$|')/<p>/
+      - xform/(?:u|v)n(?=^|$|')/<p>/
       - xform/([a-z>])i?ong(?=^|$|')/$1<s>/
-      - xform/[iu]ang(?=^|$|')/<d>/
+      - xform/(?:i|u)ang(?=^|$|')/<d>/
       - xform/([a-z>])en(?=^|$|')/$1<f>/
       - xform/([a-z>])eng(?=^|$|')/$1<g>/
       - xform/([a-z>])ang(?=^|$|')/$1<h>/
@@ -2484,102 +2418,85 @@ reverse:
       - xform/in(?=^|$|')/<n>/
       - xform/ing(?=^|$|')/;/
       - xform/'|<|>//
-
-
   智能ABC:
     __append:
-      - xform/^zh/<a>/
-      - xform/^ch/<e>/
-      - xform/^sh/<v>/
-      - xform/'zh/'<a>/
-      - xform/'ch/'<e>/
-      - xform/'sh/'<v>/
-      - xform/^([aoe].*)(?=^|$|')/<o>$1/
-      - xform/'([aoe].*)(?=^|$|')/'<o>$1/
+      - xform/('|^)zh/$1<a>/
+      - xform/('|^)ch/$1<e>/
+      - xform/('|^)sh/$1<v>/
+      - xform/^((?:a|o|e).*)(?=^|$|')/<o>$1/
+      - xform/'((?:a|o|e).*)(?=^|$|')/'<o>$1/
       - xform/ei(?=^|$|')/<q>/
       - xform/ian(?=^|$|')/<w>/
-      - xform/er(?=^|$|')|iu(?=^|$|')/<r>/
-      - xform/[iu]ang(?=^|$|')/<t>/
+      - xform/(?:er|iu)(?=^|$|')/<r>/
+      - xform/(?:i|u)ang(?=^|$|')/<t>/
       - xform/ing(?=^|$|')/<y>/
       - xform/uo(?=^|$|')/<o>/
       - xform/uan(?=^|$|')/<p>/
       - xform/([a-z>])i?ong(?=^|$|')/$1<s>/
-      - xform/[iu]a(?=^|$|')/<d>/
+      - xform/(?:i|u)a(?=^|$|')/<d>/
       - xform/en(?=^|$|')/<f>/
       - xform/eng(?=^|$|')/<g>/
       - xform/ang(?=^|$|')/<h>/
       - xform/an(?=^|$|')/<j>/
       - xform/iao(?=^|$|')/<z>/
       - xform/ao(?=^|$|')/<k>/
-      - xform/in(?=^|$|')|uai(?=^|$|')/<c>/
+      - xform/(?:in|uai)(?=^|$|')/<c>/
       - xform/ai(?=^|$|')/<l>/
       - xform/ie(?=^|$|')/<x>/
       - xform/ou(?=^|$|')/<b>/
       - xform/un(?=^|$|')/<n>/
-      - xform/[uv]e(?=^|$|')|ui(?=^|$|')/<m>/
+      - xform/(?:(?:u|v)e|ui)(?=^|$|')/<m>/
       - xform/'|<|>//
-
-
   紫光双拼:
     __append:
       - derive/^([jqxy])u(?=^|$|')/$1v/
       - derive/'([jqxy])u(?=^|$|')/'$1v/
-      - xform/'([aoe].*)(?=^|$|')/'<o>$1/
-      - xform/^([aoe].*)(?=^|$|')/<o>$1/
+      - xform/'((?:a|o|e).*)(?=^|$|')/'<o>$1/
+      - xform/^((?:a|o|e).*)(?=^|$|')/<o>$1/
       - xform/en(?=^|$|')/<w>/
       - xform/eng(?=^|$|')/<t>/
-      - xform/in(?=^|$|')|uai(?=^|$|')/<y>/
-      - xform/^zh/<u>/
-      - xform/^sh/<i>/
-      - xform/'zh/'<u>/
-      - xform/'sh/'<i>/
+      - xform/(?:in|uai)(?=^|$|')/<y>/
+      - xform/('|^)zh/$1<u>/
+      - xform/('|^)sh/$1<i>/
       - xform/uo(?=^|$|')/<o>/
       - xform/ai(?=^|$|')/<p>/
-      - xform/^ch/<a>/
-      - xform/'ch/'<a>/
-      - xform/[iu]ang(?=^|$|')/<g>/
+      - xform/('|^)ch/$1<a>/
+      - xform/(?:i|u)ang(?=^|$|')/<g>/
       - xform/ang(?=^|$|')/<s>/
       - xform/ie(?=^|$|')/<d>/
       - xform/ian(?=^|$|')/<f>/
       - xform/([a-z>])i?ong(?=^|$|')/$1<h>/
-      - xform/er(?=^|$|')|iu(?=^|$|')/<j>/
+      - xform/(?:er|iu)(?=^|$|')/<j>/
       - xform/ei(?=^|$|')/<k>/
       - xform/uan(?=^|$|')/<l>/
       - xform/ing(?=^|$|')/;/
       - xform/ou(?=^|$|')/<z>/
-      - xform/[iu]a(?=^|$|')/<x>/
+      - xform/(?:i|u)a(?=^|$|')/<x>/
       - xform/iao(?=^|$|')/<b>/
-      - xform/ue(?=^|$|')|ui(?=^|$|')|ve(?=^|$|')/<n>/
+      - xform/(?:ue|ui|ve)(?=^|$|')/<n>/
       - xform/un(?=^|$|')/<m>/
       - xform/ao(?=^|$|')/<q>/
       - xform/an(?=^|$|')/<r>/
       - xform/'|<|>//
-
-
   拼音加加:
     __append:
       - derive/^([jqxy])u(?=^|$|')/$1v/
       - derive/'([jqxy])u(?=^|$|')/'$1v/
-      - derive/^([aoe])([ioun])(?=^|$|')/$1$1$2/
-      - derive/'([aoe])([ioun])(?=^|$|')/'$1$1$2/
-      - xform/^([aoe])(ng)?(?=^|$|')/$1$1$2/
-      - xform/'([aoe])(ng)?(?=^|$|')/'$1$1$2/
+      - derive/^(a|o|e)(i|o|u|n)(?=^|$|')/$1$1$2/
+      - derive/'(a|o|e)(i|o|u|n)(?=^|$|')/'$1$1$2/
+      - xform/('|^)(a|o|e)(ng)?(?=^|$|')/$1$2$2$3/
       - xform/iu(?=^|$|')/<n>/
-      - xform/[iu]a(?=^|$|')/<b>/
-      - xform/[uv]an(?=^|$|')/<c>/
-      - xform/[uv]e(?=^|$|')/<x>/
-      - xform/uai(?=^|$|')/<x>/
-      - xform/ing(?=^|$|')|er(?=^|$|')/<q>/
-      - xform/^sh/<i>/
-      - xform/^ch/<u>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<i>/
-      - xform/'ch/'<u>/
-      - xform/'zh/'<v>/
+      - xform/(?:i|u)a(?=^|$|')/<b>/
+      - xform/(?:u|v)an(?=^|$|')/<c>/
+      - xform/(?:(?:u|v)e|uai)(?=^|$|')/<x>/
+      - xform/(?:ing|er)(?=^|$|')/<q>/
+      - xform/('|^)sh/$1<i>/
+      - xform/('|^)ch/$1<u>/
+      - xform/('|^)zh/$1<v>/
       - xform/uo(?=^|$|')/<o>/
-      - xform/[uv]n(?=^|$|')/<z>/
+      - xform/(?:u|v)n(?=^|$|')/<z>/
       - xform/([a-z>])i?ong(?=^|$|')/$1<y>/
-      - xform/[iu]ang(?=^|$|')/<h>/
+      - xform/(?:i|u)ang(?=^|$|')/<h>/
       - xform/([a-z>])en(?=^|$|')/$1<r>/
       - xform/([a-z>])eng(?=^|$|')/$1<t>/
       - xform/([a-z>])ang(?=^|$|')/$1<g>/
@@ -2594,38 +2511,32 @@ reverse:
       - xform/([a-z>])ou(?=^|$|')/$1<p>/
       - xform/in(?=^|$|')/<l>/
       - xform/'|<|>//
-
-
   国标双拼:
     __append:
-      - derive/^([aoe])([ioun])(?=^|$|')/$1$1$2/
-      - derive/'([aoe])([ioun])(?=^|$|')/'$1$1$2/
-      - xform/^([aoe])(ng)?(?=^|$|')/$1$1$2/
-      - xform/'([aoe])(ng)?(?=^|$|')/'$1$1$2/
+      - derive/^(a|o|e)(i|o|u|n)(?=^|$|')/$1$1$2/
+      - derive/'(a|o|e)(i|o|u|n)(?=^|$|')/'$1$1$2/
+      - xform/('|^)(a|o|e)(ng)?(?=^|$|')/$1$2$2$3/
       - xform/iu(?=^|$|')/<y>/
       - xform/(.)ei(?=^|$|')/$1<b>/
       - xform/uan(?=^|$|')/<w>/
-      - xform/[uv]e(?=^|$|')/<x>/
+      - xform/(?:u|v)e(?=^|$|')/<x>/
       - xform/un(?=^|$|')/<z>/
-      - xform/^sh/<u>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<u>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - xform/('|^)sh/$1<u>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/uo(?=^|$|')/<o>/
       - xform/ie(?=^|$|')/<t>/
       - xform/([a-z>])i?ong(?=^|$|')/$1<s>/
-      - xform/ing(?=^|$|')|uai(?=^|$|')/<j>/
+      - xform/(?:ing|uai)(?=^|$|')/<j>/
       - xform/([a-z>])ai(?=^|$|')/$1<k>/
       - xform/([a-z>])en(?=^|$|')/$1<r>/
       - xform/([a-z>])eng(?=^|$|')/$1<h>/
-      - xform/[iu]ang(?=^|$|')/<n>/
+      - xform/(?:i|u)ang(?=^|$|')/<n>/
       - xform/([a-z>])ang(?=^|$|')/$1<g>/
       - xform/ian(?=^|$|')/<d>/
       - xform/([a-z>])an(?=^|$|')/$1<f>/
       - xform/([a-z>])ou(?=^|$|')/$1<p>/
-      - xform/[iu]a(?=^|$|')/<q>/
+      - xform/(?:i|u)a(?=^|$|')/<q>/
       - xform/iao(?=^|$|')/<m>/
       - xform/([a-z>])ao(?=^|$|')/$1<c>/
       - xform/ui(?=^|$|')/<v>/
@@ -2635,30 +2546,26 @@ reverse:
 
   首道双拼:
     __append:
-      - derive/^([aoe])([ioun])(?=^|$|')/$1$1$2/
-      - derive/'([aoe])([ioun])(?=^|$|')/'$1$1$2/
-      - xform/^([aoe])(ng)?(?=^|$|')/$1$1$2/
-      - xform/'([aoe])(ng)?(?=^|$|')/'$1$1$2/
+      - derive/^(a|o|e)(i|o|u|n)(?=^|$|')/$1$1$2/
+      - derive/'(a|o|e)(i|o|u|n)(?=^|$|')/'$1$1$2/
+      - xform/('|^)(a|o|e)(ng)?(?=^|$|')/$1$2$2$3/
       - xform/iu(?=^|$|')/<q>/
       - xform/(.)ei(?=^|$|')/$1<m>/
       - xform/uan(?=^|$|')/<t>/
       - xform/ve(?=^|$|')/<b>/
       - xform/ue(?=^|$|')/<l>/
       - xform/un(?=^|$|')/<z>/
-      - xform/^sh/<e>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<e>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - xform/('|^)sh/$1<e>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/uo(?=^|$|')/<o>/
       - xform/ie(?=^|$|')/<r>/
       - xform/([a-z>])i?ong(?=^|$|')/$1<h>/
-      - xform/ing(?=^|$|')|uai(?=^|$|')/<g>/
+      - xform/(?:ing|uai)(?=^|$|')/<g>/
       - xform/([a-z>])ai(?=^|$|')/$1<l>/
       - xform/([a-z>])en(?=^|$|')/$1<k>/
       - xform/([a-z>])eng(?=^|$|')/$1<f>/
-      - xform/[iu]ang(?=^|$|')/<x>/
+      - xform/(?:i|u)ang(?=^|$|')/<x>/
       - xform/([a-z>])ang(?=^|$|')/$1<y>/
       - xform/ian(?=^|$|')/<n>/
       - xform/([a-z>])an(?=^|$|')/$1<j>/
@@ -2675,19 +2582,18 @@ reverse:
     __append:
       - derive/^([jqxy])u(?=^|$|')/$1v/
       - derive/'([jqxy])u(?=^|$|')/'$1v/
-      - derive/^([aoe].*)(?=^|$|')/q$1/
-      - derive/'([aoe].*)(?=^|$|')/'q$1/
-      - xform/^([aoe])(.*)(?=^|$|')/q$1$2/
-      - xform/'([aoe])(.*)(?=^|$|')/'q$1$2/
-      - xform/(^|')c/$1f/
-      - xform/(^|')s/$1m/
-      - xform/(^|')z/$1w/
-      - xform/(^|')k/$1j/
-      - xform/(^|')p/$1h/
-      - xform/(^|')r/$1n/
-      - xform/(^|')mh/$1<s>/
-      - xform/(^|')fh/$1<c>/
-      - xform/(^|')wh/$1<z>/
+      - derive/^(a|o|e)(.*)(?=^|$|')/q$1/
+      - derive/'(a|o|e)(.*)(?=^|$|')/'q$1/
+      - xform/('|^)(a|o|e)(.*)(?=^|$|')/$1q$2$3/
+      - xform/('|^)c/$1f/
+      - xform/('|^)s/$1m/
+      - xform/('|^)z/$1w/
+      - xform/('|^)k/$1j/
+      - xform/('|^)p/$1h/
+      - xform/('|^)r/$1n/
+      - xform/('|^)mh/$1<s>/
+      - xform/('|^)fh/$1<c>/
+      - xform/('|^)wh/$1<z>/
       - xform/([a-z>])(?:uang|ian)(?=^|$|')/$1<q>/
       - xform/([a-z>])(?:iang|ui)(?=^|$|')/$1<c>/
       - xform/([a-z>])(?:ang|iao)(?=^|$|')/$1<z>/
@@ -2696,7 +2602,7 @@ reverse:
       - xform/([a-z>])(?:ong|er)(?=^|$|')/$1<t>/
       - xform/([a-z>])(?:ie|uo)(?=^|$|')/$1<m>/
       - xform/([a-z>])(?:uai|uan|o|v)(?=^|$|')/$1<x>/
-      - xform/([a-z>])(?:ai|[uv]e)(?=^|$|')/$1<l>/
+      - xform/([a-z>])(?:ai|(?:u|v)e)(?=^|$|')/$1<l>/
       - xform/([a-z>])an(?=^|$|')/$1<n>/
       - xform/([a-z>])(?:ei|un)(?=^|$|')/$1<g>/
       - xform/([a-z>])(?:en|in)(?=^|$|')/$1<s>/
@@ -2712,27 +2618,23 @@ reverse:
     __append:
       - derive/^([jqxy])u(?=^|$|')/$1v/
       - derive/'([jqxy])u(?=^|$|')/'$1v/
-      - derive/^([aoe])([ioun])(?=^|$|')/$1$1$2/
-      - derive/'([aoe])([ioun])(?=^|$|')/'$1$1$2/
-      - xform/^([aoe])(ng)?(?=^|$|')/$1$1$2/
-      - xform/'([aoe])(ng)?(?=^|$|')/'$1$1$2/
-      - xform/^sh/<u>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<u>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - derive/^(a|o|e)(i|o|u|n)(?=^|$|')/$1$1$2/
+      - derive/'(a|o|e)(i|o|u|n)(?=^|$|')/'$1$1$2/
+      - xform/('|^)(a|o|e)(ng)?(?=^|$|')/$1$2$2$3/
+      - xform/('|^)sh/$1<u>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/([a-z>])i?ong(?=^|$|')/$1<s>/
-      - xform/[iu]ang(?=^|$|')/<l>/
+      - xform/(?:i|u)ang(?=^|$|')/<l>/
       - xform/iao(?=^|$|')/<n>/
-      - xform/ing(?=^|$|')|uai(?=^|$|')/<f>/
+      - xform/(?:ing|uai)(?=^|$|')/<f>/
       - xform/uan(?=^|$|')/<h>/
       - xform/ian(?=^|$|')/<m>/
       - xform/eng(?=^|$|')/<z>/
       - xform/ang(?=^|$|')/<g>/
       - xform/ua(?=^|$|')/<q>/
       - xform/iu(?=^|$|')/<t>/
-      - xform/[uv]e(?=^|$|')/<y>/
+      - xform/(?:u|v)e(?=^|$|')/<y>/
       - xform/uo(?=^|$|')/<o>/
       - xform/ie(?=^|$|')/<p>/
       - xform/ia(?=^|$|')/<k>/
@@ -2752,41 +2654,34 @@ reverse:
     __append:
       - derive/^([jqxy])u(?=^|$|')/$1v/
       - derive/'([jqxy])u(?=^|$|')/'$1v/
-      - derive/^([aoe])([ioun])(?=^|$|')/$1$1$2/
-      - derive/'([aoe])([ioun])(?=^|$|')/'$1$1$2/
-      - xform/^([aoe])(ng)?(?=^|$|')/$1$1$2/
-      - xform/'([aoe])(ng)?(?=^|$|')/'$1$1$2/
+      - derive/^(a|o|e)(i|o|u|n)(?=^|$|')/$1$1$2/
+      - derive/'(a|o|e)(i|o|u|n)(?=^|$|')/'$1$1$2/
+      - xform/('|^)(a|o|e)(ng)?(?=^|$|')/$1$2$2$3/
       - derive/^zh/<a>/
       - derive/'zh/'<a>/
       - derive/^sh/<v>/
       - derive/'sh/'<v>/
-      - xform/^zh/<o>/
-      - xform/^ch/<i>/
-      - xform/^sh/<u>/
-      - xform/'zh/'<o>/
-      - xform/'ch/'<i>/
-      - xform/'sh/'<u>/
+      - xform/('|^)zh/$1<o>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)sh/$1<u>/
       - xform/uang(?=^|$|')/<x>/
-      - xform/uai(?=^|$|')/<g>/
+      - xform/(?:uai|ing)(?=^|$|')/<g>/
       - xform/uan(?=^|$|')/<z>/
-      - xform/van(?=^|$|')/<j>/
+      - xform/(?:van|eng)(?=^|$|')/<j>/
       - xform/ua(?=^|$|')/<q>/
-      - xform/iang(?=^|$|')/<n>/
+      - xform/(?:iang|ui)(?=^|$|')/<n>/
       - xform/i?ong(?=^|$|')/<l>/
       - xform/ian(?=^|$|')/<c>/
       - xform/iao(?=^|$|')/<m>/
-      - xform/ing(?=^|$|')/<g>/
       - xform/iu(?=^|$|')/<t>/
       - xform/ia(?=^|$|')/<k>/
       - xform/ie(?=^|$|')/<p>/
       - xform/in(?=^|$|')/<b>/
-      - xform/eng(?=^|$|')/<j>/
       - xform/ang(?=^|$|')/<f>/
       - xform/uo(?=^|$|')/<o>/
       - xform/un(?=^|$|')/<y>/
-      - xform/[uv]e(?=^|$|')/<h>/
+      - xform/(?:u|v)e(?=^|$|')/<h>/
       - xform/vn(?=^|$|')/<w>/
-      - xform/ui(?=^|$|')/<n>/
       - derive/<n>(?=^|$|')/<v>/
       - derive/<c>(?=^|$|')/<q>/
       - xform/([a-z>])ao(?=^|$|')/$1<s>/
@@ -2877,8 +2772,7 @@ mixed:
       - xform/(^|')sh/$1<u>/
       - xform/(^|')ch/$1<i>/
       - xform/(^|')zh/$1<v>/
-      - xform/(^|')([qtypdjlxnm])ing(?=$|')/$1$2<y>/
-      - xform/(^|')((?:<[iu]>|[gh]))uai(?=$|')/$1$2<y>/
+      - xform/(^|')((?:[qtypdjlxnm](?=ing)|(?:<[iu]>|[gh])(?=uai)))(?:ing|uai)(?=$|')/$1$2<y>/
       - xform/(^|')((?:<[viu]>|[qrtysdghjklzxcn]))[uv]an(?=$|')/$1$2<r>/
       - xform/(^|')((?:<[viu]>|[tsdghklzcn]))uo(?=$|')/$1$2<o>/
       - xform/(^|')((?:<[viu]>|[qrtysdghjklzxc]))[uv]n(?=$|')/$1$2<p>/
@@ -2910,12 +2804,9 @@ mixed:
       - xform/('|^)([aoe])(ng)?(?=^|$|')/$1$2$2$3/
       - xform/('|^)([qdjlxnm])iu(?=^|$|')/$1$2<q>/
       - xform/('|^)([qyjlxn])[uv]e(?=^|$|')/$1$2<t>/
-      - xform/^sh/<u>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<u>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - xform/('|^)sh/$1<u>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/('|^)((?:<v>|[aoewtpdfghklzvbnm]))ei(?=^|$|')/$1$2<w>/
       - xform/('|^)((?:<v>|<i>|<u>|[qrtysdghjklzxc]))un(?=^|$|')/$1$2<y>/
       - xform/('|^)((?:<v>|<i>|<u>|[qrtysdghjklzxcn]))uan(?=^|$|')/$1$2<r>/
@@ -2950,12 +2841,9 @@ mixed:
       - xform/('|^)([qdjlxnm])iu(?=^|$|')/$1$2<q>/
       - xform/('|^)([tghkljx])[iu]a(?=^|$|')/$1$2<w>/
       - xform/('|^)([qyjlxn])[uv]e(?=^|$|')/$1$2<t>/
-      - xform/^sh/<u>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<u>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - xform/('|^)sh/$1<u>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/('|^)((?:[yjlx](?=v)|(?:<i>|<u>|[gh])(?=uai)))(?:v|uai)(?=^|$|')/$1$2<y>/
       - xform/('|^)((?:(?=er)|(?:<v>|<i>|<u>|[qrtysdghjklzxcn])(?=[uv]an)))(?:er|[uv]an)(?=^|$|')/$1$2<r>/
       - xform/('|^)((?:<v>|<i>|<u>|[tsdghklzcn]))uo(?=^|$|')/$1$2<o>/
@@ -2992,12 +2880,9 @@ mixed:
       - xform/('|^)([tghkljx])[iu]a(?=^|$|')/<w>/
       - xform/('|^)er(?=^|$|')/$1<r>/
       - xform/('|^)([qyjlxn])[uv]e(?=^|$|')/$1$2<t>/
-      - xform/^sh/<u>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<u>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - xform/('|^)sh/$1<u>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/('|^)((?:[yjlx](?=v)|(?:<i>|<u>|[gh])(?=uai)))(?:v|uai)(?=^|$|')/$1$2<y>/
       - xform/('|^)((?:<v>|<i>|<u>|[qrtysdghjklzxcn]))[uv]an(?=^|$|')/$1$2<r>/
       - xform/('|^)((?:<v>|<i>|<u>|[tsdghklzcn]))uo(?=^|$|')/$1$2<o>/
@@ -3026,17 +2911,13 @@ mixed:
   智能ABC:
     __append:
       - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
-      - xform/^zh/<a>/
-      - xform/^ch/<e>/
-      - xform/^sh/<v>/
-      - xform/'zh/'<a>/
-      - xform/'ch/'<e>/
-      - xform/'sh/'<v>/
+      - xform/('|^)zh/$1<a>/
+      - xform/('|^)ch/$1<e>/
+      - xform/('|^)sh/$1<v>/
       - xform/('|^)([aoe].*)(?=^|$|')/$1<o>$2/
       - xform/('|^)((?:<v>|[aoewtpdfghklzvbnm]))ei(?=^|$|')/$1$2<q>/
       - xform/('|^)([qtpdjlxbnm])ian(?=^|$|')/$1$2<w>/
-      - xform/('|^)er(?=^|$|')/$1<r>/
-      - xform/('|^)([qdjlxnm])iu(?=^|$|')/$1$2<r>/
+      - xform/('|^)((?:(?=er)|[qdjlxnm](?=iu)))(?:er|iu)(?=^|$|')/$1$2<r>/
       - xform/('|^)((?:<v>|<i>|<u>|[aoeqghjkxbnl]))[iu]ang(?=^|$|')/$1$2<t>/
       - xform/('|^)([qtypdjlxnm])ing(?=^|$|')/$1$2<y>/
       - xform/('|^)((?:<v>|<i>|<u>|[tsdghklzcn]))uo(?=^|$|')/$1$2<o>/
@@ -3065,24 +2946,20 @@ mixed:
       - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
       - derive/('|^)([jqxy])u(?=^|$|')/$1$2v/
       - xform/('|^)([aoe].*)(?=^|$|')/$1<o>$2/
-      - xform/^zh/<u>/
-      - xform/^sh/<i>/
-      - xform/'zh/'<u>/
-      - xform/'sh/'<i>/
+      - xform/('|^)zh/$1<u>/
+      - xform/('|^)sh/$1<i>/
       - xform/('|^)((?:<v>|<i>|<u>|[wrtpsdfghkzcbnm]))en(?=^|$|')/$1$2<w>/
       - xform/('|^)((?:<v>|<i>|<u>|[wrtpsdfghklzcbnm]))eng(?=^|$|')/$1$2<t>/
       - xform/('|^)((?:[qypjlmnbx](?=in)|(?:<i>|<u>|[gh])(?=uai)))(?:in|uai)(?=^|$|')/$1$2<y>/
       - xform/('|^)((?:<v>|<i>|<u>|[tsdghklzcn]))uo(?=^|$|')/$1$2<o>/
       - xform/('|^)((?:<i>|<u>|[aoewtpsdghklzcbnm]))ai(?=^|$|')/$1$2<p>/
-      - xform/^ch/<a>/
-      - xform/'ch/'<a>/
+      - xform/('|^)ch/$1<a>/
       - xform/('|^)((?:<v>|<i>|<u>|[aoeqghjkxbnl]))[iu]ang(?=^|$|')/$1$2<g>/
       - xform/('|^)((?:<v>|<i>|<u>|[wrtypsdfghklzcbnm]))ang(?=^|$|')/$1$2<s>/
       - xform/('|^)([qtpdjlxbnm])ie(?=^|$|')/$1$2<d>/
       - xform/('|^)([qtpdjlxbnm])ian(?=^|$|')/$1$2<f>/
       - xform/('|^)((?:<v>|<i>|[qrtysdghjklzxcn]))i?ong(?=^|$|')/$1$2<h>/
-      - xform/('|^)er(?=^|$|')/$1<j>/
-      - xform/('|^)([qdjlxnm])iu(?=^|$|')/$1$2<j>/
+      - xform/('|^)((?:(?=er)|[qdjlxnm](?=iu)))(?:er|iu)(?=^|$|')/$1$2<j>/
       - xform/('|^)((?:<v>|[aoewtpdfghklzvbnm]))ei(?=^|$|')/$1$2<k>/
       - xform/('|^)((?:<v>|<i>|<u>|[qrtysdghjklzxcn]))uan(?=^|$|')/$1$2<l>/
       - xform/('|^)([qtypdjlxnm])ing(?=^|$|')/$1$2;/
@@ -3106,16 +2983,12 @@ mixed:
       - xform/('|^)([aoe])(ng)?(?=^|$|')/$1$2$2$3/
       - xform/('|^)([qdjlxnm])iu(?=^|$|')/$1$2<n>/
       - xform/('|^)([tghkljx])[iu]a(?=^|$|')/$1$2<b>/
-      - xform/^sh/<i>/
-      - xform/^ch/<u>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<i>/
-      - xform/'ch/'<u>/
-      - xform/'zh/'<v>/
+      - xform/('|^)sh/$1<i>/
+      - xform/('|^)ch/$1<u>/
+      - xform/('|^)zh/$1<v>/
       - xform/('|^)((?:<v>|<i>|<u>|[qrtysdghjklzxcn]))[uv]an(?=^|$|')/$1$2<c>/
       - xform/('|^)((?:(?:<i>|<u>|[gh])(?=uai)|[qyjlxn](?=[uv]e)))(?:uai|[uv]e)(?=^|$|')/$1$2<x>/
-      - xform/('|^)([qtypdjlxnm])ing(?=^|$|')/$1$2<q>/
-      - xform/('|^)er(?=^|$|')/$1$2<q>/
+      - xform/('|^)((?:[qtypdjlxnm](?=ing)|(?=er)))(?:ing|er)(?=^|$|')/$1$2<q>/
       - xform/('|^)((?:<v>|<i>|<u>|[tsdghklzcn]))uo(?=^|$|')/$1$2<o>/
       - xform/('|^)((?:<v>|<i>|<u>|[qrtysdghjklzxc]))[uv]n(?=^|$|')/$1$2<z>/
       - xform/('|^)((?:<v>|<i>|[qrtysdghjklzxcn]))i?ong(?=^|$|')/$1$2<y>/
@@ -3148,12 +3021,9 @@ mixed:
       - xform/('|^)([qdjlxnm])iu(?=^|$|')/$1$2<y>/
       - xform/('|^)((?:<v>|[aoewtpdfghklzvbnm]))ei(?=^|$|')/$1$2<b>/
       - xform/('|^)([qyjlxn])[uv]e(?=^|$|')/$1$2<x>/
-      - xform/^sh/<u>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<u>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - xform/('|^)sh/$1<u>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/('|^)((?:<v>|<i>|<u>|[qrtysdghjklzxc]))un(?=^|$|')/$1$2<z>/
       - xform/('|^)((?:<v>|<i>|<u>|[qrtysdghjklzxcn]))uan(?=^|$|')/$1$2<w>/
       - xform/('|^)((?:<v>|<i>|<u>|[tsdghklzcn]))uo(?=^|$|')/$1$2<o>/
@@ -3207,12 +3077,9 @@ mixed:
       - xform/('|^)([dljx])ia(?=^|$|')/$1$2<k>/
       - xform/('|^)([ln])ve(?=^|$|')/$1$2<b>/
       - xform/('|^)([qyjx])ue(?=^|$|')/$1$2<l>/
-      - xform/^sh/<e>/
-      - xform/^ch/<i>/
-      - xform/^zh/<v>/
-      - xform/'sh/'<e>/
-      - xform/'ch/'<i>/
-      - xform/'zh/'<v>/
+      - xform/('|^)sh/$1<e>/
+      - xform/('|^)ch/$1<i>/
+      - xform/('|^)zh/$1<v>/
       - xform/('|^)((?:[qtypdjlxnm](?=ing)|(?:<i>|<u>|[gh])(?=uai)))(?:ing|uai)(?=^|$|')/$1$2<g>/
       - xform/('|^)((?:<v>|<i>|<u>|[qrtysdghjklzxcn]))[uv]an(?=^|$|')/$1$2<t>/
       - xform/('|^)((?:<v>|<i>|<u>|[tsdghklzcn]))uo(?=^|$|')/$1$2<o>/
