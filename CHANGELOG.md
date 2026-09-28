@@ -1,5 +1,22 @@
 # Changelog
 
+## [18.0.14](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.13...v18.0.14) (2026-09-28)
+
+
+### 📚 词库更新
+
+* 淘汰100+错误词语，成语简码修复，主词库补充 ([93a9f4b](https://github.com/amzxyz/rime-wanxiang/commit/93a9f4b5335f3a90d5603dd75f44e07e570e1eaa))
+* 移除不常用词 ([ea856c6](https://github.com/amzxyz/rime-wanxiang/commit/ea856c64b7bdd22260fc6df88d6193cf7bce2f4f))
+* 词库调整 ([d15f6a6](https://github.com/amzxyz/rime-wanxiang/commit/d15f6a680f0d2bbf8229910d022d6ce9b861b4ee))
+
+
+### 🐛 Bug 修复
+
+* 修复量词调频会被其他元素词提前break的问题 ([e8c7eda](https://github.com/amzxyz/rime-wanxiang/commit/e8c7edabadda1ca9474c87496fe0533975dbbc9a))
+* 整理优化转换规则 ([5da7227](https://github.com/amzxyz/rime-wanxiang/commit/5da722703c2562ec7cf2a4f7851f73cedf0997c2))
+* 本次修了大写双辅助继承了abbrev的问题 ([2840614](https://github.com/amzxyz/rime-wanxiang/commit/2840614355505f8d2ab4c46c2dac4f34666ff804))
+* 滤镜调序以满足一些功能顺序 ([df1f864](https://github.com/amzxyz/rime-wanxiang/commit/df1f8642680fae65654b089f81e702eb3bdad69d))
+
 ## [18.0.13](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.12...v18.0.13) (2026-09-26)
 
 
