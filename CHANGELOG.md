@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.15](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.14...v18.0.15) (2026-09-28)
+
+
+### 🐛 Bug 修复
+
+* 取消ng打出嗯的实际应用避免与模型ng打出能冲突 ([3b93aac](https://github.com/amzxyz/rime-wanxiang/commit/3b93aacdad8a18b1ac189b42244654590689b874))
+
 ## [18.0.14](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.13...v18.0.14) (2026-09-28)
 
 
