@@ -2763,8 +2763,6 @@ mixed:
       - derive/^([jqxy])u/$1v/
       - derive/'([jqxy])u/'$1v/
       - derive/^.+$/\L$0/
-      - derive/^([A-Z]{1})/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
   自然码:
     __append:
@@ -2799,8 +2797,6 @@ mixed:
       - xform/(^|')([qypjlmnbx])in(?=$|')/$1$2<n>/
       - xform/['<>]//
       - derive/^.+$/\L$0/
-      - derive/^([A-Z])/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[-+'_#@.·0-9].*/
   小鹤双拼:
     __append:
@@ -2835,8 +2831,6 @@ mixed:
       - xform/('|^)([qypjlmnbx])in(?=^|$|')/$1$2<b>/
       - xform/'|<|>//
       - derive/^.+$/\L$0/
-      - derive/^([A-Z]{1})/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
   微软双拼:
     __append:
@@ -2873,8 +2867,6 @@ mixed:
       - xform/('|^)([qtypdjlxnm])ing(?=^|$|')/$1$2;/
       - xform/'|<|>//
       - derive/^.+$/\L$0/
-      - derive/^([A-Z]{1})/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
   搜狗双拼:
     __append:
@@ -2911,8 +2903,6 @@ mixed:
       - xform/('|^)([qtypdjlxnm])ing(?=^|$|')/$1$2;/
       - xform/'|<|>//
       - derive/^.+$/\L$0/
-      - derive/^([A-Z]{1})/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
   智能ABC:
     __append:
@@ -2944,8 +2934,6 @@ mixed:
       - xform/('|^)((?:[qyjlxn](?=[uv]e)|(?:<v>|<i>|<u>|[tsdghkzc])(?=ui)))(?:[uv]e|ui)(?=^|$|')/$1$2<m>/
       - xform/'|<|>//
       - derive/^.+$/\L$0/
-      - derive/^([A-Z]{1})/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
   紫光双拼:
     __append:
@@ -2978,8 +2966,6 @@ mixed:
       - xform/('|^)((?:<v>|<i>|<u>|[wrtypsdfghklzcbnm]))an(?=^|$|')/$1$2<r>/
       - xform/'|<|>//
       - derive/^.+$/\L$0/
-      - derive/^([A-Z]{1})/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
   拼音加加:
     __append:
@@ -3014,8 +3000,6 @@ mixed:
       - xform/('|^)([qypjlmnbx])in(?=^|$|')/$1$2<l>/
       - xform/'|<|>//
       - derive/^.+$/\L$0/
-      - derive/^([A-Z]{1})/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
   国标双拼:
     __append:
@@ -3051,26 +3035,7 @@ mixed:
       - xform/('|^)([qypjlmnbx])in(?=^|$|')/$1$2<l>/
       - xform/'|<|>//
       - derive/^.+$/\L$0/
-      - derive/^([A-Z]{1})/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
-
-      # 前 2~10 个字母大写
-      #- derive/^([a-z]{2})/\U$1/
-      #- derive/^([a-z]{3})/\U$1/
-      #- derive/^([a-z]{4})/\U$1/
-      #- derive/^([a-z]{5})/\U$1/
-      #- derive/^([a-z]{6})/\U$1/
-      #- derive/^([a-z]{7})/\U$1/
-      #- derive/^([a-z]{8})/\U$1/
-      #- derive/^([a-z]{9})/\U$1/
-      #- derive/^([a-z]{10})/\U$1/
-      # 全小写
-      #- derive/^.+$/\L$0/
-      # 全大写
-      #- derive/^.+$/\U$0/
-      # 首字母大写
-      #- derive/^./\U$0/
 
   首道双拼:
     __append:
@@ -3107,8 +3072,6 @@ mixed:
       - xform/('|^)([qypjlmnbx])in(?=^|$|')/$1$2<c>/
       - xform/'|<|>//
       - derive/^.+$/\L$0/
-      - derive/^([A-Z]{1})/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
   自然龙:
     __append:
@@ -3190,8 +3153,6 @@ mixed:
       - derive/al/a/
       - derive/op/o/
       - derive/^.+$/\L$0/
-      - derive/^([A-Z]{1})/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
   汉心龙:
     __append:
@@ -3273,8 +3234,6 @@ mixed:
       - derive/le/dk/
       - derive/ma/pe/
       - derive/^.+$/\L$0/
-      - derive/^([A-Z]{1})/\L$1/
-      - derive/^([a-z]{2})/\U$1/
       - erase/.*[\-+'_#@\.·0-9].*$/
 
 english:
