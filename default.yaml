@@ -39,6 +39,7 @@ switcher:
     - tone_hint
     - full_pinyin
     - chinese_english
+    - english
     - search_single_char
     - abbrev
   fold_options: true  # 呼出时是否折叠，多方案时建议折叠 true ，一个方案建议展开 false
