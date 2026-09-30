@@ -147,20 +147,16 @@ function T.func(input, seg, env)
         return
     end
 
-    if should_skip(env) then
-        return
-    end
-
     input = input or ""
 
-    if input == "" or not env.eng_translator then
+    if input == "" then
         return
     end
 
-    local total_limit = env.max_candidates
-    local limited = total_limit > 0
+    -- 单字母大小写派生必须早于 special mode 判断。
+    -- U / V 等 special mode 只用于屏蔽后续格式化与兜底，
+    -- 不应吞掉单字母本身的 U/u、V/v 派生。
     local single_letter = is_single_ascii_letter(input)
-
     local current_candidate = nil
     local opposite_candidate = nil
     local injected_count = 0
@@ -175,10 +171,40 @@ function T.func(input, seg, env)
         if opposite_candidate then
             injected_count = injected_count + 1
         end
+    end
 
-        if limited and total_limit < injected_count then
-            total_limit = injected_count
+    -- special mode 下只保留已经完成的单字母派生，
+    -- 不继续查询英文词典；Filter 仍会原样透传，从而继续屏蔽格式化/兜底。
+    if should_skip(env) then
+        if current_candidate then
+            yield(current_candidate)
         end
+
+        if opposite_candidate then
+            yield(opposite_candidate)
+        end
+
+        return
+    end
+
+    -- 即使 TableTranslator 不可用，单字母派生仍然可正常输出。
+    if not env.eng_translator then
+        if current_candidate then
+            yield(current_candidate)
+        end
+
+        if opposite_candidate then
+            yield(opposite_candidate)
+        end
+
+        return
+    end
+
+    local total_limit = env.max_candidates
+    local limited = total_limit > 0
+
+    if single_letter and limited and total_limit < injected_count then
+        total_limit = injected_count
     end
 
     local native_limit = total_limit
