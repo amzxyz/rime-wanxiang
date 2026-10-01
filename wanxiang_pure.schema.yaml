@@ -23,6 +23,10 @@ switches:
     states: [ 中标, 英标 ]
   - name: full_shape                    #全角、半角字符输出
     states: [ 半角, 全角 ]
+  - name: emoji
+    states: [表情关, 表情开]
+  - options: [s2s, s2t, s2hk, s2tw]
+    states: [简体, 通繁, 港繁, 臺繁]
 
 
 # 输入引擎
