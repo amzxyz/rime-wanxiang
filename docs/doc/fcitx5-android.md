@@ -2,11 +2,11 @@
 
 欢迎在 Android 平台使用万象。Fcitx5-Android（小企鹅输入法）支持通过中州韵（Rime）插件运行万象方案。由于较新版本的 Android 对 `Android/data` 目录有更严格的权限限制，部署时需要特别注意文件导入方式和目录权限。
 
-[:octicons-download-24: 前往 GitHub Releases 获取最新版](https://github.com/fxliang/fcitx5-android/releases)
+[:octicons-download-24: 前往 GitHub Releases 获取最新版](https://github.com/SandyYuR/fcitx5-android/releases)
 
 *注：该版本支持较完整的键盘自定义功能，适合需要自行调整键盘布局和外观的用户。*
 
-[:octicons-download-24: 前往此处获取小企鹅九键版本](https://ime.lutrip.com/)
+[:octicons-download-24: 前往此处获取九键版本](https://ime.lutrip.com/)
 
 *注：九键用户可以配合万象九键方案使用。*
 
