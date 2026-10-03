@@ -362,15 +362,31 @@ local function is_alpha_abbreviation(part, state)
     return not state.input_method_type or state.input_method_type == "pinyin"
 end
 
--- T9 优先处理：单数字是简码，多数字音节直接转换为完整拼音。
-local function convert_t9_syllable(part, py, state)
-    if state.is_pro or not part:match("^%d$") then return py end
+-- 返回 UTF-8 字符串的前 n 个字符；不足 n 个时返回整个字符串。
+local function utf8_prefix(text, n)
+    if not text or text == "" or n <= 0 then return "" end
 
-    local typed = get_display_initial(py)
-    if typed == "" then return part end
-    return render_abbreviation(
-        typed, py, state.convert_abbrev_preedit
-    )
+    local next_pos = utf8.offset(text, n + 1)
+    if next_pos then
+        return text:sub(1, next_pos - 1)
+    end
+
+    return text
+end
+
+-- T9 优先处理：
+-- convert_abbrev_preedit=true：沿用候选注释，直接显示完整拼音。
+-- convert_abbrev_preedit=false：严格按“一个数字键对应一个拼音字符”显示；
+-- 例如 7 + shi -> s，966 + yong -> yon，9664 + yong -> yong。
+-- 不能因为模糊匹配已经产生完整候选，就把尚未输入的后续字母提前补进 preedit。
+local function convert_t9_syllable(part, py, state)
+    if state.is_pro or not part:match("^%d+$") then return py end
+
+    if state.convert_abbrev_preedit then
+        return py
+    end
+
+    return utf8_prefix(py, #part)
 end
 
 -- 26键处理：简码按配置保留或转全拼，其他音节维持原有转换语义。
