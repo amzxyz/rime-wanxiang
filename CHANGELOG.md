@@ -1,5 +1,23 @@
 # Changelog
 
+## [18.0.16](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.15...v18.0.16) (2026-10-03)
+
+
+### 📚 词库更新
+
+* 词库调整 ([55fbad4](https://github.com/amzxyz/rime-wanxiang/commit/55fbad487c637d64a0371b74d177302ac1cdd16e))
+* 词库调整 ([908108a](https://github.com/amzxyz/rime-wanxiang/commit/908108a09121aaf7ba2cad1fcfbe71b427ea9090))
+* 词库调整 ([e4d9238](https://github.com/amzxyz/rime-wanxiang/commit/e4d9238fc1ee43ec0acdd4416b57753738740257))
+* 词库调整 ([7d7c4ff](https://github.com/amzxyz/rime-wanxiang/commit/7d7c4ffc1104405154cbe57ca627c00f0f228b17))
+
+
+### 🐛 Bug 修复
+
+* mixed转写调整 ([949d39f](https://github.com/amzxyz/rime-wanxiang/commit/949d39f1e99fe38c7d189ebbb82e96525150201a))
+* pure版本补齐开关 ([7653dc0](https://github.com/amzxyz/rime-wanxiang/commit/7653dc068bb193be901dee79c45cf82c7d914cc2))
+* UV引导模式单字母派生修复 ([725853d](https://github.com/amzxyz/rime-wanxiang/commit/725853da963ad8605a3f9778379c79f51a35ad88))
+* 优化t9 preedit显示策略 ([4718ff7](https://github.com/amzxyz/rime-wanxiang/commit/4718ff7d9d10dcffda22297f4623c4a3137ddbe3))
+
 ## [18.0.15](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.14...v18.0.15) (2026-09-28)
 
 
