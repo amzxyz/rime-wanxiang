@@ -107,10 +107,7 @@ translator:
   #  packs: user                  #导入根目录下名称为user.dict.yaml的自定义固定词典
   prism: wanxiang_t9  # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
   enable_completion: true  # 启用候选词补全
-  #  user_dict: zrm.userdb       # 用户词典的文件名称
-  #  db_class: tabledb           #开启后就不会产生wanxiang.userdb这样的文件夹，会直接输出文本wanxiang.txt同时无法使用同步能力，可设 tabledb〔文本〕或 userdb〔二进制〕
   enable_user_dict: true  # 是否开启自动调频，即开启用户词典
-  enable_sentence: false  #是否开启自动造句
   enable_correction: false  #是否开启自动纠错
   encode_commit_history: true  # 预留历史上屏自动编码成词
   contextual_suggestions: false  #模型预测，假设模型里面有的四个字的词汇 现在智能 而首选组合 现在只能 当你输入 现在 上屏后下一次输入zhi neng就会输出，智能前提是没有权重更高的了，很明显这与你的预期“现在只能”不符。很明显实际上又要预测又要连续句子，放一起是很难优雅的。
