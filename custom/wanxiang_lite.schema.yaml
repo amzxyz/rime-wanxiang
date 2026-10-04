@@ -21,27 +21,27 @@ schema:
 # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
 # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
 switches:
-  - name: ascii_mode  # 中英输入状态
+  - name: ascii_mode
     states: [中文, 英文]
-  - name: ascii_punct  # 中英标点，可以在中文输入状态输入英文符号
+  - name: ascii_punct
     states: [中标, 英标]
-  - name: full_shape  #全角、半角字符输出
+  - name: full_shape
     states: [半角, 全角]
-  - name: emoji  #候选出现emoji滤镜，会显示在相应的候选后面，万象侧重于tips提示，避免候选被占用，因此默认为reset: 0，归属opencc emoji滤镜
+  - name: emoji
     states: [表情关, 表情开]
-  - name: chinese_english  #候选进入翻译模式滤镜，会显示在相应的候选后面，万象侧重于tips提示，避免候选被占用，归属opencc 翻译滤镜
-    states: [翻译关, 翻译开]
-  - options: [raw_input, full_pinyin]  #开启后在输入编码的位置实时转换为带声调全拼或者不带声调全拼，不开启则采用系统配置原始编码，影响的是preedit_format,归属：super_preedit.lua
+  - name: english_chinese
+    states: [翻译关, 英译中]
+  - options: [raw_input, full_pinyin]
     states: [原编码, 全拼]
     #    reset: 2     #对于开关组从0开始数，第几个就reset几可设为默认
-  - options: [s2s, s2t, s2hk, s2tw]  # 简繁转换开关组，可以在一个空选项和多个实际“- simplifier@s2hk”引入的项目之前切换，这是一个开关组，你可以将其中任意一个s2s等设置为toggle快捷键，多次按下将轮询
+  - options: [s2s, s2t, s2hk, s2tw]
     states: [简体, 通繁, 港繁, 臺繁]
   - name: abbrev
     states: [简码关, 简码开]
     reset: 1
-  - options: [comment_off, toneless_hint]  #开启后在候选的注释里面实时显示全拼声调，不开启则采用系统配置，影响的是comment_format，归属：super_comment.lua
+  - name: toneless_hint
     states: [注释关, 注释开]
-  - name: char_priority  #多体现在编码重合但候选有单字或者多字的情况`引导的辅码查词时是否单字优先，全拼常见，类似于特定编码情况下、反查状态下的调序能力。归属：super_lookup.lua
+  - name: char_priority
     states: [词组先, 单字先]
   - name: english
     reset: 1
@@ -297,7 +297,7 @@ key_binder:
     #分号用于次选，微软、搜狗双拼不可启用
     #- { when: has_menu, accept: semicolon, send: 2 }
     #使用Control+e进入翻译模式
-    - {when: has_menu, accept: "Control+e", toggle: chinese_english}
+    - {when: has_menu, accept: "Control+e", toggle: english_chinese}
     #使用快捷键Control+a开启和关闭辅助码显示
     - {when: has_menu, accept: "Control+a", toggle: tone_hint}
     #通过快捷键Control+s使得输入码显示音调
@@ -426,15 +426,14 @@ super_replacer:
   comment_format: "〔%s〕"
   chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
   rules:
-    - option: chinese_english
+    - option: english_chinese
       mode: append
       comment_mode: none
       tags: [abc]
       prefix: "_en_"
       files:
         - lua/data/english_chinese.txt
-        - lua/data/chinese_english.txt
-    - option: true
+            - option: true
       mode: append
       comment_mode: none
       tags: [abc]

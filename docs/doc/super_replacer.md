@@ -171,7 +171,7 @@ hello<Tab>你好\t哈喽
 规则：
 
 ```yaml
-- option: chinese_english
+- option: english_chinese
   mode: comment
   tags: [abc]
   prefix: "_en_"

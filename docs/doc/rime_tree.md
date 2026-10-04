@@ -53,7 +53,7 @@
         * **chaifen.txt** —— `汉字部件拆分与反查数据`
         * **charset.reverse.bin** —— `字符集反查二进制数据库`
         * **chengyu.txt** —— `成语简码数据`
-        * **chinese_english.txt** —— `中译英释义数据`
+        * **english_chinese.txt** —— `中译英释义数据`
         * **emoji.txt** —— `Emoji 中英文映射数据`
         * **english_chinese.txt** —— `英译中释义数据`
         * **t9_abbrev.txt** —— `九宫格简拼映射数据`
