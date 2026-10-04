@@ -132,10 +132,8 @@ grammar:
 translator:
   dictionary: wanxiang_pro  # 挂载词库 wanxiang.dict.yaml
   #  packs: user                  #导入根目录下名称为user.dict.yaml的自定义固定词典
-  #  prism: double_pinyin          # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
+  prism: wanxiang_pro          # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
   enable_completion: true  # 启用候选词补全
-  #  user_dict: zrm.userdb  # 用户词典的文件名称
-  #  db_class: tabledb  #开启后就不会产生zrm.userdb这样的文件夹，会直接输出文本zrm.txt同时无法使用同步能力
   enable_user_dict: false  # 是否开启自动调频
   contextual_suggestions: false  #模型用来开启词组权重预测，效果一般关闭
   max_homophones: 8
