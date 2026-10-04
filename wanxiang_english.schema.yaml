@@ -16,8 +16,8 @@ switches:
     states: [半角, 全角]
   - name: emoji
     states: [表情关, 表情开]
-  - name: chinese_english
-    states: [翻译关, 翻译开]
+  - name: english_chinese
+    states: [翻译关, 英译中]
 
 engine:
   processors:
@@ -67,7 +67,7 @@ key_binder:
     #- { when: always, accept: Shift+space, select: wanxiang_pro }  #直接跳转指定方案
     - {when: always, accept: Shift+space, select: .next}  #下一个方案
     #使用Control+e进入翻译模式
-    - {when: has_menu, accept: "Control+e", toggle: chinese_english}
+    - {when: has_menu, accept: "Control+e", toggle: english_chinese}
 punctuator:
   __include: wanxiang_symbols:/ascii_symbol_table
   __patch: wanxiang_symbols:/symbols
@@ -126,7 +126,7 @@ super_replacer:
   chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
   rules:
     # 场景2：输入 'hello' -> 显示 'hello 〔你好 | 哈喽〕'
-    - option: chinese_english
+    - option: english_chinese
       mode: append  # <--- 添加注释模式
       comment_mode: none
       tags: [abc]
