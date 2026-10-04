@@ -16,30 +16,30 @@ schema:
 # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
 # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
 switches:
-  - name: ascii_mode  # 中英输入状态
+  - name: ascii_mode
     states: [中文, 英文]
-  - name: ascii_punct  # 中英标点，可以在中文输入状态输入英文符号
+  - name: ascii_punct
     states: [中标, 英标]
-  - name: full_shape  #全角、半角字符输出
+  - name: full_shape
     states: [半角, 全角]
-  - name: emoji  #候选出现emoji滤镜，会显示在相应的候选后面，万象侧重于tips提示，避免候选被占用，因此默认为reset: 0，归属opencc emoji滤镜
+  - name: emoji
     states: [表情关, 表情开]
-  - name: chinese_english  #候选进入翻译模式滤镜，会显示在相应的候选后面，万象侧重于tips提示，避免候选被占用，归属opencc 翻译滤镜
-    states: [翻译关, 翻译开]
-  - name: charset_filter  #字符集过滤，默认开启8105通规显示，即小字集，可通过开关实时开启全字集，快捷键配套ctrl+g,归属：super_filter.lua
+  - name: english_chinese
+    states: [翻译关, 英译中]
+  - name: charset_filter
     states: [大字集, 小字集]
     reset: 0
   - name: context_reorder
-    states: [上下文关, 上下文开]  # 上下文调频
+    states: [上下文关, 上下文开]
   - name: full_pinyin  # T9/T9i：原编码 / 转全拼
     states: [原编码, 转全拼]
     reset: 1
-  - options: [s2s, s2t, s2hk, s2tw]  # 简繁转换开关组，可以在一个空选项和多个实际“- simplifier@s2hk”引入的项目之前切换，这是一个开关组，你可以将其中任意一个s2s等设置为toggle快捷键，多次按下将轮询
+  - options: [s2s, s2t, s2hk, s2tw]
     states: [简体, 通繁, 港繁, 臺繁]
   - name: toneless_hint  # T9/T9i：注释关 / 注释开
     states: [注释关, 注释开]
-    reset: 2  #对于9键，仓、元书用这个参数选择拼音，所以固定为无声调输出，其他前端用户可以适当patch修改
-  - name: super_tips  #开启后在输入编码后面的提示区显示实时的提示数据，受tips数据库影响，表情、翻译、车牌、符号等对应关系数据，并可实现句号上屏，不开启则默认，影响的是segment.prompt参数，归属：super_tips.lua
+    reset: 2
+  - name: super_tips
     states: [提示关, 提示开]
     reset: 1
   - name: abbrev
@@ -430,15 +430,14 @@ super_replacer:
   comment_format: "〔%s〕"
   chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
   rules:
-    - option: chinese_english
+    - option: english_chinese
       mode: append
       comment_mode: none
       tags: [abc]
       prefix: "_en_"
       files:
         - lua/data/english_chinese.txt
-        - lua/data/chinese_english.txt
-    - option: true
+            - option: true
       mode: append
       comment_mode: none
       tags: [abc]
