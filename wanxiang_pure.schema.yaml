@@ -17,11 +17,11 @@ schema:
 # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
 # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
 switches:
-  - name: ascii_mode                    # 中英输入状态
+  - name: ascii_mode
     states: [ 中文, 英文 ]
-  - name: ascii_punct                   # 中英标点，可以在中文输入状态输入英文符号
+  - name: ascii_punct
     states: [ 中标, 英标 ]
-  - name: full_shape                    #全角、半角字符输出
+  - name: full_shape
     states: [ 半角, 全角 ]
   - name: emoji
     states: [表情关, 表情开]
