@@ -39,7 +39,8 @@ switches:
   - name: abbrev
     states: [简码关, 简码开]
     reset: 1
-  - options: [comment_off, toneless_hint]
+  - name: toneless_hint
+    states: [注释关, 注释开]
   - name: char_priority
     states: [词组先, 单字先]
   - name: english
