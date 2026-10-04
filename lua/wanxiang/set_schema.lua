@@ -58,6 +58,7 @@ local schema_map = {
         ["/pinyin"]  = "全拼",
         ["/sdpy"]    = "首道双拼",
         ["/dnsp"]    = "大牛双拼",
+        ["/wxsp"]    = "万象双拼",
     }
 
 local function is_schema_name(name)
