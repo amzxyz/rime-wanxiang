@@ -91,6 +91,69 @@ base:
       - derive/ong$/on/  # lon → long
       - derive/([tl])eng$/$1en/  # ten → teng
 
+  万象双拼:
+    __append:
+      - xform/Ⅹ//  # 用于 Lua 判断输入类型的标记
+      - xform/^sh/U/
+      - xform/^ch/I/
+      - xform/^zh/V/
+      - xform/^([aoe])$/\u$1\u$1/
+      - xform/^(ā|á|ǎ|à)([ioun])$/a$1$2/
+      - xform/^(ō|ó|ǒ|ò)([ioun])$/o$1$2/
+      - xform/^(ē|é|ě|è)([ioun])$/e$1$2/
+      - xform/^(ā|á|ǎ|à)(ng)$/a$1$2/
+      - xform/^(ē|é|ě|è)(ng)$/e$1$2/
+      - xform/^(ā|á|ǎ|à)$/a$1/
+      - xform/^(ō|ó|ǒ|ò)$/o$1/
+      - xform/^(ē|é|ě|è)$/e$1/
+      - xform/^(ēr|ér|ěr|èr)$/e$1/
+      - xform/^([jqxy])u/$1ü/
+      - xform/^([jqxy])ū/$1ǖ/
+      - xform/^([jqxy])ú/$1ǘ/
+      - xform/^([jqxy])ǔ/$1ǚ/
+      - xform/^([jqxy])ù/$1ǜ/
+      - xform/^n̄g$/eēng/
+      - xform/^ńg$/eéng/
+      - xform/^ňg$/eěng/
+      - xform/^ǹg$/eèng/
+      - xform/^ng$/eèng/
+      - xform/^n̄$/eēn/
+      - xform/^ń$/eén/
+      - xform/^ň$/eěn/
+      - xform/^ǹ$/eèn/
+      - xform/^n$/eèn/
+      - xform/^m̄$/em̄/
+      - xform/^ḿ$/eḿ/
+      - xform/^m̌$/em̌/
+      - xform/^m̀$/em̀/
+      - xform/^(.)(iǎn|uan|m̀|ái|èr|üē|o|ǔ)$/$1A/
+      - xform/^(.)(uán|ià|ēn|à)$/$1B/
+      - xform/^(.)(ing|òng|ēng|ua|uǒ|ěi|īn|ḿ)$/$1C/
+      - xform/^(.)(uàn|iù|āi|ǘn|a|ā)$/$1D/
+      - xform/^(.)(iǎng|ie|ui|ài|ēi|ǔn|ü|ū)$/$1E/
+      - xform/^(.)(iang|ióng|uo|uó|üě|ěr|ǎi|í)$/$1F/
+      - xform/^(.)(iàn|uai|ěng|ǎng|ùn)$/$1G/
+      - xform/^(.)(iàng|āo|ǐn|ú|ě)$/$1H/
+      - xform/^(.)(iáng|iōng|uāng|ìng|iā|án|ūn|u)$/$1I/
+      - xform/^(.)(óng|iū|ù|ǚ)$/$1J/
+      - xform/^(.)(iǒng|uǎi|íng|āng|er|ér|òu|ǖn)$/$1K/
+      - xform/^(.)(iào|uí|óu|ǎn|i)$/$1L/
+      - xform/^(.)(iòng|eng|èng|ǐng|uì|ǚn|ǖ)$/$1M/
+      - xform/^(.)(uang|uǎng|ai|ou|un|ěn|ò|ī)$/$1N/
+      - xform/^(.)(ian|áng|ao|uī|ün|ōu|ó|ǜ)$/$1O/
+      - xform/^(.)(uàng|uān|ǒng|en|iú|én|üé|ān)$/$1P/
+      - xform/^(.)(an|uá|ào|ìn|ún|üè|ǒu|ǒ)$/$1Q/
+      - xform/^(.)(uáng|iǎo|iǔ|e|è|ō)$/$1R/
+      - xform/^(.)(iong|ang|iao|īng|ei|èn|ǎo|ǘ)$/$1S/
+      - xform/^(.)(uà|áo|ì)$/$1T/
+      - xform/^(.)(iāng|iāo|uái|ōng|ia|uā|ǎ)$/$1U/
+      - xform/^(.)(uāi|iá|iě|uò|èi|á)$/$1V/
+      - xform/^(.)(iē|uǎ|éi|ē|ǐ)$/$1W/
+      - xform/^(.)(ián|iè|uǐ|àn|é)$/$1X/
+      - xform/^(.)(iáo|uǎn|àng|ié|iǎ|ín)$/$1Y/
+      - xform/^(.)(iān|ong|uài|éng|iu|uō|ǜn)$/$1Z/
+      - xlit/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/
+
   自然码:
     __append:
       - xform/Ⅱ//  #用于Lua判断输入类型的标记
