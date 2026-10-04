@@ -22,36 +22,36 @@ schema:
 # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
 # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
 switches:
-  - name: ascii_mode  # 中英输入状态
+  - name: ascii_mode
     states: [中文, 英文]
-  - name: ascii_punct  # 中英标点
+  - name: ascii_punct
     states: [中标, 英标]
-  - name: full_shape  #全角、半角字符输出
+  - name: full_shape
     states: [半角, 全角]
-  - name: emoji  #候选出现emoji滤镜，会显示在相应的候选后面，万象侧重于tips提示，避免候选被占用，因此默认为reset: 0，归属opencc emoji滤镜
+  - name: emoji
     states: [表情关, 表情开]
-  - name: chinese_english  #候选进入翻译模式滤镜，会显示在相应的候选后面，万象侧重于tips提示，避免候选被占用，快捷键配套ctrl+e,归属opencc 翻译滤镜
-    states: [翻译关, 翻译开]
-  - name: chaifen_switch  #开启后在候选的注释里面实时显示辅助码的拆分提醒优先级高于普通辅助提醒，不开启则采用系统配置，快捷键配套ctrl+c,影响的是comment_format，归属：super_comment.lua
+  - name: english_chinese
+    states: [翻译关, 英译中]
+  - name: chaifen_switch
     states: [拆分关, 拆分开]
-  - name: charset_filter  #字符集过滤，默认开启8105通规显示，即小字集，可通过开关实时开启全字集，快捷键配套ctrl+g,归属：super_filter.lua
+  - name: charset_filter
     states: [大字集, 小字集]
     reset: 1
-  - name: super_tips  #开启后在输入编码后面的提示区显示实时的提示数据，受tips数据库影响，表情、翻译、车牌、符号等对应关系数据，并可实现句号上屏，不开启则默认，影响的是segment.prompt参数，归属：super_tips.lua
+  - name: super_tips
     states: [提示关, 提示开]
   - name: context_reorder
-    states: [上下文关, 上下文开]  # 上下文调频开关
-  - options: [raw_input, tone_display, full_pinyin]  #开启后在输入编码的位置实时转换为带声调全拼或者不带声调全拼，不开启则采用系统配置原始编码，影响的是preedit_format,归属：super_preedit.lua
+    states: [上下文关, 上下文开]
+  - options: [raw_input, tone_display, full_pinyin]
     states: [原编码, 有声调, 无声调]
-    #    reset: 2     #对于开关组从0开始数，第几个就reset几可设为默认
-  - options: [comment_off, fuzhu_hint, tone_hint]  #开启后在候选的注释里面实时显示辅助码或者全拼声调，不开启则采用系统配置，影响的是comment_format，快捷键配套ctrl+a,归属：super_comment.lua
+    #reset: 2     #对于开关组从0开始数，第几个就reset几可设为默认
+  - options: [comment_off, fuzhu_hint, tone_hint]
     states: [注释关, 辅助开, 读音开]
-  - options: [s2s, s2t, s2hk, s2tw]  # 简繁转换开关组，可以在一个空选项和多个实际“- simplifier@s2hk”引入的项目之前切换，这是一个开关组，你可以将其中任意一个s2s等设置为toggle快捷键，多次按下将轮询
+  - options: [s2s, s2t, s2hk, s2tw]
     states: [简体, 通繁, 港繁, 臺繁]
   - name: abbrev
     states: [简码关, 简码开]
     reset: 1
-  - name: char_priority  #多体现在编码重合但候选有单字或者多字的情况`引导的辅码查词时是否单字优先，全拼常见，类似于特定编码情况下、反查状态下的调序能力。归属：super_lookup.lua
+  - name: char_priority
     states: [词组先, 单字先]
   - name: english
     reset: 1
@@ -352,7 +352,7 @@ key_binder:
     # 分号用于次选，微软、搜狗双拼不可启用
     #- { when: has_menu, accept: semicolon, send: 2 }
     # 使用Control+e进入翻译模式
-    - {when: has_menu, accept: "Control+e", toggle: chinese_english}
+    - {when: has_menu, accept: "Control+e", toggle: english_chinese}
     # 使用快捷键Control+c拆分显示
     - {when: has_menu, accept: "Control+c", toggle: chaifen_switch}
     # 使用快捷键Control+a开启和关闭辅助码显示
@@ -567,15 +567,14 @@ super_replacer:
       files:
         - lua/data/chaifen.txt
     # 场景2：输入 'hello' -> 显示 'hello 〔你好 | 哈喽〕'
-    - option: chinese_english
+    - option: english_chinese
       mode: append  # <--- 添加注释模式
       comment_mode: none
       tags: [abc]
       prefix: "_en_"
       files:
         - lua/data/english_chinese.txt
-        - lua/data/chinese_english.txt
-    # 场景3：用于常驻的直接替换 option: true
+            # 场景3：用于常驻的直接替换 option: true
     - option: true
       mode: append  # <--- 新增候选模式
       comment_mode: none
