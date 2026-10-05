@@ -233,6 +233,7 @@ V12_DESIGN.md
 
 ```bash
 python V12_tone_layout_optimizer.py \
+  --zi zi.dict.yaml \
   --jichu jichu_v12_final.dict.yaml \
   --out V12_balanced_global \
   --max-per-key 8 \
