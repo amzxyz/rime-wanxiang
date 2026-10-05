@@ -37,7 +37,7 @@ text{font-family:"Noto Sans","Noto Sans CJK SC","Source Han Sans SC","Microsoft 
 <text class="tone" x="462.5" y="166.0" text-anchor="middle">ü</text>
 <rect class="key" x="516.0" y="24" width="150" height="150" rx="10" ry="10"/>
 <text class="keyname" x="530.0" y="58">R</text>
-<text class="tone" x="559.5" y="91.0" text-anchor="middle">e⁰</text>
+<text class="tone" x="559.5" y="91.0" text-anchor="middle">ee</text>
 <text class="tone" x="559.5" y="116.0" text-anchor="middle">è</text>
 <text class="tone" x="559.5" y="141.0" text-anchor="middle">iǎo</text>
 <text class="tone" x="622.5" y="91.0" text-anchor="middle">iǔ</text>
@@ -101,7 +101,7 @@ text{font-family:"Noto Sans","Noto Sans CJK SC","Source Han Sans SC","Microsoft 
 <text class="tone" x="159.5" y="276.0" text-anchor="middle">èr</text>
 <text class="tone" x="159.5" y="301.0" text-anchor="middle">iǎn</text>
 <text class="tone" x="159.5" y="326.0" text-anchor="middle">m̀</text>
-<text class="tone" x="222.5" y="251.0" text-anchor="middle">o⁰</text>
+<text class="tone" x="222.5" y="251.0" text-anchor="middle">oo</text>
 <text class="tone" x="222.5" y="276.0" text-anchor="middle">ǔ</text>
 <text class="tone" x="222.5" y="301.0" text-anchor="middle">uan</text>
 <text class="tone" x="222.5" y="326.0" text-anchor="middle">üē</text>
@@ -117,7 +117,7 @@ text{font-family:"Noto Sans","Noto Sans CJK SC","Source Han Sans SC","Microsoft 
 <text class="tone" x="382.5" y="326.0" text-anchor="middle">ǘ</text>
 <rect class="key" x="436.0" y="184" width="150" height="150" rx="10" ry="10"/>
 <text class="keyname" x="450.0" y="218">D</text>
-<text class="tone" x="479.5" y="251.0" text-anchor="middle">a⁰</text>
+<text class="tone" x="479.5" y="251.0" text-anchor="middle">aa</text>
 <text class="tone" x="479.5" y="276.0" text-anchor="middle">ā</text>
 <text class="tone" x="479.5" y="301.0" text-anchor="middle">āi</text>
 <text class="tone" x="542.5" y="251.0" text-anchor="middle">iù</text>
@@ -229,5 +229,4 @@ text{font-family:"Noto Sans","Noto Sans CJK SC","Source Han Sans SC","Microsoft 
 <text class="tone" x="1342.5" y="411.0" text-anchor="middle">uì</text>
 <text class="tone" x="1342.5" y="436.0" text-anchor="middle">ǖ</text>
 <text class="tone" x="1342.5" y="461.0" text-anchor="middle">ǚn</text>
-<text class="note" x="831.0" y="546" text-anchor="middle">a⁰ / o⁰ / e⁰ 为单韵母轻声（无调）token；实际单音节转写前处理使用 aa / oo / ee。</text>
 </svg>
