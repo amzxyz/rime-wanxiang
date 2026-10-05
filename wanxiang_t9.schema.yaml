@@ -435,7 +435,7 @@ super_replacer:
       prefix: "_en_"
       files:
         - lua/data/english_chinese.txt
-            - option: true
+    - option: true
       mode: append
       comment_mode: none
       tags: [abc]
