@@ -60,7 +60,7 @@ sudo pacman -S rime-wanxiang-pro-zrm
 
 2. **精简其他中文输入法**：如果主要使用万象，可以根据需要移除其他不再使用的中文输入法。通常保留【键盘-英语】与【中州韵】即可满足中英文输入和切换需求。
 
-![fcitx5-linux](./image/fictx5-linux.jpg){ width="600" style="display: block; margin: 1rem auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(97, 161, 101, 0.15);" }
+![fcitx5-linux](../image/fictx5-linux.jpg){ width="600" style="display: block; margin: 1rem auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(97, 161, 101, 0.15);" }
 
 !!! warning "注意清理 Fcitx5 快捷键，避免与 Rime 冲突"
     使用 Fcitx5 时，建议检查并清理不需要的全局快捷键。
