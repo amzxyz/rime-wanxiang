@@ -1,5 +1,27 @@
 # Changelog
 
+## [18.1.0](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.16...v18.1.0) (2026-10-05)
+
+
+### ✨ 新特性
+
+* 新增万象带调离散双拼测试版 ([fe1c0c2](https://github.com/amzxyz/rime-wanxiang/commit/fe1c0c23e6579482177dac7584f96520b84d09cf))
+
+
+### 📚 词库更新
+
+* 词库调整 ([e0d5cfe](https://github.com/amzxyz/rime-wanxiang/commit/e0d5cfe5d61f7211a949c38212ee9ee0404b9953))
+* 调整若干词频 ([1c4f28b](https://github.com/amzxyz/rime-wanxiang/commit/1c4f28be08c1119ba2f2d25bc496795e23fcee29))
+
+
+### 🐛 Bug 修复
+
+* pro版本增加万象双拼测试，同时优化set_schema ([fa82cb9](https://github.com/amzxyz/rime-wanxiang/commit/fa82cb9fb88b49370dcf72a2d59474a31f0a3255))
+* 修复整体替换导致的错误 ([64e4277](https://github.com/amzxyz/rime-wanxiang/commit/64e4277dd216ec656b070ed04146d0917fd70a9f))
+* 港繁预设文件分隔符错误 ([afb4d69](https://github.com/amzxyz/rime-wanxiang/commit/afb4d694e711acf4d46505eff3b74b7261109346))
+* 移除中文翻译英文数据 ([4f21216](https://github.com/amzxyz/rime-wanxiang/commit/4f21216a9cc2eea0fc884856467ac3a3a35c6ce8))
+* 调整一些配置 ([bad96d2](https://github.com/amzxyz/rime-wanxiang/commit/bad96d2d7ec4a47cdfd2bc6ab76b56159bbf294b))
+
 ## [18.0.16](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.15...v18.0.16) (2026-10-03)
 
 
