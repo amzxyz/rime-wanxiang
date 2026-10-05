@@ -61,16 +61,18 @@ local schema_map = {
         ["/wxsp"]    = "万象双拼",
     }
 
+local tone_required_schema = {
+    ["万象双拼"] = true,
+    ["自然龙"] = true,
+    ["汉心龙"] = true,
+}
+
 local function is_schema_name(name)
-
     for _, value in pairs(schema_map) do
-
         if name == value then
             return true
         end
-
     end
-
     return false
 end
 
@@ -89,7 +91,6 @@ local function replace_schema(file_path, target_schema)
             if is_schema_name(name) then
                 return prefix .. target_schema
             end
-
             return prefix .. name
         end
     )
@@ -111,8 +112,8 @@ local function translator(input, seg, env)
     end
 
     if input == "/zjf" or input == "/jjf" then
-        if profile == "lite" then
-            yield(Candidate("switch", seg.start, seg._end, "Lite 方案不使用辅助码，无需切换", ""))
+        if profile == "lite" or profile == "base" then
+            yield(Candidate("switch", seg.start, seg._end, "当前方案不支持辅助码", ""))
             return
         end
 
@@ -161,6 +162,11 @@ local function translator(input, seg, env)
 
     local target_schema = schema_map[input]
     if not target_schema then
+        return
+    end
+
+    if profile == "lite" and tone_required_schema[target_schema] then
+        yield(Candidate("switch", seg.start, seg._end, "Lite 词库不含声调，不支持〔" .. target_schema .. "〕", ""))
         return
     end
 
