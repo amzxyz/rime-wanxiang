@@ -16368,7 +16368,7 @@ sort: by_weight
 又一惑也	you yi huo ye	10
 由仪今佚	you yi jin yi	10
 有遗类矣	you yi lei yi	10
-侑以清乐	you yi qing le	10
+侑以清乐	you yi qing yue	10
 忧以天下	you yi tian xia	44
 有以异乎	you yi yi hu	44
 有翼自薄	you yi zi bao	44
@@ -58077,7 +58077,7 @@ sort: by_weight
 风中兰靡靡	feng zhong lan mi mi	10
 风中聆素琴	feng zhong ling su qin	10
 风中闻草木	feng zhong wen cao mu	10
-风中闻清乐	feng zhong wen qing le	10
+风中闻清乐	feng zhong wen qing yue	10
 风中意泠然	feng zhong yi ling ran	10
 逢舟或借风	feng zhou huo jie feng	10
 枫竹暗停神	feng zhu an ting shen	10
@@ -98565,7 +98565,7 @@ sort: by_weight
 肯作池上鹜	ken zuo chi shang wu	10
 肯作家鸡伴	ken zuo jia ji ban	10
 肯作置书邮	ken zuo zhi shu you	10
-铿尔荐清乐	keng er jian qing le	10
+铿尔荐清乐	keng er jian qing yue	10
 铿轰钟隐雷	keng hong zhong yin lei	10
 铿戛金石声	keng jia jin shi sheng	10
 坑降塞邑愁	keng jiang sai yi chou	10
@@ -131356,9 +131356,6 @@ sort: by_weight
 清朗悟心术	qing lang wu xin shu	10
 清浪浴潭鱼	qing lang yu tan yu	10
 轻浪甃鱼鳞	qing lang zhou yu lin	10
-清乐动千门	qing le dong qian men	10
-清乐动诸天	qing le dong zhu tian	10
-清乐九天闻	qing le jiu tian wen	10
 清泪长啼血	qing lei chang ti xue	10
 清羸还对月	qing lei hai dui yue	10
 清羸驾彩鸾	qing lei jia cai luan	10
@@ -132790,9 +132787,12 @@ sort: by_weight
 清猿助客愁	qing yuan zhu ke chou	10
 清猿坐见伤	qing yuan zuo jian shang	10
 清月半西楼	qing yue ban xi lou	10
+清乐动千门	qing yue dong qian men	10
+清乐动诸天	qing yue dong zhu tian	10
 青岳好登高	qing yue hao deng gao	10
 清月皓方闲	qing yue hao fang xian	10
 晴月九重开	qing yue jiu chong kai	10
+清乐九天闻	qing yue jiu tian wen	10
 清越扣琼瑰	qing yue kou qiong gui	10
 卿月丽层穹	qing yue li ceng qiong	10
 清越岂同年	qing yue qi tong nian	10
@@ -233749,6 +233749,7 @@ sort: by_weight
 黄昏只对梨花	huang hun zhi dui li hua	10
 怳惊起而长嗟	huang jing qi er chang jie	10
 恍惊起而长嗟	huang jing qi er chang jie	10
+荒了邵平瓜圃	huang le shao ping gua pu	10
 黄鹂又啼数声	huang li you ti shu sheng	10
 皇烈烈专天机	huang lie lie zhuan tian ji	10
 黄门飞鞚动尘	huang men fei kong dong chen	10
@@ -235805,6 +235806,7 @@ sort: by_weight
 汝初闻言而怒	ru chu wen yan er nu	10
 汝得全而形躯	ru de quan er xing qu	10
 汝得人焉尔乎	ru de ren yan er hu	10
+儒冠曾把身误	ru guan ceng ba shen wu	10
 如果细心的话	ru guo xi xin de hua	10
 汝何得有夫道	ru he de you fu dao	10
 如何梦也都无	ru he meng ye dou wu	10
@@ -239816,6 +239818,7 @@ sort: by_weight
 灞岸青门有弊庐	ba an qing men you bi lu	10
 灞岸已攀行客手	ba an yi pan xing ke shou	10
 八百老彭嗟杖晚	ba bai lao peng jie zhang wan	10
+八百里分麾下炙	ba bai li fen hui xia zhi	10
 把臂道人今在否	ba bi dao ren jin zai fou	10
 把臂开尊饮我酒	ba bi kai zun yin wo jiu	10
 八表无事悦圣情	ba biao wu shi yue sheng qing	10
@@ -258820,6 +258823,7 @@ sort: by_weight
 公到江南应削瓜	gong dao jiang nan ying xue gua	10
 共道进贤蒙上赏	gong dao jin xian meng shang shang	10
 弓刀陌上望行色	gong dao mo shang wang xing se	10
+弓刀千骑成何事	gong dao qian ji cheng he shi	10
 共道人间惆怅事	gong dao ren jian chou chang shi	10
 共道使臣非俗吏	gong dao shi chen fei su li	10
 共道用兵如断蔗	gong dao yong bing ru duan zhe	10
@@ -288706,7 +288710,6 @@ sort: by_weight
 情来一倍苦相思	qing lai yi bei ku xiang si	10
 清澜一洗啼痕空	qing lan yi xi ti hen kong	10
 轻浪参差鱼动镜	qing lang cen ci yu dong jing	10
-清乐灵香几处闻	qing le ling xiang ji chu wen	10
 清泪难忘父母邦	qing lei nan wang fu mu bang	10
 清羸已近百年身	qing lei yi jin bai nian shen	10
 清羸已觉助禅心	qing lei yi jue zhu chan xin	10
@@ -289306,6 +289309,7 @@ sort: by_weight
 青原万丈光赫赫	qing yuan wan zhang guang he he	10
 清源寻尽花绵绵	qing yuan xun jin hua mian mian	10
 清月出岭光入扉	qing yue chu ling guang ru fei	10
+清乐灵香几处闻	qing yue ling xiang ji chu wen	10
 清月依微香露轻	qing yue yi wei xiang lu qing	10
 青云北望紫微遥	qing yun bei wang zi wei yao	10
 青云表柱白云崖	qing yun biao zhu bai yun ya	10
@@ -316966,6 +316970,7 @@ sort: by_weight
 一船西去此登临	yi chuan xi qu ci deng lin	10
 移船相近邀相见	yi chuan xiang jin yao xiang jian	10
 一川秀色明花柳	yi chuan xiu se ming hua liu	10
+一川夜月光流渚	yi chuan ye yue guang liu zhu	10
 伊川佚老鬓如霜	yi chuan yi lao bin ru shuang	10
 一川浊水浮文鷁	yi chuan zhuo shui fu wen yi	10
 臆穿足裂忍痛何	yi chuan zu lie ren tong he	10
@@ -318601,7 +318606,7 @@ sort: by_weight
 一闻君语识君心	yi wen jun yu shi jun xin	10
 一闻陌上苦寒奏	yi wen mo shang ku han zou	10
 已闻佩响知腰细	yi wen pei xiang zhi yao xi	10
-已闻清乐动云韶	yi wen qing le dong yun shao	10
+已闻清乐动云韶	yi wen qing yue dong yun shao	10
 一闻说尽急难材	yi wen shuo jin ji nan cai	10
 亦闻私地学求仙	yi wen si di xue qiu xian	10
 已闻乡里催织作	yi wen xiang li cui zhi zuo	10
