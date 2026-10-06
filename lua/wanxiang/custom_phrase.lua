@@ -201,7 +201,15 @@ function M.func(input, env)
     emit_abbrev(not has_original or special_first)
 end
 
+local function release_translator(translator)
+    if translator then
+        translator:disconnect()
+    end
+end
+
 function M.fini(env)
+    release_translator(env.custom_translator)
+    release_translator(env.abbrev_translator)
     env.custom_translator = nil
     env.abbrev_translator = nil
 end
