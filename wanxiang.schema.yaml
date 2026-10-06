@@ -78,7 +78,6 @@ engine:
     - matcher  #配合 recognizer 标识符合特定规则的段落，如网址、反查等，加上特定 tag
     - abc_segmentor  #标识常规的文字段落，加上 abc 这个 tag
     - affix_segmentor@wanxiang_reverse  #反查 tag
-    - affix_segmentor@add_user_dict  #自造词tag
     - punct_segmentor  #标识符号段落〔键入标点符号用〕加上 punct 这个 tag
     - fallback_segmentor  #标识其他未标识段落，必须放在最后帮助tag模式切换后回退重新处理
   translators:
@@ -96,8 +95,6 @@ engine:
     - lua_translator@*wanxiang.super_english*T  #英文词汇表导入，限流，格式化
     - table_translator@wanxiang_mixedcode  #混合编码词汇表导入
     - reverse_lookup_translator@wanxiang_reverse  #挂接部件组字和笔画反查
-    - script_translator@add_user_dict  #按需自造词
-    - script_translator@user_dict_set  #使用自造词
   filters:
     - lua_filter@*wanxiang.charset_filter  #放replacer前面,全方位自定义的字符集过滤器，支持繁体字符集开放
     - lua_filter@*wanxiang.super_lookup  #字词输入中反查辅助筛选
@@ -138,7 +135,7 @@ translator:
   # encode_commit_history: true  # 预留历史上屏自动编码成词
   core_word_length: 4  # >0 启用，按段学词 + 相邻段拼接
   max_word_length: 7  # >0 启用，过长短语不记整词，只加元素权重
-  contextual_suggestions: false  #模型用来开启词组权重预测，效果一般关闭
+  contextual_suggestions: true  #开启基于模型预设数据的上下文调频
   max_homophones: 8
   initial_quality: 3  #初始质量拼音的权重应该比英文大
   spelling_hints: 30  #将注释以词典code字符串形式完全暴露，通过super_comment.lua完全接管，灵活配置。
@@ -147,31 +144,6 @@ translator:
   #disable_user_dict_for_patterns:  #如果你开启调频，需要一并考虑这个配置是否需要，基本的6码3字不调频，你可以自定义，目前的逻辑是依然记录用户词但满足规则的不输出不被使用
   #  - "^[a-z]{1,6}"
 
-# 自定义词典
-user_dict_set:
-  dictionary: wanxiang
-  initial_quality: 0
-  enable_completion: false
-  enable_sentence: false
-  spelling_hints: 50
-  contextual_suggestions: false  #模型预测，假设模型里面有的四个字的词汇 现在智能 而首选组合 现在只能 当你输入 现在 上屏后下一次输入zhi neng就会输出，智能前提是没有权重更高的了，很明显这与你的预期“现在只能”不符。很明显实际上又要预测又要连续句子，放一起是很难优雅的。
-  max_homophones: 8
-  comment_format:
-  enable_user_dict: false
-  user_dict: zc
-# 自定义词典加词(``引导)
-add_user_dict:
-  tag: add_user_dict
-  dictionary: wanxiang
-  initial_quality: -1
-  user_dict: zc
-  enable_completion: true  # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
-  enable_user_dict: false
-  enable_auto_phrase: true  # lua造词功能，在custom开启，相关功能位于auto_phrase.lua，开启后：模型能造的句子不造词，现有的词不造词，只造词库没有的，选词可造词
-  spelling_hints: 50
-  comment_format:
-  prefix: "``"
-  tips: "〔开始造词〕"
 
 # 自定义短语，用来置顶
 custom_phrase:
@@ -301,7 +273,6 @@ recognizer:
     nyr2: "^N20?[0-9]?[0-9]?[0-1]?[0-9]?[0-9]?[0-9]?"
     nyr_diff: "^N(19|20)[0-9]{6}-[0-9]{0,8}$"
     calculator: "^V.*$"  # V 作为触发前缀，计算器功能引导
-    #add_user_dict: "^``[A-Za-z/`']*$"      #自造词引导方式
     email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"  # email @ 之后不上屏
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"  # URL
     htj: "^/htj.*$"
@@ -366,8 +337,6 @@ key_binder:
     - {when: composing, accept: "Tab", send: "Control+Right"}
     #当tab第一个字补码正确后，可以使用Ctrl+tab进行上屏并依次补码
     - {when: composing, accept: "Control+Tab", send_sequence: '{Home}{Shift+Right}{1}{Shift+Right}'}
-    #当输入编码后发现没有词，则通过双击``进入造词模式而且不需要删除编码，这个功能与``直接引导相呼应相配合
-    #- { match: "^.*`$", accept: "`", send_sequence: '{BackSpace}{Home}{`}{`}{End}' }基础版暂时取消这个功能，
     #斜杠被占用引导符号，因此输入本身设置为双击
     - {match: "^/$", accept: "/", send_sequence: '{space}'}
     #按下快捷键将开关切换到对应状态再发送快捷键，最终执行快捷键所对应的操作
