@@ -118,7 +118,7 @@ translator:
   #  encode_commit_history: true  # 预留历史上屏自动编码成词
   core_word_length: 4  # >0 启用，按段学词 + 相邻段拼接
   max_word_length: 7  # >0 启用，过长短语不记整词，只加元素权重
-  contextual_suggestions: false  #模型用来开启词组权重预测，效果一般关闭
+  contextual_suggestions: true  #开启基于模型预设数据的上下文调频
   max_homophones: 8
   initial_quality: 3  #初始质量拼音的权重应该比英文大
   spelling_hints: 30  #将注释以词典code字符串形式完全暴露，通过super_comment.lua完全接管，灵活配置。
