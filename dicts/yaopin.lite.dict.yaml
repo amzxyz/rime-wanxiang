@@ -565,7 +565,11 @@ sort: by_weight
 白带丸水丸	bai dai wan shui wan	10
 百地滋阴丸	bai di zi yin wan	10
 百合固金片	bai he gu jin pian	10
+百合固金汤	bai he gu jin tang	10
 百合固金丸	bai he gu jin wan	10
+百合鸡子汤	bai he ji zi tang	10
+百合知母汤	bai he zhi mu tang	10
+白虎化癍汤	bai hu hua ban tang	10
 白虎活络膏	bai hu huo luo gao	10
 百花定喘片	bai hua ding chuan pian	10
 百花定喘丸	bai hua ding chuan wan	10
@@ -575,15 +579,23 @@ sort: by_weight
 百咳宁颗粒	bai ke ning ke li	10
 白蔻调中丸	bai kou tiao zhong wan	10
 百乐眠胶囊	bai le mian jiao nang	10
+白蔹薏苡汤	bai lian yi yi tang	10
 白蒲黄胶囊	bai pu huang jiao nang	10
 百痒消乳膏	bai yang xiao ru gao	10
 百益软胶囊	bai yi ruan jiao nang	10
 白玉化痰丸	bai yu hua tan wan	10
 白芷护心散	bai zhi hu xin san	10
+白芷升麻汤	bai zhi sheng ma tang	10
+白芷石膏汤	bai zhi shi gao tang	10
 白术安胃散	bai zhu an wei san	10
+白术附子汤	bai zhu fu zi tang	10
+白术和中汤	bai zhu he zhong tang	10
+白术黄芩汤	bai zhu huang qin tang	10
 白术芍药散	bai zhu shao yao san	10
 白术芍药汤	bai zhu shao yao tang	10
+白术苡仁汤	bai zhu yi ren tang	10
 柏子养心片	bai zi yang xin pian	10
+柏子养心汤	bai zi yang xin tang	10
 柏子养心丸	bai zi yang xin wan	10
 柏子滋心丸	bai zi zi xin wan	10
 半固体制剂	ban gu ti zhi ji	10
@@ -597,10 +609,16 @@ sort: by_weight
 斑蝥酸钠片	ban mao suan na pian	10
 半夏茯神散	ban xia fu shen san	10
 半夏干姜散	ban xia gan jiang san	10
+半夏厚朴汤	ban xia hou po tang	10
+半夏藿香汤	ban xia huo xiang tang	10
 半夏露冲剂	ban xia lu chong ji	10
 半夏露颗粒	ban xia lu ke li	10
 半夏露糖浆	ban xia lu tang jiang	10
 半夏麻黄丸	ban xia ma huang wan	10
+半夏散及汤	ban xia san ji tang	10
+半夏秫米汤	ban xia shu mi tang	10
+半夏温肺汤	ban xia wen fei tang	10
+半夏左经汤	ban xia zuo jing tang	10
 保安万灵丸	bao an wan ling wan	10
 宝宝乐颗粒	bao bao le ke li	10
 宝宝牛黄散	bao bao niu huang san	10
@@ -673,6 +691,7 @@ sort: by_weight
 比索洛尔片	bi suo luo er pian	10
 鼻通滴鼻液	bi tong di bi ye	10
 痹痛宁胶囊	bi tong ning jiao nang	10
+必小柴胡汤	bi xiao chai hu tang	10
 萆薢分清丸	bi xie fen qing wan	10
 鼻炎宁冲剂	bi yan ning chong ji	10
 鼻炎宁胶囊	bi yan ning jiao nang	10
@@ -707,6 +726,7 @@ sort: by_weight
 博尔宁胶囊	bo er ning jiao nang	10
 驳骨风湿酒	bo gu feng shi jiu	10
 拨云退翳丸	bo yun tui yi wan	10
+补肺阿胶汤	bu fei e jiao tang	10
 补肺消肿丸	bu fei xiao zhong wan	10
 布累迪宁片	bu lei di ning pian	10
 布劣伪麻片	bu lie wei ma pian	10
@@ -738,6 +758,7 @@ sort: by_weight
 补血催生丸	bu xue cui sheng wan	10
 补血宁神片	bu xue ning shen pian	10
 补血调经片	bu xue tiao jing pian	10
+补阳还五汤	bu yang hai wu tang	10
 补益地黄丸	bu yi di huang wan	10
 补益活络丸	bu yi huo luo wan	10
 补益蒺藜丸	bu yi ji li wan	10
@@ -747,6 +768,7 @@ sort: by_weight
 补正续骨丸	bu zheng xu gu wan	10
 补中益气膏	bu zhong yi qi gao	10
 补中益气片	bu zhong yi qi pian	10
+补中益气汤	bu zhong yi qi tang	10
 补中益气丸	bu zhong yi qi wan	10
 采力口服液	cai li kou fu ye	10
 参贝北瓜膏	can bei bei gua gao	10
@@ -806,12 +828,40 @@ sort: by_weight
 茶碱注射液	cha jian zhu she ye	10
 茶新那敏片	cha xin na min pian	10
 柴磁地黄丸	chai ci di huang wan	10
+柴独苍术汤	chai du cang zhu tang	10
+柴葛桂枝汤	chai ge gui zhi tang	10
+柴葛解肌汤	chai ge jie ji tang	10
 柴葛平胃散	chai ge ping wei san	10
+柴葛芩连汤	chai ge qin lian tang	10
+柴梗半夏汤	chai geng ban xia tang	10
+柴胡白虎汤	chai hu bai hu tang	10
+柴胡鳖甲汤	chai hu bie jia tang	10
+柴胡参术汤	chai hu can shu tang	10
+柴胡丁香汤	chai hu ding xiang tang	10
+柴胡独活汤	chai hu du huo tang	10
+柴胡防风汤	chai hu fang feng tang	10
+柴胡复生汤	chai hu fu sheng tang	10
+柴胡厚朴汤	chai hu hou po tang	10
+柴胡加桂汤	chai hu jia gui tang	10
+柴胡姜桂汤	chai hu jiang gui tang	10
+柴胡羚角汤	chai hu ling jiao tang	10
+柴胡六合汤	chai hu liu he tang	10
 柴胡麦冬散	chai hu mai dong san	10
 柴胡梅连散	chai hu mei lian san	10
+柴胡羌活汤	chai hu qiang huo tang	10
 柴胡清肝散	chai hu qing gan san	10
+柴胡清肝汤	chai hu qing gan tang	10
+柴胡升麻汤	chai hu sheng ma tang	10
+柴胡胜湿汤	chai hu sheng shi tang	10
+柴胡通经汤	chai hu tong jing tang	10
 柴胡退翳丸	chai hu tui yi wan	10
+柴胡陷胸汤	chai hu xian xiong tang	10
+柴胡芎归汤	chai hu xiong gui tang	10
+柴胡养营汤	chai hu yang ying tang	10
+柴胡抑肝汤	chai hu yi gan tang	10
 柴胡镇咳片	chai hu zhen ke pian	10
+柴胡枳桔汤	chai hu zhi ju tang	10
+柴胡栀连汤	chai hu zhi lian tang	10
 柴胡栀子散	chai hu zhi zi san	10
 柴黄口服液	chai huang kou fu ye	10
 柴黄软胶囊	chai huang ruan jiao nang	10
@@ -867,6 +917,7 @@ sort: by_weight
 虫草参芪膏	chong cao shen qi gao	10
 虫咬皮炎膏	chong yao pi yan gao	10
 除湿白带丸	chu shi bai dai wan	10
+除湿胃苓汤	chu shi wei ling tang	10
 除痰止嗽丸	chu tan zhi sou wan	10
 除翳明目片	chu yi ming mu pian	10
 除脂生发片	chu zhi sheng fa pian	10
@@ -937,6 +988,8 @@ sort: by_weight
 代阿布洛岭	dai a bu luo ling	10
 带通滤波片	dai tong lv bo pian	10
 蛋白抑制剂	dan bai yi zhi ji	10
+胆道排石汤	dan dao pai shi tang	10
+胆道驱蛔汤	dan dao qu hui tang	10
 丹红滴注液	dan hong di zhu ye	10
 丹红注射液	dan hong zhu she ye	10
 丹花口服液	dan hua kou fu ye	10
@@ -977,9 +1030,11 @@ sort: by_weight
 当归黄精膏	dang gui huang jing gao	10
 当归浸膏片	dang gui jin gao pian	10
 当归苦参丸	dang gui ku shen wan	10
+当归六黄汤	dang gui liu huang tang	10
 当归龙荟片	dang gui long hui pian	10
 当归龙荟丸	dang gui long hui wan	10
 当归南枣片	dang gui nan zao pian	10
+当归拈痛汤	dang gui nian tong tang	10
 当归拈痛丸	dang gui nian tong wan	10
 当归芍药散	dang gui shao yao san	10
 当归养血丸	dang gui yang xue wan	10
@@ -1016,6 +1071,8 @@ sort: by_weight
 颠茄磺苄啶	dian qie huang bian ding	10
 癫痫康胶囊	dian xian kang jiao nang	10
 调肝和胃丸	diao gan he wei wan	10
+调荣通脉汤	diao rong tong mai tang	10
+调胃承气汤	diao wei cheng qi tang	10
 调胃丹水丸	diao wei dan shui wan	10
 调胃舒肝丸	diao wei shu gan wan	10
 调胃消滞丸	diao wei xiao zhi wan	10
@@ -1038,20 +1095,25 @@ sort: by_weight
 丁蔻理中丸	ding kou li zhong wan	10
 丁螺环酮片	ding luo huan tong pian	10
 丁硼漱口液	ding peng shu kou ye	10
+丁香胶艾汤	ding xiang jiao ai tang	10
 丁香烂饭丸	ding xiang lan fan wan	10
+丁香柿蒂汤	ding xiang shi di tang	10
 东宝肝泰片	dong bao gan tai pian	10
 冬宝口服液	dong bao kou fu ye	10
 冻疮未溃膏	dong chuang wei kui gao	10
+冬地三黄汤	dong di san huang tang	10
 东方活血膏	dong fang huo xue gao	10
 冻可消搽剂	dong ke xiao cha ji	10
 东莨菪碱片	dong lang dang jian pian	10
 冻伤护肤膏	dong shang hu fu gao	10
 东圣护肝片	dong sheng hu gan pian	10
 洞天长春膏	dong tian chang chun gao	10
+东垣神秘汤	dong yuan shen mi tang	10
 豆腐果苷片	dou fu guo gan pian	10
 豆蔻五味散	dou kou wu wei san	10
 都梁软胶囊	dou liang ruan jiao nang	10
 都烟消云散	dou yan xiao yun san	10
+独活寄生汤	du huo ji sheng tang	10
 独活寄生丸	du huo ji sheng wan	10
 杜记独角膏	du ji du jiao gao	10
 度米芬滴丸	du mi fen di wan	10
@@ -1133,9 +1195,11 @@ sort: by_weight
 反应抑制剂	fan ying yi zhi ji	10
 防风通圣散	fang feng tong sheng san	10
 防风通圣丸	fang feng tong sheng wan	10
+防己地黄汤	fang ji di huang tang	10
 防己茯苓汤	fang ji fu ling tang	10
 防己茯苓丸	fang ji fu ling wan	10
 防己关节丸	fang ji guan jie wan	10
+防己黄芪汤	fang ji huang qi tang	10
 防衰益寿丸	fang shuai yi shou wan	10
 防芷鼻炎片	fang zhi bi yan pian	10
 肺宝三效片	fei bao san xiao pian	10
@@ -1398,6 +1462,7 @@ sort: by_weight
 孚宁阴道片	fu ning yin dao pian	10
 妇女养血丸	fu nv yang xue wan	10
 氟哌啶醇片	fu pai ding chun pian	10
+浮萍银翘汤	fu ping yin qiao tang	10
 氟轻松搽剂	fu qing song cha ji	10
 氟轻松软膏	fu qing song ruan gao	10
 肤轻松软膏	fu qing song ruan gao	10
@@ -1423,6 +1488,7 @@ sort: by_weight
 妇炎舒胶囊	fu yan shu jiao nang	10
 妇炎泰颗粒	fu yan tai ke li	10
 浮翳坠翳丸	fu yi zhui yi wan	10
+复元活血汤	fu yuan huo xue tang	10
 扶元口服液	fu yuan kou fu ye	10
 妇月康胶囊	fu yue kang jiao nang	10
 妇月康颗粒	fu yue kang ke li	10
@@ -1433,11 +1499,17 @@ sort: by_weight
 肤痔清软膏	fu zhi qing ruan gao	10
 腐植酸钠片	fu zhi suan na pian	10
 复制抑制剂	fu zhi yi zhi ji	10
+附子粳米汤	fu zi jing mi tang	10
 附子理中片	fu zi li zhong pian	10
+附子理中汤	fu zi li zhong tang	10
 附子理中丸	fu zi li zhong wan	10
 附子理中液	fu zi li zhong ye	10
+附子泻心汤	fu zi xie xin tang	10
 肝安注射液	gan an zhu she ye	10
 肝必复胶囊	gan bi fu jiao nang	10
+甘草粉蜜汤	gan cao fen mi tang	10
+甘草干姜汤	gan cao gan jiang tang	10
+甘草麻桂汤	gan cao ma gui tang	10
 甘草甜素片	gan cao tian su pian	10
 甘草辛胶囊	gan cao xin jiao nang	10
 甘草锌胶囊	gan cao xin jiao nang	10
@@ -1452,9 +1524,14 @@ sort: by_weight
 肝复乐胶囊	gan fu le jiao nang	10
 干锅土豆片	gan guo tu dou pian	10
 甘家松脂膏	gan jia song zhi gao	10
+干姜附子汤	gan jiang fu zi tang	10
+甘姜苓术汤	gan jiang ling shu tang	10
 干金止带丸	gan jin zhi dai wan	10
 肝净注射液	gan jing zhu she ye	10
 甘桔冰梅片	gan ju bing mei pian	10
+甘桔防风汤	gan ju fang feng tang	10
+甘菊荆芥汤	gan ju jing jie tang	10
+甘桔射干汤	gan ju ye gan tang	10
 肝康口服液	gan kang kou fu ye	10
 橄榄晶冲剂	gan lan jing chong ji	10
 橄榄晶颗粒	gan lan jing ke li	10
@@ -1464,6 +1541,7 @@ sort: by_weight
 甘露消毒丸	gan lu xiao du wan	10
 甘露月晶丸	gan lu yue jing wan	10
 甘罗溴铵片	gan luo xiu an pian	10
+甘麦大枣汤	gan mai da zao tang	10
 感冒解表丸	gan mao jie biao wan	10
 感冒解热片	gan mao jie re pian	10
 感冒解痛散	gan mao jie tong san	10
@@ -1491,6 +1569,8 @@ sort: by_weight
 感速康胶囊	gan su kang jiao nang	10
 肝速康胶囊	gan su kang jiao nang	10
 肝苏软胶囊	gan su ruan jiao nang	10
+甘遂半夏汤	gan sui ban xia tang	10
+甘遂通结汤	gan sui tong jie tang	10
 肝泰舒胶囊	gan tai shu jiao nang	10
 感特灵胶囊	gan te ling jiao nang	10
 肝胃气痛片	gan wei qi tong pian	10
@@ -1518,6 +1598,7 @@ sort: by_weight
 蛤蚧治痨丸	ge jie zhi lao wan	10
 格拉司琼片	ge la si qiong pian	10
 革兰氏染液	ge lan shi ran ye	10
+蛤蜊巧达汤	ge li qiao da tang	10
 戈利昔替尼	ge li xi ti ni	10
 格列苯脲片	ge lie ben niao pian	10
 格列本脲片	ge lie ben niao pian	10
@@ -1528,6 +1609,8 @@ sort: by_weight
 格列齐特片	ge lie qi te pian	10
 格隆溴铵片	ge long xiu an pian	10
 格鲁米特片	ge lu mi te pian	10
+膈下逐瘀汤	ge xia zhu yu tang	10
+膈下逐淤汤	ge xia zhu yu tang	10
 给喜古纳丸	gei xi gu na wan	10
 更美宁胶囊	geng mei ning jiao nang	10
 更年安胶囊	geng nian an jiao nang	10
@@ -1546,11 +1629,13 @@ sort: by_weight
 工业的血液	gong ye de xue ye	10
 公子小鱼丸	gong zi xiao yu wan	10
 枸磺新啶片	gou huang xin ding pian	10
+枸杞羊肉汤	gou qi yang rou tang	10
 古庵心肾丸	gu an xin shen wan	10
 固本咳喘片	gu ben ke chuan pian	10
 固本熄风丸	gu ben xi feng wan	10
 固本延龄丸	gu ben yan ling wan	10
 固本益肠片	gu ben yi chang pian	10
+固本止崩汤	gu ben zhi beng tang	10
 固本止咳膏	gu ben zhi ke gao	10
 固肠止泻丸	gu chang zhi xie wan	10
 骨刺宁胶囊	gu ci ning jiao nang	10
@@ -1567,6 +1652,7 @@ sort: by_weight
 固精参茸丸	gu jing shen rong wan	10
 骨苓通痹丸	gu ling tong bi wan	10
 骨膜灵颗粒	gu mo ling ke li	10
+顾母理脏汤	gu mu li zang tang	10
 骨宁注射液	gu ning zhu she ye	10
 骨伤康胶囊	gu shang kang jiao nang	10
 骨伤口服液	gu shang kou fu ye	10
@@ -1591,10 +1677,14 @@ sort: by_weight
 骨折再生丸	gu zhe zai sheng wan	10
 骨质宁搽剂	gu zhi ning cha ji	10
 瓜蒂神妙散	gua di shen miao san	10
+栝蒌桂枝汤	gua lou gui zhi tang	10
 栝蒌牡蛎散	gua lou mu li san	10
+栝蒌牛蒡汤	gua lou niu bang tang	10
 栝蒌青黛丸	gua lou qing dai wan	10
 栝蒌瞿麦丸	gua lou qu mai wan	10
 栝蒌杏连丸	gua lou xing lian wan	10
+栝蒌枳实汤	gua lou zhi shi tang	10
+瓜蒌枳实汤	gua lou zhi shi tang	10
 贯防感冒片	guan fang gan mao pian	10
 关节风痛丸	guan jie feng tong wan	10
 关节解痛膏	guan jie jie tong gao	10
@@ -1618,6 +1708,7 @@ sort: by_weight
 桂附地黄片	gui fu di huang pian	10
 桂附地黄丸	gui fu di huang wan	10
 桂附理中丸	gui fu li zhong wan	10
+归桂化逆汤	gui gui hua ni tang	10
 归红跌打丸	gui hong die da wan	10
 归红注射液	gui hong zhu she ye	10
 龟甲拉颗粒	gui jia la ke li	10
@@ -1625,6 +1716,8 @@ sort: by_weight
 桂苓白术散	gui ling bai zhu san	10
 桂苓白术丸	gui ling bai zhu wan	10
 桂苓甘露散	gui ling gan lu san	10
+桂苓甘术汤	gui ling gan shu tang	10
+桂苓神术汤	gui ling shen shu tang	10
 龟龙中风丸	gui long zhong feng wan	10
 龟鹿补肾丸	gui lu bu shen wan	10
 龟鹿二胶丸	gui lu er jiao wan	10
@@ -1632,11 +1725,13 @@ sort: by_weight
 龟鹿宁神丸	gui lu ning shen wan	10
 龟鹿滋肾丸	gui lu zi shen wan	10
 归麻止痛膏	gui ma zhi tong gao	10
+归麦榆草汤	gui mai yu cao tang	10
 归脾口服液	gui pi kou fu ye	10
 归脾浓缩丸	gui pi nong suo wan	10
 归芪口服液	gui qi kou fu ye	10
 桂茸固本丸	gui rong gu ben wan	10
 龟茸壮骨片	gui rong zhuang gu pian	10
+归芍地黄汤	gui shao di huang tang	10
 归芍地黄丸	gui shao di huang wan	10
 归芍红花散	gui shao hong hua san	10
 归芍六君丸	gui shao liu jun wan	10
@@ -1644,21 +1739,43 @@ sort: by_weight
 归芍调经片	gui shao tiao jing pian	10
 归芍调经丸	gui shao tiao jing wan	10
 归芍异功散	gui shao yi gong san	10
+归芍异功汤	gui shao yi gong tang	10
 硅烷处理剂	gui wan chu li ji	10
+归尾泽兰汤	gui wei ze lan tang	10
 桂香祛暑散	gui xiang qu shu san	10
 桂香祛署散	gui xiang qu shu san	10
 归源功能液	gui yuan gong neng ye	10
 归元健脑片	gui yuan jian nao pian	10
 归圆口服液	gui yuan kou fu ye	10
+桂枝白虎汤	gui zhi bai hu tang	10
+桂枝半夏汤	gui zhi ban xia tang	10
+桂枝柴胡汤	gui zhi chai hu tang	10
+桂枝防风汤	gui zhi fang feng tang	10
 桂枝茯苓片	gui zhi fu ling pian	10
 桂枝茯苓丸	gui zhi fu ling wan	10
 桂枝茯芩丸	gui zhi fu qin wan	10
+桂枝附子汤	gui zhi fu zi tang	10
+桂枝甘草汤	gui zhi gan cao tang	10
+桂枝葛根汤	gui zhi ge gen tang	10
+桂枝黄芪汤	gui zhi huang qi tang	10
+桂枝黄芩汤	gui zhi huang qin tang	10
+桂枝加桂汤	gui zhi jia gui tang	10
+桂枝姜附汤	gui zhi jiang fu tang	10
 桂枝口服液	gui zhi kou fu ye	10
+桂枝麻黄汤	gui zhi ma huang tang	10
+桂枝羌活汤	gui zhi qiang huo tang	10
+桂枝人参汤	gui zhi ren shen tang	10
 桂枝芍药汤	gui zhi shao yao tang	10
+桂枝石膏汤	gui zhi shi gao tang	10
+桂枝四七汤	gui zhi si qi tang	10
+桂枝桃仁汤	gui zhi tao ren tang	10
+桂枝新加汤	gui zhi xin jia tang	10
+桂枝续命汤	gui zhi xu ming tang	10
 过碘酸染剂	guo dian suan ran ji	10
 国木田花丸	guo mu tian hua wan	10
 海巴青霉素	hai ba qing mei su	10
 海藏当归丸	hai cang dang gui wan	10
+海藏五饮汤	hai cang wu yin tang	10
 海藏紫菀散	hai cang zi wan san	10
 氦丁烷合剂	hai ding wan he ji	10
 海马多鞭丸	hai ma duo bian wan	10
@@ -1671,10 +1788,12 @@ sort: by_weight
 海洋胃药丸	hai yang wei yao wan	10
 海藻溃坚丸	hai zao kui jian wan	10
 海藻散坚丸	hai zao san jian wan	10
+海藻玉壶汤	hai zao yu hu tang	10
 含化上清片	han hua shang qing pian	10
 含氯消毒剂	han lv xiao du ji	10
 寒热痹胶囊	han re bi jiao nang	10
 汗为心之液	han wei xin zhi ye	10
+蒿芩清胆汤	hao qin qing dan tang	10
 河车大造丸	he che da zao wan	10
 合成抑制剂	he cheng yi zhi ji	10
 核酪口服液	he lao kou fu ye	10
@@ -1694,10 +1813,15 @@ sort: by_weight
 红霉素药膏	hong mei su yao gao	10
 红芪口服液	hong qi kou fu ye	10
 红色打样膏	hong se da yang gao	10
+红糖姜枣汤	hong tang jiang zao tang	10
 红卫蛇药片	hong wei she yao pian	10
 喉疾灵胶囊	hou ji ling jiao nang	10
 厚朴大黄汤	hou po da huang tang	10
+厚朴七物汤	hou po qi wu tang	10
+厚朴三物汤	hou po san wu tang	10
+厚朴温中汤	hou po wen zhong tang	10
 厚朴温中丸	hou po wen zhong wan	10
+厚朴夏苓汤	hou po xia ling tang	10
 喉舒口含片	hou shu kou han pian	10
 喉舒宁胶囊	hou shu ning jiao nang	10
 喉痛灵颗粒	hou tong ling ke li	10
@@ -1706,6 +1830,7 @@ sort: by_weight
 猴枣牛黄散	hou zao niu huang san	10
 狐臭爽身液	hu chou shuang shen ye	10
 护肝宁胶囊	hu gan ning jiao nang	10
+胡椒猪肚汤	hu jiao zhu du tang	10
 虎力散胶囊	hu li san jiao nang	10
 琥珀抱龙丸	hu po bao long wan	10
 琥珀多寐丸	hu po duo mei wan	10
@@ -1719,6 +1844,8 @@ sort: by_weight
 华容口服液	hua rong kou fu ye	10
 华沙利胆丸	hua sha li dan wan	10
 华山参滴丸	hua shan shen di wan	10
+花生沙参汤	hua sheng sha shen tang	10
+花生枣蜜汤	hua sheng zao mi tang	10
 滑石白鱼散	hua shi bai yu san	10
 化痰平喘片	hua tan ping chuan pian	10
 化痰消咳片	hua tan xiao ke pian	10
@@ -1754,9 +1881,11 @@ sort: by_weight
 黄连双清丸	huang lian shuang qing wan	10
 黄连羊肝片	huang lian yang gan pian	10
 黄连羊肝丸	huang lian yang gan wan	10
+黄苓滑石汤	huang ling hua shi tang	10
 黄麻嗪胶丸	huang ma qin jiao wan	10
 黄芪健胃膏	huang qi jian wei gao	10
 黄芪建中丸	huang qi jian zhong wan	10
+黄芩滑石汤	huang qin hua shi tang	10
 黄氏响声丸	huang shi xiang sheng wan	10
 黄酮哌酯片	huang tong pai zhi pian	10
 黄萱益肝散	huang xuan yi gan san	10
@@ -1771,11 +1900,16 @@ sort: by_weight
 茴香桔核丸	hui xiang ju he wan	10
 茴香橘核丸	hui xiang ju he wan	10
 惠血生胶囊	hui xue sheng jiao nang	10
+回阳救急汤	hui yang jiu ji tang	10
+回阳救逆汤	hui yang jiu ni tang	10
 混合核苷片	hun he he gan pian	10
 火把花根片	huo ba hua gen pian	10
 活络健身液	huo luo jian shen ye	10
+活络效灵汤	huo luo xiao ling tang	10
 活络消痛片	huo luo xiao tong pian	10
 活络止痛丸	huo luo zhi tong wan	10
+霍朴夏苓汤	huo pu xia ling tang	10
+藿朴夏苓汤	huo pu xia ling tang	10
 藿砂口服液	huo sha kou fu ye	10
 藿香清胃片	huo xiang qing wei pian	10
 藿香万应散	huo xiang wan ying san	10
@@ -1823,10 +1957,12 @@ sort: by_weight
 吉祥安坤丸	ji xiang an kun wan	10
 鸡血散藤片	ji xie san teng pian	10
 鸡血腾糖浆	ji xie teng tang jiang	10
+鲫鱼豆腐汤	ji yu dou fu tang	10
 甲氨蝶呤片	jia an die ling pian	10
 加巴喷丁片	jia ba pen ding pian	10
 甲苯咪唑片	jia ben mi zuo pian	10
 甲丙氨酯片	jia bing an zhi pian	10
+加参生化汤	jia can sheng hua tang	10
 家传和中丸	jia chuan he zhong wan	10
 甲地高辛片	jia di gao xin pian	10
 甲地孕酮片	jia di yun tong pian	10
@@ -1835,16 +1971,27 @@ sort: by_weight
 嘉恒妇康片	jia heng fu kang pian	10
 嘉恒咽炎片	jia heng yan yan pian	10
 甲基多巴片	jia ji duo ba pian	10
+甲己化土汤	jia ji hua tu tang	10
 加减白术膏	jia jian bai zhu gao	10
 加减补筋丸	jia jian bu jin wan	10
+加减冲和汤	jia jian chong he tang	10
+加减六君汤	jia jian liu jun tang	10
 加减木香散	jia jian mu xiang san	10
 加减内固丸	jia jian nei gu wan	10
 加减三黄丸	jia jian san huang wan	10
+加减三奇汤	jia jian san qi tang	10
 加减神术散	jia jian shen shu san	10
 佳丽洁阴液	jia li jie yin ye	10
 甲硫氨酸片	jia liu an suan pian	10
 甲麻黄碱片	jia ma huang jian pian	10
+家秘胆星汤	jia mi dan xing tang	10
 家秘肝肾丸	jia mi gan shen wan	10
+家秘黄芩汤	jia mi huang qin tang	10
+家秘清胃汤	jia mi qing wei tang	10
+家秘神术汤	jia mi shen shu tang	10
+家秘温肺汤	jia mi wen fei tang	10
+家秘戊己汤	jia mi wu ji tang	10
+家秘消滞汤	jia mi xiao zhi tang	10
 家秘泻白散	jia mi xie bai san	10
 家秘泻黄散	jia mi xie huang san	10
 甲灭酸胶囊	jia mie suan jiao nang	10
@@ -1861,39 +2008,67 @@ sort: by_weight
 加味败毒散	jia wei bai du san	10
 加味白药丸	jia wei bai yao wan	10
 加味保和丸	jia wei bao he wan	10
+加味保元汤	jia wei bao yuan tang	10
 加味补肝散	jia wei bu gan san	10
+加味补血汤	jia wei bu xue tang	10
 加味补阴丸	jia wei bu yin wan	10
 加味苍柏散	jia wei cang bai san	10
+加味柴胡汤	jia wei chai hu tang	10
 加味丹参片	jia wei dan shen pian	10
+加味导痰汤	jia wei dao tan tang	10
+加味地黄汤	jia wei di huang tang	10
 加味地黄丸	jia wei di huang wan	10
 加味定志丸	jia wei ding zhi wan	10
+加味二陈汤	jia wei er chen tang	10
+加味二妙汤	jia wei er miao tang	10
 加味二妙丸	jia wei er miao wan	10
 加味二母丸	jia wei er mu wan	10
 加味佛手散	jia wei fo shou san	10
 加味茯苓汤	jia wei fu ling tang	10
+加味甘桔汤	jia wei gan ju tang	10
 加味感冒丸	jia wei gan mao wan	10
 加味归脾丸	jia wei gui pi wan	10
 加味归芪片	jia wei gui qi pian	10
+加味归芍汤	jia wei gui shao tang	10
+加味归宗汤	jia wei gui zong tang	10
 加味虎潜丸	jia wei hu qian wan	10
 加味槐角丸	jia wei huai jiao wan	10
 加味活命散	jia wei huo ming san	10
 加味藿香散	jia wei huo xiang san	10
+加味建中汤	jia wei jian zhong tang	10
+加味姜附汤	jia wei jiang fu tang	10
+加味解毒汤	jia wei jie du tang	10
 加味金黄散	jia wei jin huang san	10
 加味坎离丸	jia wei kan li wan	10
 加味葵子散	jia wei kui zi san	10
 加味烂积丸	jia wei lan ji wan	10
+加味连草汤	jia wei lian cao tang	10
 加味连理丸	jia wei lian li wan	10
 加味凉膈散	jia wei liang ge san	10
+加味麻黄汤	jia wei ma huang tang	10
 加味平胃散	jia wei ping wei san	10
 加味七厘散	jia wei qi li san	10
 加味青娥丸	jia wei qing e wan	10
 加味清胃散	jia wei qing wei san	10
+加味清胃汤	jia wei qing wei tang	10
+加味三拗汤	jia wei san ao tang	10
+加味三星汤	jia wei san xing tang	10
 加味肾气丸	jia wei shen qi wan	10
+加味肾热汤	jia wei shen re tang	10
+加味生化汤	jia wei sheng hua tang	10
+加味胜湿汤	jia wei sheng shi tang	10
 加味四斤丸	jia wei si jin wan	10
 加味四苓散	jia wei si ling san	10
+加味四七汤	jia wei si qi tang	10
+加味四物汤	jia wei si wu tang	10
 加味四消丸	jia wei si xiao wan	10
 加味太一膏	jia wei tai yi gao	10
 加味太乙膏	jia wei tai yi gao	10
+加味胃苓汤	jia wei wei ling tang	10
+加味温胆汤	jia wei wen dan tang	10
+加味五痹汤	jia wei wu bi tang	10
+加味戊己汤	jia wei wu ji tang	10
+加味乌药汤	jia wei wu yao tang	10
 加味西黄丸	jia wei xi huang wan	10
 加味香连丸	jia wei xiang lian wan	10
 加味香苏散	jia wei xiang su san	10
@@ -1902,14 +2077,20 @@ sort: by_weight
 加味消遥丸	jia wei xiao yao wan	10
 加味逍遥丸	jia wei xiao yao wan	10
 加味泻白散	jia wei xie bai san	10
+加味泻白汤	jia wei xie bai tang	10
 加味泻黄散	jia wei xie huang san	10
+加味泻心汤	jia wei xie xin tang	10
 加味修肝散	jia wei xiu gan san	10
 加味养荣丸	jia wei yang rong wan	10
+加味养心汤	jia wei yang xin tang	10
 加味易黄丸	jia wei yi huang wan	10
 加味益母丸	jia wei yi mu wan	10
 加味银翘片	jia wei yin qiao pian	10
+加味枳术汤	jia wei zhi shu tang	10
 加味枳术丸	jia wei zhi shu wan	10
 加味珠黄散	jia wei zhu huang san	10
+加味竹叶汤	jia wei zhu ye tang	10
+加味左金汤	jia wei zuo jin tang	10
 加味左金丸	jia wei zuo jin wan	10
 甲硝唑片片	jia xiao zuo pian pian	10
 甲硝唑维片	jia xiao zuo wei pian	10
@@ -1979,6 +2160,8 @@ sort: by_weight
 降脂灵颗粒	jiang zhi ling ke li	10
 降脂宁胶囊	jiang zhi ning jiao nang	10
 降脂宁颗粒	jiang zhi ning ke li	10
+胶艾六合汤	jiao ai liu he tang	10
+胶艾四物汤	jiao ai si wu tang	10
 交换抑制剂	jiao huan yi zhi ji	10
 交沙霉素片	jiao sha mei su pian	10
 角鲨烯胶丸	jiao sha xi jiao wan	10
@@ -2005,7 +2188,9 @@ sort: by_weight
 洁肤净洗剂	jie fu jing xi ji	10
 秸秆颗粒机	jie gan ke li ji	10
 桔梗冬花片	jie geng dong hua pian	10
+桔梗二陈汤	jie geng er chen tang	10
 桔梗流浸膏	jie geng liu jin gao	10
+桔梗枳壳汤	jie geng zhi qiao tang	10
 结构控制剂	jie gou kong zhi ji	10
 接骨灵贴膏	jie gu ling tie gao	10
 接骨七厘片	jie gu qi li pian	10
@@ -2132,6 +2317,7 @@ sort: by_weight
 九气心痛丸	jiu qi xin tong wan	10
 九味牛黄丸	jiu wei niu huang wan	10
 九味羌活片	jiu wei qiang huo pian	10
+九味羌活汤	jiu wei qiang huo tang	10
 九味羌活丸	jiu wei qiang huo wan	10
 九味青鹏散	jiu wei qing peng san	10
 九味石榴丸	jiu wei shi liu wan	10
@@ -2162,6 +2348,7 @@ sort: by_weight
 菊花茶调散	ju hua cha tiao san	10
 菊明降压片	ju ming jiang ya pian	10
 菊明降压丸	ju ming jiang ya wan	10
+橘皮竹茹汤	ju pi zhu ru tang	10
 枸橼酸锌片	ju yuan suan xin pian	10
 桔远止咳片	ju yuan zhi ke pian	10
 蠲痹抗生丸	juan bi kang sheng wan	10
@@ -2230,6 +2417,7 @@ sort: by_weight
 抗炎退热片	kang yan tui re pian	10
 烤瓷包埋液	kao ci bao mai ye	10
 考来烯胺散	kao lai xi an san	10
+可保立苏汤	ke bao li su tang	10
 克痹骨泰片	ke bi gu tai pian	10
 克比热提片	ke bi re ti pian	10
 咳喘感冒片	ke chuan gan mao pian	10
@@ -2323,7 +2511,10 @@ sort: by_weight
 蓝芩口服液	lan qin kou fu ye	10
 蓝色小药丸	lan se xiao yao wan	10
 兰索拉唑片	lan suo la zuo pian	10
+阑尾化瘀汤	lan wei hua yu tang	10
 阑尾灵颗粒	lan wei ling ke li	10
+阑尾清化汤	lan wei qing hua tang	10
+阑尾清解汤	lan wei qing jie tang	10
 阑尾消炎片	lan wei xiao yan pian	10
 阑尾消炎丸	lan wei xiao yan wan	10
 莨菪浸膏片	lang dang jin gao pian	10
@@ -2331,6 +2522,8 @@ sort: by_weight
 老年咳喘片	lao nian ke chuan pian	10
 乐儿康糖浆	le er kang tang jiang	10
 乐甲缓释片	le jia huan shi pian	10
+乐令黄芪汤	le ling huang qi tang	10
+乐令建中汤	le ling jian zhong tang	10
 勒马回胶囊	le ma hui jiao nang	10
 乐脉口服液	le mai kou fu ye	10
 雷佛奴尔液	lei fo nu er ye	10
@@ -2360,6 +2553,7 @@ sort: by_weight
 利肝隆胶囊	li gan long jiao nang	10
 利肝隆颗粒	li gan long ke li	10
 利肝糖衣片	li gan tang yi pian	10
+藜芦甘草汤	li lu gan cao tang	10
 利脑心胶囊	li nao xin jiao nang	10
 利尿八味散	li niao ba wei san	10
 利尿消炎丸	li niao xiao yan wan	10
@@ -2373,23 +2567,32 @@ sort: by_weight
 痢特敏颗粒	li te min ke li	10
 利托那韦片	li tuo na wei pian	10
 利妥昔单抗	li tuo xi dan kang	10
+立应四物汤	li ying si wu tang	10
+荔枝大枣汤	li zhi da zao tang	10
 励志情色片	li zhi qing se pian	10
+理中安蛔汤	li zhong an hui tang	10
+理中化痰汤	li zhong hua tan tang	10
 连柏烧伤膏	lian bai shao shang gao	10
 联苯双酯片	lian ben shuang zhi pian	10
 莲胆消炎片	lian dan xiao yan pian	10
 联发科芯片	lian fa ke xin pian	10
+连梅安蛔汤	lian mei an hui tang	10
 连蒲双清片	lian pu shuang qing pian	10
 连翘败毒片	lian qiao bai du pian	10
 连翘败毒丸	lian qiao bai du wan	10
 链球菌制剂	lian qiu jun zhi ji	10
 莲芝消炎片	lian zhi xiao yan pian	10
+凉肝导赤汤	liang gan dao chi tang	10
+凉膈白虎汤	liang ge bai hu tang	10
 凉膈连翘散	liang ge lian qiao san	10
 亮菌甲素片	liang jun jia su pian	10
 亮菌口服液	liang jun kou fu ye	10
 两面针痛片	liang mian zhen tong pian	10
 两面注射液	liang mian zhu she ye	10
+凉心清肝汤	liang xin qing gan tang	10
 亮雪口服液	liang xue kou fu ye	10
 凉血十味散	liang xue shi wei san	10
+凉营清气汤	liang ying qing qi tang	10
 辽源七厘散	liao yuan qi li san	10
 鳞柄白鹅膏	lin bing bai e gao	10
 林可霉素片	lin ke mei su pian	10
@@ -2400,7 +2603,9 @@ sort: by_weight
 灵宝如意丸	ling bao ru yi wan	10
 灵丹草胶囊	ling dan cao jiao nang	10
 灵丹草颗粒	ling dan cao ke li	10
+苓桂术甘汤	ling gui shu gan tang	10
 羚黄宝儿丸	ling huang bao er wan	10
+羚角钩藤汤	ling jiao gou teng tang	10
 灵敏色辉片	ling min se hui pian	10
 灵芪红胶囊	ling qi hong jiao nang	10
 羚翘解毒片	ling qiao jie du pian	10
@@ -2433,6 +2638,7 @@ sort: by_weight
 六味安消散	liu wei an xiao san	10
 六味地黄膏	liu wei di huang gao	10
 六味地黄片	liu wei di huang pian	10
+六味地黄汤	liu wei di huang tang	10
 六味地黄丸	liu wei di huang wan	10
 六味丁香丸	liu wei ding xiang wan	10
 六味甘草丸	liu wei gan cao wan	10
@@ -2450,7 +2656,11 @@ sort: by_weight
 龙参补益膏	long can bu yi gao	10
 龙胆苏打片	long dan su da pian	10
 龙胆泻肝片	long dan xie gan pian	10
+龙胆泻肝汤	long dan xie gan tang	10
 龙凤宝胶囊	long feng bao jiao nang	10
+龙蚝理痰汤	long hao li tan tang	10
+龙虎二仙汤	long hu er xian tang	10
+龙牡复脉汤	long mu fu mai tang	10
 龙脑鸡苏丸	long nao ji su wan	10
 龙七胃康片	long qi wei kang pian	10
 龙生蛭胶囊	long sheng zhi jiao nang	10
@@ -2466,11 +2676,13 @@ sort: by_weight
 芦沙坦钾片	lu sha tan jia pian	10
 陆氏润字丸	lu shi run zi wan	10
 露水草胶囊	lu shui cao jiao nang	10
+芦笋奶油汤	lu sun nai you tang	10
 颅痛宁颗粒	lu tong ning ke li	10
 鹿尾补肾丸	lu wei bu shen wan	10
 鹿仙补肾片	lu xian bu shen pian	10
 鹿珠口服液	lu zhu kou fu ye	10
 卵泡冲洗液	luan pao chong xi ye	10
+乱喷鱼头汤	luan pen yu tou tang	10
 罗布麻浸膏	luo bu ma jin gao	10
 洛布桑胶囊	luo bu sang jiao nang	10
 洛伐他汀片	luo fa ta ting pian	10
@@ -2527,6 +2739,8 @@ sort: by_weight
 氯氧喹胶囊	lv yang kui jiao nang	10
 氯唑沙宗片	lv zuo sha zong pian	10
 麻桂感冒丸	ma gui gan mao wan	10
+麻黄加术汤	ma huang jia shu tang	10
+麻黄升麻汤	ma huang sheng ma tang	10
 麻黄止嗽丸	ma huang zhi sou wan	10
 马洛替酯片	ma luo ti zhi pian	10
 吗氯贝胺片	ma lv bei an pian	10
@@ -2535,7 +2749,11 @@ sort: by_weight
 麻仁软胶囊	ma ren ruan jiao nang	10
 麻仁润肠丸	ma ren run chang wan	10
 麻仁滋脾丸	ma ren zi pi wan	10
+麻杏甘石汤	ma xing gan shi tang	10
 麻杏口服液	ma xing kou fu ye	10
+麻杏石甘汤	ma xing shi gan tang	10
+麻杏苡甘汤	ma xing yi gan tang	10
+麻杏薏甘汤	ma xing yi gan tang	10
 麻杏止咳膏	ma xing zhi ke gao	10
 麻杏止咳片	ma xing zhi ke pian	10
 麦白霉素片	mai bai mei su pian	10
@@ -2659,6 +2877,7 @@ sort: by_weight
 萘普待因片	nai pu dai yin pian	10
 萘普生钠片	nai pu sheng na pian	10
 奈韦拉平片	nai wei la ping pian	10
+奶油芦笋汤	nai you lu sun tang	10
 男春宝胶囊	nan chun bao jiao nang	10
 男人的精液	nan ren de jing ye	10
 脑得生胶囊	nao de sheng jiao nang	10
@@ -2680,6 +2899,7 @@ sort: by_weight
 脑血康颗粒	nao xue kang ke li	10
 脑震宁颗粒	nao zhen ning ke li	10
 内部参考片	nei bu can kao pian	10
+内补黄芪汤	nei bu huang qi tang	10
 内补养荣丸	nei bu yang rong wan	10
 内颗粒层纹	nei ke li ceng wen	10
 内美通胶囊	nei mei tong jiao nang	10
@@ -2719,6 +2939,7 @@ sort: by_weight
 宁神补心丸	ning shen bu xin wan	10
 宁神定志丸	ning shen ding zhi wan	10
 宁神灵颗粒	ning shen ling ke li	10
+宁嗽化痰汤	ning sou hua tan tang	10
 宁嗽化痰丸	ning sou hua tan wan	10
 宁嗽露糖浆	ning sou lu tang jiang	10
 宁心宝胶囊	ning xin bao jiao nang	10
@@ -2802,9 +3023,13 @@ sort: by_weight
 平肝舒络丸	ping gan shu luo wan	10
 平金属垫片	ping jin shu dian pian	10
 平疟养脾丸	ping nve yang pi wan	10
+平胃导痰汤	ping wei dao tan tang	10
+平胃地榆汤	ping wei di yu tang	10
+平胃二陈汤	ping wei er chen tang	10
 破积导饮丸	po ji dao yin wan	10
 泼尼松龙片	po ni song long pian	10
 破血红花散	po xue hong hua san	10
+破血散瘀汤	po xue san yu tang	10
 朴沉化郁丸	pu chen hua yu wan	10
 扑尔敏滴丸	pu er min di wan	10
 扑尔伪麻片	pu er wei ma pian	10
@@ -2847,6 +3072,7 @@ sort: by_weight
 七味广枣丸	qi wei guang zao wan	10
 七味诃子散	qi wei he zi san	10
 七味葡萄散	qi wei pu tao san	10
+七味沙参汤	qi wei sha shen tang	10
 七味铁屑丸	qi wei tie xie wan	10
 七味消肿丸	qi wei xiao zhong wan	10
 七味新消丸	qi wei xin xiao wan	10
@@ -2871,6 +3097,7 @@ sort: by_weight
 前达康胶囊	qian da kang jiao nang	10
 千金保孕丸	qian jin bao yun wan	10
 千金化痰丸	qian jin hua tan wan	10
+千金苇茎汤	qian jin wei jing tang	10
 千金止带丸	qian jin zhi dai wan	10
 千金止咳丸	qian jin zhi ke wan	10
 前列安通片	qian lie an tong pian	10
@@ -2892,6 +3119,7 @@ sort: by_weight
 千紫红胶囊	qian zi hong jiao nang	10
 千紫红颗粒	qian zi hong ke li	10
 强肝口服液	qiang gan kou fu ye	10
+羌活胜湿汤	qiang huo sheng shi tang	10
 羟基大黄素	qiang ji da huang su	10
 羟甲司坦片	qiang jia si tan pian	10
 羟甲烟胺片	qiang jia yan an pian	10
@@ -2916,15 +3144,26 @@ sort: by_weight
 噙化上清丸	qin hua shang qing wan	10
 秦艽白术丸	qin jiao bai zhu wan	10
 秦艽鳖甲散	qin jiao bie jia san	10
+秦艽苍术汤	qin jiao cang zhu tang	10
+秦艽当归汤	qin jiao dang gui tang	10
+秦艽地黄汤	qin jiao di huang tang	10
+秦艽防风汤	qin jiao fang feng tang	10
+秦艽扶羸汤	qin jiao fu lei tang	10
+秦艽牛蒡汤	qin jiao niu bang tang	10
+秦艽羌活汤	qin jiao qiang huo tang	10
+秦艽升麻汤	qin jiao sheng ma tang	10
 芩蓝滴鼻液	qin lan di bi ye	10
+芩连四物汤	qin lian si wu tang	10
 芩连丸微丸	qin lian wan wei wan	10
 芩翘口服液	qin qiao kou fu ye	10
 秦苏缓释片	qin su huan shi pian	10
 秦王九疸散	qin wang jiu dan san	10
 情安喘定片	qing an chuan ding pian	10
 庆大霉素片	qing da mei su pian	10
+清胆泻火汤	qing dan xie huo tang	10
 清肺化痰丸	qing fei hua tan wan	10
 清肺宁嗽丸	qing fei ning sou wan	10
+清肺排毒汤	qing fei pai du tang	10
 清肺散结丸	qing fei san jie wan	10
 清肺消炎丸	qing fei xiao yan wan	10
 清肺抑火膏	qing fei yi huo gao	10
@@ -2944,6 +3183,7 @@ sort: by_weight
 清宫寿桃丸	qing gong shou tao wan	10
 青果止嗽丸	qing guo zhi sou wan	10
 青蒿鳖甲片	qing hao bie jia pian	10
+青蒿鳖甲汤	qing hao bie jia tang	10
 青蒿琥脂片	qing hao hu zhi pian	10
 青蒿琥酯片	qing hao hu zhi pian	10
 清喉咽合剂	qing hou yan he ji	10
@@ -2952,8 +3192,10 @@ sort: by_weight
 清火明目丸	qing huo ming mu wan	10
 清火桅麦片	qing huo wei mai pian	10
 清火栀麦片	qing huo zhi mai pian	10
+清金降火汤	qing jin jiang huo tang	10
 清金理嗽丸	qing jin li sou wan	10
 清金宁肺丸	qing jin ning fei wan	10
+清经止血汤	qing jing zhi xue tang	10
 清开灵滴丸	qing kai ling di wan	10
 青兰浸膏片	qing lan jin gao pian	10
 青龙蛇药片	qing long she yao pian	10
@@ -2983,12 +3225,15 @@ sort: by_weight
 清热通淋片	qing re tong lin pian	10
 清热消肿丸	qing re xiao zhong wan	10
 清热养阴丸	qing re yang yin wan	10
+清热止崩汤	qing re zhi beng tang	10
 清热止咳散	qing re zhi ke san	10
 清热治痢丸	qing re zhi li wan	10
 青乳消颗粒	qing ru xiao ke li	10
 情色惊悚片	qing se jing song pian	10
 轻身减肥片	qing shen jian fei pian	10
 清身饮颗粒	qing shen yin ke li	10
+清湿化痰汤	qing shi hua tan tang	10
+清暑益气汤	qing shu yi qi tang	10
 清暑益气丸	qing shu yi qi wan	10
 清舒油软膏	qing shu you ruan gao	10
 青藤风湿酒	qing teng feng shi jiu	10
@@ -3014,6 +3259,7 @@ sort: by_weight
 清咽六味散	qing yan liu wei san	10
 清咽润喉丸	qing yan run hou wan	10
 清咽抑火丸	qing yan yi huo wan	10
+清燥救肺汤	qing zao jiu fei tang	10
 清浊祛毒丸	qing zhuo qu du wan	10
 求偶素软膏	qiu ou su ruan gao	10
 秋水仙碱片	qiu shui xian jian pian	10
@@ -3023,11 +3269,13 @@ sort: by_weight
 龋齿宁含片	qu chi ning han pian	10
 驱虫消食片	qu chong xiao shi pian	10
 祛毒灌肠液	qu du guan chang ye	10
+去恶清心汤	qu e qing xin tang	10
 祛风化痰丸	qu feng hua tan wan	10
 驱风苏合丸	qu feng su he wan	10
 祛风息痛丸	qu feng xi tong wan	10
 祛风止痛片	qu feng zhi tong pian	10
 去腐生肌散	qu fu sheng ji san	10
+祛寒娇耳汤	qu han jiao er tang	10
 去甲哌替啶	qu jia pai ti ding	10
 曲克芦丁片	qu ke lu ding pian	10
 去氯羟嗪片	qu lv qiang qin pian	10
@@ -3070,11 +3318,13 @@ sort: by_weight
 人参蛤蚧散	ren shen ge jie san	10
 人参归脾丸	ren shen gui pi wan	10
 人参归睥丸	ren shen gui pi wan	10
+人参胡桃汤	ren shen hu tao tang	10
 人参黄芪散	ren shen huang qi san	10
 人参健脾片	ren shen jian pi pian	10
 人参鹿茸丸	ren shen lu rong wan	10
 人参女金丸	ren shen nv jin wan	10
 人参养荣膏	ren shen yang rong gao	10
+人参养荣汤	ren shen yang rong tang	10
 人参养荣丸	ren shen yang rong wan	10
 人参至宝丸	ren shen zhi bao wan	10
 忍者茶茶丸	ren zhe cha cha wan	10
@@ -3095,6 +3345,8 @@ sort: by_weight
 柔肝顺气丸	rou gan shun qi wan	10
 肉蔻五味丸	rou kou wu wei wan	10
 鞣酸蛋白片	rou suan dan bai pian	10
+肉丸胡辣汤	rou wan hu la tang	10
+肉丸糊辣汤	rou wan hu la tang	10
 乳必宁颗粒	ru bi ning ke li	10
 乳核内消片	ru he nei xiao pian	10
 乳核内消液	ru he nei xiao ye	10
@@ -3130,11 +3382,15 @@ sort: by_weight
 润肠宁神膏	run chang ning shen gao	10
 润肺化核膏	run fei hua he gao	10
 润肺化痰丸	run fei hua tan wan	10
+润肺化炎汤	run fei hua yan tang	10
+润肺降气汤	run fei jiang qi tang	10
 润肺止嗽丸	run fei zhi sou wan	10
 润肌皮肤膏	run ji pi fu gao	10
 润清护理液	run qing hu li ye	10
 润舒滴眼液	run shu di yan ye	10
 润伊容胶囊	run yi rong jiao nang	10
+润燥安胎汤	run zao an tai tang	10
+润燥泻肺汤	run zao xie fei tang	10
 萨热大鹏丸	sa re da peng wan	10
 赛庚定软膏	sai geng ding ruan gao	10
 赛金化毒散	sai jin hua du san	10
@@ -3167,6 +3423,8 @@ sort: by_weight
 三黄宝蜡丸	san huang bao la wan	10
 三黄颠倒散	san huang dian dao san	10
 三黄清解片	san huang qing jie pian	10
+三甲复脉汤	san jia fu mai tang	10
+三甲腹脉汤	san jia fu mai tang	10
 散结灵胶囊	san jie ling jiao nang	10
 散结止痛膏	san jie zhi tong gao	10
 三金感冒片	san jin gan mao pian	10
@@ -3191,6 +3449,7 @@ sort: by_weight
 三味蔷薇散	san wei qiang wei san	10
 三味止咳片	san wei zhi ke pian	10
 三物备急丸	san wu bei ji wan	10
+三鲜木樨汤	san xian mu xi tang	10
 三相避孕片	san xiang bi yun pian	10
 散血明目丸	san xue ming mu wan	10
 散瘀明目丸	san yu ming mu wan	10
@@ -3198,7 +3457,9 @@ sort: by_weight
 三杖清肝膏	san zhang qing gan gao	10
 三株口服液	san zhu kou fu ye	10
 三子茸肾片	san zi rong shen pian	10
+三子养亲汤	san zi yang qin tang	10
 三子止咳膏	san zi zhi ke gao	10
+桑丹泻白汤	sang dan xie bai tang	10
 桑葛降脂丸	sang ge jiang zhi wan	10
 桑根白皮丸	sang gen bai pi wan	10
 桑姜感冒片	sang jiang gan mao pian	10
@@ -3212,6 +3473,8 @@ sort: by_weight
 沙丁醇雾剂	sha ding chun wu ji	10
 沙雷肽酶片	sha lei tai mei pian	10
 沙利度胺片	sha li du an pian	10
+沙参麦冬汤	sha shen mai dong tang	10
+沙参止咳汤	sha shen zhi ke tang	10
 痧药蟾酥丸	sha yao chan su wan	10
 山东阿胶膏	shan dong e jiao gao	10
 山海丹胶囊	shan hai dan jiao nang	10
@@ -3225,6 +3488,7 @@ sort: by_weight
 闪亮滴眼液	shan liang di yan ye	10
 山麦口服液	shan mai kou fu ye	10
 山牡丹胶囊	shan mu dan jiao nang	10
+单县羊肉汤	shan xian yang rou tang	10
 山药参芪丸	shan yao shen qi wan	10
 山楂化滞丸	shan zha hua zhi wan	10
 山楂降压丸	shan zha jiang ya wan	10
@@ -3248,6 +3512,7 @@ sort: by_weight
 伤痛宁胶囊	shang tong ning jiao nang	10
 伤益气雾剂	shang yi qi wu ji	10
 少腹祛瘀丸	shao fu qu yu wan	10
+少腹逐瘀汤	shao fu zhu yu tang	10
 少腹逐瘀丸	shao fu zhu yu wan	10
 少名针妙丸	shao ming zhen miao wan	10
 烧伤肤康液	shao shang fu kang ye	10
@@ -3354,6 +3619,8 @@ sort: by_weight
 神衰果素片	shen shuai guo su pian	10
 神衰康胶囊	shen shuai kang jiao nang	10
 肾衰康颗粒	shen shuai kang ke li	10
+身痛逐瘀汤	shen tong zhu yu tang	10
+身痛逐淤汤	shen tong zhu yu tang	10
 渗透消增散	shen tou xiao zeng san	10
 伸腿瞪眼丸	shen tui deng yan wan	10
 神香苏合丸	shen xiang su he wan	10
@@ -3374,11 +3641,13 @@ sort: by_weight
 神州跌打丸	shen zhou die da wan	10
 生白口服液	sheng bai kou fu ye	10
 生达润眼液	sheng da run yan ye	10
+生地八物汤	sheng di ba wu tang	10
 生尔发糖浆	sheng er fa tang jiang	10
 生干地黄散	sheng gan di huang san	10
 生干地黄丸	sheng gan di huang wan	10
 生桂口服液	sheng gui kou fu ye	10
 升华红黑丸	sheng hua hong hei wan	10
+生化六和汤	sheng hua liu he tang	10
 生肌八宝散	sheng ji ba bao san	10
 生肌白玉膏	sheng ji bai yu gao	10
 圣济憋甲丸	sheng ji bie jia wan	10
@@ -3388,16 +3657,28 @@ sort: by_weight
 生肌愈创膏	sheng ji yu chuang gao	10
 生肌玉红膏	sheng ji yu hong gao	10
 生肌愈皮膏	sheng ji yu pi gao	10
+生姜甘草汤	sheng jiang gan cao tang	10
 生姜泄心片	sheng jiang xie xin pian	10
+生津葛根汤	sheng jin ge gen tang	10
+生津四物汤	sheng jin si wu tang	10
+生津养血汤	sheng jin yang xue tang	10
 升力口服液	sheng li kou fu ye	10
+生料四物汤	sheng liao si wu tang	10
+升麻鳖甲汤	sheng ma bie jia tang	10
+生脉补精汤	sheng mai bu jing tang	10
 生乳口服液	sheng ru kou fu ye	10
 生熟地黄丸	sheng shu di huang wan	10
+生熟三黄汤	sheng shu san huang tang	10
 生物碱试剂	sheng wu jian shi ji	10
 生血宝合剂	sheng xue bao he ji	10
 生血宝颗粒	sheng xue bao ke li	10
+生血补髓汤	sheng xue bu sui tang	10
 生血康合剂	sheng xue kang he ji	10
 升血灵胶囊	sheng xue ling jiao nang	10
 升血灵颗粒	sheng xue ling ke li	10
+升血调元汤	sheng xue tiao yuan tang	10
+生血止崩汤	sheng xue zhi beng tang	10
+升阳益胃汤	sheng yang yi wei tang	10
 生长抑制剂	sheng zhang yi zhi ji	10
 施保利通片	shi bao li tong pian	10
 诗碧脱毛膏	shi bi tuo mao gao	10
@@ -3406,7 +3687,10 @@ sort: by_weight
 十二太保丸	shi er tai bao wan	10
 十二温经丸	shi er wen jing wan	10
 十复生胶囊	shi fu sheng jiao nang	10
+石膏葱白汤	shi gao cong bai tang	10
+石膏六合汤	shi gao liu he tang	10
 石膏泻白散	shi gao xie bai san	10
+石膏知母汤	shi gao zhi mu tang	10
 石斛明目丸	shi hu ming mu wan	10
 石斛牛膝汤	shi hu niu xi tang	10
 石斛夜光丸	shi hu ye guang wan	10
@@ -3426,6 +3710,7 @@ sort: by_weight
 视频和相片	shi pin he xiang pian	10
 十全大补膏	shi quan da bu gao	10
 十全大补片	shi quan da bu pian	10
+十全大补汤	shi quan da bu tang	10
 十全大补丸	shi quan da bu wan	10
 十全明目片	shi quan ming mu pian	10
 石杉碱甲片	shi shan jian jia pian	10
@@ -3441,6 +3726,7 @@ sort: by_weight
 十味乳香散	shi wei ru xiang san	10
 十味乳香丸	shi wei ru xiang wan	10
 十味铁粉散	shi wei tie fen san	10
+十味温胆汤	shi wei wen dan tang	10
 十味消食散	shi wei xiao shi san	10
 十味止咳片	shi wei zhi ke pian	10
 十香定痛丸	shi xiang ding tong wan	10
@@ -3455,6 +3741,7 @@ sort: by_weight
 食欲抑制剂	shi yu yi zhi ji	10
 十珍香附丸	shi zhen xiang fu wan	10
 时珍正容散	shi zhen zheng rong san	10
+石子荠苨汤	shi zi ji ni tang	10
 手绘明信片	shou hui ming xin pian	10
 首明山胶囊	shou ming shan jiao nang	10
 首乌地黄丸	shou wu di huang wan	10
@@ -3469,6 +3756,7 @@ sort: by_weight
 舒风定痛丸	shu feng ding tong wan	10
 疏风活络片	shu feng huo luo pian	10
 疏风活络丸	shu feng huo luo wan	10
+疏风活血汤	shu feng huo xue tang	10
 疏风再造丸	shu feng zai zao wan	10
 舒肝安胶囊	shu gan an jiao nang	10
 舒肝保坤丸	shu gan bao kun wan	10
@@ -3477,6 +3765,7 @@ sort: by_weight
 舒肝康胶囊	shu gan kang jiao nang	10
 舒肝快胃丸	shu gan kuai wei wan	10
 疏肝理脾片	shu gan li pi pian	10
+疏肝理脾汤	shu gan li pi tang	10
 舒肝理气丸	shu gan li qi wan	10
 舒肝明目丸	shu gan ming mu wan	10
 舒肝平胃丸	shu gan ping wei wan	10
@@ -3492,6 +3781,7 @@ sort: by_weight
 舒筋风湿酒	shu jin feng shi jiu	10
 舒筋琥珀丸	shu jin hu po wan	10
 舒筋活血片	shu jin huo xue pian	10
+疏筋活血汤	shu jin huo xue tang	10
 舒筋活血丸	shu jin huo xue wan	10
 舒颈口服液	shu jing kou fu ye	10
 舒康宁洗液	shu kang ning xi ye	10
@@ -3532,6 +3822,7 @@ sort: by_weight
 水基钻井液	shui ji zuan jing ye	10
 水陆二味片	shui lu er wei pian	10
 水陆二味丸	shui lu er wei wan	10
+水陆二仙汤	shui lu er xian tang	10
 水杨酸搽剂	shui yang suan cha ji	10
 水杨酸镁片	shui yang suan mei pian	10
 水杨酸钠片	shui yang suan na pian	10
@@ -3543,6 +3834,7 @@ sort: by_weight
 四方胃胶囊	si fang wei jiao nang	10
 四海舒郁丸	si hai shu yu wan	10
 四黄清心丸	si huang qing xin wan	10
+四黄三子汤	si huang san zi tang	10
 四黄泻火片	si huang xie huo pian	10
 四季菜颗粒	si ji cai ke li	10
 四季菜糖浆	si ji cai tang jiang	10
@@ -3556,6 +3848,7 @@ sort: by_weight
 饲料颗粒机	si liao ke li ji	10
 斯鲁利单抗	si lu li dan kang	10
 四妙丸水丸	si miao wan shui wan	10
+四妙勇安汤	si miao yong an tang	10
 四逆注射液	si ni zhu she ye	10
 司帕沙星片	si pa sha xing pian	10
 四色断痫丸	si se duan xian wan	10
@@ -3567,9 +3860,16 @@ sort: by_weight
 四味香连丸	si wei xiang lian wan	10
 四味异功散	si wei yi gong san	10
 四味萸连丸	si wei yu lian wan	10
+四物安神汤	si wu an shen tang	10
 四物补肝散	si wu bu gan san	10
+四物二连汤	si wu er lian tang	10
+四物化郁汤	si wu hua yu tang	10
+四物绛覆汤	si wu jiang fu tang	10
 四物口服液	si wu kou fu ye	10
+四物龙胆汤	si wu long dan tang	10
 四物五子丸	si wu wu zi wan	10
+四物消风汤	si wu xiao feng tang	10
+四物延胡汤	si wu yan hu tang	10
 四物益母丸	si wu yi mu wan	10
 四香祛湿丸	si xiang qu shi wan	10
 四消丸水丸	si xiao wan shui wan	10
@@ -3595,6 +3895,7 @@ sort: by_weight
 速效救心丸	su xiao jiu xin wan	10
 速效牛黄丸	su xiao niu huang wan	10
 速效止痒液	su xiao zhi yang ye	10
+苏子降气汤	su zi jiang qi tang	10
 苏子降气丸	su zi jiang qi wan	10
 酸枣仁合剂	suan zao ren he ji	10
 损伤熏洗散	sun shang xun xi san	10
@@ -3625,8 +3926,11 @@ sort: by_weight
 糖尿康胶囊	tang niao kang jiao nang	10
 糖尿乐胶囊	tang niao le jiao nang	10
 糖脂宁胶囊	tang zhi ning jiao nang	10
+桃核承气汤	tao he cheng qi tang	10
 桃红清血丸	tao hong qing xue wan	10
+桃花化浊汤	tao hua hua zhuo tang	10
 萄醛内酯片	tao quan nei zhi pian	10
+桃仁红花汤	tao ren hong hua tang	10
 陶氏再造散	tao shi zai zao san	10
 特比萘芬片	te bi nai fen pian	10
 特比萘酚片	te bi nai fen pian	10
@@ -3671,7 +3975,9 @@ sort: by_weight
 填隙式扩散	tian xi shi kuo san	10
 天郁老蔻丸	tian yu lao kou wan	10
 天芝草胶囊	tian zhi cao jiao nang	10
+调和荣卫汤	tiao he rong wei tang	10
 调经补血丸	tiao jing bu xue wan	10
+调经琥珀汤	tiao jing hu po tang	10
 调经化瘀丸	tiao jing hua yu wan	10
 调经活血片	tiao jing huo xue pian	10
 调经健胃丸	tiao jing jian wei wan	10
@@ -3687,8 +3993,10 @@ sort: by_weight
 调小儿脾胃	tiao xiao er pi wei	10
 调血化核丸	tiao xue hua he wan	10
 调元肾气丸	tiao yuan shen qi wan	10
+调中大成汤	tiao zhong da cheng tang	10
 调中顺气丸	tiao zhong shun qi wan	10
 调中四消丸	tiao zhong si xiao wan	10
+调中益气汤	tiao zhong yi qi tang	10
 铁笛口服液	tie di kou fu ye	10
 铁牛运功散	tie niu yun gong san	10
 铁帚清浊丸	tie zhou qing zhuo wan	10
@@ -3696,10 +4004,13 @@ sort: by_weight
 痛安注射液	tong an zhu she ye	10
 通便清火丸	tong bian qing huo wan	10
 通便消痤片	tong bian xiao cuo pian	10
+通肠解毒汤	tong chang jie du tang	10
 痛风定胶囊	tong feng ding jiao nang	10
 痛风克颗粒	tong feng ke ke li	10
 痛风舒胶囊	tong feng shu jiao nang	10
+通肝生乳汤	tong gan sheng ru tang	10
 通关瞿麦丸	tong guan qu mai wan	10
+通经导滞汤	tong jing dao zhi tang	10
 通经甘露丸	tong jing gan lu wan	10
 痛经灵颗粒	tong jing ling ke li	10
 痛经宁颗粒	tong jing ning ke li	10
@@ -3716,6 +4027,7 @@ sort: by_weight
 通络开痹丸	tong luo kai bi wan	10
 通络抗栓丸	tong luo kang shuan wan	10
 通络口服液	tong luo kou fu ye	10
+通络利湿汤	tong luo li shi tang	10
 通络祛痛膏	tong luo qu tong gao	10
 通络止痛丸	tong luo zhi tong wan	10
 通脉降脂片	tong mai jiang zhi pian	10
@@ -3723,8 +4035,11 @@ sort: by_weight
 通脉康洗液	tong mai kang xi ye	10
 通脉口服液	tong mai kou fu ye	10
 通脉四逆散	tong mai si ni san	10
+通脉四逆汤	tong mai si ni tang	10
 通脉养心丸	tong mai yang xin wan	10
 通明补肾丸	tong ming bu shen wan	10
+通脾泻胃汤	tong pi xie wei tang	10
+通气防风汤	tong qi fang feng tang	10
 通气利中丸	tong qi li zhong wan	10
 通气散坚丸	tong qi san jian wan	10
 通窍耳聋丸	tong qiao er long wan	10
@@ -3733,6 +4048,7 @@ sort: by_weight
 同仁复明丸	tong ren fu ming wan	10
 通塞脉颗粒	tong sai mai ke li	10
 通天口服液	tong tian kou fu ye	10
+通天愈风汤	tong tian yu feng tang	10
 通天再造散	tong tian zai zao san	10
 樋屋奇应丸	tong wu qi ying wan	10
 通心舒胶囊	tong xin shu jiao nang	10
@@ -3742,6 +4058,7 @@ sort: by_weight
 通宣理肺丸	tong xuan li fei wan	10
 通宣益气丸	tong xuan yi qi wan	10
 痛血康胶囊	tong xue kang jiao nang	10
+通幽化浊汤	tong you hua zhuo tang	10
 通幽润燥丸	tong you run zao wan	10
 同志爱情片	tong zhi ai qing pian	10
 通之舒胶囊	tong zhi shu jiao nang	10
@@ -3795,6 +4112,7 @@ sort: by_weight
 头痛定糖浆	tou tong ding tang jiang	10
 头痛宁胶囊	tou tong ning jiao nang	10
 头痛眩晕膏	tou tong xuan yun gao	10
+透疹凉解汤	tou zhen liang jie tang	10
 土伏苓颗粒	tu fu ling ke li	10
 吐泻肚痛散	tu xie du tong san	10
 退翳明目丸	tui yi ming mu wan	10
@@ -3814,6 +4132,7 @@ sort: by_weight
 外颗粒层纹	wai ke li ceng wen	10
 外伤如意膏	wai shang ru yi gao	10
 外台茯苓饮	wai tai fu ling yin	10
+外台走马汤	wai tai zou ma tang	10
 外用溃疡散	wai yong kui yang san	10
 外用万应膏	wai yong wan ying gao	10
 外用无敌膏	wai yong wu di gao	10
@@ -3957,6 +4276,7 @@ sort: by_weight
 五参芪苓丸	wu shen qi ling wan	10
 戊四硝酯片	wu si xiao zhi pian	10
 吴太咽炎片	wu tai yan yan pian	10
+乌头桂枝汤	wu tou gui zhi tang	10
 乌头注射液	wu tou zhu she ye	10
 五味甘露丸	wu wei gan lu wan	10
 五味黄连丸	wu wei huang lian wan	10
@@ -3970,6 +4290,7 @@ sort: by_weight
 五味香连丸	wu wei xiang lian wan	10
 五味渣驯丸	wu wei zha xun wan	10
 五味治肝片	wu wei zhi gan pian	10
+五行蔬菜汤	wu xing shu cai tang	10
 乌药顺气散	wu yao shun qi san	10
 吴语太湖片	wu yu tai hu pian	10
 吴语台州片	wu yu tai zhou pian	10
@@ -3982,9 +4303,12 @@ sort: by_weight
 烯丙雌醇片	xi bing ci chun pian	10
 西地那非片	xi di na fei pian	10
 希尔溃疡散	xi er kui yang san	10
+息焚安胎汤	xi fen an tai tang	10
+西湖莼菜汤	xi hu chun cai tang	10
 西黄清醒丸	xi huang qing xing wan	10
 西黄丸糊丸	xi huang wan hu wan	10
 西黄丸水丸	xi huang wan shui wan	10
+犀角地黄汤	xi jiao di huang tang	10
 犀角地黄丸	xi jiao di huang wan	10
 犀角化毒丸	xi jiao hua du wan	10
 西拉普利片	xi la pu li pian	10
@@ -3996,6 +4320,7 @@ sort: by_weight
 西尼地平片	xi ni di ping pian	10
 西沙必利片	xi sha bi li pian	10
 西沙比利片	xi sha bi li pian	10
+洗手做羹汤	xi shou zuo geng tang	10
 喜树碱软膏	xi shu jian ruan gao	10
 西替利嗪片	xi ti li qin pian	10
 西妥昔单抗	xi tuo xi dan kang	10
@@ -4007,7 +4332,9 @@ sort: by_weight
 豯莶通栓丸	xi xian tong shuan wan	10
 西园喉药散	xi yuan hou yao san	10
 仙参口服液	xian can kou fu ye	10
+仙传化毒汤	xian chuan hua du tang	10
 仙方活命片	xian fang huo ming pian	10
+仙方救命汤	xian fang jiu ming tang	10
 腺苷钴胺片	xian gan gu an pian	10
 腺苷注射液	xian gan zhu she ye	10
 狝猴桃颗粒	xian hou tao ke li	10
@@ -4017,6 +4344,8 @@ sort: by_weight
 仙人掌茎片	xian ren zhang jing pian	10
 仙茸壮阳片	xian rong zhuang yang pian	10
 鲜天麻蜜膏	xian tian ma mi gao	10
+陷胸承气汤	xian xiong cheng qi tang	10
+陷胸泻心汤	xian xiong xie xin tang	10
 仙乐雄胶囊	xian yue xiong jiao nang	10
 限制酶断片	xian zhi mei duan pian	10
 鲜竹沥合剂	xian zhu li he ji	10
@@ -4057,7 +4386,10 @@ sort: by_weight
 哮喘宁颗粒	xiao chuan ning ke li	10
 哮喘贴敷散	xiao chuan tie fu san	10
 消疮口服液	xiao chuang kou fu ye	10
+消导二陈汤	xiao dao er chen tang	10
 消毒定痛散	xiao du ding tong san	10
+消毒化癍汤	xiao du hua ban tang	10
+消毒圣神汤	xiao du sheng shen tang	10
 小儿百乐片	xiao er bai le pian	10
 小儿百寿丸	xiao er bai shou wan	10
 小儿百效片	xiao er bai xiao pian	10
@@ -4157,6 +4489,9 @@ sort: by_weight
 小儿止泻贴	xiao er zhi xie tie	10
 小儿紫草丸	xiao er zi cao wan	10
 消风百解散	xiao feng bai jie san	10
+消风导赤汤	xiao feng dao chi tang	10
+消风豁痰汤	xiao feng huo tan tang	10
+消风宁嗽汤	xiao feng ning sou tang	10
 消风玉容散	xiao feng yu rong san	10
 硝呋太尔片	xiao fu tai er pian	10
 消疳败毒散	xiao gan bai du san	10
@@ -4219,9 +4554,11 @@ sort: by_weight
 硝酸甘油片	xiao suan gan you pian	10
 硝酸硫胺片	xiao suan liu an pian	10
 消糖灵胶囊	xiao tang ling jiao nang	10
+消下破血汤	xiao xia po xue tang	10
 消眩治瘫丸	xiao xuan zhi tan wan	10
 消眩止晕片	xiao xuan zhi yun pian	10
 消血内消丸	xiao xue nei xiao wan	10
+消炎化毒汤	xiao yan hua du tang	10
 消炎利胆片	xiao yan li dan pian	10
 消炎灵胶囊	xiao yan ling jiao nang	10
 消炎生肌膏	xiao yan sheng ji gao	10
@@ -4232,8 +4569,10 @@ sort: by_weight
 消银口服液	xiao yin kou fu ye	10
 消瘿气瘰丸	xiao ying qi luo wan	10
 消瘿五海丸	xiao ying wu hai wan	10
+消痈散毒汤	xiao yong san du tang	10
 消痈提毒膏	xiao yong ti du gao	10
 消疣口服液	xiao you kou fu ye	10
+消瘀荡秽汤	xiao yu dang hui tang	10
 消瘀定痛膏	xiao yu ding tong gao	10
 消瘀康胶囊	xiao yu kang jiao nang	10
 消胀顺气丸	xiao zhang shun qi wan	10
@@ -4242,6 +4581,7 @@ sort: by_weight
 消痔千金散	xiao zhi qian jin san	10
 消痔注射液	xiao zhi zhu she ye	10
 消中保中丸	xiao zhong bao zhong wan	10
+消肿健脾汤	xiao zhong jian pi tang	10
 消肿九味散	xiao zhong jiu wei san	10
 消肿痛醋膏	xiao zhong tong cu gao	10
 消肿橡胶膏	xiao zhong xiang jiao gao	10
@@ -4266,6 +4606,7 @@ sort: by_weight
 新肤螨软膏	xin fu man ruan gao	10
 心肝宝胶囊	xin gan bao jiao nang	10
 心肌康颗粒	xin ji kang ke li	10
+新加黄龙汤	xin jia huang long tang	10
 心可宁胶囊	xin ke ning jiao nang	10
 心可舒胶囊	xin ke shu jiao nang	10
 心可舒颗粒	xin ke shu ke li	10
@@ -4305,6 +4646,7 @@ sort: by_weight
 醒脑安神片	xing nao an shen pian	10
 醒脑降压丸	xing nao jiang ya wan	10
 醒脑康胶囊	xing nao kang jiao nang	10
+杏仁滑石汤	xing ren hua shi tang	10
 杏苏二陈丸	xing su er chen wan	10
 杏苏口服液	xing su kou fu ye	10
 熊胆跌打膏	xiong dan die da gao	10
@@ -4318,10 +4660,14 @@ sort: by_weight
 芎香通脉丸	xiong xiang tong mai wan	10
 溴噻乙啶片	xiu sai yi ding pian	10
 宣肺定喘丸	xuan fei ding chuan wan	10
+旋覆代赭汤	xuan fu dai zhe tang	10
+旋复代赭汤	xuan fu dai zhe tang	10
 悬浮颗粒物	xuan fu ke li wu	10
 玄胡当归散	xuan hu dang gui san	10
+玄胡六合汤	xuan hu liu he tang	10
 玄胡止痛片	xuan hu zhi tong pian	10
 玄芪口服液	xuan qi kou fu ye	10
+玄参升麻汤	xuan shen sheng ma tang	10
 玄霜雪梨膏	xuan shuang xue li gao	10
 癣药玉红膏	xuan yao yu hong gao	10
 眩晕宁颗粒	xuan yun ning ke li	10
@@ -4331,6 +4677,8 @@ sort: by_weight
 血尔口服液	xue er kou fu ye	10
 血复生胶囊	xue fu sheng jiao nang	10
 血府逐瘀片	xue fu zhu yu pian	10
+血府逐瘀汤	xue fu zhu yu tang	10
+血府逐淤汤	xue fu zhu yu tang	10
 血府逐瘀丸	xue fu zhu yu wan	10
 血浆代用液	xue jiang dai yong ye	10
 血康口服液	xue kang kou fu ye	10
@@ -4407,6 +4755,7 @@ sort: by_weight
 养荣祛斑膏	yang rong qu ban gao	10
 羊乳维钙片	yang ru wei gai pian	10
 洋参保肺丸	yang shen bao fei wan	10
+洋参炖鸡汤	yang shen dun ji tang	10
 养胃宁胶囊	yang wei ning jiao nang	10
 养胃舒胶囊	yang wei shu jiao nang	10
 养胃舒颗粒	yang wei shu ke li	10
@@ -4427,6 +4776,7 @@ sort: by_weight
 养阴降糖片	yang yin jiang tang pian	10
 养阴明目丸	yang yin ming mu wan	10
 养阴清肺膏	yang yin qing fei gao	10
+养阴清肺汤	yang yin qing fei tang	10
 养阴清肺丸	yang yin qing fei wan	10
 养正口服液	yang zheng kou fu ye	10
 腰痹通胶囊	yao bi tong jiao nang	10
@@ -4435,6 +4785,8 @@ sort: by_weight
 药制龟苓膏	yao zhi gui ling gao	10
 腰椎痹痕丸	yao zhui bi hen wan	10
 腰椎痹痛丸	yao zhui bi tong wan	10
+射干兜铃汤	ye gan dou ling tang	10
+射干麻黄汤	ye gan ma huang tang	10
 叶绿素铜片	ye lv su tong pian	10
 夜宁口服液	ye ning kou fu ye	10
 叶酸拮抗剂	ye suan jie kang ji	10
@@ -4447,6 +4799,8 @@ sort: by_weight
 宜鳖甲煎丸	yi bie jia jian wan	10
 一部大烂片	yi bu da lan pian	10
 益肠灌肠液	yi chang guan chang ye	10
+宜大柴胡汤	yi da chai hu tang	10
+宜大承气汤	yi da cheng qi tang	10
 胰胆舒颗粒	yi dan shu ke li	10
 胰胆炎合剂	yi dan yan he ji	10
 胰岛生胶囊	yi dao sheng jiao nang	10
@@ -4466,6 +4820,7 @@ sort: by_weight
 伊红染色液	yi hong ran se ye	10
 蚁黄口服液	yi huang kou fu ye	10
 伊基奥仑赛	yi ji ao lun sai	10
+一甲复脉汤	yi jia fu mai tang	10
 益金解毒片	yi jin jie du pian	10
 益精口服液	yi jing kou fu ye	10
 异卡波肼片	yi ka bo jing pian	10
@@ -4499,13 +4854,18 @@ sort: by_weight
 依普黄酮片	yi pu huang tong pian	10
 依普拉酮片	yi pu la tong pian	10
 益气安神片	yi qi an shen pian	10
+益气安神汤	yi qi an shen tang	10
+益气补肺汤	yi qi bu fei tang	10
 益气补血片	yi qi bu xue pian	10
+益气聪明汤	yi qi cong ming tang	10
 益气聪明丸	yi qi cong ming wan	10
 益气复脉片	yi qi fu mai pian	10
 益气健肾膏	yi qi jian shen gao	10
 益气六君丸	yi qi liu jun wan	10
 益气明目丸	yi qi ming mu wan	10
+益气清金汤	yi qi qing jin tang	10
 益气润肠膏	yi qi run chang gao	10
+益气疏风汤	yi qi shu feng tang	10
 益气舒肝片	yi qi shu gan pian	10
 益气维血片	yi qi wei xue pian	10
 益气消渴丸	yi qi xiao ke wan	10
@@ -4544,6 +4904,7 @@ sort: by_weight
 伊维菌素片	yi wei jun su pian	10
 益胃口服液	yi wei kou fu ye	10
 益胃宁胶囊	yi wei ning jiao nang	10
+益胃升阳汤	yi wei sheng yang tang	10
 依沃西单抗	yi wo xi dan kang	10
 乙烯雌酚片	yi xi ci fen pian	10
 已烯雌酚片	yi xi ci fen pian	10
@@ -4568,13 +4929,16 @@ sort: by_weight
 以饮服一丸	yi yin fu yi wan	10
 益阴肾气丸	yi yin shen qi wan	10
 益贞女金片	yi zhen nv jin pian	10
+益智和中汤	yi zhi he zhong tang	10
 益智康脑丸	yi zhi kang nao wan	10
 益脂平胶囊	yi zhi ping jiao nang	10
 益中生血片	yi zhong sheng xue pian	10
 异种移植片	yi zhong yi zhi pian	10
 一洲洋参丸	yi zhou yang shen wan	10
 银柴口服液	yin chai kou fu ye	10
+茵陈术附汤	yin chen shu fu tang	10
 茵陈四逆散	yin chen si ni san	10
+茵陈四逆汤	yin chen si ni tang	10
 茵陈五疸丸	yin chen wu dan wan	10
 茵陈五疽丸	yin chen wu ju wan	10
 茵陈五苓散	yin chen wu ling san	10
@@ -4712,6 +5076,7 @@ sort: by_weight
 增乳口服液	zeng ru kou fu ye	10
 增视益智片	zeng shi yi zhi pian	10
 增效联磺片	zeng xiao lian huang pian	10
+增液承气汤	zeng ye cheng qi tang	10
 增液口服液	zeng ye kou fu ye	10
 扎来普隆片	zha lai pu long pian	10
 湛江蟾蜍膏	zhan jiang chan chu gao	10
@@ -4721,6 +5086,7 @@ sort: by_weight
 张艺谋新片	zhang yi mou xin pian	10
 珍宝丸水丸	zhen bao wan shui wan	10
 珍凤口服液	zhen feng kou fu ye	10
+镇肝熄风汤	zhen gan xi feng tang	10
 珍黄安宫片	zhen huang an gong pian	10
 珍菊降压片	zhen ju jiang ya pian	10
 真君妙贴散	zhen jun miao tie san	10
@@ -4741,6 +5107,7 @@ sort: by_weight
 正心泰胶囊	zheng xin tai jiao nang	10
 正心泰颗粒	zheng xin tai ke li	10
 知柏地黄片	zhi bai di huang pian	10
+知柏地黄汤	zhi bai di huang tang	10
 知柏地黄丸	zhi bai di huang wan	10
 至宝三鞭丸	zhi bao san bian wan	10
 志仓千代丸	zhi cang qian dai wan	10
@@ -4821,7 +5188,12 @@ sort: by_weight
 止痒消炎水	zhi yang xiao yan shui	10
 止痒消炎王	zhi yang xiao yan wang	10
 脂质体制剂	zhi zhi ti zhi ji	10
+栀子柏皮汤	zhi zi bai pi tang	10
 栀子大黄汤	zhi zi da huang tang	10
+栀子导赤汤	zhi zi dao chi tang	10
+栀子干姜汤	zhi zi gan jiang tang	10
+栀子厚朴汤	zhi zi hou po tang	10
+栀子金花汤	zhi zi jin hua tang	10
 栀子金花丸	zhi zi jin hua wan	10
 中草药制剂	zhong cao yao zhi ji	10
 中成药制剂	zhong cheng yao zhi ji	10
@@ -4833,6 +5205,7 @@ sort: by_weight
 肿节风浸膏	zhong jie feng jin gao	10
 仲景胃灵片	zhong jing wei ling pian	10
 仲景胃灵丸	zhong jing wei ling wan	10
+中满分消汤	zhong man fen xiao tang	10
 中满分消丸	zhong man fen xiao wan	10
 肿痛安胶囊	zhong tong an jiao nang	10
 肿痛气雾剂	zhong tong qi wu ji	10
@@ -4842,6 +5215,7 @@ sort: by_weight
 周氏回生丸	zhou shi hui sheng wan	10
 珠贝定喘丸	zhu bei ding chuan wan	10
 诸葛行军散	zhu ge xing jun san	10
+逐寒荡惊汤	zhu han dang jing tang	10
 竺黄安宁丸	zhu huang an ning wan	10
 珠黄八宝散	zhu huang ba bao san	10
 珠黄吹喉散	zhu huang chui hou san	10
@@ -4850,8 +5224,11 @@ sort: by_weight
 珠珀保婴散	zhu po bao ying san	10
 珠珀猴枣散	zhu po hou zao san	10
 朱砂安神片	zhu sha an shen pian	10
+竹叶柳蒡汤	zhu ye liu bang tang	10
+竹叶石膏汤	zhu ye shi gao tang	10
 逐瘀消肿膏	zhu yu xiao zhong gao	10
 著蓣皂苷片	zhu yu zao gan pian	10
+逐瘀止血汤	zhu yu zhi xue tang	10
 珠珍胃安丸	zhu zhen wei an wan	10
 壮骨关节丸	zhuang gu guan jie wan	10
 壮筋续骨丸	zhuang jin xu gu wan	10
@@ -4891,6 +5268,7 @@ sort: by_weight
 资生浓缩丸	zi sheng nong suo wan	10
 资生肾气丸	zi sheng shen qi wan	10
 资生通脉散	zi sheng tong mai san	10
+资寿解语汤	zi shou jie yu tang	10
 紫松皮炎膏	zi song pi yan gao	10
 紫铜消白片	zi tong xiao bai pian	10
 滋心阴胶囊	zi xin yin jiao nang	10
@@ -5048,6 +5426,10 @@ sort: by_weight
 白贝止咳糖浆	bai bei zhi ke tang jiang	10
 百部止咳糖浆	bai bu zhi ke tang jiang	10
 白癜风浓缩丸	bai dian feng nong suo wan	10
+白虎加仓术汤	bai hu jia cang shu tang	10
+白虎加苍术汤	bai hu jia cang zhu tang	10
+白虎加桂枝汤	bai hu jia gui zhi tang	10
+白虎加人参汤	bai hu jia ren shen tang	10
 白加黑感冒片	bai jia hei gan mao pian	10
 白连止痢胶囊	bai lian zhi li jiao nang	10
 白苓健脾颗粒	bai ling jian pi ke li	10
@@ -5260,6 +5642,7 @@ sort: by_weight
 茶碱控释胶囊	cha jian kong shi jiao nang	10
 茶碱麻黄碱片	cha jian ma huang jian pian	10
 柴桂退热颗粒	chai gui tui re ke li	10
+柴胡加芒硝汤	chai hu jia mang xiao tang	10
 柴胡健肝胶囊	chai hu jian gan jiao nang	10
 柴黄清热颗粒	chai huang qing re ke li	10
 柴芩清解颗粒	chai qin qing jie ke li	10
@@ -5387,6 +5770,7 @@ sort: by_weight
 当归凋经颗粒	dang gui diao jing ke li	10
 当归红枣颗粒	dang gui hong zao ke li	10
 当归红栆颗粒	dang gui hong zao ke li	10
+当归鸡血藤汤	dang gui ji xue teng tang	10
 当归拈痛颗粒	dang gui nian tong ke li	10
 导赤丸大蜜丸	dao chi wan da mi wan	10
 得力生注射液	de li sheng zhu she ye	10
@@ -5493,6 +5877,7 @@ sort: by_weight
 阿胶当归合剂	e jiao dang gui he ji	10
 阿胶钙口服液	e jiao gai kou fu ye	10
 阿胶钙营养液	e jiao gai ying yang ye	10
+阿胶鸡子黄汤	e jiao ji zi huang tang	10
 鹅去氧胆酸片	e qu yang dan suan pian	10
 莪术油注射液	e zhu you zhu she ye	10
 恩丹西酮胶囊	en dan xi tong jiao nang	10
@@ -5516,6 +5901,7 @@ sort: by_weight
 法可林滴眼液	fa ke lin di yan ye	10
 法莫替丁胶囊	fa mo ti ding jiao nang	10
 法莫替丁颗粒	fa mo ti ding ke li	10
+法式龙虾浓汤	fa shi long xia nong tang	10
 伐昔洛韦胶囊	fa xi luo wei jiao nang	10
 泛硫乙胺胶囊	fan liu yi an jiao nang	10
 矾藤痔注射液	fan teng zhi zhu she ye	10
@@ -6059,6 +6445,7 @@ sort: by_weight
 高折射率镜片	gao zhe she lv jing pian	10
 各背景科幻片	ge bei jing ke huan pian	10
 葛根岑连胶囊	ge gen cen lian jiao nang	10
+葛根加半夏汤	ge gen jia ban xia tang	10
 葛根芩连胶囊	ge gen qin lian jiao nang	10
 葛根芩连颗粒	ge gen qin lian ke li	10
 葛根芩连微丸	ge gen qin lian wei wan	10
@@ -6088,6 +6475,7 @@ sort: by_weight
 更年宁心胶囊	geng nian ning xin jiao nang	10
 更昔洛韦胶囊	geng xi luo wei jiao nang	10
 更昔洛韦眼膏	geng xi luo wei yan gao	10
+攻表宜桂枝汤	gong biao yi gui zhi tang	10
 宫环养血颗粒	gong huan yang xue ke li	10
 功劳去火胶囊	gong lao qu huo jiao nang	10
 功劳止泻颗粒	gong lao zhi xie ke li	10
@@ -6160,6 +6548,11 @@ sort: by_weight
 桂枝茯苓胶囊	gui zhi fu ling jiao nang	10
 桂枝茯芩胶囊	gui zhi fu qin jiao nang	10
 桂枝加大黄汤	gui zhi jia da huang tang	10
+桂枝加当归汤	gui zhi jia dang gui tang	10
+桂枝加附子汤	gui zhi jia fu zi tang	10
+桂枝加葛根汤	gui zhi jia ge gen tang	10
+桂枝加归芍汤	gui zhi jia gui shao tang	10
+桂枝加黄芪汤	gui zhi jia huang qi tang	10
 桂枝加芍药汤	gui zhi jia shao yao tang	10
 桂枝去芍药汤	gui zhi qu shao yao tang	10
 蛤杞白术胶囊	ha qi bai zhu jiao nang	10
@@ -6221,6 +6614,7 @@ sort: by_weight
 红细胞保存液	hong xi bao bao cun ye	10
 红血球浓厚液	hong xue qiu nong hou ye	10
 红羊填精胶囊	hong yang tian jing jiao nang	10
+红枣黑木耳汤	hong zao hei mu er tang	10
 猴耳环消炎片	hou er huan xiao yan pian	10
 猴菇饮口服液	hou gu yin kou fu ye	10
 厚朴大黄汤方	hou po da huang tang fang	10
@@ -6364,8 +6758,14 @@ sort: by_weight
 甲钴胺注射液	jia gu an zhu she ye	10
 甲钴铵注射液	jia gu an zhu she ye	10
 甲基斑蝥胺片	jia ji ban mao an pian	10
+加减大柴胡汤	jia jian da chai hu tang	10
+加减大建中汤	jia jian da jian zhong tang	10
 加减金铃子散	jia jian jin ling zi san	10
+加减木防己汤	jia jian mu fang ji tang	10
 加减桑螵蛸散	jia jian sang piao shao san	10
+加减生地黄汤	jia jian sheng di huang tang	10
+加减四君子汤	jia jian si jun zi tang	10
+加减小柴胡汤	jia jian xiao chai hu tang	10
 甲硫咪唑软膏	jia liu mi zuo ruan gao	10
 甲硫氧嘧啶片	jia liu yang mi ding pian	10
 甲氯芬那酸片	jia lv fen na suan pian	10
@@ -6380,9 +6780,13 @@ sort: by_weight
 甲巯咪唑软膏	jia qiu mi zuo ruan gao	10
 甲醛甲酚溶液	jia quan jia fen rong ye	10
 加替沙星胶囊	jia ti sha xing jiao nang	10
+加味白头翁汤	jia wei bai tou weng tang	10
 加味灵芝菌片	jia wei ling zhi jun pian	10
+加味六君子汤	jia wei liu jun zi tang	10
 加味生化颗粒	jia wei sheng hua ke li	10
+加味四君子汤	jia wei si jun zi tang	10
 加味天麻胶囊	jia wei tian ma jiao nang	10
+加味小柴胡汤	jia wei xiao chai hu tang	10
 加味逍遥胶囊	jia wei xiao yao jiao nang	10
 加味逍遥颗粒	jia wei xiao yao ke li	10
 加味益母草膏	jia wei yi mu cao gao	10
@@ -6451,6 +6855,7 @@ sort: by_weight
 绞股蓝总甙片	jiao gu lan zong dai pian	10
 绞股蓝总苷片	jiao gu lan zong gan pian	10
 脚立爽喷雾剂	jiao li shuang pen wu ji	10
+脚气宜风引汤	jiao qi yi feng yin tang	10
 交沙霉素胶囊	jiao sha mei su jiao nang	10
 交沙霉素颗粒	jiao sha mei su ke li	10
 胶体果铋胶囊	jiao ti guo bi jiao nang	10
@@ -6901,6 +7306,7 @@ sort: by_weight
 洛伐他汀胶囊	luo fa ta ting jiao nang	10
 洛伐他汀颗粒	luo fa ta ting ke li	10
 罗格列酮钠片	luo ge lie tong na pian	10
+罗汉果柿饼汤	luo han guo shi bing tang	10
 罗汉果止咳膏	luo han guo zhi ke gao	10
 罗汉果止咳片	luo han guo zhi ke pian	10
 罗红霉素胶囊	luo hong mei su jiao nang	10
@@ -6975,6 +7381,7 @@ sort: by_weight
 脉络宁口康片	mai luo ning kou kang pian	10
 脉络宁注射液	mai luo ning zhu she ye	10
 脉络舒通颗粒	mai luo shu tong ke li	10
+麦芽浸膏肉汤	mai ya jin gao rou tang	10
 慢肝解郁胶囊	man gan jie yu jiao nang	10
 慢肝养阴胶囊	man gan yang yin jiao nang	10
 满山红油滴丸	man shan hong you di wan	10
@@ -7024,6 +7431,7 @@ sort: by_weight
 密盖息注射液	mi gai xi zhu she ye	10
 弥可保注射液	mi ke bao zhu she ye	10
 咪喹莫特乳膏	mi kui mo te ru gao	10
+米勒海顿肉汤	mi le hai dun rou tang	10
 米力农注射液	mi li nong zhu she ye	10
 米诺环素胶囊	mi nuo huan su jiao nang	10
 米索前列醇片	mi suo qian lie chun pian	10
@@ -7031,6 +7439,7 @@ sort: by_weight
 咪唑酸乙酯片	mi zuo suan yi zhi pian	10
 眠安康口服液	mian an kang kou fu ye	10
 眠安宁口服液	mian an ning kou fu ye	10
+民间瓦罐煨汤	min jian wa guan wei tang	10
 皿治林缓释片	min zhi lin huan shi pian	10
 明藿降脂颗粒	ming huo jiang zhi ke li	10
 明目六味汤散	ming mu liu wei tang san	10
@@ -7345,6 +7754,7 @@ sort: by_weight
 祛风痛解搽剂	qu feng tong jie cha ji	10
 祛风止痛胶囊	qu feng zhi tong jiao nang	10
 去感热注射液	qu gan re zhu she ye	10
+去桂加白术汤	qu gui jia bai zhu tang	10
 去甲斑蝥素片	qu jia ban mao su pian	10
 曲克芦丁冻干	qu ke lu ding dong gan	10
 曲克芦丁胶囊	qu ke lu ding jiao nang	10
@@ -7409,6 +7819,7 @@ sort: by_weight
 乳酸锌口服液	ru suan xin kou fu ye	10
 乳酸亚铁胶囊	ru suan ya tie jiao nang	10
 乳酸亚铁口服	ru suan ya tie kou fu	10
+乳糖胆盐肉汤	ru tang dan yan rou tang	10
 乳腺康注射液	ru xian kang zhu she ye	10
 如意舒络洗剂	ru yi shu luo xi ji	10
 软骨素滴眼液	ruan gu su di yan ye	10
@@ -7485,6 +7896,7 @@ sort: by_weight
 杀菌止痒洗剂	sha jun zhi yang xi ji	10
 砂连和胃胶囊	sha lian he wei jiao nang	10
 沙梅消渴胶囊	sha mei xiao ke jiao nang	10
+沙参麦门冬汤	sha shen mai men dong tang	10
 沙参止咳汤散	sha shen zhi ke tang san	10
 山白消食合剂	shan bai xiao shi he ji	10
 山达基记录片	shan da ji ji lu pian	10
@@ -7557,6 +7969,8 @@ sort: by_weight
 肾炎四味颗粒	shen yan si wei ke li	10
 肾炎温阳胶囊	shen yan wen yang jiao nang	10
 升白欣注射液	sheng bai xin zhu she ye	10
+生地黄黄连汤	sheng di huang huang lian tang	10
+生附四君子汤	sheng fu si jun zi tang	10
 胜红清热胶囊	sheng hong qing re jiao nang	10
 生化丸大蜜丸	sheng hua wan da mi wan	10
 生津消渴胶囊	sheng jin xiao ke jiao nang	10
@@ -7720,14 +8134,17 @@ sort: by_weight
 四季消炎喉片	si ji xiao yan hou pian	10
 四加减正气散	si jia jian zheng qi san	10
 四君子口服液	si jun zi kou fu ye	10
+四苓合芩芍汤	si ling he qin shao tang	10
 司莫司汀胶囊	si mo si ting jiao nang	10
 四磨汤口服液	si mo tang kou fu ye	10
+四逆加人参汤	si ni jia ren shen tang	10
 四逆汤口服液	si ni tang kou fu ye	10
 司帕沙星胶囊	si pa sha xing jiao nang	10
 司帕沙星颗粒	si pa sha xing ke li	10
 斯皮仁诺胶囊	si pi ren nuo jiao nang	10
 斯奇康注射液	si qi kang zhu she ye	10
 司他夫定胶囊	si ta fu ding jiao nang	10
+四味光明盐汤	si wei guang ming yan tang	10
 四味姜黄汤散	si wei jiang huang tang san	10
 四维葡萄糖散	si wei pu tao tang san	10
 四维葡锌胶丸	si wei pu xin jiao wan	10
@@ -7937,6 +8354,7 @@ sort: by_weight
 蚊虫叮咬软膏	wen chong ding yao ruan gao	10
 温经养血合剂	wen jing yang xue he ji	10
 文拉法辛胶囊	wen la fa xin jiao nang	10
+温里宜四逆汤	wen li yi si ni tang	10
 温肾前列胶囊	wen shen qian lie jiao nang	10
 温肾苏拉甫片	wen shen su la fu pian	10
 温胃降逆颗粒	wen wei jiang ni ke li	10
@@ -7984,6 +8402,7 @@ sort: by_weight
 无锡透平叶片	wu xi tou ping ye pian	10
 乌阳补心糖浆	wu yang bu xin tang jiang	10
 无着丝粒断片	wu zhao si li duan pian	10
+五指毛桃炖汤	wu zhi mao tao dun tang	10
 五子降脂胶囊	wu zi jiang zhi jiao nang	10
 五子衍宗胶囊	wu zi yan zong jiao nang	10
 五子衍宗颗粒	wu zi yan zong ke li	10
@@ -8029,6 +8448,7 @@ sort: by_weight
 香菊感冒颗粒	xiang ju gan mao ke li	10
 香连丸浓缩丸	xiang lian wan nong suo wan	10
 香鹿益阳胶囊	xiang lu yi yang jiao nang	10
+香砂六君子汤	xiang sha liu jun zi tang	10
 香砂六君子丸	xiang sha liu jun zi wan	10
 香砂平胃颗粒	xiang sha ping wei ke li	10
 香砂养胃胶囊	xiang sha yang wei jiao nang	10
@@ -8177,6 +8597,7 @@ sort: by_weight
 消肿接骨胶囊	xiao zhong jie gu jiao nang	10
 泻肝安神胶囊	xie gan an shen jiao nang	10
 蟹黄肤宁软膏	xie huang fu ning ruan gao	10
+协日嘎四味汤	xie ri ga si wei tang	10
 缬沙坦分散片	xie sha tan fen san pian	10
 心达康分散片	xin da kang fen san pian	10
 新地松滴眼液	xin di song di yan ye	10
@@ -8392,6 +8813,7 @@ sort: by_weight
 药物制剂专业	yao wu zhi ji zhuan ye	10
 药用印字色膏	yao yong yin zi se gao	10
 液滴状态分散	ye di zhuang tai fen san	10
+射干鼠粘子汤	ye gan shu zhan zi tang	10
 夜激情口服液	ye ji qing kou fu ye	10
 叶金排石胶囊	ye jin pai shi jiao nang	10
 野菊花注射液	ye ju hua zhu she ye	10
@@ -8407,6 +8829,7 @@ sort: by_weight
 乙醇检测试剂	yi chun jian ce shi ji	10
 宜大黄附子汤	yi da huang fu zi tang	10
 宜大黄硝石汤	yi da huang xiao shi tang	10
+胰蛋白示肉汤	yi dan bai shi rou tang	10
 胰胆炎口服液	yi dan yan kou fu ye	10
 异丹叶大黄素	yi dan ye da huang su	10
 胰岛素注射液	yi dao su zhu she ye	10
@@ -8434,9 +8857,11 @@ sort: by_weight
 抑亢丸水蜜丸	yi kang wan shui mi wan	10
 益康唑喷雾剂	yi kang zuo pen wu ji	10
 益康唑气雾剂	yi kang zuo qi wu ji	10
+宜麻黄附子汤	yi ma huang fu zi tang	10
 益脉康分散片	yi mai kang fen san pian	10
 益脉康软胶囊	yi mai kang ruan jiao nang	10
 胰酶肠溶胶囊	yi mei chang rong jiao nang	10
+胰酶大豆肉汤	yi mei da dou rou tang	10
 依米丁注射液	yi mi ding zhu she ye	10
 益母草口服液	yi mu cao kou fu ye	10
 益母草流浸膏	yi mu cao liu jin gao	10
@@ -8691,6 +9116,7 @@ sort: by_weight
 智能安全芯片	zhi neng an quan xin pian	10
 智能手机芯片	zhi neng shou ji xin pian	10
 枳实芍药散方	zhi shi shao yao san fang	10
+枳实栀子鼓汤	zhi shi zhi zi gu tang	10
 枳术宽中胶囊	zhi shu kuan zhong jiao nang	10
 止嗽立效胶囊	zhi sou li xiao jiao nang	10
 制酸止痛胶囊	zhi suan zhi tong jiao nang	10
@@ -8704,6 +9130,8 @@ sort: by_weight
 脂溢性皮炎散	zhi yi xing pi yan san	10
 脂质纳米颗粒	zhi zhi na mi ke li	10
 栀子大黄汤方	zhi zi da huang tang fang	10
+栀子甘草豉汤	zhi zi gan cao chi tang	10
+栀子生姜豉汤	zhi zi sheng jiang chi tang	10
 中风安口服液	zhong feng an kou fu ye	10
 中华肝灵胶囊	zhong hua gan ling jiao nang	10
 肿节风分散片	zhong jie feng fen san pian	10
@@ -8881,6 +9309,7 @@ sort: by_weight
 百合固金浓缩丸	bai he gu jin nong suo wan	10
 百合酸枣仁胶囊	bai he suan zao ren jiao nang	10
 百花活血跌打膏	bai hua huo xue die da gao	10
+白通加猪胆汁汤	bai tong jia zhu dan zhi tang	10
 白细胞颗粒异常	bai xi bao ke li yi chang	10
 百癣夏塔热胶囊	bai xuan xia ta re jiao nang	10
 柏栀祛湿喷雾剂	bai zhi qu shi pen wu ji	10
@@ -8888,6 +9317,8 @@ sort: by_weight
 柏子滋心浓缩丸	bai zi zi xin nong suo wan	10
 板蓝解毒注射液	ban lan jie du zhu she ye	10
 斑蝥酸钠注射液	ban mao suan na zhu she ye	10
+半夏白术天麻汤	ban xia bai zhu tian ma tang	10
+半夏桂枝甘草汤	ban xia gui zhi gan cao tang	10
 胞磷胆碱钠胶囊	bao lin dan jian na jiao nang	10
 保灵孕宝口服液	bao ling yun bao kou fu ye	10
 鲍曼伯克抑制剂	bao man bo ke yi zhi ji	10
@@ -8974,6 +9405,7 @@ sort: by_weight
 布旺二氏移植片	bu wang er shi yi zhi pian	10
 补中益气口服液	bu zhong yi qi kou fu ye	10
 补中益气浓缩丸	bu zhong yi qi nong suo wan	10
+菜干鸭肾蜜枣汤	cai gan ya shen mi zao tang	10
 参百宁神口服液	can bai ning shen kou fu ye	10
 参鞭补肾口服液	can bian bu shen kou fu ye	10
 参地益肾口服液	can di yi shen kou fu ye	10
@@ -9001,6 +9433,7 @@ sort: by_weight
 草乌甲素注射液	cao wu jia su zhu she ye	10
 茶碱碘甘油酏剂	cha jian dian gan you yi ji	10
 茶碱麻黄碱胶囊	cha jian ma huang jian jiao nang	10
+柴胡桂枝干姜汤	chai hu gui zhi gan jiang tang	10
 柴辛感冒注射液	chai xin gan mao zhu she ye	10
 蟾龙定喘口服液	chan long ding chuan kou fu ye	10
 蟾麝救心丸水丸	chan she jiu xin wan shui wan	10
@@ -9017,6 +9450,7 @@ sort: by_weight
 肠嗜酸性肉芽肿	chang shi suan xing rou ya zhong	10
 常松八味沉香散	chang song ba wei chen xiang san	10
 陈香露白露胶囊	chen xiang lou bai lu jiao nang	10
+赤石脂禹余粮汤	chi shi zhi yu yu liang tang	10
 齿痛消炎灵颗粒	chi tong xiao yan ling ke li	10
 赤痛消炎灵颗粒	chi tong xiao yan ling ke li	10
 虫草被孢菌胶囊	chong cao bei bao jun jiao nang	10
@@ -9067,6 +9501,7 @@ sort: by_weight
 达卡巴嗪注射液	da ka ba qin zhu she ye	10
 大颗粒淋巴细胞	da ke li lin ba xi bao	10
 大株红景天胶囊	da zhu hong jing tian jiao nang	10
+淡菜紫菜瘦肉汤	dan cai zi cai shou rou tang	10
 丹灯通脑软胶囊	dan deng tong nao ruan jiao nang	10
 丹佛胃尔康颗粒	dan fo wei er kang ke li	10
 丹红化瘀口服液	dan hong hua yu kou fu ye	10
@@ -9087,6 +9522,7 @@ sort: by_weight
 当归腹痛宁滴丸	dang gui fu tong ning di wan	10
 当归寄生注射液	dang gui ji sheng zhu she ye	10
 当归拈痛口服液	dang gui nian tong kou fu ye	10
+当归生姜羊肉汤	dang gui sheng jiang yang rou tang	10
 当归养血口服液	dang gui yang xue kou fu ye	10
 德都红花七味散	de du hong hua qi wei san	10
 德都红花七味丸	de du hong hua qi wei wan	10
@@ -9134,6 +9570,7 @@ sort: by_weight
 肚痛健胃整肠丸	du tong jian wei zheng chang wan	10
 杜仲补腰口服液	du zhong bu yao kou fu ye	10
 杜仲颗粒无糖型	du zhong ke li wu tang xing	10
+杜仲山楂猪肚汤	du zhong shan zha zhu du tang	10
 短棒状杆菌制剂	duan bang zhuang gan jun zhi ji	10
 对乙酰氨基酚片	dui yi xian an ji fen pian	10
 对乙酰氨基酚丸	dui yi xian an ji fen wan	10
@@ -9174,10 +9611,12 @@ sort: by_weight
 二十九味能消散	er shi jiu wei neng xiao san	10
 二十九味羌活散	er shi jiu wei qiang huo san	10
 二十六味通经散	er shi liu wei tong jing san	10
+二十四味润喉糖	er shi si wei run hou tang	10
 二十味肉豆蔻散	er shi wei rou dou kou san	10
 二十味肉豆蔻丸	er shi wei rou dou kou wan	10
 二十味疏肝胶囊	er shi wei shu gan jiao nang	10
 二十五味阿魏散	er shi wu wei a wei san	10
+二十五味阿魏丸	er shi wu wei a wei wan	10
 二十五味冰片散	er shi wu wei bing pian san	10
 二十五味大汤散	er shi wu wei da tang san	10
 二十五味大汤丸	er shi wu wei da tang wan	10
@@ -9650,6 +10089,8 @@ sort: by_weight
 甘草酸二铵胶囊	gan cao suan er an jiao nang	10
 甘草酸二胺胶囊	gan cao suan er an jiao nang	10
 甘草甜素糖衣片	gan cao tian su tang yi pian	10
+甘草小麦大枣汤	gan cao xiao mai da zao tang	10
+甘草小麦红枣汤	gan cao xiao mai hong zao tang	10
 肝胆双清口服液	gan dan shuang qing kou fu ye	10
 干姜人参半夏丸	gan jiang ren shen ban xia wan	10
 甘露醇烟酸酯片	gan lu chun yan suan zhi pian	10
@@ -9675,6 +10116,7 @@ sort: by_weight
 睾酮雌酮注射剂	gao tong ci tong zhu she ji	10
 高乌甲素注射液	gao wu jia su zhu she ye	10
 葛根黄豆苷元片	ge gen huang dou gan yuan pian	10
+葛根黄芩黄连汤	ge gen huang qin huang lian tang	10
 葛根芩连口服液	ge gen qin lian kou fu ye	10
 格拉司琼注射液	ge la si qiong zhu she ye	10
 葛兰心宁软胶囊	ge lan xin ning ruan jiao nang	10
@@ -9697,13 +10139,19 @@ sort: by_weight
 骨刺平薄膜衣片	gu ci ping bao mo yi pian	10
 骨刺消症口服液	gu ci xiao zheng kou fu ye	10
 骨化三醇软胶囊	gu hua san chun ruan jiao nang	10
+古今录验续命汤	gu jin lu yan xu ming tang	10
 固精麦斯哈胶囊	gu jing mai si ha jiao nang	10
 固精养元口服液	gu jing yang yuan kou fu ye	10
 骨伤消肿口服液	gu shang xiao zhong kou fu ye	10
 骨髓蛋白口服液	gu sui dan bai kou fu ye	10
 骨髓蛋白营养液	gu sui dan bai ying yang ye	10
 骨炎灵薄膜衣片	gu yan ling bao mo yi pian	10
+故曰二加龙骨汤	gu yue er jia long gu tang	10
 骨质增生导入液	gu zhi zeng sheng dao ru ye	10
+瓜蒌薤白白酒汤	gua lou xie bai bai jiu tang	10
+栝蒌薤白白酒汤	gua lou xie bai bai jiu tang	10
+瓜蒌薤白半夏汤	gua lou xie bai ban xia tang	10
+栝蒌薤白半夏汤	gua lou xie bai ban xia tang	10
 瓜霜退热灵胶囊	gua shuang tui re ling jiao nang	10
 关节镇痛巴布膏	guan jie zhen tong ba bu gao	10
 观看警示教育片	guan kan jing shi jiao yu pian	10
@@ -9715,12 +10163,18 @@ sort: by_weight
 光明盐四味胶囊	guang ming yan si wei jiao nang	10
 鲑降钙素注射液	gui jiang gai su zhu she ye	10
 归灵痛经宁颗粒	gui ling tong jing ning ke li	10
+桂苓五味甘草汤	gui ling wu wei gan cao tang	10
 龟鹿补肾口服液	gui lu bu shen kou fu ye	10
 龟鹿二仙口服液	gui lu er xian kou fu ye	10
 归芪补血口服液	gui qi bu xue kou fu ye	10
 归芪三七口服液	gui qi san qi kou fu ye	10
 归芎花粉口服液	gui xiong hua fen kou fu ye	10
+桂枝二麻黄一汤	gui zhi er ma huang yi tang	10
+桂枝二越婢一汤	gui zhi er yue bi yi tang	10
+桂枝龙骨牡蛎汤	gui zhi long gu mu li tang	10
+桂枝麻黄各半汤	gui zhi ma huang ge ban tang	10
 桂枝芍药知母汤	gui zhi shao yao zhi mu tang	10
+桂枝生姜枳实汤	gui zhi sheng jiang zhi shi tang	10
 果糖二磷酸钙片	guo tang er lin suan gai pian	10
 果糖二磷酸钠片	guo tang er lin suan na pian	10
 果糖酸钙注射液	guo tang suan gai zhu she ye	10
@@ -9755,6 +10209,7 @@ sort: by_weight
 琥乙红霉素颗粒	hu yi hong mei su ke li	10
 华芬愈美颗粒剂	hua fen yu mei ke li ji	10
 花好月圆人又散	hua hao yue yuan ren you san	10
+花生大枣猪蹄汤	hua sheng da zao zhu ti tang	10
 华佗风痛宝胶囊	hua tuo feng tong bao jiao nang	10
 华陀风痛宝胶囊	hua tuo feng tong bao jiao nang	10
 华轩绣毂皆销散	hua xuan xiu gu jie xiao san	10
@@ -9783,6 +10238,7 @@ sort: by_weight
 黄金记忆高钙片	huang jin ji yi gao gai pian	10
 黄菊开时伤聚散	huang ju kai shi shang ju san	10
 黄连上清丸水丸	huang lian shang qing wan shui wan	10
+黄芪桂枝五物汤	huang qi gui zhi wu wu tang	10
 黄芪颗粒无糖型	huang qi ke li wu tang xing	10
 黄芪三七口服液	huang qi san qi kou fu ye	10
 磺酸氨氯地平片	huang suan an lv di ping pian	10
@@ -9791,6 +10247,7 @@ sort: by_weight
 汇仁乌鸡白凤丸	hui ren wu ji bai feng wan	10
 汇仁氧氟沙星片	hui ren yang fu sha xing pian	10
 回生第一丹胶囊	hui sheng di yi dan jiao nang	10
+回味鸭血粉丝汤	hui wei ya xue fen si tang	10
 茴香橘核丸水丸	hui xiang ju he wan shui wan	10
 活力源薄膜衣片	huo li yuan bao mo yi pian	10
 藿龙补肾口服液	huo long bu shen kou fu ye	10
@@ -9805,11 +10262,13 @@ sort: by_weight
 肌醇烟酸酯软膏	ji chun yan suan zhi ruan gao	10
 鸡骨草肝炎冲剂	ji gu cao gan yan chong ji	10
 鸡骨草肝炎颗粒	ji gu cao gan yan ke li	10
+及其日中如探汤	ji qi ri zhong ru tan tang	10
 己酸羟孕酮胶囊	ji suan qiang yun tong jiao nang	10
 己烯雌酚注射液	ji xi ci fen zhu she ye	10
 甲氨喋呤注射液	jia an die ling zhu she ye	10
 甲氨蝶呤注射液	jia an die ling zhu she ye	10
 甲苯咪唑咀嚼片	jia ben mi zuo ju jue pian	10
+加参安肺生化汤	jia can an fei sheng hua tang	10
 假单胞菌注射液	jia dan bao jun zhu she ye	10
 甲地孕酮分散片	jia di yun tong fen san pian	10
 甲砜霉素肠溶片	jia feng mei su chang rong pian	10
@@ -9817,14 +10276,25 @@ sort: by_weight
 甲基苯丙胺片剂	jia ji ben bing an pian ji	10
 甲基硫氧嘧啶片	jia ji liu yang mi ding pian	10
 甲基异炔诺酮片	jia ji yi que nuo tong pian	10
+加减补中益气汤	jia jian bu zhong yi qi tang	10
 加减丹栀逍遥散	jia jian dan zhi xiao yao san	10
+加减黄芩知母汤	jia jian huang qin zhi mu tang	10
+加减活血解毒汤	jia jian huo xue jie du tang	10
 加减六味地黄丸	jia jian liu wei di huang wan	10
+加减麻杏甘石汤	jia jian ma xing gan shi tang	10
+加减人参泻心汤	jia jian ren shen xie xin tang	10
 加减三黄二香散	jia jian san huang er xiang san	10
+加减升麻葛根汤	jia jian sheng ma ge gen tang	10
+加减苏子桃仁汤	jia jian su zi tao ren tang	10
+加减桃仁承气汤	jia jian tao ren cheng qi tang	10
 加兰他敏注射液	jia lan ta min zhu she ye	10
 甲麻芩苷那敏片	jia ma qin gan na min pian	10
+家秘川连枳壳汤	jia mi chuan lian zhi qiao tang	10
 假密环菌甲素片	jia mi huan jun jia su pian	10
 家秘加味枳术丸	jia mi jia wei zhi shu wan	10
+家秘木通羌活汤	jia mi mu tong qiang huo tang	10
 家秘养脾消积丸	jia mi yang pi xiao ji wan	10
+家秘枳壳黄连汤	jia mi zhi qiao huang lian tang	10
 甲泼尼龙注射液	jia po ni long zhu she ye	10
 甲羟孕酮分散片	jia qiang yun tong fen san pian	10
 甲羟孕酮注射液	jia qiang yun tong zhu she ye	10
@@ -9839,10 +10309,14 @@ sort: by_weight
 加味霍香正气丸	jia wei huo xiang zheng qi wan	10
 加味健步虎潜丸	jia wei jian bu hu qian wan	10
 加味葵子茯苓散	jia wei kui zi fu ling san	10
+加味六味地黄汤	jia wei liu wei di huang tang	10
 加味散结痤疮丸	jia wei san jie cuo chuang wan	10
 加味蛇胆陈皮片	jia wei she dan chen pi pian	10
+加味十全大补汤	jia wei shi quan da bu tang	10
 加味四物口服液	jia wei si wu kou fu ye	10
+加味调中益气汤	jia wei tiao zhong yi qi tang	10
 加味西黄丸水丸	jia wei xi huang wan shui wan	10
+加味犀角地黄汤	jia wei xi jiao di huang tang	10
 加味香吵枳术丸	jia wei xiang chao zhi shu wan	10
 加味香砂枳术丸	jia wei xiang sha zhi shu wan	10
 加味消遥口服液	jia wei xiao yao kou fu ye	10
@@ -9860,6 +10334,7 @@ sort: by_weight
 健脑补肾口服液	jian nao bu shen kou fu ye	10
 健脾安神口服液	jian pi an shen kou fu ye	10
 健脾颗粒无糖型	jian pi ke li wu tang xing	10
+健脾利水生化汤	jian pi li shui sheng hua tang	10
 健脾止泻宁颗粒	jian pi zhi xie ning ke li	10
 健肾益肺口服液	jian shen yi fei kou fu ye	10
 健胃化积口服液	jian wei hua ji kou fu ye	10
@@ -9897,6 +10372,7 @@ sort: by_weight
 金菊利咽口含片	jin ju li yan kou han pian	10
 金菊五花茶颗粒	jin ju wu hua cha ke li	10
 金莲清热泡腾片	jin lian qing re pao teng pian	10
+金陵鸭血粉丝汤	jin ling ya xue fen si tang	10
 金龙补肾口服液	jin long bu shen kou fu ye	10
 金龙胆草浸膏片	jin long dan cao jin gao pian	10
 金龙定喘口服液	jin long ding chuan kou fu ye	10
@@ -10023,6 +10499,7 @@ sort: by_weight
 雷公藤片双层片	lei gong teng pian shuang ceng pian	10
 雷尼替丁口服液	lei ni ti ding kou fu ye	10
 雷尼替丁注射液	lei ni ti ding zhu she ye	10
+雷氏清凉涤暑汤	lei shi qing liang di shu tang	10
 肋柱花四味汤散	lei zhu hua si wei tang san	10
 里埃二氏稀释液	li ai er shi xi shi ye	10
 利巴林韦注射液	li ba lin wei zhu she ye	10
@@ -10038,6 +10515,7 @@ sort: by_weight
 利福昔明软胶囊	li fu xi ming ruan jiao nang	10
 利奈唑胺注射液	li nai zuo an zhu she ye	10
 理气化瘀口服液	li qi hua yu kou fu ye	10
+李氏清暑益气汤	li shi qing shu yi qi tang	10
 利泰蛋白口服液	li tai dan bai kou fu ye	10
 利托那韦口服液	li tuo na wei kou fu ye	10
 利心丸浓缩水丸	li xin wan nong suo shui wan	10
@@ -10062,6 +10540,7 @@ sort: by_weight
 磷酸组胺注射液	lin suan zu an zhu she ye	10
 灵孢多糖注射液	ling bao duo tang zhu she ye	10
 苓暴红止咳颗粒	ling bao hong zhi ke ke li	10
+苓甘五味姜辛汤	ling gan wu wei jiang xin tang	10
 苓桂咳喘宁胶囊	ling gui ke chuan ning jiao nang	10
 羚甲淀粉钠溶液	ling jia dian fen na rong ye	10
 岭南万应止痛膏	ling nan wan ying zhi tong gao	10
@@ -10173,6 +10652,10 @@ sort: by_weight
 铝碳酸镁咀嚼片	lv tan suan mei ju jue pian	10
 氯硝西泮注射液	lv xiao xi pan zhu she ye	10
 氯唑西林钠胶囊	lv zuo xi lin na jiao nang	10
+麻黄附子甘草汤	ma huang fu zi gan cao tang	10
+麻黄附子细辛汤	ma huang fu zi xi xin tang	10
+麻黄连翘赤豆汤	ma huang lian qiao chi dou tang	10
+麻黄细辛附子汤	ma huang xi xin fu zi tang	10
 马洛替酯缓释片	ma luo ti zhi huan shi pian	10
 玛木然止泻胶囊	ma mu ran zhi xie jiao nang	10
 麻仁润肠软胶囊	ma ren run chang ruan jiao nang	10
@@ -10218,6 +10701,7 @@ sort: by_weight
 明目蒺藜丸水丸	ming mu ji li wan shui wan	10
 明目驱瘀口服液	ming mu qu yu kou fu ye	10
 明目上清丸水丸	ming mu shang qing wan shui wan	10
+名曰黄芪建中汤	ming yue huang qi jian zhong tang	10
 莫沙必利分散片	mo sha bi li fen san pian	10
 莫西沙星注射液	mo xi sha xing zhu she ye	10
 木瓜酶肠溶胶囊	mu gua mei chang rong jiao nang	10
@@ -10233,6 +10717,7 @@ sort: by_weight
 萘普生钠注射液	nai pu sheng na zhu she ye	10
 奈替米星注射液	nai ti mi xing zhu she ye	10
 奈韦拉平分散片	nai wei la ping fen san pian	10
+南北杏仁鹌鹑汤	nan bei xing ren an chun tang	10
 脑安颗粒无糖型	nao an ke li wu tang xing	10
 脑蛋白水解物片	nao dan bai shui jie wu pian	10
 脑苷肌肽注射液	nao gan ji tai zhu she ye	10
@@ -10305,7 +10790,9 @@ sort: by_weight
 匹罗卡品滴眼液	pi luo ka pin di yan ye	10
 皮质醇检测试剂	pi zhi chun jian ce shi ji	10
 平痤祛斑灵胶囊	ping cuo qu ban ling jiao nang	10
+平肝开郁止血汤	ping gan kai yu zhi xue tang	10
 平肝潜阳口服液	ping gan qian yang kou fu ye	10
+苹果雪梨瘦肉汤	ping guo xue li shou rou tang	10
 泼尼松龙注射液	po ni song long zhu she ye	10
 泼尼松尿素乳膏	po ni song niao su ru gao	10
 蒲地蓝消炎胶囊	pu di lan xiao yan jiao nang	10
@@ -10557,6 +11044,8 @@ sort: by_weight
 沙芬伪麻咀嚼片	sha fen wei ma ju jue pian	10
 沙棘籽油口服液	sha ji zi you kou fu ye	10
 沙棘籽油软胶囊	sha ji zi you ruan jiao nang	10
+沙参玉竹老鸭汤	sha shen yu zhu lao ya tang	10
+沙参玉竹猪皮汤	sha shen yu zhu zhu pi tang	10
 山白消食口服液	shan bai xiao shi kou fu ye	10
 善存多维儿素片	shan cun duo wei er su pian	10
 善存多维元素片	shan cun duo wei yuan su pian	10
@@ -10617,6 +11106,7 @@ sort: by_weight
 胜红抗炎素胶囊	sheng hong kang yan su jiao nang	10
 生化通用定标液	sheng hua tong yong ding biao ye	10
 生化通用质控液	sheng hua tong yong zhi kong ye	10
+圣惠荆芥地黄汤	sheng hui jing jie di huang tang	10
 生脉颗粒党参方	sheng mai ke li dang shen fang	10
 生脉糖浆党参方	sheng mai tang jiang dang shen fang	10
 生脉增液通胶囊	sheng mai zeng ye tong jiao nang	10
@@ -10648,6 +11138,7 @@ sort: by_weight
 十五味乳鹏胶囊	shi wu wei ru peng jiao nang	10
 十五味赛尔斗丸	shi wu wei sai er dou wan	10
 十五味止泻木散	shi wu wei zhi xie mu san	10
+是以陈涉不用汤	shi yi chen she bu yong tang	10
 十一酸睾酮胶囊	shi yi suan gao tong jiao nang	10
 十一味甘露胶囊	shi yi wei gan lu jiao nang	10
 十一味寒水石散	shi yi wei han shui shi san	10
@@ -10670,6 +11161,7 @@ sort: by_weight
 舒洛地特软胶囊	shu luo di te ruan jiao nang	10
 舒洛地特注射液	shu luo di te zhu she ye	10
 舒心安神口服液	shu xin an shen kou fu ye	10
+双补气血八珍汤	shuang bu qi xue ba zhen tang	10
 双参补肾口服液	shuang can bu shen kou fu ye	10
 双花草珊瑚含片	shuang hua cao shan hu han pian	10
 双花痤疮口服液	shuang hua cuo chuang kou fu ye	10
@@ -10729,7 +11221,9 @@ sort: by_weight
 特效新肤松乳膏	te xiao xin fu song ru gao	10
 替尼泊苷注射液	ti ni po gan zhu she ye	10
 体虚感冒口服液	ti xu gan mao kou fu ye	10
+调经升阳除湿汤	tiao jing sheng yang chu shi tang	10
 调经姊妹丸水丸	tiao jing zi mei wan shui wan	10
+葶苈大枣泻肺汤	ting li da zao xie fei tang	10
 痛经调理口服液	tong jing tiao li kou fu ye	10
 头孢氨苄干糖浆	tou bao an bian gan tang jiang	10
 头孢氨苄缓释片	tou bao an bian huan shi pian	10
@@ -10812,6 +11306,7 @@ sort: by_weight
 香砂养胃丸水丸	xiang sha yang wei wan shui wan	10
 香药风湿止痛膏	xiang yao feng shi zhi tong gao	10
 香榆胃舒口服液	xiang yu wei shu kou fu ye	10
+小半夏加茯苓汤	xiao ban xia jia fu ling tang	10
 硝苯地平缓释片	xiao ben di ping huan shi pian	10
 硝苯地平控释片	xiao ben di ping kong shi pian	10
 硝苯地平注射液	xiao ben di ping zhu she ye	10
@@ -10901,6 +11396,7 @@ sort: by_weight
 小诺霉素干糖浆	xiao nuo mei su gan tang jiang	10
 小诺霉素口服液	xiao nuo mei su kou fu ye	10
 小诺霉素注射液	xiao nuo mei su zhu she ye	10
+小青龙加石膏汤	xiao qing long jia shi gao tang	10
 硝山异梨酯缓片	xiao shan yi li zhi huan pian	10
 消栓再造丸水丸	xiao shuan zai zao wan shui wan	10
 硝酸甘油喷雾剂	xiao suan gan you pen wu ji	10
@@ -10928,6 +11424,7 @@ sort: by_weight
 新力正骨喷雾剂	xin li zheng gu pen wu ji	10
 新赛斯平软胶囊	xin sai si ping ruan jiao nang	10
 新肾必氨注射液	xin shen bi an zhu she ye	10
+新制橘皮竹茹汤	xin zhi ju pi zhu ru tang	10
 醒脑降压丸水丸	xing nao jiang ya wan shui wan	10
 型脑钠肽定标液	xing nao na tai ding biao ye	10
 醒脑牛黄清心片	xing nao niu huang qing xin pian	10
@@ -11298,6 +11795,7 @@ sort: by_weight
 楂曲平胃口服液	zha qu ping wei kou fu ye	10
 张大宁精昂胶囊	zhang da ning jing ang jiao nang	10
 珍芪补血口服液	zhen qi bu xue kou fu ye	10
+珍珠翡翠白玉汤	zhen zhu fei cui bai yu tang	10
 珍珠明目滴眼液	zhen zhu ming mu di yan ye	10
 珍珠蕲蛇口服液	zhen zhu qi she kou fu ye	10
 珍珠胃安丸水丸	zhen zhu wei an wan shui wan	10
@@ -11311,6 +11809,8 @@ sort: by_weight
 止渴抗疲劳冲剂	zhi ke kang pi lao chong ji	10
 止咳枇杷口服液	zhi ke pi pa kou fu ye	10
 治伤消瘀丸水丸	zhi shang xiao yu wan shui wan	10
+枳实栝楼桂枝汤	zhi shi gua lou gui zhi tang	10
+枳实薤白桂枝汤	zhi shi xie bai gui zhi tang	10
 止嗽安喘口服液	zhi sou an chuan kou fu ye	10
 止嗽定喘口服液	zhi sou ding chuan kou fu ye	10
 止嗽定喘浓缩丸	zhi sou ding chuan nong suo wan	10
@@ -11353,6 +11853,8 @@ sort: by_weight
 氨基酸螯合钙胶囊	an ji suan ao he gai jiao nang	10
 吡嘧司特钾滴眼液	bi mi si te jia di yan ye	10
 丹参川芎嗪注射液	dan shen chuan xiong qin zhu she ye	10
+二十五味绿绒蒿丸	er shi wu wei lv rong hao wan	10
+二十五味獐牙菜丸	er shi wu wei zhang ya cai wan	10
 复方氨酚那敏颗粒	fu fang an fen na min ke li	10
 复方氨酚烷胺颗粒	fu fang an fen wan an ke li	10
 复方柴胡安神颗粒	fu fang chai hu an shen ke li	10
@@ -11370,20 +11872,30 @@ sort: by_weight
 小儿化痰止咳颗粒	xiao er hua tan zhi ke ke li	10
 小儿四维葡钙颗粒	xiao er si wei pu gai ke li	10
 元素的集中和分散	yuan su de ji zhong he fen san	10
+白头翁加甘草阿胶汤	bai tou weng jia gan cao e jiao tang	10
 苯胺凸版印刷凝聚剂	ben an tu ban yin shua ning ju ji	10
 茯苓桂枝白术甘草汤	fu ling gui zhi bai zhu gan cao tang	10
 茯苓桂枝甘草大枣汤	fu ling gui zhi gan cao da zao tang	10
 甘草干姜茯苓白术汤	gan cao gan jiang fu ling bai zhu tang	10
+干姜黄芩黄连人参汤	gan jiang huang qin huang lian ren shen tang	10
+桂枝甘草龙骨牡蛎汤	gui zhi gan cao long gu mu li tang	10
 桂枝去芍药加附子汤	gui zhi qu shao yao jia fu zi tang	10
 桂枝去芍药加皂荚汤	gui zhi qu shao yao jia zao jia tang	10
 黄芪芍药桂枝苦酒汤	huang qi shao yao gui zhi ku jiu tang	10
+麻黄杏仁甘草石膏汤	ma huang xing ren gan cao shi gao tang	10
+麻黄杏仁薏苡甘草汤	ma huang xing ren yi yi gan cao tang	10
 曲安奈德益康唑乳膏	qu an nai de yi kang zuo ru gao	10
+通脉四逆加猪胆汁汤	tong mai si ni jia zhu dan zhi tang	10
 盐酸特比萘芬喷雾剂	yan suan te bi nai fen pen wu ji	10
 艾帕洛利托沃瑞利单抗	ai pa luo li tuo wo rui li dan kang	10
+柴胡去半夏加栝蒌根汤	chai hu qu ban xia jia gua lou gen tang	10
 重组人血管内皮抑制素	chong zu ren xue guan nei pi yi zhi su	10
 桂枝去桂加茯苓白术汤	gui zhi qu gui jia fu ling bai zhu tang	10
 小儿硫酸庆大霉素颗粒	xiao er liu suan qing da mei su ke li	10
 小儿双磺甲氧苄啶颗粒	xiao er shuang huang jia yang bian ding ke li	10
+当归四逆加吴茱萸生姜汤	dang gui si ni jia wu zhu yu sheng jiang tang	10
+厚朴生姜半夏甘草人参汤	hou po sheng jiang ban xia gan cao ren shen tang	10
+苓甘五味加姜辛半夏杏仁汤	ling gan wu wei jia jiang xin ban xia xing ren tang	10
 木防己去石膏加茯苓芒硝汤	mu fang ji qu shi gao jia fu ling mang xiao tang	10
 桂枝去芍药加蜀漆牡蛎龙骨救逆汤	gui zhi qu shao yao jia shu qi mu li long gu jiu ni tang	10
 玉女煎去牛膝熟地加细生地元参方	yu nv jian qu niu xi shu di jia xi sheng di yuan shen fang	10
