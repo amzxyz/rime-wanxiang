@@ -1,5 +1,20 @@
 # Changelog
 
+## [18.1.1](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.0...v18.1.1) (2026-10-08)
+
+
+### 📚 词库更新
+
+* 词库调整 ([49347f2](https://github.com/amzxyz/rime-wanxiang/commit/49347f27dc187d0c774276e86b3dbc5e34bdb2c0))
+* 词库调整 ([c9fec20](https://github.com/amzxyz/rime-wanxiang/commit/c9fec20aaa73e4e6eeff7fea3617220e2c43c369))
+
+
+### 🐛 Bug 修复
+
+* 优化自定义短语lua释放语义 ([18cf5b7](https://github.com/amzxyz/rime-wanxiang/commit/18cf5b78d5211a092a0d4ef0f727737a5b8f74de))
+* 修复缩进错误 ([e5d5d43](https://github.com/amzxyz/rime-wanxiang/commit/e5d5d4324ea73eb7ebbfaf37b30103e16326dac8))
+* 默认开启base、lite版本的基于模型的上下文调频，但如果你喜欢输入“的 基于”但是，开启上下文调频后，会：的 机遇，这是不同点要习惯习惯，但用户词本身在我看来就是乱跳，那么这样的算法对于base反而可能是个好事，因此默认开启听听反馈 ([11f31d4](https://github.com/amzxyz/rime-wanxiang/commit/11f31d42f24295a6a5a2ebdcac92240f65b7ca75))
+
 ## [18.1.0](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.16...v18.1.0) (2026-10-05)
 
 
