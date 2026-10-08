@@ -131,8 +131,9 @@ Custom 文件通常由用户自己维护，常规更新方案文件时不会主�
     ```yaml
     patch:
       speller/algebra:
-        __include: wanxiang_algebra:/english/通用规则
-        __patch: wanxiang_algebra:/english/自然码   # 与主方案保持一致
+        __patch:
+          - wanxiang_algebra:/english/混合派生
+          - wanxiang_algebra:/english/自然码   # 与主方案保持一致
     ```
 
     *可选名称：全拼、自然码、小鹤双拼、微软双拼、搜狗双拼、智能ABC、紫光双拼、拼音加加、自然龙、汉心龙。*
@@ -144,8 +145,9 @@ Custom 文件通常由用户自己维护，常规更新方案文件时不会主�
     ```yaml
     patch:
       speller/algebra:
-        __include: wanxiang_algebra:/mixed/通用派生规则
-        __patch: wanxiang_algebra:/mixed/自然码     # 与主方案保持一致
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/自然码     # 与主方案保持一致
     ```
 
     *可选名称与英文附属补丁基本一致。*
@@ -160,8 +162,9 @@ Custom 文件通常由用户自己维护，常规更新方案文件时不会主�
     patch:
       # 反查使用的拼音类型应与主方案保持一致
       speller/algebra:
-        __include: wanxiang_algebra:/reverse/自然码
-        __patch: wanxiang_algebra:/reverse/hspzn   # 笔画类型：hspzn、hupvd、hslzy（适配乱序17）
+        __patch:
+          - wanxiang_algebra:/reverse/自然码
+          - wanxiang_algebra:/reverse/hspzn   # 笔画类型：hspzn、hupvd、hslzy（适配乱序17）
     ```
 
 完成四个 Custom 文件的修改后，执行一次 **【重新部署】**，使新的拼音类型配置统一生效。

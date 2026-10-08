@@ -91,15 +91,10 @@ mixed:
 # 文件：wanxiang.custom.yaml
 patch:
   speller/algebra:
-    __include: wanxiang_algebra:/mixed/通用规则
-    __patch: wanxiang_algebra:/mixed/全拼附加规则
+    __patch:
+      - wanxiang_algebra:/mixed/通用规则
+      - wanxiang_algebra:/mixed/全拼
 ```
-
-这里的处理思路是：
-
-1. 先通过 `__include` 引入“通用规则”。
-2. 再通过 `__patch` 应用“全拼附加规则”。
-3. 被引用段落中的 `__append` 表示把规则继续追加到当前列表。
 
 ---
 

@@ -172,8 +172,9 @@ wanxiang_reverse.custom.yaml
 ```yaml
 patch:
   speller/algebra:
-    __include: wanxiang_algebra:/reverse/自然码
-    __patch: wanxiang_algebra:/reverse/hspzn
+    __patch:
+      - wanxiang_algebra:/reverse/自然码
+      - wanxiang_algebra:/reverse/hspzn
 ```
 
 其中：
