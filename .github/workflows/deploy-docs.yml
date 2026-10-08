@@ -1,6 +1,6 @@
+
 name: Deploy MkDocs
 
-# 触发条件：当主分支有代码推送且涉及文档文件时运行
 on:
   push:
     branches:
@@ -9,41 +9,56 @@ on:
       - 'docs/**'
       - 'mkdocs.yml'
       - '.github/workflows/deploy-docs.yml'
+  workflow_dispatch:
 
-# 权限设置：允许机器人写入 gh-pages 分支
 permissions:
   contents: write
 
+concurrency:
+  group: mkdocs-pages
+  cancel-in-progress: false
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+
     steps:
       - name: 检出代码
         uses: actions/checkout@v7
         with:
           fetch-depth: 1
+          persist-credentials: true
 
       - name: 配置 Python 环境
         uses: actions/setup-python@v6
         with:
-          python-version: 3.x
+          python-version: '3.12'
+
+      - name: 配置 Git 身份
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: 缓存提速配置
-        run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+        run: echo "cache_id=$(date --utc '+%V')" >> "$GITHUB_ENV"
 
       - name: 设置 MkDocs 缓存
         uses: actions/cache@v5
         with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
+          key: mkdocs-material-${{ runner.os }}-${{ env.cache_id }}
+          path: ~/.cache
           restore-keys: |
-            mkdocs-material-
+            mkdocs-material-${{ runner.os }}-
 
       - name: 安装依赖环境
         run: |
-          pip install mkdocs-material
-          # 如果你使用了其他插件，比如代码片段插件或中文搜索插件，也需要在这里 install，例如：
-          # pip install pymdown-extensions
+          python -m pip install --upgrade pip
+          python -m pip install mkdocs-material
 
-      - name: 自动编译并发布到 GitHub Pages
-        run: mkdocs gh-deploy --force
+      - name: 检查 MkDocs 配置并编译
+        run: |
+          mkdocs -v build
+
+      - name: 自动发布到 GitHub Pages
+        run: |
+          mkdocs -v gh-deploy --force
