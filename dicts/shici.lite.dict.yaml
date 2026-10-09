@@ -24550,7 +24550,7 @@ sort: by_weight
 别智玄法师	bie zhi xuan fa shi	10
 别种几株梅	bie zhong ji zhu mei	10
 别酌酣高堂	bie zhuo han gao tang	10
-别酌劝行子	bie zhuo quan hang zi	10
+别酌劝行子	bie zhuo quan xing zi	10
 别自有仙家	bie zi you xian jia	10
 别作边城春	bie zuo bian cheng chun	10
 斌驳带深谿	bin bo dai shen xi	10
@@ -58264,7 +58264,7 @@ sort: by_weight
 夫吹万不同	fu chui wan bu tong	10
 富春真古邑	fu chun zhen gu yi	10
 复辍台衡老	fu chuo tai heng lao	10
-复此悲行子	fu ci bei hang zi	10
+复此悲行子	fu ci bei xing zi	10
 复此鬓发玄	fu ci bin fa xuan	10
 复此池边地	fu ci chi bian di	10
 复此出郊迎	fu ci chu jiao ying	10
@@ -71497,30 +71497,6 @@ sort: by_weight
 杭州苏小小	hang zhou su xiao xiao	10
 杭州五千里	hang zhou wu qian li	10
 杭州一望空	hang zhou yi wang kong	10
-行子傍水餐	hang zi bang shui can	10
-行子悲且慕	hang zi bei qie mu	10
-行子车下宿	hang zi che xia su	10
-行子驰出户	hang zi chi chu hu	10
-行子充夜饥	hang zi chong ye ji	10
-行子愁归旋	hang zi chou gui xuan	10
-行子但悲辛	hang zi dan bei xin	10
-行子得良时	hang zi de liang shi	10
-行子对飞蓬	hang zi dui fei peng	10
-行子犯风烟	hang zi fan feng yan	10
-行子复蹉跎	hang zi fu cuo tuo	10
-行子孤灯店	hang zi gu deng dian	10
-行子何独难	hang zi he du nan	10
-行子倦风尘	hang zi juan feng chen	10
-行子郡城晓	hang zi jun cheng xiao	10
-行子苦风潮	hang zi ku feng chao	10
-行子履胡霜	hang zi lv hu shuang	10
-行子念明发	hang zi nian ming fa	10
-行子期晓发	hang zi qi xiao fa	10
-行子绕天北	hang zi rao tian bei	10
-行子时一望	hang zi shi yi wang	10
-行子未须归	hang zi wei xu gui	10
-行子心纡郁	hang zi xin yu yu	10
-行子在万里	hang zi zai wan li	10
 好被暂流连	hao bei zan liu lian	10
 好卜迎秋宴	hao bo ying qiu yan	10
 好采旧山薇	hao cai jiu shan wei	10
@@ -115113,7 +115089,7 @@ sort: by_weight
 冥寞岂复来	ming mo qi fu lai	10
 冥漠无先后	ming mo wu xian hou	10
 瞑目归黄泥	ming mu gui huang ni	10
-明牧念行子	ming mu nian hang zi	10
+明牧念行子	ming mu nian xing zi	10
 明目扫云烟	ming mu sao yun yan	10
 冥目焉能攀	ming mu yan neng pan	10
 明目夜中书	ming mu ye zhong shu	10
@@ -116174,8 +116150,8 @@ sort: by_weight
 末路遭邅回	mo lu zao zhan hui	10
 末路终离别	mo lu zhong li bie	10
 末路重依依	mo lu zhong yi yi	10
-莫论行子愁	mo lun hang zi chou	10
 莫论身在日	mo lun shen zai ri	10
+莫论行子愁	mo lun xing zi chou	10
 莫虑当炎暑	mo lv dang yan shu	10
 莫虑昆山暗	mo lv kun shan an	10
 莫虑能骑马	mo lv neng qi ma	10
@@ -126930,7 +126906,7 @@ sort: by_weight
 岂足歌唐虞	qi zu ge tang yu	10
 妻族更谁亲	qi zu geng shui qin	10
 岂足万里行	qi zu wan li xing	10
-跂足望行子	qi zu wang hang zi	10
+跂足望行子	qi zu wang xing zi	10
 岂足议大政	qi zu yi da zheng	10
 其最鼻褰蛇	qi zui bi qian she	10
 其尊德乐道	qi zun de le dao	10
@@ -133271,12 +133247,12 @@ sort: by_weight
 穷途多俊异	qiong tu duo jun yi	10
 穷途方恸哭	qiong tu fang tong ku	10
 穷途非所恨	qiong tu fei suo hen	10
-穷途行子惯	qiong tu hang zi guan	10
 穷途绝粮客	qiong tu jue liang ke	10
 穷途愧知己	qiong tu kui zhi ji	10
 穷途衰谢意	qiong tu shuai xie yi	10
 穷途唯有泪	qiong tu wei you lei	10
 穷途行泣玉	qiong tu xing qi yu	10
+穷途行子惯	qiong tu xing zi guan	10
 穷途仗神道	qiong tu zhang shen dao	10
 穷无歌舞玩	qiong wu ge wu wan	10
 邛西今复悲	qiong xi jin fu bei	10
@@ -178343,7 +178319,6 @@ sort: by_weight
 无为歌苦辛	wu wei ge ku xin	10
 勿谓公孙老	wu wei gong sun lao	10
 勿谓孤寒弃	wu wei gu han qi	10
-无为行子辞	wu wei hang zi ci	10
 勿谓祸无馀	wu wei huo wu yu	10
 吾未见刚者	wu wei jian gang zhe	10
 无为嗟大耋	wu wei jie da die	10
@@ -178390,6 +178365,7 @@ sort: by_weight
 物微兴不浅	wu wei xing bu qian	10
 勿谓行大道	wu wei xing da dao	10
 勿为醒者传	wu wei xing zhe chuan	10
+无为行子辞	wu wei xing zi ci	10
 无为厌车辙	wu wei yan che zhe	10
 无为掩扉卧	wu wei yan fei wo	10
 无为也而尊	wu wei ye er zun	10
@@ -191000,14 +190976,38 @@ sort: by_weight
 性拙偶从宦	xing zhuo ou cong huan	10
 性拙身多暇	xing zhuo shen duo xia	10
 性拙易迟回	xing zhuo yi chi hui	10
+行子傍水餐	xing zi bang shui can	10
+行子悲且慕	xing zi bei qie mu	10
+行子车下宿	xing zi che xia su	10
+行子驰出户	xing zi chi chu hu	10
+行子充夜饥	xing zi chong ye ji	10
+行子愁归旋	xing zi chou gui xuan	10
+行子但悲辛	xing zi dan bei xin	10
+行子得良时	xing zi de liang shi	10
+行子对飞蓬	xing zi dui fei peng	10
+行子犯风烟	xing zi fan feng yan	10
 幸兹废弃余	xing zi fei qi yu	10
+行子复蹉跎	xing zi fu cuo tuo	10
+行子孤灯店	xing zi gu deng dian	10
 邢子好少年	xing zi hao shao nian	10
+行子何独难	xing zi he du nan	10
+行子倦风尘	xing zi juan feng chen	10
+行子郡城晓	xing zi jun cheng xiao	10
+行子苦风潮	xing zi ku feng chao	10
+行子履胡霜	xing zi lv hu shuang	10
+行子念明发	xing zi nian ming fa	10
 幸兹陪宴喜	xing zi pei yan xi	10
+行子期晓发	xing zi qi xiao fa	10
 行自丘山积	xing zi qiu shan ji	10
+行子绕天北	xing zi rao tian bei	10
+行子时一望	xing zi shi yi wang	10
+行子未须归	xing zi wei xu gui	10
 邢子卧北窗	xing zi wo bei chuang	10
+行子心纡郁	xing zi xin yu yu	10
 幸兹一日泽	xing zi yi ri ze	10
 邢子友会上	xing zi you hui shang	10
 幸子遇明主	xing zi yu ming zhu	10
+行子在万里	xing zi zai wan li	10
 幸兹尊俎末	xing zi zun zu mo	10
 幸奏承云乐	xing zou cheng yun le	10
 行走无拘挛	xing zou wu ju luan	10
@@ -209629,7 +209629,6 @@ sort: by_weight
 悠悠酣且歌	you you han qie ge	10
 悠悠汉水波	you you han shui bo	10
 悠悠寒月辉	you you han yue hui	10
-悠悠行子远	you you hang zi yuan	10
 悠悠何处圆	you you he chu yuan	10
 油油禾黍积	you you he shu ji	10
 悠悠湖上来	you you hu shang lai	10
@@ -209772,6 +209771,7 @@ sort: by_weight
 悠悠行旅中	you you xing lv zhong	10
 幽幽醒时闻	you you xing shi wen	10
 悠悠行远道	you you xing yuan dao	10
+悠悠行子远	you you xing zi yuan	10
 悠悠偃宵寂	you you yan xiao ji	10
 有游宴之盛	you you yan zhi sheng	10
 犹有夜珠圆	you you ye zhu yuan	10
@@ -218004,7 +218004,6 @@ sort: by_weight
 早寒青女至	zao han qing nv zhi	10
 早寒生锦衿	zao han sheng jin jin	10
 藻翰惟牵率	zao han wei qian lv	10
-早行子午关	zao hang zi wu guan	10
 早荷承湛露	zao he cheng zhan lu	10
 早禾渡可斟	zao he du ke zhen	10
 早禾黄错落	zao he huang cuo luo	10
@@ -218322,6 +218321,7 @@ sort: by_weight
 早行石上水	zao xing shi shang shui	10
 早行星尚在	zao xing xing shang zai	10
 藻荇亦消沈	zao xing yi xiao shen	10
+早行子午关	zao xing zi wu guan	10
 早须归天阶	zao xu gui tian jie	10
 早须清黠虏	zao xu qing xia lu	10
 澡雪而精神	zao xue er jing shen	10
@@ -227421,7 +227421,7 @@ sort: by_weight
 转蓬忧悄悄	zhuan peng you qiao qiao	10
 转浦入芦花	zhuan pu ru lu hua	10
 转浦云壑媚	zhuan pu yun he mei	10
-撰期行子赋	zhuan qi hang zi fu	10
+撰期行子赋	zhuan qi xing zi fu	10
 转曲随青嶂	zhuan qu sui qing zhang	10
 转曲遥峰出	zhuan qu yao feng chu	10
 专权本畏弹	zhuan quan ben wei dan	10
@@ -239674,7 +239674,7 @@ sort: by_weight
 安乐延年万事休	an le yan nian wan shi xiu	10
 暗里忽惊山鸟啼	an li hu jing shan niao ti	10
 暗里依随马垛行	an li yi sui ma duo xing	10
-安陆城边远行子	an lu cheng bian yuan hang zi	10
+安陆城边远行子	an lu cheng bian yuan xing zi	10
 暗落金乌山渐黑	an luo jin wu shan jian hei	10
 鞍马东西鼓吹休	an ma dong xi gu chui xiu	10
 鞍马归兮佳人散	an ma gui xi jia ren san	10
@@ -251844,10 +251844,10 @@ sort: by_weight
 到而今春华落尽	dao er jin chun hua luo jin	10
 祷尔于上下神祗	dao er yu shang xia shen zhi	10
 道非身外更何求	dao fei shen wai geng he qiu	10
-道逢行子不相识	dao feng hang zi bu xiang shi	10
 道逢耦耕试借问	dao feng ou geng shi jie wen	10
 道逢麹车口流涎	dao feng qu che kou liu xian	10
 道逢使者汉郎官	dao feng shi zhe han lang guan	10
+道逢行子不相识	dao feng xing zi bu xiang shi	10
 道逢阳虎呼与言	dao feng yang hu hu yu yan	10
 道逢醉叟卧黄昏	dao feng zui sou wo huang hun	10
 道甫问信今何如	dao fu wen xin jin he ru	10
@@ -258865,7 +258865,6 @@ sort: by_weight
 公贵干蛊高巾冠	gong gui gan gu gao jin guan	10
 公归眠食重调护	gong gui mian shi chong tiao hu	10
 公果溺死流海湄	gong guo ni si liu hai mei	10
-公行子有子之丧	gong hang zi you zi zhi sang	10
 共荷发生同雨露	gong he fa sheng tong yu lu	10
 共荷神功万庾积	gong he shen gong wan yu ji	10
 共贺新恩拜旧官	gong he xin en bai jiu guan	10
@@ -259156,6 +259155,7 @@ sort: by_weight
 共笑钟山说老鸦	gong xiao zhong shan shuo lao ya	10
 公心不以贵隔我	gong xin bu yi gui ge wo	10
 公心底处有高下	gong xin di chu you gao xia	10
+公行子有子之丧	gong xing zi you zi zhi sang	10
 共许陈琳工奏记	gong xu chen lin gong zou ji	10
 共许郤诜工射策	gong xu xi shen gong she ce	10
 宫悬彩仗俨然合	gong xuan cai zhang yan ran he	10
@@ -262290,11 +262290,6 @@ sort: by_weight
 杭州潮水霜雪屯	hang zhou chao shui shuang xue tun	10
 杭州老去被潮催	hang zhou lao qu bei chao cui	10
 杭州暮醉连床卧	hang zhou mu zui lian chuang wo	10
-行子不须愁夜泊	hang zi bu xu chou ye po	10
-行子出门如转蓬	hang zi chu men ru zhuan peng	10
-行子东山起征思	hang zi dong shan qi zheng si	10
-行子隔手不相见	hang zi ge shou bu xiang jian	10
-行子迎霜未授衣	hang zi ying shuang wei shou yi	10
 好鞍好马乞与人	hao an hao ma qi yu ren	10
 好把身心清净处	hao ba shen xin qing jing chu	10
 好把音书凭过雁	hao ba yin shu ping guo yan	10
@@ -279466,7 +279461,6 @@ sort: by_weight
 洛阳闺阁夜何央	luo yang gui ge ye he yang	10
 洛阳归客明朝去	luo yang gui ke ming chao qu	10
 洛阳归客滞巴东	luo yang gui ke zhi ba dong	10
-洛阳行子空叹息	luo yang hang zi kong tan xi	10
 洛阳禾稼如秋云	luo yang he jia ru qiu yun	10
 洛阳花柳此时浓	luo yang hua liu ci shi nong	10
 洛阳花雪梦随君	luo yang hua xue meng sui jun	10
@@ -279513,6 +279507,7 @@ sort: by_weight
 洛阳闲客知无数	luo yang xian ke zhi wu shu	10
 洛阳相君忠孝家	luo yang xiang jun zhong xiao jia	10
 洛阳新月动秋砧	luo yang xin yue dong qiu zhen	10
+洛阳行子空叹息	luo yang xing zi kong tan xi	10
 洛阳堰上新晴日	luo yang yan shang xin qing ri	10
 洛阳遥想桃源隔	luo yang yao xiang tao yuan ge	10
 洛阳一别梨花新	luo yang yi bie li hua xin	10
@@ -283391,7 +283386,7 @@ sort: by_weight
 南面而征北狄怨	nan mian er zheng bei di yuan	10
 难眠夏夜抵秋赊	nan mian xia ye di qiu she	10
 南陌北堂连北里	nan mo bei tang lian bei li	10
-南陌憧憧遍行子	nan mo chong chong bian hang zi	10
+南陌憧憧遍行子	nan mo chong chong bian xing zi	10
 南陌愁为落叶分	nan mo chou wei luo ye fen	10
 南陌登临此日情	nan mo deng lin ci ri qing	10
 南陌东城处处春	nan mo dong cheng chu chu chun	10
@@ -313502,7 +313497,12 @@ sort: by_weight
 形之与形亦辟矣	xing zhi yu xing yi pi yi	10
 行中第一争先舞	xing zhong di yi zheng xian wu	10
 行追西路聊班草	xing zhui xi lu liao ban cao	10
+行子不须愁夜泊	xing zi bu xu chou ye po	10
+行子出门如转蓬	xing zi chu men ru zhuan peng	10
+行子东山起征思	xing zi dong shan qi zheng si	10
+行子隔手不相见	xing zi ge shou bu xiang jian	10
 姓字今为第几仙	xing zi jin wei di ji xian	10
+行子迎霜未授衣	xing zi ying shuang wei shou yi	10
 幸奏潇湘云壑意	xing zou xiao xiang yun he yi	10
 形阻江山想神遇	xing zu jiang shan xiang shen yu	10
 星座通霄狼鬣暗	xing zuo tong xiao lang lie an	10
