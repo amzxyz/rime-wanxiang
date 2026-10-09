@@ -147,6 +147,7 @@ translator:
 
 user_dict_set:
   dictionary: wanxiang_pro
+  prism: wanxiang_pro
   initial_quality: 2.5
   enable_completion: false
   enable_sentence: false
@@ -163,6 +164,7 @@ user_dict_set:
 add_user_dict:
   tag: add_user_dict
   dictionary: wanxiang_pro
+  prism: wanxiang_pro
   initial_quality: -1
   user_dict: zc
   enable_completion: true  # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
