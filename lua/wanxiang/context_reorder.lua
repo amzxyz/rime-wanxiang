@@ -59,6 +59,7 @@ local context_state = {
 local REORDER_TYPE_WHITELIST = {
     user_phrase = true,
     phrase = true,
+    wanxiang = true,
 }
 
 local function now_ms()
