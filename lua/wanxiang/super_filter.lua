@@ -6,8 +6,6 @@
 --         输入 `\` 瞬间锁定并展示当前候选快照，追加对应字母即可为候选词快速穿上各类括号/引号（如【】、“”）。
 -- 功能 C：三码空候选轻量兜底
 --         后台静默记录 2 码时的首选单字；当输入 3 码导致系统无候选时，立刻将该单字吐出救场。
--- 功能 D：用户词位置控制
---         在造词但不调频的工作逻辑下可以设置不让新造用户词跃迁到首选。
 local wanxiang = require("wanxiang/wanxiang")
 local M = {}
 
@@ -43,63 +41,6 @@ local function fast_type(c)
 
     local g = c.get_genuine and c:get_genuine() or nil
     return (g and g.type) or ""
-end
-
--- 只在当前菜单页内处理首选用户词，避免扫描整条候选流。
-local function reorder_first_user_phrase(candidates, rank, page_size)
-    if not candidates or #candidates < 2 or not rank or rank <= 1 then
-        return candidates
-    end
-
-    local first = candidates[1]
-    if fast_type(first) ~= "user_phrase" then
-        return candidates
-    end
-
-    local first_text = first.text or ""
-    local user_len = utf8_len(first_text) or 0
-    if user_len <= 0 then
-        return candidates
-    end
-
-    local limit = math.min(#candidates, page_size or #candidates)
-    local equal_seen = 1
-    local last_equal = nil
-    local insert_after = nil
-
-    for i = 2, limit do
-        local cand = candidates[i]
-        local cand_len = utf8_len(cand.text or "") or 0
-        local cand_type = fast_type(cand)
-
-        -- 同长度句子位于首选用户词之后时，保持原生顺序。
-        if cand_len == user_len and cand_type == "sentence" then
-            return candidates
-        end
-
-        if cand_len == user_len then
-            equal_seen = equal_seen + 1
-            last_equal = i
-            if equal_seen == rank then
-                insert_after = i
-            end
-        end
-    end
-
-    -- 候选不足 rank 时，放在当前菜单页最后一个等长度候选之后。
-    insert_after = insert_after or last_equal
-    if not insert_after then
-        return candidates
-    end
-
-    local out = {}
-    for i = 2, #candidates do
-        out[#out + 1] = candidates[i]
-        if i == insert_after then
-            out[#out + 1] = first
-        end
-    end
-    return out
 end
 
 local function has_english_token_fast(s)
@@ -732,18 +673,6 @@ function M.init(env)
     end
 
     env.page_size = (cfg and cfg:get_int("menu/page_size")) or 5
-    if env.page_size < 1 then
-        env.page_size = 1
-    end
-
-    -- 用户词等长度排序位次：0=原生顺序，1..menu.page_size=等长度集合中的目标位次。
-    local user_phrase_rank = cfg and cfg:get_int("translator/user_phrase_rank") or 2
-    if not user_phrase_rank or user_phrase_rank < 0 then
-        user_phrase_rank = 0
-    elseif user_phrase_rank > env.page_size then
-        user_phrase_rank = env.page_size
-    end
-    env.user_phrase_rank = user_phrase_rank
 
     -- 状态初始化
     env.page_cache = {}
@@ -769,7 +698,6 @@ function M.fini(env)
     env.wrap_delimiter = nil
     env.symbol = nil
     env.page_size = nil
-    env.user_phrase_rank = nil
     env.cand_type_symbols = nil
     env.last_2code_char = nil
 
@@ -846,8 +774,7 @@ function M.func(input, env)
 
     -- PHASE 1: 缓存快照输出
     if code_has_symbol and target_cache and #target_cache > 0 then
-        local cached_candidates = reorder_first_user_phrase(target_cache, env.user_phrase_rank, env.page_size)
-        for _, c in ipairs(cached_candidates) do
+        for _, c in ipairs(target_cache) do
             local final_cand = c
 
             if wrap_key then
@@ -909,16 +836,15 @@ function M.func(input, env)
             end
         end
 
-        local cand_type = fast_type(cand)
-        if not (drop_sentence and cand_type == "sentence") and not suppress_set[text] then
+        if not (drop_sentence and fast_type(cand) == "sentence") and not suppress_set[text] then
             suppress_set[text] = true
-            eager_buffer[#eager_buffer + 1] = format_and_autocap(cand, env)
-        end
-    end
-    eager_buffer = reorder_first_user_phrase(eager_buffer, env.user_phrase_rank, env.page_size)
-    if not code_has_symbol then
-        for _, cand in ipairs(eager_buffer) do
-            env.page_cache[#env.page_cache + 1] = clone_candidate(cand)
+
+            local formatted_cand = format_and_autocap(cand, env)
+            if not code_has_symbol then
+                env.page_cache[#env.page_cache + 1] = clone_candidate(formatted_cand)
+            end
+
+            eager_buffer[#eager_buffer + 1] = formatted_cand
         end
     end
 
