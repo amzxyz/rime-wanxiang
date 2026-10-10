@@ -1,5 +1,14 @@
 # Changelog
 
+## [18.1.3](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.2...v18.1.3) (2026-10-10)
+
+
+### 📚 词库更新
+
+* 国家相关派生词转移到模型中 ([0975de3](https://github.com/amzxyz/rime-wanxiang/commit/0975de374a7420fdb58143bc78ea906c65fe3a31))
+* 词库调整 ([21d059b](https://github.com/amzxyz/rime-wanxiang/commit/21d059bc952dadeba1508dff8012f2ead28366c1))
+* 词库调整 ([f00efbf](https://github.com/amzxyz/rime-wanxiang/commit/f00efbf949980d42763e88d96781993c9ef1214e))
+
 ## [18.1.2](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.1...v18.1.2) (2026-10-09)
 
 
