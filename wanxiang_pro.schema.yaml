@@ -82,6 +82,7 @@ engine:
     - matcher  #配合 recognizer 标识符合特定规则的段落，如网址、反查等，加上特定 tag
     - abc_segmentor  #标识常规的文字段落，加上 abc 这个 tag
     - affix_segmentor@wanxiang_reverse  #反查 tag
+    - affix_segmentor@add_user_dict  #自造词加词 tag
     - punct_segmentor  #标识符号段落〔键入标点符号用〕加上 punct 这个 tag
     - fallback_segmentor  #标识其他未标识段落，必须放在最后帮助tag模式切换后回退重新处理
   translators:
@@ -99,6 +100,8 @@ engine:
     - lua_translator@*wanxiang.super_english*T  #英文词汇表导入，限流，格式化
     - table_translator@wanxiang_mixedcode  #混合编码词汇表导入
     - reverse_lookup_translator@wanxiang_reverse  #挂接部件组字和笔画反查
+    - script_translator@user_dict_set  #自造词之使用词汇入口
+    - script_translator@add_user_dict  #自造词之制造词汇入口
   filters:
     - lua_filter@*wanxiang.charset_filter  #放replacer前面,全方位自定义的字符集过滤器，支持繁体字符集开放
     - lua_filter@*wanxiang.super_lookup  #字词输入中反查辅助筛选
@@ -113,7 +116,6 @@ engine:
     - lua_filter@*wanxiang.super_replacer  #自由自定义，支持简繁转换、简码模式、候选替换、注释替换、候选派生、句子派生 等等
     - lua_filter@*wanxiang.super_english*F  #负责英文方案及中英混输中英文单词格式化，语句流，自动加空格等策略
     - lua_filter@*wanxiang.super_filter  #先进行字符过滤后简繁转换，这样能繁体继承简体权重。本质功能相关功能见Lua文件
-    - lua_filter@*wanxiang.disable_user_learning  #禁止用户词学习
     - lua_filter@*wanxiang.super_sequence*F  #放去重前,接管排序索引固定,手动排序，对高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
     - uniquifier  #去重,必须在最后
 
@@ -131,23 +133,47 @@ translator:
   dictionary: wanxiang_pro  # 挂载词库 wanxiang.dict.yaml
   #  packs: user                  #导入根目录下名称为user.dict.yaml的自定义固定词典
   prism: wanxiang_pro          # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
-  user_dict: zc
-  core_word_length: 4  # >0 启用，按段学词 + 相邻段拼接
-  max_word_length: 7  # >0 启用，过长短语不记整词，只加元素权重
   enable_completion: true  # 启用候选词补全
-  enable_user_dict: true  # 是否开启自动调频
-  enable_auto_phrase: true  # lua功能，开启后无感造词，通过逐个选 词/字 进行造词，但不会空格上屏就造词，关闭后遵循enable_user_dict逻辑
-  user_phrase_rank: 2  # lua功能，无感造词开启时，控制用户词出现位置，支持设置1到当前候选最大，默认为2，默认不希望造词抢占第一位置
-  disable_user_dict_for_patterns:
-    - "^[a-z]{1,3}"
+  enable_user_dict: false  # 是否开启自动调频
   contextual_suggestions: false  #模型用来开启词组权重预测，效果一般关闭
   max_homophones: 8
+  #  disable_user_dict_for_patterns:
+  #    - "^[a-z]{1,6}"    #基本的6码3字不调频
   enable_correction: false  #是否开启自动纠错
   initial_quality: 4  # 初始质量拼音的权重应该比英文大
-  spelling_hints: 50  # 将注释以词典字符串形式完全暴露
+  spelling_hints: 50  # 将注释以词典字符串形式完全暴露，通过super_comment.lua完全接管，灵活配置。
   always_show_comments: true  # Rime 默认在 preedit 等于 comment 时取消显示 comment，这里强制一直显示，供super_comment_preedit.lua做判断用。
   comment_format:  #将注释以词典字符串形式完全暴露，通过super_comment.lua完全接管，灵活配置。
 
+user_dict_set:
+  dictionary: wanxiang_pro
+  prism: wanxiang_pro
+  initial_quality: 2.5
+  enable_completion: false
+  enable_sentence: false
+  core_word_length: 4  # >0 启用，按段学词 + 相邻段拼接
+  max_word_length: 7  # >0 启用，过长短语不记整词，只加元素权重
+  contextual_suggestions: false
+  max_homophones: 8
+  spelling_hints: 50
+  comment_format:
+  enable_user_dict: true
+  user_dict: zc
+
+  # 自定义词典加词(ac引导)
+add_user_dict:
+  tag: add_user_dict
+  dictionary: wanxiang_pro
+  prism: wanxiang_pro
+  initial_quality: -1
+  user_dict: zc
+  enable_completion: true  # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
+  enable_user_dict: true
+  spelling_hints: 50
+  enable_auto_phrase: true  # lua造词功能，在custom开启，相关功能位于auto_phrase.lua，开启后：模型能造的句子不造词，现有的词不造词，只造词库没有的，选词可造词
+  comment_format:
+  prefix: "``"
+  tips: "〔开始造词〕"
 
 # 自定义短语，用来置顶
 custom_phrase:
@@ -266,6 +292,7 @@ recognizer:
     super_sym_pre: "^/sym[.?/]?$"  # 仅 /sym /sym. /sym? /sym/ 模式提示
     super_emoji_pre: "^/emoji[.?/]?$"  # 仅 /emoji /emoji. /emoji? /emoji/ 模式提示
     wanxiang_reverse: "^`[A-Za-z7890;]*$"  # 响应部件拆字与笔画的反查，与 radical_lookup/prefix 匹配
+    add_user_dict: "^``[A-Za-z/`']*$"  #自造词
     unicode: "^U([0-9A-Fa-f]*|[xXhH][0-9A-Fa-f]*|[dD][0-9]*|[bB][01]*|[oO][0-7]*|0[xX][0-9A-Fa-f]*|0[dD][0-9]*|0[bB][01]*|0[oO][0-7]*|\\+[0-9A-Fa-f]*|c.*)$"  # U 作为触发前缀，响应 lua_translator@unicode_conversion，输出 Unicode 字符
     number: "^R(-|-?[0-9]+[.:]?[0-9]*)$"  # 脚本将自动获取第 2 个字符 R 作为触发前缀，响应 lua_translator@number_conversion，数字金额大写
     sjc: "^[/o]rc\\d+[-+=op]?$"
@@ -346,6 +373,8 @@ key_binder:
     - {when: composing, accept: "Tab", send: "Control+Right"}
     # 当tab第一个字补码正确后，可以使用Ctrl+tab进行上屏并依次补码
     - {when: composing, accept: "Control+Tab", send_sequence: '{Home}{Shift+Right}{1}{Shift+Right}'}
+    # 当输入编码后发现没有词，则通过双击``进入造词模式而且不需要删除编码，这个功能与``直接引导相呼应相配合
+    - {match: "^.*`$", accept: "`", send_sequence: '{BackSpace}{Home}{`}{`}{End}'}
     # 斜杠被占用引导符号，因此输入本身设置为双击
     - {match: "^/$", accept: "/", send_sequence: '{space}'}
     #按下快捷键将开关切换到对应状态再发送快捷键，最终执行快捷键所对应的操作
