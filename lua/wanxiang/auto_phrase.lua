@@ -83,17 +83,13 @@ function AP.init(env)
 
     -- 中文自动造词的开关（只控制 add_user_dict）
     local enable_auto_phrase =
-        config:get_bool("add_user_dict/enable_auto_phrase") or false
+        config:get_bool("translator/enable_auto_phrase") or false
     local enable_user_dict  =
-        config:get_bool("add_user_dict/enable_user_dict") or false
-
-    -- add_user_dict 的控制前缀会单独形成一个无候选 Segment。
-    -- 提交造词时需要识别并跳过它，不能把它当成正文 Segment。
-    env.add_user_dict_prefix = config:get_string("add_user_dict/prefix") or "``"
+        config:get_bool("translator/enable_user_dict") or false
 
     -- 中文：add_user_dict（受 add_* 开关影响）
     if enable_auto_phrase and enable_user_dict then
-        env.memory = Memory(env.engine, env.engine.schema, "add_user_dict")
+        env.memory = Memory(env.engine, env.engine.schema, "translator")
     else
         env.memory = nil
     end
@@ -218,11 +214,6 @@ function AP.commit_handler(ctx, env)
         -- Segment.start/_end 是 context.input 中的 0 起始区间，Lua sub 为 1 起始且右端包含。
         if not cand then
             local seg_input = raw_input:sub(seg.start + 1, seg._end)
-
-            if seg_input == env.add_user_dict_prefix then
-                -- 例如开头的 `` 会独立形成一个无候选 Segment；它不属于造词正文。
-                goto continue
-            end
 
             if i == segments_count then
                 -- 最后一个 segment 无候选，允许跳过（保留原逻辑）
