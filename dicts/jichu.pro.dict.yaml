@@ -1141,6 +1141,7 @@ sort: by_weight
 奥创	ào;pl chuàng;ro	855
 奥茨	ào;pl cí;cr	594
 澳村	ào;up cūn;mc	670
+奥达	ào;pl dá;lz	45
 澳带	ào;up dài;cj	1030
 奥黛	ào;pl dài;rq	978
 熬到	áo;qq dào;ho	3473
@@ -8463,7 +8464,6 @@ sort: by_weight
 不摆	bù;hd bǎi;fs	136
 补办	bǔ;ds bàn;ld	788
 不办	bú;hd bàn;ld	499
-部颁	bù;we bān;bh	157
 不搬	bù;hd bān;fv	125
 不帮	bù;hd bāng;hj	480
 不棒	bú;hd bàng;mh	432
@@ -47086,6 +47086,7 @@ sort: by_weight
 虎爸	hǔ;sj bà;bv	67
 虎斑	hǔ;sj bān;ww	386
 护板	hù;fd bǎn;mp	113
+笏板	hù;gp bǎn;mp	73
 互帮	hù;hh bāng;hj	28
 虎豹	hǔ;sj bào;pb	355
 互保	hù;hh bǎo;rk	119
@@ -75755,7 +75756,7 @@ sort: by_weight
 玛维	mǎ;wv wéi;ir	48
 麻尾	má;xm wěi;sv	38
 骂我	mà;kh wǒ;pd	8478
-马戏	mǎ;vh xì;yh	236
+马戏	mǎ;vh xì;yh	1236
 马下	mǎ;vh xià;hd	986
 麻虾	má;xm xiā;oh	937
 麻线	má;xm xiàn;ih	82
@@ -130703,7 +130704,6 @@ sort: by_weight
 湘湘	xiāng;um xiāng;um	304
 湘乡	xiāng;um xiāng;vp	243
 翔翔	xiáng;dv xiáng;dv	194
-享享	xiǎng;wz xiǎng;wz	146
 想笑	xiǎng;mx xiào;gl	1448
 相消	xiāng;ml xiāo;us	1376
 想写	xiǎng;mx xiě;dh	2832
@@ -144567,6 +144567,7 @@ sort: by_weight
 樱庭	yīng;mb tíng;xd	465
 婴童	yīng;bn tóng;wh	1053
 盈通	yíng;vh tōng;vz	543
+应统	yīng;xh tǒng;iw	351
 英童	yīng;cd tóng;wh	270
 迎头	yíng;pz tóu;dl	377
 盈透	yíng;vh tòu;ez	358
@@ -145002,6 +145003,7 @@ sort: by_weight
 永诀	yǒng;dd jué;av	97
 拥军	yōng;fy jūn;dc	82
 永军	yǒng;dd jūn;dc	74
+庸君	yōng;xs jūn;vk	44
 用卡	yòng;ys kǎ;sd	964
 用开	yòng;ys kāi;hc	1629
 永康	yǒng;dd kāng;xu	154
@@ -149038,20 +149040,17 @@ sort: by_weight
 越方	yuè;td fāng;wp	84
 越放	yuè;td fàng;ww	71
 月费	yuè;yh fèi;gb	6977
-岳飞	yuè;pg fēi;vd	540
 越飞	yuè;td fēi;vd	432
 越肥	yuè;td féi;yv	345
 月份	yuè;yh fèn;rb	59252
 约分	yuē;ib fēn;bo	56289
-岳峰	yuè;pg fēng;gw	44
-月俸	yuè;yh fèng;rh	42
+月俸	yuè;yh fèng;rh	142
 岳父	yuè;pg fù;bc	2402
 乐府	yuè;px fǔ;xc	552
 越富	yuè;td fù;bt	197
 月付	yuè;yh fù;rc	157
 悦府	yuè;xd fǔ;xc	125
 月赋	yuè;yh fù;bh	100
-岳甫	yuè;pg fǔ;hd	66
 越干	yuè;td gàn;hf	1871
 乐感	yuè;px gǎn;hx	125
 粤港	yuè;pv gǎng;uc	116
@@ -149142,7 +149141,6 @@ sort: by_weight
 越界	yuè;td jiè;ts	527
 岳姐	yuè;pg jiě;ns	421
 月姐	yuè;yh jiě;ns	264
-越姐	yuè;td jiě;ns	203
 越近	yuè;td jìn;pz	1984
 跃进	yuè;zp jìn;hz	744
 越紧	yuè;td jǐn;si	628
@@ -149206,7 +149204,6 @@ sort: by_weight
 岳麓	yuè;pg lù;mv	455
 越乱	yuè;td luàn;pv	882
 月轮	yuè;yh lún;cr	195
-岳伦	yuè;pg lún;rr	185
 月落	yuè;yh luò;cu	286
 乐律	yuè;px lǜ;rv	410
 约略	yuē;ib lüè;tw	788
@@ -149563,6 +149560,8 @@ sort: by_weight
 运毒	yùn;hz dú;qd	360
 匀度	yún;bh dù;xy	125
 云端	yún;hi duān;wg	6525
+云朵	yún;hi duǒ;jm	1595
+云多	yún;hi duō;pd	343
 云儿	yún;hi ér;pv	1112
 云耳	yún;hi ěr;hh	442
 云尔	yún;hi ěr;gx	326
@@ -592345,9 +592344,10 @@ sort: by_weight
 他一睡	tā;rv yí;hq shuì;lp	274
 他一瞬	tā;rv yí;hq shùn;lp	536
 他一说	tā;rv yì;hq shuō;ad	702
-他一丝	tā;rv yì;hq sī;ih	483
+他意思	tā;rv yì;wx si;tx	483
 他疑似	tā;rv yí;pv sì;rv	286
 他一死	tā;rv yì;hq sǐ;hv	242
+他一丝	tā;rv yì;hq sī;ih	155
 他已死	tā;rv yǐ;vv sǐ;hv	113
 他一岁	tā;rv yí;hq suì;gd	500
 他以他	tā;rv yǐ;vr tā;rv	562
@@ -597447,7 +597447,6 @@ sort: by_weight
 太原南	tài;ld yuán;hx nán;ff	738
 太远呢	tài;ld yuǎn;hz ne;ks	252
 太原人	tài;ld yuán;hx rén;rd	116
-太原三	tài;ld yuán;hx sān;hh	414
 太原省	tài;ld yuán;hx shěng;xl	554
 太原市	tài;ld yuán;hx shì;wj	110
 太原寺	tài;ld yuán;hx sì;tc	266
@@ -696595,6 +696594,7 @@ sort: by_weight
 一个窝	yí;hq gè;rs wō;bd	604
 一个屋	yí;hq gè;rs wū;st	144
 依阁下	yī;rw gé;mk xià;hd	99
+一个县	yí;hq gè;rs xiàn;si	291
 以个性	yǐ;vr gè;rs xìng;xp	774
 一个样	yí;hq gè;rs yàng;md	2201
 一个羊	yí;hq gè;rs yáng;ds	886
@@ -696992,6 +696992,7 @@ sort: by_weight
 一好友	yī;hq hǎo;nz yǒu;hy	616
 一号院	yī;hq hào;kv yuàn;eb	472
 一号闸	yī;hq hào;kv zhá;ms	162
+一号站	yī;hq hào;kv zhàn;ws	315
 已好转	yǐ;vv hǎo;nz zhuǎn;ch	441
 一盒吧	yì;hq hé;rh ba;kv	400
 一盒半	yì;hq hé;rh bàn;ds	19
@@ -702907,6 +702908,7 @@ sort: by_weight
 已享有	yǐ;vv xiǎng;wz yǒu;hy	101
 一向由	yí;hq xiàng;pk yóu;sh	87
 意向者	yì;wx xiàng;pk zhě;tl	13
+一乡镇	yī;hq xiāng;vp zhèn;jf	100
 臆想症	yì;yw xiǎng;mx zhèng;zh	53
 已降至	yǐ;vv xiáng;ew zhì;ht	792
 一箱子	yì;hq xiāng;gl zi;zh	778
@@ -702990,6 +702992,7 @@ sort: by_weight
 一小学	yì;hq xiǎo;xd xué;dz	999
 依小颖	yī;rw xiǎo;xd yǐng;pe	45
 已小有	yǐ;vv xiǎo;xd yǒu;hy	522
+一小镇	yì;hq xiǎo;xd zhèn;jf	100
 一小只	yì;hq xiǎo;xd zhī;kb	526
 一小组	yì;hq xiǎo;xd zǔ;is	729
 一些啊	yì;hq xiē;sh a;ke	738
@@ -708258,6 +708261,7 @@ sort: by_weight
 应说明	yīng;xh shuō;ad míng;ly	738
 硬说是	yìng;bh shuō;ad shì;lr	144
 英苏杯	yīng;cd sū;cd bēi;mh	202
+鹰粟粉	yīng;xn sù;sj fěn;jb	82
 罂粟果	yīng;bs sù;sj guǒ;lm	310
 罂粟红	yīng;bs sù;sj hóng;ih	297
 罂粟花	yīng;bs sù;sj huā;cv	323
@@ -721914,7 +721918,6 @@ sort: by_weight
 越不好	yuè;td bù;hd hǎo;nz	292
 约不了	yuē;ib bù;hd liǎo;vs	13
 越不能	yuè;td bù;hd néng;ip	828
-岳不群	yuè;pg bù;hd qún;vd	1903
 约不上	yuē;ib bú;hd shàng;sh	612
 越不想	yuè;td bù;hd xiǎng;mx	801
 越不愿	yuè;td bú;hd yuàn;hx	52
@@ -722485,9 +722488,7 @@ sort: by_weight
 月亮圆	yuè;yh liàng;wj yuán;sb	104
 月亮照	yuè;yh liàng;wj zhào;lq	522
 越聊越	yuè;td liáo;hp yuè;td	52
-岳玲玲	yuè;pg líng;wr líng;wr	45
 月玲珑	yuè;yh líng;wr lóng;wh	297
-岳灵珊	yuè;pg líng;xq shān;wp	948
 越岭线	yuè;td lǐng;gr xiàn;ih	144
 月流量	yuè;yh liú;uw liàng;lh	630
 月流水	yuè;yh liú;uw shuǐ;ud	774
@@ -977842,43 +977843,19 @@ sort: by_weight
 缉拿凶手	jī;ik ná;rf xiōng;cs shǒu;fs	423
 缉拿罪犯	jī;ik ná;rf zuì;sh fàn;qv	3
 及耐腐蚀	jí;pd nài;hc fǔ;xr shí;so	288
-济南宾馆	jǐ;uw nán;ff bīn;bb guǎn;sb	243
-济南车展	jǐ;uw nán;ff chē;cs zhǎn;sd	374
 急难愁盼	jí;gx nàn;yr chóu;ex pàn;lb	3
 暨南大道	jì;xh nán;ff dà;ld dào;dz	230
 暨南大学	jì;xh nán;ff dà;ld xué;dz	2211
-济南大学	jǐ;uw nán;ff dà;ld xué;dz	169
-济南大雨	jǐ;uw nán;ff dà;ld yǔ;yd	162
-济南的那	jǐ;uw nán;ff de;pb nà;ve	230
 济南的天	jǐ;uw nán;ff de;pb tiān;hl	418
 济南的雪	jǐ;uw nán;ff de;pb xuě;yx	117
-济南地理	jǐ;uw nán;ff dì;tv lǐ;wl	50
-济南地区	jǐ;uw nán;ff dì;tv qū;hv	16
-济南电力	jǐ;uw nán;ff diàn;lv lì;lp	117
-济南电信	jǐ;uw nán;ff diàn;lv xìn;ra	180
 济南二安	jǐ;uw nán;ff èr;hh ān;bn	238
 济南二钢	jǐ;uw nán;ff èr;hh gāng;js	99
-济南分行	jǐ;uw nán;ff fēn;bo háng;rh	22
 济难扶危	jì;uw nán;yr fú;fh wēi;gv	45
-济南妇幼	jǐ;uw nán;ff fù;nx yòu;vl	207
-济南高新	jǐ;uw nán;ff gāo;wk xīn;wp	562
-济南公安	jǐ;uw nán;ff gōng;bi ān;bn	576
-济南工业	jǐ;uw nán;ff gōng;hh yè;sh	279
-济南古城	jǐ;uw nán;ff gǔ;fk chéng;th	207
-济南广播	jǐ;uw nán;ff guǎng;xp bō;fp	378
-济南广场	jǐ;uw nán;ff guǎng;xp chǎng;tv	99
-济南广电	jǐ;uw nán;ff guǎng;xp diàn;lv	99
 济南贵和	jǐ;uw nán;ff guì;kb hé;ek	243
 济南华联	jǐ;uw nán;ff huá;rf lián;hd	225
 暨南花园	jì;xh nán;ff huā;cv yuán;sv	202
 济南画院	jǐ;uw nán;ff huà;hs yuàn;eb	137
 几男几女	jǐ;jv nán;tl jǐ;jv nǚ;nh	302
-济南监狱	jǐ;uw nán;ff jiān;sh yù;qa	117
-济南交警	jǐ;uw nán;ff jiāo;wc jǐng;ca	562
-济南郊区	jǐ;uw nán;ff jiāo;we qū;hv	153
-济南警察	jǐ;uw nán;ff jǐng;ca chá;bx	266
-济南景点	jǐ;uw nán;ff jǐng;lx diǎn;sq	99
-济南九中	jǐ;uw nán;ff jiǔ;pv zhōng;ks	99
 急难救助	jí;gx nàn;yr jiù;hw zhù;sl	522
 济南军区	jǐ;uw nán;ff jūn;dc qū;hv	19
 冀南军区	jì;sb nán;ff jūn;dc qū;hv	17
@@ -977886,58 +977863,19 @@ sort: by_weight
 济南科明	jǐ;uw nán;ff kē;ed míng;ly	171
 济南美食	jǐ;uw nán;ff měi;dl shí;rd	52
 冀南棉海	jì;sb nán;ff mián;mp hǎi;up	162
-济南面塑	jǐ;uw nán;ff miàn;hh sù;dt	130
-济南哪里	jǐ;uw nán;ff nǎ;kv lǐ;lt	508
-济南七中	jǐ;uw nán;ff qī;hv zhōng;ks	180
-济南桥梁	jǐ;uw nán;ff qiáo;mp liáng;um	76
-济南青岛	jǐ;uw nán;ff qīng;qy dǎo;pg	729
 济南轻骑	jǐ;uw nán;ff qīng;cv qí;vl	252
 济南泉城	jǐ;uw nán;ff quán;pu chéng;th	464
 济南绕城	jǐ;uw nán;ff rào;ih chéng;th	333
-济南热电	jǐ;uw nán;ff rè;fq diàn;lv	490
 济南人了	jǐ;uw nán;ff rén;rd le;vs	144
 济南人事	jǐ;uw nán;ff rén;rd shì;hs	99
-济南日报	jǐ;uw nán;ff rì;lh bào;fv	572
-济南三中	jǐ;uw nán;ff sān;hh zhōng;ks	144
-济南商场	jǐ;uw nán;ff shāng;wk chǎng;tv	144
 极难胜地	jí;mp nán;yr shèng;yp dì;tv	76
-济南时报	jǐ;uw nán;ff shí;lc bào;fv	16
-济南市的	jǐ;uw nán;ff shì;wj de;pb	644
-济南师范	jǐ;uw nán;ff shī;sh fàn;cu	315
-济南市局	jǐ;uw nán;ff shì;wj jú;sk	288
-济南市里	jǐ;uw nán;ff shì;wj lǐ;lt	194
-济南市民	jǐ;uw nán;ff shì;wj mín;vv	693
-济南市内	jǐ;uw nán;ff shì;wj nèi;sd	356
-济南市区	jǐ;uw nán;ff shì;wj qū;hv	630
-济南市委	jǐ;uw nán;ff shì;wj wěi;en	6
-济南水利	jǐ;uw nán;ff shuǐ;ud lì;eo	4
-济南太守	jǐ;uw nán;ff tài;ld shǒu;bc	315
-济南体育	jǐ;uw nán;ff tǐ;rm yù;wy	194
-济南威海	jǐ;uw nán;ff wēi;hd hǎi;up	288
-济南文物	jǐ;uw nán;ff wén;wc wù;pb	76
-济南五中	jǐ;uw nán;ff wǔ;hh zhōng;ks	153
 急难先锋	jí;gx nàn;yr xiān;pv fēng;jw	153
 急难险重	jí;gx nàn;yr xiǎn;er zhòng;ph	31
-济南校区	jǐ;uw nán;ff xiào;mw qū;hv	13
 冀南新区	jì;sb nán;ff xīn;wp qū;hv	423
 暨南学报	jì;xh nán;ff xué;dz bào;fv	220
 暨南学堂	jì;xh nán;ff xué;dz táng;st	333
-济南学校	jǐ;uw nán;ff xué;dz xiào;mw	180
-济南医院	jǐ;uw nán;ff yī;hv yuàn;eb	464
-济南一中	jǐ;uw nán;ff yī;hq zhōng;ks	342
-济南银屑	jǐ;uw nán;ff yín;jx xiè;sy	279
 寂难永劫	jì;by nán;yr yǒng;dd jié;tl	162
-济南幼师	jǐ;uw nán;ff yòu;vl shī;sh	50
-济南玉函	jǐ;uw nán;ff yù;wd hán;vs	207
-济南园林	jǐ;uw nán;ff yuán;sv lín;mm	220
-济南战役	jǐ;uw nán;ff zhàn;sh yì;rj	53
-济南政治	jǐ;uw nán;ff zhèng;hw zhì;ui	50
 极南之地	jí;mp nán;ff zhī;dd dì;tv	207
-济南之星	jǐ;uw nán;ff zhī;dd xīng;lq	324
-济南中学	jǐ;uw nán;ff zhōng;ks xué;dz	6
-济南中院	jǐ;uw nán;ff zhōng;ks yuàn;eb	544
-济南足球	jǐ;uw nán;ff zú;zr qiú;wh	99
-济南组织	jǐ;uw nán;ff zǔ;is zhī;ik	144
 鸡内金片	jī;yn nèi;sd jīn;jh piàn;pv	99
 鸡内金散	jī;yn nèi;sd jīn;jh sàn;cw	320
 己内酰胺	jǐ;vv nèi;sd xiān;sp àn;yb	160
@@ -977967,7 +977905,6 @@ sort: by_weight
 机能规格	jī;mj néng;ip guī;hs gé;mw	50
 技能后摇	jì;ff néng;ip hòu;pk yáo;fp	225
 机能恢复	jī;mj néng;ip huī;xh fù;pw	486
-机能回复	jī;mj néng;ip huí;sk fù;pw	129
 技能继承	jì;ff néng;ip jì;ij chéng;vd	99
 技能技术	jì;ff néng;ip jì;ff shù;md	450
 技能级数	jì;ff néng;ip jí;ip shù;jw	198
@@ -1000484,8 +1000421,8 @@ sort: by_weight
 晋朝将军	jìn;hl cháo;fy jiāng;dp jūn;dc	4
 金潮酒店	jīn;jh cháo;uf jiǔ;us diàn;xk	99
 金朝君主	jīn;jh cháo;fy jūn;vk zhǔ;wt	117
-金朝年号	jīn;jh cháo;fy nián;ps hào;kv	144
-晋朝年号	jìn;hl cháo;fy nián;ps hào;kv	65
+晋朝年号	jìn;hl cháo;fy nián;ps hào;kv	144
+金朝年号	jīn;jh cháo;fy nián;ps hào;kv	65
 金朝社会	jīn;jh cháo;fy shè;dt huì;ri	76
 金朝诗歌	jīn;jh cháo;fy shī;at gē;hg	50
 晋朝诗人	jìn;hl cháo;fy shī;at rén;rd	144
@@ -1000510,7 +1000447,6 @@ sort: by_weight
 金宸国际	jīn;jh chén;bd guó;sd jì;eh	99
 锦陈牙科	jǐn;jp chén;eh yá;hp kē;ed	45
 金宸资本	jīn;jh chén;bd zī;db běn;mh	4
-晋城八中	jìn;hl chéng;th bā;bd zhōng;ks	288
 金城百货	jīn;jh chéng;th bǎi;hl huò;rb	153
 进程保活	jìn;hz chéng;ek bǎo;rk huó;up	76
 金城保密	jīn;jh chéng;th bǎo;rk mì;bg	45
@@ -1000531,10 +1000467,8 @@ sort: by_weight
 金晟大厦	jīn;jh chéng;ld dà;ld shà;hw	51
 近程导弹	jìn;pz chéng;ek dǎo;vc dàn;gd	16
 金城地豪	jīn;jh chéng;th dì;tv háo;wd	4
-晋城地理	jìn;hl chéng;th dì;tv lǐ;wl	50
 锦晟电子	jǐn;jp chéng;ld diàn;lv zǐ;zh	45
 金城东路	jīn;jh chéng;th dōng;hd lù;zw	238
-晋城二中	jìn;hl chéng;th èr;hh zhōng;ks	117
 金城二中	jīn;jh chéng;th èr;hh zhōng;ks	4
 金城饭店	jīn;jh chéng;th fàn;sp diàn;xk	153
 金城房产	jīn;jh chéng;th fáng;dp chǎn;wp	76
@@ -1000545,7 +1000479,6 @@ sort: by_weight
 金城纺织	jīn;jh chéng;th fǎng;iw zhī;ik	153
 金城高架	jīn;jh chéng;th gāo;wk jià;lm	194
 近程攻击	jìn;pz chéng;ek gōng;hw jī;hs	320
-晋城公司	jìn;hl chéng;th gōng;bi sī;vk	99
 锦程公司	jǐn;jp chéng;ek gōng;bi sī;vk	38
 金城公寓	jīn;jh chéng;th gōng;bi yù;bd	4
 金城股份	jīn;jh chéng;th gǔ;yj fèn;rb	3
@@ -1000562,19 +1000495,14 @@ sort: by_weight
 金诚集团	jīn;jh chéng;ah jí;rm tuán;sp	418
 金城集团	jīn;jh chéng;th jí;rm tuán;sp	266
 金城家园	jīn;jh chéng;th jiā;bd yuán;sv	45
-晋城交警	jìn;hl chéng;th jiāo;wc jǐng;ca	171
-晋城交通	jìn;hl chéng;th jiāo;wc tōng;vz	162
 金程教育	jīn;jh chéng;ek jiào;tw yù;wy	270
-晋城教育	jìn;hl chéng;th jiào;tw yù;wy	42
 尽诚竭节	jìn;sd chéng;ah jié;wl jié;cs	50
-晋城经济	jìn;hl chéng;th jīng;iv jì;uw	220
 金城酒店	jīn;jh chéng;th jiǔ;us diàn;xk	162
 金城酒家	jīn;jh chéng;th jiǔ;us jiā;bd	212
 进程句柄	jìn;hz chéng;ek jù;bk bǐng;mh	3
 锦程科技	jǐn;jp chéng;ek kē;ed jì;ff	76
 金城兰州	jīn;jh chéng;th lán;dh zhōu;ds	342
 金城丽景	jīn;jh chéng;th lì;hd jǐng;lx	50
-晋城历史	jìn;hl chéng;th lì;hl shǐ;kd	50
 金城铃木	jīn;jh chéng;th líng;jr mù;md	225
 金城路口	jīn;jh chéng;th lù;zw kǒu;kh	153
 进城落户	jìn;hz chéng;th luò;cu hù;ds	9
@@ -1000585,10 +1000513,8 @@ sort: by_weight
 近程目标	jìn;pz chéng;ek mù;lh biāo;mh	144
 进城农民	jìn;hz chéng;th nóng;dd mín;vv	572
 金程汽车	jīn;jh chéng;ek qì;up chē;cs	144
-晋城七中	jìn;hl chéng;th qī;hv zhōng;ks	45
 金城千里	jīn;jh chéng;th qiān;pf lǐ;lt	9
 金城麹氏	jīn;jh chéng;th qū;qb shì;pv	4
-晋城三中	jìn;hl chéng;th sān;hh zhōng;ks	4
 金城商厦	jīn;jh chéng;th shāng;wk shà;hw	76
 金城商务	jīn;jh chéng;th shāng;wk wù;wl	99
 近程射击	jìn;pz chéng;ek shè;pc jī;hs	130
@@ -1000596,21 +1000522,15 @@ sort: by_weight
 进城生活	jìn;hz chéng;th shēng;pq huó;up	306
 金成时代	jīn;jh chéng;hd shí;lc dài;rh	117
 金城石化	jīn;jh chéng;th shí;bk huà;rp	50
-晋城市郊	jìn;hl chéng;th shì;wj jiāo;we	243
-晋城市区	jìn;hl chéng;th shì;wj qū;hv	338
-晋城市委	jìn;hl chéng;th shì;wj wěi;en	536
 金晟硕业	jīn;jh chéng;ld shuò;bh yè;sh	117
-晋城四中	jìn;hl chéng;th sì;sv zhōng;ks	50
 金城泰尔	jīn;jh chéng;th tài;hu ěr;gx	45
 金城汤池	jīn;jh chéng;th tāng;uv chí;uv	3
 晋成陶瓷	jìn;hl chéng;hd táo;eb cí;dd	50
-晋城天气	jìn;hl chéng;th tiān;hl qì;pv	45
 锦承铁路	jǐn;jp chéng;vd tiě;jp lù;zw	382
 金城铁路	jīn;jh chéng;th tiě;jp lù;zw	99
 金诚同达	jīn;jh chéng;ah tóng;sk dá;lz	382
 进程通讯	jìn;hz chéng;ek tōng;vz xùn;av	194
 进程退出	jìn;hz chéng;ek tuì;xz chū;vs	22
-晋城文化	jìn;hl chéng;th wén;wc huà;rp	117
 进城务工	jìn;hz chéng;th wù;wl gōng;hh	154
 近程物理	jìn;pz chéng;ek wù;pb lǐ;wl	180
 锦程物流	jǐn;jp chéng;ek wù;pb liú;uw	220
@@ -1000626,14 +1000546,10 @@ sort: by_weight
 锦程学校	jǐn;jp chéng;ek xué;dz xiào;mw	171
 金城学院	jīn;jh chéng;th xué;dz yuàn;eb	22
 锦城学院	jǐn;jp chéng;th xué;dz yuàn;eb	20
-晋城学院	jìn;hl chéng;th xué;dz yuàn;eb	18
 锦城一期	jǐn;jp chéng;th yì;hq qī;cy	76
 金城医药	jīn;jh chéng;th yī;hv yào;cd	436
-晋城一中	jìn;hl chéng;th yī;hq zhōng;ks	382
 金城银行	jīn;jh chéng;th yín;jx háng;rh	16
-晋城银行	jìn;hl chéng;th yín;jx háng;rh	14
 锦城印象	jǐn;jp chéng;th yìn;pv xiàng;gd	320
-晋城在线	jìn;hl chéng;th zài;ht xiàn;ih	189
 金城寨街	jīn;jh chéng;th zhài;bm jiē;rt	99
 金城战役	jīn;jh chéng;th zhàn;sh yì;rj	400
 锦程振动	jǐn;jp chéng;ek zhèn;fh dòng;hl	45
@@ -1000643,7 +1000559,6 @@ sort: by_weight
 金城中心	jīn;jh chéng;th zhōng;ks xīn;xd	392
 锦城中学	jǐn;jp chéng;th zhōng;ks xué;dz	162
 锦程中学	jǐn;jp chéng;ek zhōng;ks xué;dz	122
-晋城中院	jìn;hl chéng;th zhōng;ks yuàn;eb	50
 进程注入	jìn;hz chéng;ek zhù;uw rù;pd	6
 矜持不苟	jīn;vr chí;ft bù;hd gǒu;ck	117
 金翅大鹏	jīn;jh chì;fh dà;ld péng;yn	477
@@ -1007194,27 +1007109,16 @@ sort: by_weight
 近中错位	jìn;pz zhōng;ks cuò;jc wèi;rw	45
 金钟大厦	jīn;jh zhōng;jk dà;ld shà;hw	207
 锦中大厦	jǐn;jp zhōng;ks dà;ld shà;hw	4
-晋中地区	jìn;hl zhōng;ks dì;tv qū;hv	19
 尽忠拂过	jìn;sd zhōng;kx fú;fg guò;cz	52
 金钟广场	jīn;jh zhōng;jk guǎng;xp chǎng;tv	346
-晋中教育	jìn;hl zhōng;ks jiào;tw yù;wy	99
 尽忠竭节	jìn;sd zhōng;kx jié;wl jié;cs	76
 尽忠竭力	jìn;sd zhōng;kx jié;wl lì;lp	3
 尽忠尽职	jìn;sd zhōng;kx jìn;sd zhí;hk	225
-晋中经济	jìn;hl zhōng;ks jīng;iv jì;uw	162
-晋中历史	jìn;hl zhōng;ks lì;hl shǐ;kd	50
 金中南校	jīn;jh zhōng;ks nán;ff xiào;mw	153
-晋中人家	jìn;hl zhōng;ks rén;rd jiā;bd	4
 谨终如始	jǐn;ac zhōng;iw rú;nk shǐ;ni	171
 金钟视后	jīn;jh zhōng;jk shì;ds hòu;pk	266
-晋中市委	jìn;hl zhōng;ks shì;wj wěi;en	482
-晋中文化	jìn;hl zhōng;ks wén;wc huà;rp	153
 进中向好	jìn;hz zhōng;ks xiàng;pk hǎo;nz	320
-晋中学院	jìn;hl zhōng;ks xué;dz yuàn;eb	396
-晋中银行	jìn;hl zhōng;ks yín;jx háng;rh	117
-晋中战役	jìn;hl zhōng;ks zhàn;sh yì;rj	382
 尽忠职守	jìn;sd zhōng;kx zhí;hk shǒu;bc	163
-晋中中院	jìn;hl zhōng;ks zhōng;ks yuàn;eb	4
 金种子酒	jīn;jh zhǒng;ek zi;zh jiǔ;us	13
 金洲北路	jīn;jh zhōu;ud běi;sp lù;zw	238
 金州北路	jīn;jh zhōu;ds běi;sp lù;zw	84
@@ -1052215,20 +1052119,7 @@ sort: by_weight
 邻菲罗啉	lín;re fēi;ch luó;sd lín;km	162
 邻菲罗林	lín;re fēi;ch luó;sd lín;mm	65
 林分改造	lín;mm fēn;bo gǎi;vw zào;pz	248
-临汾公司	lín;sp fén;ub gōng;bi sī;vk	45
-临汾交通	lín;sp fén;ub jiāo;wc tōng;vz	50
-临汾教育	lín;sp fén;ub jiào;tw yù;wy	45
-临汾历史	lín;sp fén;ub lì;hl shǐ;kd	117
 林分密度	lín;mm fēn;bo mì;bg dù;xy	130
-临汾三中	lín;sp fén;ub sān;hh zhōng;ks	194
-临汾市区	lín;sp fén;ub shì;wj qū;hv	342
-临汾市委	lín;sp fén;ub shì;wj wěi;en	500
-临汾文化	lín;sp fén;ub wén;wc huà;rp	144
-临汾文物	lín;sp fén;ub wén;wc wù;pb	99
-临汾五中	lín;sp fén;ub wǔ;hh zhōng;ks	4
-临汾一中	lín;sp fén;ub yī;hq zhōng;ks	243
-临汾政治	lín;sp fén;ub zhèng;hw zhì;ui	4
-临汾中院	lín;sp fén;ub zhōng;ks yuàn;eb	45
 临风把酒	lín;sp fēng;pc bǎ;fv jiǔ;us	50
 凛风冲击	lǐn;dw fēng;pc chōng;dk jī;hs	220
 临风对月	lín;sp fēng;pc duì;yc yuè;yh	130
@@ -1111218,42 +1111109,14 @@ sort: by_weight
 铺路石子	pū;jh lù;zw shí;bk zǐ;zh	117
 普鲁特河	pǔ;dl lǔ;gl tè;pt hé;uh	441
 普鲁旺斯	pǔ;dl lǔ;gl wàng;lw sī;cp	144
-普鲁维什	pǔ;dl lǔ;gl wéi;ir shí;rf	76
 普鲁西纳	pǔ;dl lǔ;gl xī;sh nà;is	52
-普鲁伊特	pǔ;dl lǔ;gl yī;rv tè;pt	356
-普伦蒂斯	pǔ;dl lún;rr dì;cj sī;cp	423
-普伦蒂湾	pǔ;dl lún;rr dì;cj wān;uw	220
-普伦格尔	pǔ;dl lún;rr gé;mw ěr;gx	162
-普伦基特	pǔ;dl lún;rr jī;ct tè;pt	297
-普伦普顿	pǔ;dl lún;rr pǔ;dl dùn;hh	248
-普罗伯特	pǔ;dl luó;sd bó;rp tè;pt	180
 普罗布斯	pǔ;dl luó;sd bù;hj sī;cp	441
 普罗大众	pǔ;dl luó;sd dà;ld zhòng;rr	2540
-普罗丹斯	pǔ;dl luó;sd dān;ph sī;cp	180
-普罗德摩	pǔ;dl luó;sd dé;rf mó;xf	392
-普罗恩萨	pǔ;dl luó;sd ēn;sx sà;cp	189
-普罗夫特	pǔ;dl luó;sd fū;hl tè;pt	76
-普洛股份	pǔ;dl luò;uw gǔ;yj fèn;rb	99
-普罗霍雷	pǔ;dl luó;sd huò;yq léi;yt	144
-普罗霍洛	pǔ;dl luó;sd huò;yq luò;uw	306
-普洛康裕	pǔ;dl luò;uw kāng;xu yù;db	162
 普罗科皮	pǔ;dl luó;sd kē;ed pí;vy	472
-普罗列塔	pǔ;dl luó;sd liè;ho tǎ;tc	356
-普罗米特	pǔ;dl luó;sd mǐ;jm tè;pt	4
-普罗米亚	pǔ;dl luó;sd mǐ;jm yà;hh	170
-普罗姆斯	pǔ;dl luó;sd mǔ;nv sī;cp	117
-普罗瑞林	pǔ;dl luó;sd ruì;wg lín;mm	4
-普洛斯佩	pǔ;dl luò;uw sī;cp pèi;rp	369
-普罗斯珀	pǔ;dl luó;sd sī;cp pò;wp	356
 普罗斯特	pǔ;dl luó;sd sī;cp tè;pt	60
 普罗塔克	pǔ;dl luó;sd tǎ;tc kè;fv	153
-普洛特克	pǔ;dl luò;uw tè;pt kè;fv	99
-普罗瓦尔	pǔ;dl luó;sd wǎ;hd ěr;gx	212
 普罗万城	pǔ;dl luó;sd wàn;hp chéng;th	117
 普罗旺斯	pǔ;dl luó;sd wàng;lw sī;cp	402
-普罗维杰	pǔ;dl luó;sd wéi;ir jié;mq	212
-普罗维斯	pǔ;dl luó;sd wéi;ir sī;cp	144
-普罗文斯	pǔ;dl luó;sd wén;wc sī;cp	202
 普洛药业	pǔ;dl luò;uw yào;cd yè;sh	41
 普罗艺术	pǔ;dl luó;sd yì;cv shù;md	189
 普罗之主	pǔ;dl luó;sd zhī;dd zhǔ;wt	45
@@ -1125804,160 +1125667,25 @@ sort: by_weight
 氢弹之父	qīng;ph dàn;gd zhī;dd fù;bc	53
 请党放心	qǐng;aq dǎng;sv fàng;ww xīn;xd	9
 清党行动	qīng;uq dǎng;sv xíng;rh dòng;hl	225
-青岛奥达	qīng;qy dǎo;pg ào;pl dá;lz	171
-青岛报纸	qīng;qy dǎo;pg bào;fv zhǐ;ip	50
-青岛包装	qīng;qy dǎo;pg bāo;bv zhuāng;dd	130
-青岛藨草	qīng;qy dǎo;pg biāo;cq cǎo;cf	50
 倾倒场地	qīng;rh dǎo;rh chǎng;tv dì;tv	144
-青岛车展	qīng;qy dǎo;pg chē;cs zhǎn;sd	230
-青岛成达	qīng;qy dǎo;pg chéng;hd dá;lz	180
-青岛大包	qīng;qy dǎo;pg dà;ld bāo;bv	364
-青岛大连	qīng;qy dǎo;pg dà;ld lián;cz	662
-青岛大虾	qīng;qy dǎo;pg dà;ld xiā;oh	576
-青岛大学	qīng;qy dǎo;pg dà;ld xué;dz	458
-青岛大姨	qīng;qy dǎo;pg dà;ld yí;nh	558
-青岛大雨	qīng;qy dǎo;pg dà;ld yǔ;yd	153
-青岛大宗	qīng;qy dǎo;pg dà;ld zōng;bx	99
-青岛道路	qīng;qy dǎo;pg dào;dz lù;zw	230
 倾倒的城	qīng;rh dǎo;rh de;pb chéng;th	4
-青岛的那	qīng;qy dǎo;pg de;pb nà;ve	333
-青岛的天	qīng;qy dǎo;pg de;pb tiān;hl	410
-青岛灯塔	qīng;qy dǎo;pg dēng;qh tǎ;tc	171
-青岛地理	qīng;qy dǎo;pg dì;tv lǐ;wl	207
-青岛地名	qīng;qy dǎo;pg dì;tv míng;pk	99
-青岛地区	qīng;qy dǎo;pg dì;tv qū;hv	53
-青岛地铁	qīng;qy dǎo;pg dì;tv tiě;jp	91
-青岛电信	qīng;qy dǎo;pg diàn;lv xìn;ra	153
-青岛鼎昌	qīng;qy dǎo;pg dǐng;lv chāng;ll	4
 晴到多云	qíng;lq dào;ho duō;pd yún;hi	684
-青岛纺机	qīng;qy dǎo;pg fǎng;iw jī;mj	117
-青岛纺织	qīng;qy dǎo;pg fǎng;iw zhī;ik	297
-青岛分行	qīng;qy dǎo;pg fēn;bo háng;rh	41
 清道夫鱼	qīng;uq dào;dz fū;hl yú;gh	279
-青岛港的	qīng;qy dǎo;pg gǎng;uc de;pb	392
-青岛高速	qīng;qy dǎo;pg gāo;wk sù;hz	360
 青道高中	qīng;qy dào;dz gāo;wk zhōng;ks	315
-青岛公路	qīng;qy dǎo;pg gōng;bi lù;zw	117
-青岛够级	qīng;qy dǎo;pg gòu;bp jí;ip	144
-青岛广播	qīng;qy dǎo;pg guǎng;xp bō;fp	410
-青岛广场	qīng;qy dǎo;pg guǎng;xp chǎng;tv	117
-青岛广电	qīng;qy dǎo;pg guǎng;xp diàn;lv	333
-青岛国际	qīng;qy dǎo;pg guó;sd jì;eh	828
-青岛海博	qīng;qy dǎo;pg hǎi;up bó;fh	189
-青岛海产	qīng;qy dǎo;pg hǎi;up chǎn;wp	144
-青岛海岛	qīng;qy dǎo;pg hǎi;up dǎo;pg	130
-青岛海尔	qīng;qy dǎo;pg hǎi;up ěr;gx	41
-青岛海关	qīng;qy dǎo;pg hǎi;up guān;dl	562
-青岛海军	qīng;qy dǎo;pg hǎi;up jūn;dc	423
-青岛海立	qīng;qy dǎo;pg hǎi;up lì;wh	320
-青岛海牛	qīng;qy dǎo;pg hǎi;up niú;ps	580
-青岛海湾	qīng;qy dǎo;pg hǎi;up wān;uw	387
-青岛韩语	qīng;qy dǎo;pg hán;fh yǔ;ah	99
-青岛好好	qīng;qy dǎo;pg hǎo;nz hǎo;nz	99
-青岛红酒	qīng;qy dǎo;pg hóng;ih jiǔ;us	117
-青岛红狮	qīng;qy dǎo;pg hóng;ih shī;qs	256
-青岛浒苔	qīng;qy dǎo;pg hǔ;ua tái;ck	153
-青岛画家	qīng;qy dǎo;pg huà;hs jiā;bd	50
-青岛黄海	qīng;qy dǎo;pg huáng;cb hǎi;up	765
-青岛会展	qīng;qy dǎo;pg huì;ri zhǎn;sd	238
-青岛机场	qīng;qy dǎo;pg jī;mj chǎng;tv	616
-青岛记者	qīng;qy dǎo;pg jì;av zhě;tl	171
 请到家里	qǐng;aq dào;ho jiā;bd lǐ;lt	567
-青岛嘉园	qīng;qy dǎo;pg jiā;tk yuán;sv	261
-青岛碱厂	qīng;qy dǎo;pg jiǎn;bh chǎng;hp	130
-青岛碱业	qīng;qy dǎo;pg jiǎn;bh yè;sh	459
-青岛监狱	qīng;qy dǎo;pg jiān;sh yù;qa	153
-青岛胶南	qīng;qy dǎo;pg jiāo;yw nán;ff	378
-青岛教堂	qīng;qy dǎo;pg jiào;tw táng;st	4
-青岛金石	qīng;qy dǎo;pg jīn;jh shí;bk	212
-青岛金王	qīng;qy dǎo;pg jīn;jh wáng;wh	518
-青岛九中	qīng;qy dǎo;pg jiǔ;pv zhōng;ks	374
-青岛聚品	qīng;qy dǎo;pg jù;hd pǐn;kk	256
-青岛军事	qīng;qy dǎo;pg jūn;dc shì;hs	50
-青岛科大	qīng;qy dǎo;pg kē;ed dà;ld	180
 倾倒垃圾	qīng;rh dǎo;rh lā;tw jī;tp	69
-青岛炼化	qīng;qy dǎo;pg liàn;qh huà;rp	117
-青岛流亭	qīng;qy dǎo;pg liú;uw tíng;ws	490
-青岛六中	qīng;qy dǎo;pg liù;wb zhōng;ks	225
-青岛路博	qīng;qy dǎo;pg lù;zw bó;fh	4
-青岛旅游	qīng;qy dǎo;pg lǚ;wp yóu;uw	792
-青岛美食	qīng;qy dǎo;pg měi;dl shí;rd	459
-青岛民俗	qīng;qy dǎo;pg mín;vv sú;rb	238
-青岛名通	qīng;qy dǎo;pg míng;pk tōng;vz	99
-青岛哪里	qīng;qy dǎo;pg nǎ;kv lǐ;lt	423
 情到浓处	qíng;xq dào;ho nóng;ud chù;wd	428
 情到浓时	qíng;xq dào;ho nóng;ud shí;lc	69
-青岛诺德	qīng;qy dǎo;pg nuò;ac dé;rf	4
-青岛啤酒	qīng;qy dǎo;pg pí;kp jiǔ;us	1002
-青岛普兴	qīng;qy dǎo;pg pǔ;dl xīng;db	4
-青岛棋牌	qīng;qy dǎo;pg qí;mc pái;pp	45
-青岛七中	qīng;qy dǎo;pg qī;hv zhōng;ks	162
-青岛青岛	qīng;qy dǎo;pg qīng;qy dǎo;pg	662
-青岛区市	qīng;qy dǎo;pg qū;hv shì;wj	162
-青岛人物	qīng;qy dǎo;pg rén;rd wù;pb	76
-青岛日报	qīng;qy dǎo;pg rì;lh bào;fv	9
 清到如今	qīng;uq dào;ho rú;nk jīn;rv	162
-青岛三中	qīng;qy dǎo;pg sān;hh zhōng;ks	189
-青岛商场	qīng;qy dǎo;pg shāng;wk chǎng;tv	99
 晴到少云	qíng;lq dào;ho shǎo;xp yún;hi	333
 情到深处	qíng;xq dào;ho shēn;ud chù;wd	179
-青岛市的	qīng;qy dǎo;pg shì;wj de;pb	639
-青岛师范	qīng;qy dǎo;pg shī;sh fàn;cu	292
-青岛市里	qīng;qy dǎo;pg shì;wj lǐ;lt	171
-青岛市民	qīng;qy dǎo;pg shì;wj mín;vv	612
-青岛市内	qīng;qy dǎo;pg shì;wj nèi;sd	468
-青岛食品	qīng;qy dǎo;pg shí;rd pǐn;kk	374
-青岛市区	qīng;qy dǎo;pg shì;wj qū;hv	652
-青岛诗人	qīng;qy dǎo;pg shī;at rén;rd	130
-青岛市委	qīng;qy dǎo;pg shì;wj wěi;en	684
-青岛石油	qīng;qy dǎo;pg shí;bk yóu;us	324
 请到书房	qǐng;aq dào;ho shū;vd fáng;dp	6
-青岛双虎	qīng;qy dǎo;pg shuāng;yy hǔ;sj	4
-青岛双星	qīng;qy dǎo;pg shuāng;yy xīng;lq	603
-青岛水库	qīng;qy dǎo;pg shuǐ;ud kù;xc	45
-青岛四方	qīng;qy dǎo;pg sì;sv fāng;wp	716
-青岛台东	qīng;qy dǎo;pg tái;ik dōng;hd	387
-青岛外事	qīng;qy dǎo;pg wài;ps shì;hs	274
-青岛晚报	qīng;qy dǎo;pg wǎn;lg bào;fv	567
-青岛威海	qīng;qy dǎo;pg wēi;hd hǎi;up	13
 倾倒危险	qīng;rh dǎo;rh wēi;gv xiǎn;er	238
-青岛卫校	qīng;qy dǎo;pg wèi;vh xiào;mw	50
-青岛文物	qīng;qy dǎo;pg wén;wc wù;pb	162
-青岛雾霾	qīng;qy dǎo;pg wù;yl mái;yh	76
-青岛五中	qīng;qy dǎo;pg wǔ;hh zhōng;ks	117
-青岛消防	qīng;qy dǎo;pg xiāo;us fáng;ew	153
-青岛校区	qīng;qy dǎo;pg xiào;mw qū;hv	78
-青岛小区	qīng;qy dǎo;pg xiǎo;xd qū;hv	70
-青岛学校	qīng;qy dǎo;pg xué;dz xiào;mw	180
-青岛烟草	qīng;qy dǎo;pg yān;qs cǎo;cf	117
-青岛延吉	qīng;qy dǎo;pg yán;pd jí;tk	130
-青岛烟台	qīng;qy dǎo;pg yān;qs tái;ik	675
 倾倒液体	qīng;rh dǎo;rh yè;uw tǐ;rm	9
-青岛一木	qīng;qy dǎo;pg yí;hq mù;md	207
 倾倒一片	qīng;rh dǎo;rh yí;hq piàn;pv	144
-青岛艺校	qīng;qy dǎo;pg yì;cv xiào;mw	117
-青岛医院	qīng;qy dǎo;pg yī;hv yuàn;eb	261
-青岛一中	qīng;qy dǎo;pg yī;hq zhōng;ks	360
-青岛银行	qīng;qy dǎo;pg yín;jx háng;rh	16
-青岛邮电	qīng;qy dǎo;pg yóu;se diàn;lv	315
-青岛有线	qīng;qy dǎo;pg yǒu;hy xiàn;ih	225
-青岛原浆	qīng;qy dǎo;pg yuán;hx jiāng;du	374
-青岛早报	qīng;qy dǎo;pg zǎo;lf bào;fv	536
-青岛展览	qīng;qy dǎo;pg zhǎn;sd lǎn;sv	144
 请到这里	qǐng;aq dào;ho zhè;wz lǐ;lt	13
-青岛这里	qīng;qy dǎo;pg zhè;wz lǐ;lt	12
-青岛政治	qīng;qy dǎo;pg zhèng;hw zhì;ui	99
-青岛之星	qīng;qy dǎo;pg zhī;dd xīng;lq	297
-青岛制造	qīng;qy dǎo;pg zhì;po zào;pz	742
-青岛中程	qīng;qy dǎo;pg zhōng;ks chéng;ek	13
 轻到中度	qīng;cv dào;ho zhōng;ks dù;xy	31
-青岛中和	qīng;qy dǎo;pg zhōng;ks hé;ek	76
-青岛中能	qīng;qy dǎo;pg zhōng;ks néng;ip	226
 倾倒众生	qīng;rh dǎo;rh zhòng;rr shēng;pq	38
-青岛中心	qīng;qy dǎo;pg zhōng;ks xīn;xd	639
-青岛中院	qīng;qy dǎo;pg zhōng;ks yuàn;eb	356
-青岛住宅	qīng;qy dǎo;pg zhù;rw zhái;bv	153
-青岛足球	qīng;qy dǎo;pg zú;zr qiú;wh	504
 请的嘉宾	qǐng;aq de;pb jiā;tk bīn;bb	554
 请的客人	qǐng;aq de;pb kè;bk rén;rd	3
 青的生活	qīng;qy de;pb shēng;pq huó;up	400
@@ -1200722,13 +1200450,6 @@ sort: by_weight
 说真心话	shuō;ad zhēn;fb xīn;xd huà;ap	680
 说正经的	shuō;ad zhèng;hh jing;iv de;pb	814
 说中国话	shuō;ad zhòng;ks guó;sd huà;ap	160
-朔州教育	shuò;dy zhōu;ds jiào;tw yù;wy	4
-朔州经济	shuò;dy zhōu;ds jīng;iv jì;uw	153
-朔州历史	shuò;dy zhōu;ds lì;hl shǐ;kd	4
-朔州市委	shuò;dy zhōu;ds shì;wj wěi;en	392
-朔州学校	shuò;dy zhōu;ds xué;dz xiào;mw	4
-朔州支线	shuò;dy zhōu;ds zhī;fy xiàn;ih	162
-朔州中院	shuò;dy zhōu;ds zhōng;ks yuàn;eb	99
 说自己是	shuō;ad zì;pl jǐ;vv shì;lr	7417
 说走就走	shuō;ad zǒu;tr jiù;wh zǒu;tr	1055
 说嘴打嘴	shuō;ad zuǐ;ks dǎ;fh zuǐ;ks	6
@@ -1213735,60 +1213456,7 @@ sort: by_weight
 泰妥拉唑	tài;hu tuǒ;pn lā;fw zuò;kr	50
 太拖了吧	tài;ld tuō;fp le;vs ba;kv	4
 钛托修复	tài;jl tuō;fp xiū;rs fù;pw	45
-太哇噻了	tài;ld wa;kt sāi;kb le;vs	266
-太哇塞了	tài;ld wā;kt sāi;bt le;vs	4
-台湾宝岛	tái;ik wān;uw bǎo;bd dǎo;pg	423
-台湾北部	tái;ik wān;uw běi;sp bù;we	788
-台湾大学	tái;ik wān;uw dà;ld xué;dz	502
-台湾当局	tái;ik wān;uw dāng;sx jú;sk	305
-台湾导演	tái;ik wān;uw dǎo;vc yǎn;ub	724
-台湾地区	tái;ik wān;uw dì;tv qū;hv	2477
-台湾电力	tái;ik wān;uw diàn;lv lì;lp	832
-台湾电视	tái;ik wān;uw diàn;lv shì;ds	3
-台湾电影	tái;ik wān;uw diàn;lv yǐng;lp	994
-台湾东部	tái;ik wān;uw dōng;hd bù;we	720
-台湾独立	tái;ik wān;uw dú;qo lì;wh	38
-台湾高铁	tái;ik wān;uw gāo;wk tiě;jp	752
-台湾歌手	tái;ik wān;uw gē;hg shǒu;fs	144
-台湾公司	tái;ik wān;uw gōng;bi sī;vk	711
-台湾股市	tái;ik wān;uw gǔ;yj shì;wj	508
-台湾官网	tái;ik wān;uw guān;bh wǎng;sc	450
-台湾海峡	tái;ik wān;uw hǎi;up xiá;gh	289
-台湾黑帮	tái;ik wān;uw hēi;sq bāng;hj	482
-台湾黄薯	tái;ik wān;uw huáng;cb shǔ;cl	52
-台湾经济	tái;ik wān;uw jīng;iv jì;uw	66
-台湾居民	tái;ik wān;uw jū;sk mín;vv	44
-台湾旅游	tái;ik wān;uw lǚ;wp yóu;uw	900
-台湾媒体	tái;ik wān;uw méi;nc tǐ;rm	179
-台湾民众	tái;ik wān;uw mín;vv zhòng;rr	110
-台湾民主	tái;ik wān;uw mín;vv zhǔ;wt	909
-台湾南部	tái;ik wān;uw nán;ff bù;we	810
-台湾朋友	tái;ik wān;uw péng;yy you;hy	806
-台湾啤酒	tái;ik wān;uw pí;kp jiǔ;us	734
-台湾青年	tái;ik wān;uw qīng;qy nián;ps	50
-台湾人民	tái;ik wān;uw rén;rd mín;vv	116
-台湾日报	tái;ik wān;uw rì;lh bào;fv	639
-台湾社会	tái;ik wān;uw shè;dt huì;ri	914
-台湾市场	tái;ik wān;uw shì;wj chǎng;tv	738
-台湾时间	tái;ik wān;uw shí;lc jiān;ml	747
-台湾事务	tái;ik wān;uw shì;hs wù;wl	3
-台湾首富	tái;ik wān;uw shǒu;dl fù;bt	500
-台湾同胞	tái;ik wān;uw tóng;sk bāo;yb	207
-台湾同学	tái;ik wān;uw tóng;sk xué;dz	684
-台湾网友	tái;ik wān;uw wǎng;sc yǒu;hy	752
-台湾文化	tái;ik wān;uw wén;wc huà;rp	850
-台湾问题	tái;ik wān;uw wèn;mk tí;lb	292
-台湾文学	tái;ik wān;uw wén;wc xué;dz	922
-台湾学生	tái;ik wān;uw xué;dz shēng;pq	806
-台湾研究	tái;ik wān;uw yán;bh jiū;bv	720
-台湾以东	tái;ik wān;uw yǐ;vr dōng;hd	52
-台湾艺术	tái;ik wān;uw yì;cv shù;md	824
-台湾音乐	tái;ik wān;uw yīn;wl yuè;px	82
-台湾政治	tái;ik wān;uw zhèng;hw zhì;ui	932
-台湾之旅	tái;ik wān;uw zhī;dd lǚ;wp	52
-台湾知名	tái;ik wān;uw zhī;pk míng;pk	819
-台湾著名	tái;ik wān;uw zhù;cl míng;pk	860
-台湾作家	tái;ik wān;uw zuò;rp jiā;bd	837
+太哇塞了	tài;ld wā;kt sāi;bt le;vs	264
 太旺盛了	tài;ld wàng;lw shèng;hh le;vs	16
 胎萎不长	tāi;yi wēi;cn bù;hd zhǎng;pd	50
 胎位不正	tāi;yi wèi;rw bú;hd zhèng;hh	35
@@ -1292907,36 +1292575,11 @@ sort: by_weight
 心中自有	xīn;xd zhōng;ks zì;pl yǒu;hy	594
 心中最美	xīn;xd zhōng;ks zuì;ly měi;dl	734
 新舟宾馆	xīn;wp zhōu;vd bīn;bb guǎn;sb	117
-新洲宾馆	xīn;wp zhōu;ud bīn;bb guǎn;sb	84
-新洲大桥	xīn;wp zhōu;ud dà;ld qiáo;mp	144
 信州大学	xìn;ra zhōu;ds dà;ld xué;dz	405
-新洲二街	xīn;wp zhōu;ud èr;hh jiē;rt	50
-新洲二中	xīn;wp zhōu;ud èr;hh zhōng;ks	76
-新洲花园	xīn;wp zhōu;ud huā;cv yuán;sv	220
-忻州交通	xīn;xp zhōu;ds jiāo;wc tōng;vz	4
 新周快乐	xīn;wp zhōu;pk kuài;xv lè;px	194
-忻州历史	xīn;xp zhōu;ds lì;hl shǐ;kd	99
-新洲路口	xīn;wp zhōu;ud lù;zw kǒu;kh	130
-新洲码头	xīn;wp zhōu;ud mǎ;bv tóu;dl	266
-忻州面塑	xīn;xp zhōu;ds miàn;hh sù;dt	76
-新洲南路	xīn;wp zhōu;ud nán;ff lù;zw	99
-忻州七中	xīn;xp zhōu;ds qī;hv zhōng;ks	76
-新洲三街	xīn;wp zhōu;ud sān;hh jiē;rt	99
-忻州三中	xīn;xp zhōu;ds sān;hh zhōng;ks	76
-忻州师范	xīn;xp zhōu;ds shī;sh fàn;cu	310
-忻州市委	xīn;xp zhōu;ds shì;wj wěi;en	392
-忻州师院	xīn;xp zhōu;ds shī;sh yuàn;eb	117
-新洲四中	xīn;wp zhōu;ud sì;sv zhōng;ks	50
-忻州文物	xīn;xp zhōu;ds wén;wc wù;pb	4
-新洲小学	xīn;wp zhōu;ud xiǎo;xd xué;dz	162
 信州新町	xìn;ra zhōu;ds xīn;wp tǐng;th	180
-新洲阳逻	xīn;wp zhōu;ud yáng;el luó;sz	270
-新洲一中	xīn;wp zhōu;ud yī;hq zhōng;ks	266
-忻州一中	xīn;xp zhōu;ds yī;hq zhōng;ks	205
 新周愉快	xīn;wp zhōu;pk yú;xr kuài;xv	144
 新州政府	xīn;wp zhōu;ds zhèng;hw fǔ;xc	333
-新洲中学	xīn;wp zhōu;ud zhōng;ks xué;dz	117
-忻州中院	xīn;xp zhōu;ds zhōng;ks yuàn;eb	180
 心主不状	xīn;xd zhǔ;wt bù;hd zhuàng;dl	76
 新主持人	xīn;wp zhǔ;wt chí;ft rén;rd	396
 新筑股份	xīn;wp zhù;gd gǔ;yj fèn;rb	518
@@ -1311603,6 +1311246,8 @@ sort: by_weight
 要你管啊	yào;sn nǐ;rg guǎn;gh a;ke	351
 要你好看	yào;sn nǐ;rg hǎo;nz kàn;pl	670
 要你何用	yào;sn nǐ;rg hé;rh yòng;ys	157
+要你加入	yào;sn nǐ;rg jiā;lk rù;pd	348
+邀你加入	yāo;pz nǐ;rg jiā;lk rù;pd	229
 要你教我	yào;sn nǐ;rg jiāo;tw wǒ;pd	288
 咬你屁股	yǎo;kw nǐ;rg pì;sv gu;yj	52
 要你上他	yào;sn nǐ;rg shàng;sh tā;rv	130
@@ -1359736,22 +1359381,17 @@ sort: by_weight
 粤西白戏	yuè;pv xī;sh bái;pl xì;yh	162
 悦兮半岛	yuè;xd xī;bv bàn;ds dǎo;pg	292
 粤溪北路	yuè;pv xī;up běi;sp lù;zw	45
-岳西翠兰	yuè;pg xī;sh cuì;vf lán;dh	225
 月溪法师	yuè;yh xī;up fǎ;ut shī;sh	207
-岳西高腔	yuè;pg xī;sh gāo;wk qiāng;yb	171
 月夕花朝	yuè;yh xī;pd huā;cv zhāo;fy	180
-岳西茭白	yuè;pg xī;sh jiāo;cc bái;pl	76
 粤系军阀	yuè;pv xì;pi jūn;dc fá;md	202
 悦喜客来	yuè;xd xǐ;tk kè;bk lái;hj	297
 越溪深处	yuè;td xī;up shēn;ud chù;wd	76
 粤西文载	yuè;pv xī;sh wén;wc zài;fc	76
-岳西县委	yuè;pg xī;sh xiàn;si wěi;en	171
 越洗越多	yuè;td xǐ;up yuè;td duō;pd	13
 越细越好	yuè;td xì;it yuè;td hǎo;nz	226
 越洗越黑	yuè;td xǐ;up yuè;td hēi;sq	320
 越洗越油	yuè;td xǐ;up yuè;td yóu;us	25
 越洗越脏	yuè;td xǐ;up yuè;td zāng;yx	28
-岳西中学	yuè;pg xī;sh zhōng;ks xué;dz	76
 月下初拥	yuè;yh xià;hd chū;do yōng;fy	45
 月下蝶影	yuè;yh xià;hd dié;oc yǐng;lp	180
 月下独酌	yuè;yh xià;hd dú;qo zhuó;sb	78
@@ -1359864,37 +1359504,12 @@ sort: by_weight
 越严越好	yuè;td yán;hp yuè;td hǎo;nz	9
 越演越烈	yuè;td yǎn;ub yuè;td liè;hq	298
 悦颜之益	yuè;xd yán;wh zhī;dd yì;dh	99
-岳阳大学	yuè;pg yáng;el dà;ld xué;dz	153
 越洋电话	yuè;td yáng;ud diàn;lv huà;ap	104
-岳阳公司	yuè;pg yáng;el gōng;bi sī;vk	50
 栎阳公主	yuè;mp yáng;el gōng;bi zhǔ;wt	6
-岳阳官员	yuè;pg yáng;el guān;bh yuán;kb	50
 越洋广场	yuè;td yáng;ud guǎng;xp chǎng;tv	6
 越洋航空	yuè;td yáng;ud háng;vw kōng;bh	477
-岳阳恒立	yuè;pg yáng;el héng;xh lì;wh	194
-岳阳黄茶	yuè;pg yáng;el huáng;cb chá;cm	99
-岳阳惠临	yuè;pg yáng;el huì;hx lín;sp	76
-岳阳交通	yuè;pg yáng;el jiāo;wc tōng;vz	76
-岳阳经济	yuè;pg yáng;el jīng;iv jì;uw	320
-岳阳历史	yuè;pg yáng;el lì;hl shǐ;kd	76
-岳阳林峰	yuè;pg yáng;el lín;mm fēng;gw	45
-岳阳林纸	yuè;pg yáng;el lín;mm zhǐ;ip	3
-岳阳楼记	yuè;pg yáng;el lóu;mj jì;av	245
-岳阳旅游	yuè;pg yáng;el lǚ;wp yóu;uw	76
-岳阳哪里	yuè;pg yáng;el nǎ;kv lǐ;lt	99
 越洋情书	yuè;td yáng;ud qíng;xq shū;vd	238
-岳阳市委	yuè;pg yáng;el shì;wj wěi;en	490
-岳阳司法	yuè;pg yáng;el sī;vk fǎ;ut	45
-岳阳文化	yuè;pg yáng;el wén;wc huà;rp	50
-岳阳县委	yuè;pg yáng;el xiàn;si wěi;en	212
-岳阳兴长	yuè;pg yáng;el xīng;db cháng;pd	418
-岳阳学校	yuè;pg yáng;el xué;dz xiào;mw	99
-岳阳乙烯	yuè;pg yáng;el yǐ;vq xī;qc	45
-岳阳医院	yuè;pg yáng;el yī;hv yuàn;eb	57
-岳阳一中	yuè;pg yáng;el yī;hq zhōng;ks	117
 越养越小	yuè;td yǎng;ds yuè;td xiǎo;xd	130
-岳阳纸业	yuè;pg yáng;el zhǐ;ip yè;sh	220
-岳阳组织	yuè;pg yáng;el zǔ;is zhī;ik	4
 越窑青瓷	yuè;td yáo;bg qīng;qy cí;dd	3
 月曜效应	yuè;yh yào;lv xiào;ww yìng;xh	76
 月夜不寐	yuè;yh yè;wd bú;hd mèi;bm	76
@@ -1360153,24 +1359768,10 @@ sort: by_weight
 云车风马	yún;hi chē;cs fēng;pc mǎ;vh	50
 晕车晕船	yùn;lc chē;cs yùn;lc chuán;vj	666
 蕴城别墅	yùn;ch chéng;th bié;ko shù;lt	189
-运城宾馆	yùn;hz chéng;th bīn;bb guǎn;sb	162
-运城地区	yùn;hz chéng;th dì;tv qū;hv	392
 云城东路	yún;hi chéng;th dōng;hd lù;zw	248
 云程发轫	yún;hi chéng;ek fā;vd rèn;co	13
-运城公司	yùn;hz chéng;th gōng;bi sī;vk	4
-运城交通	yùn;hz chéng;th jiāo;wc tōng;vz	99
-运城教育	yùn;hz chéng;th jiào;tw yù;wy	99
-运城历史	yùn;hz chéng;th lì;hl shǐ;kd	117
-运城没有	yùn;hz chéng;th méi;uj yǒu;hy	153
 云城南路	yún;hi chéng;th nán;ff lù;zw	4
-运城苹果	yùn;hz chéng;th píng;cf guǒ;lm	270
-运城日报	yùn;hz chéng;th rì;lh bào;fv	576
-运城师范	yùn;hz chéng;th shī;sh fàn;cu	225
-运城市委	yùn;hz chéng;th shì;wj wěi;en	504
 云程万里	yún;hi chéng;ek wàn;hp lǐ;lt	212
-运城文化	yùn;hz chéng;th wén;wc huà;rp	117
-运城文物	yùn;hz chéng;th wén;wc wù;pb	76
-运城物流	yùn;hz chéng;th wù;pb liú;uw	45
 云城西路	yún;hi chéng;th xī;sh lù;zw	320
 运城学院	yùn;hz chéng;th xué;dz yuàn;eb	315
 郓城一中	yùn;de chéng;th yī;hq zhōng;ks	117
