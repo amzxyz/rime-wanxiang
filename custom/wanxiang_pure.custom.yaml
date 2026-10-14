@@ -13,7 +13,8 @@ patch:
       #- wanxiang_algebra:/模糊音_c_ch
       #- wanxiang_algebra:/模糊音_z_zh
       #- wanxiang_algebra:/模糊音_s_sh
-      - wanxiang_algebra:/pro/全拼  # 可选输入方案名称：全拼，自然码, 自然龙, 汉心龙，小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 国标双拼，拼音加加，乱序17
+      - wanxiang_algebra:/pro/全拼
+      # 可选输入方案名称：全拼，自然码，小鹤双拼，搜狗双拼，微软双拼，智能ABC，紫光双拼，国标双拼，拼音加加，乱序17，万象拼音，首道双拼，蓝天双拼，大牛双拼，自然龙，汉心龙
       - wanxiang_algebra:/pro/间接辅助
 
   menu/page_size: 6
