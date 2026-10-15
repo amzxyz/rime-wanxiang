@@ -22,13 +22,14 @@ import_tables:
   - dicts/mingren       #必要|名人
   - dicts/renming       #高频人名
   - dicts/yiren         #艺人
-  - dicts/yixue         #医学
-  - dicts/huaxue        #化学
-  - dicts/yaopin        #药品
-  - dicts/wuzhong       #物种多样性
   - dicts/daolu         #道路
   - dicts/shiti         #实体设施
-  - dicts/taifeng       #最新台风表
-  - dicts/fangyan       #收集全国方言
-  #- dicts/shici        #更多诗词，基础词库已经收纳小学到高中及网络传唱诗词
+  #- dicts/yixue         #医学
+  #- dicts/huaxue        #化学
+  #- dicts/yaopin        #药品
+  #- dicts/wuzhong       #物种多样性
+  #- dicts/taifeng       #最新台风表
+  #- dicts/fangyan       #收集全国方言
+  #- dicts/shici         #更多诗词，基础词库已经收纳小学到高中及网络传唱诗词
+  # 更多词库获取：https://github.com/amzxyz/RIME-LMDG/releases/tag/dict-nightly
 ...
