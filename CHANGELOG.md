@@ -1,5 +1,43 @@
 # Changelog
 
+## [18.1.3](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.2...v18.1.3) (2026-10-16)
+
+
+### 📚 词库更新
+
+* 国家相关派生词转移到模型中 ([0975de3](https://github.com/amzxyz/rime-wanxiang/commit/0975de374a7420fdb58143bc78ea906c65fe3a31))
+* 扩展词库不再额外携带，高频词汇已经纳入基础词库，需要更多的LMDG下载 ([e0fbeb9](https://github.com/amzxyz/rime-wanxiang/commit/e0fbeb9b3271e24034214377fd9add1771925835))
+* 移除城市+四字词汇，迁移到模型 ([dc0d8f7](https://github.com/amzxyz/rime-wanxiang/commit/dc0d8f7a279b87165f712f65d5dcd62f0b28820a))
+* 词库大调整 ([0e4fa20](https://github.com/amzxyz/rime-wanxiang/commit/0e4fa20d3dbe0a84e0ed4c401d353b6a1e5377c6))
+* 词库调整 ([86b4699](https://github.com/amzxyz/rime-wanxiang/commit/86b469978d49a516a63b0e58d10e64200f8c5f88))
+* 词库调整 ([4de09a7](https://github.com/amzxyz/rime-wanxiang/commit/4de09a7c16e0c5d8172ae06558a052d5793bcbd3))
+* 词库调整 ([a8e2e91](https://github.com/amzxyz/rime-wanxiang/commit/a8e2e91b396f3293a747b2a2f8382953ffcbd600))
+* 词库调整 ([5643341](https://github.com/amzxyz/rime-wanxiang/commit/56433416abd0d2d418839fe3ce0b56f8b993e780))
+* 词库调整 ([552a5b0](https://github.com/amzxyz/rime-wanxiang/commit/552a5b00ae5dd4a5a2ee75d66ada48da1d9645da))
+* 词库调整 ([a355ffe](https://github.com/amzxyz/rime-wanxiang/commit/a355ffec2f05dd698451b709a5c242be76395a25))
+* 词库调整 ([5cd7e73](https://github.com/amzxyz/rime-wanxiang/commit/5cd7e7363addaab8591623d6dc4c6ef943ffa203))
+* 词库调整 ([abb8cde](https://github.com/amzxyz/rime-wanxiang/commit/abb8cde7682028dca76d3d449562b6854b33efaf))
+* 词库调整 ([b87d86b](https://github.com/amzxyz/rime-wanxiang/commit/b87d86bea1931215498bb497c174c39a98ec598d))
+* 词库调整 ([dbd71fe](https://github.com/amzxyz/rime-wanxiang/commit/dbd71fe3734550ee86543f103838a4611a83421e))
+* 词库调整 ([a50bfed](https://github.com/amzxyz/rime-wanxiang/commit/a50bfedc4cb19245fce24082e928d480e13353b8))
+* 词库调整 ([21d059b](https://github.com/amzxyz/rime-wanxiang/commit/21d059bc952dadeba1508dff8012f2ead28366c1))
+* 词库调整 ([f00efbf](https://github.com/amzxyz/rime-wanxiang/commit/f00efbf949980d42763e88d96781993c9ef1214e))
+* 调整词库结构不再设立联想词库，诗词总库默认携带但不启用，基础词库包含精选诗词，词库数据持续优化逐步构建基础+模型的使用体验，后续将剥离偏专业性的词库在LMDG仓库单独提供 ([aa9947f](https://github.com/amzxyz/rime-wanxiang/commit/aa9947f3f513ff88a3f7ce4e342fcb519d517025))
+
+
+### 🏡 杂项
+
+* lmdg仓库改名rime-wanxiang-data ([ebf51f4](https://github.com/amzxyz/rime-wanxiang/commit/ebf51f4f00c3f6bf933e2e70712476c6064388f5))
+
+
+### 🤖 持续集成
+
+* 修复排除项 ([99dab85](https://github.com/amzxyz/rime-wanxiang/commit/99dab85a3f40e2ab9fd7a44c14da884ef11fc8f6))
+* 关联词库同步流程 ([206b359](https://github.com/amzxyz/rime-wanxiang/commit/206b359509c964610c3a73797141977cde0bbdb4))
+* 取消push触发分支 ([4d78d6f](https://github.com/amzxyz/rime-wanxiang/commit/4d78d6fe33f1794abdbcf143e820ab72733d3809))
+* 变更引用仓库 ([ddf71c6](https://github.com/amzxyz/rime-wanxiang/commit/ddf71c6c39c384cc5009425c2961382d3aab4931))
+* 增加每夜同步lmdg词库的脚本 ([d814d6f](https://github.com/amzxyz/rime-wanxiang/commit/d814d6f7695e46973a7a9a2730d7727ddcbdd111))
+
 ## [18.1.2](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.1...v18.1.2) (2026-10-09)
 
 
