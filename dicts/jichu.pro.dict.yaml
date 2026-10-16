@@ -15237,6 +15237,7 @@ sort: by_weight
 重华	chóng;ld huá;jn	277
 崇华	chóng;vf huá;jn	237
 崇化	chóng;vf huà;jv	213
+重画	chóng;ld huà;fm	168
 宠坏	chǒng;wt huài;gc	91
 冲坏	chōng;wg huài;gc	82
 虫患	chóng;cc huàn;dh	62
@@ -157383,7 +157384,6 @@ sort: by_weight
 种花	zhòng;xg huā;lv	970
 重话	zhòng;ld huà;sa	222
 中化	zhōng;dg huà;jv	210
-重画	zhòng;ld huà;fm	168
 中环	zhōng;dg huán;nc	1284
 重焕	zhòng;ld huàn;cm	608
 中黄	zhōng;dg huáng;nh	78
@@ -182768,6 +182768,7 @@ sort: by_weight
 报下来	bào;ur xià;fy lái;ah	105
 包下了	bāo;nv xià;fy le;rl	698
 保下了	bǎo;je xià;fy le;rl	388
+抱下楼	bào;uv xià;fy lóu;eb	83
 报下名	bào;ur xià;fy míng;ld	207
 抱下去	bào;uv xià;fy qù;gk	19
 保险啊	bǎo;je xiǎn;tf a;dz	549
@@ -582768,8 +582769,8 @@ sort: by_weight
 违法啊	wéi;gu fǎ;kk a;dz	378
 违法吧	wéi;gu fǎ;kk ba;dm	400
 未发表	wèi;aw fā;si biǎo;at	850
-微发布	wēi;wh fā;si bù;nr	886
 未发布	wèi;aw fā;si bù;nr	623
+微发布	wēi;wh fā;si bù;nr	186
 违法的	wéi;gu fǎ;kk de;ui	3259
 未发过	wèi;aw fā;si guò;ku	465
 未发货	wèi;aw fā;si huò;jo	110
@@ -691515,6 +691516,8 @@ sort: by_weight
 这两间	zhè;vu liǎng;ml jiān;ao	472
 这两句	zhè;vu liǎng;ml jù;gj	1134
 这两颗	zhè;vu liǎng;ml kē;qw	336
+这两科	zhè;vu liǎng;ml kē;xj	299
+这两棵	zhè;vu liǎng;ml kē;ee	146
 这两口	zhè;vu liǎng;ml kǒu;dk	716
 这两块	zhè;vu liǎng;ml kuài;gj	1422
 这两款	zhè;vu liǎng;ml kuǎn;ge	6280
@@ -700677,7 +700680,8 @@ sort: by_weight
 直行车	zhí;nf xíng;px chē;yc	50
 执行单	zhí;ui xíng;px dān;hn	6
 直行道	zhí;nf xíng;px dào;hu	44
-指形的	zhǐ;uo xíng;fe de;ui	144
+执行的	zhí;ui xíng;px de;ui	144
+直行的	zhí;nf xíng;px de;ui	91
 直行灯	zhí;nf xíng;px dēng;ca	3
 之行动	zhī;ri xíng;px dòng;bs	28
 执行法	zhí;ui xíng;px fǎ;kk	950
@@ -871473,6 +871477,7 @@ sort: by_weight
 海军装备	hǎi;kk jūn;wy zhuāng;at bèi;hq	684
 海军装甲	hǎi;kk jūn;wy zhuāng;at jiǎ;sj	230
 海军准将	hǎi;kk jūn;wy zhǔn;wu jiàng;ak	576
+还卡卡的	hái;cu kǎ;yy kǎ;yy de;ui	11
 还开会了	hái;cu kāi;fl huì;jb le;rl	4
 还开会呢	hái;cu kāi;fl huì;jb ne;dv	117
 还开门不	hái;cu kāi;fl mén;am bù;cb	99
@@ -967649,6 +967654,7 @@ sort: by_weight
 两支强队	liǎng;ml zhī;ci qiáng;bc duì;tj	428
 两支球队	liǎng;ml zhī;ci qiú;ni duì;tj	1035
 两只神兽	liǎng;ml zhī;dh shén;fg shòu;hd	297
+两只手臂	liǎng;ml zhī;dh shǒu;us bì;cv	130
 量值溯源	liáng;od zhí;jf sù;kv yuán;ky	117
 两只喜鹊	liǎng;ml zhī;dh xǐ;hd què;lx	338
 两只小鸡	liǎng;ml zhī;dh xiǎo;yx jī;rx	392
@@ -1075573,6 +1075579,8 @@ sort: by_weight
 市场回顾	shì;zr chǎng;ge huí;rd gù;xw	702
 市场汇率	shì;zr chǎng;ge huì;kn lǜ;zn	680
 市场回暖	shì;zr chǎng;ge huí;rd nuǎn;or	788
+时常会忘	shí;ok cháng;sr huì;jb wàng;fh	196
+市场会往	shì;zr chǎng;ge huì;jb wǎng;wn	50
 时常会想	shí;ok cháng;sr huì;jb xiǎng;eh	612
 市场混乱	shì;zr chǎng;ge hùn;kv luàn;aa	670
 市场火爆	shì;zr chǎng;ge huǒ;ch bào;ck	774
@@ -1293868,6 +1293876,7 @@ sort: by_weight
 做事风格	zuò;jh shì;fb fēng;ob gé;es	774
 左师公曰	zuǒ;nu shī;pr gōng;hk yuē;or	144
 左室后支	zuǒ;nu shì;wy hòu;xd zhī;ci	45
+做是会做	zuò;jh shì;ot huì;jb zuò;jh	71
 坐失机宜	zuò;jg shī;th jī;eo yí;wf	117
 做市交易	zuò;jh shì;zr jiāo;ab yì;oe	702
 昨是今非	zuó;ow shì;ot jīn;ja fēi;rf	13
@@ -1317946,6 +1317955,7 @@ sort: by_weight
 馆乒乓球馆	guǎn;qk pīng;tt pāng;ti qiú;ni guǎn;qk	10
 灌区管理处	guàn;ku qū;nb guǎn;rk lǐ;nd chù;hy	10
 灌区管理所	guàn;ku qū;nb guǎn;rk lǐ;nd suǒ;mt	10
+管杀不管埋	guǎn;rk shā;be bù;cb guǎn;rk mái;gd	26
 关山度若飞	guān;hm shān;vs dù;xr ruò;ld fēi;cf	10
 观山西路站	guān;re shān;vs xī;vx lù;ps zhàn;id	10
 关山阵阵苍	guān;hm shān;vs zhèn;ty zhèn;ty cāng;lz	10
@@ -1341925,6 +1341935,7 @@ sort: by_weight
 皮阿诺公理	pí;rp ā;tz nuò;sd gōng;hk lǐ;nd	10
 疲惫的身躯	pí;ar bèi;hh de;ui shēn;zs qū;zb	10
 疲惫的一代	pí;ar bèi;hh de;ui yí;fi dài;jp	10
+皮蛋经常吃	pí;rp dàn;tc jīng;iu cháng;sr chī;da	16
 屁都不知道	pì;cv dōu;qt bù;cb zhī;od dào;hu	10
 匹多莫德片	pǐ;np duō;ll mò;lm dé;wh piàn;ap	10
 匹多莫德散	pǐ;np duō;ll mò;lm dé;wh sàn;lh	10
