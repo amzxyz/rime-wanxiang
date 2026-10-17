@@ -1,5 +1,30 @@
 # Changelog
 
+## [18.1.4](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.3...v18.1.4) (2026-10-17)
+
+
+### 📚 词库更新
+
+* 合并词库 ([8d2f33a](https://github.com/amzxyz/rime-wanxiang/commit/8d2f33af246ca4baf53e2f59bd4df80c101766b1))
+* 合并词库 ([34d52b0](https://github.com/amzxyz/rime-wanxiang/commit/34d52b061aa35ed885a5a4c8243c777c7866666a))
+* 词库调整 ([d2068cd](https://github.com/amzxyz/rime-wanxiang/commit/d2068cd38c12e92d52a0debffdbfdf4bc625a71e))
+* 词库调整 ([2c317bf](https://github.com/amzxyz/rime-wanxiang/commit/2c317bf9fb8c2b6a970c7a233f95b9372fdc7f44))
+* 词库调整 ([aea87ae](https://github.com/amzxyz/rime-wanxiang/commit/aea87aeb3aa906485efd55f1d1c32de02480f549))
+* 词库调整 ([c26cda9](https://github.com/amzxyz/rime-wanxiang/commit/c26cda952b0a5a2cf5e6e9e96835bd6148836a75))
+* 词库调整 ([3d0a715](https://github.com/amzxyz/rime-wanxiang/commit/3d0a715ac4c3632ad8e1aab239ec8a42284c516a))
+* 道路已经炼化到模型无法炼化的留在基础词库 ([68a1111](https://github.com/amzxyz/rime-wanxiang/commit/68a1111956ae7461dd32b06d1639f09f4d8708e4))
+
+
+### 🐛 Bug 修复
+
+* 优化转写 ([720f795](https://github.com/amzxyz/rime-wanxiang/commit/720f795d4379974ced35324db09caed890d2f283))
+* 优化转写 ([2d62adc](https://github.com/amzxyz/rime-wanxiang/commit/2d62adc58635968c94522cfdc4103cef139e58dc))
+
+
+### 🏡 杂项
+
+* 修正ci ([cfabd2f](https://github.com/amzxyz/rime-wanxiang/commit/cfabd2f4967372ba707d67cecf027dcfc7812799))
+
 ## [18.1.3](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.2...v18.1.3) (2026-10-16)
 
 
