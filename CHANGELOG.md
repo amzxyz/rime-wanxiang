@@ -1,5 +1,14 @@
 # Changelog
 
+## [18.1.5](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.4...v18.1.5) (2026-10-17)
+
+
+### 🏡 杂项
+
+* 变更部分说明 ([431c154](https://github.com/amzxyz/rime-wanxiang/commit/431c1546fdea437e25f0e5428dbdc6c5d7af6009))
+* 完善fcitx5-android导入数据说明 ([5ce13fe](https://github.com/amzxyz/rime-wanxiang/commit/5ce13fe7da1776efea4ef14db0e60460b43aed7b))
+* 完善plum安装说明 ([ed55bd5](https://github.com/amzxyz/rime-wanxiang/commit/ed55bd5c7f94dd06d333db0c51a7dbfe50cc9bd2))
+
 ## [18.1.4](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.3...v18.1.4) (2026-10-17)
 
 
