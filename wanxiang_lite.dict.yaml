@@ -20,7 +20,6 @@ import_tables:
   - dicts/duoyin.lite        #必要|兼容词库，是基础词库的扩充，收录了多场景多种读音的词组
   - dicts/diming.lite        #必要|地名
   - dicts/mingren.lite       #必要|名人
-  - dicts/renming.lite       #高频人名
   - dicts/yiren.lite         #艺人
   #- dicts/yixue.lite         #医学
   #- dicts/huaxue.lite        #化学
