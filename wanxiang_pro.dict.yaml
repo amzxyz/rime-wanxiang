@@ -20,7 +20,6 @@ import_tables:
   - dicts/duoyin.pro        #必要|兼容词库，是基础词库的扩充，收录了多场景多种读音的词组
   - dicts/diming.pro        #必要|地名
   - dicts/mingren.pro       #必要|名人
-  - dicts/renming.pro       #高频人名
   - dicts/yiren.pro         #艺人
   #- dicts/yixue.pro         #医学
   #- dicts/huaxue.pro        #化学
