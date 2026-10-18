@@ -1,5 +1,23 @@
 # Changelog
 
+## [18.1.5](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.4...v18.1.5) (2026-10-18)
+
+
+### 📚 词库更新
+
+* 合并词库 ([ad6ca45](https://github.com/amzxyz/rime-wanxiang/commit/ad6ca45d9b08082484752e9463f84832b15076bb))
+* 词库调整 ([0e75027](https://github.com/amzxyz/rime-wanxiang/commit/0e750279ff249e63515357dd50ccfbf99a64b505))
+* 词库调整 ([355a070](https://github.com/amzxyz/rime-wanxiang/commit/355a0708919e06429ef866f662017b5f2271106f))
+* 词库调整 ([22f39ba](https://github.com/amzxyz/rime-wanxiang/commit/22f39baaf865a1470ceac440017609747eeef1ea))
+
+
+### 🏡 杂项
+
+* ci update ([e77338f](https://github.com/amzxyz/rime-wanxiang/commit/e77338f2feaf94643f7829dbe7945951b82e1090))
+* 变更部分说明 ([431c154](https://github.com/amzxyz/rime-wanxiang/commit/431c1546fdea437e25f0e5428dbdc6c5d7af6009))
+* 完善fcitx5-android导入数据说明 ([5ce13fe](https://github.com/amzxyz/rime-wanxiang/commit/5ce13fe7da1776efea4ef14db0e60460b43aed7b))
+* 完善plum安装说明 ([ed55bd5](https://github.com/amzxyz/rime-wanxiang/commit/ed55bd5c7f94dd06d333db0c51a7dbfe50cc9bd2))
+
 ## [18.1.4](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.3...v18.1.4) (2026-10-17)
 
 
