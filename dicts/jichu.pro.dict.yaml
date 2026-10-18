@@ -8719,7 +8719,6 @@ sort: by_weight
 布防	bù;hs fáng;vd	593
 布放	bù;hs fàng;dp	590
 补防	bǔ;ds fáng;vd	472
-捕房	bǔ;fh fáng;dp	190
 不菲	bù;hd fěi;ch	2195
 不费	bú;hd fèi;vr	590
 不废	bú;hd fèi;dd	499
@@ -11487,6 +11486,7 @@ sort: by_weight
 插个	chā;fp gè;rs	382
 茶歌	chá;cm gē;hp	340
 插根	chā;fp gēn;mv	522
+茶梗	chá;cm gěng;mh	65
 茶垢	chá;cm gòu;tp	57
 岔沟	chà;ps gōu;up	51
 叉骨	chā;vd gǔ;sy	62
@@ -14312,6 +14312,7 @@ sort: by_weight
 城前	chéng;th qián;ds	107
 逞强	chěng;kz qiáng;vk	6917
 城墙	chéng;th qiáng;th	737
+撑墙	chēng;fs qiáng;th	411
 成亲	chéng;hd qīn;dm	977
 澄清	chéng;uv qīng;uh	7373
 呈请	chéng;kw qǐng;ah	783
@@ -19997,7 +19998,6 @@ sort: by_weight
 打磨	dǎ;fh mó;dk	13986
 大漠	dà;hd mò;uc	1343
 大摩	dà;hd mó;df	540
-达磨	dá;hz mó;dk	432
 大谋	dà;hd móu;ac	25
 大木	dà;hd mù;md	939
 大幕	dà;hd mù;cs	584
@@ -42597,10 +42597,10 @@ sort: by_weight
 海港	hǎi;up gǎng;uc	914
 还高	hái;hz gāo;dk	4908
 还搞	hái;hz gǎo;fd	872
-海哥	hǎi;up gē;hs	1179
-海格	hǎi;up gé;mp	1120
-还搁	hái;hz gē;fd	338
-嗨歌	hāi;ku gē;hp	300
+嗨歌	hāi;ku gē;hp	1179
+海哥	hǎi;up gē;hs	1120
+还搁	hái;hz gē;fd	438
+海格	hǎi;up gé;mp	128
 还跟	hái;hz gēn;zv	3218
 还更	hái;hz gèng;hd	73
 海埂	hǎi;up gěng;th	28
@@ -49386,6 +49386,7 @@ sort: by_weight
 皇都	huáng;pw dū;tv	104
 黄毒	huáng;cd dú;hd	89
 黄段	huáng;cd duàn;pp	994
+黄队	huáng;cd duì;vr	113
 皇恩	huáng;pw ēn;sx	119
 黄耳	huáng;cd ěr;hh	490
 黄发	huáng;cd fà;vd	254
@@ -54651,12 +54652,10 @@ sort: by_weight
 剑锋	jiàn;rs fēng;jp	474
 剑峰	jiàn;rs fēng;sp	427
 肩峰	jiān;dy fēng;sp	341
-建峰	jiàn;vd fēng;sp	272
 尖锋	jiān;sd fēng;jp	258
 见风	jiàn;sv fēng;pd	172
 剑风	jiàn;rs fēng;pd	81
 建丰	jiàn;vd fēng;hs	66
-健丰	jiàn;rv fēng;hs	27
 见佛	jiàn;sv fó;rv	824
 减负	jiǎn;dh fù;pr	1689
 肩负	jiān;dy fù;pr	1331
@@ -57379,6 +57378,7 @@ sort: by_weight
 借鉴	jiè;rc jiàn;sj	18225
 节俭	jié;cs jiǎn;rr	1441
 接见	jiē;fd jiàn;sv	1237
+街健	jiē;pt jiàn;rv	229
 节间	jié;cs jiān;dl	94
 结茧	jié;it jiǎn;co	75
 界江	jiè;ss jiāng;uh	684
@@ -64962,8 +64962,9 @@ sort: by_weight
 空炮	kōng;bh pào;qp	817
 空泡	kōng;bh pào;up	400
 空飘	kōng;bh piāo;hp	3
-控评	kòng;fb píng;ah	1699
-空瓶	kōng;bh píng;dh	1048
+空瓶	kōng;bh píng;dh	1699
+控评	kòng;fb píng;ah	855
+空屏	kōng;bh píng;vs	569
 空铺	kōng;bh pù;jh	13
 空气	kōng;bh qì;pv	31441
 空前	kōng;bh qián;ds	3451
@@ -74151,6 +74152,7 @@ sort: by_weight
 露天	lù;hk tiān;hd	2217
 芦田	lú;cp tián;sh	680
 路条	lù;zp tiáo;pm	22
+撸铁	lū;fp tiě;jp	59
 路通	lù;zp tōng;vz	1418
 卢同	lú;sp tóng;sk	304
 路透	lù;zp tòu;ez	553
@@ -75277,8 +75279,9 @@ sort: by_weight
 绿旗	lǜ;iv qí;dp	168
 绿漆	lǜ;iv qī;um	103
 滤清	lǜ;us qīng;uh	1269
-捋清	lǚ;fp qīng;uh	1206
 绿青	lǜ;iv qīng;hy	1142
+捋清	lǚ;fp qīng;uh	643
+绿氢	lǜ;iv qīng;ph	320
 绿球	lǜ;iv qiú;wh	706
 闾丘	lǘ;dk qiū;ph	671
 滤去	lǜ;us qù;td	873
@@ -83859,6 +83862,7 @@ sort: by_weight
 你倒	nǐ;rp dào;rh	461
 你的	nǐ;rp de;pp	483353
 你得	nǐ;rp de;pl	1688
+腻得	nì;yh dé;pl	211
 你弟	nǐ;rp dì;dp	550
 泥地	ní;uv dì;tv	288
 你点	nǐ;rp diǎn;sq	25
@@ -95501,12 +95505,10 @@ sort: by_weight
 全加	quán;rw jiā;vk	461
 拳架	quán;df jià;vm	368
 全甲	quán;rw jiǎ;ls	292
-权健	quán;mv jiàn;rv	1202
-全歼	quán;rw jiān;hp	913
+全歼	quán;rw jiān;hp	1202
 劝谏	quàn;vv jiàn;ah	730
 全舰	quán;rw jiàn;ps	584
 全检	quán;rw jiǎn;mr	467
-权奸	quán;mv jiān;nh	373
 全奖	quán;rw jiǎng;dd	2016
 全疆	quán;rw jiāng;vh	801
 拳脚	quán;df jiǎo;yt	1485
@@ -105276,7 +105278,6 @@ sort: by_weight
 食馆	shí;rd guǎn;pb	55
 十关	shí;hs guān;dd	44
 石关	shí;hk guān;dd	35
-食惯	shí;rd guàn;xv	28
 诗观	shī;at guān;vs	22
 时光	shí;lh guāng;sv	22024
 视光	shì;ds guāng;sv	896
@@ -105426,6 +105427,7 @@ sort: by_weight
 诗集	shī;at jí;rm	2263
 十几	shí;hs jǐ;pv	1978
 市集	shì;ds jí;rm	1899
+实机	shí;bd jī;mp	1168
 史迹	shǐ;kd jì;dz	973
 十级	shí;hs jí;ip	894
 实绩	shí;bd jì;ih	857
@@ -105433,18 +105435,13 @@ sort: by_weight
 史籍	shǐ;kd jí;gl	565
 试机	shì;ah jī;mp	326
 时基	shí;lh jī;ct	128
-食既	shí;rd jì;vh	127
 师级	shī;sh jí;ip	114
 十集	shí;hs jí;rm	103
 食积	shí;rd jī;ek	76
-实机	shí;bd jī;mp	68
 食记	shí;rd jì;av	61
-石鸡	shí;hk jī;vp	55
 始基	shǐ;nv jī;ct	50
 石基	shí;hk jī;ct	45
 市际	shì;ds jì;vh	40
-示寂	shì;hd jì;bd	36
-食戟	shí;rd jǐ;hh	29
 矢积	shǐ;pd jī;ek	26
 试驾	shì;ah jià;vh	5344
 世家	shì;cv jiā;bd	4474
@@ -107289,7 +107286,6 @@ sort: by_weight
 收寄	shōu;vp jì;bs	81
 受激	shòu;pd jī;up	64
 瘦鸡	shòu;dd jī;vp	62
-授记	shòu;fp jì;av	51
 受击	shòu;pd jī;hs	40
 售价	shòu;rk jià;rr	18950
 首家	shǒu;dh jiā;bd	1026
@@ -115650,7 +115646,6 @@ sort: by_weight
 逃债	táo;pz zhài;rh	113
 讨账	tǎo;ah zhàng;sp	25
 套着	tào;hd zhe;dh	3953
-陶者	táo;vp zhě;tl	269
 逃至	táo;pz zhì;ht	968
 桃枝	táo;mp zhī;mh	920
 陶制	táo;vp zhì;ps	871
@@ -115906,6 +115901,7 @@ sort: by_weight
 誊本	téng;da běn;mh	486
 藤编	téng;cu biān;id	198
 疼不	téng;dd bù;hd	31
+腾茶	téng;yd chá;cm	20
 誊抄	téng;da chāo;fs	352
 腾冲	téng;yd chōng;dk	575
 腾出	téng;yd chū;vs	1941
@@ -118091,6 +118087,7 @@ sort: by_weight
 厅里	tīng;hs lǐ;lt	285
 亭里	tíng;ds lǐ;lt	228
 葶苈	tíng;cs lì;cp	182
+停练	tíng;rd liàn;ih	271
 亭亮	tíng;ds liàng;dv	324
 挺亮	tǐng;fp liàng;dv	73
 挺凉	tǐng;fp liáng;dd	73
@@ -126473,7 +126470,8 @@ sort: by_weight
 毋需	wú;vh xū;hs	146
 勿需	wù;pp xū;hs	124
 无绪	wú;hv xù;it	112
-武宣	wǔ;hd xuān;bh	113
+武宣	wǔ;hd xuān;bh	144
+误选	wù;ak xuǎn;pz	113
 芜宣	wú;cv xuān;bh	102
 武学	wǔ;hd xué;dh	3752
 无血	wú;hv xuè;ph	1022
@@ -131113,6 +131111,7 @@ sort: by_weight
 小齿	xiǎo;sd chǐ;ss	80
 小虫	xiǎo;sd chóng;od	1243
 小种	xiǎo;sd chóng;ek	900
+小种	xiǎo;sd chóng;ek	94
 小丑	xiǎo;sd chǒu;vt	23098
 消愁	xiāo;us chóu;ex	329
 消除	xiāo;us chú;vr	18620
@@ -132464,7 +132463,6 @@ sort: by_weight
 消肿	xiāo;us zhǒng;yk	1814
 效忠	xiào;dp zhōng;kx	1755
 小盅	xiǎo;sd zhōng;kh	116
-小钟	xiǎo;sd zhōng;jk	94
 晓钟	xiǎo;lh zhōng;jk	75
 小周	xiǎo;sd zhōu;pk	807
 小舟	xiǎo;sd zhōu;pd	552
@@ -132781,6 +132779,7 @@ sort: by_weight
 邪派	xié;hv pài;up	204
 协拍	xié;hv pāi;fp	184
 写篇	xiě;dh piān;gc	750
+卸片	xiè;pv piàn;pv	23
 写票	xiě;dh piào;hd	450
 鞋品	xié;ct pǐn;kk	922
 胁迫	xié;yv pò;pz	2565
@@ -133323,8 +133322,6 @@ sort: by_weight
 心尖	xīn;xd jiān;sd	367
 心间	xīn;xd jiān;dl	226
 信笺	xìn;ra jiān;gd	180
-心剑	xīn;xd jiàn;rs	144
-新舰	xīn;dp jiàn;ps	115
 新见	xīn;dp jiàn;sv	62
 新疆	xīn;dp jiāng;vh	13480
 新江	xīn;dp jiāng;uh	918
@@ -134267,7 +134264,6 @@ sort: by_weight
 兴建	xīng;dd jiàn;vd	2823
 星舰	xīng;lh jiàn;ps	1303
 行健	xíng;ph jiàn;rv	1210
-星见	xīng;lh jiàn;sv	712
 星箭	xīng;lh jiàn;gs	424
 姓姜	xìng;np jiāng;dn	436
 姓蒋	xìng;np jiǎng;cd	135
@@ -134366,8 +134362,6 @@ sort: by_weight
 姓吕	xìng;np lǚ;kk	165
 行吗	xíng;ph ma;kv	2141
 行嘛	xíng;ph ma;kd	188
-星妈	xīng;lh mā;nv	150
-星马	xīng;lh mǎ;vh	120
 姓马	xìng;np mǎ;vh	96
 形码	xíng;hp mǎ;hv	76
 刑满	xíng;hs mǎn;uc	63
@@ -140632,6 +140626,7 @@ sort: by_weight
 业缘	yè;sh yuán;iv	848
 夜月	yè;dd yuè;yh	82
 也在	yě;vv zài;ht	69498
+也再	yě;vv zài;hh	498
 椰枣	yē;mh zǎo;hd	160
 野战	yě;lv zhàn;sh	1774
 夜战	yè;dd zhàn;sh	339
@@ -210364,6 +210359,7 @@ sort: by_weight
 曹公公	cáo;hl gōng;pd gong;pd	28
 曹公子	cáo;hl gōng;pd zǐ;vh	454
 槽罐车	cáo;mh guàn;pc chē;hs	9
+曹贵人	cáo;hl guì;kr rén;rd	119
 草果山	cǎo;cs guǒ;lm shān;ss	284
 草海子	cǎo;cs hǎi;up zǐ;vh	288
 糙汉子	cāo;dp hàn;uv zi;vh	371
@@ -211893,10 +211889,12 @@ sort: by_weight
 差好远	chà;dh hǎo;nv yuǎn;hz	57
 茶喝了	chá;cm hē;kl le;vs	729
 茶褐色	chá;cm hè;dl sè;pv	9
+茶褐素	chá;cm hè;dl sù;hi	26
 查核酸	chá;mh hé;md suān;hv	50
 差很大	chà;dh hěn;pv dà;hd	116
 差很多	chà;dh hěn;pv duō;pd	3740
 差很远	chà;dh hěn;pv yuǎn;hz	986
+茶红素	chá;cm hóng;ih sù;hi	31
 茶壶盖	chá;cm hú;th gài;dh	9
 查户口	chá;mh hù;dp kǒu;kh	188
 茶壶里	chá;cm hú;th lǐ;lt	724
@@ -217628,6 +217626,7 @@ sort: by_weight
 晨光麦	chén;ld guāng;sv mài;hd	378
 晨光中	chén;ld guāng;sv zhōng;ks	634
 尘归尘	chén;st guī;sv chén;st	210
+陈贵妃	chén;vh guì;kr fēi;nv	75
 尘滚滚	chén;st gǔn;ud gǔn;ud	634
 琛航岛	chēn;wd háng;pd dǎo;ps	428
 辰河戏	chén;hd hé;uh xì;vh	220
@@ -235341,7 +235340,7 @@ sort: by_weight
 大阪城	dà;hd bǎn;vp chéng;th	602
 达坂城	dá;hz bǎn;tp chéng;th	542
 达板城	dá;hz bǎn;mp chéng;th	216
-打扮得	dǎ;fh bàn;fp dé;pl	634
+打扮得	dǎ;fh bàn;fp de;pl	634
 大半段	dà;hd bàn;ds duàn;pp	346
 大班额	dà;hd bān;wd é;bh	6
 搭伴儿	dā;fc bàn;rd ér;pv	306
@@ -236676,6 +236675,7 @@ sort: by_weight
 打的是	dǎ;fh de;pp shì;lr	1551
 打得死	dǎ;fh de;pl sǐ;hv	554
 打得通	dǎ;fh de;pl tōng;vz	19
+打得我	dǎ;fh de;pl wǒ;pd	76
 大德溪	dà;hd dé;ph xī;up	76
 大的像	dà;hd de;pp xiàng;rp	688
 大得像	dà;hd de;pl xiàng;rp	445
@@ -246249,6 +246249,7 @@ sort: by_weight
 代价券	dài;rh jià;rr quàn;dp	324
 带家人	dài;hs jiā;bd rén;rd	868
 傣家人	dǎi;rh jiā;bd rén;rd	319
+代价是	dài;rh jià;rr shì;lr	654
 带家属	dài;hs jiā;bd shǔ;vd	675
 戴假牙	dài;td jiǎ;rv yá;hp	495
 带家长	dài;hs jiā;bd zhǎng;pd	31
@@ -261668,6 +261669,7 @@ sort: by_weight
 第二车	dì;gp èr;hh chē;hs	590
 第二程	dì;gp èr;hh chéng;ek	31
 第二城	dì;gp èr;hh chéng;th	28
+第二重	dì;gp èr;hh chóng;pt	842
 第二处	dì;gp èr;hh chù;pd	226
 第二出	dì;gp èr;hh chū;vs	203
 第二串	dì;gp èr;hh chuàn;ks	356
@@ -261906,7 +261908,6 @@ sort: by_weight
 第二指	dì;gp èr;hh zhǐ;fp	288
 第二趾	dì;gp èr;hh zhǐ;zs	230
 第二种	dì;gp èr;hh zhǒng;ek	15251
-第二重	dì;gp èr;hh zhòng;pt	842
 第二周	dì;gp èr;hh zhōu;pk	1501
 第二轴	dì;gp èr;hh zhóu;hs	306
 第二主	dì;gp èr;hh zhǔ;dw	850
@@ -263171,6 +263172,7 @@ sort: by_weight
 第三禅	dì;gp sān;hh chán;dd	220
 第三场	dì;gp sān;hh chǎng;tv	1322
 第三城	dì;gp sān;hh chéng;th	526
+第三重	dì;gp sān;hh chóng;pt	676
 第三处	dì;gp sān;hh chù;pd	110
 第三春	dì;gp sān;hh chūn;hl	342
 第三次	dì;gp sān;hh cì;dp	13197
@@ -263363,7 +263365,6 @@ sort: by_weight
 第三趾	dì;gp sān;hh zhǐ;zs	105
 第三种	dì;gp sān;hh zhǒng;ek	6060
 第三中	dì;gp sān;hh zhōng;ks	990
-第三重	dì;gp sān;hh zhòng;pt	676
 第三周	dì;gp sān;hh zhōu;pk	681
 第三桌	dì;gp sān;hh zhuō;sm	392
 第三子	dì;gp sān;hh zǐ;vh	972
@@ -264451,6 +264452,7 @@ sort: by_weight
 第一车	dì;gp yī;hh chē;hs	19
 第一城	dì;gp yī;hh chéng;th	914
 第一程	dì;gp yī;hh chéng;ek	418
+第一重	dì;gp yī;hh chóng;pt	869
 第一丑	dì;gp yī;hh chǒu;vt	400
 第一处	dì;gp yī;hh chù;pd	270
 第一出	dì;gp yī;hh chū;vs	243
@@ -264800,7 +264802,6 @@ sort: by_weight
 第一枝	dì;gp yī;hh zhī;mh	445
 第一种	dì;gp yī;hh zhǒng;ek	14344
 第一中	dì;gp yī;hh zhōng;ks	1305
-第一重	dì;gp yī;hh zhòng;pt	869
 第一周	dì;gp yī;hh zhōu;pk	2110
 第一州	dì;gp yī;hh zhōu;ds	410
 第一主	dì;gp yī;hh zhǔ;dw	936
@@ -271295,6 +271296,7 @@ sort: by_weight
 动物类	dòng;hv wù;pp lèi;dd	148
 东五里	dōng;hd wǔ;hh lǐ;lt	378
 动物恋	dòng;hv wù;pp liàn;dx	418
+动物流	dòng;hv wù;pp liú;ud	30
 东五路	dōng;hd wǔ;hh lù;zp	450
 东吴路	dōng;hd wú;kd lù;zp	209
 动物毛	dòng;hv wù;pp máo;pv	662
@@ -290489,6 +290491,8 @@ sort: by_weight
 非遗节	fēi;ss yí;kz jié;cs	328
 非医疗	fēi;ss yī;hv liáo;ds	104
 非一流	fēi;ss yī;hh liú;ud	436
+肥姨妈	féi;yv yí;nh mā;nv	47
+非遗吗	fēi;ss yí;kz ma;kv	21
 非移民	fēi;ss yí;ep mín;vv	69
 非疫情	fēi;ss yì;dd qíng;xh	378
 非疫区	fēi;ss yì;dd qū;hv	364
@@ -299861,6 +299865,8 @@ sort: by_weight
 该墓葬	gāi;ad mù;ct zàng;cc	500
 该墓志	gāi;ad mù;ct zhì;tx	374
 该拿出	gāi;ad ná;rf chū;vs	747
+改哪个	gǎi;vp nǎ;kv ge;rs	192
+该哪个	gāi;ad nǎ;kv ge;rs	40
 盖纳河	gài;dh nà;is hé;uh	76
 该拿来	gāi;ad ná;rf lái;hm	526
 改哪里	gǎi;vp nǎ;kv lǐ;lt	57
@@ -301607,7 +301613,6 @@ sort: by_weight
 擀的面	gǎn;fh de;pp miàn;hh	454
 干的呢	gàn;hs de;pp ne;kv	522
 干德年	gàn;hs dé;ph nián;ps	346
-干的起	gàn;hs de;pp qǐ;tv	477
 干的啥	gàn;hs de;pp shá;kr	288
 赶得上	gǎn;ts de;pl shàng;sh	713
 干的事	gàn;hs de;pp shì;hs	2324
@@ -307705,7 +307710,6 @@ sort: by_weight
 葛麻坝	gé;cv má;dm bà;ts	45
 葛玛兰	gé;cv mǎ;wv lán;dh	436
 割麦机	gē;bs mài;hd jī;mp	3
-个买了	gè;rs mǎi;vd le;vs	788
 各买了	gè;pk mǎi;vd le;vs	627
 戈麦斯	gē;hd mài;hd sī;cp	1036
 割麦子	gē;bs mài;hd zi;vh	612
@@ -369478,6 +369482,7 @@ sort: by_weight
 家跑了	jiā;bd pǎo;zp le;vs	540
 家佩兰	jiā;bd pèi;rp lán;dh	117
 加配料	jiā;vk pèi;hv liào;dd	670
+加配重	jiā;vk pèi;hv zhòng;pt	65
 架棚机	jià;vm péng;my jī;mp	45
 假朋友	jiǎ;rv péng;yy you;hd	567
 假皮草	jiǎ;rv pí;vd cǎo;cs	297
@@ -370552,6 +370557,7 @@ sort: by_weight
 甲寅日	jiǎ;ls yín;bd rì;lh	590
 甲寅神	jiǎ;ls yín;bd shén;dl	234
 嘉荫堂	jiā;tk yīn;cy táng;st	396
+镓铟锡	jiā;jb yīn;js xī;jl	33
 假阴线	jiǎ;rv yīn;vy xiàn;ih	369
 假阴性	jiǎ;rv yīn;vy xìng;xp	295
 加阴影	jiā;vk yīn;vy yǐng;lp	69
@@ -381548,6 +381554,8 @@ sort: by_weight
 将心里	jiāng;dp xīn;xd lǐ;lt	675
 将心理	jiāng;dp xīn;xd lǐ;wl	536
 将心力	jiāng;dp xīn;xd lì;vp	211
+降心率	jiàng;vp xīn;xd lǜ;ds	91
+将心率	jiāng;dp xīn;xd lǜ;ds	44
 将新娘	jiāng;dp xīn;dp niáng;nd	540
 将芯片	jiāng;dp xīn;cx piàn;pv	549
 将新品	jiāng;dp xīn;dp pǐn;kk	472
@@ -389789,7 +389797,6 @@ sort: by_weight
 金军攻	jīn;jh jūn;ds gōng;hp	441
 进军号	jìn;hz jūn;ds hào;kv	277
 金骏眉	jīn;jh jùn;vv méi;vh	367
-金俊眉	jīn;jh jùn;rv méi;vh	306
 进军营	jìn;hz jūn;ds yíng;ck	716
 进卡吧	jìn;hz kǎ;sd ba;kv	266
 禁卡表	jìn;md kǎ;sd biǎo;hd	31
@@ -423717,7 +423724,9 @@ sort: by_weight
 里逛了	lǐ;lt guàng;pz le;vs	747
 黎光廉	lí;eu guāng;sv lián;dd	180
 理光头	lǐ;wl guāng;sv tóu;dd	97
+李贵妃	lǐ;mh guì;kr fēi;nv	96
 立规矩	lì;dh guī;hs ju;ph	188
+李贵人	lǐ;mh guì;kr rén;rd	39
 立柜式	lì;dh guì;mh shì;hd	364
 丽柜厅	lì;hd guì;mh tīng;hs	90
 利滚利	lì;es gǔn;ud lì;es	578
@@ -424430,6 +424439,7 @@ sort: by_weight
 理念说	lǐ;wl niàn;rx shuō;ad	450
 理念新	lǐ;wl niàn;rx xīn;dp	778
 李娘娘	lǐ;mh niáng;nd niáng;nd	536
+李娘子	lǐ;mh niáng;nd zǐ;vh	126
 利尿剂	lì;es niào;vu jì;ds	301
 利尿素	lì;es niào;vu sù;hi	189
 利尿酸	lì;es niào;vu suān;hv	324
@@ -424452,6 +424462,7 @@ sort: by_weight
 立拍得	lì;dh pāi;fp de;pl	464
 立牌坊	lì;dh pái;pp fāng;td	565
 李派林	lǐ;mh pài;up lín;mm	52
+李胖子	lǐ;mh pàng;yd zi;vh	28
 礼炮号	lǐ;dv pào;qp hào;kv	31
 礼炮声	lǐ;dv pào;qp shēng;tp	9
 理赔部	lǐ;wl péi;sd bù;dv	486
@@ -426466,6 +426477,8 @@ sort: by_weight
 练久了	liàn;ih jiǔ;pd le;vs	922
 练就了	liàn;ih jiù;dh le;vs	407
 练举重	liàn;ih jǔ;ds zhòng;pt	141
+连句子	lián;hz jù;pk zi;vh	298
+连锯子	lián;hz jù;jv zi;vh	61
 恋君轩	liàn;dx jūn;vk xuān;hh	45
 连咖啡	lián;hz kā;kv fēi;ks	580
 连卡佛	lián;hz kǎ;sd fó;rv	122
@@ -427938,6 +427951,7 @@ sort: by_weight
 两广路	liǎng;hd guǎng;dp lù;zp	482
 亮光漆	liàng;dv guāng;sv qī;um	69
 两闺蜜	liǎng;hd guī;dt mì;bo	3
+梁贵人	liáng;um guì;kr rén;rd	38
 凉果厂	liáng;dd guǒ;lm chǎng;hp	180
 亮果厂	liàng;dv guǒ;lm chǎng;hp	122
 量过大	liáng;lt guò;hz dà;hd	518
@@ -437179,6 +437193,7 @@ sort: by_weight
 罗马的	luó;sd mǎ;vh de;pp	1246
 落马的	luò;ck mǎ;vh de;pp	311
 骡马店	luó;vs mǎ;vh diàn;dk	230
+罗马队	luó;sd mǎ;vh duì;vr	167
 罗马法	luó;sd mǎ;vh fǎ;ut	317
 罗马河	luó;sd mǎ;vh hé;uh	302
 骆马湖	luò;vp mǎ;vh hú;uh	16
@@ -438533,6 +438548,7 @@ sort: by_weight
 马鞍形	mǎ;vh ān;cb xíng;hp	28
 马爸爸	mǎ;vh bà;pv ba;pv	711
 马坝河	mǎ;vh bà;ts hé;uh	189
+马帮菜	mǎ;vh bāng;hs cài;cm	26
 马邦河	mǎ;vh bāng;hv hé;uh	130
 麻包袋	má;dm bāo;pv dài;rd	52
 妈宝男	mā;nv bǎo;bd nán;sp	320
@@ -439220,6 +439236,7 @@ sort: by_weight
 摩挲了	mā;df sā;uf le;vs	648
 摩挲着	mā;df sā;uf zhe;dh	254
 马赛道	mǎ;vh sài;br dào;dz	544
+马赛队	mǎ;vh sài;br duì;vr	86
 麻腮风	má;dm sāi;ys fēng;pd	540
 马赛红	mǎ;vh sài;br hóng;ih	4
 马赛克	mǎ;vh sài;br kè;hv	3193
@@ -439373,7 +439390,9 @@ sort: by_weight
 马桶啊	mǎ;vh tǒng;mv a;kv	360
 马桶边	mǎ;vh tǒng;mv biān;vz	585
 马桶车	mǎ;vh tǒng;mv chē;hs	238
+马桶抽	mǎ;vh tǒng;mv chōu;fs	46
 马桶搋	mǎ;vh tǒng;mv chuāi;fp	20
+马桶垫	mǎ;vh tǒng;mv diàn;ft	183
 马桶盖	mǎ;vh tǒng;mv gài;dh	449
 马桶间	mǎ;vh tǒng;mv jiān;dl	374
 马桶里	mǎ;vh tǒng;mv lǐ;lt	361
@@ -442717,6 +442736,7 @@ sort: by_weight
 冒牛肉	mào;lh niú;ps ròu;sr	189
 牦牛乳	máo;pp niú;ps rǔ;pv	338
 牦牛山	máo;pp niú;ps shān;ss	288
+猫牛式	māo;pc niú;ps shì;hd	42
 冒浓烟	mào;lh nóng;ud yān;qs	423
 猫奴们	māo;pc nú;nv men;rd	531
 毛女啊	máo;pv nǚ;nh a;kv	477
@@ -459151,7 +459171,7 @@ sort: by_weight
 纳米盒	nà;is mǐ;dm hé;rh	292
 纳米化	nà;is mǐ;dm huà;rp	450
 纳米级	nà;is mǐ;dm jí;ip	436
-纳米角	nà;is mǐ;dm jiǎo;ps	45
+纳米胶	nà;is mǐ;dm jiāo;yd	68
 纳米金	nà;is mǐ;dm jīn;jh	477
 纳米晶	nà;is mǐ;dm jīng;ll	567
 纳米壳	nà;is mǐ;dm ké;tv	45
@@ -520144,7 +520164,6 @@ sort: by_weight
 乳胶衣	rǔ;pv jiāo;yd yī;dd	310
 如教育	rú;nk jiào;tp yù;dy	940
 乳胶枕	rǔ;pv jiāo;yd zhěn;md	765
-乳交酯	rǔ;pv jiāo;dd zhǐ;hp	45
 如姐姐	rú;nk jiě;ns jie;ns	594
 乳姐妹	rǔ;pv jiě;ns mèi;nh	52
 如姐妹	rú;nk jiě;ns mèi;nh	52
@@ -523229,6 +523248,8 @@ sort: by_weight
 三分多	sān;hh fēn;pp duō;pd	495
 三分二	sān;hh fēn;pp èr;hh	585
 三分法	sān;hh fēn;pp fǎ;ut	386
+三分话	sān;hh fēn;pp huà;ap	62
+三分化	sān;hh fēn;pp huà;rp	55
 三分会	sān;hh fēn;pp huì;rd	364
 三分建	sān;hh fēn;pp jiàn;vd	338
 三分局	sān;hh fēn;pp jú;vk	472
@@ -534568,6 +534589,7 @@ sort: by_weight
 申光逊	shēn;ls guāng;sv xùn;vz	45
 深柜吧	shēn;ud guì;mh ba;kv	189
 身贵端	shēn;pp guì;kr duān;ds	374
+沈贵妃	shěn;ud guì;kr fēi;nv	141
 神龟石	shén;dl guī;pv shí;hk	274
 神鬼王	shén;dl guǐ;pd wáng;wh	202
 申圭植	shēn;ls guī;tt zhí;mh	396
@@ -534741,6 +534763,7 @@ sort: by_weight
 身价高	shēn;pp jià;rr gāo;dk	630
 深加工	shēn;ud jiā;vk gōng;hh	543
 沈家河	shěn;ud jiā;bd hé;uh	288
+沈家人	shěn;ud jiā;bd rén;rd	73
 申佳胤	shēn;ls jiā;rt yìn;pi	274
 身价涨	shēn;pp jià;rr zhǎng;uv	428
 深价值	shēn;ud jià;rr zhí;rh	495
@@ -537979,7 +538002,6 @@ sort: by_weight
 生物制	shēng;ph wù;pp zhì;ps	1184
 生物值	shēng;ph wù;pp zhí;rh	181
 生物钟	shēng;ph wù;pp zhōng;jk	1991
-生物种	shēng;ph wù;pp zhǒng;ek	932
 生物珠	shēng;ph wù;pp zhū;wp	50
 生物组	shēng;ph wù;pp zǔ;is	824
 盛锡福	shèng;hh xī;jl fú;dh	531
@@ -539688,8 +539710,8 @@ sort: by_weight
 十二厂	shí;hs èr;hh chǎng;hp	289
 十二辰	shí;hs èr;hh chén;hd	482
 十二城	shí;hs èr;hh chéng;th	536
-十二冲	shí;hs èr;hh chōng;dk	464
-十二重	shí;hs èr;hh chóng;pt	285
+十二重	shí;hs èr;hh chóng;pt	464
+十二冲	shí;hs èr;hh chōng;dk	285
 十二处	shí;hs èr;hh chù;pd	13
 十二次	shí;hs èr;hh cì;dp	229
 十二刺	shí;hs èr;hh cì;hs	76
@@ -541074,6 +541096,7 @@ sort: by_weight
 世纪缘	shì;cv jì;iv yuán;iv	272
 世纪园	shì;cv jì;iv yuán;sh	245
 世纪苑	shì;cv jì;iv yuàn;cv	140
+石纪元	shí;hk jì;iv yuán;hv	26
 是几月	shì;lr jǐ;pv yuè;yh	9
 十几载	shí;hs jǐ;pv zài;td	47
 十几张	shí;hs jǐ;pv zhāng;vp	399
@@ -545799,6 +545822,7 @@ sort: by_weight
 十一厂	shí;hs yī;hh chǎng;hp	307
 十一城	shí;hs yī;hh chéng;th	369
 适宜吃	shì;pz yí;bh chī;kp	634
+十一重	shí;hs yī;hh chóng;pt	23
 是一处	shì;lr yí;hh chù;pd	355
 十一处	shí;hs yī;hh chù;pd	320
 使溢出	shǐ;rh yì;ud chū;vs	4
@@ -547555,6 +547579,7 @@ sort: by_weight
 受点苦	shòu;pd diǎn;sq kǔ;ck	500
 售电量	shòu;rk diàn;lv liàng;lt	13
 受电器	shòu;pd diàn;lv qì;kk	171
+收点钱	shōu;vp diǎn;sq qián;jh	73
 受点伤	shòu;pd diǎn;sq shāng;rp	544
 手电筒	shǒu;fs diàn;lv tǒng;gk	2845
 手点着	shǒu;fs diǎn;sq zháo;dh	410
@@ -549142,8 +549167,8 @@ sort: by_weight
 收缩核	shōu;vp suō;ib hé;md	342
 收缩机	shōu;vp suō;ib jī;mp	544
 收缩肌	shōu;vp suō;ib jī;yp	357
-手缩了	shǒu;fs suō;ib le;vs	644
-收缩了	shōu;vp suō;ib le;vs	452
+收缩了	shōu;vp suō;ib le;vs	644
+手缩了	shǒu;fs suō;ib le;vs	452
 收缩力	shōu;vp suō;ib lì;vp	814
 收缩量	shōu;vp suō;ib liàng;lt	351
 收缩论	shōu;vp suō;ib lùn;ar	76
@@ -561650,6 +561675,7 @@ sort: by_weight
 宋大爷	sòng;bm dà;hd ye;ps	3
 送达证	sòng;dz dá;hz zhèng;ah	261
 松代藩	sōng;mp dài;rh fān;ch	351
+宋代人	sòng;bm dài;rh rén;rd	161
 宋代时	sòng;bm dài;rh shí;lh	657
 松代町	sōng;mp dài;rh tǐng;sh	288
 送蛋糕	sòng;dz dàn;vo gāo;dd	747
@@ -561764,6 +561790,7 @@ sort: by_weight
 送光盘	sòng;dz guāng;sv pán;ph	648
 送闺蜜	sòng;dz guī;dt mì;bo	477
 送归妾	sòng;dz guī;sv qiè;dn	212
+宋贵人	sòng;bm guì;kr rén;rd	64
 松桂园	sōng;mp guì;mt yuán;sh	310
 宋国公	sòng;bm guó;sh gōng;pd	464
 松果菊	sōng;mp guǒ;lm jú;cm	9
@@ -562042,6 +562069,7 @@ sort: by_weight
 送米面	sòng;dz mǐ;dm miàn;hh	306
 宋秘书	sòng;bm mì;ex shū;vd	436
 送面积	sòng;dz miàn;hh jī;ek	666
+宋灭亡	sòng;bm miè;hq wáng;dv	351
 颂民楼	sòng;ph mín;vv lóu;md	194
 送命了	sòng;dz mìng;rs le;vs	364
 宋明清	sòng;bm míng;ly qīng;uh	612
@@ -563094,6 +563122,7 @@ sort: by_weight
 速尿针	sù;hz niào;vu zhēn;jh	4
 苏宁吧	sū;cd níng;bs ba;kv	270
 苏宁的	sū;cd níng;bs de;pp	936
+苏宁队	sū;cd níng;bs duì;vr	137
 速凝剂	sù;hz níng;dp jì;ds	243
 苏宁人	sū;cd níng;bs rén;rd	378
 素牛肉	sù;hi niú;ps ròu;sr	562
@@ -606097,7 +606126,6 @@ sort: by_weight
 网络名	wǎng;sd luò;ip míng;pk	765
 网络内	wǎng;sd luò;ip nèi;sd	814
 网络女	wǎng;sd luò;ip nǚ;nh	634
-网络热	wǎng;sd luò;ip rè;fq	1004
 网络人	wǎng;sd luò;ip rén;rd	891
 网络赛	wǎng;sd luò;ip sài;br	558
 网络上	wǎng;sd luò;ip shàng;sh	12431
@@ -618577,7 +618605,6 @@ sort: by_weight
 我家离	wǒ;pd jiā;bd lí;dd	752
 窝家里	wō;bd jiā;bd lǐ;lt	424
 我家两	wǒ;pd jiā;bd liǎng;hd	738
-我家六	wǒ;pd jiā;bd liù;dd	513
 我家楼	wǒ;pd jiā;bd lóu;md	1022
 我家吗	wǒ;pd jiā;bd ma;kv	52
 我家买	wǒ;pd jiā;bd mǎi;vd	716
@@ -618589,7 +618616,6 @@ sort: by_weight
 我加盟	wǒ;pd jiā;vk méng;lh	490
 我加冕	wǒ;pd jiā;vk miǎn;lv	320
 我家喵	wǒ;pd jiā;bd miāo;kc	580
-我家母	wǒ;pd jiā;bd mǔ;vd	504
 我家那	wǒ;pd jiā;bd nà;vv	1040
 我家拿	wǒ;pd jiā;bd ná;rf	422
 我家男	wǒ;pd jiā;bd nán;sp	720
@@ -618597,7 +618623,6 @@ sort: by_weight
 我家呢	wǒ;pd jiā;bd ne;kv	446
 我加你	wǒ;pd jiā;vk nǐ;rp	85
 我嫁你	wǒ;pd jià;nb nǐ;rp	76
-我家年	wǒ;pd jiā;bd nián;ps	540
 我家妞	wǒ;pd jiā;bd niū;nv	562
 我假期	wǒ;pd jià;rv qī;cy	590
 我夹起	wǒ;pd jiā;hd qǐ;tv	327
@@ -632248,6 +632273,7 @@ sort: by_weight
 无对手	wú;hv duì;vh shǒu;fs	616
 五对五	wǔ;hh duì;vh wǔ;hh	31
 无对象	wú;hv duì;vh xiàng;pd	472
+吴队长	wú;kd duì;vr zhǎng;pd	24
 五堆子	wǔ;hh duī;tr zi;vh	3
 无顿挫	wú;hv dùn;hh cuò;fr	410
 五朵花	wǔ;hh duǒ;pm huā;cv	320
@@ -634250,6 +634276,7 @@ sort: by_weight
 误判了	wù;ak pàn;ds le;vs	554
 误判率	wù;ak pàn;ds lǜ;ds	711
 午盘时	wǔ;ps pán;ph shí;lh	428
+吴胖子	wú;kd pàng;yd zi;vh	335
 雾炮车	wù;hp pào;qp chē;hs	482
 雾炮机	wù;hp pào;qp jī;mp	342
 无泡沫	wú;hv pào;up mò;uh	572
@@ -667569,10 +667596,12 @@ sort: by_weight
 许愿灯	xǔ;ap yuàn;hx dēng;qh	468
 虚圆点	xū;sh yuán;sh diǎn;sq	52
 许愿机	xǔ;ap yuàn;hx jī;mp	52
+许愿了	xǔ;ap yuàn;hx le;vs	81
 许愿瓶	xǔ;ap yuàn;hx píng;dh	28
 许愿墙	xǔ;ap yuàn;hx qiáng;th	446
 许愿时	xǔ;ap yuàn;hx shí;lh	414
 许愿树	xǔ;ap yuàn;hx shù;mv	44
+许愿星	xǔ;ap yuàn;hx xīng;lh	31
 许愿鱼	xǔ;ap yuàn;hx yú;ph	43
 许院长	xǔ;ap yuàn;vb zhǎng;pd	30
 徐院长	xú;pr yuàn;vb zhǎng;pd	9
@@ -672509,6 +672538,7 @@ sort: by_weight
 岩关阶	yán;sk guān;dd jiē;vr	38
 烟管裤	yān;qs guǎn;gh kù;dd	441
 岩关期	yán;sk guān;dd qī;cy	45
+严管区	yán;hp guǎn;gh qū;hv	49
 岩观音	yán;sk guān;vs yīn;dl	382
 岩关组	yán;sk guān;dd zǔ;is	45
 眼光啊	yǎn;sv guāng;sv a;kv	567
@@ -672552,6 +672582,7 @@ sort: by_weight
 烟还是	yān;qs hái;hz shì;lr	675
 沿海州	yán;up hǎi;up zhōu;ds	3
 盐海子	yán;th hǎi;up zǐ;vh	220
+严寒里	yán;hp hán;bd lǐ;lt	27
 盐含量	yán;th hán;rk liàng;lt	806
 眼含着	yǎn;sv hán;rk zhe;dh	3
 严寒中	yán;hp hán;bd zhōng;ks	590
@@ -672709,6 +672740,7 @@ sort: by_weight
 演技烂	yǎn;ub jì;fh làn;qd	567
 演技类	yǎn;ub jì;fh lèi;dd	324
 延吉路	yán;pd jí;tk lù;zp	585
+严纪律	yán;hp jì;iv lǜ;pv	47
 演技派	yǎn;ub jì;fh pài;up	631
 演技圈	yǎn;ub jì;fh quān;sh	333
 淹积水	yān;uh jī;ek shuǐ;ud	346
@@ -672812,6 +672844,7 @@ sort: by_weight
 盐津北	yán;th jīn;uv běi;sp	117
 演进到	yǎn;ub jìn;hz dào;hs	104
 严谨的	yán;hp jǐn;ac de;pp	1395
+严谨度	yán;hp jǐn;ac dù;dd	23
 颜锦福	yán;dh jǐn;jp fú;dh	306
 盐金桔	yán;th jīn;jh jú;mt	4
 颜金生	yán;dh jīn;jh shēng;ph	274
@@ -672993,6 +673026,7 @@ sort: by_weight
 眼看时	yǎn;sv kàn;ph shí;lh	603
 眼看书	yǎn;sv kàn;ph shū;vd	351
 眼看着	yǎn;sv kàn;ph zhe;dh	4164
+严考核	yán;hp kǎo;tv hé;md	52
 研考会	yán;hh kǎo;tv huì;rd	472
 眼科吧	yǎn;sv kē;ed ba;kv	234
 严苛吧	yán;hp kē;cs ba;kv	144
@@ -674180,6 +674214,7 @@ sort: by_weight
 验证着	yàn;vr zhèng;ah zhe;dh	396
 验证者	yàn;vr zhèng;ah zhě;tl	356
 眼睁睁	yǎn;sv zhēng;sp zhēng;sp	377
+严整治	yán;hp zhěng;hh zhì;uv	93
 验证中	yàn;vr zhèng;ah zhōng;ks	716
 颜值啊	yán;dh zhí;rh a;kv	518
 颜值吧	yán;dh zhí;rh ba;kv	459
@@ -674258,8 +674293,11 @@ sort: by_weight
 严重地	yán;hp zhòng;pt dì;tv	945
 严重点	yán;hp zhòng;pt diǎn;sq	603
 眼中钉	yǎn;sv zhōng;ks dīng;jh	493
+严重度	yán;hp zhòng;pt dù;dd	101
 严重多	yán;hp zhòng;pt duō;pd	52
 眼中风	yǎn;sv zhōng;ks fēng;pd	459
+严重很	yán;hp zhòng;pt hěn;pv	317
+严重化	yán;hp zhòng;pt huà;rp	184
 严重啦	yán;hp zhòng;pt la;kf	472
 言重啦	yán;ak zhòng;pt la;kf	52
 严重了	yán;hp zhòng;pt le;vs	1278
@@ -674269,6 +674307,7 @@ sort: by_weight
 赝重力	yàn;hr zhòng;pt lì;vp	45
 眼肿瘤	yǎn;sv zhǒng;yk liú;dh	252
 严重吗	yán;hp zhòng;pt ma;kv	157
+严重么	yán;hp zhòng;pt me;pd	285
 眼中人	yǎn;sv zhōng;ks rén;rd	504
 宴中山	yàn;bn zhōng;ks shān;ss	117
 严重时	yán;hp zhòng;pt shí;lh	1416
@@ -674571,6 +674610,7 @@ sort: by_weight
 氧毒素	yǎng;ps dú;hd sù;hi	50
 羊肚枣	yáng;ds dǔ;yt zǎo;hd	99
 羊肚子	yáng;ds dǔ;yt zi;vh	414
+杨队长	yáng;mv duì;vr zhǎng;pd	41
 羊多多	yáng;ds duō;pd duō;pd	130
 养多肉	yǎng;ds duō;pd ròu;sr	499
 养鳄鱼	yǎng;ds è;pk yú;ph	378
@@ -677170,6 +677210,7 @@ sort: by_weight
 钥匙锁	yào;jy shi;lv suǒ;js	75
 要是她	yào;hn shì;lr tā;nv	1084
 钥匙套	yào;jy shi;lv tào;hd	356
+要是痛	yào;hn shì;lr tòng;ds	331
 药师丸	yào;cd shī;sh wán;pd	482
 要是我	yào;hn shì;lr wǒ;pd	2211
 要实现	yào;hn shí;bd xiàn;ws	3303
@@ -677888,6 +677929,7 @@ sort: by_weight
 也不发	yě;vv bù;hd fā;vd	85
 也不乏	yě;vv bù;hd fá;pd	76
 也不放	yě;vv bú;hd fàng;dp	110
+也不妨	yě;vv bù;hd fáng;nd	48
 也不肥	yě;vv bù;hd féi;yv	630
 也不敢	yě;vv bù;hd gǎn;vp	9313
 也不干	yě;vv bú;hd gàn;hs	342
@@ -691653,6 +691695,7 @@ sort: by_weight
 引导他	yǐn;vs dǎo;vd tā;rv	1107
 引导下	yǐn;vs dǎo;vd xià;hd	1545
 引导线	yǐn;vs dǎo;vd xiàn;ih	594
+引导项	yǐn;vs dǎo;vd xiàng;hh	44
 引导性	yǐn;vs dǎo;vd xìng;xp	562
 引导型	yǐn;vs dǎo;vd xíng;ht	464
 引导星	yǐn;vs dǎo;vd xīng;lh	260
@@ -719151,6 +719194,7 @@ sort: by_weight
 胀肚子	zhàng;yp dù;yt zi;vh	403
 长肚子	zhǎng;pd dù;yt zi;vh	260
 掌短肌	zhǎng;sf duǎn;ph jī;yp	99
+张队长	zhāng;vp duì;vr zhǎng;pd	177
 掌对掌	zhǎng;sf duì;vh zhǎng;sf	52
 涨多久	zhǎng;uv duō;pd jiǔ;pd	374
 涨多了	zhǎng;uv duō;pd le;vs	540
@@ -719225,8 +719269,10 @@ sort: by_weight
 张广才	zhāng;vp guǎng;dp cái;hp	52
 长光所	zhǎng;pd guāng;sv suǒ;pp	256
 掌柜的	zhǎng;sf guì;mh de;pp	1429
+张贵妃	zhāng;vp guì;kr fēi;nv	47
 掌柜了	zhǎng;sf guì;mh le;vs	504
 掌柜们	zhǎng;sf guì;mh men;rd	6
+张贵人	zhāng;vp guì;kr rén;rd	126
 掌柜说	zhǎng;sf guì;mh shuō;ad	670
 掌柜子	zhǎng;sf guì;mh zǐ;vh	387
 涨过价	zhǎng;uv guò;hz jià;rr	38
@@ -719289,6 +719335,7 @@ sort: by_weight
 张家的	zhāng;vp jiā;bd de;pp	1134
 张家河	zhāng;vp jiā;bd hé;uh	221
 涨价后	zhǎng;uv jià;rr hòu;pk	810
+张加军	zhāng;vp jiā;vk jūn;ds	66
 涨价啦	zhǎng;uv jià;rr la;kf	702
 涨价了	zhǎng;uv jià;rr le;vs	1623
 涨价前	zhǎng;uv jià;rr qián;ds	53
@@ -719342,6 +719389,7 @@ sort: by_weight
 张开眼	zhāng;vp kāi;hs yǎn;sv	711
 张开着	zhāng;vp kāi;hs zhe;dh	57
 张开嘴	zhāng;vp kāi;hs zuǐ;ks	663
+张科长	zhāng;vp kē;ed zhǎng;pd	115
 掌控度	zhǎng;sf kòng;fb dù;dd	75
 掌控感	zhǎng;sf kòng;fb gǎn;hx	702
 掌控好	zhǎng;sf kòng;fb hǎo;nv	594
@@ -719357,6 +719405,7 @@ sort: by_weight
 掌控住	zhǎng;sf kòng;fb zhù;rd	85
 长口疮	zhǎng;pd kǒu;kh chuāng;dv	6
 张口时	zhāng;vp kǒu;kh shí;lh	418
+张会计	zhāng;vp kuài;rd jì;ah	134
 长溃疡	zhǎng;pd kuì;uk yáng;dp	44
 张兰的	zhāng;vp lán;dh de;pp	282
 蟑螂啊	zhāng;od láng;od a;kv	454
@@ -719488,6 +719537,7 @@ sort: by_weight
 长胖点	zhǎng;pd pàng;yd diǎn;sq	9
 长胖后	zhǎng;pd pàng;yd hòu;pk	6
 长胖了	zhǎng;pd pàng;yd le;vs	828
+张胖子	zhāng;vp pàng;yd zi;vh	48
 帐篷吧	zhàng;sp péng;gz ba;kv	387
 帐篷灯	zhàng;sp péng;gz dēng;qh	306
 帐篷顶	zhàng;sp péng;gz dǐng;hh	536
@@ -719573,6 +719623,7 @@ sort: by_weight
 樟树奖	zhāng;md shù;mv jiǎng;dd	43
 樟树林	zhāng;md shù;mv lín;mm	490
 樟树上	zhāng;md shù;mv shàng;sh	364
+张叔叔	zhāng;vp shū;sv shu;sv	299
 樟树滩	zhāng;md shù;mv tān;uv	414
 樟树头	zhāng;md shù;mv tóu;dd	220
 樟树湾	zhāng;md shù;mv wān;ud	315
@@ -720180,6 +720231,7 @@ sort: by_weight
 照顾性	zhào;lq gù;hh xìng;xp	116
 照顾着	zhào;lq gù;hh zhe;dh	512
 照顾者	zhào;lq gù;hh zhě;tl	235
+赵管家	zhào;td guǎn;gh jiā;bd	110
 找关键	zhǎo;fh guān;dd jiàn;jv	742
 照惯例	zhào;lq guàn;xv lì;rh	47
 找关系	zhǎo;fh guān;dd xì;pi	1162
@@ -720641,6 +720693,7 @@ sort: by_weight
 招牌时	zhāo;fv pái;pp shí;lh	193
 招牌戏	zhāo;fv pái;pp xì;vh	3
 赵盼儿	zhào;td pàn;sp ér;pv	116
+赵胖子	zhào;td pàng;yd zi;vh	27
 找炮友	zhǎo;fh pào;qp yǒu;hd	536
 找陪玩	zhǎo;fh péi;vd wán;wh	99
 找培训	zhǎo;fh péi;td xùn;ap	576
@@ -737925,6 +737978,7 @@ sort: by_weight
 煮面啊	zhǔ;tq miàn;hh a;kv	338
 主面板	zhǔ;dw miàn;hh bǎn;mp	31
 柱面波	zhù;md miàn;hh bō;uv	225
+助眠茶	zhù;sv mián;sv chá;cm	65
 煮面锅	zhǔ;tq miàn;hh guō;jk	315
 柱面集	zhù;md miàn;hh jí;rm	45
 柱面镜	zhù;md miàn;hh jìng;jd	171
@@ -755151,7 +755205,6 @@ sort: by_weight
 按旧的来	àn;fb jiù;sl de;pp lái;hm	126
 俺就得来	ǎn;rh jiù;dh děi;pl lái;hm	82
 安九高铁	ān;bn jiǔ;pv gāo;dk tiě;jp	243
-安九高铁	ān;bn jiǔ;pv gāo;dk tiě;jp	243
 安久拉山	ān;bn jiǔ;pd lā;fd shān;ss	364
 安九铁路	ān;bn jiǔ;pv tiě;jp lù;zp	144
 按剧本来	àn;fb jù;vs běn;mh lái;hm	52
@@ -764500,6 +764553,7 @@ sort: by_weight
 帮什么忙	bāng;hs shén;rh me;pd máng;xd	616
 帮是会帮	bāng;hs shì;lr huì;rd bāng;hs	20
 蚌式机盖	bàng;oh shì;hd jī;mp gài;dh	26
+蚌式开合	bàng;oh shì;hd kāi;hs hé;rk	50
 帮是想帮	bāng;hs shì;lr xiǎng;mx bāng;hs	23
 绑手绑脚	bǎng;ih shǒu;fs bǎng;ih jiǎo;yt	356
 榜首宝座	bǎng;md shǒu;dh bǎo;bd zuò;dt	328
@@ -766304,7 +766358,6 @@ sort: by_weight
 薄来厚往	báo;cd lái;hm hòu;hh wǎng;pd	171
 宝来利来	bǎo;bd lái;hm lì;es lái;hm	212
 包揽词讼	bāo;pv lǎn;fs cí;av sòng;ap	3
-宝兰高铁	bǎo;bd lán;dh gāo;dk tiě;jp	212
 宝兰高铁	bǎo;bd lán;dh gāo;dk tiě;jp	212
 饱览美景	bǎo;pp lǎn;sv měi;dd jǐng;ld	338
 宝蓝柠檬	bǎo;bd lán;ch níng;mb méng;mc	4
@@ -770972,7 +771025,6 @@ sort: by_weight
 背信弃义	bèi;sy xìn;ra qì;ds yì;dd	672
 北新区路	běi;sp xīn;dp qū;hv lù;zp	252
 北信瑞丰	běi;sp xìn;ra ruì;ws fēng;hs	9
-北新西道	běi;sp xīn;dp xī;hh dào;dz	144
 北新西道	běi;sp xīn;dp xī;hh dào;dz	144
 背形构造	bèi;sy xíng;hp gòu;mp zào;pz	45
 北星集团	běi;sp xīng;lh jí;rm tuán;sh	45
@@ -778932,6 +778984,7 @@ sort: by_weight
 冰淇淋球	bīng;du qí;uc lín;um qiú;wh	837
 冰淇淋色	bīng;du qí;uc lín;um sè;pv	446
 冰淇淋霜	bīng;du qí;uc lín;um shuāng;hh	324
+冰淇凌轴	bīng;du qí;uc líng;dt zhóu;hs	34
 摒弃陋习	bìng;fv qì;ds lòu;vh xí;vh	364
 屏气凝神	bǐng;vs qì;pv níng;dp shén;dl	157
 摒弃偏见	bìng;fv qì;ds piān;rd jiàn;sv	284
@@ -802708,7 +802761,6 @@ sort: by_weight
 城关中队	chéng;th guān;dd zhōng;ks duì;vr	243
 成广公司	chéng;hd guǎng;dp gōng;pd sī;vk	76
 成贵高铁	chéng;hd guì;kr gāo;dk tiě;jp	364
-成贵高铁	chéng;hd guì;kr gāo;dk tiě;jp	364
 成规陋习	chéng;hd guī;hs lòu;vh xí;vh	3
 成贵铁路	chéng;hd guì;kr tiě;jp lù;zp	418
 成果发表	chéng;hd guǒ;lm fā;vd biǎo;hd	711
@@ -823023,7 +823075,6 @@ sort: by_weight
 大溪豆干	dà;hd xī;up dòu;hh gān;hs	270
 大媳妇儿	dà;hd xí;np fù;nv ér;pv	396
 大西高铁	dà;hd xī;hh gāo;dk tiě;jp	432
-大西高铁	dà;hd xī;hh gāo;dk tiě;jp	432
 打习惯了	dǎ;fh xí;vh guàn;xv le;vs	47
 大喜过望	dà;hd xǐ;tk guò;hz wàng;dw	443
 大西海子	dà;hd xī;hh hǎi;up zǐ;vh	212
@@ -831373,6 +831424,7 @@ sort: by_weight
 德古斯曼	dé;ph gǔ;hk sī;cp màn;ld	266
 得过来吗	dé;pl guò;hz lái;hm ma;kv	572
 得过且过	dé;pl guò;hz qiě;sh guò;hz	1736
+德国小蠊	dé;ph guó;sh xiǎo;sd lián;od	57
 得国最正	dé;pl guó;sh zuì;ld zhèng;hh	302
 德汉汉德	dé;ph hàn;uv hàn;uv dé;ph	279
 德韩混血	dé;ph hán;hh hùn;ul xuè;ph	153
@@ -837346,6 +837398,8 @@ sort: by_weight
 淀粉含量	diàn;ub fěn;dp hán;rk liàng;lt	783
 淀粉糊化	diàn;ub fěn;dp hú;dh huà;rp	428
 淀粉糊精	diàn;ub fěn;dp hú;dh jīng;dh	256
+淀粉烤肠	diàn;ub fěn;dp kǎo;qt cháng;yv	59
+点份烤肠	diǎn;sq fèn;rp kǎo;qt cháng;yv	22
 淀粉适量	diàn;ub fěn;dp shì;pz liàng;lt	900
 淀粉试纸	diàn;ub fěn;dp shì;ah zhǐ;ip	292
 点份外卖	diǎn;sq fèn;rp wài;ps mài;hd	320
@@ -841973,7 +842027,6 @@ sort: by_weight
 东大阿派	dōng;hd dà;hd ā;vh pài;up	16
 东达机电	dōng;hd dá;hz jī;mp diàn;lv	45
 东大金智	dōng;hd dà;hd jīn;jh zhì;pl	117
-东大名路	dōng;hd dà;hd míng;pk lù;zp	468
 东大名路	dōng;hd dà;hd míng;pk lù;zp	468
 东大牧业	dōng;hd dà;hd mù;pp yè;sh	76
 东大人才	dōng;hd dà;hd rén;rd cái;hp	252
@@ -889519,6 +889572,7 @@ sort: by_weight
 肱骨结核	gōng;yh gǔ;sy jié;it hé;md	45
 巩固练习	gǒng;hp gù;sh liàn;ih xí;vh	526
 巩固疗效	gǒng;hp gù;sh liáo;ds xiào;dp	616
+肱骨前移	gōng;yh gǔ;sy qián;ds yí;ep	74
 巩固权力	gǒng;hp gù;sh quán;mv lì;vp	490
 肱骨上端	gōng;yh gǔ;sy shàng;sh duān;ds	207
 供骨髓者	gōng;rc gǔ;sy suǐ;sh zhě;tl	45
@@ -906258,6 +906312,7 @@ sort: by_weight
 海军外交	hǎi;up jūn;ds wài;ps jiāo;dd	194
 海军武官	hǎi;up jūn;ds wǔ;hd guān;bh	423
 海军校官	hǎi;up jūn;ds xiào;md guān;bh	248
+海军新舰	hǎi;up jūn;ds xīn;dp jiàn;ps	11
 海军学校	hǎi;up jūn;ds xué;dh xiào;md	19
 海军研究	hǎi;up jūn;ds yán;hh jiū;bv	846
 海军元帅	hǎi;up jūn;ds yuán;hv shuài;ss	706
@@ -909872,7 +909927,6 @@ sort: by_weight
 行话解释	háng;ph huà;ap jiě;pv shì;pv	50
 杭华油墨	háng;md huá;rs yóu;us mò;st	99
 杭黄高铁	háng;md huáng;cd gāo;dk tiě;jp	423
-杭黄高铁	háng;md huáng;cd gāo;dk tiě;jp	423
 杭黄铁路	háng;md huáng;cd tiě;jp lù;zp	576
 杭徽高速	háng;md huī;ps gāo;dk sù;hz	454
 杭徽古道	háng;md huī;ps gǔ;hk dào;dz	76
@@ -910091,7 +910145,6 @@ sort: by_weight
 航天置业	háng;pd tiān;hd zhì;sh yè;sh	99
 航天专题	háng;pd tiān;hd zhuān;hd tí;lr	153
 夯土台基	hāng;hp tǔ;th tái;vk jī;ct	378
-杭温高铁	háng;md wēn;ul gāo;dk tiě;jp	585
 杭温高铁	háng;md wēn;ul gāo;dk tiě;jp	585
 行伍出身	háng;ph wǔ;rh chū;vs shēn;pp	38
 航五公司	háng;pd wǔ;hh gōng;pd sī;vk	50
@@ -913126,7 +913179,6 @@ sort: by_weight
 河汉无极	hé;uh hàn;uv wú;hv jí;mp	4
 河汉无声	hé;uh hàn;uv wú;hv shēng;tp	4
 河汉予言	hé;uh hàn;uv yǔ;vs yán;ak	90
-合杭高铁	hé;rk háng;md gāo;dk tiě;jp	396
 合杭高铁	hé;rk háng;md gāo;dk tiě;jp	396
 和航科技	hé;ek háng;pd kē;ed jì;fh	99
 喝好了吧	hē;kl hǎo;nv le;vs ba;kv	76
@@ -921340,7 +921392,6 @@ sort: by_weight
 湖南财专	hú;uh nán;hs cái;sh zhuān;hd	130
 湖南高速	hú;uh nán;hs gāo;dk sù;hz	562
 呼南高铁	hū;kp nán;hs gāo;dk tiě;jp	414
-呼南高铁	hū;kp nán;hs gāo;dk tiě;jp	414
 沪南公路	hù;ud nán;hs gōng;pd lù;zp	590
 湖南公路	hú;uh nán;hs gōng;pd lù;zp	160
 忽南忽北	hū;px nán;hs hū;px běi;sp	184
@@ -927563,7 +927614,6 @@ sort: by_weight
 黄发鲐背	huáng;cd fā;vd tái;pv bèi;sy	153
 黄发台背	huáng;cd fā;vd tái;vk bèi;sy	38
 黄泛平原	huáng;cd fàn;up píng;hs yuán;hd	52
-黄泛平原	huáng;cd fàn;up píng;hs yuán;hd	52
 荒废朝政	huāng;cv fèi;dd cháo;hy zhèng;hp	19
 荒废多年	huāng;cv fèi;dd duō;pd nián;ps	38
 荒废青春	huāng;cv fèi;dd qīng;hy chūn;hl	392
@@ -928503,7 +928553,6 @@ sort: by_weight
 晃眼一看	huǎng;lv yǎn;sv yí;hh kàn;ph	382
 谎言之躯	huǎng;ac yán;ak zhī;dd qū;ph	28
 黄洋界上	huáng;cd yáng;ud jiè;ss shàng;sh	292
-黄洋界上	huáng;cd yáng;ud jiè;ss shàng;sh	10
 黄杨木雕	huáng;cd yáng;mv mù;md diāo;pr	3
 黄杨盆景	huáng;cd yáng;mv pén;ph jǐng;ld	99
 荒咬九伤	huāng;cv yǎo;kd jiǔ;pv shāng;rp	50
@@ -936374,6 +936423,8 @@ sort: by_weight
 几分生趣	jǐ;pv fēn;pp shēng;ph qù;td	144
 鸡粉适量	jī;vp fěn;dp shì;pz liàng;lt	405
 几分收获	jǐ;pv fēn;pp shōu;vp huò;cd	238
+积分数据	jī;ek fēn;pp shù;dp jù;fv	78
+几份数据	jǐ;pv fèn;rp shù;dp jù;fv	50
 集分水器	jí;rm fēn;pp shuǐ;ud qì;kk	207
 积分算子	jī;ek fēn;pp suàn;gs zǐ;vh	288
 积分微分	jī;ek fēn;pp wēi;ps fēn;pp	472
@@ -938337,7 +938388,6 @@ sort: by_weight
 基拉韦亚	jī;ct lā;fd wéi;hs yà;hh	52
 饥来吃饭	jī;pp lái;hm chī;kp fàn;pp	16
 亟来磋商	jí;vh lái;hm cuō;hd shāng;dk	52
-济莱高铁	jì;ud lái;cm gāo;dk tiě;jp	212
 济莱高铁	jì;ud lái;cm gāo;dk tiě;jp	212
 即来即办	jí;vv lái;hm jí;vv bàn;vd	338
 挤来挤去	jǐ;fd lái;hm jǐ;fd qù;td	91
@@ -941731,7 +941781,6 @@ sort: by_weight
 积习难返	jī;ek xí;vh nán;vr fǎn;pz	144
 积习难改	jī;ek xí;vh nán;vr gǎi;vp	41
 基希讷乌	jī;ct xī;ps nè;as wū;ph	513
-基希讷乌	jī;ct xī;ps nè;as wū;ph	10
 绩溪三雕	jì;ih xī;up sān;hh diāo;pr	50
 基希舍夫	jī;ct xī;ps shě;rk fū;hd	99
 积习生常	jī;ek xí;vh shēng;ph cháng;ss	45
@@ -961958,7 +962007,6 @@ sort: by_weight
 津桥学院	jīn;uv qiáo;mp xué;dh yuàn;vb	333
 近亲繁殖	jìn;pz qīn;dm fán;pi zhí;hh	581
 津秦高铁	jīn;uv qín;he gāo;dk tiě;jp	315
-津秦高铁	jīn;uv qín;he gāo;dk tiě;jp	315
 近亲结婚	jìn;pz qīn;dm jié;it hūn;np	286
 津秦客专	jīn;uv qín;he kè;bk zhuān;hd	279
 金琴口腔	jīn;jh qín;wv kǒu;kh qiāng;yb	207
@@ -974678,6 +974726,9 @@ sort: by_weight
 咀嚼效能	jǔ;ks jué;kp xiào;dp néng;vp	153
 咀嚼循环	jǔ;ks jué;kp xún;pp huán;wh	45
 咀嚼压力	jǔ;ks jué;kp yā;hd lì;vp	266
+拒绝一家	jù;fh jué;ip yì;hh jiā;bd	134
+拒绝议价	jù;fh jué;ip yì;ad jià;rr	91
+拒绝溢价	jù;fh jué;ip yì;ud jià;rr	43
 拒绝一切	jù;fh jué;ip yí;hh qiè;hv	449
 拒绝油腻	jù;fh jué;ip yóu;us nì;yh	310
 咀嚼运动	jǔ;ks jué;kp yùn;hz dòng;hv	360
@@ -976112,7 +976163,6 @@ sort: by_weight
 橘子原汁	jú;mv zi;vh yuán;hd zhī;uh	45
 橘子洲头	jú;mv zi;vh zhōu;ud tóu;dd	132
 桔子洲头	jú;mt zi;vh zhōu;ud tóu;dd	119
-橘子洲头	jú;mv zi;vh zhōu;ud tóu;dd	10
 橘子洲尾	jú;mv zi;vh zhōu;ud wěi;vv	76
 句子主干	jù;pk zi;vh zhǔ;dw gàn;hs	459
 剧组成员	jù;vs zǔ;is chéng;hd yuán;kr	662
@@ -992381,7 +992431,6 @@ sort: by_weight
 来日无多	lái;hm rì;lh wú;hv duō;pd	31
 来日正长	lái;hm rì;lh zhèng;hh zhǎng;pd	50
 莱荣高铁	lái;cm róng;cm gāo;dk tiě;jp	207
-莱荣高铁	lái;cm róng;cm gāo;dk tiě;jp	207
 来如风雨	lái;hm rú;nk fēng;pd yǔ;hd	252
 来如流水	lái;hm rú;nk liú;ud shuǐ;ud	261
 来撒来撒	lái;hm sā;fc lái;hm sā;fc	4
@@ -1000858,6 +1000907,7 @@ sort: by_weight
 琏二奶奶	liǎn;wh èr;hh nǎi;nv nai;nv	356
 联二脲产	lián;hd èr;hh niào;yv chǎn;dp	50
 怜二色性	lián;xr èr;hh sè;pv xìng;xp	90
+练二休一	liàn;ih èr;hh xiū;rm yī;hh	16
 联发超市	lián;hd fā;vd chāo;tk shì;ds	50
 联发股份	lián;hd fā;vd gǔ;yp fèn;rp	369
 联发集团	lián;hd fā;vd jí;rm tuán;sh	428
@@ -1001865,6 +1001915,7 @@ sort: by_weight
 连三接四	lián;hz sān;hh jiē;fd sì;sh	144
 连三接五	lián;hz sān;hh jiē;fd wǔ;hh	4
 连三跨五	lián;hz sān;hh kuà;zh wǔ;hh	4
+练三休一	liàn;ih sān;hh xiū;rm yī;hh	16
 脸色暗淡	liǎn;yr sè;pv àn;ld dàn;uq	432
 脸色黯淡	liǎn;yr sè;pv àn;sd dàn;uq	289
 脸色不好	liǎn;yr sè;pv bù;hd hǎo;nv	138
@@ -1002000,6 +1002051,7 @@ sort: by_weight
 连说带唱	lián;hz shuō;ad dài;hs chàng;kl	274
 脸似桃花	liǎn;yr sì;rv táo;mp huā;cv	144
 连丝微管	lián;hz sī;ii wēi;ps guǎn;gh	117
+练四休一	liàn;ih sì;sh xiū;rm yī;hh	16
 联锁保护	lián;hd suǒ;js bǎo;rk hù;fd	220
 连锁保护	lián;hz suǒ;js bǎo;rk hù;fd	171
 联锁报警	lián;hd suǒ;js bào;fv jǐng;ca	50
@@ -1002163,6 +1002215,7 @@ sort: by_weight
 脸无人色	liǎn;yr wú;hv rén;rd sè;pv	306
 练武习文	liàn;ih wǔ;hd xí;vh wén;dd	52
 连无线网	lián;hz wú;hv xiàn;ih wǎng;sd	392
+练五休一	liàn;ih wǔ;hh xiū;rm yī;hh	16
 连五寨山	lián;hz wǔ;hh zhài;bm shān;ss	4
 联系办理	lián;hd xì;pi bàn;vd lǐ;wl	3
 联系本人	lián;hd xì;pi běn;mh rén;rd	82
@@ -1016114,7 +1016167,6 @@ sort: by_weight
 马云表示	mǎ;vh yún;hd biǎo;hd shì;hd	612
 马云的号	mǎ;vh yún;hd de;pp hào;kv	220
 马赞德兰	mǎ;vh zàn;pr dé;ph lán;dh	536
-马赞德兰	mǎ;vh zàn;pr dé;ph lán;dh	536
 马赞姆贝	mǎ;vh zàn;pr mǔ;nv bèi;sr	153
 马贼首领	mǎ;vh zéi;sh shǒu;dh lǐng;rh	230
 马贼头领	mǎ;vh zéi;sh tóu;dd lǐng;rh	76
@@ -1022749,7 +1022801,6 @@ sort: by_weight
 没啥子用	méi;up shá;kr zi;vh yòng;ps	248
 没删除好	méi;up shān;ps chú;vr hǎo;nv	50
 梅汕高铁	méi;mp shàn;us gāo;dk tiě;jp	423
-梅汕高铁	méi;mp shàn;us gāo;dk tiě;jp	423
 美膳酒楼	měi;dd shàn;yd jiǔ;uh lóu;md	171
 梅山科技	méi;mp shān;ss kē;ed jì;fh	45
 梅山六圣	méi;mp shān;ss liù;dd shèng;vt	207
@@ -1025026,6 +1025077,7 @@ sort: by_weight
 美中之美	měi;dd zhōng;ks zhī;dd měi;dd	189
 每周必看	měi;pd zhōu;pk bì;xp kàn;ph	284
 每周必做	měi;pd zhōu;pk bì;xp zuò;rh	243
+美洲大蠊	měi;dd zhōu;ud dà;hd lián;od	57
 眉州东坡	méi;vh zhōu;ds dōng;hd pō;tv	35
 每周都要	měi;pd zhōu;pk dōu;tv yào;hn	891
 每周翻译	měi;pd zhōu;pk fān;pv yì;av	171
@@ -1030525,7 +1030577,6 @@ sort: by_weight
 明星艺人	míng;ly xīng;lh yì;cv rén;rd	747
 明星艺校	míng;ly xīng;lh yì;cv xiào;md	50
 明星医院	míng;ly xīng;lh yī;hv yuàn;vb	76
-明星荧荧	míng;ly xīng;lh yíng;cq yíng;cq	256
 明星应援	míng;ly xīng;lh yìng;dh yuán;fp	256
 明星有烂	míng;ly xīng;lh yǒu;hy làn;qd	194
 明星云集	míng;ly xīng;lh yún;hd jí;rm	590
@@ -1054836,7 +1054887,7 @@ sort: by_weight
 漂漂荡荡	piāo;uh piāo;uh dàng;cp dàng;cp	76
 飘飘忽忽	piāo;hp piāo;hp hū;px hū;px	50
 飘飘沥沥	piāo;hp piāo;hp lì;uh lì;uh	99
-漂漂亮亮	piāo;uh piāo;uh liàng;dv liàng;dv	776
+漂漂亮亮	piào;uh piào;uh liàng;dv liàng;dv	776
 飘飘零零	piāo;hp piāo;hp líng;hd líng;hd	117
 缥缥缈缈	piāo;ih piāo;ih miǎo;is miǎo;is	252
 飘飘若仙	piāo;hp piāo;hp ruò;ck xiān;rs	315
@@ -1066218,7 +1066269,6 @@ sort: by_weight
 前呼后拥	qián;ds hū;kp hòu;pk yōng;fp	188
 前护后拥	qián;ds hù;fd hòu;pk yōng;fp	169
 钱湖景苑	qián;jh hú;uh jǐng;ld yuàn;cv	45
-钱湖人家	qián;jh hú;uh rén;rd jiā;bd	162
 钱湖人家	qián;jh hú;uh rén;rd jiā;bd	162
 钱湖胜景	qián;jh hú;uh shèng;yp jǐng;ld	4
 钱湖天地	qián;jh hú;uh tiān;hd dì;tv	306
@@ -1090701,6 +1090751,7 @@ sort: by_weight
 乳酸堆积	rǔ;pv suān;hv duī;tr jī;ek	608
 乳酸发酵	rǔ;pv suān;hv fā;vd jiào;ht	508
 乳酸钙片	rǔ;pv suān;hv gài;jh piàn;pv	99
+乳酸交酯	rǔ;pv suān;hv jiāo;dd zhǐ;hp	45
 乳酸溶液	rǔ;pv suān;hv róng;ub yè;ud	220
 乳酸细菌	rǔ;pv suān;hv xì;is jūn;ce	194
 乳酸亚铁	rǔ;pv suān;hv yà;hh tiě;jp	3
@@ -1092351,7 +1092402,6 @@ sort: by_weight
 赛欧三厢	sài;br ōu;hp sān;hh xiāng;hh	513
 赛普健身	sài;br pǔ;dl jiàn;rv shēn;pp	382
 塞浦路斯	sāi;bt pǔ;uh lù;zp sī;cp	631
-塞浦路斯	sāi;bt pǔ;uh lù;zp sī;cp	10
 赛普星通	sài;br pǔ;dl xīng;lh tōng;vz	171
 塞奇威克	sāi;bt qí;hs wēi;hd kè;hv	52
 赛前的最	sài;br qián;ds de;pp zuì;ld	464
@@ -1101325,7 +1101375,6 @@ sort: by_weight
 伤寒直格	shāng;rp hán;bd zhí;hh gé;mp	117
 伤寒指掌	shāng;rp hán;bd zhǐ;fp zhǎng;sf	144
 商杭高铁	shāng;dk háng;md gāo;dk tiě;jp	207
-商杭高铁	shāng;dk háng;md gāo;dk tiě;jp	207
 上航假期	shàng;sh háng;pd jià;rv qī;cy	414
 上航旅游	shàng;sh háng;pd lǚ;dp yóu;ud	238
 商号出售	shāng;dk hào;kv chū;vs shòu;rk	45
@@ -1106408,7 +1106457,6 @@ sort: by_weight
 肾癌术后	shèn;sy ái;ds shù;md hòu;pk	261
 深爱着你	shēn;ud ài;pd zhe;dh nǐ;rp	85
 深谙此道	shēn;ud ān;ad cǐ;sp dào;dz	308
-深安大桥	shēn;ud ān;bn dà;hd qiáo;mp	274
 深安大桥	shēn;ud ān;bn dà;hd qiáo;mp	274
 深谙其道	shēn;ud ān;ad qí;cd dào;dz	454
 深谙人心	shēn;ud ān;ad rén;rd xīn;xd	238
@@ -1135612,6 +1135660,7 @@ sort: by_weight
 双手插兜	shuāng;vv shǒu;fs chā;fp dōu;pv	720
 双手叉腰	shuāng;vv shǒu;fs chā;vd yāo;yh	220
 双手撑地	shuāng;vv shǒu;fs chēng;fs dì;tv	157
+双手撑墙	shuāng;vv shǒu;fs chēng;fs qiáng;th	41
 双手撑在	shuāng;vv shǒu;fs chēng;fs zài;ht	52
 双手触诊	shuāng;vv shǒu;fs chù;po zhěn;ar	99
 双手大剑	shuāng;vv shǒu;fs dà;hd jiàn;rs	423
@@ -1152100,6 +1152149,7 @@ sort: by_weight
 檀木手链	tán;md mù;md shǒu;fs liàn;jh	153
 贪慕虚荣	tān;rr mù;cx xū;sh róng;cm	116
 碳纳米管	tàn;hs nà;is mǐ;dm guǎn;gh	468
+碳纳米角	tàn;hs nà;is mǐ;dm jiǎo;ps	45
 碳钠石矾	tàn;hs nà;js shí;hk fán;hp	45
 探囊取物	tàn;fd náng;hd qǔ;hv wù;pp	166
 谈女朋友	tán;aq nǚ;nh péng;yy you;hd	639
@@ -1154298,7 +1154348,6 @@ sort: by_weight
 特没信心	tè;pt méi;up xìn;ra xīn;xd	50
 特没意思	tè;pt méi;up yì;dx sī;sx	504
 特米里克	tè;pt mǐ;dm lǐ;lt kè;hv	45
-特米斯科	tè;pt mǐ;dm sī;cp kē;ed	212
 特米斯科	tè;pt mǐ;dm sī;cp kē;ed	212
 特免血浆	tè;pt miǎn;pv xuè;ph jiāng;du	45
 特莫尔斯	tè;pt mò;cd ěr;pd sī;cp	248
@@ -1156825,7 +1156874,6 @@ sort: by_weight
 题组训练	tí;lr zǔ;is xùn;ap liàn;ih	153
 天啊地啊	tiān;hd a;kv dì;tv a;kv	297
 天安保险	tiān;hd ān;bn bǎo;rk xiǎn;vr	369
-田安大桥	tián;sh ān;bn dà;hd qiáo;mp	405
 田安大桥	tián;sh ān;bn dà;hd qiáo;mp	405
 天安国汇	tiān;hd ān;bn guó;sh huì;uh	50
 天安煤业	tiān;hd ān;bn méi;qc yè;sh	410
@@ -1178325,7 +1178373,6 @@ sort: by_weight
 未来蜂巢	wèi;hm lái;hm fēng;op cháo;vm	117
 未来夫婿	wèi;hm lái;hm fū;hd xù;nv	356
 潍莱高铁	wéi;ui lái;cm gāo;dk tiě;jp	396
-潍莱高铁	wéi;ui lái;cm gāo;dk tiě;jp	396
 未来歌手	wèi;hm lái;hm gē;hp shǒu;fs	76
 未来共产	wèi;hm lái;hm gòng;cd chǎn;dp	238
 未来公公	wèi;hm lái;hm gōng;pd gong;pd	446
@@ -1185930,6 +1185977,8 @@ sort: by_weight
 我加加油	wǒ;pd jiā;vk jiā;vk yóu;us	180
 我加进来	wǒ;pd jiā;vk jìn;hz lái;hm	220
 我家经理	wǒ;pd jiā;bd jīng;iv lǐ;wl	99
+我加了啊	wǒ;pd jiā;vk le;vs a;kv	122
+我家了啊	wǒ;pd jiā;bd le;vs a;kv	50
 我家里了	wǒ;pd jiā;bd lǐ;lt le;vs	364
 我家卖了	wǒ;pd jiā;bd mài;hd le;vs	130
 我家那位	wǒ;pd jiā;bd nà;vv wèi;rd	724
@@ -1186563,7 +1186612,6 @@ sort: by_weight
 我麻烦的	wǒ;pd má;dm fan;qh de;pp	392
 我妈翻了	wǒ;pd mā;nv fān;pv le;vs	194
 我妈过生	wǒ;pd mā;nv guò;hz shēng;ph	351
-我妈和老	wǒ;pd mā;nv hé;ek lǎo;tv	256
 我妈回了	wǒ;pd mā;nv huí;sh le;vs	252
 我妈就说	wǒ;pd mā;nv jiù;dh shuō;ad	107
 我妈妈接	wǒ;pd mā;nv ma;nv jiē;fd	346
@@ -1186571,15 +1186619,64 @@ sort: by_weight
 我妈没再	wǒ;pd mā;nv méi;up zài;hh	306
 我妈没在	wǒ;pd mā;nv méi;up zài;ht	171
 我妈去取	wǒ;pd mā;nv qù;td qǔ;hv	50
+我马上办	wǒ;pd mǎ;vh shàng;sh bàn;vd	79
+我马上报	wǒ;pd mǎ;vh shàng;sh bào;fv	79
+我马上查	wǒ;pd mǎ;vh shàng;sh chá;mh	79
+我马上吃	wǒ;pd mǎ;vh shàng;sh chī;kp	79
+我马上传	wǒ;pd mǎ;vh shàng;sh chuán;rh	79
+我马上催	wǒ;pd mǎ;vh shàng;sh cuī;rs	79
+我马上存	wǒ;pd mǎ;vh shàng;sh cún;hh	79
+我马上打	wǒ;pd mǎ;vh shàng;sh dǎ;fh	79
+我马上带	wǒ;pd mǎ;vh shàng;sh dài;hs	79
 我马上到	wǒ;pd mǎ;vh shàng;sh dào;hs	594
+我马上等	wǒ;pd mǎ;vh shàng;sh děng;gd	79
+我马上发	wǒ;pd mǎ;vh shàng;sh fā;vd	79
+我马上放	wǒ;pd mǎ;vh shàng;sh fàng;dp	79
+我马上付	wǒ;pd mǎ;vh shàng;sh fù;rh	79
+我马上挂	wǒ;pd mǎ;vh shàng;sh guà;ft	79
+我马上关	wǒ;pd mǎ;vh shàng;sh guān;dd	79
+我马上还	wǒ;pd mǎ;vh shàng;sh hái;hz	79
+我马上喝	wǒ;pd mǎ;vh shàng;sh hē;kl	79
+我马上换	wǒ;pd mǎ;vh shàng;sh huàn;fp	79
 我马上回	wǒ;pd mǎ;vh shàng;sh huí;sh	680
 我马上寄	wǒ;pd mǎ;vh shàng;sh jì;bs	99
+我马上加	wǒ;pd mǎ;vh shàng;sh jiā;vk	79
+我马上交	wǒ;pd mǎ;vh shàng;sh jiāo;dd	79
+我马上借	wǒ;pd mǎ;vh shàng;sh jiè;rc	79
+我马上接	wǒ;pd mǎ;vh shàng;sh jiē;fd	79
 我马上就	wǒ;pd mǎ;vh shàng;sh jiù;dh	465
+我马上开	wǒ;pd mǎ;vh shàng;sh kāi;hs	79
+我马上看	wǒ;pd mǎ;vh shàng;sh kàn;ph	79
 我马上来	wǒ;pd mǎ;vh shàng;sh lái;hm	25
 我马上了	wǒ;pd mǎ;vh shàng;sh le;vs	238
+我马上买	wǒ;pd mǎ;vh shàng;sh mǎi;vd	79
 我马上拿	wǒ;pd mǎ;vh shàng;sh ná;rf	364
+我马上批	wǒ;pd mǎ;vh shàng;sh pī;fh	79
+我马上签	wǒ;pd mǎ;vh shàng;sh qiān;gh	79
 我马上去	wǒ;pd mǎ;vh shàng;sh qù;td	760
+我马上取	wǒ;pd mǎ;vh shàng;sh qǔ;hv	79
+我马上扫	wǒ;pd mǎ;vh shàng;sh sǎo;fv	79
+我马上删	wǒ;pd mǎ;vh shàng;sh shān;ps	79
+我马上审	wǒ;pd mǎ;vh shàng;sh shěn;bs	79
+我马上收	wǒ;pd mǎ;vh shàng;sh shōu;vp	79
+我马上刷	wǒ;pd mǎ;vh shàng;sh shuā;vs	79
+我马上睡	wǒ;pd mǎ;vh shàng;sh shuì;sp	79
+我马上说	wǒ;pd mǎ;vh shàng;sh shuō;ad	79
+我马上送	wǒ;pd mǎ;vh shàng;sh sòng;dz	79
+我马上算	wǒ;pd mǎ;vh shàng;sh suàn;gs	79
+我马上填	wǒ;pd mǎ;vh shàng;sh tián;th	79
+我马上停	wǒ;pd mǎ;vh shàng;sh tíng;rd	79
+我马上退	wǒ;pd mǎ;vh shàng;sh tuì;vz	79
+我马上问	wǒ;pd mǎ;vh shàng;sh wèn;dk	79
+我马上洗	wǒ;pd mǎ;vh shàng;sh xǐ;up	79
+我马上写	wǒ;pd mǎ;vh shàng;sh xiě;dh	79
+我马上修	wǒ;pd mǎ;vh shàng;sh xiū;rs	79
+我马上学	wǒ;pd mǎ;vh shàng;sh xué;dh	79
+我马上约	wǒ;pd mǎ;vh shàng;sh yuē;ip	79
+我马上找	wǒ;pd mǎ;vh shàng;sh zhǎo;fh	79
+我马上转	wǒ;pd mǎ;vh shàng;sh zhuǎn;hh	79
 我马上走	wǒ;pd mǎ;vh shàng;sh zǒu;tr	392
+我马上做	wǒ;pd mǎ;vh shàng;sh zuò;rh	79
 我嘛时候	wǒ;pd ma;kd shí;lh hou;rs	76
 我妈说了	wǒ;pd mā;nv shuō;ad le;vs	116
 沃玛卫士	wò;up mǎ;wv wèi;vh shì;th	202
@@ -1191508,7 +1191605,6 @@ sort: by_weight
 武广对面	wǔ;hd guǎng;dp duì;vh miàn;hh	238
 武广附近	wǔ;hd guǎng;dp fù;vr jìn;pz	297
 无广告版	wú;hv guǎng;dp gào;pk bǎn;pp	25
-武广高铁	wǔ;hd guǎng;dp gāo;dk tiě;jp	594
 武广高铁	wǔ;hd guǎng;dp gāo;dk tiě;jp	594
 武广沪昆	wǔ;hd guǎng;dp hù;ud kūn;lv	162
 武广世贸	wǔ;hd guǎng;dp shì;cv mào;pr	324
@@ -1199059,7 +1199155,6 @@ sort: by_weight
 西加艾提	xī;hh jiā;vk ài;cd tí;fl	99
 希嘉八剑	xī;ps jiā;tk bā;pd jiàn;rs	189
 西甲硅油	xī;hh jiǎ;ls guī;ht yóu;us	369
-西加里尼	xī;hh jiā;vk lǐ;lt ní;vv	90
 西加里尼	xī;hh jiā;vk lǐ;lt ní;vv	90
 西甲联赛	xī;hh jiǎ;ls lián;hd sài;br	896
 西甲马竞	xī;hh jiǎ;ls mǎ;vh jìng;dv	306
@@ -1207666,7 +1207761,7 @@ sort: by_weight
 想到了吗	xiǎng;mx dào;hs le;vs ma;kv	28
 想到了死	xiǎng;mx dào;hs le;vs sǐ;hv	504
 向导猎犬	xiàng;pk dǎo;vd liè;pc quǎn;hd	225
-想到什么	xiǎng;mx dào;hs shí;rh me;pd	1233
+想到什么	xiǎng;mx dào;hs shén;rh me;pd	1233
 像倒是像	xiàng;rp dào;rh shì;lr xiàng;rp	99
 想到未来	xiǎng;mx dào;hs wèi;hm lái;hm	680
 向导先祖	xiàng;pk dǎo;vd xiān;pv zǔ;ds	45
@@ -1229579,6 +1229674,7 @@ sort: by_weight
 血糖过低	xuè;ph táng;dd guò;hz dī;rp	540
 血糖过少	xuè;ph táng;dd guò;hz shǎo;sp	50
 血糖监测	xuè;ph táng;dd jiān;sh cè;us	747
+血糖尖峰	xuè;ph táng;dd jiān;sd fēng;sp	44
 血糖降低	xuè;ph táng;dd jiàng;vp dī;rp	63
 血糖浓度	xuè;ph táng;dd nóng;ud dù;dd	336
 血糖偏高	xuè;ph táng;dd piān;rd gāo;dk	598
@@ -1241719,47 +1241815,105 @@ sort: by_weight
 一百出头	yì;hh bǎi;hl chū;vs tóu;dd	598
 一百单八	yì;hh bǎi;hl dān;ds bā;pd	25
 以白诋青	yǐ;vr bái;pl dǐ;ap qīng;hy	3
+一百多把	yì;hh bǎi;hl duō;pd bǎ;fv	45
+一百多倍	yì;hh bǎi;hl duō;pd bèi;rd	57
 一百多杯	yì;hh bǎi;hl duō;pd bēi;mh	4
+一百多本	yì;hh bǎi;hl duō;pd běn;mh	48
+一百多笔	yì;hh bǎi;hl duō;pd bǐ;gv	47
 一百多遍	yì;hh bǎi;hl duō;pd biàn;dz	315
 一百多部	yì;hh bǎi;hl duō;pd bù;dv	19
+一百多册	yì;hh bǎi;hl duō;pd cè;ph	55
+一百多场	yì;hh bǎi;hl duō;pd chǎng;tv	52
+一百多床	yì;hh bǎi;hl duō;pd chuáng;dm	43
+一百多次	yì;hh bǎi;hl duō;pd cì;dp	45
 一百多道	yì;hh bǎi;hl duō;pd dào;dz	25
+一百多店	yì;hh bǎi;hl duō;pd diàn;dk	54
 一百多栋	yì;hh bǎi;hl duō;pd dòng;mh	171
 一百多度	yì;hh bǎi;hl duō;pd dù;dd	85
+一百多段	yì;hh bǎi;hl duō;pd duàn;pp	54
+一百多队	yì;hh bǎi;hl duō;pd duì;vr	52
+一百多对	yì;hh bǎi;hl duō;pd duì;vh	45
+一百多朵	yì;hh bǎi;hl duō;pd duǒ;pm	44
+一百多番	yì;hh bǎi;hl duō;pd fān;ph	46
+一百多份	yì;hh bǎi;hl duō;pd fèn;rp	58
+一百多封	yì;hh bǎi;hl duō;pd fēng;th	51
+一百多幅	yì;hh bǎi;hl duō;pd fú;sh	51
+一百多副	yì;hh bǎi;hl duō;pd fù;hs	43
 一百多个	yì;hh bǎi;hl duō;pd gè;rs	1309
+一百多根	yì;hh bǎi;hl duō;pd gēn;mv	50
 一百多号	yì;hh bǎi;hl duō;pd hào;kv	41
+一百多户	yì;hh bǎi;hl duō;pd hù;dp	49
+一百多回	yì;hh bǎi;hl duō;pd huí;sh	49
 一百多集	yì;hh bǎi;hl duō;pd jí;rm	414
 一百多家	yì;hh bǎi;hl duō;pd jiā;bd	210
+一百多架	yì;hh bǎi;hl duō;pd jià;vm	47
 一百多件	yì;hh bǎi;hl duō;pd jiàn;rp	374
 一百多间	yì;hh bǎi;hl duō;pd jiān;dl	293
+一百多届	yì;hh bǎi;hl duō;pd jiè;vh	57
+一百多节	yì;hh bǎi;hl duō;pd jié;cs	50
 一百多斤	yì;hh bǎi;hl duō;pd jīn;ps	113
+一百多具	yì;hh bǎi;hl duō;pd jù;sd	47
+一百多句	yì;hh bǎi;hl duō;pd jù;pk	41
+一百多卷	yì;hh bǎi;hl duō;pd juǎn;dv	42
+一百多颗	yì;hh bǎi;hl duō;pd kē;lh	59
+一百多棵	yì;hh bǎi;hl duō;pd kē;ml	46
 一百多块	yì;hh bǎi;hl duō;pd kuài;tv	323
+一百多款	yì;hh bǎi;hl duō;pd kuǎn;tp	42
+一百多粒	yì;hh bǎi;hl duō;pd lì;dd	54
 一百多里	yì;hh bǎi;hl duō;pd lǐ;lt	44
 一百多例	yì;hh bǎi;hl duō;pd lì;rh	40
+一百多辆	yì;hh bǎi;hl duō;pd liàng;hh	58
 一百多两	yì;hh bǎi;hl duō;pd liǎng;hd	3
+一百多轮	yì;hh bǎi;hl duō;pd lún;hr	46
+一百多枚	yì;hh bǎi;hl duō;pd méi;mp	48
 一百多门	yì;hh bǎi;hl duō;pd mén;dv	225
 一百多米	yì;hh bǎi;hl duō;pd mǐ;dm	170
+一百多面	yì;hh bǎi;hl duō;pd miàn;hh	52
 一百多名	yì;hh bǎi;hl duō;pd míng;pk	166
 一百多亩	yì;hh bǎi;hl duō;pd mǔ;dh	13
 一百多年	yì;hh bǎi;hl duō;pd nián;ps	1837
 一百多匹	yì;hh bǎi;hl duō;pd pǐ;hv	220
+一百多批	yì;hh bǎi;hl duō;pd pī;fh	59
+一百多篇	yì;hh bǎi;hl duō;pd piān;gc	56
 一百多平	yì;hh bǎi;hl duō;pd píng;hs	572
+一百多铺	yì;hh bǎi;hl duō;pd pù;jh	41
 一百多期	yì;hh bǎi;hl duō;pd qī;cy	180
+一百多起	yì;hh bǎi;hl duō;pd qǐ;tv	53
 一百多人	yì;hh bǎi;hl duō;pd rén;rd	562
+一百多任	yì;hh bǎi;hl duō;pd rèn;rp	44
+一百多扇	yì;hh bǎi;hl duō;pd shàn;dh	56
+一百多首	yì;hh bǎi;hl duō;pd shǒu;dh	43
+一百多双	yì;hh bǎi;hl duō;pd shuāng;vv	56
+一百多艘	yì;hh bǎi;hl duō;pd sōu;pp	51
 一百多岁	yì;hh bǎi;hl duō;pd suì;sd	176
+一百多所	yì;hh bǎi;hl duō;pd suǒ;pp	42
 一百多台	yì;hh bǎi;hl duō;pd tái;vk	351
+一百多趟	yì;hh bǎi;hl duō;pd tàng;tk	53
 一百多套	yì;hh bǎi;hl duō;pd tào;hd	25
 一百多天	yì;hh bǎi;hl duō;pd tiān;hd	207
 一百多条	yì;hh bǎi;hl duō;pd tiáo;pm	85
+一百多头	yì;hh bǎi;hl duō;pd tóu;dd	53
 一百多万	yì;hh bǎi;hl duō;pd wàn;hp	1269
 一百多位	yì;hh bǎi;hl duō;pd wèi;rd	148
+一百多项	yì;hh bǎi;hl duō;pd xiàng;hh	55
+一百多行	yì;hh bǎi;hl duō;pd xíng;ph	59
 一百多页	yì;hh bǎi;hl duō;pd yè;hr	129
 一百多亿	yì;hh bǎi;hl duō;pd yì;rv	144
 一百多元	yì;hh bǎi;hl duō;pd yuán;hv	122
+一百多员	yì;hh bǎi;hl duō;pd yuán;kr	50
 一百多张	yì;hh bǎi;hl duō;pd zhāng;vp	72
 一百多丈	yì;hh bǎi;hl duō;pd zhàng;hd	65
+一百多章	yì;hh bǎi;hl duō;pd zhāng;ds	44
+一百多枝	yì;hh bǎi;hl duō;pd zhī;mh	41
 一百多只	yì;hh bǎi;hl duō;pd zhī;kd	25
 一百多支	yì;hh bǎi;hl duō;pd zhī;hd	22
 一百多种	yì;hh bǎi;hl duō;pd zhǒng;ek	210
+一百多株	yì;hh bǎi;hl duō;pd zhū;mp	57
+一百多字	yì;hh bǎi;hl duō;pd zì;bh	48
+一百多宗	yì;hh bǎi;hl duō;pd zōng;bd	49
+一百多组	yì;hh bǎi;hl duō;pd zǔ;is	48
+一百多尊	yì;hh bǎi;hl duō;pd zūn;dd	58
+一百多座	yì;hh bǎi;hl duō;pd zuò;dt	55
 一百二十	yī;hh bǎi;hl èr;hh shí;hs	399
 一百法郎	yì;hh bǎi;hl fǎ;ut láng;dv	320
 一百分贝	yì;hh bǎi;hl fēn;pp bèi;sr	153
@@ -1242195,8 +1242349,8 @@ sort: by_weight
 壹本便利	yī;th běn;mh biàn;rh lì;es	414
 一本初衷	yì;hh běn;mh chū;dv zhōng;dd	3
 一本词典	yì;hh běn;mh cí;av diǎn;sd	639
-一本大书	yì;hh běn;mh dà;hd shū;vd	518
-一本大学	yì;hh běn;mh dà;hd xué;dh	349
+一本大书	yī;hh běn;mh dà;hd shū;vd	518
+一本大学	yī;hh běn;mh dà;hd xué;dh	349
 一本道人	yì;hh běn;mh dào;dz rén;rd	50
 一本二本	yì;hh běn;mh èr;hh běn;mh	430
 一本儿书	yì;hh běn;mh ér;pv shū;vd	171
@@ -1254729,6 +1254883,7 @@ sort: by_weight
 一艘潜艇	yì;hh sōu;pp qián;uh tǐng;pp	576
 一艘小船	yì;hh sōu;pp xiǎo;sd chuán;pp	141
 宜搜小说	yí;bh sōu;fp xiǎo;sd shuō;ad	207
+一艘新舰	yì;hh sōu;pp xīn;dp jiàn;ps	11
 一粟沧海	yí;hh sù;hm cāng;ur hǎi;up	50
 以塑代钢	yǐ;vr sù;dt dài;rh gāng;js	3
 以塑代木	yǐ;vr sù;dt dài;rh mù;md	99
@@ -1262120,7 +1262275,6 @@ sort: by_weight
 引物延伸	yǐn;vs wù;pp yán;pd shēn;rl	171
 印务章京	yìn;pv wù;pp zhāng;ds jīng;dd	230
 印务中心	yìn;pv wù;pp zhōng;ks xīn;xd	310
-银西高铁	yín;jv xī;hh gāo;dk tiě;jp	288
 银西高铁	yín;jv xī;hh gāo;dk tiě;jp	288
 因戏结缘	yīn;sh xì;vh jié;it yuán;iv	531
 因袭旧规	yīn;sh xí;hd jiù;sl guī;hs	45
@@ -1277952,7 +1278106,6 @@ sort: by_weight
 鱼香豆腐	yú;ph xiāng;el dòu;hh fu;dr	482
 渝湘高速	yú;ur xiāng;um gāo;dk sù;hz	464
 渝湘高铁	yú;ur xiāng;um gāo;dk tiě;jp	225
-渝湘高铁	yú;ur xiāng;um gāo;dk tiě;jp	225
 鱼香烘蛋	yú;ph xiāng;el hōng;qc dàn;vo	306
 鱼香鸡丝	yú;ph xiāng;el jī;vp sī;ii	698
 鱼翔九天	yú;ph xiáng;dv jiǔ;pv tiān;hd	45
@@ -1287913,7 +1288066,7 @@ sort: by_weight
 暂住证明	zàn;hl zhù;rd zhèng;ah míng;ly	369
 暂住制度	zàn;hl zhù;rd zhì;ps dù;dd	189
 赞助专享	zàn;pr zhù;sv zhuān;hd xiǎng;dh	45
-咱自己种	zán;kp zì;ph jǐ;vv zhǒng;ek	117
+咱自己种	zán;kp zì;ph jǐ;vv zhòng;ek	117
 攒足了劲	zǎn;fp zú;zr le;vs jìn;vv	306
 暂作阙疑	zàn;hl zuò;rp quē;dr yí;pv	52
 葬爱家族	zàng;cc ài;pd jiā;bd zú;dp	472
@@ -1287989,29 +1288142,18 @@ sort: by_weight
 藏医学家	zàng;cd yī;hv xué;dh jiā;bd	212
 藏医医院	zàng;cd yī;hv yī;hv yuàn;vb	310
 藏语的名	zàng;cd yǔ;ah de;pp míng;pk	50
-藏语电影	zàng;cd yǔ;ah diàn;lv yǐng;lp	162
 藏语借词	zàng;cd yǔ;ah jiè;rc cí;av	171
-葬于喀什	zàng;cc yú;hs kā;kb shí;rh	50
-藏语书籍	zàng;cd yǔ;ah shū;vd jí;gl	4
 藏乐汤坊	zàng;cd yuè;pd tāng;uv fāng;td	360
-葬在北邙	zàng;cc zài;ht běi;sp máng;dv	248
 葬之以礼	zàng;cc zhī;dd yǐ;vr lǐ;dv	266
 藏族吹肺	zàng;cd zú;dp chuī;kp fèi;yh	76
 藏族歌手	zàng;cd zú;dp gē;hp shǒu;fs	13
-藏族记者	zàng;cd zú;dp jì;av zhě;tl	50
 藏族拉伊	zàng;cd zú;dp lā;fd yī;rv	50
-藏族人民	zàng;cd zú;dp rén;rd mín;vv	85
-藏族神话	zàng;cd zú;dp shén;dl huà;ap	144
-藏族食品	zàng;cd zú;dp shí;rd pǐn;kk	144
-藏族诗人	zàng;cd zú;dp shī;at rén;rd	171
 藏族同胞	zàng;cd zú;dp tóng;sk bāo;yp	75
 藏族文化	zàng;cd zú;dp wén;dd huà;rp	60
 藏族先民	zàng;cd zú;dp xiān;pv mín;vv	279
 藏族血肠	zàng;cd zú;dp xuè;ph cháng;yv	76
-藏族学者	zàng;cd zú;dp xué;dh zhě;tl	270
 藏族演员	zàng;cd zú;dp yǎn;ub yuán;kr	261
 藏族乐器	zàng;cd zú;dp yuè;pd qì;kk	50
-藏族作家	zàng;cd zú;dp zuò;rp jiā;bd	297
 早癌筛查	zǎo;ls ái;ds shāi;gs chá;mh	306
 早安成都	zǎo;ls ān;bn chéng;hd dū;tv	302
 早安励志	zǎo;ls ān;bn lì;hv zhì;tx	189
@@ -1299676,7 +1299818,6 @@ sort: by_weight
 政府高层	zhèng;hp fǔ;dd gāo;dk céng;vd	788
 政府高官	zhèng;hp fǔ;dd gāo;dk guān;bh	239
 郑阜高铁	zhèng;dv fù;ps gāo;dk tiě;jp	225
-郑阜高铁	zhèng;dv fù;ps gāo;dk tiě;jp	225
 政府公布	zhèng;hp fǔ;dd gōng;pd bù;hs	1017
 政府公告	zhèng;hp fǔ;dd gōng;pd gào;pk	31
 政府公益	zhèng;hp fǔ;dd gōng;pd yì;dh	436
@@ -1300160,7 +1300301,6 @@ sort: by_weight
 整合蛋白	zhěng;hh hé;rk dàn;vo bái;pl	248
 整合服务	zhěng;hh hé;rk fú;yv wù;pp	644
 整合改造	zhěng;hh hé;rk gǎi;vp zào;pz	580
-郑合高铁	zhèng;dv hé;rk gāo;dk tiě;jp	333
 郑合高铁	zhèng;dv hé;rk gāo;dk tiě;jp	333
 政和工夫	zhèng;hp hé;ek gōng;hh fu;hd	225
 政和功夫	zhèng;hp hé;ek gōng;hv fu;hd	99
@@ -1301710,7 +1301850,6 @@ sort: by_weight
 政务资讯	zhèng;hp wù;pp zī;dr xùn;av	160
 郑西高速	zhèng;dv xī;hh gāo;dk sù;hz	288
 郑西高铁	zhèng;dv xī;hh gāo;dk tiě;jp	454
-郑西高铁	zhèng;dv xī;hh gāo;dk tiě;jp	454
 正析象管	zhèng;hh xī;mp xiàng;pd guǎn;gh	4
 郑西新区	zhèng;dv xī;hh xīn;dp qū;hv	99
 正弦摆线	zhèng;hh xián;vd bǎi;fs xiàn;ih	45
@@ -1301860,7 +1301999,6 @@ sort: by_weight
 郑姓宗祠	zhèng;dv xìng;np zōng;bd cí;dv	292
 正修工专	zhèng;hh xiū;rs gōng;hh zhuān;hd	144
 政修民理	zhèng;hp xiū;rs mín;vv lǐ;wl	99
-郑徐高铁	zhèng;dv xú;pr gāo;dk tiě;jp	562
 郑徐高铁	zhèng;dv xú;pr gāo;dk tiě;jp	562
 正虚邪恋	zhèng;hh xū;sh xié;hv liàn;dx	202
 正虚邪实	zhèng;hh xū;sh xié;hv shí;bd	3
@@ -1302044,7 +1302182,6 @@ sort: by_weight
 正优生学	zhèng;hh yōu;rh shēng;ph xué;dh	4
 政有所为	zhèng;hp yǒu;hy suǒ;pp wéi;dd	50
 蒸鱼豉油	zhēng;cq yú;ph chǐ;hh yóu;us	846
-郑渝高铁	zhèng;dv yú;ur gāo;dk tiě;jp	356
 郑渝高铁	zhèng;dv yú;ur gāo;dk tiě;jp	356
 正裕工业	zhèng;hh yù;dp gōng;hh yè;sh	50
 蒸渔鼓油	zhēng;cq yú;up gǔ;th yóu;us	90
@@ -1345515,6 +1345652,7 @@ sort: by_weight
 成年的孩子	chéng;hd nián;ps de;pp hái;vd zi;vh	10
 成年人癫痫	chéng;hd nián;ps rén;rd diān;dr xián;dm	10
 逞匹夫之勇	chěng;kz pǐ;hv fū;hd zhī;dd yǒng;vp	10
+撑墙高抬腿	chēng;fs qiáng;th gāo;dk tái;fv tuǐ;yv	10
 城阙辅三秦	chéng;th què;dr fǔ;hh sān;hh qín;he	10
 成群的牛羊	chéng;hd qún;vd de;pp niú;ps yáng;ds	10
 成人保健品	chéng;hd rén;rd bǎo;rk jiàn;rv pǐn;kk	10
@@ -1372486,7 +1372624,6 @@ sort: by_weight
 久久为黑疸	jiǔ;pd jiǔ;pd wéi;dd hēi;sq dǎn;dh	10
 九九消寒图	jiǔ;pv jiǔ;pv xiāo;us hán;bd tú;sh	10
 九九艳阳天	jiǔ;pv jiǔ;pv yàn;hp yáng;vl tiān;hd	10
-九九一十八	jiǔ;pv jiǔ;pv yī;hh shí;hs bā;pd	10
 久卡诺维奇	jiǔ;pd kǎ;sd nuò;ac wéi;ir qí;hs	10
 旧开智学校	jiù;sl kāi;hs zhì;pl xué;dh xiào;md	10
 旧科尔梅纳	jiù;sl kē;ed ěr;pd méi;mp nà;is	10
@@ -1374497,6 +1374634,7 @@ sort: by_weight
 可免费停车	kě;hs miǎn;pv fèi;vr tíng;rd chē;hs	10
 可免费游览	kě;hs miǎn;pv fèi;vr yóu;ud lǎn;sv	10
 科摩多集团	kē;ed mó;df duō;pd jí;rm tuán;sh	10
+科莫多巨蜥	kē;ed mò;cd duō;pd jù;hv xī;om	10
 科莫伦特岛	kē;ed mò;cd lún;rr tè;pt dǎo;ps	10
 科摩罗联盟	kē;ed mó;df luó;sd lián;hd méng;lh	10
 科目二考场	kē;ed mù;sh èr;hh kǎo;tv chǎng;tv	10
@@ -1380902,6 +1381040,7 @@ sort: by_weight
 梦幻街少女	mèng;md huàn;iv jiē;pt shào;sp nǚ;nh	10
 梦幻三剑士	mèng;md huàn;iv sān;hh jiàn;rs shì;th	10
 蒙吉萨战役	méng;cd jí;tk sà;cp zhàn;sh yì;pp	10
+孟加拉巨蜥	mèng;vh jiā;vk lā;fd jù;hv xī;om	10
 蒙疆经略使	méng;cd jiāng;vh jīng;iv lüè;sp shǐ;rh	10
 梦近在咫尺	mèng;md jìn;pz zài;ht zhǐ;vd chǐ;vd	10
 梦境守护者	mèng;md jìng;td shǒu;bd hù;fd zhě;tl	10
@@ -1382511,6 +1382650,7 @@ sort: by_weight
 南方和北方	nán;hs fāng;dp hé;ek běi;sp fāng;dp	10
 南方有蹄目	nán;hs fāng;dp yǒu;hy tí;zd mù;sh	10
 南方与北方	nán;hs fāng;dp yǔ;hh běi;sp fāng;dp	10
+南非博士茶	nán;hs fēi;ss bó;hh shì;th chá;cm	10
 南非共和国	nán;hs fēi;ss gòng;cd hé;ek guó;sh	10
 男妇科医生	nán;sp fù;nv kē;ed yī;hv shēng;ph	10
 男妇女主任	nán;sp fù;nv nǚ;nh zhǔ;dw rèn;rp	10
@@ -1397355,6 +1397495,7 @@ sort: by_weight
 数字货币不	shù;dp zì;bh huò;rr bì;ps bù;hd	10
 数字或字母	shù;dp zì;bh huò;hd zì;bh mǔ;vd	10
 数字转英文	shù;dp zì;bh zhuǎn;hh yīng;cd wén;dd	10
+数做了多少	shù;dp zuò;rh le;vs duō;pd shǎo;sp	10
 耍得团团转	shuǎ;hn de;pl tuán;sh tuán;sh zhuàn;hh	10
 耍点小聪明	shuǎ;hn diǎn;sq xiǎo;sd cōng;hd míng;ly	10
 耍什么花样	shuǎ;hn shén;rh me;pd huā;cv yàng;md	10
@@ -1417304,6 +1417445,8 @@ sort: by_weight
 又见白娘子	yòu;vd jiàn;sv bái;pl niáng;nd zǐ;vh	10
 邮件管理员	yóu;sv jiàn;rp guǎn;gh lǐ;wl yuán;kr	10
 邮件和日历	yóu;sv jiàn;rp hé;ek rì;lh lì;hp	10
+有件很重要	yǒu;hy jiàn;rp hěn;pv zhòng;pt yào;hn	12
+邮件很重要	yóu;sv jiàn;rp hěn;pv zhòng;pt yào;hn	10
 又见脚气中	yòu;vd jiàn;sv jiǎo;yt qì;pv zhōng;ks	10
 由俭入奢易	yóu;sh jiǎn;rr rù;pd shē;hl yì;lp	10
 又见桃花源	yòu;vd jiàn;sv táo;mp huā;cv yuán;uh	10
@@ -1420305,17 +1420448,6 @@ sort: by_weight
 葬尸湖乐队	zàng;cc shī;vp hú;uh yuè;pd duì;vr	10
 藏西岩黄耆	zàng;cd xī;hh yán;sk huáng;cd qí;tl	10
 脏行气于腑	zāng;yd xíng;ph qì;pv yú;hs fǔ;yd	10
-葬于爱丁堡	zàng;cc yú;hs ài;pd dīng;hs bǎo;rt	10
-葬于多伦多	zàng;cc yú;hs duō;pd lún;rr duō;pd	10
-葬于广州市	zàng;cc yú;hs guǎng;dp zhōu;ds shì;ds	10
-葬于哈尔滨	zàng;cc yú;hs hā;kr ěr;pd bīn;ub	10
-葬于黑龙江	zàng;cc yú;hs hēi;sq lóng;hd jiāng;uh	10
-葬于加拿大	zàng;cc yú;hs jiā;vk ná;rf dà;hd	10
-葬于莫斯科	zàng;cc yú;hs mò;cd sī;cp kē;ed	10
-葬于纽约州	zàng;cc yú;hs niǔ;iv yuē;ip zhōu;ds	10
-葬于清东陵	zàng;cc yú;hs qīng;uh dōng;hd líng;vt	10
-葬于清西陵	zàng;cc yú;hs qīng;uh xī;hh líng;vt	10
-葬于意大利	zàng;cc yú;hs yì;dx dà;hd lì;es	10
 早安和晚安	zǎo;ls ān;bn hé;ek wǎn;lp ān;bn	10
 早安少女组	zǎo;ls ān;bn shào;sp nǚ;nh zǔ;is	10
 早餐和晚餐	zǎo;ls cān;sd hé;ek wǎn;lp cān;sd	10
@@ -1461596,8 +1461728,6 @@ sort: by_weight
 私营独资企业	sī;ev yíng;ck dú;po zī;dr qǐ;rh yè;sh	10
 寺右新马路站	sì;td yòu;hk xīn;dp mǎ;vh lù;zp zhàn;ds	10
 似与不似之间	sì;rv yǔ;hh bú;hd sì;rv zhī;dd jiān;dl	10
-死于华盛顿州	sǐ;hv yú;hs huá;rs shèng;hh dùn;hh zhōu;ds	10
-死于肯塔基州	sǐ;hv yú;hs kěn;sy tǎ;tc jī;ct zhōu;ds	10
 私域流量运营	sī;ev yù;th liú;ud liàng;lt yùn;hz yíng;ck	10
 丝萸养血益肾	sī;ii yú;cd yǎng;ds xuè;ph yì;dh shèn;sy	10
 思源实验学校	sī;sx yuán;uh shí;bd yàn;vr xué;dh xiào;md	10
@@ -1462783,34 +1462913,20 @@ sort: by_weight
 天际万豪酒店	tiān;hd jì;vh wàn;hp háo;dd jiǔ;uh diàn;dk	10
 添加背景音乐	tiān;uh jiā;vk bèi;sy jǐng;ld yīn;dl yuè;pd	10
 恬甲村古建筑	tián;xp jiǎ;ls cūn;mh gǔ;hk jiàn;vd zhù;gd	10
-天健世纪花园	tiān;hd jiàn;rv shì;cv jì;iv huā;cv yuán;sh	10
-天津大立教育	tiān;hd jīn;uv dà;hd lì;dh jiào;tp yù;dy	10
-天津大学校史	tiān;hd jīn;uv dà;hd xué;dh xiào;md shǐ;kd	10
-天津鼎拓科技	tiān;hd jīn;uv dǐng;sv tuò;fh kē;ed jì;fh	10
-天津高速公路	tiān;hd jīn;uv gāo;dk sù;hz gōng;pd lù;zp	10
-天津海关关长	tiān;hd jīn;uv hǎi;up guān;dd guān;dd cháng;pd	10
 天津海事法院	tiān;hd jīn;uv hǎi;up shì;hs fǎ;ut yuàn;vb	10
 天津会议专条	tiān;hd jīn;uv huì;rd yì;ad zhuān;hd tiáo;pm	10
 天津机电学院	tiān;hd jīn;uv jī;mp diàn;lv xué;dh yuàn;vb	10
 天津金城银行	tiān;hd jīn;uv jīn;jh chéng;th yín;jv háng;ph	10
 天津利中酸厂	tiān;hd jīn;uv lì;es zhōng;ks suān;hv chǎng;hp	10
-天津联华停车	tiān;hd jīn;uv lián;hd huá;rs tíng;rd chē;hs	10
 天津烈士陵园	tiān;hd jīn;uv liè;hq shì;th líng;vt yuán;sh	10
-天津旅游景点	tiān;hd jīn;uv lǚ;dp yóu;ud jǐng;ld diǎn;sq	10
 天津农商银行	tiān;hd jīn;uv nóng;dd shāng;dk yín;jv háng;ph	10
 天津师范大学	tiān;hd jīn;uv shī;sh fàn;cv dà;hd xué;dh	10
-天津师范学院	tiān;hd jīn;uv shī;sh fàn;cv xué;dh yuàn;vb	10
 天津食品集团	tiān;hd jīn;uv shí;rd pǐn;kk jí;rm tuán;sh	10
 天津水师学堂	tiān;hd jīn;uv shuǐ;ud shī;sh xué;dh táng;st	10
 天津泰达股份	tiān;hd jīn;uv tài;hu dá;hz gǔ;yp fèn;rp	10
-天津泰达球员	tiān;hd jīn;uv tài;hu dá;hz qiú;wh yuán;kr	10
-天津泰达权健	tiān;hd jīn;uv tài;hu dá;hz quán;mv jiàn;rv	10
-天津泰达亿利	tiān;hd jīn;uv tài;hu dá;hz yì;rv lì;es	10
 天津天狮学院	tiān;hd jīn;uv tiān;hd shī;ps xué;dh yuàn;vb	10
 天津外贸学院	tiān;hd jīn;uv wài;ps mào;pr xué;dh yuàn;vb	10
-天津文率科技	tiān;hd jīn;uv wén;dd lǜ;ds kē;ed jì;fh	10
 天津武备学堂	tiān;hd jīn;uv wǔ;hd bèi;ph xué;dh táng;st	10
-天津许云鹤案	tiān;hd jīn;uv xǔ;ap yún;hd hè;dp àn;bm	10
 天津耀华中学	tiān;hd jīn;uv yào;sv huá;rs zhōng;ks xué;dh	10
 天津医科大学	tiān;hd jīn;uv yī;hv kē;ed dà;hd xué;dh	10
 天津一汽丰田	tiān;hd jīn;uv yī;hh qì;up fēng;hs tián;sh	10
@@ -1473117,9 +1473233,6 @@ sort: by_weight
 葬送的芙莉莲	zàng;cc sòng;dz de;pp fú;cd lì;cs lián;cz	10
 藏王松赞干布	zàng;cd wáng;wh sōng;mp zàn;pr gān;hs bù;hs	10
 脏兮兮的东西	zāng;yd xī;pv xī;pv de;pp dōng;hd xi;hh	10
-葬于肯塔基州	zàng;cc yú;hs kěn;sy tǎ;tc jī;ct zhōu;ds	10
-葬于明十三陵	zàng;cc yú;hs míng;ly shí;hs sān;hh líng;vt	10
-葬于圣彼得堡	zàng;cc yú;hs shèng;vt bǐ;pv dé;pl bǎo;rt	10
 葬之汾水之上	zàng;cc zhī;dd fén;up shuǐ;ud zhī;dd shàng;sh	10
 早不来晚不来	zǎo;ls bù;hd lái;hm wǎn;lp bù;hd lái;hm	10
 早餐吃什么好	zǎo;ls cān;sd chī;kp shén;rh me;pd hǎo;nv	10
@@ -1481548,7 +1481661,7 @@ sort: by_weight
 打败天下无敌手	dǎ;fh bài;sp tiān;hd xià;hd wú;hv dí;pp shǒu;fs	10
 打扮得光鲜亮丽	dǎ;fh bàn;fp de;pl guāng;sv xiān;pd liàng;dv lì;hd	10
 打扮得花枝招展	dǎ;fh bàn;fp de;pl huā;cv zhī;mh zhāo;fv zhǎn;vd	10
-打扮得漂漂亮亮	dǎ;fh bàn;fp de;pl piāo;uh piāo;uh liàng;dv liàng;dv	10
+打扮得漂漂亮亮	dǎ;fh bàn;fp de;pl piào;uh piào;uh liàng;dv liàng;dv	10
 达比克草原战役	dá;hz bǐ;hp kè;hv cǎo;cs yuán;hd zhàn;sh yì;pp	10
 大比例尺地形图	dà;hd bǐ;hp lì;rh chǐ;vd dì;tv xíng;hp tú;sh	10
 大般若波罗蜜经	dà;hd bō;pp rě;ck bō;uv luó;sd mì;bo jīng;iv	10
