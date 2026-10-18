@@ -8,8 +8,8 @@ schema:
   author:
     - amzxyz
   description: |
-    请勾选【万象拼音PRO】以启用，万象拼音 支持常见双拼方案和全拼输入，辅助码同时支持 全拼拼音、墨奇码、鹤形、自然码、虎码首末、五笔前2、汉心码、首右，拥有超越大厂的输入体验！带声调的词库，支持语法模型，全拼、简拼、整句、声调辅助筛选
-    请在文本框中直接输入对应方案的代码，例如：全拼输入“/pinyin”，自然码输入“/zrm”，小鹤输入“/flypy”（包含“/mspy”、“/sogou”、“/pyjj”等更多代码详见 README.md）。
+    请勾选【万象拼音PRO】启用PRO版：带调词库、语法模型，支持全拼、双拼、整句及声调辅助筛选。
+    在方案文本框输入代码：/pinyin 全拼；/flypy 小鹤；/mspy 微软；/zrm 自然码；/sogou 搜狗；/znabc 智能ABC；/ziguang 紫光；/pyjj 拼音加加；/gbpy 国标；/lxsq 乱序17；/ltsp 蓝天；/sdpy 首道；/wxsp 万象；/zrlong 自然龙；/hxlong 汉心龙；/jjf 间接辅助；/zjf 直接辅助。完整说明见 README.md。
   dependencies:
     - wanxiang_mixedcode  #中英文混合词汇
     - wanxiang_reverse  #部件拆字，反查及辅码
@@ -89,7 +89,7 @@ engine:
     - punct_translator  #配合 punct_segmentor 转换标点符号
     - script_translator  #脚本翻译器，用于拼音、粤拼等基于音节表的输入方案
     - lua_translator@*wanxiang.version_display  #输入'/wx'，显示万象项目网址和当前版本号
-    - lua_translator@*wanxiang.set_schema  #输入'/zrm'，快速切换为自然码双拼， /flypy→小鹤双拼 /mspy→微软双拼 /zrm→自然码 /sogou→搜狗双拼 /abc→智能ABC /ziguang→紫光双拼 /pyjj→拼音加加 /gbpy→国标双拼 /lxsq→乱序17 /pinyin→全拼
+    - lua_translator@*wanxiang.set_schema  #输入类似'/zrm'，快速切换为自然码双拼其余阅读文档
     - lua_translator@*wanxiang.shijian  #农历、日期、节气、节日、时间、周、问候模板等等，触发清单看下文
     - lua_translator@*wanxiang.unicode_conversion*T  #通过输入大写U引导，并输入Unicode编码获得汉字输出
     - lua_translator@*wanxiang.number_conversion  #数字、金额大写，通过输入大写R1234获得候选输出
