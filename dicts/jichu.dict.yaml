@@ -2752,7 +2752,7 @@ sort: by_weight
 班服	bān fú	233
 班副	bān fù	186
 班干	bān gàn	361
-半干	bàn gàn	266
+半干	bàn gān	266
 班岗	bān gǎng	22
 半钢	bàn gāng	21
 半高	bàn gāo	166
@@ -35342,7 +35342,7 @@ sort: by_weight
 干道	gàn dào	4047
 干到	gàn dào	405
 干倒	gàn dào	147
-干的	gàn de	14196
+干的	gān de	14196
 干得	gàn de	2078
 甘德	gān dé	1149
 肝的	gān de	122
@@ -40405,6 +40405,7 @@ sort: by_weight
 罐里	guàn lǐ	172
 关里	guān lǐ	119
 冠礼	guàn lǐ	95
+官立	guān lì
 关联	guān lián	23647
 关连	guān lián	1188
 贯连	guàn lián	395
@@ -42254,6 +42255,7 @@ sort: by_weight
 果王	guǒ wáng	134
 国亡	guó wáng	107
 过望	guò wàng	85
+国网	guó wǎng
 果味	guǒ wèi	1366
 国威	guó wēi	1298
 果位	guǒ wèi	1134
@@ -44740,6 +44742,7 @@ sort: by_weight
 贺某	hè mǒu	77
 和睦	hé mù	1225
 喝奶	hē nǎi	838
+河南	hé nán	16221
 何难	hé nán	958
 盒内	hé nèi	1608
 河内	hé nèi	260
@@ -46485,8 +46488,8 @@ sort: by_weight
 红塔	hóng tǎ	276
 哄他	hǒng tā	113
 宏塔	hóng tǎ	90
-哄抬	hōng tái	449
-鸿泰	hóng tài	355
+鸿泰	hóng tài	449
+哄抬	hōng tái	355
 洪泰	hóng tài	314
 宏泰	hóng tài	283
 弘泰	hóng tài	230
@@ -56754,7 +56757,6 @@ sort: by_weight
 校释	jiào shì	119
 角式	jiǎo shì	95
 角石	jiǎo shí	76
-校时	jiào shí	76
 浇湿	jiāo shī	60
 教授	jiào shòu	90771
 交手	jiāo shǒu	3576
@@ -102354,7 +102356,7 @@ sort: by_weight
 烧干	shāo gān	493
 少干	shǎo gàn	348
 稍感	shāo gǎn	160
-稍干	shāo gàn	128
+稍干	shāo gān	128
 哨岗	shào gǎng	598
 韶钢	sháo gāng	568
 稍高	shāo gāo	2383
@@ -104285,6 +104287,7 @@ sort: by_weight
 盛利	shèng lì	38
 圣力	shèng lì	30
 省吏	shěng lì	24
+省立	shěng lì
 声量	shēng liàng	986
 省料	shěng liào	75
 生料	shēng liào	71
@@ -118037,7 +118040,7 @@ sort: by_weight
 停服	tíng fú	813
 听感	tīng gǎn	3743
 挺赶	tǐng gǎn	73
-挺干	tǐng gàn	73
+挺干	tǐng gān	73
 挺高	tǐng gāo	1868
 听歌	tīng gē	10927
 亭阁	tíng gé	2381
@@ -132412,10 +132415,10 @@ sort: by_weight
 晓莹	xiǎo yíng	58
 小赢	xiǎo yíng	46
 小瑛	xiǎo yīng	36
-小勇	xiǎo yǒng	5567
-效用	xiào yòng	445
+效用	xiào yòng	5567
+骁勇	xiāo yǒng	445
 小用	xiǎo yòng	367
-骁勇	xiāo yǒng	293
+小勇	xiǎo yǒng	293
 晓勇	xiǎo yǒng	234
 啸咏	xiào yǒng	118
 校友	xiào yǒu	15483
@@ -162320,7 +162323,7 @@ sort: by_weight
 最富	zuì fù	666
 最该	zuì gāi	961
 嘴干	zuǐ gān	1008
-最干	zuì gàn	958
+最干	zuì gān	958
 最高	zuì gāo	91675
 最搞	zuì gǎo	73
 最乖	zuì guāi	75
@@ -165791,6 +165794,7 @@ sort: by_weight
 安全型	ān quán xíng	559
 安全靴	ān quán xuē	171
 安全椅	ān quán yǐ	9
+按权益	àn quán yì	8
 安全域	ān quán yù	22
 安全员	ān quán yuán	1740
 安全月	ān quán yuè	621
@@ -165820,6 +165824,7 @@ sort: by_weight
 按人群	àn rén qún	346
 按人数	àn rén shù	675
 按人算	àn rén suàn	459
+按人体	àn rén tǐ	387
 按人头	àn rén tóu	358
 按任务	àn rèn wù	472
 安仁溪	ān rén xī	180
@@ -166228,11 +166233,15 @@ sort: by_weight
 按下载	àn xià zài	459
 按现场	àn xiàn chǎng	891
 安鲜达	ān xiān dá	38
+安县的	ān xiàn de	729
 安闲地	ān xián dì	364
+按宪法	àn xiàn fǎ	356
 按先后	àn xiān hòu	540
 按现价	àn xiàn jià	400
 按现金	àn xiàn jīn	549
 按线路	àn xiàn lù	324
+安县人	ān xiàn rén	855
+安先生	ān xiān shēng	796
 按显示	àn xiǎn shì	441
 按现时	àn xiàn shí	315
 按现行	àn xiàn xíng	148
@@ -166256,6 +166265,7 @@ sort: by_weight
 俺想要	ǎn xiǎng yào	288
 按消费	àn xiāo fèi	544
 按效果	àn xiào guǒ	567
+安小姐	ān xiǎo jiě	788
 按销量	àn xiāo liàng	562
 按小时	àn xiǎo shí	810
 按销售	àn xiāo shòu	734
@@ -166344,6 +166354,7 @@ sort: by_weight
 按压到	àn yā dào	423
 按压法	àn yā fǎ	342
 按压后	àn yā hòu	518
+按压会	àn yā huì	428
 按压就	àn yā jiù	477
 按压了	àn yā le	504
 按压瓶	àn yā píng	392
@@ -166502,6 +166513,7 @@ sort: by_weight
 按月交	àn yuè jiāo	22
 按月龄	àn yuè líng	702
 按月领	àn yuè lǐng	293
+按月日	àn yuè rì	608
 暗月石	àn yuè shí	320
 按月算	àn yuè suàn	75
 按月向	àn yuè xiàng	418
@@ -166520,6 +166532,7 @@ sort: by_weight
 安葬费	ān zàng fèi	38
 安葬了	ān zàng le	621
 安葬时	ān zàng shí	374
+安藏王	ān zàng wáng	234
 安葬在	ān zàng zài	166
 安葬着	ān zàng zhe	13
 暗噪声	àn zào shēng	45
@@ -166538,7 +166551,9 @@ sort: by_weight
 按账户	àn zhàng hù	9
 按章节	àn zhāng jié	580
 按账龄	àn zhàng líng	585
+安掌门	ān zhǎng mén	13
 按账面	àn zhàng miàn	428
+按照表	àn zhào biǎo	594
 按招标	àn zhāo biāo	350
 按照每	àn zhào měi	1022
 按照某	àn zhào mǒu	922
@@ -166547,9 +166562,11 @@ sort: by_weight
 按照你	àn zhào nǐ	1112
 按照年	àn zhào nián	1094
 按照您	àn zhào nín	796
+按照谁	àn zhào shuí	675
 按照这	àn zhào zhè	411
 按着打	àn zhe dǎ	148
 按着点	àn zhe diǎn	526
+按这对	àn zhè duì	454
 俺这儿	ǎn zhè er	302
 按这个	àn zhè ge	2452
 俺这个	ǎn zhè ge	585
@@ -166563,6 +166580,7 @@ sort: by_weight
 按这位	àn zhè wèi	418
 按着我	àn zhe wǒ	648
 按这样	àn zhè yàng	110
+按这一	àn zhè yī	468
 按这种	àn zhè zhǒng	305
 安贞店	ān zhēn diàn	567
 安贞里	ān zhēn lǐ	13
@@ -166644,6 +166662,7 @@ sort: by_weight
 按住他	àn zhù tā	720
 按住它	àn zhù tā	429
 按主题	àn zhǔ tí	706
+按住图	àn zhù tú	616
 按住我	àn zhù wǒ	626
 按转让	àn zhuǎn ràng	360
 按专题	àn zhuān tí	396
@@ -167965,6 +167984,11 @@ sort: by_weight
 把此项	bǎ cǐ xiàng	428
 把刺绣	bǎ cì xiù	374
 把词语	bǎ cí yǔ	356
+把瓷砖	bǎ cí zhuān	396
+把葱白	bǎ cōng bái	356
+把葱段	bǎ cōng duàn	338
+把葱花	bǎ cōng huā	536
+把葱姜	bǎ cōng jiāng	612
 把从前	bǎ cóng qián	585
 把葱切	bǎ cōng qiè	396
 把从事	bǎ cóng shì	378
@@ -168879,6 +168903,7 @@ sort: by_weight
 把高中	bǎ gāo zhōng	688
 把稿子	bǎ gǎo zi	598
 八个吧	bā gè ba	410
+八个八	bā gè bā	300
 八个半	bā gè bàn	25
 八个班	bā gè bān	22
 把隔壁	bǎ gé bì	657
@@ -168943,6 +168968,7 @@ sort: by_weight
 把给我	bǎ gěi wǒ	567
 把根部	bǎ gēn bù	364
 把根据	bǎ gēn jù	378
+拔根烟	bá gēn yān	4
 把根扎	bǎ gēn zhā	356
 把耕地	bǎ gēng dì	346
 把更多	bǎ gèng duō	355
@@ -171716,6 +171742,7 @@ sort: by_weight
 八千点	bā qiān diǎn	6
 把钱都	bǎ qián dōu	846
 把前端	bǎ qián duān	472
+把前段	bǎ qián duàn	296
 八千多	bā qiān duō	405
 八千二	bā qiān èr	806
 把钱放	bǎ qián fàng	864
@@ -174000,6 +174027,7 @@ sort: by_weight
 把五四	bǎ wǔ sì	315
 把舞台	bǎ wǔ tái	572
 把物体	bǎ wù tǐ	572
+八五五	bā wǔ wǔ	72
 把武侠	bǎ wǔ xiá	423
 巴雾峡	bā wù xiá	217
 把无线	bǎ wú xiàn	558
@@ -178843,8 +178871,8 @@ sort: by_weight
 半辅助	bàn fǔ zhù	284
 半干白	bàn gān bái	43
 班干部	bān gàn bù	980
-半干的	bàn gàn de	97
-半干法	bàn gàn fǎ	13
+半干的	bàn gān de	97
+半干法	bàn gān fǎ	13
 半干旱	bàn gān hàn	144
 板干河	bǎn gān hé	4
 半干时	bàn gān shí	585
@@ -183262,7 +183290,7 @@ sort: by_weight
 包一个	bāo yí gè	144
 报一个	bào yí gè	115
 抱一会	bào yí huì	652
-报一科	bào yī kē	256
+报一科	bào yì kē	256
 包依赖	bāo yī lài	13
 保义郎	bǎo yì láng	320
 宝邑路	bǎo yì lù	495
@@ -213308,8 +213336,12 @@ sort: by_weight
 长安杯	cháng ān bēi	310
 长安城	cháng ān chéng	1476
 长安春	cháng ān chūn	306
+长安邨	cháng ān cūn	500
+长安道	cháng ān dào	44
 长安的	cháng ān de	990
+长安店	cháng ān diàn	446
 长安东	cháng ān dōng	3
+长安府	cháng ān fǔ	6
 长安号	cháng ān hào	3
 长安和	cháng ān hé	657
 长安后	cháng ān hòu	644
@@ -213318,8 +213350,11 @@ sort: by_weight
 长安居	cháng ān jū	418
 长安客	cháng ān kè	3
 长安了	cháng ān le	400
+长安里	cháng ān lǐ	436
+长安岭	cháng ān lǐng	180
 长安路	cháng ān lù	3
 长安乱	cháng ān luàn	60
+长安门	cháng ān mén	446
 常按摩	cháng àn mó	724
 长安呢	cháng ān ne	288
 长安宁	cháng ān níng	72
@@ -213335,6 +213370,8 @@ sort: by_weight
 长安行	cháng ān xíng	315
 长安夜	cháng ān yè	6
 长安一	cháng ān yī	16
+长安驿	cháng ān yì	14
+长安营	cháng ān yíng	342
 长安远	cháng ān yuǎn	306
 长按住	cháng àn zhù	320
 长安组	cháng ān zǔ	130
@@ -225411,6 +225448,7 @@ sort: by_weight
 出效率	chū xiào lǜ	666
 出校门	chū xiào mén	892
 出小区	chū xiǎo qū	828
+出校时	chū xiào shí	60
 初校样	chū xiào yàng	4
 出效益	chū xiào yì	612
 出校园	chū xiào yuán	113
@@ -243893,6 +243931,7 @@ sort: by_weight
 大馅饼	dà xiàn bǐng	544
 大弦长	dà xián cháng	153
 大县城	dà xiàn chéng	468
+大显存	dà xiǎn cún	23
 大仙儿	dà xiān ér	526
 打先发	dǎ xiān fā	16
 大宪法	dà xiàn fǎ	14
@@ -249094,7 +249133,7 @@ sort: by_weight
 单干吧	dān gàn ba	207
 但感到	dàn gǎn dào	500
 担杆岛	dān gān dǎo	270
-但干的	dàn gàn de	387
+但干的	dàn gān de	387
 但感动	dàn gǎn dòng	405
 单干户	dān gàn hù	38
 但干货	dàn gān huò	356
@@ -284987,7 +285026,6 @@ sort: by_weight
 反交错	fǎn jiāo cuò	16
 反交点	fǎn jiāo diǎn	90
 反交换	fǎn jiāo huàn	392
-返校时	fǎn jiào shí	57
 反教育	fǎn jiào yù	508
 反角柱	fǎn jiǎo zhù	513
 反阶步	fǎn jiē bù	45
@@ -285771,6 +285809,7 @@ sort: by_weight
 返校前	fǎn xiào qián	47
 犯小人	fàn xiǎo rén	612
 返校日	fǎn xiào rì	44
+返校时	fǎn xiào shí	57
 反斜杠	fǎn xié gàng	107
 反邪教	fǎn xié jiào	19
 反斜面	fǎn xié miàn	495
@@ -301693,8 +301732,8 @@ sort: by_weight
 干到死	gàn dào sǐ	441
 感到疼	gǎn dào téng	824
 感到痛	gǎn dào tòng	958
-干的啊	gàn de a	508
-干的吧	gàn de ba	572
+干的啊	gān de a	508
+干的吧	gān de ba	572
 干得动	gàn de dòng	22
 干得多	gàn de duō	126
 甘德尔	gān dé ěr	306
@@ -301703,22 +301742,22 @@ sort: by_weight
 干得好	gàn de hǎo	939
 干得很	gàn de hěn	22
 甘德湖	gān dé hú	117
-干的活	gàn de huó	904
+干的活	gān de huó	904
 赶得及	gǎn de jí	44
 干得久	gàn de jiǔ	13
 干得快	gàn de kuài	110
-干的了	gàn de le	644
+干的了	gān de le	644
 干得了	gàn de liǎo	78
-干的么	gàn de me	405
-干的没	gàn de méi	621
+干的么	gān de me	405
+干的没	gān de méi	621
 干德门	gàn dé mén	374
 擀的面	gǎn de miàn	454
-干的呢	gàn de ne	522
+干的呢	gān de ne	522
 干德年	gàn dé nián	346
-干的啥	gàn de shá	288
+干的啥	gān de shá	288
 赶得上	gǎn de shàng	713
-干的事	gàn de shì	2324
-干的水	gàn de shuǐ	536
+干的事	gān de shì	2324
+干的水	gān de shuǐ	536
 干得完	gàn de wán	238
 干得像	gàn de xiàng	16
 敢得罪	gǎn dé zuì	53
@@ -323618,7 +323657,7 @@ sort: by_weight
 国医节	guó yī jié	297
 过一久	guò yì jiǔ	252
 过一刻	guò yí kè	634
-过一科	guò yī kē	331
+过一科	guò yì kē	331
 过亿了	guò yì le	536
 过一门	guò yì mén	270
 过一年	guò yì nián	1300
@@ -332666,17 +332705,58 @@ sort: by_weight
 喝奶时	hē nǎi shí	504
 河南啊	hé nán a	315
 河南岸	hé nán àn	47
+河南吧	hé nán ba	234
+河南版	hé nán bǎn	328
+河南办	hé nán bàn	277
+河南北	hé nán běi	756
+河南兵	hé nán bīng	315
 和南部	hé nán bù	1012
+河南菜	hé nán cài	652
+河南陈	hé nán chén	387
 河南道	hé nán dào	28
+河南的	hé nán de	1120
+河南东	hé nán dōng	684
+河南段	hé nán duàn	576
+河南队	hé nán duì	16
+河南二	hé nán èr	544
+河南分	hé nán fēn	706
 河南府	hé nán fǔ	724
+河南高	hé nán gāo	702
+河南好	hé nán hǎo	436
+河南话	hé nán huà	336
+河南籍	hé nán jí	666
+河南贾	hé nán jiǎ	364
 河南街	hé nán jiē	540
 河南郡	hé nán jùn	50
+河南可	hé nán kě	441
 河南里	hé nán lǐ	306
 河南路	hé nán lù	9
+河南面	hé nán miàn	450
+河南农	hé nán nóng	774
+河南女	hé nán nǚ	612
+河南区	hé nán qū	522
+河南人	hé nán rén	1784
+河南赛	hé nán sài	454
+河南三	hé nán sān	662
+河南山	hé nán shān	882
+河南上	hé nán shàng	580
 河南省	hé nán shěng	1080
 和男生	hé nán shēng	43
+河南时	hé nán shí	554
+河南宋	hé nán sòng	320
+河南台	hé nán tái	396
+河南町	hé nán tǐng	270
+河南网	hé nán wǎng	544
+河南王	hé nán wáng	452
+河南西	hé nán xī	648
+河南也	hé nán yě	598
+河南一	hé nán yī	882
 和男友	hé nán yǒu	703
+河南站	hé nán zhàn	9
 和南站	hé nán zhàn	8
+河南张	hé nán zhāng	328
+河南这	hé nán zhè	652
+河南中	hé nán zhōng	878
 和内存	hé nèi cún	1084
 和内地	hé nèi dì	918
 河内郡	hé nèi jùn	107
@@ -352472,7 +352552,7 @@ sort: by_weight
 会感到	huì gǎn dào	1580
 会赶到	huì gǎn dào	437
 会干得	huì gàn de	734
-会干的	huì gàn de	414
+会干的	huì gān de	414
 会干掉	huì gàn diào	572
 会感动	huì gǎn dòng	896
 会感恩	huì gǎn ēn	904
@@ -372279,7 +372359,6 @@ sort: by_weight
 监交人	jiān jiāo rén	360
 尖角煞	jiān jiǎo shā	315
 尖叫声	jiān jiào shēng	769
-建校时	jiàn jiào shí	422
 尖叫时	jiān jiào shí	410
 建交时	jiàn jiāo shí	346
 尖椒丝	jiān jiāo sī	387
@@ -373574,6 +373653,7 @@ sort: by_weight
 建小区	jiàn xiǎo qū	770
 尖啸声	jiān xiào shēng	38
 减小时	jiǎn xiǎo shí	634
+建校时	jiàn xiào shí	422
 渐消失	jiàn xiāo shī	43
 减小腿	jiǎn xiǎo tuǐ	518
 建小学	jiàn xiǎo xué	522
@@ -389798,7 +389878,6 @@ sort: by_weight
 金教练	jīn jiào liàn	338
 近郊区	jìn jiāo qū	91
 进教室	jìn jiào shì	972
-进校时	jìn jiào shí	418
 金教授	jīn jiào shòu	662
 金交所	jīn jiāo suǒ	496
 进教堂	jìn jiào táng	626
@@ -391788,6 +391867,7 @@ sort: by_weight
 进校门	jìn xiào mén	188
 进小区	jìn xiǎo qū	846
 近小时	jìn xiǎo shí	954
+进校时	jìn xiào shí	418
 尽孝心	jìn xiào xīn	47
 进小学	jìn xiǎo xué	608
 金小鱼	jīn xiǎo yú	3
@@ -406962,7 +407042,7 @@ sort: by_weight
 烤一烤	kǎo yì kǎo	153
 靠一靠	kào yí kào	122
 铐一铐	kào yī kào	52
-考一科	kǎo yī kē	198
+考一科	kǎo yì kē	198
 靠毅力	kào yì lì	572
 考一门	kǎo yì mén	251
 靠意念	kào yì niàn	428
@@ -413526,7 +413606,7 @@ sort: by_weight
 快改善	kuài gǎi shàn	680
 快感啊	kuài gǎn a	418
 快感吧	kuài gǎn ba	495
-快干的	kuài gàn de	41
+快干的	kuài gān de	41
 快感动	kuài gǎn dòng	446
 快干活	kuài gàn huó	400
 快干胶	kuài gān jiāo	288
@@ -424084,7 +424164,6 @@ sort: by_weight
 李教练	lǐ jiào liàn	382
 立交路	lì jiāo lù	472
 立交桥	lì jiāo qiáo	562
-离校时	lí jiào shí	53
 李教授	lǐ jiào shòu	226
 力较小	lì jiào xiǎo	850
 理解啊	lǐ jiě a	832
@@ -425275,6 +425354,7 @@ sort: by_weight
 粒小麦	lì xiǎo mài	540
 离校前	lí xiào qián	69
 立消散	lì xiāo sàn	38
+离校时	lí xiào shí	53
 李校长	lǐ xiào zhǎng	82
 里写了	lǐ xiě le	850
 砾屑岩	lì xiè yán	45
@@ -431684,7 +431764,7 @@ sort: by_weight
 另一句	lìng yí jù	734
 另一颗	lìng yì kē	257
 另一棵	lìng yì kē	231
-另一科	lìng yī kē	208
+另一科	lìng yì kē	208
 另一块	lìng yí kuài	625
 另一款	lìng yì kuǎn	1071
 另一类	lìng yí lèi	2251
@@ -444677,7 +444757,7 @@ sort: by_weight
 没敢吃	méi gǎn chī	855
 没感到	méi gǎn dào	83
 没赶到	méi gǎn dào	25
-没干的	méi gàn de	544
+没干的	méi gān de	544
 没敢点	méi gǎn diǎn	756
 没干掉	méi gàn diào	436
 没敢动	méi gǎn dòng	63
@@ -449077,7 +449157,7 @@ sort: by_weight
 每一局	měi yì jú	617
 每一刻	měi yí kè	816
 每一颗	měi yì kē	671
-每一科	měi yī kē	489
+每一科	měi yì kē	489
 每一课	měi yí kè	433
 没一刻	méi yí kè	336
 每一克	měi yí kè	182
@@ -460155,7 +460235,7 @@ sort: by_weight
 哪一刻	nǎ yí kè	285
 那一颗	nà yì kē	166
 那一棵	nà yì kē	132
-哪一科	nǎ yī kē	105
+哪一科	nǎ yì kē	105
 哪一颗	nǎ yì kē	84
 那一课	nà yí kè	67
 哪一课	nǎ yí kè	53
@@ -469599,7 +469679,7 @@ sort: by_weight
 你敢当	nǐ gǎn dāng	369
 你感到	nǐ gǎn dào	1390
 你赶到	nǐ gǎn dào	342
-你干的	nǐ gàn de	418
+你干的	nǐ gān de	418
 你干得	nǐ gàn de	376
 你干点	nǐ gàn diǎn	454
 你干掉	nǐ gàn diào	544
@@ -520300,7 +520380,6 @@ sort: by_weight
 如焦虑	rú jiāo lǜ	810
 乳胶漆	rǔ jiāo qī	2085
 如教师	rú jiào shī	742
-入校时	rù jiào shí	107
 乳胶室	rǔ jiāo shì	42
 乳胶头	rǔ jiāo tóu	99
 乳胶衣	rǔ jiāo yī	310
@@ -520950,6 +521029,7 @@ sort: by_weight
 入校前	rù xiào qián	44
 如小区	rú xiǎo qū	788
 入小区	rù xiǎo qū	475
+入校时	rù xiào shí	107
 如销售	rú xiāo shòu	1008
 如硝酸	rú xiāo suān	549
 入小学	rù xiǎo xué	806
@@ -528128,10 +528208,8 @@ sort: by_weight
 煽动性	shān dòng xìng	556
 山东行	shān dōng xíng	500
 山东一	shān dōng yī	900
-山东银	shān dōng yín	531
 山东于	shān dōng yú	338
 山东院	shān dōng yuàn	117
-山东张	shān dōng zhāng	392
 闪动着	shǎn dòng zhe	151
 煽动者	shān dòng zhě	136
 扇动着	shān dòng zhe	122
@@ -532621,7 +532699,7 @@ sort: by_weight
 少府穴	shào fǔ xué	3
 少腹胀	shǎo fù zhàng	562
 烧腐竹	shāo fǔ zhú	432
-稍干的	shāo gàn de	3
+稍干的	shāo gān de	3
 少干活	shǎo gàn huó	477
 烧干净	shāo gān jìng	518
 烧干了	shāo gān le	630
@@ -550277,7 +550355,8 @@ sort: by_weight
 输出品	shū chū pǐn	9
 输出区	shū chū qū	9
 输出入	shū chū rù	19
-输出时	shū chū shí	693
+输出是	shū chū shì	693
+输出时	shū chū shí	406
 输出为	shū chū wéi	990
 输出位	shū chū wèi	536
 输出物	shū chū wù	63
@@ -554544,7 +554623,7 @@ sort: by_weight
 谁敢把	shuí gǎn bǎ	486
 谁敢不	shuí gǎn bù	684
 水甘草	shuǐ gān cǎo	310
-谁干的	shuí gàn de	882
+谁干的	shuí gān de	882
 谁干得	shuí gàn de	312
 谁尴尬	shuí gān gà	518
 谁干活	shuí gàn huó	378
@@ -557809,7 +557888,7 @@ sort: by_weight
 说改成	shuō gǎi chéng	522
 说改的	shuō gǎi de	418
 说改了	shuō gǎi le	454
-说干的	shuō gàn de	486
+说干的	shuō gān de	486
 说干得	shuō gàn de	395
 说尴尬	shuō gān gà	482
 说干活	shuō gàn huó	387
@@ -594934,7 +595013,7 @@ sort: by_weight
 挺复杂	tǐng fù zá	615
 挺敢的	tǐng gǎn de	52
 挺赶的	tǐng gǎn de	52
-挺干的	tǐng gàn de	52
+挺干的	tǐng gān de	52
 挺感动	tǐng gǎn dòng	69
 挺尴尬	tǐng gān gà	819
 挺干净	tǐng gān jìng	257
@@ -607752,7 +607831,7 @@ sort: by_weight
 未盖章	wèi gài zhāng	315
 韦甘比	wéi gān bǐ	472
 味甘淡	wèi gān dàn	22
-未干的	wèi gàn de	72
+未干的	wèi gān de	72
 桅杆顶	wéi gān dǐng	364
 为感恩	wèi gǎn ēn	639
 渭干河	wèi gān hé	270
@@ -616765,7 +616844,7 @@ sort: by_weight
 我干脆	wǒ gān cuì	669
 我感到	wǒ gǎn dào	3787
 我赶到	wǒ gǎn dào	657
-我干的	wǒ gàn de	245
+我干的	wǒ gān de	245
 我干得	wǒ gàn de	220
 我赶得	wǒ gǎn de	198
 我干点	wǒ gàn diǎn	396
@@ -642723,7 +642802,7 @@ sort: by_weight
 下一卷	xià yì juǎn	446
 下一刻	xià yí kè	1243
 下一颗	xià yì kē	900
-下一科	xià yī kē	416
+下一科	xià yì kē	416
 下一课	xià yí kè	374
 下一口	xià yì kǒu	896
 下一块	xià yí kuài	940
@@ -643670,7 +643749,7 @@ sort: by_weight
 掀盖头	xiān gài tóu	25
 先盖章	xiān gài zhāng	711
 先感到	xiān gǎn dào	531
-先干的	xiān gàn de	302
+先干的	xiān gān de	302
 显尴尬	xiǎn gān gà	747
 鲜橄榄	xiān gǎn lǎn	446
 先干了	xiān gàn le	60
@@ -658267,7 +658346,8 @@ sort: by_weight
 写老师	xiě lǎo shī	441
 蟹老宋	xiè lǎo sòng	554
 谢老爷	xiè lǎo yé	6
-谢了啊	xiè le a	16
+谢了啊	xiè le a	91
+写了啊	xiě le a	16
 歇了吧	xiē le ba	634
 些了吧	xiē le ba	486
 鞋了吧	xié le ba	299
@@ -668184,7 +668264,6 @@ sort: by_weight
 宣教科	xuān jiào kē	454
 宣教室	xuān jiào shì	706
 宣教士	xuān jiào shì	441
-选校时	xuǎn jiào shí	338
 选角时	xuǎn jiǎo shí	200
 旋节线	xuán jié xiàn	50
 旋进角	xuán jìn jiǎo	45
@@ -668516,6 +668595,7 @@ sort: by_weight
 喧嚣的	xuān xiāo de	550
 喧嚣声	xuān xiāo shēng	53
 喧嚣时	xuān xiāo shí	500
+选校时	xuǎn xiào shí	338
 喧嚣中	xuān xiāo zhōng	670
 宣泄吧	xuān xiè ba	320
 宣泄口	xuān xiè kǒu	585
@@ -698006,7 +698086,7 @@ sort: by_weight
 又干脆	yòu gān cuì	418
 又感到	yòu gǎn dào	132
 又赶到	yòu gǎn dào	119
-有干的	yǒu gàn de	572
+有干的	yǒu gān de	572
 右肝管	yòu gān guǎn	320
 有干劲	yǒu gàn jìn	402
 有感觉	yǒu gǎn jué	1353
@@ -706855,7 +706935,6 @@ sort: by_weight
 原胶南	yuán jiāo nán	410
 援交女	yuán jiāo nǚ	518
 远郊区	yuǎn jiāo qū	91
-院校时	yuàn jiào shí	567
 原教室	yuán jiào shì	225
 袁教授	yuán jiào shòu	356
 原焦油	yuán jiāo yóu	45
@@ -707628,6 +707707,7 @@ sort: by_weight
 园小区	yuán xiǎo qū	1134
 苑小区	yuàn xiǎo qū	817
 远小人	yuǎn xiǎo rén	486
+院校时	yuàn xiào shí	567
 院校所	yuàn xiào suǒ	814
 院校线	yuàn xiào xiàn	100
 元宵夜	yuán xiāo yè	13
@@ -716574,7 +716654,6 @@ sort: by_weight
 则及时	zé jí shí	652
 则继续	zé jì xù	609
 则建议	zé jiàn yì	914
-择校时	zé jiào shí	572
 则进了	zé jìn le	432
 则经过	zé jīng guò	621
 则精神	zé jīng shén	536
@@ -716688,6 +716767,7 @@ sort: by_weight
 择校费	zé xiào fèi	170
 择校热	zé xiào rè	38
 择校生	zé xiào shēng	25
+择校时	zé xiào shí	572
 则需要	zé xū yào	8779
 则选择	zé xuǎn zé	493
 则要求	zé yāo qiú	609
@@ -744231,6 +744311,7 @@ sort: by_weight
 滋生着	zī shēng zhe	28
 姿势啊	zī shì a	544
 姿势吧	zī shì ba	580
+子实层	zǐ shí céng	436
 子市场	zǐ shì chǎng	945
 自释放	zì shì fàng	320
 字士衡	zì shì héng	256
@@ -744242,6 +744323,7 @@ sort: by_weight
 紫石林	zǐ shí lín	45
 字世龙	zì shì lóng	212
 紫石乳	zǐ shí rǔ	243
+子实体	zǐ shí tǐ	747
 子视图	zǐ shì tú	25
 自适应	zì shì yìng	3303
 紫石英	zǐ shí yīng	630
@@ -744682,6 +744764,7 @@ sort: by_weight
 紫阳山	zǐ yáng shān	288
 字样时	zì yàng shí	801
 滋养霜	zī yǎng shuāng	410
+滋养体	zī yǎng tǐ	69
 滋养胃	zī yǎng wèi	320
 滋养型	zī yǎng xíng	374
 自养型	zì yǎng xíng	308
@@ -748316,7 +748399,7 @@ sort: by_weight
 最该吃	zuì gāi chī	378
 最该死	zuì gāi sǐ	414
 最干脆	zuì gān cuì	378
-最干的	zuì gàn de	52
+最干的	zuì gān de	52
 最感动	zuì gǎn dòng	999
 最尴尬	zuì gān gà	700
 最干旱	zuì gān hàn	490
@@ -763032,8 +763115,8 @@ sort: by_weight
 半俯卧位	bàn fǔ wò wèi	50
 半幅相机	bàn fú xiàng jī	52
 半浮性卵	bàn fú xìng luǎn	52
-半干半湿	bàn gàn bàn shī	44
-半干半稀	bàn gàn bàn xī	3
+半干半湿	bàn gān bàn shī	44
+半干半稀	bàn gān bàn xī	3
 半干性油	bàn gān xìng yóu	171
 半干燥的	bàn gān zào de	212
 半高半长	bàn gāo bàn cháng	50
@@ -763944,7 +764027,7 @@ sort: by_weight
 半生已过	bàn shēng yǐ guò	212
 伴生元素	bàn shēng yuán sù	99
 伴生植物	bàn shēng zhí wù	288
-半湿半干	bàn shī bàn gàn	234
+半湿半干	bàn shī bàn gān	234
 半实半虚	bàn shí bàn xū	19
 半师半友	bàn shī bàn yǒu	220
 版式编排	bǎn shì biān pái	225
@@ -835154,7 +835237,7 @@ sort: by_weight
 第十二周	dì shí èr zhōu	13
 第十分钟	dì shí fēn zhōng	306
 第十甫路	dì shí fǔ lù	428
-地是干的	dì shì gàn de	130
+地是干的	dì shì gān de	130
 第十回合	dì shí huí hé	346
 低市净率	dī shì jìng lǜ	531
 第十九版	dì shí jiǔ bǎn	6
@@ -876546,7 +876629,7 @@ sort: by_weight
 该付这个	gāi fù zhè ge	130
 该改改了	gāi gǎi gǎi le	47
 改改即可	gǎi gǎi jí kě	76
-该干的事	gāi gàn de shì	716
+该干的事	gāi gān de shì	716
 该干活了	gāi gàn huó le	338
 钙橄榄石	gài gǎn lǎn shí	45
 该干啥子	gāi gàn shá zi	117
@@ -877659,15 +877742,15 @@ sort: by_weight
 干得好啊	gàn de hǎo a	9
 干得好不	gàn de hǎo bù	598
 干得很好	gàn de hěn hǎo	75
-干的坏事	gàn de huài shì	680
+干的坏事	gān de huài shì	680
 赶得回来	gǎn de huí lái	279
-干的活儿	gàn de huó er	580
+干的活儿	gān de huó er	580
 干得极好	gàn de jí hǎo	4
 干得久了	gàn de jiǔ le	189
 干得漂亮	gàn de piào liang	490
 感得瑞相	gǎn dé ruì xiāng	50
-干的事儿	gàn de shì er	392
-干的事情	gàn de shì qíng	972
+干的事儿	gān de shì er	392
+干的事情	gān de shì qíng	972
 干得真棒	gàn de zhēn bàng	225
 干得真好	gàn de zhēn hǎo	144
 甘地诞辰	gān dì dàn chén	220
@@ -903884,7 +903967,7 @@ sort: by_weight
 过了一半	guò le yí bàn	135
 过了一遍	guò le yí biàn	1834
 过了一会	guò le yí huì	1601
-过了一科	guò le yī kē	19
+过了一科	guò le yì kē	19
 过了一年	guò le yì nián	929
 过了一日	guò le yí rì	52
 过了一天	guò le yì tiān	349
@@ -949392,7 +949475,6 @@ sort: by_weight
 尖叫女王	jiān jiào nǚ wáng	400
 尖叫起来	jiān jiào qǐ lái	801
 尖椒肉丝	jiān jiāo ròu sī	25
-建校时间	jiàn jiào shí jiān	119
 检校司徒	jiǎn jiào sī tú	486
 检校太尉	jiǎn jiào tài wèi	31
 肩脚下窝	jiān jiǎo xià wō	90
@@ -951278,6 +951360,7 @@ sort: by_weight
 捡小便宜	jiǎn xiǎo pián yi	9
 见效奇快	jiàn xiào qí kuài	52
 见效甚微	jiàn xiào shèn wēi	342
+建校时间	jiàn xiào shí jiān	119
 见效时间	jiàn xiào shí jiān	107
 减小体积	jiǎn xiǎo tǐ jī	387
 建校以来	jiàn xiào yǐ lái	135
@@ -961145,7 +961228,6 @@ sort: by_weight
 进椒柏酒	jìn jiāo bǎi jiǔ	117
 浸胶处理	jìn jiāo chǔ lǐ	50
 近交大鼠	jìn jiāo dà shǔ	45
-进校时候	jìn jiào shí hòu	3
 近交衰退	jìn jiāo shuāi tuì	356
 近郊铁路	jìn jiāo tiě lù	423
 近交退化	jìn jiāo tuì huà	4
@@ -964363,6 +964445,7 @@ sort: by_weight
 今宵何处	jīn xiāo hé chù	117
 进小黑屋	jìn xiǎo hēi wū	626
 谨小慎微	jǐn xiǎo shèn wēi	970
+进校时候	jìn xiào shí hòu	3
 今宵有酒	jīn xiāo yǒu jiǔ	194
 今宵月色	jīn xiāo yuè sè	130
 谨谢不敏	jǐn xiè bù mǐn	76
@@ -982793,7 +982876,7 @@ sort: by_weight
 考完试了	kǎo wán shì le	116
 考完试没	kǎo wán shì méi	297
 考完四级	kǎo wán sì jí	50
-考完一科	kǎo wán yī kē	38
+考完一科	kǎo wán yì kē	38
 考文垂市	kǎo wén chuí shì	6
 拷问刑具	kǎo wèn xíng jù	130
 靠我近点	kào wǒ jìn diǎn	76
@@ -985788,8 +985871,8 @@ sort: by_weight
 可以比较	kě yǐ bǐ jiào	1256
 刻意避开	kè yì bì kāi	553
 可以避开	kě yǐ bì kāi	219
-刻意避免	kè yì bì miǎn	1593
-可以避免	kě yǐ bì miǎn	456
+可以避免	kě yǐ bì miǎn	1593
+刻意避免	kè yì bì miǎn	456
 刻意避嫌	kè yì bì xián	274
 可以辨别	kě yǐ biàn bié	675
 可以变成	kě yǐ biàn chéng	1035
@@ -997983,7 +998066,6 @@ sort: by_weight
 立教大学	lì jiào dà xué	536
 篱角黄昏	lí jiǎo huáng hūn	99
 离焦镜片	lí jiāo jìng piàn	52
-离校时间	lí jiào shí jiān	28
 沥滘水道	lì jiào shuǐ dào	225
 立教之本	lì jiào zhī běn	6
 理解把握	lǐ jiě bǎ wò	536
@@ -999839,6 +999921,7 @@ sort: by_weight
 立小便器	lì xiǎo biàn qì	99
 离校返乡	lí xiào fǎn xiāng	76
 力小任重	lì xiǎo rèn zhòng	99
+离校时间	lí xiào shí jiān	28
 离校手续	lí xiào shǒu xù	60
 离校证明	lí xiào zhèng míng	6
 立校之本	lì xiào zhī běn	31
@@ -1020261,7 +1020344,7 @@ sort: by_weight
 没干别的	méi gàn bié de	50
 没敢出声	méi gǎn chū shēng	16
 没敢打扰	méi gǎn dǎ rǎo	392
-没干的了	méi gàn de le	4
+没干的了	méi gān de le	4
 没敢多看	méi gǎn duō kàn	338
 没敢多想	méi gǎn duō xiǎng	238
 没干过吧	méi gàn guò ba	144
@@ -1045657,7 +1045740,7 @@ sort: by_weight
 你这点血	nǐ zhè diǎn xuè	4
 你这点子	nǐ zhè diǎn zi	117
 你这儿拿	nǐ zhè er ná	130
-你这干的	nǐ zhè gàn de	130
+你这干的	nǐ zhè gān de	130
 你这个号	nǐ zhè ge hào	19
 你这个人	nǐ zhè ge rén	1824
 你这个图	nǐ zhè ge tú	28
@@ -1083885,7 +1083968,7 @@ sort: by_weight
 人浮于食	rén fú yú shí	153
 任副主任	rèn fù zhǔ rèn	819
 任副组长	rèn fù zǔ zhǎng	13
-人干的事	rén gàn de shì	25
+人干的事	rén gān de shì	25
 人感兴趣	rén gǎn xìng qù	909
 人岗匹配	rén gǎng pǐ pèi	490
 人岗相适	rén gǎng xiāng shì	418
@@ -1098866,162 +1098949,44 @@ sort: by_weight
 山顶喷发	shān dǐng pēn fā	50
 山顶日出	shān dǐng rì chū	20
 山鼎设计	shān dǐng shè jì	234
-山顶医院	shān dǐng yī yuàn	554
-山东案件	shān dōng àn jiàn	4
 山东奥太	shān dōng ào tài	4
-山东白麻	shān dōng bái má	76
-山东拜年	shān dōng bài nián	45
-山东梆子	shān dōng bāng zi	16
 煽动暴力	shān dòng bào lì	558
 煽动暴乱	shān dòng bào luàn	338
 煽动暴民	shān dòng bào mín	144
 山洞蝙蝠	shān dòng biān fú	76
-山东博汇	shān dōng bó huì	518
 山东博润	shān dōng bó rùn	189
-山东玻纤	shān dōng bō xiān	153
-山东产业	shān dōng chǎn yè	207
-山东长安	shān dōng cháng ān	153
 扇动翅膀	shān dòng chì bǎng	97
 煽动翅膀	shān dòng chì bǎng	87
 煽动仇恨	shān dòng chóu hèn	526
-山东村民	shān dōng cūn mín	171
-山东大鼓	shān dōng dà gǔ	38
-山东大汉	shān dōng dà hàn	598
-山东大妞	shān dōng dà niū	310
-山东大学	shān dōng dà xué	2399
-山东大宇	shān dōng dà yǔ	76
-山东道路	shān dōng dào lù	130
-山东的路	shān dōng de lù	194
 山东等省	shān dōng děng shěng	6
-山东地矿	shān dōng dì kuàng	648
-山东地炼	shān dōng dì liàn	540
-山东地形	shān dōng dì xíng	76
-山东第一	shān dōng dì yī	522
 煽动敌意	shān dòng dí yì	84
-山东地震	shān dōng dì zhèn	144
 煽动颠覆	shān dòng diān fù	626
-山东电力	shān dōng diàn lì	549
-山东电信	shān dōng diàn xìn	243
-山东电影	shān dōng diàn yǐng	342
-山东二区	shān dōng èr qū	202
 煽动法令	shān dòng fǎ lìng	405
-山东方圆	shān dōng fāng yuán	144
 煽动粉丝	shān dòng fěn sī	346
-山东佛教	shān dōng fó jiào	144
-山东钢铁	shān dōng gāng tiě	652
-山东高法	shān dōng gāo fǎ	162
-山东高考	shān dōng gāo kǎo	652
-山东高速	shān dōng gāo sù	711
-山东高校	shān dōng gāo xiào	44
-山东哥哥	shān dōng gē ge	76
-山东歌手	shān dōng gē shǒu	117
-山东公交	shān dōng gōng jiāo	4
-山东官员	shān dōng guān yuán	252
-山东广播	shān dōng guǎng bō	792
-山东广电	shān dōng guǎng diàn	364
 山东国惠	shān dōng guó huì	144
-山东海阳	shān dōng hǎi yáng	558
-山东海洋	shān dōng hǎi yáng	357
-山东汉子	shān dōng hàn zi	486
-山东航空	shān dōng háng kōng	28
-山东好汉	shān dōng hǎo hàn	315
 山东赫达	shān dōng hè dá	333
-山东河南	shān dōng hé nán	904
-山东画报	shān dōng huà bào	504
-山东画家	shān dōng huà jiā	50
-山东华鹏	shān dōng huá péng	464
-山东华瑞	shān dōng huá ruì	248
-山东华信	shān dōng huá xìn	99
-山东黄金	shān dōng huáng jīn	248
 煽动混乱	shān dòng hùn luàn	4
-山东激光	shān dōng jī guāng	45
-山东技师	shān dōng jì shī	230
-山东家族	shān dōng jiā zú	50
-山东金泰	shān dōng jīn tài	279
-山东军区	shān dōng jūn qū	675
-山东军事	shān dōng jūn shì	212
 山东郡姓	shān dōng jùn xìng	130
-山东考生	shān dōng kǎo shēng	157
-山东科大	shān dōng kē dà	144
-山东科技	shān dōng kē jì	716
-山东快书	shān dōng kuài shū	57
-山东矿难	shān dōng kuàng nàn	76
-山东篮球	shān dōng lán qiú	130
-山东蓝翔	shān dōng lán xiáng	25
-山东落子	shān dōng lào zi	99
 扇动了下	shān dòng le xià	153
 山洞里面	shān dòng lǐ miàn	52
-山东联通	shān dōng lián tōng	333
-山东临工	shān dōng lín gōng	306
 山东路店	shān dōng lù diàn	328
 山东鲁工	shān dōng lǔ gōng	45
-山东路南	shān dōng lù nán	387
-山东鲁南	shān dōng lǔ nán	209
-山东鲁能	shān dōng lǔ néng	424
 山东美陵	shān dōng měi líng	4
-山东美术	shān dōng měi shù	500
-山东猛男	shān dōng měng nán	45
-山东民歌	shān dōng mín gē	266
-山东民居	shān dōng mín jū	171
 煽动民众	shān dòng mín zhòng	472
-山东命案	shān dōng mìng àn	4
-山东模特	shān dōng mó tè	4
-山东模板	shān dōng mú bǎn	4
-山东男篮	shān dōng nán lán	598
-山东男排	shān dōng nán pái	234
 煽动闹事	shān dòng nào shì	324
-山东牌坊	shān dōng pái fāng	45
 煽动叛乱	shān dòng pàn luàn	585
-山东叛乱	shān dōng pàn luàn	179
 山东琴书	shān dōng qín shū	6
-山东轻工	shān dōng qīng gōng	351
 煽动情绪	shān dòng qíng xù	612
 煽动群众	shān dòng qún zhòng	72
-山东人民	shān dōng rén mín	688
-山东人物	shān dōng rén wù	162
 煽动人心	shān dòng rén xīn	382
 山东润艺	shān dōng rùn yì	130
-山东三箭	shān dōng sān jiàn	76
-山东山峰	shān dōng shān fēng	76
-山东山脉	shān dōng shān mài	50
-山东商报	shān dōng shāng bào	598
-山东商务	shān dōng shāng wù	248
-山东社会	shān dōng shè huì	346
-山东神光	shān dōng shén guāng	450
-山东省的	shān dōng shěng de	774
-山东石材	shān dōng shí cái	45
-山东师范	shān dōng shī fàn	788
-山东石刻	shān dōng shí kè	99
-山东食品	shān dōng shí pǐn	243
-山东士族	shān dōng shì zú	279
-山东首富	shān dōng shǒu fù	346
-山东书院	shān dōng shū yuàn	50
 煽动双翼	shān dòng shuāng yì	45
-山东水饺	shān dōng shuǐ jiǎo	266
-山东水灾	shān dōng shuǐ zāi	117
 山东泰邦	shān dōng tài bāng	76
-山东体彩	shān dōng tǐ cǎi	356
-山东天海	shān dōng tiān hǎi	144
-山东天气	shān dōng tiān qì	261
-山东天齐	shān dōng tiān qí	99
-山东天岳	shān dōng tiān yuè	99
 闪动头像	shǎn dòng tóu xiàng	4
 煽动屠杀	shān dòng tú shā	130
-山东外贸	shān dōng wài mào	346
-山东威达	shān dōng wēi dá	486
 山东五征	shān dōng wǔ zhēng	130
-山东西王	shān dōng xī wáng	279
-山东响马	shān dōng xiǎng mǎ	274
 山东信和	shān dōng xìn hé	212
-山东巡抚	shān dōng xún fǔ	702
-山东演员	shān dōng yǎn yuán	99
-山东秧歌	shān dōng yāng gē	144
 山东药玻	shān dōng yào bō	418
-山东一区	shān dōng yī qū	288
-山东医院	shān dōng yī yuàn	175
-山东银丰	shān dōng yín fēng	252
-山东重工	shān dōng zhòng gōng	338
-山东纵队	shān dōng zòng duì	554
 山多地少	shān duō dì shǎo	13
 善恶不辨	shàn è bú biàn	13
 善恶不分	shàn è bù fēn	25
@@ -1108105,6 +1108070,8 @@ sort: by_weight
 什么吊事	shén me diào shì	117
 什么东东	shén me dōng dōng	226
 什么动静	shén me dòng jìng	182
+什么懂了	shén me dǒng le	118
+什么动了	shén me dòng le	61
 什么动物	shén me dòng wù	198
 什么东西	shén me dōng xi	12946
 什么动作	shén me dòng zuò	232
@@ -1123841,7 +1123808,7 @@ sort: by_weight
 试水成功	shì shuǐ chéng gōng	374
 是谁的错	shì shuí de cuò	724
 是谁的锅	shì shuí de guō	423
-是谁干的	shì shuí gàn de	778
+是谁干的	shì shuí gān de	778
 是睡觉吗	shì shuì jiào ma	266
 试水阶段	shì shuǐ jiē duàn	446
 逝水流年	shì shuǐ liú nián	328
@@ -1124018,8 +1123985,8 @@ sort: by_weight
 使他洞察	shǐ tā dòng chá	50
 是她对象	shì tā duì xiàng	333
 是他付的	shì tā fù de	266
-是他干的	shì tā gàn de	166
-是她干的	shì tā gàn de	149
+是他干的	shì tā gān de	166
+是她干的	shì tā gān de	149
 什塔克曼	shí tǎ kè màn	4
 施塔特湖	shī tǎ tè hú	396
 是他自己	shì tā zì jǐ	1318
@@ -1185536,7 +1185503,7 @@ sort: by_weight
 我赶不上	wǒ gǎn bú shàng	16
 蜗杆传动	wō gān chuán dòng	9
 我感到了	wǒ gǎn dào le	774
-我干的吗	wǒ gàn de ma	220
+我干的吗	wǒ gān de ma	220
 我赶地铁	wǒ gǎn dì tiě	76
 我干点儿	wǒ gàn diǎn ér	153
 我敢断定	wǒ gǎn duàn dìng	52
@@ -1249194,7 +1249161,7 @@ sort: by_weight
 一颗卤蛋	yì kē lǔ dàn	418
 以克论净	yǐ kè lùn jìng	328
 一颗螺丝	yì kē luó sī	688
-一科没过	yī kē méi guò	35
+一科没过	yì kē méi guò	35
 易可门诊	yì kě mén zhěn	153
 一颗明珠	yì kē míng zhū	742
 一颗木瓜	yì kē mù guā	117
@@ -1249233,7 +1249200,7 @@ sort: by_weight
 医科学校	yī kē xué xiào	31
 一棵杨树	yì kē yáng shù	310
 一课一测	yí kè yí cè	45
-一科一辅	yī kē yī fǔ	130
+一科一辅	yì kē yì fǔ	130
 一客一换	yí kè yí huàn	414
 宜客宜家	yí kè yí jiā	76
 一颗一颗	yì kē yì kē	418
@@ -1267955,7 +1267922,7 @@ sort: by_weight
 优步中国	yōu bù zhōng guó	229
 有踩必回	yǒu cǎi bì huí	45
 优彩彩票	yōu cǎi cǎi piào	45
-有才干的	yǒu cái gàn de	75
+有才干的	yǒu cái gān de	75
 油菜花地	yóu cài huā dì	508
 油菜花粉	yóu cài huā fěn	364
 油菜花海	yóu cài huā hǎi	783
@@ -1289632,7 +1289599,7 @@ sort: by_weight
 怎么改变	zěn me gǎi biàn	994
 怎么改善	zěn me gǎi shàn	801
 怎么敢当	zěn me gǎn dāng	338
-怎么干的	zěn me gàn de	598
+怎么干的	zěn me gān de	598
 怎么敢的	zěn me gǎn de	422
 怎么干活	zěn me gàn huó	531
 怎么感觉	zěn me gǎn jué	995
@@ -1334693,7 +1334660,7 @@ sort: by_weight
 最后一聚	zuì hòu yí jù	52
 最后一刻	zuì hòu yí kè	2047
 最后一课	zuì hòu yí kè	292
-最后一科	zuì hòu yī kē	254
+最后一科	zuì hòu yì kē	254
 最后一口	zuì hòu yì kǒu	264
 最后一扣	zuì hòu yí kòu	207
 最后一块	zuì hòu yí kuài	524
@@ -1357973,7 +1357940,7 @@ sort: by_weight
 干得不错啊	gàn de bú cuò a	10
 干得不错吗	gàn dé bú cuò ma	10
 干得不好啊	gàn dé bù hǎo a	10
-干的那些事	gàn de nà xiē shì	1000
+干的那些事	gān de nà xiē shì	1000
 干得怎么样	gàn de zěn me yàng	10
 干得真棒啊	gàn de zhēn bàng a	10
 甘地诞辰日	gān dì dàn chén rì	10
@@ -1389878,7 +1389845,7 @@ sort: by_weight
 人防门框墙	rén fáng mén kuàng qiáng	10
 认房又认贷	rèn fáng yòu rèn dài	10
 人非物亦非	rén fēi wù yì fēi	10
-人干的事儿	rén gàn de shì er	10
+人干的事儿	rén gān de shì er	10
 人格的独立	rén gé de dú lì	10
 人格的力量	rén gé de lì liàng	10
 人格的魅力	rén gé de mèi lì	10
@@ -1438811,7 +1438778,7 @@ sort: by_weight
 坩埚膨胀序数	gān guō péng zhàng xù shù	10
 干锅手撕包菜	gān guō shǒu sī bāo cài	10
 干好自己的事	gàn hǎo zì jǐ de shì	10
-敢和干的担当	gǎn hé gàn de dān dāng	10
+敢和干的担当	gǎn hé gān de dān dāng	10
 干灰分选系统	gàn huī fēn xuǎn xì tǒng	10
 橄辉钠长斑岩	gǎn huī nà zhǎng bān yán	10
 感极而悲者矣	gǎn jí ér bēi zhě yǐ	10
@@ -1441768,7 +1441735,6 @@ sort: by_weight
 国网江苏电力	guó wǎng jiāng sū diàn lì	10
 国王密使系列	guó wáng mì shǐ xì liè	10
 国网青海电力	guó wǎng qīng hǎi diàn lì	10
-国网山东电力	guó wǎng shān dōng diàn lì	10
 国网陕西电力	guó wǎng shǎn xī diàn lì	10
 国网四川电力	guó wǎng sì chuān diàn lì	10
 国网新疆电力	guó wǎng xīn jiāng diàn lì	10
@@ -1451310,6 +1451276,7 @@ sort: by_weight
 乱得一塌糊涂	luàn de yī tā hú tu	10
 卵果鱼鳞云杉	luǎn guǒ yú lín yún shān	10
 滦河河口湿地	luán hé hé kǒu shī dì	10
+乱七八糟的人	luàn qī bā zāo de rén	10
 乱七八糟的事	luàn qī bā zāo de shì	10
 乱枪打鸟论证	luàn qiāng dǎ niǎo lùn zhèng	10
 卵生哺乳动物	luǎn shēng bǔ rǔ dòng wù	10
@@ -1451326,7 +1451293,6 @@ sort: by_weight
 銮仪卫云麾使	luán yí wèi yún huī shǐ	10
 卵圆钳不锈钢	luǎn yuán qián bú xiù gāng	10
 乱糟糟的头发	luàn zāo zāo de tóu fa	10
-伦巴第大区人	lún bā dì dà qū rén	10
 伦勃朗式用光	lún bó lǎng shì yòng guāng	10
 论道德的谱系	lùn dào dé de pǔ xì	10
 轮岛分屯基地	lún dǎo fēn tún jī dì	10
@@ -1451365,7 +1451331,6 @@ sort: by_weight
 罗伯兹压力计	luó bó zī yā lì jì	10
 罗布麻降压片	luó bù má jiàng yā piàn	10
 罗茨式鼓风机	luó cí shì gǔ fēng jī	10
-罗德岛州公司	luó dé dǎo zhōu gōng sī	10
 罗德里格公式	luó dé lǐ gé gōng shì	10
 罗德里格斯岛	luó dé lǐ gé sī dǎo	10
 罗德西亚锥虫	luó dé xī yà zhuī chóng	10
@@ -1451401,9 +1451366,6 @@ sort: by_weight
 逻辑区块定址	luó ji qū kuài dìng zhǐ	10
 落基山的猎人	luò jī shān de liè rén	10
 落基山公园群	luò jī shān gōng yuán qún	10
-落基山脉历史	luò jī shān mài lì shǐ	10
-落基山脉生态	luò jī shān mài shēng tài	10
-落基山脉植物	luò jī shān mài zhí wù	10
 逻辑实证主义	luó ji shí zhèng zhǔ yì	10
 逻辑斯蒂方程	luó ji sī dì fāng chéng	10
 逻辑斯谛方程	luó ji sī dì fāng chéng	10
@@ -1459142,7 +1459104,6 @@ sort: by_weight
 胜利纪念碑站	shèng lì jì niàn bēi zhàn	10
 胜利即是正义	shèng lì jí shì zhèng yì	10
 生理科学进展	shēng lǐ kē xué jìn zhǎn	10
-省立山东大学	shěng lì shān dōng dà xué	10
 省历史博物馆	shěng lì shǐ bó wù guǎn	10
 胜利石油学校	shèng lì shí yóu xué xiào	10
 省立扬州中学	shěng lì yáng zhōu zhōng xué	10
@@ -1460089,7 +1460050,7 @@ sort: by_weight
 市燃料总公司	shì rán liào zǒng gōng sī	10
 嗜热性放线菌	shì rè xìng fàng xiàn jūn	10
 时任财务总监	shí rèn cái wù zǒng jiān	10
-是人干的事吗	shì rén gàn de shì ma	10
+是人干的事吗	shì rén gān de shì ma	10
 时任国防部长	shí rèn guó fáng bù zhǎng	10
 使人精力充沛	shǐ rén jīng lì chōng pèi	10
 市人力社保局	shì rén lì shè bǎo jú	10
@@ -1473970,7 +1473931,7 @@ sort: by_weight
 这是不可能的	zhè shì bù kě néng de	10
 这是不一样的	zhè shì bù yí yàng de	10
 这是理所应当	zhè shì lǐ suǒ yīng dāng	10
-这是人干的事	zhè shì rén gàn de shì	10
+这是人干的事	zhè shì rén gān de shì	10
 这是什么鬼啊	zhè shì shén me guǐ a	10
 这是什么世道	zhè shì shén me shì dào	10
 这是为什么啊	zhè shì wèi shén me a	10
@@ -1486327,7 +1486288,6 @@ sort: by_weight
 关键字驱动测试	guān jiàn zì qū dòng cè shì	10
 关节镇痛巴布膏	guān jié zhèn tòng bā bù gāo	10
 管理的经典模式	guǎn lǐ de jīng diǎn mó shì	10
-官立山东大学堂	guān lì shān dōng dà xué táng	10
 管理水平的提高	guǎn lǐ shuǐ píng de tí gāo	10
 管理委员会成员	guǎn lǐ wěi yuán huì chéng yuán	10
 管理委员会主席	guǎn lǐ wěi yuán huì zhǔ xí	10
@@ -1493111,7 +1493071,7 @@ sort: by_weight
 夫三子者之言何如	fū sān zǐ zhě zhī yán hé rú	10
 夫子固拙于用大矣	fū zǐ gù zhuō yú yòng dà yǐ	10
 夫子循循然善诱人	fū zǐ xún xún rán shàn yòu rén	10
-干的早不如干的巧	gàn de zǎo bù rú gàn de qiǎo	10
+干的早不如干的巧	gān de zǎo bù rú gān de qiǎo	10
 钢铁是怎样炼成的	gāng tiě shì zěn yàng liàn chéng de	10
 高压喷射注浆地基	gāo yā pēn shè zhù jiāng dì jī	10
 各有所长各有所短	gè yǒu suǒ cháng gè yǒu suǒ duǎn	10
