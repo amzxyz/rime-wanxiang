@@ -40402,7 +40402,6 @@ sort: by_weight
 罐里	guàn;fv lǐ;aa,tt	172
 关里	guān;qd,bt lǐ;aa,tt	119
 冠礼	guàn;bc lǐ;ug	95
-官立	guān;bg,bk lì;da
 关联	guān;qd,bt lián;eg	23647
 关连	guān;qd,bt lián;zi	1188
 贯连	guàn;bm,mb lián;zi	395
@@ -42252,7 +42251,6 @@ sort: by_weight
 果王	guǒ;ad,tm wáng;aa	134
 国亡	guó;ky wáng;da,dv	107
 过望	guò;zc wàng;wo	85
-国网	guó;ky wǎng;ki
 果味	guǒ;ad,tm wèi;kw	1366
 国威	guó;ky wēi;gn,ng,wn	1298
 果位	guǒ;ad,tm wèi;rl	1134
@@ -43961,6 +43959,7 @@ sort: by_weight
 郝经	hǎo;ei jīng;sg	83
 豪景	háo;ub,wu jǐng;oj	66
 好久	hǎo;nz jiǔ;pd,dd	12014
+好旧	hǎo;nz jiù;ao	4433
 好就	hǎo;nz jiù;yj	2559
 好酒	hǎo;nz jiǔ;dy	888
 好剧	hǎo;nz jù;dj	637
@@ -94930,6 +94929,7 @@ sort: by_weight
 区号	qū;ki hào;kk	1193
 取好	qǔ;ey,ye hǎo;nz	543
 趋好	qū;zi,zx hǎo;nz	336
+去和	qù;ts hé;hk	4566
 去喝	qù;ts hē;kh	571
 去核	qù;ts hé;mh	314
 曲河	qǔ;aa,oa hé;dk	251
@@ -101597,9 +101597,10 @@ sort: by_weight
 上额	shàng;aa,ba é;yk	73
 商法	shāng;wk fǎ;dq	1733
 赏罚	shǎng;bk,dk,xy fá;sd	621
-上饭	shàng;aa,ba fàn;uf	1246
-商贩	shāng;wk fàn;bf	257
-赏饭	shǎng;bk,dk,xy fàn;uf	205
+上翻	shàng;aa,ba fān;yf	1246
+商贩	shāng;wk fàn;bf	449
+赏饭	shǎng;bk,dk,xy fàn;uf	256
+上饭	shàng;aa,ba fàn;uf	205
 上方	shàng;aa,ba fāng;dw	14972
 上访	shàng;aa,ba fǎng;yf	854
 上放	shàng;aa,ba fàng;wf,fw	753
@@ -104284,7 +104285,6 @@ sort: by_weight
 盛利	shèng;mi lì;hd,dh	38
 圣力	shèng;ty,yt lì;gp	30
 省吏	shěng;ou lì;ad	24
-省立	shěng;ou lì;da
 声量	shēng;um liàng;ol	986
 省料	shěng;ou liào;md	75
 生料	shēng;na liào;md	71
@@ -162987,6 +162987,7 @@ sort: by_weight
 作于	zuò;rv yú;aa	191
 左云	zuǒ;gu,ug yún;es,se	6
 坐在	zuò;tc zài;ta,ut	34540
+做在	zuò;rg zài;ta,ut	511
 做贼	zuò;rg zéi;br	305
 左闸	zuǒ;gu,ug zhá;mj	594
 作战	zuò;rv zhàn;gv	15370
@@ -200698,7 +200699,7 @@ sort: by_weight
 不回调	bù;ad,ax huí;kk diào;yv	432
 不会跌	bú;ad,ax huì;ry diē;zu	144
 不会丢	bú;ad,ax huì;ry diū;pq,ps	990
-不会懂	bú;ad,ax huì;ry dǒng;xd	506
+不会懂	bú;ad,ax huì;ry dǒng;xd	477
 不会动	bú;ad,ax huì;ry dòng;ly,yl	392
 不会抖	bú;ad,ax huì;ry dǒu;fd	454
 不会读	bú;ad,ax huì;ry dú;ym	842
@@ -200877,6 +200878,7 @@ sort: by_weight
 不会亡	bú;ad,ax huì;ry wáng;da,dv	422
 不回位	bù;ad,ax huí;kk wèi;rl	9
 不会问	bú;ad,ax huì;ry wèn;km,mk	986
+不回我	bù;ad,ax huí;kk wǒ;pd,pp	66
 不会洗	bú;ad,ax huì;ry xǐ;dx	698
 不会像	bú;ad,ax huì;ry xiàng;rx	7253
 不回乡	bù;ad,ax huí;kk xiāng;ap,vp	7251
@@ -782284,6 +782286,7 @@ sort: by_weight
 不懂道理	bù;ad,ax dǒng;xd dào;zu lǐ;wl	22
 不懂得爱	bù;ad,ax dǒng;xd dé;xc ài;vy	44
 不懂的话	bù;ad,ax dǒng;xd de;bu huà;yu	380
+不动的话	bú;ad,ax dòng;ly,yl de;bu huà;yu	162
 不动的人	bú;ad,ax dòng;ly,yl de;bu rén;pd	69
 不懂的事	bù;ad,ax dǒng;xd de;bu shì;aa	634
 不懂得说	bù;ad,ax dǒng;xd dé;xc shuō;yd	387
@@ -784058,6 +784061,7 @@ sort: by_weight
 不会丢失	bú;ad,ax huì;ry diū;pq,ps shī;pf	814
 不会动的	bú;ad,ax huì;ry dòng;ly,yl de;bu	198
 不会懂得	bú;ad,ax huì;ry dǒng;xd dé;xc	178
+不会动了	bú;ad,ax huì;ry dòng;ly,yl le;aa,vu	50
 不会动摇	bú;ad,ax huì;ry dòng;ly,yl yáo;ff	724
 不回短信	bù;ad,ax huí;kk duǎn;ud xìn;ry	19
 不会发出	bú;ad,ax huì;ry fā;ay chū;ck,aa	698
@@ -850490,7 +850494,7 @@ sort: by_weight
 对外银行	duì;cy,yc wài;xb yín;jg háng;xd,xi	292
 对外营业	duì;cy,yc wài;xb yíng;cl yè;aa	801
 对外用兵	duì;cy,yc wài;xb yòng;kf bīng;qb	432
-对外友协	duì;cy,yc wài;xb yǒu;yu,uy xié;ub	6
+对外友协	duì;cy,yc wài;xb yǒu;yu,uy xié;ub	10
 对外援助	duì;cy,yc wài;xb yuán;fy zhù;lq,ql	75
 对外展示	duì;cy,yc wài;xb zhǎn;uy shì;ex,ad	670
 对外战争	duì;cy,yc wài;xb zhàn;gv zhēng;dy	770
@@ -875348,6 +875352,7 @@ sort: by_weight
 复星转债	fù;rw,wo xīng;ou zhuǎn;iv zhài;rz	99
 复形锥面	fù;rw,wo xíng;pk zhuī;jv miàn;aa	90
 腹型紫癜	fù;of xíng;tx zǐ;sc diàn;bd,bu	171
+复兴总署	fù;rw,wo xīng;ba,db zǒng;xk,bx shǔ;sv	10
 抚胸摸臀	fǔ;fw xiōng;ox mō;fm tún;od,ou	45
 负熊以游	fù;db xióng;hn yǐ;rd,ry yóu;dz	144
 腐朽不堪	fǔ;gr,rf xiǔ;mk bù;ad,ax kān;tu	91
@@ -883202,6 +883207,7 @@ sort: by_weight
 高血压病	gāo;wk xuè;pa,pm yā;id,it bìng;bb	135
 高血压的	gāo;wk xuè;pa,pm yā;id,it de;bu	1282
 高血压科	gāo;wk xuè;pa,pm yā;id,it kē;hd	374
+高血压日	gāo;wk xuè;pa,pm yā;id,it rì;aa,or	10
 高血压药	gāo;wk xuè;pa,pm yā;id,it yào;cy	684
 高血压者	gāo;wk xuè;pa,pm yā;id,it zhě;lo,ol	572
 高血压症	gāo;wk xuè;pa,pm yā;id,it zhèng;bv	720
@@ -921272,6 +921278,7 @@ sort: by_weight
 户籍证明	hù;dp,du jí;vj,vx zhèng;yv míng;oo	138
 户籍制的	hù;dp,du jí;vj,vx zhì;dg,dv de;bu	130
 户籍制度	hù;dp,du jí;vj,vx zhì;dg,dv dù;gy	267
+互济总会	hù;aa,ea jì;dq zǒng;xk,bx huì;ry	10
 湖家别墅	hú;dh jiā;bu bié;dl shù;ty	4
 胡笳汉月	hú;og jiā;vj hàn;dy yuè;oy,pa	194
 互加好友	hù;aa,ea jiā;lk,kl hǎo;nz yǒu;yu,uy	446
@@ -966256,6 +966263,7 @@ sort: by_weight
 京都饭店	jīng;wx dū;ev fàn;uf diàn;gv	207
 京都公约	jīng;wx dū;ev gōng;sb,bs yuē;su	76
 精度估计	jīng;mq dù;gy gū;rg jì;yu	194
+京都会议	jīng;wx dū;ev huì;ry yì;yy	10
 京都健身	jīng;wx dū;ev jiàn;rj shēn;pp	45
 京都酒楼	jīng;wx dū;ev jiǔ;dy lóu;ml	99
 精读课文	jīng;mq dú;ym kè;yg wén;wi,dd	378
@@ -1072991,6 +1072999,7 @@ sort: by_weight
 清理助手	qīng;dq lǐ;wl zhù;lq,ql shǒu;pa,ub	3
 倾力助阵	qīng;rq lì;gp zhù;lq,ql zhèn;ei	400
 氢离子泵	qīng;qg lí;ws,wl zǐ;aa,vh bèng;uu	117
+青联常委	qīng;of,fo lián;eg cháng;jk,xd,dd wěi;hn	10
 轻链定量	qīng;ig liàn;jl dìng;bp liàng;ol	45
 青莲酒家	qīng;of,fo lián;cl jiǔ;dy jiā;bu	238
 青莲上街	qīng;of,fo lián;cl shàng;aa,ba jiē;xg,xi	162
@@ -1073004,6 +1073013,7 @@ sort: by_weight
 清廉正直	qīng;dq lián;gj zhèng;av zhí;uq,aa	44
 清廉指数	qīng;dq lián;gj zhǐ;fv shù;wl	490
 轻怜重惜	qīng;ig lián;xl zhòng;pa,ql xī;xx	4
+青联主席	qīng;of,fo lián;eg zhǔ;dw xí;jc,gj	10
 清廉自矢	qīng;dq lián;gj zì;pa,po shǐ;pt	117
 清廉自守	qīng;dq lián;gj zì;pa,po shǒu;bc	302
 青联组织	qīng;of,fo lián;eg zǔ;sq zhī;sv	248
@@ -1118817,11 +1118827,13 @@ sort: by_weight
 世嘉科技	shì;ca,cv jiā;uj kē;hd jì;fv	418
 十佳科技	shí;aa jiā;rg kē;hd jì;fv	258
 十家连坐	shí;aa jiā;bu lián;zi zuò;tc	99
+十佳林场	shí;aa jiā;rg lín;mm chǎng;ty	10
 十甲路口	shí;aa jiǎ;aa,oa lù;zg kǒu;aa	50
 十佳旅游	shí;aa jiā;rg lǚ;fp yóu;dz	459
 世家门阀	shì;ca,cv jiā;bu mén;dg fá;mf	414
 世嘉茗庭	shì;ca,cv jiā;uj míng;cm tíng;gt	50
 十佳模特	shí;aa jiā;rg mó;mm tè;ns	3
+十佳农民	shí;aa jiā;rg nóng;by,ny mín;ag,vg	10
 式加农炮	shì;gy,yg jiā;lk,kl nóng;by,ny pào;hb	333
 是假朋友	shì;op,ov jiǎ;rj,ry péng;oo you;yu,uy	297
 世家皮草	shì;ca,cv jiā;bu pí;ay,vy cǎo;cz	76
@@ -1182709,6 +1182721,7 @@ sort: by_weight
 文明讨论	wén;wi,dd míng;oo tǎo;yc lùn;yl	423
 闻名天下	wén;em,me míng;xk tiān;ad xià;ab,ad	248
 闻名遐迩	wén;em,me míng;xk xiá;zj,zy ěr;ze	386
+文明县城	wén;wi,dd míng;oo xiàn;sq,qs chéng;ti	10
 文明乡风	wén;wi,dd míng;oo xiāng;ap,vp fēng;ji	446
 文明祥和	wén;wi,dd míng;oo xiáng;uy hé;hk	266
 闻名乡里	wén;em,me míng;xk xiāng;ap,vp lǐ;aa,tt	396
@@ -1226659,6 +1226672,7 @@ sort: by_weight
 畜牧杂志	xù;tx,wt mù;nw zá;jm,mj zhì;xu,ux	76
 畜牧专家	xù;tx,wt mù;nw zhuān;ad,fs jiā;bu	351
 畜牧专业	xù;tx,wt mù;nw zhuān;ad,fs yè;aa	25
+畜牧总站	xù;tx,wt mù;nw zǒng;xk,bx zhàn;lv	10
 虚拟按键	xū;hy nǐ;fy àn;fa jiàn;jj	374
 虚拟背景	xū;hy nǐ;fy bèi;ob jǐng;oj	41
 虚拟产品	xū;hy nǐ;fy chǎn;dp,li pǐn;kk	634
@@ -1229244,6 +1229258,7 @@ sort: by_weight
 学练结合	xué;zb,dz liàn;sd,sj jié;sj hé;rk	382
 雪莲药垫	xuě;yx lián;cl yào;cy diàn;tv	99
 血炼战护	xuè;pa,pm liàn;hd,hj zhàn;gv hù;fh	45
+学联主席	xué;zb,dz lián;eg zhǔ;dw xí;jc,gj	10
 雪亮工程	xuě;yx liàng;wj,jb gōng;aa chéng;hi	252
 血量回复	xuè;pa,pm liàng;ol huí;kk fù;rw,wo	225
 血量恢复	xuè;pa,pm liàng;ol huī;xh fù;rw,wo	175
@@ -1275690,33 +1275705,27 @@ sort: by_weight
 预定产量	yù;yy dìng;bp chǎn;dp,li liàng;ol	50
 预定长度	yù;yy dìng;bp cháng;pd dù;gy	180
 预订成功	yù;yy dìng;yd chéng;gg,wg gōng;lg,gl	576
-预定成功	yù;yy dìng;bp chéng;gg,wg gōng;lg,gl	395
 预定程序	yù;yy dìng;bp chéng;hi xù;gy	441
 预定弹道	yù;yy dìng;bp dàn;gd dào;zu	180
 预定地点	yù;yy dìng;bp dì;ty diǎn;hv	47
 预订电话	yù;yy dìng;yd diàn;ag,og huà;yu	850
-预定电话	yù;yy dìng;bp diàn;ag,og huà;yu	574
 预定范围	yù;yy dìng;bp fàn;ce,cf wéi;kw	234
 预订房间	yù;yy dìng;yd fáng;hf jiān;mo,om	580
-预定房间	yù;yy dìng;bp fáng;hf jiān;mo,om	426
 预订方式	yù;yy dìng;yd fāng;dw shì;gy,yg	598
-预定方式	yù;yy dìng;bp fāng;dw shì;gy,yg	338
 预订服务	yù;yy dìng;yd fú;oy wù;wl	801
-预定服务	yù;yy dìng;bp fú;oy wù;wl	464
 预定轨道	yù;yy dìng;bp guǐ;ij dào;zu	796
 预定海域	yù;yy dìng;bp hǎi;dm yù;th	356
 预定计划	yù;yy dìng;bp jì;yu huà;dg,gd	616
 预订机票	yù;yy dìng;yd jī;mj piào;xu	1148
-预订价格	yù;yy dìng;yd jià;rj gé;mg	3
-预定价格	yù;yy dìng;bp jià;rj gé;mg	2
+预订价格	yù;yy dìng;yd jià;rj gé;mg	13
+预定价格	yù;yy dìng;bp jià;rj gé;mg	5
 预订酒店	yù;yy dìng;yd jiǔ;dy diàn;gv	1030
 预定利率	yù;yy dìng;bp lì;hd,dh lǜ;wu	590
-预定门票	yù;yy dìng;bp mén;dg piào;xu	927
-预订门票	yù;yy dìng;yd mén;dg piào;xu	574
+预订门票	yù;yy dìng;yd mén;dg piào;xu	927
+预定门票	yù;yy dìng;bp mén;dg piào;xu	574
 预定目标	yù;yy dìng;bp mù;aa biāo;mu	144
 预订平台	yù;yy dìng;yd píng;aa,gb tái;sk	842
-预订热线	yù;yy dìng;yd rè;hv xiàn;sj	3
-预定热线	yù;yy dìng;bp rè;hv xiàn;sj	2
+预订热线	yù;yy dìng;yd rè;hv xiàn;sj	32
 预定人数	yù;yy dìng;bp rén;pd shù;wl	324
 预定日期	yù;yy dìng;bp rì;aa,or qī;oq,qo	19
 预定时间	yù;yy dìng;bp shí;oc jiān;mo,om	119
@@ -1343239,6 +1343248,7 @@ sort: by_weight
 不事先通知	bú;ad,ax shì;aa xiān;ne,en tōng;zy zhī;uk,ku	10
 不是养蚕人	bú;ad,ax shì;op,ov yǎng;ya,yd cán;it,ti rén;pd	10
 不失一般性	bù;ad,ax shī;pf yì;aa bān;vu xìng;xu	10
+不是一个事	bú;ad,ax shì;op,ov yí;aa gè;ra,pa shì;aa	10
 不是因为说	bú;ad,ax shì;op,ov yīn;kd wèi;dd shuō;yd	10
 不使用化肥	bù;ad,ax shǐ;rl yòng;kf huà;rb féi;ob	10
 不使用农药	bù;ad,ax shǐ;rl yòng;kf nóng;by,ny yào;cy	10
@@ -1357271,6 +1357281,7 @@ sort: by_weight
 夫妻的感情	fū;ad,er qī;na,nq de;bu gǎn;xx qíng;xq	10
 夫妻的关系	fū;ad,er qī;na,nq de;bu guān;qd,bt xì;ps	10
 夫妻的世界	fū;ad,er qī;na,nq de;bu shì;ca,cv jiè;tj	10
+服气地不行	fú;oy qì;py,ry dì;ty bù;ad,ax xíng;xd,xi	10
 夫妻老婆店	fū;ad,er qī;na,nq lǎo;bl,lb pó;nb diàn;gv	10
 夫妻生活后	fū;ad,er qī;na,nq shēng;na huó;du hòu;pk	10
 夫妻生活时	fū;ad,er qī;na,nq shēng;na huó;du shí;oc	10
@@ -1405398,6 +1405409,8 @@ sort: by_weight
 我眼中的你	wǒ;pd,pp yǎn;og zhōng;aa,ka de;bu nǐ;re	10
 我眼中的她	wǒ;pd,pp yǎn;og zhōng;aa,ka de;bu tā;ny	10
 我要和他分	wǒ;pd,pp yào;xn hé;hk tā;ry fēn;bd,db	10
+我要开炮了	wǒ;pd,pp yào;xn kāi;ac pào;hb le;aa,vu	12
+我要开跑了	wǒ;pd,pp yào;xn kāi;ac pǎo;zb le;aa,vu	10
 我要逆风去	wǒ;pd,pp yào;xn nì;zn fēng;ji qù;ts	10
 我要去找她	wǒ;pd,pp yào;xn qù;ts zhǎo;fg tā;ny	10
 我要是不丑	wǒ;pd,pp yào;xn shì;op,ov bù;ad,ax chǒu;aa	10
@@ -1406047,16 +1406060,13 @@ sort: by_weight
 五龙奇剑士	wǔ;aa lóng;ad qí;dk jiàn;da,dq shì;aa	10
 武隆仙女山	wǔ;vy,yv lóng;eu xiān;ru nǚ;aa,vh shān;aa	10
 无路基病害	wú;ag,ay lù;zg jī;tq,qt bìng;bb hài;bk	10
-五路居一中	wǔ;aa lù;zg jū;ug yī;aa zhōng;aa,ka	10
 乌鲁鲁巨石	wū;pa lǔ;yo lǔ;yo jù;kk,aa shí;pk,kp	10
 乌鲁木齐仓	wū;pa lǔ;yo mù;ad qí;wa,wp cāng;re	10
 乌鲁木齐到	wū;pa lǔ;yo mù;ad qí;wa,wp dào;dv	10
 乌鲁木齐的	wū;pa lǔ;yo mù;ad qí;wa,wp de;bu	10
-乌鲁木齐二	wū;pa lǔ;yo mù;ad qí;wa,wp èr;aa	10
 乌鲁木齐河	wū;pa lǔ;yo mù;ad qí;wa,wp hé;dk	10
 乌鲁木齐路	wū;pa lǔ;yo mù;ad qí;wa,wp lù;zg	10
 乌鲁木齐南	wū;pa lǔ;yo mù;ad qí;wa,wp nán;ua,uy	10
-乌鲁木齐七	wū;pa lǔ;yo mù;ad qí;wa,wp qī;ag	10
 乌鲁木齐去	wū;pa lǔ;yo mù;ad qí;wa,wp qù;ts	10
 乌鲁木齐人	wū;pa lǔ;yo mù;ad qí;wa,wp rén;pd	10
 兀鲁真公主	wù;ae lǔ;yo zhēn;uj gōng;sb,bs zhǔ;dw	10
@@ -1406074,7 +1406084,6 @@ sort: by_weight
 五马路小学	wǔ;aa mǎ;aa,vh lù;zg xiǎo;ad xué;zb,dz	10
 五马坪监狱	wǔ;aa mǎ;aa,vh píng;tp jiān;mv yù;qq	10
 雾霾的危害	wù;yw mái;yl de;bu wēi;de hài;bk	10
-伍麦耶王朝	wǔ;rw mài;fw yé;ee wáng;aa cháo;ou,uo	10
 伍麦叶王朝	wǔ;rw mài;fw yè;ku wáng;aa cháo;ou,uo	10
 物美便利店	wù;nw měi;dy,yd biàn;rg lì;hd,dh diàn;gv	10
 物美大卖场	wù;nw měi;dy,yd dà;ad mài;um chǎng;ty	10
@@ -1406139,7 +1406148,6 @@ sort: by_weight
 武器和盔甲	wǔ;vy,yv qì;kk,qk hé;hk kuī;mh jiǎ;aa,oa	10
 武器和装备	wǔ;vy,yv qì;kk,qk hé;hk zhuāng;yv bèi;wt	10
 武奇科维奇	wǔ;vy,yv qí;dk kē;hd wéi;sv qí;dk	10
-吴奇隆前妻	wú;kt qí;dk lóng;eu qián;bd,qd qī;na,nq	10
 吾妻日出夫	wú;wk,kw qī;na,nq rì;aa,or chū;ck,aa fū;ad,er	10
 武器训练科	wǔ;vy,yv qì;kk,qk xùn;yi liàn;sd,sj kē;hd	10
 武器训练师	wǔ;vy,yv qì;kk,qk xùn;yi liàn;sd,sj shī;ab,db	10
@@ -1456333,43 +1456341,6 @@ sort: by_weight
 权贵资本主义	quán;my guì;ba,vb zī;bc běn;aa,ma zhǔ;dw yì;di,id	10
 全国百强县市	quán;rw guó;ky bǎi;ab qiáng;gs xiàn;sq,qs shì;wj	10
 全过程的管理	quán;rw guò;zc chéng;hi de;bu guǎn;vg lǐ;wl	10
-全国成人高考	quán;rw guó;ky chéng;gg,wg rén;pd gāo;wk kǎo;lk	10
-全国大中城市	quán;rw guó;ky dà;ad zhōng;aa,ka chéng;ti shì;wj	10
-全国第一方阵	quán;rw guó;ky dì;vp yī;aa fāng;dw zhèn;ei	10
-全国电子商务	quán;rw guó;ky diàn;ag,og zǐ;aa,vh shāng;wk wù;wl	10
-全国独一无二	quán;rw guó;ky dú;qi yī;aa wú;ag,ay èr;aa	10
-全国对外友协	quán;rw guó;ky duì;cy,yc wài;xb yǒu;yu,uy xié;ub	10
-全国复兴总署	quán;rw guó;ky fù;rw,wo xīng;ba,db zǒng;xk,bx shǔ;sv	10
-全国高速公路	quán;rw guó;ky gāo;wk sù;zu gōng;sb,bs lù;zg	10
-全国高血压日	quán;rw guó;ky gāo;wk xuè;pa,pm yā;id,it rì;aa,or	10
-全国各大高校	quán;rw guó;ky gè;wk dà;ad gāo;wk xiào;mj	10
-全国各省区市	quán;rw guó;ky gè;wk shěng;ou qū;ki shì;wj	10
-全国各族人民	quán;rw guó;ky gè;wk zú;fu rén;pd mín;ag,vg	10
-全国互济总会	quán;rw guó;ky hù;aa,ea jì;dq zǒng;xk,bx huì;ry	10
-全国互联互通	quán;rw guó;ky hù;aa,ea lián;eg hù;aa,ea tōng;zy	10
-全国京都会议	quán;rw guó;ky jīng;wx dū;ev huì;ry yì;yy	10
-全国劳工联盟	quán;rw guó;ky láo;lb,cl gōng;aa lián;eg méng;mm	10
-全国联行往来	quán;rw guó;ky lián;eg háng;xd,xi wǎng;xv lái;am,wb	10
-全国名老中医	quán;rw guó;ky míng;xk lǎo;bl,lb zhōng;aa,ka yī;ku	10
-全国农技中心	quán;rw guó;ky nóng;by,ny jì;fv zhōng;aa,ka xīn;dd	10
-全国青联常委	quán;rw guó;ky qīng;of,fo lián;eg cháng;jk,xd,dd wěi;hn	10
-全国青联委员	quán;rw guó;ky qīng;of,fo lián;eg wěi;hn yuán;kb	10
-全国青联主席	quán;rw guó;ky qīng;of,fo lián;eg zhǔ;dw xí;jc,gj	10
-全国人大常委	quán;rw guó;ky rén;pd dà;ad cháng;jk,xd,dd wěi;hn	10
-全国摄影大展	quán;rw guó;ky shè;fn yǐng;pj dà;ad zhǎn;uy	10
-全国十佳林场	quán;rw guó;ky shí;aa jiā;rg lín;mm chǎng;ty	10
-全国十佳农民	quán;rw guó;ky shí;aa jiā;rg nóng;by,ny mín;ag,vg	10
-全国数一数二	quán;rw guó;ky shǔ;wl yī;aa shǔ;wl èr;aa	10
-全国通话时间	quán;rw guó;ky tōng;zy huà;yu shí;oc jiān;mo,om	10
-全国脱贫攻坚	quán;rw guó;ky tuō;od pín;bf gōng;gw,wg jiān;ty	10
-全国文明县城	quán;rw guó;ky wén;wi,dd míng;oo xiàn;sq,qs chéng;ti	10
-全国武术冠军	quán;rw guó;ky wǔ;vy,yv shù;md guàn;bc jūn;bi	10
-全国新课标卷	quán;rw guó;ky xīn;jq kè;yg biāo;mu juǎn;ef,je	10
-全国畜牧总站	quán;rw guó;ky xù;tx,wt mù;nw zǒng;xk,bx zhàn;lv	10
-全国学联主席	quán;rw guó;ky xué;zb,dz lián;eg zhǔ;dw xí;jc,gj	10
-全国政协常委	quán;rw guó;ky zhèng;wv xié;ub cháng;jk,xd,dd wěi;hn	10
-全国政协文史	quán;rw guó;ky zhèng;wv xié;ub wén;wi,dd shǐ;ki,ad	10
-全国重点高校	quán;rw guó;ky zhòng;pa,ql diǎn;hv gāo;wk xiào;mj	10
 全函数式编程	quán;rw hán;ku,lk shù;wl shì;gy,yg biān;sb chéng;hi	10
 权衡利弊得失	quán;my héng;xd,xi lì;hd,dh bì;cb,cw dé;xc shī;pf	10
 全集在线观看	quán;rw jí;mv,vm zài;ta,ut xiàn;sj guān;jy,yj kàn;ou,uo	10
@@ -1456565,7 +1456536,6 @@ sort: by_weight
 缺德带冒烟的	quē;fd,fg dé;xx dài;jb mào;oo yān;hy de;bu	10
 确定性的丧失	què;uj dìng;bp xìng;xu de;bu sàng;ty,uy shī;pf	10
 确定性反褶积	què;uj dìng;bp xìng;xu fǎn;py zhě;yb,yx jī;hv	12
-确定型图灵机	què;uj dìng;bp xíng;tx tú;kd líng;hx,xh jī;mj	10
 确定性图灵机	què;uj dìng;bp xìng;xu tú;kd líng;hx,xh jī;mj	10
 确定性自动机	què;uj dìng;bp xìng;xu zì;pa,po dòng;ly,yl jī;mj	10
 确定性最优化	què;uj dìng;bp xìng;xu zuì;oq yōu;ry huà;rb	10
@@ -1465156,7 +1465126,6 @@ sort: by_weight
 我们从何处来	wǒ;pd,pp men;rm cóng;rr hé;rk chù;wb lái;am,wb	10
 我们错过了你	wǒ;pd,pp men;rm cuò;jx guò;zc le;aa,vu nǐ;re	10
 我们的口号是	wǒ;pd,pp men;rm de;bu kǒu;aa hào;kk shì;op,ov	10
-我们的千阙歌	wǒ;pd,pp men;rm de;bu qiān;pa quē;mj,mq gē;qg	10
 我们的征途是	wǒ;pd,pp men;rm de;bu zhēng;xv tú;zy shì;op,ov	10
 我们都是凡人	wǒ;pd,pp men;rm dōu;ev shì;op,ov fán;dj,jd rén;pd	10
 我们风雨同舟	wǒ;pd,pp men;rm fēng;ji yǔ;ad tóng;kk zhōu;pd	10
@@ -1465172,7 +1465141,6 @@ sort: by_weight
 我们为何而战	wǒ;pd,pp men;rm wèi;dd hé;rk ér;aa zhàn;gv	10
 我们无所畏惧	wǒ;pd,pp men;rm wú;ag,ay suǒ;hj,jh wèi;ty jù;xj	10
 我们下期再见	wǒ;pd,pp men;rm xià;ab,ad qī;oq,qo zài;aa,at jiàn;ag,ek,ke	10
-我们与驻警的	wǒ;pd,pp men;rm yǔ;aa zhù;mv jǐng;yj de;bu	10
 我们长大成人	wǒ;pd,pp men;rm zhǎng;pd dà;ad chéng;gg,wg rén;pd	10
 我们之间的事	wǒ;pd,pp men;rm zhī;dd jiān;mo,om de;bu shì;aa	10
 我们中的一员	wǒ;pd,pp men;rm zhōng;aa,ka de;bu yì;aa yuán;kb	10
@@ -1481938,7 +1481906,6 @@ sort: by_weight
 大唐御史谢瑶环	dà;ad táng;gk yù;xx shǐ;ki,ad xiè;yu yáo;wf huán;wb	10
 打铁必须自身硬	dǎ;fd tiě;ju bì;dd,xp xū;py,yp zì;pa,po shēn;pp yìng;ug	10
 打铁还得自身硬	dǎ;fd tiě;ju hái;zb děi;xc zì;pa,po shēn;pp yìng;ug	10
-打铁还需本身硬	dǎ;fd tiě;ju hái;zb xū;ye běn;aa,ma shēn;pp yìng;ug	10
 打铁还需自身硬	dǎ;fd tiě;ju hái;zb xū;ye zì;pa,po shēn;pp yìng;ug	10
 打铁先得自身硬	dǎ;fd tiě;ju xiān;ne,en děi;xc zì;pa,po shēn;pp yìng;ug	10
 打通最后一公里	dǎ;fd tōng;zy zuì;oq hòu;pk yì;aa gōng;sb,bs lǐ;aa,tt	10
