@@ -1,5 +1,22 @@
 # Changelog
 
+## [18.1.7](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.6...v18.1.7) (2026-10-20)
+
+
+### 📚 词库更新
+
+* 词库调整 ([cdf0c90](https://github.com/amzxyz/rime-wanxiang/commit/cdf0c90cdc122db56c2d8cb02a4831001530cf00))
+* 词库调整 ([4b5b8ab](https://github.com/amzxyz/rime-wanxiang/commit/4b5b8abbeed73ae2bdcb45a84893c01f5153d8a5))
+* 词库调整 ([511da0c](https://github.com/amzxyz/rime-wanxiang/commit/511da0cdc38f64d29d4d962fef0ee54c287b4f40))
+* 词库调整 ([2f6a9e4](https://github.com/amzxyz/rime-wanxiang/commit/2f6a9e4deab964b74b29a51689ff56758ad13baf))
+
+
+### 🐛 Bug 修复
+
+* base、lite引用无感造词组件以保障反查过滤也能写入用户词 ([e61493e](https://github.com/amzxyz/rime-wanxiang/commit/e61493e1958077754c785bc99a72a858b3635309))
+* ci ([50b2ea9](https://github.com/amzxyz/rime-wanxiang/commit/50b2ea9a8ea689b698cb34e25822ef0c063d2270))
+* 对齐shadow_candidate传参 ([856207f](https://github.com/amzxyz/rime-wanxiang/commit/856207fdb79512af0f40cb6f9ab1a214643669e3))
+
 ## [18.1.6](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.5...v18.1.6) (2026-10-19)
 
 
