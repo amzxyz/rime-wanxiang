@@ -97,6 +97,7 @@ engine:
     - reverse_lookup_translator@wanxiang_reverse  #挂接部件组字和笔画反查
   filters:
     - lua_filter@*wanxiang.charset_filter  #放replacer前面,全方位自定义的字符集过滤器，支持繁体字符集开放
+    - lua_filter@*wanxiang.auto_phrase  #无感造词，配合super_lookup实现反查时造词
     - lua_filter@*wanxiang.super_lookup  #字词输入中反查辅助筛选
     - lua_filter@*wanxiang.custom_phrase  #用户自定义置顶词与简码前置
     - lua_filter@*wanxiang.context_reorder*F  #用于输入编码后的上下文调频
