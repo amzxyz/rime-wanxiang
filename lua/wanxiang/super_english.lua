@@ -874,7 +874,7 @@ function F.func(input, env)
         if final_text ~= original_text or final_comment ~= original_comment then
             -- 只派生一次 ShadowCandidate：保留 genuine Phrase / 用户词典身份，
             -- 避免 restore -> format -> comment 三段连续 Candidate(...) 重建。
-            fmt_cand = ShadowCandidate(cand, cand.type, final_text, final_comment, false)
+            fmt_cand = ShadowCandidate(cand, cand.type, final_text, final_comment, true)
         end
 
         has_valid_candidate = true
