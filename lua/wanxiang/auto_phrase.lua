@@ -91,8 +91,17 @@ function AP.init(env)
     -- 提交造词时需要识别并跳过它，不能把它当成正文 Segment。
     env.add_user_dict_prefix = config:get_string("add_user_dict/prefix") or "``"
 
-    -- 中文：add_user_dict（受 add_* 开关影响）
-    if enable_auto_phrase and enable_user_dict then
+    -- 主 translator 用户词开关开启时，写入主 translator 用户词典；
+    -- 未开启时，完全沿用原有 add_user_dict 配置分支（Pro）。
+    env.main_translator_mode =
+        config:get_bool("translator/enable_user_dict") or false
+    env.reverse_lookup_pending = false
+    env.reverse_lookup_base = nil
+    env.reverse_key = config:get_string("wanxiang_lookup/key") or "`"
+
+    if env.main_translator_mode then
+        env.memory = Memory(env.engine, env.engine.schema)
+    elseif enable_auto_phrase and enable_user_dict then
         env.memory = Memory(env.engine, env.engine.schema, "add_user_dict")
     else
         env.memory = nil
@@ -134,6 +143,20 @@ end
 
 -- 入口
 function AP.func(input, env)
+    if env.main_translator_mode then
+        local current_input = env.engine.context.input or ""
+        local marker_pos = env.reverse_key ~= "" and current_input:find(env.reverse_key, 1, true) or nil
+        if marker_pos then
+            env.reverse_lookup_pending = true
+            env.reverse_lookup_base = current_input:sub(1, marker_pos - 1)
+        elseif env.reverse_lookup_pending and current_input ~= env.reverse_lookup_base then
+            -- super_lookup 可能在提交前移除引导符；输入恰好回到 base 时保留状态，
+            -- 其余输入变化则清除，避免后续普通上屏误触发特殊写入。
+            env.reverse_lookup_pending = false
+            env.reverse_lookup_base = nil
+        end
+    end
+
     local use_comment_cache = env.memory ~= nil  -- 只有中文造词才需要缓存注释
 
     for cand in input:iter() do
@@ -150,6 +173,9 @@ end
 -- 造词
 function AP.commit_handler(ctx, env)
     local comment_cache = env.comment_cache
+    local reverse_lookup_pending = env.reverse_lookup_pending == true
+    env.reverse_lookup_pending = false
+    env.reverse_lookup_base = nil
 
     if not ctx or not ctx.composition then
         clear_comment_cache(env)
@@ -190,6 +216,14 @@ function AP.commit_handler(ctx, env)
     ---------------------------------------------------
     -- ② 中文自动造词
     ---------------------------------------------------
+    -- 主 translator 用户词开启时，普通上屏由 Rime 原生机制处理；
+    -- 本脚本只接管带 wanxiang_lookup 引导符的反查提交。
+    -- 主 translator 开关关闭时，Pro 的 add_user_dict 逻辑完全沿用原样。
+    if env.main_translator_mode and not reverse_lookup_pending then
+        clear_comment_cache(env)
+        return
+    end
+
     if not env.memory then
         clear_comment_cache(env)
         return
