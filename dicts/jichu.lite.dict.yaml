@@ -6102,7 +6102,6 @@ sort: by_weight
 必死	bi si	2254
 鼻饲	bi si	178
 鄙俗	bi su	100
-毕宿	bi su	81
 鼻酸	bi suan	144
 笔算	bi suan	119
 铋酸	bi suan	117
@@ -6203,6 +6202,7 @@ sort: by_weight
 避凶	bi xiong	37
 必修	bi xiu	3319
 壁宿	bi xiu	90
+毕宿	bi xiu	81
 必须	bi xu	161754
 必需	bi xu	2527
 碧虚	bi xu	277
@@ -31389,7 +31389,6 @@ sort: by_weight
 放送	fang song	1243
 仿宋	fang song	788
 访苏	fang su	38
-房宿	fang su	36
 放蒜	fang suan	724
 防酸	fang suan	688
 防碎	fang sui	35
@@ -31473,6 +31472,7 @@ sort: by_weight
 房性	fang xing	350
 防锈	fang xiu	669
 方休	fang xiu	602
+房宿	fang xiu	36
 放学	fang xue	3244
 访学	fang xue	1598
 防雪	fang xue	568
@@ -56782,7 +56782,6 @@ sort: by_weight
 较松	jiao song	1004
 交送	jiao song	954
 酵素	jiao su	923
-角宿	jiao su	639
 脚酸	jiao suan	652
 焦酸	jiao suan	619
 嚼碎	jiao sui	531
@@ -56925,6 +56924,7 @@ sort: by_weight
 脚行	jiao xing	84
 胶性	jiao xing	67
 娇杏	jiao xing	53
+角宿	jiao xiu	639
 娇羞	jiao xiu	556
 姣羞	jiao xiu	76
 脚癣	jiao xuan	16
@@ -59996,7 +59996,6 @@ sort: by_weight
 惊悚	jing song	3394
 竞速	jing su	1677
 净素	jing su	662
-井宿	jing su	525
 精算	jing suan	5734
 精髓	jing sui	11012
 精索	jing suo	60
@@ -60140,6 +60139,7 @@ sort: by_weight
 径行	jing xing	69
 晶形	jing xing	55
 精修	jing xiu	1187
+井宿	jing xiu	525
 静修	jing xiu	113
 竞秀	jing xiu	90
 景秀	jing xiu	72
@@ -62876,6 +62876,7 @@ sort: by_weight
 开国	kai guo	2223
 开锅	kai guo	1912
 开海	kai hai	981
+开行	kai hang	581
 开航	kai hang	78
 开好	kai hao	1024
 开号	kai hao	973
@@ -63123,7 +63124,6 @@ sort: by_weight
 开心	kai xin	29905
 开新	kai xin	1449
 开薪	kai xin	391
-开行	kai xing	581
 开胸	kai xiong	468
 凯旋	kai xuan	1112
 开轩	kai xuan	536
@@ -74458,8 +74458,8 @@ sort: by_weight
 乱射	luan she	720
 乱设	luan she	517
 乱神	luan shen	91
-卵生	luan sheng	386
-孪生	luan sheng	160
+孪生	luan sheng	386
+卵生	luan sheng	160
 乱世	luan shi	5752
 卵石	luan shi	326
 乱石	luan shi	282
@@ -77608,13 +77608,13 @@ sort: by_weight
 美考	mei kao	740
 没烤	mei kao	701
 没靠	mei kao	560
+没课	mei ke	1770
 每克	mei ke	1680
 每科	mei ke	1281
-魅可	mei ke	734
 每颗	mei ke	675
 每刻	mei ke	565
+魅可	mei ke	334
 每课	mei ke	100
-没课	mei ke	80
 每棵	mei ke	64
 每客	mei ke	51
 梅科	mei ke	40
@@ -133742,7 +133742,6 @@ sort: by_weight
 新宋	xin song	45
 新宿	xin su	766
 心素	xin su	689
-心宿	xin su	620
 信宿	xin su	496
 心酸	xin suan	4622
 辛酸	xin suan	1934
@@ -133889,6 +133888,7 @@ sort: by_weight
 信行	xin xing	212
 心胸	xin xiong	1385
 新秀	xin xiu	3545
+心宿	xin xiu	620
 新修	xin xiu	565
 心虚	xin xu	3413
 心绪	xin xu	1099
@@ -190943,7 +190943,6 @@ sort: by_weight
 必嗽平	bi sou ping	378
 比速度	bi su du	166
 比苏联	bi su lian	603
-毕宿五	bi su wu	612
 毕苏语	bi su yu	364
 闭算子	bi suan zi	144
 闭锁槽	bi suo cao	261
@@ -191134,6 +191133,7 @@ sort: by_weight
 必修了	bi xiu le	234
 必修三	bi xiu san	522
 必修四	bi xiu si	428
+毕宿五	bi xiu wu	612
 必修五	bi xiu wu	356
 必修一	bi xiu yi	684
 比秀玉	bi xiu yu	315
@@ -296191,6 +296191,7 @@ sort: by_weight
 福伦达	fu lun da	427
 富伦湖	fu lun hu	99
 扶轮社	fu lun she	9
+拂罗裳	fu luo chang	45
 浮罗池	fu luo chi	338
 弗罗多	fu luo duo	1937
 扶罗韩	fu luo han	202
@@ -296200,7 +296201,6 @@ sort: by_weight
 芙萝蕾	fu luo lei	306
 弗洛蒙	fu luo meng	266
 富洛普	fu luo pu	238
-拂罗裳	fu luo shang	45
 芙洛雅	fu luo ya	670
 氟氯昂	fu lv ang	99
 氟氯烃	fu lv ting	513
@@ -322773,9 +322773,9 @@ sort: by_weight
 国军战	guo jun zhan	621
 国军之	guo jun zhi	495
 国军中	guo jun zhong	639
+国开行	guo kai hang	1906
 锅开了	guo kai le	576
 过开了	guo kai le	460
-国开行	guo kai xing	1906
 过看了	guo kan le	963
 过考试	guo kao shi	1220
 国考题	guo kao ti	13
@@ -335804,7 +335804,6 @@ sort: by_weight
 很多病	hen duo bing	623
 很多饼	hen duo bing	296
 很多不	hen duo bu	1719
-很多补	hen duo bu	570
 很多步	hen duo bu	364
 很多菜	hen duo cai	1346
 很多草	hen duo cao	648
@@ -335820,6 +335819,7 @@ sort: by_weight
 很多床	hen duo chuang	405
 很多次	hen duo ci	10852
 很多刺	hen duo ci	680
+很多词	hen duo ci	210
 很多葱	hen duo cong	554
 很多醋	hen duo cu	585
 很多村	hen duo cun	756
@@ -354361,6 +354361,7 @@ sort: by_weight
 会开个	hui kai ge	567
 会开工	hui kai gong	400
 会开挂	hui kai gua	396
+会开行	hui kai hang	374
 会开花	hui kai hua	742
 会开怀	hui kai huai	387
 会开机	hui kai ji	477
@@ -354388,7 +354389,6 @@ sort: by_weight
 会开挖	hui kai wa	369
 会开完	hui kai wan	616
 会开心	hui kai xin	1017
-会开行	hui kai xing	374
 会开业	hui kai ye	436
 会开源	hui kai yuan	472
 回开原	hui kai yuan	171
@@ -377831,6 +377831,7 @@ sort: by_weight
 将开发	jiang kai fa	828
 将开工	jiang kai gong	724
 将开关	jiang kai guan	464
+将开行	jiang kai hang	504
 将开户	jiang kai hu	374
 将开会	jiang kai hui	364
 将开机	jiang kai ji	486
@@ -377850,7 +377851,6 @@ sort: by_weight
 将开通	jiang kai tong	950
 将开拓	jiang kai tuo	477
 将开挖	jiang kai wa	342
-将开行	jiang kai xing	504
 将开业	jiang kai ye	792
 将开源	jiang kai yuan	436
 将开展	jiang kai zhan	1089
@@ -385170,7 +385170,6 @@ sort: by_weight
 酵素菌	jiao su jun	261
 角速率	jiao su lv	360
 酵素梅	jiao su mei	346
-角宿一	jiao su yi	508
 搅碎机	jiao sui ji	360
 嚼碎了	jiao sui le	562
 搅碎了	jiao sui le	388
@@ -385492,6 +385491,7 @@ sort: by_weight
 娇羞地	jiao xiu di	662
 娇羞感	jiao xiu gan	266
 娇羞了	jiao xiu le	382
+角宿一	jiao xiu yi	508
 娇羞状	jiao xiu zhuang	405
 焦虚寒	jiao xu han	400
 脚悬在	jiao xuan zai	342
@@ -396099,6 +396099,8 @@ sort: by_weight
 就很多	jiu hen duo	1058
 就很烦	jiu hen fan	364
 就很尬	jiu hen ga	52
+就很怪	jiu hen guai	229
+就很乖	jiu hen guai	134
 就很好	jiu hen hao	5994
 就很快	jiu hen kuai	936
 就很慢	jiu hen man	662
@@ -402306,6 +402308,7 @@ sort: by_weight
 开国时	kai guo shi	372
 开过头	kai guo tou	513
 开国者	kai guo zhe	464
+开行吗	kai hang ma	261
 开航母	kai hang mu	52
 开航前	kai hang qian	324
 开好车	kai hao che	436
@@ -403248,7 +403251,6 @@ sort: by_weight
 开心笑	kai xin xiao	688
 开心呀	kai xin ya	864
 开心早	kai xin zao	513
-开行吗	kai xing ma	261
 开星形	kai xing xing	50
 凯旋城	kai xuan cheng	6
 凯旋歌	kai xuan ge	279
@@ -408468,10 +408470,10 @@ sort: by_weight
 可开发	ke kai fa	778
 可开放	ke kai fang	504
 可开盖	ke kai gai	324
+可开行	ke kai hang	306
 可开合	ke kai he	382
 可开启	ke kai qi	806
 可开心	ke kai xin	778
-可开行	ke kai xing	306
 可开展	ke kai zhan	760
 可看出	ke kan chu	1102
 可看到	ke kan dao	521
@@ -505328,6 +505330,7 @@ sort: by_weight
 清大肠	qing da chang	310
 请答复	qing da fu	549
 青大附	qing da fu	342
+卿大夫	qing da fu	82
 请大哥	qing da ge	35
 庆达河	qing da he	50
 请大家	qing da jia	10751
@@ -505339,7 +505342,6 @@ sort: by_weight
 请打印	qing da yin	9
 青黛粉	qing dai fen	288
 请大夫	qing dai fu	91
-卿大夫	qing dai fu	82
 请带好	qing dai hao	72
 请戴好	qing dai hao	65
 请代练	qing dai lian	310
@@ -549551,6 +549553,7 @@ sort: by_weight
 守卫战	shou wei zhan	554
 守卫着	shou wei zhe	546
 守卫者	shou wei zhe	141
+首尾帧	shou wei zhen	103
 收文件	shou wen jian	6
 收文日	shou wen ri	4
 手握了	shou wo le	544
@@ -662308,7 +662311,6 @@ sort: by_weight
 新搜索	xin sou suo	572
 新素材	xin su cai	526
 新速度	xin su du	25
-心宿二	xin su er	598
 新塑料	xin su liao	464
 新宿区	xin su qu	60
 新宿舍	xin su she	364
@@ -663029,6 +663031,7 @@ sort: by_weight
 新秀杯	xin xiu bei	207
 新秀场	xin xiu chang	279
 新修订	xin xiu ding	254
+心宿二	xin xiu er	598
 新修复	xin xiu fu	724
 新修改	xin xiu gai	886
 辛修己	xin xiu ji	45
@@ -671497,7 +671500,7 @@ sort: by_weight
 亚军队	ya jun dui	28
 亚军奖	ya jun jiang	9
 牙菌膜	ya jun mo	279
-亚开行	ya kai xing	44
+亚开行	ya kai hang	44
 呀看了	ya kan le	540
 亚考兰	ya kao lan	212
 雅可布	ya ke bu	562
@@ -685015,6 +685018,7 @@ sort: by_weight
 易开罐	yi kai guan	302
 已开光	yi kai guang	405
 已开过	yi kai guo	369
+已开行	yi kai hang	369
 移开后	yi kai hou	423
 已开户	yi kai hu	248
 一开会	yi kai hui	72
@@ -685052,7 +685056,6 @@ sort: by_weight
 一开通	yi kai tong	433
 一开头	yi kai tou	868
 已开挖	yi kai wa	333
-已开行	yi kai xing	369
 已开学	yi kai xue	873
 一开学	yi kai xue	319
 已开业	yi kai ye	657
@@ -701924,8 +701927,8 @@ sort: by_weight
 油烟气	you yan qi	490
 有延期	you yan qi	395
 又俨然	you yan ran	270
-有眼色	you yan se	1080
-有颜色	you yan se	684
+有颜色	you yan se	1080
+有眼色	you yan se	684
 游研社	you yan she	345
 有延时	you yan shi	648
 油盐糖	you yan tang	814
@@ -703598,6 +703601,8 @@ sort: by_weight
 余甘果	yu gan guo	225
 预感了	yu gan le	464
 鱼干女	yu gan nv	43
+鱼竿上	yu gan shang	200
+语感上	yu gan shang	64
 鱼干头	yu gan tou	43
 鱼肝油	yu gan you	562
 预干燥	yu gan zao	50
@@ -774281,7 +774286,6 @@ sort: by_weight
 碧松照明	bi song zhao ming	225
 比速汽车	bi su qi che	468
 鄙俗无文	bi su wu wen	45
-毕宿五星	bi su wu xing	324
 笔算乘法	bi suan cheng fa	50
 比岁不登	bi sui bu deng	4
 鼻损伤病	bi sun shang bing	45
@@ -774484,6 +774488,7 @@ sort: by_weight
 鼻修补术	bi xiu bu shu	45
 必修课程	bi xiu ke cheng	703
 必修科目	bi xiu ke mu	47
+毕宿五星	bi xiu wu xing	324
 必须按时	bi xu an shi	558
 必须按照	bi xu an zhao	725
 必须安装	bi xu an zhuang	122
@@ -862989,7 +862994,6 @@ sort: by_weight
 放松政策	fang song zheng ce	662
 放松状态	fang song zhuang tai	783
 放松自己	fang song zi ji	568
-房宿增一	fang su zeng yi	50
 防酸搪瓷	fang suan tang ci	45
 方遂吾愿	fang sui wu yuan	4
 防碎心得	fang sui xin de	50
@@ -863390,6 +863394,7 @@ sort: by_weight
 防锈油剂	fang xiu you ji	99
 防锈油漆	fang xiu you qi	171
 防锈油脂	fang xiu you zhi	99
+房宿增一	fang xiu zeng yi	50
 防眩玻璃	fang xuan bo li	4
 放玄雷咒	fang xuan lei zhou	76
 房玄龄妻	fang xuan ling qi	288
@@ -869395,7 +869400,6 @@ sort: by_weight
 风号浪吼	feng hao lang hou	144
 风号雨泣	feng hao yu qi	50
 风嗥雨啸	feng hao yu xiao	4
-冯河暴虎	feng he bao hu	144
 枫荷除痹	feng he chu bi	50
 丰和大道	feng he da dao	99
 沣河大桥	feng he da qiao	144
@@ -889933,6 +889937,8 @@ sort: by_weight
 公开公正	gong kai gong zheng	814
 公开喊话	gong kai han hua	346
 公开喊价	gong kai han jia	324
+公开行程	gong kai hang cheng	16
+公开行为	gong kai hang wei	274
 公开呼吁	gong kai hu yu	50
 公开回应	gong kai hui ying	734
 公开活动	gong kai huo dong	819
@@ -889987,9 +889993,7 @@ sort: by_weight
 公开消息	gong kai xiao xi	567
 公开信息	gong kai xin xi	1071
 公开信中	gong kai xin zhong	716
-公开行程	gong kai xing cheng	16
 公开形式	gong kai xing shi	428
-公开行为	gong kai xing wei	274
 公开选拔	gong kai xuan ba	22
 公开宣布	gong kai xuan bu	276
 公开宣称	gong kai xuan cheng	264
@@ -929171,7 +929175,7 @@ sort: by_weight
 回复卷轴	hui fu juan zhou	65
 恢复开放	hui fu kai fang	634
 恢复开馆	hui fu kai guan	234
-恢复开行	hui fu kai xing	477
+恢复开行	hui fu kai hang	477
 恢复开园	hui fu kai yuan	171
 恢复快速	hui fu kuai su	356
 恢复了吗	hui fu le ma	28
@@ -954769,8 +954773,6 @@ sort: by_weight
 郊祀庆成	jiao si qing cheng	4
 浇死我了	jiao si wo le	50
 酵素石洗	jiao su shi xi	45
-角宿未旦	jiao su wei dan	153
-角宿一星	jiao su yi xing	117
 酵素原液	jiao su yuan ye	410
 焦酸焦酸	jiao suan jiao suan	4
 教唆粉丝	jiao suo fen si	212
@@ -955213,6 +955215,8 @@ sort: by_weight
 叫兄弟们	jiao xiong di men	306
 娇羞不已	jiao xiu bu yi	315
 娇羞可人	jiao xiu ke ren	279
+角宿未旦	jiao xiu wei dan	153
+角宿一星	jiao xiu yi xing	117
 脚癣药水	jiao xuan yao shui	45
 教学安排	jiao xue an pai	608
 教学标兵	jiao xue biao bing	100
@@ -968256,11 +968260,6 @@ sort: by_weight
 惊悚作家	jing song zuo jia	230
 精苏落泪	jing su luo lei	90
 京苏粤浙	jing su yue zhe	180
-井宿增八	jing su zeng ba	45
-井宿增九	jing su zeng jiu	45
-井宿增七	jing su zeng qi	4
-井宿增十	jing su zeng shi	144
-井宿增四	jing su zeng si	4
 竞速之王	jing su zhi wang	99
 精算公司	jing suan gong si	144
 精算协会	jing suan xie hui	346
@@ -968980,6 +968979,11 @@ sort: by_weight
 京雄高铁	jing xiong gao tie	4
 净修梵行	jing xiu fan xing	117
 静休息区	jing xiu xi qu	171
+井宿增八	jing xiu zeng ba	45
+井宿增九	jing xiu zeng jiu	45
+井宿增七	jing xiu zeng qi	4
+井宿增十	jing xiu zeng shi	144
+井宿增四	jing xiu zeng si	4
 静虚村记	jing xu cun ji	99
 精虚血弱	jing xu xue ruo	256
 竞选班委	jing xuan ban wei	387
@@ -1005186,7 +1005190,7 @@ sort: by_weight
 列车车厢	lie che che xiang	680
 列车服务	lie che fu wu	972
 列车进路	lie che jin lu	162
-列车开行	lie che kai xing	6
+列车开行	lie che kai hang	6
 列车溜逸	lie che liu yi	194
 列车牵引	lie che qian yin	603
 列车司机	lie che si ji	567
@@ -1055887,6 +1055891,7 @@ sort: by_weight
 平焊法兰	ping han fa lan	180
 平巷掘进	ping hang jue jin	50
 平巷矿柱	ping hang kuang zhu	45
+冯河暴虎	ping he bao hu	144
 凭河暴虎	ping he bao hu	45
 平和面对	ping he mian dui	292
 平和体质	ping he ti zhi	25
@@ -1074198,6 +1074203,7 @@ sort: by_weight
 清洗眼睛	qing xi yan jing	327
 清洗养护	qing xi yang hu	333
 清洗要求	qing xi yao qiu	266
+清晰易辨	qing xi yi bian	64
 清晰易懂	qing xi yi dong	994
 清晰易读	qing xi yi du	810
 清洗一番	qing xi yi fan	333
@@ -1167450,7 +1167456,7 @@ sort: by_weight
 土霉素粉	tu mei su fen	207
 土霉素片	tu mei su pian	346
 图门串烤	tu men chuan kao	310
-屠门大嚼	tu men da jiao	153
+屠门大嚼	tu men da jue	153
 图门德扬	tu men de yang	45
 涂门街头	tu men jie tou	50
 图门烧烤	tu men shao kao	450
@@ -1177609,7 +1177615,7 @@ sort: by_weight
 为皇太子	wei huang tai zi	792
 惟恍惟惚	wei huang wei hu	256
 唯恍唯惚	wei huang wei hu	110
-为虺弗摧	wei hui fu cui	99
+为虺弗摧	wei hui fu cuifv	99
 未婚妈妈	wei hun ma ma	69
 未婚男女	wei hun nan nv	612
 伪婚男女	wei hun nan nv	190
@@ -1290772,6 +1290778,7 @@ sort: by_weight
 展开反击	zhan kai fan ji	598
 展开攻势	zhan kai gong shi	72
 展开工作	zhan kai gong zuo	670
+展开行动	zhan kai hang dong	163
 展开合作	zhan kai he zuo	968
 展开激战	zhan kai ji zhan	693
 展开较量	zhan kai jiao liang	621
@@ -1290787,7 +1290794,6 @@ sort: by_weight
 展开系数	zhan kai xi shu	288
 展开想象	zhan kai xiang xiang	598
 展开笑颜	zhan kai xiao yan	436
-展开行动	zhan kai xing dong	163
 展开研究	zhan kai yan jiu	630
 展开一场	zhan kai yi chang	873
 展开侦查	zhan kai zhen cha	688
@@ -1371829,13 +1371835,6 @@ sort: by_weight
 静水皮划艇	jing shui pi hua ting	10
 净水器协会	jing shui qi xie hui	10
 经司法鉴定	jing si fa jian ding	10
-井宿增十八	jing su zeng shi ba	10
-井宿增十二	jing su zeng shi er	10
-井宿增十九	jing su zeng shi jiu	10
-井宿增十七	jing su zeng shi qi	10
-井宿增十三	jing su zeng shi san	10
-井宿增十四	jing su zeng shi si	10
-井宿增十五	jing su zeng shi wu	10
 精算师华绫	jing suan shi hua ling	10
 静态暗间隙	jing tai an jian xi	10
 镜台测微尺	jing tai ce wei chi	10
@@ -1371968,6 +1371967,13 @@ sort: by_weight
 井陉矿务局	jing xing kuang wu ju	10
 景行厅男孩	jing xing ting nan hai	10
 京雄商高铁	jing xiong shang gao tie	10
+井宿增十八	jing xiu zeng shi ba	10
+井宿增十二	jing xiu zeng shi er	10
+井宿增十九	jing xiu zeng shi jiu	10
+井宿增十七	jing xiu zeng shi qi	10
+井宿增十三	jing xiu zeng shi san	10
+井宿增十四	jing xiu zeng shi si	10
+井宿增十五	jing xiu zeng shi wu	10
 竞选班干部	jing xuan ban gan bu	10
 竞选学生会	jing xuan xue sheng hui	10
 经血的颜色	jing xue de yan se	10
@@ -1485988,7 +1485994,7 @@ sort: by_weight
 国际足联世界杯	guo ji zu lian shi jie bei	10
 国家消防救援局	guo jia xiao fang jiu yuan ju	10
 果聚糖果糖苷酶	guo ju tang guo tang gan mei	10
-国开行债券指数	guo kai xing zhai quan zhi shu	10
+国开行债券指数	guo kai hang zhai quan zhi shu	10
 国科大数学学院	guo ke da shu xue xue yuan	10
 过滤穿刺套管针	guo lv chuan ci tao guan zhen	10
 过敏感染性哮喘	guo min gan ran xing xiao chuan	10
@@ -1491128,6 +1491134,7 @@ sort: by_weight
 宜兰小鳖甲蜗牛	yi lan xiao bie jia wo niu	10
 以劳定国则祀之	yi lao ding guo ze si zhi	10
 以立楚怀王孙心	yi li chu huai wang sun xin	10
+一硫二硝三木炭	yi liu er xiao san mu tan	10
 一轮秋影转金波	yi lun qiu ying zhuan jin bo	10
 以马忤斯的晚餐	yi ma wu si de wan can	10
 遗民泪尽胡尘里	yi min lei jin hu chen li	10
