@@ -1,0 +1,544 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="930" viewBox="0 0 1900 930" role="img" aria-labelledby="title desc">
+  <title id="title">最完整的汉语拼音表 The most complete Pinyin Table</title>
+  <desc id="desc">包含声母、韵母和完整拼音组合的二维表。</desc>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <style>
+    .title { font-family: Arial, 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; font-size: 30px; font-weight: 800; fill: #111; }
+    .subtitle { font-family: Arial, sans-serif; font-size: 23px; font-weight: 700; fill: #111; }
+    .header { font-family: Arial, 'Noto Sans CJK SC', sans-serif; font-size: 16px; font-weight: 800; fill: #111; }
+    .initial { font-family: Arial, 'Noto Sans CJK SC', sans-serif; font-size: 18px; font-weight: 800; fill: #111; }
+    .cell { font-family: Arial, 'Noto Sans CJK SC', sans-serif; font-size: 17px; font-weight: 600; fill: #111; }
+  </style>
+  <text class="title" x="950" y="42" text-anchor="middle">最完整的汉语拼音表</text>
+  <text class="subtitle" x="950" y="77" text-anchor="middle">The most complete Pinyin Table</text>
+
+<rect x="10" y="112" width="1865" height="805" fill="#fff" stroke="#e79b9b" stroke-width="1.2"/>
+<rect x="10" y="112" width="52" height="805" fill="#f2e5c6"/>
+<rect x="62" y="112" width="1813" height="35" fill="#f2e5c6"/>
+<line x1="10" y1="112" x2="10" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="62" y1="112" x2="62" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="111" y1="112" x2="111" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="160" y1="112" x2="160" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="209" y1="112" x2="209" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="258" y1="112" x2="258" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="307" y1="112" x2="307" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="356" y1="112" x2="356" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="405" y1="112" x2="405" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="454" y1="112" x2="454" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="503" y1="112" x2="503" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="552" y1="112" x2="552" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="601" y1="112" x2="601" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="650" y1="112" x2="650" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="699" y1="112" x2="699" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="748" y1="112" x2="748" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="797" y1="112" x2="797" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="846" y1="112" x2="846" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="895" y1="112" x2="895" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="944" y1="112" x2="944" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="993" y1="112" x2="993" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1042" y1="112" x2="1042" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1091" y1="112" x2="1091" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1140" y1="112" x2="1140" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1189" y1="112" x2="1189" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1238" y1="112" x2="1238" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1287" y1="112" x2="1287" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1336" y1="112" x2="1336" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1385" y1="112" x2="1385" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1434" y1="112" x2="1434" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1483" y1="112" x2="1483" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1532" y1="112" x2="1532" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1581" y1="112" x2="1581" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1630" y1="112" x2="1630" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1679" y1="112" x2="1679" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1728" y1="112" x2="1728" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1777" y1="112" x2="1777" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1826" y1="112" x2="1826" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="1875" y1="112" x2="1875" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="112" x2="1875" y2="112" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="147" x2="1875" y2="147" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="182" x2="1875" y2="182" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="217" x2="1875" y2="217" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="252" x2="1875" y2="252" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="287" x2="1875" y2="287" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="322" x2="1875" y2="322" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="357" x2="1875" y2="357" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="392" x2="1875" y2="392" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="427" x2="1875" y2="427" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="462" x2="1875" y2="462" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="497" x2="1875" y2="497" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="532" x2="1875" y2="532" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="567" x2="1875" y2="567" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="602" x2="1875" y2="602" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="637" x2="1875" y2="637" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="672" x2="1875" y2="672" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="707" x2="1875" y2="707" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="742" x2="1875" y2="742" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="777" x2="1875" y2="777" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="812" x2="1875" y2="812" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="847" x2="1875" y2="847" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="882" x2="1875" y2="882" stroke="#e79b9b" stroke-width="1"/>
+<line x1="10" y1="917" x2="1875" y2="917" stroke="#e79b9b" stroke-width="1"/>
+<text class="header" x="86.5" y="135.8" text-anchor="middle">a</text>
+<text class="header" x="135.5" y="135.8" text-anchor="middle">o</text>
+<text class="header" x="184.5" y="135.8" text-anchor="middle">e</text>
+<text class="header" x="233.5" y="135.8" text-anchor="middle">-i</text>
+<text class="header" x="282.5" y="135.8" text-anchor="middle">er</text>
+<text class="header" x="331.5" y="135.8" text-anchor="middle">ai</text>
+<text class="header" x="380.5" y="135.8" text-anchor="middle">ei</text>
+<text class="header" x="429.5" y="135.8" text-anchor="middle">ao</text>
+<text class="header" x="478.5" y="135.8" text-anchor="middle">ou</text>
+<text class="header" x="527.5" y="135.8" text-anchor="middle">an</text>
+<text class="header" x="576.5" y="135.8" text-anchor="middle">en</text>
+<text class="header" x="625.5" y="135.8" text-anchor="middle">ang</text>
+<text class="header" x="674.5" y="135.8" text-anchor="middle">eng</text>
+<text class="header" x="723.5" y="135.8" text-anchor="middle">ong</text>
+<text class="header" x="772.5" y="135.8" text-anchor="middle">i</text>
+<text class="header" x="821.5" y="135.8" text-anchor="middle">ia</text>
+<text class="header" x="870.5" y="135.8" text-anchor="middle">ie</text>
+<text class="header" x="919.5" y="135.8" text-anchor="middle">iao</text>
+<text class="header" x="968.5" y="135.8" text-anchor="middle">iou</text>
+<text class="header" x="1017.5" y="135.8" text-anchor="middle">ian</text>
+<text class="header" x="1066.5" y="135.8" text-anchor="middle">in</text>
+<text class="header" x="1115.5" y="135.8" text-anchor="middle">iang</text>
+<text class="header" x="1164.5" y="135.8" text-anchor="middle">ing</text>
+<text class="header" x="1213.5" y="135.8" text-anchor="middle">iong</text>
+<text class="header" x="1262.5" y="135.8" text-anchor="middle">u</text>
+<text class="header" x="1311.5" y="135.8" text-anchor="middle">ua</text>
+<text class="header" x="1360.5" y="135.8" text-anchor="middle">uo</text>
+<text class="header" x="1409.5" y="135.8" text-anchor="middle">uai</text>
+<text class="header" x="1458.5" y="135.8" text-anchor="middle">uei</text>
+<text class="header" x="1507.5" y="135.8" text-anchor="middle">uan</text>
+<text class="header" x="1556.5" y="135.8" text-anchor="middle">uen</text>
+<text class="header" x="1605.5" y="135.8" text-anchor="middle">uang</text>
+<text class="header" x="1654.5" y="135.8" text-anchor="middle">ueng</text>
+<text class="header" x="1703.5" y="135.8" text-anchor="middle">ü</text>
+<text class="header" x="1752.5" y="135.8" text-anchor="middle">üe</text>
+<text class="header" x="1801.5" y="135.8" text-anchor="middle">üan</text>
+<text class="header" x="1850.5" y="135.8" text-anchor="middle">ün</text>
+<text class="initial" x="36" y="170.8" text-anchor="middle">b</text>
+<text class="cell" style="font-size:16px" x="86.5" y="170.8" text-anchor="middle">ba</text>
+<text class="cell" style="font-size:16px" x="135.5" y="170.8" text-anchor="middle">bo</text>
+<text class="cell" style="font-size:16px" x="331.5" y="170.8" text-anchor="middle">bai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="170.8" text-anchor="middle">bei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="170.8" text-anchor="middle">bao</text>
+<text class="cell" style="font-size:16px" x="527.5" y="170.8" text-anchor="middle">ban</text>
+<text class="cell" style="font-size:16px" x="576.5" y="170.8" text-anchor="middle">ben</text>
+<text class="cell" style="font-size:16px" x="625.5" y="170.8" text-anchor="middle">bang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="170.8" text-anchor="middle">beng</text>
+<text class="cell" style="font-size:16px" x="772.5" y="170.8" text-anchor="middle">bi</text>
+<text class="cell" style="font-size:16px" x="870.5" y="170.8" text-anchor="middle">bie</text>
+<text class="cell" style="font-size:16px" x="919.5" y="170.8" text-anchor="middle">biao</text>
+<text class="cell" style="font-size:16px" x="1017.5" y="170.8" text-anchor="middle">bian</text>
+<text class="cell" style="font-size:16px" x="1066.5" y="170.8" text-anchor="middle">bin</text>
+<text class="cell" style="font-size:16px" x="1164.5" y="170.8" text-anchor="middle">bing</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="170.8" text-anchor="middle">bu</text>
+<text class="initial" x="36" y="205.8" text-anchor="middle">p</text>
+<text class="cell" style="font-size:16px" x="86.5" y="205.8" text-anchor="middle">pa</text>
+<text class="cell" style="font-size:16px" x="135.5" y="205.8" text-anchor="middle">po</text>
+<text class="cell" style="font-size:16px" x="331.5" y="205.8" text-anchor="middle">pai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="205.8" text-anchor="middle">pei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="205.8" text-anchor="middle">pao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="205.8" text-anchor="middle">pou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="205.8" text-anchor="middle">pan</text>
+<text class="cell" style="font-size:16px" x="576.5" y="205.8" text-anchor="middle">pen</text>
+<text class="cell" style="font-size:16px" x="625.5" y="205.8" text-anchor="middle">pang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="205.8" text-anchor="middle">peng</text>
+<text class="cell" style="font-size:16px" x="772.5" y="205.8" text-anchor="middle">pi</text>
+<text class="cell" style="font-size:16px" x="870.5" y="205.8" text-anchor="middle">pie</text>
+<text class="cell" style="font-size:16px" x="919.5" y="205.8" text-anchor="middle">piao</text>
+<text class="cell" style="font-size:16px" x="1017.5" y="205.8" text-anchor="middle">pian</text>
+<text class="cell" style="font-size:16px" x="1066.5" y="205.8" text-anchor="middle">pin</text>
+<text class="cell" style="font-size:16px" x="1164.5" y="205.8" text-anchor="middle">ping</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="205.8" text-anchor="middle">pu</text>
+<text class="initial" x="36" y="240.8" text-anchor="middle">m</text>
+<text class="cell" style="font-size:16px" x="86.5" y="240.8" text-anchor="middle">ma</text>
+<text class="cell" style="font-size:16px" x="135.5" y="240.8" text-anchor="middle">mo</text>
+<text class="cell" style="font-size:16px" x="331.5" y="240.8" text-anchor="middle">mai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="240.8" text-anchor="middle">mei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="240.8" text-anchor="middle">mao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="240.8" text-anchor="middle">mou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="240.8" text-anchor="middle">man</text>
+<text class="cell" style="font-size:16px" x="576.5" y="240.8" text-anchor="middle">men</text>
+<text class="cell" style="font-size:16px" x="625.5" y="240.8" text-anchor="middle">mang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="240.8" text-anchor="middle">meng</text>
+<text class="cell" style="font-size:16px" x="772.5" y="240.8" text-anchor="middle">mi</text>
+<text class="cell" style="font-size:16px" x="870.5" y="240.8" text-anchor="middle">mie</text>
+<text class="cell" style="font-size:16px" x="919.5" y="240.8" text-anchor="middle">miao</text>
+<text class="cell" style="font-size:16px" x="968.5" y="240.8" text-anchor="middle">miu</text>
+<text class="cell" style="font-size:16px" x="1017.5" y="240.8" text-anchor="middle">mian</text>
+<text class="cell" style="font-size:16px" x="1066.5" y="240.8" text-anchor="middle">min</text>
+<text class="cell" style="font-size:16px" x="1164.5" y="240.8" text-anchor="middle">ming</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="240.8" text-anchor="middle">mu</text>
+<text class="initial" x="36" y="275.8" text-anchor="middle">f</text>
+<text class="cell" style="font-size:16px" x="86.5" y="275.8" text-anchor="middle">fa</text>
+<text class="cell" style="font-size:16px" x="135.5" y="275.8" text-anchor="middle">fo</text>
+<text class="cell" style="font-size:16px" x="380.5" y="275.8" text-anchor="middle">fei</text>
+<text class="cell" style="font-size:16px" x="478.5" y="275.8" text-anchor="middle">fou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="275.8" text-anchor="middle">fan</text>
+<text class="cell" style="font-size:16px" x="576.5" y="275.8" text-anchor="middle">fen</text>
+<text class="cell" style="font-size:16px" x="625.5" y="275.8" text-anchor="middle">fang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="275.8" text-anchor="middle">feng</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="275.8" text-anchor="middle">fu</text>
+<text class="initial" x="36" y="310.8" text-anchor="middle">d</text>
+<text class="cell" style="font-size:16px" x="86.5" y="310.8" text-anchor="middle">da</text>
+<text class="cell" style="font-size:16px" x="184.5" y="310.8" text-anchor="middle">de</text>
+<text class="cell" style="font-size:16px" x="331.5" y="310.8" text-anchor="middle">dai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="310.8" text-anchor="middle">dei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="310.8" text-anchor="middle">dao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="310.8" text-anchor="middle">dou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="310.8" text-anchor="middle">dan</text>
+<text class="cell" style="font-size:16px" x="576.5" y="310.8" text-anchor="middle">den</text>
+<text class="cell" style="font-size:16px" x="625.5" y="310.8" text-anchor="middle">dang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="310.8" text-anchor="middle">deng</text>
+<text class="cell" style="font-size:16px" x="723.5" y="310.8" text-anchor="middle">dong</text>
+<text class="cell" style="font-size:16px" x="772.5" y="310.8" text-anchor="middle">di</text>
+<text class="cell" style="font-size:16px" x="821.5" y="310.8" text-anchor="middle">dia</text>
+<text class="cell" style="font-size:16px" x="870.5" y="310.8" text-anchor="middle">die</text>
+<text class="cell" style="font-size:16px" x="919.5" y="310.8" text-anchor="middle">diao</text>
+<text class="cell" style="font-size:16px" x="968.5" y="310.8" text-anchor="middle">diu</text>
+<text class="cell" style="font-size:16px" x="1017.5" y="310.8" text-anchor="middle">dian</text>
+<text class="cell" style="font-size:16px" x="1164.5" y="310.8" text-anchor="middle">ding</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="310.8" text-anchor="middle">du</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="310.8" text-anchor="middle">duo</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="310.8" text-anchor="middle">dui</text>
+<text class="cell" style="font-size:16px" x="1507.5" y="310.8" text-anchor="middle">duan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="310.8" text-anchor="middle">dun</text>
+<text class="initial" x="36" y="345.8" text-anchor="middle">t</text>
+<text class="cell" style="font-size:16px" x="86.5" y="345.8" text-anchor="middle">ta</text>
+<text class="cell" style="font-size:16px" x="184.5" y="345.8" text-anchor="middle">te</text>
+<text class="cell" style="font-size:16px" x="331.5" y="345.8" text-anchor="middle">tai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="345.8" text-anchor="middle">tei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="345.8" text-anchor="middle">tao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="345.8" text-anchor="middle">tou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="345.8" text-anchor="middle">tan</text>
+<text class="cell" style="font-size:16px" x="674.5" y="345.8" text-anchor="middle">teng</text>
+<text class="cell" style="font-size:16px" x="723.5" y="345.8" text-anchor="middle">tong</text>
+<text class="cell" style="font-size:16px" x="772.5" y="345.8" text-anchor="middle">ti</text>
+<text class="cell" style="font-size:16px" x="870.5" y="345.8" text-anchor="middle">tie</text>
+<text class="cell" style="font-size:16px" x="919.5" y="345.8" text-anchor="middle">tiao</text>
+<text class="cell" style="font-size:16px" x="968.5" y="345.8" text-anchor="middle">tiu</text>
+<text class="cell" style="font-size:16px" x="1017.5" y="345.8" text-anchor="middle">tian</text>
+<text class="cell" style="font-size:16px" x="1164.5" y="345.8" text-anchor="middle">ting</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="345.8" text-anchor="middle">tu</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="345.8" text-anchor="middle">tuo</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="345.8" text-anchor="middle">tui</text>
+<text class="cell" style="font-size:16px" x="1507.5" y="345.8" text-anchor="middle">tuan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="345.8" text-anchor="middle">tun</text>
+<text class="initial" x="36" y="380.8" text-anchor="middle">n</text>
+<text class="cell" style="font-size:16px" x="86.5" y="380.8" text-anchor="middle">na</text>
+<text class="cell" style="font-size:16px" x="184.5" y="380.8" text-anchor="middle">ne</text>
+<text class="cell" style="font-size:16px" x="331.5" y="380.8" text-anchor="middle">nai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="380.8" text-anchor="middle">nei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="380.8" text-anchor="middle">nao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="380.8" text-anchor="middle">nou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="380.8" text-anchor="middle">nan</text>
+<text class="cell" style="font-size:16px" x="576.5" y="380.8" text-anchor="middle">nen</text>
+<text class="cell" style="font-size:16px" x="625.5" y="380.8" text-anchor="middle">nang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="380.8" text-anchor="middle">neng</text>
+<text class="cell" style="font-size:16px" x="723.5" y="380.8" text-anchor="middle">nong</text>
+<text class="cell" style="font-size:16px" x="772.5" y="380.8" text-anchor="middle">ni</text>
+<text class="cell" style="font-size:16px" x="870.5" y="380.8" text-anchor="middle">nie</text>
+<text class="cell" style="font-size:16px" x="919.5" y="380.8" text-anchor="middle">niao</text>
+<text class="cell" style="font-size:16px" x="968.5" y="380.8" text-anchor="middle">niu</text>
+<text class="cell" style="font-size:16px" x="1017.5" y="380.8" text-anchor="middle">nian</text>
+<text class="cell" style="font-size:16px" x="1066.5" y="380.8" text-anchor="middle">nin</text>
+<text class="cell" style="font-size:14px" x="1115.5" y="380.8" text-anchor="middle">niang</text>
+<text class="cell" style="font-size:16px" x="1164.5" y="380.8" text-anchor="middle">ning</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="380.8" text-anchor="middle">nu</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="380.8" text-anchor="middle">nuo</text>
+<text class="cell" style="font-size:16px" x="1703.5" y="380.8" text-anchor="middle">nü</text>
+<text class="cell" style="font-size:16px" x="1752.5" y="380.8" text-anchor="middle">nüe</text>
+<text class="initial" x="36" y="415.8" text-anchor="middle">l</text>
+<text class="cell" style="font-size:16px" x="86.5" y="415.8" text-anchor="middle">la</text>
+<text class="cell" style="font-size:16px" x="184.5" y="415.8" text-anchor="middle">le</text>
+<text class="cell" style="font-size:16px" x="331.5" y="415.8" text-anchor="middle">lai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="415.8" text-anchor="middle">lei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="415.8" text-anchor="middle">lao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="415.8" text-anchor="middle">lou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="415.8" text-anchor="middle">lan</text>
+<text class="cell" style="font-size:16px" x="576.5" y="415.8" text-anchor="middle">len</text>
+<text class="cell" style="font-size:16px" x="625.5" y="415.8" text-anchor="middle">lang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="415.8" text-anchor="middle">leng</text>
+<text class="cell" style="font-size:16px" x="723.5" y="415.8" text-anchor="middle">long</text>
+<text class="cell" style="font-size:16px" x="772.5" y="415.8" text-anchor="middle">li</text>
+<text class="cell" style="font-size:16px" x="821.5" y="415.8" text-anchor="middle">lia</text>
+<text class="cell" style="font-size:16px" x="870.5" y="415.8" text-anchor="middle">lie</text>
+<text class="cell" style="font-size:16px" x="919.5" y="415.8" text-anchor="middle">liao</text>
+<text class="cell" style="font-size:16px" x="968.5" y="415.8" text-anchor="middle">liu</text>
+<text class="cell" style="font-size:16px" x="1017.5" y="415.8" text-anchor="middle">lian</text>
+<text class="cell" style="font-size:16px" x="1066.5" y="415.8" text-anchor="middle">lin</text>
+<text class="cell" style="font-size:14px" x="1115.5" y="415.8" text-anchor="middle">liang</text>
+<text class="cell" style="font-size:16px" x="1164.5" y="415.8" text-anchor="middle">ling</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="415.8" text-anchor="middle">lu</text>
+<text class="cell" style="font-size:16px" x="1311.5" y="415.8" text-anchor="middle">lua</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="415.8" text-anchor="middle">luo</text>
+<text class="cell" style="font-size:16px" x="1507.5" y="415.8" text-anchor="middle">luan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="415.8" text-anchor="middle">lun</text>
+<text class="cell" style="font-size:16px" x="1703.5" y="415.8" text-anchor="middle">lü</text>
+<text class="cell" style="font-size:16px" x="1752.5" y="415.8" text-anchor="middle">lüe</text>
+<text class="initial" x="36" y="450.8" text-anchor="middle">g</text>
+<text class="cell" style="font-size:16px" x="86.5" y="450.8" text-anchor="middle">ga</text>
+<text class="cell" style="font-size:16px" x="184.5" y="450.8" text-anchor="middle">ge</text>
+<text class="cell" style="font-size:16px" x="331.5" y="450.8" text-anchor="middle">gai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="450.8" text-anchor="middle">gei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="450.8" text-anchor="middle">gao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="450.8" text-anchor="middle">gou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="450.8" text-anchor="middle">gan</text>
+<text class="cell" style="font-size:16px" x="576.5" y="450.8" text-anchor="middle">gen</text>
+<text class="cell" style="font-size:16px" x="625.5" y="450.8" text-anchor="middle">gang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="450.8" text-anchor="middle">geng</text>
+<text class="cell" style="font-size:16px" x="723.5" y="450.8" text-anchor="middle">gong</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="450.8" text-anchor="middle">gu</text>
+<text class="cell" style="font-size:16px" x="1311.5" y="450.8" text-anchor="middle">gua</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="450.8" text-anchor="middle">guo</text>
+<text class="cell" style="font-size:16px" x="1409.5" y="450.8" text-anchor="middle">guai</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="450.8" text-anchor="middle">gui</text>
+<text class="cell" style="font-size:16px" x="1507.5" y="450.8" text-anchor="middle">guan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="450.8" text-anchor="middle">gun</text>
+<text class="cell" style="font-size:14px" x="1605.5" y="450.8" text-anchor="middle">guang</text>
+<text class="initial" x="36" y="485.8" text-anchor="middle">k</text>
+<text class="cell" style="font-size:16px" x="86.5" y="485.8" text-anchor="middle">ka</text>
+<text class="cell" style="font-size:16px" x="184.5" y="485.8" text-anchor="middle">ke</text>
+<text class="cell" style="font-size:16px" x="331.5" y="485.8" text-anchor="middle">kai</text>
+<text class="cell" style="font-size:16px" x="429.5" y="485.8" text-anchor="middle">kao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="485.8" text-anchor="middle">kou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="485.8" text-anchor="middle">kan</text>
+<text class="cell" style="font-size:16px" x="576.5" y="485.8" text-anchor="middle">ken</text>
+<text class="cell" style="font-size:16px" x="625.5" y="485.8" text-anchor="middle">kang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="485.8" text-anchor="middle">keng</text>
+<text class="cell" style="font-size:16px" x="723.5" y="485.8" text-anchor="middle">kong</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="485.8" text-anchor="middle">ku</text>
+<text class="cell" style="font-size:16px" x="1311.5" y="485.8" text-anchor="middle">kua</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="485.8" text-anchor="middle">kuo</text>
+<text class="cell" style="font-size:16px" x="1409.5" y="485.8" text-anchor="middle">kuai</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="485.8" text-anchor="middle">kui</text>
+<text class="cell" style="font-size:16px" x="1507.5" y="485.8" text-anchor="middle">kuan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="485.8" text-anchor="middle">kun</text>
+<text class="cell" style="font-size:14px" x="1605.5" y="485.8" text-anchor="middle">kuang</text>
+<text class="initial" x="36" y="520.8" text-anchor="middle">h</text>
+<text class="cell" style="font-size:16px" x="86.5" y="520.8" text-anchor="middle">ha</text>
+<text class="cell" style="font-size:16px" x="184.5" y="520.8" text-anchor="middle">he</text>
+<text class="cell" style="font-size:16px" x="331.5" y="520.8" text-anchor="middle">hai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="520.8" text-anchor="middle">hei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="520.8" text-anchor="middle">hao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="520.8" text-anchor="middle">hou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="520.8" text-anchor="middle">han</text>
+<text class="cell" style="font-size:16px" x="576.5" y="520.8" text-anchor="middle">hen</text>
+<text class="cell" style="font-size:16px" x="625.5" y="520.8" text-anchor="middle">hang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="520.8" text-anchor="middle">heng</text>
+<text class="cell" style="font-size:16px" x="723.5" y="520.8" text-anchor="middle">hong</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="520.8" text-anchor="middle">hu</text>
+<text class="cell" style="font-size:16px" x="1311.5" y="520.8" text-anchor="middle">hua</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="520.8" text-anchor="middle">huo</text>
+<text class="cell" style="font-size:16px" x="1409.5" y="520.8" text-anchor="middle">huai</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="520.8" text-anchor="middle">hui</text>
+<text class="cell" style="font-size:16px" x="1507.5" y="520.8" text-anchor="middle">huan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="520.8" text-anchor="middle">hun</text>
+<text class="cell" style="font-size:14px" x="1605.5" y="520.8" text-anchor="middle">huang</text>
+<text class="initial" x="36" y="555.8" text-anchor="middle">j</text>
+<text class="cell" style="font-size:16px" x="772.5" y="555.8" text-anchor="middle">ji</text>
+<text class="cell" style="font-size:16px" x="821.5" y="555.8" text-anchor="middle">jia</text>
+<text class="cell" style="font-size:16px" x="870.5" y="555.8" text-anchor="middle">jie</text>
+<text class="cell" style="font-size:16px" x="919.5" y="555.8" text-anchor="middle">jiao</text>
+<text class="cell" style="font-size:16px" x="968.5" y="555.8" text-anchor="middle">jiu</text>
+<text class="cell" style="font-size:16px" x="1017.5" y="555.8" text-anchor="middle">jian</text>
+<text class="cell" style="font-size:16px" x="1066.5" y="555.8" text-anchor="middle">jin</text>
+<text class="cell" style="font-size:14px" x="1115.5" y="555.8" text-anchor="middle">jiang</text>
+<text class="cell" style="font-size:16px" x="1164.5" y="555.8" text-anchor="middle">jing</text>
+<text class="cell" style="font-size:14px" x="1213.5" y="555.8" text-anchor="middle">jiong</text>
+<text class="cell" style="font-size:16px" x="1703.5" y="555.8" text-anchor="middle">ju</text>
+<text class="cell" style="font-size:16px" x="1752.5" y="555.8" text-anchor="middle">jue</text>
+<text class="cell" style="font-size:16px" x="1801.5" y="555.8" text-anchor="middle">juan</text>
+<text class="cell" style="font-size:16px" x="1850.5" y="555.8" text-anchor="middle">jun</text>
+<text class="initial" x="36" y="590.8" text-anchor="middle">q</text>
+<text class="cell" style="font-size:16px" x="772.5" y="590.8" text-anchor="middle">qi</text>
+<text class="cell" style="font-size:16px" x="821.5" y="590.8" text-anchor="middle">qia</text>
+<text class="cell" style="font-size:16px" x="870.5" y="590.8" text-anchor="middle">qie</text>
+<text class="cell" style="font-size:16px" x="919.5" y="590.8" text-anchor="middle">qiao</text>
+<text class="cell" style="font-size:16px" x="968.5" y="590.8" text-anchor="middle">qiu</text>
+<text class="cell" style="font-size:16px" x="1017.5" y="590.8" text-anchor="middle">qian</text>
+<text class="cell" style="font-size:16px" x="1066.5" y="590.8" text-anchor="middle">qin</text>
+<text class="cell" style="font-size:14px" x="1115.5" y="590.8" text-anchor="middle">qiang</text>
+<text class="cell" style="font-size:16px" x="1164.5" y="590.8" text-anchor="middle">qing</text>
+<text class="cell" style="font-size:14px" x="1213.5" y="590.8" text-anchor="middle">qiong</text>
+<text class="cell" style="font-size:16px" x="1703.5" y="590.8" text-anchor="middle">qu</text>
+<text class="cell" style="font-size:16px" x="1752.5" y="590.8" text-anchor="middle">que</text>
+<text class="cell" style="font-size:16px" x="1801.5" y="590.8" text-anchor="middle">quan</text>
+<text class="cell" style="font-size:16px" x="1850.5" y="590.8" text-anchor="middle">qun</text>
+<text class="initial" x="36" y="625.8" text-anchor="middle">x</text>
+<text class="cell" style="font-size:16px" x="772.5" y="625.8" text-anchor="middle">xi</text>
+<text class="cell" style="font-size:16px" x="821.5" y="625.8" text-anchor="middle">xia</text>
+<text class="cell" style="font-size:16px" x="870.5" y="625.8" text-anchor="middle">xie</text>
+<text class="cell" style="font-size:16px" x="919.5" y="625.8" text-anchor="middle">xiao</text>
+<text class="cell" style="font-size:16px" x="968.5" y="625.8" text-anchor="middle">xiu</text>
+<text class="cell" style="font-size:16px" x="1017.5" y="625.8" text-anchor="middle">xian</text>
+<text class="cell" style="font-size:16px" x="1066.5" y="625.8" text-anchor="middle">xin</text>
+<text class="cell" style="font-size:14px" x="1115.5" y="625.8" text-anchor="middle">xiang</text>
+<text class="cell" style="font-size:16px" x="1164.5" y="625.8" text-anchor="middle">xing</text>
+<text class="cell" style="font-size:14px" x="1213.5" y="625.8" text-anchor="middle">xiong</text>
+<text class="cell" style="font-size:16px" x="1703.5" y="625.8" text-anchor="middle">xu</text>
+<text class="cell" style="font-size:16px" x="1752.5" y="625.8" text-anchor="middle">xue</text>
+<text class="cell" style="font-size:16px" x="1801.5" y="625.8" text-anchor="middle">xuan</text>
+<text class="cell" style="font-size:16px" x="1850.5" y="625.8" text-anchor="middle">xun</text>
+<text class="initial" x="36" y="660.8" text-anchor="middle">zh</text>
+<text class="cell" style="font-size:16px" x="86.5" y="660.8" text-anchor="middle">zha</text>
+<text class="cell" style="font-size:16px" x="184.5" y="660.8" text-anchor="middle">zhe</text>
+<text class="cell" style="font-size:16px" x="233.5" y="660.8" text-anchor="middle">zhi</text>
+<text class="cell" style="font-size:16px" x="331.5" y="660.8" text-anchor="middle">zhai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="660.8" text-anchor="middle">zhei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="660.8" text-anchor="middle">zhao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="660.8" text-anchor="middle">zhou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="660.8" text-anchor="middle">zhan</text>
+<text class="cell" style="font-size:16px" x="576.5" y="660.8" text-anchor="middle">zhen</text>
+<text class="cell" style="font-size:14px" x="625.5" y="660.8" text-anchor="middle">zhang</text>
+<text class="cell" style="font-size:14px" x="674.5" y="660.8" text-anchor="middle">zheng</text>
+<text class="cell" style="font-size:14px" x="723.5" y="660.8" text-anchor="middle">zhong</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="660.8" text-anchor="middle">zhu</text>
+<text class="cell" style="font-size:16px" x="1311.5" y="660.8" text-anchor="middle">zhua</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="660.8" text-anchor="middle">zhuo</text>
+<text class="cell" style="font-size:14px" x="1409.5" y="660.8" text-anchor="middle">zhuai</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="660.8" text-anchor="middle">zhui</text>
+<text class="cell" style="font-size:14px" x="1507.5" y="660.8" text-anchor="middle">zhuan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="660.8" text-anchor="middle">zhun</text>
+<text class="cell" style="font-size:13px" x="1605.5" y="660.8" text-anchor="middle">zhuang</text>
+<text class="initial" x="36" y="695.8" text-anchor="middle">ch</text>
+<text class="cell" style="font-size:16px" x="86.5" y="695.8" text-anchor="middle">cha</text>
+<text class="cell" style="font-size:16px" x="184.5" y="695.8" text-anchor="middle">che</text>
+<text class="cell" style="font-size:16px" x="233.5" y="695.8" text-anchor="middle">chi</text>
+<text class="cell" style="font-size:16px" x="331.5" y="695.8" text-anchor="middle">chai</text>
+<text class="cell" style="font-size:16px" x="429.5" y="695.8" text-anchor="middle">chao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="695.8" text-anchor="middle">chou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="695.8" text-anchor="middle">chan</text>
+<text class="cell" style="font-size:16px" x="576.5" y="695.8" text-anchor="middle">chen</text>
+<text class="cell" style="font-size:14px" x="625.5" y="695.8" text-anchor="middle">chang</text>
+<text class="cell" style="font-size:14px" x="674.5" y="695.8" text-anchor="middle">cheng</text>
+<text class="cell" style="font-size:14px" x="723.5" y="695.8" text-anchor="middle">chong</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="695.8" text-anchor="middle">chu</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="695.8" text-anchor="middle">chuo</text>
+<text class="cell" style="font-size:14px" x="1409.5" y="695.8" text-anchor="middle">chuai</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="695.8" text-anchor="middle">chui</text>
+<text class="cell" style="font-size:14px" x="1507.5" y="695.8" text-anchor="middle">chuan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="695.8" text-anchor="middle">chun</text>
+<text class="cell" style="font-size:13px" x="1605.5" y="695.8" text-anchor="middle">chuang</text>
+<text class="initial" x="36" y="730.8" text-anchor="middle">sh</text>
+<text class="cell" style="font-size:16px" x="86.5" y="730.8" text-anchor="middle">sha</text>
+<text class="cell" style="font-size:16px" x="184.5" y="730.8" text-anchor="middle">she</text>
+<text class="cell" style="font-size:16px" x="233.5" y="730.8" text-anchor="middle">shi</text>
+<text class="cell" style="font-size:16px" x="331.5" y="730.8" text-anchor="middle">shai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="730.8" text-anchor="middle">shei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="730.8" text-anchor="middle">shao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="730.8" text-anchor="middle">shou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="730.8" text-anchor="middle">shan</text>
+<text class="cell" style="font-size:16px" x="576.5" y="730.8" text-anchor="middle">shen</text>
+<text class="cell" style="font-size:14px" x="625.5" y="730.8" text-anchor="middle">shang</text>
+<text class="cell" style="font-size:14px" x="674.5" y="730.8" text-anchor="middle">sheng</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="730.8" text-anchor="middle">shu</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="730.8" text-anchor="middle">shuo</text>
+<text class="cell" style="font-size:14px" x="1409.5" y="730.8" text-anchor="middle">shuai</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="730.8" text-anchor="middle">shui</text>
+<text class="cell" style="font-size:14px" x="1507.5" y="730.8" text-anchor="middle">shuan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="730.8" text-anchor="middle">shun</text>
+<text class="cell" style="font-size:13px" x="1605.5" y="730.8" text-anchor="middle">shuang</text>
+<text class="initial" x="36" y="765.8" text-anchor="middle">r</text>
+<text class="cell" style="font-size:16px" x="184.5" y="765.8" text-anchor="middle">re</text>
+<text class="cell" style="font-size:16px" x="233.5" y="765.8" text-anchor="middle">ri</text>
+<text class="cell" style="font-size:16px" x="429.5" y="765.8" text-anchor="middle">rao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="765.8" text-anchor="middle">rou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="765.8" text-anchor="middle">ran</text>
+<text class="cell" style="font-size:16px" x="576.5" y="765.8" text-anchor="middle">ren</text>
+<text class="cell" style="font-size:16px" x="625.5" y="765.8" text-anchor="middle">rang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="765.8" text-anchor="middle">reng</text>
+<text class="cell" style="font-size:16px" x="723.5" y="765.8" text-anchor="middle">rong</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="765.8" text-anchor="middle">ru</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="765.8" text-anchor="middle">ruo</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="765.8" text-anchor="middle">rui</text>
+<text class="cell" style="font-size:16px" x="1507.5" y="765.8" text-anchor="middle">ruan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="765.8" text-anchor="middle">run</text>
+<text class="initial" x="36" y="800.8" text-anchor="middle">z</text>
+<text class="cell" style="font-size:16px" x="86.5" y="800.8" text-anchor="middle">za</text>
+<text class="cell" style="font-size:16px" x="184.5" y="800.8" text-anchor="middle">ze</text>
+<text class="cell" style="font-size:16px" x="233.5" y="800.8" text-anchor="middle">zi</text>
+<text class="cell" style="font-size:16px" x="331.5" y="800.8" text-anchor="middle">zai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="800.8" text-anchor="middle">zei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="800.8" text-anchor="middle">zao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="800.8" text-anchor="middle">zou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="800.8" text-anchor="middle">zan</text>
+<text class="cell" style="font-size:16px" x="576.5" y="800.8" text-anchor="middle">zen</text>
+<text class="cell" style="font-size:16px" x="625.5" y="800.8" text-anchor="middle">zang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="800.8" text-anchor="middle">zeng</text>
+<text class="cell" style="font-size:16px" x="723.5" y="800.8" text-anchor="middle">zong</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="800.8" text-anchor="middle">zu</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="800.8" text-anchor="middle">zuo</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="800.8" text-anchor="middle">zui</text>
+<text class="cell" style="font-size:16px" x="1507.5" y="800.8" text-anchor="middle">zuan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="800.8" text-anchor="middle">zun</text>
+<text class="initial" x="36" y="835.8" text-anchor="middle">c</text>
+<text class="cell" style="font-size:16px" x="86.5" y="835.8" text-anchor="middle">ca</text>
+<text class="cell" style="font-size:16px" x="184.5" y="835.8" text-anchor="middle">ce</text>
+<text class="cell" style="font-size:16px" x="233.5" y="835.8" text-anchor="middle">ci</text>
+<text class="cell" style="font-size:16px" x="331.5" y="835.8" text-anchor="middle">cai</text>
+<text class="cell" style="font-size:16px" x="429.5" y="835.8" text-anchor="middle">cao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="835.8" text-anchor="middle">cou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="835.8" text-anchor="middle">can</text>
+<text class="cell" style="font-size:16px" x="576.5" y="835.8" text-anchor="middle">cen</text>
+<text class="cell" style="font-size:16px" x="625.5" y="835.8" text-anchor="middle">cang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="835.8" text-anchor="middle">ceng</text>
+<text class="cell" style="font-size:16px" x="723.5" y="835.8" text-anchor="middle">cong</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="835.8" text-anchor="middle">cu</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="835.8" text-anchor="middle">cuo</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="835.8" text-anchor="middle">cui</text>
+<text class="cell" style="font-size:16px" x="1507.5" y="835.8" text-anchor="middle">cuan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="835.8" text-anchor="middle">cun</text>
+<text class="initial" x="36" y="870.8" text-anchor="middle">s</text>
+<text class="cell" style="font-size:16px" x="86.5" y="870.8" text-anchor="middle">sa</text>
+<text class="cell" style="font-size:16px" x="184.5" y="870.8" text-anchor="middle">se</text>
+<text class="cell" style="font-size:16px" x="233.5" y="870.8" text-anchor="middle">si</text>
+<text class="cell" style="font-size:16px" x="331.5" y="870.8" text-anchor="middle">sai</text>
+<text class="cell" style="font-size:16px" x="429.5" y="870.8" text-anchor="middle">sao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="870.8" text-anchor="middle">sou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="870.8" text-anchor="middle">san</text>
+<text class="cell" style="font-size:16px" x="576.5" y="870.8" text-anchor="middle">sen</text>
+<text class="cell" style="font-size:16px" x="625.5" y="870.8" text-anchor="middle">sang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="870.8" text-anchor="middle">seng</text>
+<text class="cell" style="font-size:16px" x="723.5" y="870.8" text-anchor="middle">song</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="870.8" text-anchor="middle">su</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="870.8" text-anchor="middle">suo</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="870.8" text-anchor="middle">sui</text>
+<text class="cell" style="font-size:16px" x="1507.5" y="870.8" text-anchor="middle">suan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="870.8" text-anchor="middle">sun</text>
+<text class="cell" style="font-size:16px" x="86.5" y="905.8" text-anchor="middle">a</text>
+<text class="cell" style="font-size:16px" x="135.5" y="905.8" text-anchor="middle">o</text>
+<text class="cell" style="font-size:16px" x="184.5" y="905.8" text-anchor="middle">e</text>
+<text class="cell" style="font-size:16px" x="282.5" y="905.8" text-anchor="middle">er</text>
+<text class="cell" style="font-size:16px" x="331.5" y="905.8" text-anchor="middle">ai</text>
+<text class="cell" style="font-size:16px" x="380.5" y="905.8" text-anchor="middle">ei</text>
+<text class="cell" style="font-size:16px" x="429.5" y="905.8" text-anchor="middle">ao</text>
+<text class="cell" style="font-size:16px" x="478.5" y="905.8" text-anchor="middle">ou</text>
+<text class="cell" style="font-size:16px" x="527.5" y="905.8" text-anchor="middle">an</text>
+<text class="cell" style="font-size:16px" x="576.5" y="905.8" text-anchor="middle">en</text>
+<text class="cell" style="font-size:16px" x="625.5" y="905.8" text-anchor="middle">ang</text>
+<text class="cell" style="font-size:16px" x="674.5" y="905.8" text-anchor="middle">eng</text>
+<text class="cell" style="font-size:16px" x="772.5" y="905.8" text-anchor="middle">yi</text>
+<text class="cell" style="font-size:16px" x="821.5" y="905.8" text-anchor="middle">ya</text>
+<text class="cell" style="font-size:16px" x="870.5" y="905.8" text-anchor="middle">ye</text>
+<text class="cell" style="font-size:16px" x="919.5" y="905.8" text-anchor="middle">yao</text>
+<text class="cell" style="font-size:16px" x="968.5" y="905.8" text-anchor="middle">you</text>
+<text class="cell" style="font-size:16px" x="1017.5" y="905.8" text-anchor="middle">yan</text>
+<text class="cell" style="font-size:16px" x="1066.5" y="905.8" text-anchor="middle">yin</text>
+<text class="cell" style="font-size:16px" x="1115.5" y="905.8" text-anchor="middle">yang</text>
+<text class="cell" style="font-size:16px" x="1164.5" y="905.8" text-anchor="middle">ying</text>
+<text class="cell" style="font-size:16px" x="1213.5" y="905.8" text-anchor="middle">yong</text>
+<text class="cell" style="font-size:16px" x="1262.5" y="905.8" text-anchor="middle">wu</text>
+<text class="cell" style="font-size:16px" x="1311.5" y="905.8" text-anchor="middle">wa</text>
+<text class="cell" style="font-size:16px" x="1360.5" y="905.8" text-anchor="middle">wo</text>
+<text class="cell" style="font-size:16px" x="1409.5" y="905.8" text-anchor="middle">wai</text>
+<text class="cell" style="font-size:16px" x="1458.5" y="905.8" text-anchor="middle">wei</text>
+<text class="cell" style="font-size:16px" x="1507.5" y="905.8" text-anchor="middle">wan</text>
+<text class="cell" style="font-size:16px" x="1556.5" y="905.8" text-anchor="middle">wen</text>
+<text class="cell" style="font-size:16px" x="1605.5" y="905.8" text-anchor="middle">wang</text>
+<text class="cell" style="font-size:16px" x="1654.5" y="905.8" text-anchor="middle">weng</text>
+<text class="cell" style="font-size:16px" x="1703.5" y="905.8" text-anchor="middle">yu</text>
+<text class="cell" style="font-size:16px" x="1752.5" y="905.8" text-anchor="middle">yue</text>
+<text class="cell" style="font-size:16px" x="1801.5" y="905.8" text-anchor="middle">yuan</text>
+<text class="cell" style="font-size:16px" x="1850.5" y="905.8" text-anchor="middle">yun</text>
+</svg>
