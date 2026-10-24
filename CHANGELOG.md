@@ -1,5 +1,27 @@
 # Changelog
 
+## [18.1.8](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.7...v18.1.8) (2026-10-24)
+
+
+### 📚 词库更新
+
+* 词库调整 ([b502428](https://github.com/amzxyz/rime-wanxiang/commit/b5024284647600cc68a97481f4dc7caf2467d413))
+* 词库调整 ([7ae0b85](https://github.com/amzxyz/rime-wanxiang/commit/7ae0b85d1a275698fdf3798a9a850445ddbba0c4))
+* 词库调整 ([56632d0](https://github.com/amzxyz/rime-wanxiang/commit/56632d0a561304d71fd5c1b660095a840cef3099))
+* 词库调整 ([429bca3](https://github.com/amzxyz/rime-wanxiang/commit/429bca38cec288ca9f6c322333908ce17adb0885))
+* 词库调整 ([1925ecf](https://github.com/amzxyz/rime-wanxiang/commit/1925ecf4794f00d1ec9d8481e51bdebfa493d56c))
+
+
+### 🐛 Bug 修复
+
+* 修复在输入/1符号类型时，翻页后无法上屏对应位置候选的问题 ([5ba4cdf](https://github.com/amzxyz/rime-wanxiang/commit/5ba4cdfc0bde0d5d355245fd3f77ee21ba568a7c))
+
+
+### 🏡 杂项
+
+* doc update ([f9e2d6c](https://github.com/amzxyz/rime-wanxiang/commit/f9e2d6cf4d63bf2637ab5662e6a94fc0c13bac9f))
+* doc update ([d066bae](https://github.com/amzxyz/rime-wanxiang/commit/d066bae430ce6a6319cf4ed7c70743a3f741fc3d))
+
 ## [18.1.7](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.6...v18.1.7) (2026-10-20)
 
 
