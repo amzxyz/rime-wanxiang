@@ -622,10 +622,17 @@ local function handle_letter_select(key, env, ctx)
     local seg = ctx.composition:back()
     if not seg or not seg.menu then return false end
 
-    local count = seg.menu:prepare(10)
-    if idx < 1 or idx > count then return false end
+    local page_size = tonumber(env.kp_page_size) or 10
+    if page_size < 1 then page_size = 10 end
+    if idx > page_size then return false end
 
-    ctx:select(idx - 1)
+    local sel_index = seg.selected_index or 0
+    local page_start = math.floor(sel_index / page_size) * page_size
+    local count = seg.menu:prepare(page_start + idx)
+    local index = page_start + idx - 1
+    if index >= count then return false end
+
+    ctx:select(index)
     return true
 end
 
