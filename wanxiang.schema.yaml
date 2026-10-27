@@ -287,7 +287,10 @@ recognizer:
 #              '`'（反引号）没有改成 '·'（间隔号）。
 #   symbols    Rime 的预设配置是以 '/' 前缀开头输出一系列字符，自定义的修改 symbols.yaml
 punctuator:
-  digit_separators: ",.:"  #数字分隔符，系统逻辑是在中文状态下输入数字后继续输入句号按下两次即输入半角状态
+  digit_separators: ",.:"  #数字后先按半角分隔符预编辑，再按一次相同符号切回中文标点
+  # 数字后的分隔符若不希望进入预编辑，可在 wanxiang.custom.yaml 的 patch 下添加：
+  # punctuator/digit_separator_action: commit
+  # 改为直接上屏后，不再支持上述双击切回中文标点的行为。
   __include: wanxiang_symbols:/symbol_table  # 从 wanxiang_symbols.yaml 导入所有符号配置
   __patch: wanxiang_symbols:/symbols
 
