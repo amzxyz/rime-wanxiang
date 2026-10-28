@@ -53525,6 +53525,7 @@ sort: by_weight
 家督	jia du	972
 夹断	jia duan	163
 甲队	jia dui	729
+加对	jia dui	310
 嘉顿	jia dun	603
 加多	jia duo	433
 价额	jia e	634
@@ -155480,6 +155481,7 @@ sort: by_weight
 志丹	zhi dan	39
 掷弹	zhi dan	37
 只当	zhi dang	1294
+治党	zhi dang	355
 值当	zhi dang	178
 治党	zhi dang	142
 志当	zhi dang	113
@@ -230063,7 +230065,6 @@ sort: by_weight
 从产品	cong chan pin	1161
 从产生	cong chan sheng	598
 从长安	cong chang an	760
-从长辈	cong chang bei	549
 从常德	cong chang de	436
 从场地	cong chang di	522
 从厂房	cong chang fang	410
@@ -233717,6 +233718,7 @@ sort: by_weight
 从站台	cong zhan tai	495
 从站在	cong zhan zai	428
 从站着	cong zhan zhe	270
+从长辈	cong zhang bei	549
 从账本	cong zhang ben	274
 从章程	cong zhang cheng	225
 从账房	cong zhang fang	256
@@ -237029,7 +237031,6 @@ sort: by_weight
 大吊车	da diao che	490
 大吊灯	da diao deng	608
 大调动	da diao dong	477
-大调解	da diao jie	441
 打掉了	da diao le	735
 打掉你	da diao ni	477
 打吊瓶	da diao ping	179
@@ -243189,6 +243190,7 @@ sort: by_weight
 打天钟	da tian zhong	90
 大天尊	da tian zun	454
 大条幅	da tiao fu	351
+大调解	da tiao jie	441
 大条了	da tiao le	513
 大条氏	da tiao shi	90
 大跳水	da tiao shui	179
@@ -481028,6 +481030,7 @@ sort: by_weight
 你找几	ni zhao ji	156
 你召集	ni zhao ji	140
 你赵家	ni zhao jia	324
+你找见	ni zhao jian	108
 你招进	ni zhao jin	410
 你照旧	ni zhao jiu	212
 你召开	ni zhao kai	207
@@ -507102,6 +507105,8 @@ sort: by_weight
 清暑殿	qing shu dian	297
 轻熟风	qing shu feng	486
 轻熟感	qing shu gan	288
+请梳理	qing shu li	153
+情书里	qing shu li	84
 轻熟龄	qing shu ling	13
 轻熟男	qing shu nan	423
 轻熟女	qing shu nv	752
@@ -509806,7 +509811,6 @@ sort: by_weight
 去锻炼	qu duan lian	990
 去对吧	qu dui ba	396
 去对比	qu dui bi	806
-区队长	qu dui chang	598
 去对待	qu dui dai	994
 去对方	qu dui fang	837
 去对付	qu dui fu	386
@@ -509816,6 +509820,7 @@ sort: by_weight
 去对了	qu dui le	490
 取对数	qu dui shu	612
 取对象	qu dui xiang	16
+区队长	qu dui zhang	598
 趣多多	qu duo duo	60
 去多久	qu duo jiu	752
 去多了	qu duo le	783
@@ -659629,6 +659634,10 @@ sort: by_weight
 新穿搭	xin chuan da	3
 新穿法	xin chuan fa	360
 新川路	xin chuan lu	310
+新传媒	xin chuan mei	950
+新传奇	xin chuan qi	562
+新传说	xin chuan shuo	369
+新传统	xin chuan tong	702
 新船员	xin chuan yuan	306
 信创版	xin chuang ban	3
 新床单	xin chuang dan	441
@@ -663825,10 +663834,6 @@ sort: by_weight
 新传记	xin zhuan ji	302
 新转来	xin zhuan lai	25
 新专利	xin zhuan li	742
-新传媒	xin zhuan mei	950
-新传奇	xin zhuan qi	562
-新传说	xin zhuan shuo	369
-新传统	xin zhuan tong	702
 新专业	xin zhuan ye	752
 心专注	xin zhuan zhu	824
 新撰组	xin zhuan zu	47
@@ -784354,9 +784359,9 @@ sort: by_weight
 不会失望	bu hui shi wang	179
 不会失业	bu hui shi ye	544
 不会使用	bu hui shi yong	829
-部会首长	bu hui shou chang	495
 不会受到	bu hui shou dao	1192
 不会受伤	bu hui shou shang	179
+部会首长	bu hui shou zhang	495
 不会数数	bu hui shu shu	428
 不会说话	bu hui shuo hua	1840
 不会说谎	bu hui shuo huang	760
@@ -850272,9 +850277,9 @@ sort: by_weight
 堆积作用	dui ji zuo yong	6
 对甲苯胺	dui jia ben an	117
 对甲苯酚	dui jia ben fen	117
-对家长说	dui jia chang shuo	446
 对夹蝶阀	dui jia die fa	76
 对甲基红	dui jia ji hong	45
+对家长说	dui jia zhang shuo	446
 对讲电话	dui jiang dian hua	279
 对讲门铃	dui jiang men ling	162
 对讲系统	dui jiang xi tong	38
@@ -874148,7 +874153,7 @@ sort: by_weight
 伏秋大汛	fu qiu da xun	52
 浮丘丹井	fu qiu dan jing	117
 伏秋汛期	fu qiu xun qi	52
-副区队长	fu qu dui chang	297
+副区队长	fu qu dui zhang	297
 覆去翻来	fu qu fan lai	238
 负屈含冤	fu qu han yuan	162
 氟曲马唑	fu qu ma zuo	117
@@ -882017,7 +882022,7 @@ sort: by_weight
 高三复课	gao san fu ke	117
 高三复习	gao san fu xi	621
 搞三搞四	gao san gao si	25
-高三家长	gao san jia chang	540
+高三家长	gao san jia zhang	540
 高三九班	gao san jiu ban	171
 高三考生	gao san kao sheng	608
 高三励志	gao san li zhi	180
@@ -1033372,6 +1033377,7 @@ sort: by_weight
 目前股价	mu qian gu jia	770
 目前国内	mu qian guo nei	8626
 目前还没	mu qian hai mei	1377
+目前行情	mu qian hang qing	832
 目前航天	mu qian hang tian	392
 目前好像	mu qian hao xiang	301
 目前沪指	mu qian hu zhi	558
@@ -1033403,7 +1033409,6 @@ sort: by_weight
 目前我们	mu qian wo men	2415
 目前现状	mu qian xian zhuang	634
 目前小米	mu qian xiao mi	666
-目前行情	mu qian xing qing	832
 目前形势	mu qian xing shi	716
 目前行驶	mu qian xing shi	441
 目前已经	mu qian yi jing	8004
@@ -1058442,10 +1058447,10 @@ sort: by_weight
 普通鸡蛋	pu tong ji dan	644
 普通机件	pu tong ji jian	45
 普通机油	pu tong ji you	374
-普通家长	pu tong jia chang	842
 普通家具	pu tong jia ju	405
 普通家居	pu tong jia ju	323
 普通家庭	pu tong jia ting	3906
+普通家长	pu tong jia zhang	842
 普通家装	pu tong jia zhuang	333
 普通剪刀	pu tong jian dao	248
 普通键盘	pu tong jian pan	522
@@ -1083231,7 +1083236,6 @@ sort: by_weight
 人才资讯	ren cai zi xun	374
 人才资源	ren cai zi yuan	163
 人长丑了	ren chang chou le	117
-人长得帅	ren chang de shuai	603
 仁昌酱园	ren chang jiang yuan	194
 人长树大	ren chang shu da	99
 忍唱挑战	ren chang tiao zhan	45
@@ -1086854,6 +1086858,7 @@ sort: by_weight
 任寨北街	ren zhai bei jie	238
 仁斋直指	ren zhai zhi zhi	279
 人长得美	ren zhang de mei	16
+人长得帅	ren zhang de shuai	603
 人找不到	ren zhao bu dao	864
 人找工作	ren zhao gong zuo	662
 仁者爱人	ren zhe ai ren	72
@@ -1107491,6 +1107496,8 @@ sort: by_weight
 肾精不足	shen jing bu zu	572
 神经成像	shen jing cheng xiang	418
 神经冲动	shen jing chong dong	273
+神经传导	shen jing chuan dao	774
+神经传递	shen jing chuan di	644
 神经垂体	shen jing chui ti	306
 神经磁图	shen jing ci tu	45
 神经丛点	shen jing cong dian	45
@@ -1107609,8 +1107616,6 @@ sort: by_weight
 神经中枢	shen jing zhong shu	502
 神经重症	shen jing zhong zheng	320
 深井注水	shen jing zhu shui	4
-神经传导	shen jing zhuan dao	774
-神经传递	shen jing zhuan di	644
 神经专题	shen jing zhuan ti	45
 神经阻滞	shen jing zu zhi	295
 神经组织	shen jing zu zhi	266
@@ -1108622,7 +1108627,6 @@ sort: by_weight
 深情的吻	shen qing de wen	468
 深情的眼	shen qing de yan	562
 申请登记	shen qing deng ji	151
-申请调解	shen qing diao jie	486
 申请调走	shen qing diao zou	144
 深情动人	shen qing dong ren	428
 深情对唱	shen qing dui chang	464
@@ -1108764,6 +1108768,7 @@ sort: by_weight
 申请提取	shen qing ti qu	670
 申请提现	shen qing ti xian	504
 申请条件	shen qing tiao jian	1476
+申请调解	shen qing tiao jie	486
 申请退出	shen qing tui chu	490
 申请退费	shen qing tui fei	423
 申请退款	shen qing tui kuan	999
@@ -1145358,11 +1145363,11 @@ sort: by_weight
 苏启渔号	su qi yu hao	130
 诉前保全	su qian bao quan	82
 诉前程序	su qian cheng xu	400
-诉前调解	su qian diao jie	477
 诉前化解	su qian hua jie	225
 诉前鉴定	su qian jian ding	50
 诉前禁令	su qian jin ling	270
 诉前扣船	su qian kou chuan	50
+诉前调解	su qian tiao jie	477
 苏秦刺股	su qin ci gu	76
 苏沁牧场	su qin mu chang	4
 素琴听弦	su qin ting xian	45
@@ -1162128,10 +1162133,10 @@ sort: by_weight
 听其自便	ting qi zi bian	3
 听其自然	ting qi zi ran	25
 庭前柏树	ting qian bai shu	153
-庭前调解	ting qian diao jie	356
 庭前花落	ting qian hua luo	153
 庭前会议	ting qian hui yi	806
 庭前落叶	ting qian luo ye	4
+庭前调解	ting qian tiao jie	356
 听墙根儿	ting qiang gen er	266
 挺枪守备	ting qiang shou bei	117
 亭桥南路	ting qiao nan lu	130
@@ -1162240,8 +1162245,8 @@ sort: by_weight
 挺痛苦的	ting tong ku de	301
 挺秃然的	ting tu ran de	446
 挺突然的	ting tu ran de	163
-庭外调解	ting wai diao jie	310
 庭外和解	ting wai he jie	135
+庭外调解	ting wai tiao jie	310
 挺外向的	ting wai xiang de	16
 挺晚的了	ting wan de le	28
 挺顽固的	ting wan gu de	117
@@ -1173904,6 +1173909,7 @@ sort: by_weight
 玩些什么	wan xie shen me	25
 晚些时候	wan xie shi hou	380
 玩心不退	wan xin bu tui	99
+皖新传媒	wan xin chuan mei	580
 玩心大发	wan xin da fa	369
 玩心大起	wan xin da qi	504
 玩心很重	wan xin hen zhong	35
@@ -1173911,7 +1173917,6 @@ sort: by_weight
 玩新模式	wan xin mo shi	45
 玩心太重	wan xin tai zhong	9
 剜心摘胆	wan xin zhai dan	99
-皖新传媒	wan xin zhuan mei	580
 万兴百货	wan xing bai huo	4
 完形崩溃	wan xing beng kui	230
 完形测验	wan xing ce yan	45
@@ -1215261,10 +1215266,10 @@ sort: by_weight
 小学同学	xiao xue tong xue	826
 小学文化	xiao xue wen hua	192
 小学习巷	xiao xue xi xiang	292
-小学校长	xiao xue xiao chang	994
 小学校服	xiao xue xiao fu	19
 小学校徽	xiao xue xiao hui	171
 小学校友	xiao xue xiao you	400
+小学校长	xiao xue xiao zhang	994
 小学学历	xiao xue xue li	544
 小学学生	xiao xue xue sheng	819
 小雪养生	xiao xue yang sheng	45
@@ -1216345,7 +1216350,6 @@ sort: by_weight
 协商不成	xie shang bu cheng	774
 协商处理	xie shang chu li	706
 写上答案	xie shang da an	297
-协商调解	xie shang diao jie	554
 协商分期	xie shang fen qi	279
 协商共治	xie shang gong zhi	153
 协商会议	xie shang hui yi	1089
@@ -1216358,6 +1216362,7 @@ sort: by_weight
 写上名字	xie shang ming zi	44
 协商确定	xie shang que ding	945
 协商谈判	xie shang tan pan	594
+协商调解	xie shang tiao jie	554
 协商未果	xie shang wei guo	626
 写上我们	xie shang wo men	346
 协商无果	xie shang wu guo	608
@@ -1217285,6 +1217290,7 @@ sort: by_weight
 新出台的	xin chu tai de	122
 信川康氏	xin chuan kang shi	194
 心传口授	xin chuan kou shou	117
+新传媒报	xin chuan mei bao	130
 新川日常	xin chuan ri chang	4
 新川沙路	xin chuan sha lu	50
 信创产业	xin chuang chan ye	274
@@ -1221923,7 +1221929,6 @@ sort: by_weight
 心著欲境	xin zhu yu jing	76
 新专辑里	xin zhuan ji li	567
 新专辑中	xin zhuan ji zhong	657
-新传媒报	xin zhuan mei bao	130
 心转物移	xin zhuan wu yi	50
 心状梨叶	xin zhuang li ye	76
 辛庄路口	xin zhuang lu kou	418
@@ -1301778,7 +1301783,7 @@ sort: by_weight
 郑铁六中	zheng tie liu zhong	4
 正铁氧体	zheng tie yang ti	180
 郑铁中院	zheng tie zhong yuan	130
-正厅长级	zheng ting chang ji	428
+正厅长级	zheng ting zhang ji	428
 证通电子	zheng tong dian zi	504
 整同调群	zheng tong diao qun	4
 正通集团	zheng tong ji tuan	202
@@ -1311596,7 +1311601,6 @@ sort: by_weight
 支着帐篷	zhi zhe zhang peng	180
 智者之虑	zhi zhe zhi lv	189
 致臻版款	zhi zhen ban kuan	50
-智真长老	zhi zhen chang lao	382
 指针常量	zhi zhen chang liang	310
 指针函数	zhi zhen han shu	351
 致真酒家	zhi zhen jiu jia	248
@@ -1311607,6 +1311611,7 @@ sort: by_weight
 至臻商店	zhi zhen shang dian	45
 至臻完美	zhi zhen wan mei	405
 至臻系列	zhi zhen xi lie	4
+智真长老	zhi zhen zhang lao	382
 至真至诚	zhi zhen zhi cheng	19
 至真至纯	zhi zhen zhi chun	477
 至真至美	zhi zhen zhi mei	333
@@ -1330810,9 +1330815,9 @@ sort: by_weight
 自制武器	zi zhi wu qi	392
 自制系统	zi zhi xi tong	38
 自治系统	zi zhi xi tong	34
-自治县长	zi zhi xian chang	356
 自制咸蛋	zi zhi xian dan	76
 自治县委	zi zhi xian wei	486
+自治县长	zi zhi xian zhang	356
 自治小区	zi zhi xiao qu	180
 自治小组	zi zhi xiao zu	266
 资质许可	zi zhi xu ke	549
@@ -1393026,6 +1393031,7 @@ sort: by_weight
 深交所主板	shen jiao suo zhu ban	10
 伸筋丹胶囊	shen jin dan jiao nang	10
 伸筋活络丸	shen jin huo luo wan	10
+神经传递素	shen jing chuan di su	10
 神经根性痛	shen jing gen xing tong	10
 神经管畸形	shen jing guan ji xing	10
 神经和血管	shen jing he xue guan	10
@@ -1393038,7 +1393044,6 @@ sort: by_weight
 神经性贪食	shen jing xing tan shi	10
 神经性厌食	shen jing xing yan shi	10
 神经元变性	shen jing yuan bian xing	10
-神经传递素	shen jing zhuan di su	10
 肾开窍于耳	shen kai qiao yu er	10
 深刻的变革	shen ke de bian ge	10
 深刻地反思	shen ke de fan si	10
@@ -1409530,7 +1409535,6 @@ sort: by_weight
 小美牛肝菌	xiao mei niu gan jun	10
 小美洲黑雁	xiao mei zhou hei yan	10
 小门鲸鱼洞	xiao men jing yu dong	10
-小米虫虫翔	xiao mi chong chong xiang	10
 小咪大喇叭	xiao mi da la ba	10
 小米的产品	xiao mi de chan pin	10
 小米的成功	xiao mi de cheng gong	10
@@ -1409599,7 +1409603,6 @@ sort: by_weight
 小朋友们玩	xiao peng you men wan	10
 笑贫不笑娼	xiao pin bu xiao chang	10
 小屏爱好者	xiao ping ai hao zhe	10
-萧平实导师	xiao ping shi dao shi	10
 小普济尔基	xiao pu ji er ji	10
 肖普朗大学	xiao pu lang da xue	10
 小普里齐基	xiao pu li qi ji	10
@@ -1409621,7 +1409624,6 @@ sort: by_weight
 小箐口水库	xiao qing kou shui ku	10
 小青龙合剂	xiao qing long he ji	10
 小青蛙呱呱	xiao qing wa gua gua	10
-小鲭鱼薇薇	xiao qing yu wei wei	10
 消球差透镜	xiao qiu cha tou jing	12
 小球的动能	xiao qiu de dong neng	10
 小区的保安	xiao qu de bao an	10
@@ -1409811,7 +1409813,6 @@ sort: by_weight
 潇湘在何处	xiao xiang zai he chu	10
 萧萧班马鸣	xiao xiao ban ma ming	10
 笑笑不说话	xiao xiao bu shuo hua	10
-笑笑的离开	xiao xiao de li kai	10
 萧萧联络线	xiao xiao lian luo xian	10
 笑小说系列	xiao xiao shuo xi lie	10
 笑笑孙亚龙	xiao xiao sun ya long	10
@@ -1409821,11 +1409822,9 @@ sort: by_weight
 潇潇雨未歇	xiao xiao yu wei xie	10
 小谢尔巴基	xiao xie er ba ji	10
 小谢与秋容	xiao xie yu qiu rong	10
-小新的蜡笔	xiao xin de la bi	10
 小心谨慎地	xiao xin jin shen de	10
 小辛码头村	xiao xin ma tou cun	10
 小心没大错	xiao xin mei da cuo	10
-小新没蜡笔	xiao xin mei la bi	10
 小新萌萌哒	xiao xin meng meng da	10
 小新牌螺丝	xiao xin pai luo si	10
 小心无大错	xiao xin wu da cuo	10
@@ -1409873,7 +1409872,6 @@ sort: by_weight
 消炎利胆片	xiao yan li dan pian	10
 小眼鳗鳞鳕	xiao yan man lin xue	10
 小眼一眨巴	xiao yan yi zha ba	10
-小燕子紫薇	xiao yan zi zi wei	10
 逍遥津之战	xiao yao jin zhi zhan	10
 逍遥丸水丸	xiao yao wan shui wan	10
 逍遥无极扇	xiao yao wu ji shan	10
@@ -1409925,7 +1409923,6 @@ sort: by_weight
 小盂鼎铭文	xiao yu ding ming wen	10
 小于或等于	xiao yu huo deng yu	10
 小鱼冒个泡	xiao yu mao ge pao	10
-小羽萌萌哒	xiao yu meng meng da	10
 小鱼去德国	xiao yu qu de guo	10
 小于胎龄儿	xiao yu tai ling er	10
 小鱼吐泡泡	xiao yu tu pao pao	10
@@ -1410204,6 +1410201,7 @@ sort: by_weight
 薪酬和福利	xin chou he fu li	10
 心传导系统	xin chuan dao xi tong	10
 新川科技园	xin chuan ke ji yuan	10
+新传媒艺人	xin chuan mei yi ren	10
 信创工作组	xin chuang gong zuo zu	10
 新春的祝福	xin chun de zhu fu	10
 新春团拜会	xin chun tuan bai hui	10
@@ -1410932,7 +1410930,6 @@ sort: by_weight
 心中有方向	xin zhong you fang xiang	10
 心轴试验法	xin zhou shi yan fa	10
 信主的见证	xin zhu de jian zheng	10
-新传媒艺人	xin zhuan mei yi ren	10
 莘庄地铁站	xin zhuang di tie zhan	10
 薪资和福利	xin zi he fu li	10
 心字已成灰	xin zi yi cheng hui	10
