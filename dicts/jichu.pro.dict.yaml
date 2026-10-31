@@ -11409,9 +11409,9 @@ sort: by_weight
 查车	chá;mh chē;hs	387
 茶城	chá;cm chéng;th	257
 叉乘	chā;vd chéng;pd	244
-茶匙	chá;cm chí;lv	675
+插翅	chā;fp chì;hh	675
 差池	chā;dh chí;uv	298
-插翅	chā;fp chì;hh	238
+茶匙	chá;cm chí;lv	238
 查重	chá;mh chóng;pt	3090
 茶宠	chá;cm chǒng;bd	630
 查出	chá;mh chū;vs	4760
@@ -46980,10 +46980,11 @@ sort: by_weight
 后手	hòu;pk shǒu;fs	3554
 后收	hòu;pk shōu;vp	1408
 后首	hòu;pk shǒu;dh	1260
-后述	hòu;pk shù;mz	945
+后束	hòu;pk shù;hd	945
 后蜀	hòu;pk shǔ;so	898
 厚书	hòu;hh shū;vd	850
 后书	hòu;pk shū;vd	784
+后述	hòu;pk shù;mz	645
 后熟	hòu;pk shú;dq	614
 侯叔	hóu;rv shū;sv	454
 后说	hòu;pk shuō;ad	851
@@ -95029,7 +95030,7 @@ sort: by_weight
 去哭	qù;td kū;kd	106
 区块	qū;hv kuài;tv	3545
 取款	qǔ;hv kuǎn;tp	1369
-曲髋	qǔ;sh kuān;sb	369
+屈髋	qū;vs kuān;sb	369
 去蜡	qù;td là;oc	62
 去啦	qù;td la;kf	62
 取来	qǔ;hv lái;hm	396
@@ -102021,7 +102022,8 @@ sort: by_weight
 尚书	shàng;sk shū;vd	3808
 上书	shàng;sh shū;vd	2857
 上树	shàng;sh shù;mv	602
-上疏	shàng;sh shū;vd	521
+上束	shàng;sh shù;hd	521
+上疏	shàng;sh shū;vd	321
 商数	shāng;dk shù;dp	292
 尚属	shàng;sk shǔ;vd	244
 上水	shàng;sh shuǐ;ud	421
@@ -122970,8 +122972,8 @@ sort: by_weight
 违法	wéi;hz fǎ;ut	9866
 未发	wèi;hm fā;vd	499
 微法	wēi;ps fǎ;ut	449
-喂饭	wèi;ks fàn;pp	10591
-违反	wéi;hz fǎn;pd	527
+违反	wéi;hz fǎn;pd	10591
+喂饭	wèi;ks fàn;pp	527
 违犯	wéi;hz fàn;pv	150
 唯饭	wéi;kr fàn;pp	120
 胃反	wèi;sy fǎn;pd	96
@@ -128566,6 +128568,7 @@ sort: by_weight
 夏收	xià;hd shōu;vp	680
 下属	xià;hd shǔ;vd	15970
 下述	xià;hd shù;mz	985
+下束	xià;hd shù;hd	304
 夏树	xià;hd shù;mv	232
 下书	xià;hd shū;vd	185
 夏叔	xià;hd shū;sv	148
@@ -129424,12 +129427,12 @@ sort: by_weight
 嫌弃	xián;nd qì;ds	13383
 掀起	xiān;fp qǐ;tv	4970
 限期	xiàn;vv qī;cy	891
-氙气	xiān;ps qì;pv	803
-先期	xiān;pv qī;cy	584
-险企	xiǎn;vr qǐ;rh	323
-仙气	xiān;rs qì;pv	222
-贤妻	xián;sr qī;hn	147
-险棋	xiǎn;vr qí;mc	117
+仙气	xiān;rs qì;pv	803
+贤妻	xián;sr qī;hn	584
+险棋	xiǎn;vr qí;mc	323
+氙气	xiān;ps qì;pv	222
+先期	xiān;pv qī;cy	147
+险企	xiǎn;vr qǐ;rh	117
 闲气	xián;dm qì;pv	93
 现期	xiàn;ws qī;cy	74
 仙器	xiān;rs qì;kk	59
@@ -132938,7 +132941,8 @@ sort: by_weight
 解数	xiè;pv shù;dp	304
 谢叔	xiè;ap shū;sv	243
 鞋刷	xié;ct shuā;vs	53
-泄水	xiè;uc shuǐ;ud	1755
+写谁	xiě;dh shuí;ar	1755
+泄水	xiè;uc shuǐ;ud	310
 邪说	xié;hv shuō;ad	122
 写死	xiě;dh sǐ;hv	842
 邪祟	xié;hv suì;vd	204
@@ -132951,8 +132955,8 @@ sort: by_weight
 泄题	xiè;uc tí;lr	662
 写题	xiě;dh tí;lr	288
 楔体	xiē;mh tǐ;rm	157
-谢天	xiè;ap tiān;hd	150
-些天	xiē;sh tiān;hd	36
+些天	xiē;sh tiān;hd	150
+谢天	xiè;ap tiān;hd	36
 协调	xié;hv tiáo;ap	14381
 谐调	xié;ah tiáo;ap	1312
 协同	xié;hv tóng;sk	7894
@@ -157873,6 +157877,7 @@ sort: by_weight
 中枢	zhōng;ks shū;mh	2050
 种树	zhòng;ek shù;mv	1585
 众数	zhòng;rr shù;dp	436
+中束	zhōng;ks shù;hd	333
 中书	zhōng;ks shū;vd	282
 种属	zhǒng;ek shǔ;vd	225
 钟叔	zhōng;jk shū;sv	180
@@ -163060,7 +163065,8 @@ sort: by_weight
 作字	zuò;rp zì;bh	97
 座子	zuò;dt zi;vh	77
 做足	zuò;rh zú;zr	1008
-左足	zuǒ;hh zú;zr	958
+做组	zuò;rh zǔ;is	958
+左足	zuǒ;hh zú;zr	200
 坐坐	zuò;rt zuò;rt	6462
 做做	zuò;rh zuò;rh	2084
 做作	zuò;rh zuò;rp	1055
@@ -196907,6 +196913,7 @@ sort: by_weight
 玻璃翠	bō;wv li;wd cuì;vs	360
 玻璃带	bō;wv li;wd dài;hs	446
 玻璃刀	bō;wv li;wd dāo;vp	22
+玻璃的	bō;wv li;wd de;pp	559
 玻璃灯	bō;wv li;wd dēng;qh	19
 玻璃底	bō;wv li;wd dǐ;dd	644
 玻璃店	bō;wv li;wd diàn;dk	6
@@ -201601,6 +201608,7 @@ sort: by_weight
 不卡吧	bù;hd kǎ;sd ba;kv	230
 不卡点	bù;hd kǎ;sd diǎn;sq	180
 不卡顿	bù;hd kǎ;sd dùn;hh	502
+补卡费	bǔ;ds kǎ;sd fèi;vr	49
 不卡粉	bù;hd kǎ;sd fěn;dp	35
 不卡机	bù;hd kǎ;sd jī;mp	464
 不卡了	bù;hd kǎ;sd le;vs	621
@@ -269011,6 +269019,7 @@ sort: by_weight
 定量限	dìng;bd liàng;lt xiàn;vv	405
 顶梁柱	dǐng;hh liáng;um zhù;md	992
 叮铃铃	dīng;kh líng;jr líng;jr	113
+丁零零	dīng;hs líng;hd líng;hd	68
 定硫仪	dìng;bd liú;hd yí;rd	50
 顶楼吧	dǐng;hh lóu;md ba;kv	180
 定路线	dìng;bd lù;zp xiàn;ih	9
@@ -326714,6 +326723,7 @@ sort: by_weight
 还在用	hái;hz zài;ht yòng;ps	1120
 还在于	hái;hz zài;ht yú;hs	2154
 还在涨	hái;hz zài;ht zhǎng;uv	176
+还在找	hái;hz zài;ht zhǎo;fh	449
 还在招	hái;hz zài;ht zhāo;fv	47
 还在这	hái;hz zài;ht zhè;dz	1238
 还在做	hái;hz zài;ht zuò;rh	981
@@ -372269,6 +372279,7 @@ sort: by_weight
 鉴红云	jiàn;sj hóng;ih yún;hd	4
 尖后段	jiān;sd hòu;pk duàn;pp	243
 睑后面	jiǎn;sr hòu;pk miàn;hh	76
+肩后束	jiān;dy hòu;pk shù;hd	60
 睑后缘	jiǎn;sr hòu;pk yuán;iv	45
 尖后支	jiān;sd hòu;pk zhī;hd	45
 键呼出	jiàn;jv hū;kp chū;vs	405
@@ -373009,6 +373020,7 @@ sort: by_weight
 捡钱包	jiǎn;fr qián;jh bāo;pv	482
 睑前面	jiǎn;sr qián;ds miàn;hh	4
 见前任	jiàn;sv qián;ds rèn;rp	508
+肩前束	jiān;dy qián;ds shù;hd	60
 肩前穴	jiān;dy qián;ds xué;bd	153
 睑前缘	jiǎn;sr qián;ds yuán;iv	45
 坚强啊	jiān;st qiáng;vk a;kv	472
@@ -374219,6 +374231,7 @@ sort: by_weight
 见众人	jiàn;sv zhòng;rr rén;rd	783
 见众生	jiàn;sv zhòng;rr shēng;ph	662
 简中式	jiǎn;gl zhōng;ks shì;hd	225
+肩中束	jiān;dy zhōng;ks shù;hd	60
 肩中腧	jiān;dy zhōng;ks shù;yr	52
 建中汤	jiàn;vd zhōng;ks tāng;uv	432
 剑中仙	jiàn;rs zhōng;ks xiān;rs	4
@@ -433243,6 +433256,7 @@ sort: by_weight
 留全尸	liú;ph quán;rw shī;vp	374
 留人才	liú;ph rén;rd cái;hp	518
 六人份	liù;dd rén;rd fèn;rp	356
+留任何	liú;ph rèn;rp hé;rh	498
 六人间	liù;dd rén;rd jiān;dl	752
 留人难	liú;ph rén;rd nán;vr	477
 六人寝	liù;dd rén;rd qǐn;bd	540
@@ -648363,6 +648377,7 @@ sort: by_weight
 橡皮艇	xiàng;mp pí;vd tǐng;pp	166
 橡皮头	xiàng;mp pí;vd tóu;dd	472
 橡皮线	xiàng;mp pí;vd xiàn;ih	76
+橡皮屑	xiàng;mp pí;vd xiè;vy	49
 橡皮鸭	xiàng;mp pí;vd yā;lp	43
 橡皮章	xiàng;mp pí;vd zhāng;ds	760
 橡皮障	xiàng;mp pí;vd zhàng;vd	224
@@ -700306,6 +700321,8 @@ sort: by_weight
 有趣了	yǒu;hy qù;td le;vs	477
 游去了	yóu;ud qù;td le;vs	381
 又娶了	yòu;vd qǔ;hn le;vs	304
+有趣吗	yǒu;hy qù;td ma;kv	61
+有去吗	yǒu;hy qù;td ma;kv	43
 又去哪	yòu;vd qù;td nǎ;kv	648
 有趣呢	yǒu;hy qù;td ne;kv	680
 右曲球	yòu;hk qǔ;sh qiú;wh	405
@@ -721805,6 +721822,7 @@ sort: by_weight
 这不会	zhè;dz bú;hd huì;rd	0
 这不叫	zhè;dz bú;hd jiào;kv	1356
 这不仅	zhè;dz bù;hd jǐn;rv	3303
+这不禁	zhè;dz bù;hd jīn;md	310
 这不就	zhè;dz bú;hd jiù;dh	2352
 这部剧	zhè;dz bù;dv jù;vs	10378
 遮不了	zhē;dz bù;hd liǎo;vs	9
@@ -729638,6 +729656,7 @@ sort: by_weight
 只管出	zhǐ;kd guǎn;gh chū;vs	9
 只管到	zhǐ;kd guǎn;gh dào;hs	310
 直观的	zhí;hh guān;vs de;pp	6409
+直观地	zhí;hh guān;vs de;tv	319
 直管段	zhí;hh guǎn;gh duàn;pp	328
 直观法	zhí;hh guān;vs fǎ;ut	288
 置冠服	zhì;sh guān;dd fú;yv	382
@@ -818463,7 +818482,8 @@ sort: by_weight
 大波斯菊	dà;hd bō;uv sī;cp jú;cm	464
 大博医疗	dà;hd bó;hh yī;hv liáo;ds	288
 大脖子病	dà;hd bó;yh zi;vh bìng;dd	72
-答不出的	dá;gk bù;hd chū;vs de;pp	9
+打不出的	dǎ;fh bù;hd chū;vs de;pp	421
+答不出的	dá;gk bù;hd chū;vs de;pp	119
 答不出话	dá;gk bù;hd chū;vs huà;ap	3
 打不出来	dǎ;fh bù;hd chū;vs lái;hm	992
 答不出来	dá;gk bù;hd chū;vs lái;hm	518
@@ -1060064,6 +1060084,7 @@ sort: by_weight
 七分沉迷	qī;hv fēn;pp chén;ud mí;dz	45
 七分打扮	qī;hv fēn;pp dǎ;fh bàn;fp	832
 气分大热	qì;pv fēn;pp dà;hd rè;fq	76
+气愤地说	qì;pv fèn;xh de;tv shuō;ad	122
 七分短裤	qī;hv fēn;pp duǎn;ph kù;dd	117
 七分讽刺	qī;hv fēn;pp fěng;ap cì;hs	4
 七分讽喻	qī;hv fēn;pp fěng;ap yù;kr	45
@@ -1136708,6 +1136729,8 @@ sort: by_weight
 睡觉得了	shuì;sp jiào;dv de;pl le;vs	207
 睡觉的人	shuì;sp jiào;dv de;pp rén;rd	160
 税交得少	shuì;ed jiāo;dd dé;pl shǎo;sp	4
+水浇多了	shuǐ;ud jiāo;uh duō;pd le;vs	146
+睡觉多了	shuì;sp jiào;dv duō;pd le;vs	97
 水饺皇后	shuǐ;ud jiǎo;pd huáng;pw hòu;pk	288
 睡觉机器	shuì;sp jiào;dv jī;mp qì;kk	76
 水饺加盟	shuǐ;ud jiǎo;pd jiā;vk méng;lh	50
@@ -1173997,6 +1174020,7 @@ sort: by_weight
 万一出事	wàn;hp yì;hh chū;vs shì;hs	558
 玩一次啊	wán;wh yí;hh cì;dp a;kv	171
 万亿大关	wàn;hp yì;rv dà;hd guān;dd	603
+晚一点点	wǎn;lp yì;hh diǎn;sq diǎn;sq	50
 晚一点去	wǎn;lp yì;hh diǎn;sq qù;td	508
 玩意儿啊	wán;wh yì;dx er;pv a;kv	66
 万亿法郎	wàn;hp yì;rv fǎ;ut láng;dv	50
@@ -1305178,6 +1305202,7 @@ sort: by_weight
 知瓜数据	zhī;pk guā;pd shù;dp jù;fv	45
 志怪者也	zhì;tx guài;xv zhě;tl yě;vv	248
 只怪自己	zhǐ;kd guài;xv zì;ph jǐ;vv	738
+直观得很	zhí;hh guān;vs de;pl hěn;pv	201
 智冠电子	zhì;pl guān;dd diàn;lv zǐ;vh	144
 止观法门	zhǐ;sh guān;vs fǎ;ut mén;dv	292
 直观反映	zhí;hh guān;vs fǎn;pd yìng;ls	536
@@ -1308952,6 +1308977,8 @@ sort: by_weight
 只是大二	zhǐ;kd shì;lr dà;hd èr;hh	338
 知识大全	zhī;pk shi;ak dà;hd quán;rw	742
 知识大赛	zhī;pk shi;ak dà;hd sài;br	410
+知识大赏	zhī;pk shi;ak dà;hd shǎng;sr	50
+只是打赏	zhǐ;kd shì;lr dǎ;fh shǎng;sr	34
 只是打算	zhǐ;kd shì;lr dǎ;fh suàn;gs	634
 知识答题	zhī;pk shi;ak dá;gk tí;lr	400
 枳实大者	zhǐ;mk shí;bd dà;hd zhě;tl	45
@@ -1386028,7 +1386055,7 @@ sort: by_weight
 起飞的小鸟	qǐ;tv fēi;vd de;pp xiǎo;sd niǎo;ph	10
 起飞和降落	qǐ;tv fēi;vd hé;ek jiàng;vp luò;ck	10
 气氛的烘托	qì;pv fēn;pp de;pp hōng;qc tuō;fp	10
-气愤的说道	qì;pv fèn;xh de;pp shuō;ad dào;dz	10
+气愤地说道	qì;pv fèn;xh de;tv shuō;ad dào;dz	10
 气氛的渲染	qì;pv fēn;pp de;pp xuàn;ub rǎn;um	10
 气氛的营造	qì;pv fēn;pp de;pp yíng;ck zào;pz	10
 七分牛仔裤	qī;hv fēn;pp niú;ps zǎi;rv kù;dd	10
@@ -1391059,6 +1391086,9 @@ sort: by_weight
 三角函数线	sān;hh jiǎo;ps hán;vs shù;dp xiàn;ih	10
 三教合归儒	sān;hh jiào;tp hé;rk guī;sv rú;rh	10
 三角化引理	sān;hh jiǎo;ps huà;rp yǐn;vs lǐ;wl	10
+三角肌后束	sān;hh jiǎo;ps jī;yp hòu;pk shù;hd	10
+三角肌前束	sān;hh jiǎo;ps jī;yp qián;ds shù;hd	10
+三角肌中束	sān;hh jiǎo;ps jī;yp zhōng;ks shù;hd	10
 三角视差法	sān;hh jiǎo;ps shì;ds chà;dh fǎ;ut	10
 三角图反常	sān;hh jiǎo;ps tú;sh fǎn;pd cháng;ss	10
 三焦无所御	sān;hh jiāo;rq wú;hv suǒ;pp yù;pp	10
