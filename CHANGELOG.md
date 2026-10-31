@@ -1,5 +1,24 @@
 # Changelog
 
+## [18.1.9](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.8...v18.1.9) (2026-10-31)
+
+
+### 📚 词库更新
+
+* 词库调整 ([60e7efd](https://github.com/amzxyz/rime-wanxiang/commit/60e7efdd2d63dca3f44d26c38e76b9bc3c1314f9))
+* 词库调整 ([7643a92](https://github.com/amzxyz/rime-wanxiang/commit/7643a925e5e473a502845912e958aa57a91ea353))
+* 词库调整 ([53f8395](https://github.com/amzxyz/rime-wanxiang/commit/53f839595e38405c295f51e102e6a9662278c1f7))
+* 词库调整 ([a4298d6](https://github.com/amzxyz/rime-wanxiang/commit/a4298d6e7b864771793ea070d3c1c92afb68a100))
+* 词库调整 ([da81e45](https://github.com/amzxyz/rime-wanxiang/commit/da81e4581876039e5bc594098c99693edc8ae762))
+* 词库调整 ([9b5e676](https://github.com/amzxyz/rime-wanxiang/commit/9b5e676f7da3d277a0d671becaf2651c5538582a))
+* 词库调整 ([d8fffe1](https://github.com/amzxyz/rime-wanxiang/commit/d8fffe138bfc8b07a173d4baf0dd2e24d555b95f))
+* 词库调整 ([b7d4ee2](https://github.com/amzxyz/rime-wanxiang/commit/b7d4ee298c0c933ee5cfd2521f98cee8b9d4bde4))
+
+
+### 🏡 杂项
+
+* update readme ([2685894](https://github.com/amzxyz/rime-wanxiang/commit/2685894d88be6dc7f15e79937ac3a6eb918accce))
+
 ## [18.1.8](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.7...v18.1.8) (2026-10-24)
 
 
