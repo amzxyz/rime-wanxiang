@@ -1408,11 +1408,11 @@ pro:
       - xform/^(ō|ó|ǒ|ò)/o$1/
       - xform/^(ē|é|ě|è)/e$1/
       - xform/^(ēr|ér|ěr|èr)(;.*)$/e$1$2/
-      - xform/^([jqxy])u(;.*)$/$1ü$2/
-      - xform/^([jqxy])ū(;.*)$/$1ǖ$2/
-      - xform/^([jqxy])ú(;.*)$/$1ǘ$2/
-      - xform/^([jqxy])ǔ(;.*)$/$1ǚ$2/
-      - xform/^([jqxy])ù(;.*)$/$1ǜ$2/
+      - xform/^([jqxy])u/$1ü/
+      - xform/^([jqxy])ū/$1ǖ/
+      - xform/^([jqxy])ú/$1ǘ/
+      - xform/^([jqxy])ǔ/$1ǚ/
+      - xform/^([jqxy])ù/$1ǜ/
       - xform/^n̄g(;.*)$/eēng$1/
       - xform/^ńg(;.*)$/eéng$1/
       - xform/^ňg(;.*)$/eěng$1/
