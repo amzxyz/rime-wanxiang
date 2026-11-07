@@ -1427,10 +1427,10 @@ pro:
       - xform/^ḿ(;.*)$/eḿ$1/
       - xform/^m̌(;.*)$/em̌$1/
       - xform/^m̀(;.*)$/em̀$1/
-      - xform/^(.)(iǎn|uan|m̀|ái|èr|üē|o|ǔ)(;.*)$/$1A$3/
+      - xform/^(.)(iǎn|uan|üan|m̀|ái|èr|üē|o|ǔ)(;.*)$/$1A$3/
       - xform/^(.)(uán|ià|ēn|à)(;.*)$/$1B$3/
       - xform/^(.)(ing|òng|ēng|ua|uǒ|ěi|īn|ḿ)(;.*)$/$1C$3/
-      - xform/^(.)(uàn|iù|āi|ǘn|a|ā)(;.*)$/$1D$3/
+      - xform/^(.)(uàn|üàn|iù|āi|ǘn|a|ā)(;.*)$/$1D$3/
       - xform/^(.)(iǎng|ie|ui|ài|ēi|ǔn|ü|ū)(;.*)$/$1E$3/
       - xform/^(.)(iang|ióng|uo|uó|üě|ěr|ǎi|í)(;.*)$/$1F$3/
       - xform/^(.)(iàn|uai|ěng|ǎng|ùn)(;.*)$/$1G$3/
@@ -1442,7 +1442,7 @@ pro:
       - xform/^(.)(iòng|eng|èng|ǐng|uì|ǚn|ǖ)(;.*)$/$1M$3/
       - xform/^(.)(uang|uǎng|ai|ou|un|ěn|ò|ī)(;.*)$/$1N$3/
       - xform/^(.)(ian|áng|ao|uī|ün|ōu|ó|ǜ)(;.*)$/$1O$3/
-      - xform/^(.)(uàng|uān|ǒng|en|iú|én|üé|ān)(;.*)$/$1P$3/
+      - xform/^(.)(uàng|uān|üān|ǒng|en|iú|én|üé|ān)(;.*)$/$1P$3/
       - xform/^(.)(an|uá|ào|ìn|ún|üè|ǒu|ǒ)(;.*)$/$1Q$3/
       - xform/^(.)(uáng|iǎo|iǔ|e|è|ō)(;.*)$/$1R$3/
       - xform/^(.)(iong|ang|iao|īng|ei|èn|ǎo|ǘ)(;.*)$/$1S$3/
@@ -1451,7 +1451,7 @@ pro:
       - xform/^(.)(uāi|iá|iě|uò|èi|á)(;.*)$/$1V$3/
       - xform/^(.)(iē|uǎ|éi|ē|ǐ)(;.*)$/$1W$3/
       - xform/^(.)(ián|iè|uǐ|àn|é)(;.*)$/$1X$3/
-      - xform/^(.)(iáo|uǎn|àng|ié|iǎ|ín)(;.*)$/$1Y$3/
+      - xform/^(.)(iáo|uǎn|üǎn|àng|ié|iǎ|ín)(;.*)$/$1Y$3/
       - xform/^(.)(iān|ong|uài|éng|iu|uō|ǜn)(;.*)$/$1Z$3/
       - xlit/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/
 
