@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.1.10](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.9...v18.1.10) (2026-11-07)
+
+
+### 🐛 Bug 修复
+
+* 修复万象双拼音节转写错误 ([8bc461e](https://github.com/amzxyz/rime-wanxiang/commit/8bc461ed52f965d8405d44e242789f849f78b477))
+
 ## [18.1.9](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.8...v18.1.9) (2026-11-06)
 
 
