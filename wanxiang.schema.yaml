@@ -97,7 +97,6 @@ engine:
     - auxiliary_suffix_segmentor  #拆分 ` 后的后置辅助码
     - abc_segmentor  #标识常规的文字段落，加上 abc 这个 tag
     - affix_segmentor@wanxiang_reverse  #反查 tag
-    - affix_segmentor@add_user_dict  #自造词加词 tag
     - punct_segmentor  #标识符号段落〔键入标点符号用〕加上 punct 这个 tag
     - fallback_segmentor  #标识其他未标识段落，必须放在最后帮助tag模式切换后回退重新处理
   translators:
@@ -142,6 +141,7 @@ grammar:
   non_collocation_penalty: -6
   weak_collocation_penalty: -100
   rear_penalty: -18
+
 keypad_processor:
   mode: auto  # auto / compose / select
 
@@ -157,9 +157,8 @@ translator:
   dictionary: wanxiang
   aux: zhijie
   user_dict: zc
-  user_dict_mode: auto
+  user_dict_mode: auto  # auto / manual / off
   aux_suffix: "`"
-  #  packs: user                  #导入根目录下名称为user.dict.yaml的自定义固定词典
   prisms:
     - {name: pinyin, option: pinyin}
     - {name: zrm, option: zrm}
@@ -174,35 +173,6 @@ translator:
   always_show_comments: true  # Rime 默认在 preedit 等于 comment 时取消显示 comment，这里强制一直显示，供super_comment_preedit.lua做判断用。
   comment_format:  #将注释以词典字符串形式完全暴露，通过super_comment.lua完全接管，灵活配置。
 
-# user_dict_set:
-#   dictionary: wanxiang
-#   prism: zrm
-#   initial_quality: 2.5
-#   enable_completion: false
-#   enable_sentence: false
-#   core_word_length: 4  # >0 启用，按段学词 + 相邻段拼接
-#   max_word_length: 7  # >0 启用，过长短语不记整词，只加元素权重
-#   contextual_suggestions: false
-#   max_homophones: 8
-#   spelling_hints: 50
-#   comment_format:
-#   user_dict_mode: auto
-#   user_dict: zc
-
-#   # 自定义词典加词(ac引导)
-# add_user_dict:
-#   tag: add_user_dict
-#   dictionary: wanxiang
-#   prism: zrm
-#   initial_quality: -1
-#   user_dict: zc
-#   enable_completion: true  # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
-#   user_dict_mode: auto
-#   spelling_hints: 50
-#   enable_auto_phrase: true  # lua造词功能，在custom开启，相关功能位于auto_phrase.lua，开启后：模型能造的句子不造词，现有的词不造词，只造词库没有的，选词可造词
-#   comment_format:
-#   prefix: "``"
-#   tips: "〔开始造词〕"
 
 # 自定义短语，用来置顶
 custom_phrase:
@@ -277,7 +247,6 @@ emoji:
   files:
     - data/emoji.txt
 
-
 abbrev:
   option: true
   tags: [abc]
@@ -291,27 +260,6 @@ abbrev:
   fallback_on_empty: true
   files:
     - data/abbrev.txt
-
-
-t9_abbrev:
-  option: true
-  tags: [abc]
-  mode: abbrev
-  insert_position: 3
-  insert_count: 1
-  # 首候选属于这些 type 时，全部简码提前。
-  promote_on_types:
-    - table
-    - user_table
-    - completion
-  # 上游无候选时，是否释放全部简码兜底。
-  fallback_on_empty: true
-  # jys<TAB>静夜思
-  # 部署后 lookup key = 597，preedit = jys。
-  key_xlit: "abcdefghijklmnopqrstuvwxyz>22233344455566677778889999"
-  files:
-    - data/t9_abbrev.txt
-
 
 sentence:
   option: true
@@ -332,7 +280,6 @@ s2t:
     - data/STPhrases.txt
     - data/STCharacters.txt
 
-
 s2hk:
   option: s2hk
   tags: [abc]
@@ -342,7 +289,6 @@ s2hk:
   files:
     - data/HKVariants.txt
 
-
 s2tw:
   option: s2tw
   tags: [abc]
@@ -351,9 +297,30 @@ s2tw:
   files:
     - data/TWVariants.txt
 
+t9_abbrev:
+  option: true
+  tags: [abc]
+  mode: abbrev
+  insert_position: 3
+  insert_count: 1
+  # 首候选属于这些 type 时，全部简码提前。
+  promote_on_types:
+    - table
+    - user_table
+    - completion
+  # 上游无候选时，是否释放全部简码兜底。
+  fallback_on_empty: true
+  # jys<TAB>静夜思
+  # 部署后 lookup key = 597，preedit = jys。
+  key_xlit: "abcdefghijklmnopqrstuvwxyz>22233344455566677778889999"
+  files:
+    - data/t9_abbrev.txt
+
 build:
   dictionaries:
     wanxiang: #声明词表名称，翻译器可以调用
+      packs:  #这里定义自己的词库包列表即可
+        - dicts/shiti
       algebra:  #编译类型prism调用的转写方式
         pinyin:
           __patch:
@@ -518,10 +485,10 @@ editor:
     Delete: delete  # Delete 键：向后删除
     Control+BackSpace: back_syllable  # Ctrl+退格键：删除一个音节
     Escape: cancel  # Esc 键：取消输入
-    Control+Delete: auto_delete
-    Shift+Delete: manual_delete
-    Control+Up: manual_up
-    Control+Down: manual_down
+    Control+Delete: auto_delete  #重置自动造词
+    Shift+Delete: manual_delete  #重置手动造词
+    Control+Up: manual_up  #将当前高亮选中词条上移/左移
+    Control+Down: manual_down  #将当前高亮选中词条上移/左移
 
 # 在边界按音节移动，在音节内部按字符移动  rewind , forward
 # 按字符移动（循环）       left_by_char , right_by_char
@@ -557,12 +524,7 @@ super_processor:
   enable_seg_loop: true  # 开启/关闭分词符（'）循环
   enable_tone_fallback: true  # 启用声调回退
   enable_predict_space: false  # 启用联想空格打断，直接上屏空格并清空联想，对齐大厂，如果用原生librime-predict这个还有用留着
-  kp_number_mode: auto  # 小键盘模式 (auto / compose / select)
   limit_repeated: "8,40"  #格式："最大重复声母数,最大候选字数"
-  select_character: "[,]"  # 开启以词定字，自动拆解第一位上屏首字，第二位上屏尾字
-  # 下面这些写法都支持：
-  # select_character: "[,]"                      # [ 上屏首字，] 上屏尾字（推荐）
-  # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
 
 unicode:
   key: Control+u
@@ -650,82 +612,6 @@ input_stats:
 #    - "100000:破茧成蝶·元婴期"
 #    - "500000:掌控法则·化神期"
 #    - "1000000:破碎虚空·渡劫期"
-
-
-
-# super_replacer处理插件 - 配置说明书
-
-# 【基础配置】
-# db_name:        数据库存储路径
-# delimiter:      txt词库中一键多词的分割符，默认 "Tab"
-# comment_format: 注释内容的显示格式，例如 "〔%s〕"
-#
-# 【触发条件】
-# option:         触发开关。支持单值 (如 emoji), 列表 (如 [s2t, s2hk]), 或常驻 (true)
-# tags:           生效的引擎 tag 范围 (如 [abc])
-#
-# 【核心模式 (mode)】
-#   - append  : 新增候选模式。保留原候选，在后面追加新词 (如输入'哈哈' -> 1.哈哈 2.😄)
-#   - replace : 替换候选模式。直接覆盖原候选文本，并自动向下一个滤镜传递 (如简繁转换)
-#   - comment : 纯注释模式。不改文本，仅在原词条旁追加注释 (词库提示等于已输入编码时不显示)
-#   - abbrev  : 简码/自定义短语模式。根据输入码精准匹配，提取词条并插队置顶
-#
-# 【注释策略 (comment_mode)】
-#   - none    : 不处理原词注释 (默认)
-#   - text    : 狸猫换太子，将【原候选文本】变成【新候选的注释】 (如 'hello' -> '你好〔hello〕')
-#   - append  : 继承保留原候选自带的系统注释 (简繁转换时推荐使用)
-#
-# 【附加高级选项】
-# sentence:         (true/false) 开启长句分词(FMM)匹配，适用于简繁转换等整句处理场景
-# cand_type:        自定义候选词的 type 名称 (如 custom_emoji)，方便给不同候选词挂载独立皮肤样式
-# t9_optimization:  (true/false) T9九宫格优化，自动将词库里的字母键转换为数字键，携带预编辑码
-# abbrev_rule:      (仅 abbrev 模式生效) 格式为 "数量,位置"。(如 "1,6" 表示将词库前 1 个词插队到第 6 候选位，其余全部放在最后面兜底)
-# files:            要读取的 txt 词库文件列表 (支持多文件合并，UserDir 优先于 SharedDir)
-# exclude_types: [pinyin]  # 让当前节点排除特定类型的输入类型例如：全拼，这样他就能在非全拼的输入类型下自动生效
-# only_types: [pinyin]  # 仅对特定类型的候选词生效，其他类型候选词不受影响
-
-super_replacer:
-  comment_format: "〔%s〕"
-  chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
-  rules:
-    # 单字拆分注释
-    - option: chaifen_switch
-      cand_type: chaifen
-      mode: comment
-      tags: [abc]
-      prefix: "_cf_"
-      files:
-        - lua/data/chaifen.txt
-    # 场景2：输入 'hello' -> 显示 'hello 〔你好 | 哈喽〕'
-    - option: english_chinese
-      mode: append  # <--- 添加注释模式
-      comment_mode: none
-      tags: [abc]
-      prefix: "_en_"
-      files:
-        - lua/data/english_chinese.txt
-            # 场景3：用于常驻的直接替换 option: true
-    - option: true
-      mode: append  # <--- 新增候选模式
-      comment_mode: none
-      tags: [abc]
-      prefix: "_ot_"
-      files:
-        - lua/data/others.txt
-    - option: true
-      mode: append
-      sentence: true
-      tags: [abc]
-      prefix: "_ling_"
-      files:
-        - lua/data/sentence.txt
-    - option: true  # 英文简码用于应对abbrev状态下table跑到前面的问题
-      mode: abbrev
-      tags: [abc]
-      prefix: "_enabb_"
-      abbrev_rule: "1,3"
-      files:
-        - lua/data/en_abbrev.txt
 
 # 字符集过滤lua
 # a,通用规范汉字表
