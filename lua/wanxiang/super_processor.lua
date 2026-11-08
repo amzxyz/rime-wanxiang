@@ -1,7 +1,7 @@
 -- lua/super_processor.lua
 -- @amzxyz
 -- https://github.com/amzxyz/rime-wanxiang
--- 全能按键处理器：整合 KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
+-- 全能按键处理器：整合 KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退
 -- 
 -- 用法: 在 schema.yaml 中 engine/processors 列表添加 - lua_processor@*super_processor
 
@@ -236,8 +236,6 @@ function M.init(env)
     env.pending_predict_space = false
     env.max_repeat = 8
     env.max_segments = 40
-    env.sc_first_key = nil
-    env.sc_last_key = nil
     env.is_t9 = false
     if wanxiang.get_input_method_type then
         local im_type = wanxiang.get_input_method_type(env)
@@ -277,38 +275,6 @@ function M.init(env)
             end
         end
 
-        -- 以词定字配置加载（支持 false, "", "[,]", "bracketleft, bracketright"）
-        local has_new_config = false
-        local ok_sc_bool, sc_bool = pcall(function() return config:get_bool("super_processor/select_character") end)
-        local ok_sc_str, sc_str = pcall(function() return config:get_string("super_processor/select_character") end)
-
-        if ok_sc_bool and sc_bool == false then
-            env.sc_first_key, env.sc_last_key = nil, nil
-            has_new_config = true
-        elseif ok_sc_str and type(sc_str) == "string" then
-            local str_trim = sc_str:match("^%s*(.-)%s*$")
-            if str_trim == "" or str_trim:lower() == "false" then
-                env.sc_first_key, env.sc_last_key = nil, nil
-            else
-                -- 尝试使用逗号分割
-                local p1, p2 = str_trim:match("^(.-),(.-)$")
-                if p1 and p2 then
-                    env.sc_first_key = p1:match("^%s*(.-)%s*$")
-                    env.sc_last_key  = p2:match("^%s*(.-)%s*$")
-                elseif #str_trim >= 2 then
-                    -- 兜底兼容旧的 "[]" 无逗号写法
-                    env.sc_first_key = str_trim:sub(1,1)
-                    env.sc_last_key  = str_trim:sub(2,2)
-                end
-            end
-            has_new_config = true
-        end
-
-        if not has_new_config then
-            -- 兜底：只有在新配置完全缺失时，才去读旧配置
-            env.sc_first_key = config:get_string('key_binder/select_first_character')
-            env.sc_last_key = config:get_string('key_binder/select_last_character')
-        end
     end
 
     -- [BackspaceLimit]
@@ -636,50 +602,6 @@ local function handle_letter_select(key, env, ctx)
     return true
 end
 
--- [Select Character] 以词定字逻辑 (New!)
-local function handle_select_character(key, env, ctx)
-    -- 检查配置是否存在
-    if not (env.sc_first_key or env.sc_last_key) then return false end
-    -- 判断是否在命令模式，如果是，则关闭以词定字，释放占用的按键/符号
-    if wanxiang.is_function_mode and wanxiang.is_function_mode(ctx) then
-        return false
-    end
-    -- 状态检查：必须在输入中或有候选菜单
-    if not (ctx:is_composing() or ctx:has_menu()) then return false end
-
-    -- 键值与字符双重匹配（解决 Rime 返回 "bracketleft" 无法匹配 "[" 的问题）
-    local repr = key:repr()
-    local ch = ""
-    if key.keycode >= 0x20 and key.keycode <= 0x7E then
-        ch = string.char(key.keycode)
-    end
-
-    local is_first = (env.sc_first_key and (repr == env.sc_first_key or ch == env.sc_first_key))
-    local is_last  = (env.sc_last_key and (repr == env.sc_last_key or ch == env.sc_last_key))
-    if not (is_first or is_last) then return false end
-
-    -- 获取当前选中的候选词或输入
-    local text = ctx.input
-    local cand = ctx:get_selected_candidate()
-    if cand then text = cand.text end
-
-    -- 执行上屏
-    if utf8.len(text) > 1 then
-        if is_first then
-            -- 上屏第一个字 (sub: 1 到 第二个字偏移量-1)
-            env.engine:commit_text(text:sub(1, utf8.offset(text, 2) - 1))
-            ctx:clear()
-            return true -- Accepted
-        elseif is_last then
-            -- 上屏最后一个字 (sub: 最后一个字偏移量)
-            env.engine:commit_text(text:sub(utf8.offset(text, -1)))
-            ctx:clear()
-            return true -- Accepted
-        end
-    end
-    return false
-end
-
 -- [KpNumber & ToneFallback] 数字键综合逻辑
 local function handle_number_logic(key, env, ctx)
     local kc = key.keycode
@@ -829,29 +751,22 @@ function M.func(key, env)
         if handle_backspace(key, env, ctx) then return wanxiang.RIME_PROCESS_RESULTS.kAccepted end
     end
 
-    -- 4. Select Character 以词定字 (New!)
-    -- 它的优先级很高，因为是针对当前候选的操作
-    -- 但必须在 Backspace 之后，防止误操作
-    if handle_select_character(key, env, ctx) then
-        return wanxiang.RIME_PROCESS_RESULTS.kAccepted
-    end
-
-    -- 5. 分词符 ' [SuperSegmentation] 处理分词符 '
+    -- 4. 分词符 ' [SuperSegmentation] 处理分词符 '
     if kc == 0x27 then
         if handle_segmentation(key, env, ctx) then return wanxiang.RIME_PROCESS_RESULTS.kAccepted end
     end
 
-    -- 6. 字母键 (a-z)[Limit Repeated] 重复输入限制
+    -- 5. 字母键 (a-z)[Limit Repeated] 重复输入限制
     if kc >= 0x61 and kc <= 0x7A then
         if handle_limit_repeat(key, env, ctx) then return wanxiang.RIME_PROCESS_RESULTS.kAccepted end
     end
 
-    -- 7. (q-o + 特定 Tag)[Letter Selector] 字母选词
+    -- 6. (q-o + 特定 Tag)[Letter Selector] 字母选词
     if env.ls_active and (LETTER_SEL_MAP[kc] ~= nil) then
         if handle_letter_select(key, env, ctx) then return wanxiang.RIME_PROCESS_RESULTS.kAccepted end
     end
 
-    -- 8. 数字键 (小键盘 + 声调 + 选词)[KpNumber & ToneFallback] 数字键综合逻辑
+    -- 7. 数字键 (小键盘 + 声调 + 选词)[KpNumber & ToneFallback] 数字键综合逻辑
     if (kc >= 0xFFB0 and kc <= 0xFFB9) or (kc >= 0x30 and kc <= 0x39) then
         if handle_number_logic(key, env, ctx) then return wanxiang.RIME_PROCESS_RESULTS.kAccepted end
     else
