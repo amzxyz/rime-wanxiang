@@ -262,10 +262,7 @@ super_processor:
   enable_predict_space: true  # 启用联想空格打断，直接上屏空格并清空联想，对齐大厂
   kp_number_mode: auto  # 小键盘模式 (auto / compose / select)，九键莫动
   limit_repeated: "8,40"  #格式："最大重复声母数,最大候选字数"
-  select_character: "[,]"  # 开启以词定字，自动拆解第一位上屏首字，第二位上屏尾字
-  # 下面这些写法都支持：
-  # select_character: "[,]"                      # [ 上屏首字，] 上屏尾字（推荐）
-  # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
+
 
 context_reorder:
   db_name: context_reorder
