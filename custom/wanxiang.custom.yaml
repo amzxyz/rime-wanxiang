@@ -16,19 +16,10 @@ patch:
       - wanxiang_algebra:/自然码
       # 可选输入方案名称：全拼，自然码, 自然龙, 汉心龙，小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 国标双拼，拼音加加，乱序17
 
-  #这里改成什么就需要手动创建同名的 custom_phrasexx.txt 文件在用户目录，这个文件主要用于置顶，编码为自定义编码的词汇
-  #custom_phrase/user_dict: custom_phrasexx
-  #导入根目录下名称为userxx.dict.yaml的自定义固定词典，编码要与固定词库一致，编码权重都不要少，形如姓名、专有名词公司名称等等
-  #translator/enable_user_dict: false
-  #  - userxx
 
+  #导入根目录下名称为user.dict.yaml的自定义固定词典
+  #build/dictionaries/wanxiang/packs:
+  #  - user
   #下面是候选数量
   menu/page_size: 6
-
-  #以下恢复``造词功能，也就是平时不记录，引导才记录，按需造词，如果你想恢复这个功能，请取消注释----
-  #recognizer/patterns/add_user_dict: "^``[A-Za-z/`']*$"      #自造词引导方式
-  #user_dict_set/enable_user_dict: true
-  #add_user_dict/enable_user_dict: true
-  # 取消注释以开启自动无词频造词
-  #add_user_dict/enable_auto_phrase: true
 
