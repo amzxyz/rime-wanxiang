@@ -1,5 +1,5 @@
 -- @amzxyz  https://github.com/amzxyz/rime-wanxiang
--- Ctrl+1..9,0：上屏首选前 N 字；利用 spans 底层物理标尺精准切分 raw input
+-- 按需提交：Ctrl+数字上屏前 N 字并保留剩余输入；[ / ] 以词定字
 local wanxiang = require("wanxiang/wanxiang")
 
 local M = {}
@@ -50,8 +50,52 @@ local function take_pending(env)
     return r
 end
 
+-- 以词定字：[ 上屏候选首字，] 上屏候选末字；不处理功能命令及组合快捷键
+local function handle_select_character(key, env, ctx)
+    if not (env.sc_first_key or env.sc_last_key) then return false end
+    if key:release() or key:ctrl() or key:alt() or key:super() then return false end
+    if wanxiang.is_function_mode and wanxiang.is_function_mode(ctx) then return false end
+    if not (ctx:is_composing() or ctx:has_menu()) then return false end
+
+    -- 同时识别符号字符与 Rime 键名（如 bracketleft）
+    local repr = key:repr()
+    local ch = (key.keycode >= 0x20 and key.keycode <= 0x7E)
+        and string.char(key.keycode) or nil
+    local is_first = env.sc_first_key and (repr == env.sc_first_key or ch == env.sc_first_key)
+    local is_last = env.sc_last_key and (repr == env.sc_last_key or ch == env.sc_last_key)
+    if not (is_first or is_last) then return false end
+
+    local cand = ctx:get_selected_candidate()
+    local text = cand and cand.text or ctx.input
+    if not text or (utf8.len(text) or 0) <= 1 then return false end
+
+    local selected
+    if is_first then
+        local next_char = utf8.offset(text, 2)
+        if not next_char then return false end
+        selected = text:sub(1, next_char - 1)
+    else
+        local last_char = utf8.offset(text, -1)
+        if not last_char then return false end
+        selected = text:sub(last_char)
+    end
+
+    env.engine:commit_text(selected)
+    ctx:clear()
+    return true
+end
+
 function M.init(env)
     local ctx = env.engine.context
+    local config = env.engine.schema.config
+
+    -- partial_commit 配置；空字符串可禁用对应以词定字键
+    local control_digits = config and config:get_bool("partial_commit/control_digits")
+    env.control_digits = control_digits ~= false
+    env.sc_first_key = config and config:get_string("partial_commit/first_key") or "["
+    env.sc_last_key = config and config:get_string("partial_commit/last_key") or "]"
+    if env.sc_first_key == "" then env.sc_first_key = nil end
+    if env.sc_last_key == "" then env.sc_last_key = nil end
 
     -- 监听器：在上屏动作完成后，立刻将截断后的剩余拼音恢复到输入框
     env._cpc_update_conn = ctx.update_notifier:connect(function(c)
@@ -89,8 +133,9 @@ function M.init(env)
 
         -- 直接调用底层 spans 获取物理切分坐标
         local spans = c.composition:spans()
+        if not spans then return wanxiang.RIME_PROCESS_RESULTS.kNoop end
         local count = type(spans.count) == "function" and spans:count() or spans.count
-        if not spans or count == 0 then return wanxiang.RIME_PROCESS_RESULTS.kNoop end
+        if not count or count == 0 then return wanxiang.RIME_PROCESS_RESULTS.kNoop end
 
         local vertices = type(spans.vertices) == "function" and spans:vertices() or spans.vertices
         if not vertices or #vertices < 2 then return wanxiang.RIME_PROCESS_RESULTS.kNoop end
@@ -137,10 +182,15 @@ function M.fini(env)
 end
 
 function M.func(key, env)
-    if not env._cpc_key_handler then
-        return wanxiang.RIME_PROCESS_RESULTS.kNoop
+    if key:release() then return wanxiang.RIME_PROCESS_RESULTS.kNoop end
+
+    if handle_select_character(key, env, env.engine.context) then
+        return wanxiang.RIME_PROCESS_RESULTS.kAccepted
     end
-    return env._cpc_key_handler(key)
+    if env.control_digits and env._cpc_key_handler then
+        return env._cpc_key_handler(key)
+    end
+    return wanxiang.RIME_PROCESS_RESULTS.kNoop
 end
 
 return M
