@@ -385,6 +385,12 @@ super_comment:
     abbrev: ""  # 简码标记
     fallback: "~"  # 回退标记
 
+# 按需提交
+partial_commit:
+  control_digits: true  # Ctrl+数字上屏前N字
+  first_key: "["         # 以词定字：首字
+  last_key: "]"          # 以词定字：末字
+
 super_processor:
   enable_backspace_limit: true  # 开启/关闭退格限制
   enable_seg_loop: true  # 开启/关闭分词符（'）循环
@@ -392,10 +398,6 @@ super_processor:
   enable_predict_space: false  # 启用联想空格打断，直接上屏空格并清空联想，对齐大厂，如果用原生librime-predict这个还有用留着
   kp_number_mode: auto  # 小键盘模式 (auto / compose / select)
   limit_repeated: "8,40"  #格式："最大重复声母数,最大候选字数"
-  select_character: "[,]"  # 开启以词定字，自动拆解第一位上屏首字，第二位上屏尾字
-  # 下面这些写法都支持：
-  # select_character: "[,]"                      # [ 上屏首字，] 上屏尾字（推荐）
-  # select_character: "bracketleft, bracketright"  # [ 上屏首字，] 上屏尾字（英文全拼）
 
 unicode:
   key: Control+u
