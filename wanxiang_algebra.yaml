@@ -107,11 +107,11 @@ base:
       - xform/^(ō|ó|ǒ|ò)$/o$1/
       - xform/^(ē|é|ě|è)$/e$1/
       - xform/^(ēr|ér|ěr|èr)$/e$1/
-      - xform/^([jqxy])u/$1ü/
-      - xform/^([jqxy])ū/$1ǖ/
-      - xform/^([jqxy])ú/$1ǘ/
-      - xform/^([jqxy])ǔ/$1ǚ/
-      - xform/^([jqxy])ù/$1ǜ/
+      - xform/^([jqxy])u$/$1ü/
+      - xform/^([jqxy])ū$/$1ǖ/
+      - xform/^([jqxy])ú$/$1ǘ/
+      - xform/^([jqxy])ǔ$/$1ǚ/
+      - xform/^([jqxy])ù$/$1ǜ/
       - xform/^n̄g$/eēng/
       - xform/^ńg$/eéng/
       - xform/^ňg$/eěng/
@@ -1428,7 +1428,7 @@ pro:
       - xform/^m̌(;.*)$/em̌$1/
       - xform/^m̀(;.*)$/em̀$1/
       - xform/^(.)(iǎn|uan|üan|m̀|ái|èr|üē|o|ǔ)(;.*)$/$1A$3/
-      - xform/^(.)(uán|ià|ēn|à)(;.*)$/$1B$3/
+      - xform/^(.)(uán|üán|ià|ēn|à)(;.*)$/$1B$3/
       - xform/^(.)(ing|òng|ēng|ua|uǒ|ěi|īn|ḿ)(;.*)$/$1C$3/
       - xform/^(.)(uàn|üàn|iù|āi|ǘn|a|ā)(;.*)$/$1D$3/
       - xform/^(.)(iǎng|ie|ui|ài|ēi|ǔn|ü|ū)(;.*)$/$1E$3/
