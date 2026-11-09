@@ -19,6 +19,26 @@ switches:
   - name: english_chinese
     states: [翻译关, 英译中]
 
+input_types:
+  enabled: [pinyin] #启用哪些build就部署哪些
+  reset: pinyin
+  options:
+    - {option: pinyin, label: 全拼}
+    - {option: zrm, label: 自然码}
+    - {option: flypy, label: 小鹤双拼}
+    - {option: mspy, label: 微软双拼}
+    - {option: sogou, label: 搜狗双拼}
+    - {option: znabc, label: 智能ABC}
+    - {option: ziguang, label: 紫光双拼}
+    - {option: pyjj, label: 拼音加加}
+    - {option: gbpy, label: 国标双拼}
+    - {option: lxsq, label: 乱序17}
+    - {option: ltsp, label: 蓝天双拼}
+    - {option: sdpy, label: 首道双拼}
+    - {option: wxsp, label: 万象双拼}
+    - {option: zrlong, label: 自然龙}
+    - {option: hxlong, label: 汉心龙}
+# 输入引擎
 engine:
   processors:
     - lua_processor@*wanxiang.super_english*P
@@ -49,10 +69,81 @@ build:
   dictionaries:
     wanxiang_english: #声明词表名称，翻译器可以调用
       algebra:  #编译类型prism调用的转写方式
-        __patch:
-          - wanxiang_algebra:/english/混合派生
-          - wanxiang_algebra:/english/全拼  #可选的选项有（全拼, 自然码, 小鹤双拼, 微软双拼, 搜狗双拼, 智能ABC, 紫光双拼, 拼音加加）
-
+        pinyin:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/全拼
+            
+        zrm:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/自然码
+            
+        flypy:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/小鹤双拼
+            
+        mspy:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/微软双拼
+            
+        sogou:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/搜狗双拼
+            
+        znabc:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/智能ABC
+            
+        ziguang:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/紫光双拼
+            
+        pyjj:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/拼音加加
+            
+        gbpy:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/国标双拼
+            
+        lxsq:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/乱序17
+            
+        ltsp:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/蓝天双拼
+            
+        sdpy:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/首道双拼
+            
+        wxsp:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/万象双拼
+            
+        zrlong:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/自然龙
+            
+        hxlong:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/汉心龙
+            
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/\
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/
@@ -61,10 +152,11 @@ speller:
 
 translator:
   dictionary: wanxiang_english
-  enable_user_dict: false
   initial_quality: 2
   comment_format:
     - xform/^~.+$//
+  prisms: input_types
+  user_dict_mode: off
 key_binder:
   import_preset: default
   bindings:
@@ -126,6 +218,7 @@ wanxiang_english:
 # exclude_types: [pinyin]  # 让当前节点排除特定类型的输入类型例如：全拼，这样他就能在非全拼的输入类型下自动生效
 # only_types: [pinyin]  # 仅对特定类型的候选词生效，其他类型候选词不受影响
 
+  prisms: input_types
 super_replacer:
   comment_format: "〔%s〕"
   chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换

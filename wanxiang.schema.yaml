@@ -54,6 +54,7 @@ switches:
     states: [英文关, 英文开]
 # 前端UI调用 set_option("zrm", true)，其余option互斥，完成输入类型切换
 input_types:
+  enabled: [zrm] #启用哪些build就部署哪些
   reset: zrm
   options:
     - {option: pinyin, label: 全拼}
@@ -102,8 +103,8 @@ engine:
   translators:
     - punct_translator  #配合 punct_segmentor 转换标点符号
     - script_translator  #脚本翻译器，用于拼音、粤拼等基于音节表的输入方案
-    - script_translator@user_dict_set
-    - script_translator@add_user_dict  #自造词之制造词汇入口
+    # - script_translator@user_dict_set
+    # - script_translator@add_user_dict  #自造词之制造词汇入口
     - lua_translator@*wanxiang.version_display  #输入'/wx'，显示万象项目网址和当前版本号
     - lua_translator@*wanxiang.set_schema  #输入类似'/zrm'，快速切换为自然码双拼其余阅读文档
     - lua_translator@*wanxiang.shijian  #农历、日期、节气、节日、时间、周、问候模板等等，触发清单看下文
@@ -155,13 +156,11 @@ partial_commit:
 # 主翻译器，拼音
 translator:
   dictionary: wanxiang
-  aux: zhijie
+  aux: 自然码
   user_dict: zc
   user_dict_mode: auto  # auto / manual / off
   aux_suffix: "`"
-  prisms:
-    - {name: pinyin, option: pinyin}
-    - {name: zrm, option: zrm}
+  prisms: input_types
   enable_completion: true  # 启用候选词补全
   contextual_suggestions: false  #模型用来开启词组权重预测，效果一般关闭
   max_homophones: 8
@@ -185,7 +184,6 @@ custom_phrase:
 # 自定义简码，用来游走在候选任意位置
 abbrev_phrase:
   dictionary: wanxiang_abbrev
-  prism: wanxiang_abbrev
   user_dict_mode: off
   enable_completion: false
   always_show_comments: true
@@ -197,6 +195,7 @@ abbrev_phrase:
 wanxiang_english:
   dictionary: wanxiang_english
   user_dict: en
+  prisms: input_types
   enable_completion: true
   enable_sentence: false
   initial_quality: 2.1
@@ -214,21 +213,22 @@ wanxiang_english:
 
 wanxiang_mixedcode:
   dictionary: wanxiang_mixedcode
+  prisms: input_types
   db_class: stabledb
   enable_completion: true
   enable_sentence: false
   initial_quality: 2
   comment_format:  #这里很重要如果残留带声调字母，剩余编码提示计算出错引发程序崩溃
     - xform/.*//
-
 # 部件拆字反查
+
 wanxiang_reverse:
   tag: wanxiang_reverse
   dictionary: wanxiang_reverse
+  prisms: input_types
   enable_completion: true
   prefix: "`"  # 反查前缀（反查时前缀会消失），与 recognizer/patterns/wanxiang_reverse 匹配
   tips: "〔反查：拆分|笔画〕"
-
 wanxiang_lookup:  #设置归属于super_lookup.lua
   tags: [abc, add_user_dict]  # 检索当前tag的候选
   key: "`"  # 输入中反查引导符，要添加到 speller/alphabet
@@ -319,6 +319,7 @@ t9_abbrev:
 build:
   dictionaries:
     wanxiang: #声明词表名称，翻译器可以调用
+
       algebra:  #编译类型prism调用的转写方式
         pinyin:
           __patch:
@@ -326,24 +327,246 @@ build:
         zrm:
           __patch:
             - wanxiang_algebra:/自然码
-    # wanxiang2: #声明词表名称，翻译器可以调用
-    #   algebra:
-    #     pinyin:
-    #       __patch:
-    #         - wanxiang_algebra:/全拼
-    #     zrm:
-    #       __patch:
-    #         - wanxiang_algebra:/自然码
+        flypy:
+          __patch:
+            - wanxiang_algebra:/小鹤双拼
+        mspy:
+          __patch:
+            - wanxiang_algebra:/微软双拼
+        sogou:
+          __patch:
+            - wanxiang_algebra:/搜狗双拼
+        znabc:
+          __patch:
+            - wanxiang_algebra:/智能ABC
+        ziguang:
+          __patch:
+            - wanxiang_algebra:/紫光双拼
+        pyjj:
+          __patch:
+            - wanxiang_algebra:/拼音加加
+        gbpy:
+          __patch:
+            - wanxiang_algebra:/国标双拼
+        lxsq:
+          __patch:
+            - wanxiang_algebra:/乱序17
+        ltsp:
+          __patch:
+            - wanxiang_algebra:/蓝天双拼
+        sdpy:
+          __patch:
+            - wanxiang_algebra:/首道双拼
+        wxsp:
+          __patch:
+            - wanxiang_algebra:/万象双拼
+        zrlong:
+          __patch:
+            - wanxiang_algebra:/自然龙
+        hxlong:
+          __patch:
+            - wanxiang_algebra:/汉心龙
     wanxiang_mixedcode:
       algebra:
-        __patch:
-          - wanxiang_algebra:/mixed/混合派生
-          - wanxiang_algebra:/mixed/自然码
+        pinyin:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/全拼
+        zrm:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/自然码
+        flypy:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/小鹤双拼
+        mspy:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/微软双拼
+        sogou:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/搜狗双拼
+        znabc:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/智能ABC
+        ziguang:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/紫光双拼
+        pyjj:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/拼音加加
+        gbpy:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/国标双拼
+        lxsq:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/乱序17
+        ltsp:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/蓝天双拼
+        sdpy:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/首道双拼
+        wxsp:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/万象双拼
+        zrlong:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/自然龙
+        hxlong:
+          __patch:
+            - wanxiang_algebra:/mixed/混合派生
+            - wanxiang_algebra:/mixed/汉心龙
     wanxiang_reverse:
       algebra:
-        __patch:
-          - wanxiang_algebra:/reverse/自然码
-          - wanxiang_algebra:/reverse/hspzn
+        pinyin:
+          __patch:
+            - wanxiang_algebra:/reverse/全拼
+            - wanxiang_algebra:/reverse/hspzn
+        zrm:
+          __patch:
+            - wanxiang_algebra:/reverse/自然码
+            - wanxiang_algebra:/reverse/hspzn
+        flypy:
+          __patch:
+            - wanxiang_algebra:/reverse/小鹤双拼
+            - wanxiang_algebra:/reverse/hspzn
+        mspy:
+          __patch:
+            - wanxiang_algebra:/reverse/微软双拼
+            - wanxiang_algebra:/reverse/hspzn
+        sogou:
+          __patch:
+            - wanxiang_algebra:/reverse/搜狗双拼
+            - wanxiang_algebra:/reverse/hspzn
+        znabc:
+          __patch:
+            - wanxiang_algebra:/reverse/智能ABC
+            - wanxiang_algebra:/reverse/hspzn
+        ziguang:
+          __patch:
+            - wanxiang_algebra:/reverse/紫光双拼
+            - wanxiang_algebra:/reverse/hspzn
+        pyjj:
+          __patch:
+            - wanxiang_algebra:/reverse/拼音加加
+            - wanxiang_algebra:/reverse/hspzn
+        gbpy:
+          __patch:
+            - wanxiang_algebra:/reverse/国标双拼
+            - wanxiang_algebra:/reverse/hspzn
+        lxsq:
+          __patch:
+            - wanxiang_algebra:/reverse/乱序17
+            - wanxiang_algebra:/reverse/hspzn
+        ltsp:
+          __patch:
+            - wanxiang_algebra:/reverse/蓝天双拼
+            - wanxiang_algebra:/reverse/hspzn
+        sdpy:
+          __patch:
+            - wanxiang_algebra:/reverse/首道双拼
+            - wanxiang_algebra:/reverse/hspzn
+        wxsp:
+          __patch:
+            - wanxiang_algebra:/reverse/万象双拼
+            - wanxiang_algebra:/reverse/hspzn
+        zrlong:
+          __patch:
+            - wanxiang_algebra:/reverse/自然龙
+            - wanxiang_algebra:/reverse/hspzn
+        hxlong:
+          __patch:
+            - wanxiang_algebra:/reverse/汉心龙
+            - wanxiang_algebra:/reverse/hspzn
+    wanxiang_english: #声明词表名称，翻译器可以调用
+      algebra:
+        pinyin:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/全拼
+            - wanxiang_algebra:/26jian
+        zrm:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/自然码
+            - wanxiang_algebra:/26jian
+        flypy:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/小鹤双拼
+            - wanxiang_algebra:/26jian
+        mspy:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/微软双拼
+            - wanxiang_algebra:/26jian
+        sogou:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/搜狗双拼
+            - wanxiang_algebra:/26jian
+        znabc:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/智能ABC
+            - wanxiang_algebra:/26jian
+        ziguang:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/紫光双拼
+            - wanxiang_algebra:/26jian
+        pyjj:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/拼音加加
+            - wanxiang_algebra:/26jian
+        gbpy:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/国标双拼
+            - wanxiang_algebra:/26jian
+        lxsq:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/乱序17
+            - wanxiang_algebra:/26jian
+        ltsp:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/蓝天双拼
+            - wanxiang_algebra:/26jian
+        sdpy:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/首道双拼
+            - wanxiang_algebra:/26jian
+        wxsp:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/万象双拼
+            - wanxiang_algebra:/26jian
+        zrlong:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/自然龙
+            - wanxiang_algebra:/26jian
+        hxlong:
+          __patch:
+            - wanxiang_algebra:/english/混合派生
+            - wanxiang_algebra:/english/汉心龙
+            - wanxiang_algebra:/26jian
     wanxiang_abbrev:
       algebra:
         __patch:
@@ -356,14 +579,51 @@ build:
   auxiliary:
     dictionary: aux_code
     algebra:
-      zhijie:
-        - "aux|^([a-z])([a-z])$|$1|"
-        - "aux|^([a-z])([a-z])$|$1$2|abbrev"
-        - "aux|^([a-z])([a-z])$|$1$2/|"
-      jianjie:
-        - "aux|^([a-z])([a-z])$|$1|"
-        - "aux|^([a-z])([a-z])$|$1$2/|"
-# 拼写设定
+      万象:
+        - "aux|^([a-z])([a-z])(?:,[^,]*){8}$|$1|"
+        - "aux|^([a-z])([a-z])(?:,[^,]*){8}$|$1$2|abbrev"
+        - "aux|^([a-z])([a-z])(?:,[^,]*){8}$|$1$2/|"
+
+      墨奇:
+        - "aux|^[^,]*,([a-z])([a-z])(?:,[^,]*){7}$|$1|"
+        - "aux|^[^,]*,([a-z])([a-z])(?:,[^,]*){7}$|$1$2|abbrev"
+        - "aux|^[^,]*,([a-z])([a-z])(?:,[^,]*){7}$|$1$2/|"
+
+      野鹤:
+        - "aux|^(?:[^,]*,){2}([a-z])([a-z])(?:,[^,]*){6}$|$1|"
+        - "aux|^(?:[^,]*,){2}([a-z])([a-z])(?:,[^,]*){6}$|$1$2|abbrev"
+        - "aux|^(?:[^,]*,){2}([a-z])([a-z])(?:,[^,]*){6}$|$1$2/|"
+
+      自然码:
+        - "aux|^(?:[^,]*,){3}([a-z])([a-z])(?:,[^,]*){5}$|$1|"
+        - "aux|^(?:[^,]*,){3}([a-z])([a-z])(?:,[^,]*){5}$|$1$2|abbrev"
+        - "aux|^(?:[^,]*,){3}([a-z])([a-z])(?:,[^,]*){5}$|$1$2/|"
+
+      虎码首末:
+        - "aux|^(?:[^,]*,){4}([a-z])([a-z])(?:,[^,]*){4}$|$1|"
+        - "aux|^(?:[^,]*,){4}([a-z])([a-z])(?:,[^,]*){4}$|$1$2|abbrev"
+        - "aux|^(?:[^,]*,){4}([a-z])([a-z])(?:,[^,]*){4}$|$1$2/|"
+
+      五笔前2:
+        - "aux|^(?:[^,]*,){5}([a-z])([a-z])(?:,[^,]*){3}$|$1|"
+        - "aux|^(?:[^,]*,){5}([a-z])([a-z])(?:,[^,]*){3}$|$1$2|abbrev"
+        - "aux|^(?:[^,]*,){5}([a-z])([a-z])(?:,[^,]*){3}$|$1$2/|"
+
+      汉心码:
+        - "aux|^(?:[^,]*,){6}([a-z])([a-z])(?:,[^,]*){2}$|$1|"
+        - "aux|^(?:[^,]*,){6}([a-z])([a-z])(?:,[^,]*){2}$|$1$2|abbrev"
+        - "aux|^(?:[^,]*,){6}([a-z])([a-z])(?:,[^,]*){2}$|$1$2/|"
+
+      首右:
+        - "aux|^(?:[^,]*,){7}([a-z])([a-z]),[^,]*$|$1|"
+        - "aux|^(?:[^,]*,){7}([a-z])([a-z]),[^,]*$|$1$2|abbrev"
+        - "aux|^(?:[^,]*,){7}([a-z])([a-z]),[^,]*$|$1$2/|"
+
+      首右Plus:
+        - "aux|^(?:[^,]*,){8}([a-z])([a-z])$|$1|"
+        - "aux|^(?:[^,]*,){8}([a-z])([a-z])$|$1$2|abbrev"
+        - "aux|^(?:[^,]*,){8}([a-z])([a-z])$|$1$2/|"
+
 speller:
   # table_translator翻译器，支持自动上屏。例如 “zmhu”可以自动上屏“怎么回事”
   #  auto_select: true
@@ -433,7 +693,6 @@ key_binder:
     # 翻页 - =
     - {when: has_menu, accept: minus, send: Page_Up}
     - {when: has_menu, accept: equal, send: Page_Down}
-    # Option/Alt + ←/→ 切换光标至下/上一个拼音
     - {when: always, toggle: ascii_punct, accept: Control+Shift+3}  # 切换中英标点
     - {when: always, toggle: ascii_punct, accept: Control+Shift+numbersign}  # 切换中英标点
     - {when: always, toggle: s2t, accept: Control+Shift+4}  # 切换简繁
@@ -456,9 +715,6 @@ key_binder:
     # 通过快捷键Control+g开启字符集过滤
     - {when: has_menu, accept: "Control+g", toggle: charset_filter}
     - {when: composing, accept: "Control+g", toggle: charset_filter}
-    #通过快捷键Shift+space开启输入模式切换
-    #- { when: always, accept: Shift+space, select: wanxiang }  #直接跳转指定方案
-    #- { when: always, accept: Shift+space, select: wanxiang }  #直接跳转指定方案
     - {when: always, accept: Shift+space, select: .next}  #下一个方案
     # 使用 tab 在不同音节之间跳转
     - {when: has_menu, accept: "Tab", send: "Control+Right"}
@@ -730,7 +986,7 @@ quick_symbol_text:
     w: "？"
     e: "（"
     r: "）"
-    t: "	"
+    t: "\t"
     y: "·"
     u: "『"
     i: "』"
