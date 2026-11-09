@@ -319,8 +319,6 @@ t9_abbrev:
 build:
   dictionaries:
     wanxiang: #声明词表名称，翻译器可以调用
-      packs:  #这里定义自己的词库包列表即可
-        - dicts/shiti
       algebra:  #编译类型prism调用的转写方式
         pinyin:
           __patch:
@@ -356,7 +354,7 @@ build:
           - wanxiang_algebra:/26jian
 
   auxiliary:
-    dictionary: aux
+    dictionary: aux_code
     algebra:
       zhijie:
         - "aux|^([a-z])([a-z])$|$1|"
