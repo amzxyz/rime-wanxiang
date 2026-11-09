@@ -1,5 +1,20 @@
 # Changelog
 
+## [18.1.11](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.10...v18.1.11) (2026-11-09)
+
+
+### 📚 词库更新
+
+* 词库调整 ([7965e3a](https://github.com/amzxyz/rime-wanxiang/commit/7965e3add4ad9bef6da99b2b4e51d0f4c1306712))
+* 词库调整 ([6a676cf](https://github.com/amzxyz/rime-wanxiang/commit/6a676cfdc5718c1da08cbaecf8f4e33a26a15129))
+
+
+### 🐛 Bug 修复
+
+* 优化统计 ([187979f](https://github.com/amzxyz/rime-wanxiang/commit/187979f1c11c841f2ac5897df9ee54d57f8e05d6))
+* 优化转写 ([7a80437](https://github.com/amzxyz/rime-wanxiang/commit/7a804372d6879c022b08518a169722150c7e5328))
+* 分离处理器中以词定字与按需提交合并，整体扩展为按需提交组件 ([4f134bd](https://github.com/amzxyz/rime-wanxiang/commit/4f134bd4cc7b5e9ccff63b4f1b93a7ad0ae28f03))
+
 ## [18.1.10](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.9...v18.1.10) (2026-11-07)
 
 
