@@ -4690,6 +4690,7 @@ sort: by_weight
 北矿	běi;lb kuàng;ug	149
 被困	bèi;pp kùn;km	3664
 被捆	bèi;pp kǔn;fm	169
+背阔	bèi;bo kuò;mu	79
 北扩	běi;lb kuò;fg	62
 被拉	bèi;pp lā;fl	1407
 贝拉	bèi;kr lā;fl	832
@@ -27915,8 +27916,8 @@ sort: by_weight
 堆在	duī;tv zài;ut	1105
 对战	duì;yc zhàn;vg	11345
 堆栈	duī;tv zhàn;mj	1990
-对账	duì;yc zhàng;bi	18008
-队长	duì;er zhǎng;pn	1796
+队长	duì;er zhǎng;pn	18008
+对账	duì;yc zhàng;bi	3796
 对仗	duì;yc zhàng;rv	775
 对照	duì;yc zhào;oh	15515
 对着	duì;yc zhe;yo	32675
@@ -38051,6 +38052,7 @@ sort: by_weight
 公鹅	gōng;bs é;wn	901
 共轭	gòng;cb è;iv	856
 宫娥	gōng;bk é;nw	811
+肱二	gōng;os èr;aa	71
 功法	gōng;gl fǎ;dq	1605
 工法	gōng;aa fǎ;dq	449
 公法	gōng;bs fǎ;dq	257
@@ -38383,6 +38385,7 @@ sort: by_weight
 共荣	gòng;cb róng;cm	239
 共融	gòng;cb róng;gi	227
 攻入	gōng;gw rù;pn	2292
+肱三	gōng;os sān;ae	54
 攻杀	gōng;gw shā;xm	342
 贡山	gòng;gb shān;kl	860
 宫扇	gōng;bk shàn;hx	817
@@ -39596,6 +39599,7 @@ sort: by_weight
 谷水	gǔ;bk shuǐ;ln	35
 故说	gù;gw shuō;yx	770
 古寺	gǔ;uk sì;tc	358
+股四	gǔ;ou sì;ke	235
 孤寺	gū;zg sì;tc	212
 钴丝	gǔ;jg sī;sa	42
 古松	gǔ;uk sōng;mg	69
@@ -66242,7 +66246,8 @@ sort: by_weight
 矿砂	kuàng;ug shā;uu	684
 狂沙	kuáng;qw shā;du	648
 矿山	kuàng;ug shān;kl	1366
-匡山	kuāng;kw shān;kl	576
+狂闪	kuáng;qw shǎn;mr	576
+匡山	kuāng;kw shān;kl	203
 矿上	kuàng;ug shàng;ba	1004
 矿商	kuàng;ug shāng;wk	954
 框上	kuàng;mw shàng;ba	657
@@ -635625,7 +635630,8 @@ sort: by_weight
 舞台版	wǔ;pf tái;sk bǎn;py	78
 舞台车	wǔ;pf tái;sk chē;au	306
 无台词	wú;ay tái;sk cí;yk	436
-雾太大	wù;yl tài;dd dà;ar	41
+无太大	wú;ay tài;dd dà;ar	102
+雾太大	wù;yl tài;dd dà;ar	42
 舞台大	wǔ;pf tái;sk dà;ar	37
 五台的	wǔ;aw tái;sk de;bu	441
 舞台灯	wǔ;pf tái;sk dēng;hd	720
@@ -747831,6 +747837,8 @@ sort: by_weight
 组织面	zǔ;sq zhī;sv miàn;ao	698
 组织内	zǔ;sq zhī;sv nèi;kr	1076
 阻止你	zǔ;eq zhǐ;lb,la,ba nǐ;rx	951
+组织起	zǔ;sq zhī;sv qǐ;tj	76
+阻止其	zǔ;eq zhǐ;lb,la,ba qí;cb	12
 组织钳	zǔ;sq zhī;sv qián;jg	99
 组织强	zǔ;sq zhī;sv qiáng;gi	652
 组织人	zǔ;sq zhī;sv rén;pn	173
@@ -758845,6 +758853,7 @@ sort: by_weight
 霸气超跩	bà;yo qì;pv chāo;tk zhuǎi;zy	52
 霸气超拽	bà;yo qì;pv chāo;tk zhuāi;fy	45
 霸气出手	bà;yo qì;pv chū;uu shǒu;pf	153
+八岐大蛇	bā;pn qí;uv dà;ar shé;ib	7
 八旗都统	bā;pn qí;fb dū;le tǒng;sy	342
 八七二九	bā;pn qī;av èr;aa jiǔ;pv	5
 八七二六	bā;pn qī;av èr;aa liù;wb	5
@@ -763639,6 +763648,7 @@ sort: by_weight
 板间距离	bǎn;my jiān;mo jù;zj lí;wn	202
 办健康证	bàn;lb jiàn;ry kāng;gl zhèng;yv	490
 办健身卡	bàn;lb jiàn;ry shēn;zc kǎ;ub	634
+板间通信	bǎn;my jiān;mo tōng;zy xìn;rk	11
 半间仙露	bàn;bf jiān;mo xiān;ru lù;yk	4
 办兼职卡	bàn;lb jiān;bb zhí;ev kǎ;ub	144
 颁奖大会	bān;fy jiǎng;ld dà;ar huì;ry	621
@@ -816357,7 +816367,6 @@ sort: by_weight
 从福卅到	cóng;rr fú;pt sà;ai dào;gd	50
 从高处看	cóng;rr gāo;wk chù;wb kàn;uo	446
 从高到低	cóng;rr gāo;wk dào;gd dī;ru	1375
-从高到底	cóng;rr gāo;wk dào;gd dǐ;gu	441
 从高往低	cóng;rr gāo;wk wǎng;rv dī;ru	428
 从高新区	cóng;rr gāo;wk xīn;lj qū;kx	459
 从高至低	cóng;rr gāo;wk zhì;gt dī;ru	374
@@ -820438,6 +820447,7 @@ sort: by_weight
 大华实业	dà;ar huā;ru shí;bd yè;la	45
 大话玩家	dà;ar huà;yu wán;wy jiā;bu	238
 大话芜湖	dà;ar huà;yu wú;cw hú;do	99
+大话西游	dà;ar huà;yu xī;ak,wk yóu;dz	396
 大花香草	dà;ar huā;cb xiāng;ho cǎo;cu	50
 大话辛集	dà;ar huà;yu xīn;lu jí;rm	4
 大花绣球	dà;ar huā;cb xiù;sn qiú;wq	52
@@ -1226980,7 +1226990,7 @@ sort: by_weight
 徐徐道来	xú;rm xú;rm dào;zz lái;am	464
 徐徐东风	xú;rm xú;rm dōng;ax fēng;jx	130
 许许多多	xǔ;yw xǔ;yw duō;xx duō;xx	4123
-絮絮聒聒	xù;nx xù;nx guā;eu guā;eu	130
+絮絮聒聒	xù;nx xù;nx guō;eu guō;eu	130
 徐徐渐进	xú;rm xú;rm jiàn;dj jìn;zj	328
 蓄须明志	xù;ct xū;py míng;oo zhì;tx	6
 吁吁气喘	xū;ky xū;ky qì;pv chuǎn;ke	76
@@ -1231321,6 +1231331,8 @@ sort: by_weight
 询问对方	xún;yo wèn;mk duì;yc fāng;wv	976
 询问孩子	xún;yo wèn;mk hái;zr zi;la	666
 询问情况	xún;yo wèn;mk qíng;xo kuàng;dx	788
+询问一句	xún;yo wèn;mk yí;aa jù;bk	72
+询问依据	xún;yo wèn;mk yī;ry jù;fg	32
 询问医生	xún;yo wèn;mk yī;ku shēng;pf	630
 寻我开心	xún;ec wǒ;ga kāi;ac xīn;dd	220
 寻物启事	xún;ec wù;nw qǐ;hk shì;gy	16
@@ -1312887,6 +1312899,8 @@ sort: by_weight
 重点企业	zhòng;ql diǎn;vh qǐ;rv yè;la	179
 重点强调	zhòng;ql diǎn;vh qiáng;gi diào;yk	782
 重点强化	zhòng;ql diǎn;vh qiáng;gi huà;rb	57
+重点清洁	zhòng;ql diǎn;vh qīng;do jié;dk	55
+重点情节	zhòng;ql diǎn;vh qíng;xo jié;ce	14
 重点区域	zhòng;ql diǎn;vh qū;kx yù;ta	286
 重点群体	zhòng;ql diǎn;vh qún;yy tǐ;rb	50
 重点人群	zhòng;ql diǎn;vh rén;pn qún;yy	157
@@ -1486249,7 +1486263,6 @@ sort: by_weight
 挂甲寺庆音法鼓	guà;ft jiǎ;ol,tl sì;tc qìng;gd yīn;lo fǎ;dq gǔ;tv	10
 瓜蒌皮双边栝楼	guā;in,vd lóu;cn pí;py shuāng;yy biān;zl guā;mu lóu;mn	10
 寡人虽亡国之余	guǎ;bf rén;pn suī;ki wáng;wv guó;ky zhī;dn yú;rm	10
-聒碎乡心梦不成	guā;eu suì;uu xiāng;vp xīn;dd mèng;mx bù;ab chéng;wv	10
 挂着羊头卖狗肉	guà;ft zhe;yo yáng;bf tóu;dd mài;ud gǒu;qj ròu;nr	10
 怪当今居世之士	guài;xt dāng;xe jīn;rv jū;ug shì;cv zhī;dn shì;ua	10
 拐个皇帝回现代	guǎi;fl gè;rl huáng;bw dì;wj huí;kk xiàn;wj dài;ry	10
@@ -1486489,6 +1486502,7 @@ sort: by_weight
 国内统一大市场	guó;ky nèi;kr tǒng;sy yī;aa dà;ar shì;wj chǎng;tp	10
 国内外询价采购	guó;ky nèi;kr wài;xb xún;yo jià;rj cǎi;vm gòu;bg	10
 过去现在因果经	guò;zc qù;ts xiàn;wj zài;ut yīn;kd guǒ;tm jīng;sj	10
+聒碎乡心梦不成	guō;eu suì;uu xiāng;vp xīn;dd mèng;mx bù;ab chéng;wv	10
 果糖二磷酸钙片	guǒ;tm táng;mk èr;aa lín;uf suān;yw gài;jg piàn;pv	10
 果糖二磷酸钠片	guǒ;tm táng;mk èr;aa lín;uf suān;yw nà;jn piàn;pv	10
 果糖末端低聚糖	guǒ;tm táng;mk mò;am duān;le dī;ru jù;eu táng;mk	10
