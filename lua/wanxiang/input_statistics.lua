@@ -249,17 +249,9 @@ local function stats_add(env, key, amount)
     local raw_key = make_raw_key(key, env.device_id)
     if not raw_key then return false end
 
-    -- 日期推进时清空旧日缓存；每个键第一次仍从数据库读取真实当前值。
-    local key_day = key:match("^statistics/day/(%d%d%d%d%d%d%d%d)/")
-    if key_day and (not env.write_cache_day or key_day > env.write_cache_day) then
-        env.write_cache = {}
-        env.write_cache_day = key_day
-    end
-
-    local value = env.write_cache[raw_key]
-    if value == nil then
-        value = parse_tail(db:fetch(raw_key))
-    end
+    -- 每次写入前读取当前值，避免多个 env 的本地缓存交替覆盖同一统计键。
+    -- 注意：fetch/update 并非跨线程原子加法；并行写入仍需底层同步保证。
+    local value = parse_tail(db:fetch(raw_key))
 
     value = to_integer(value + amount)
     if not db:update(raw_key, string.format("c=%d d=0 t=0", value)) then
@@ -269,7 +261,6 @@ local function stats_add(env, key, amount)
 
     -- DbAccessor 是写入前的读视图；任何统计写入成功后都让报表 accessor 失效。
     release_read_accessor(env)
-    env.write_cache[raw_key] = value
     return true
 end
 
@@ -492,6 +483,8 @@ local function aggregate_statistics(env, start_day, end_day, device_id,
     if not db then return nil end
     local stats, peaks = new_stats(), {}
 
+    -- 查询按报表请求刷新 Iterator，避免其他 env 写入后仍读取旧快照。
+    release_read_accessor(env)
     scan_prefix(env, STATISTICS_PREFIX, device_id,
         function(key, record_device, value)
         local day, field = key:match("^statistics/day/(%d%d%d%d%d%d%d%d)/(.+)$")
@@ -787,8 +780,6 @@ local function init(env)
         "input_stats/speed_history_days", 30, 1, 365)
     env.stats_db_error = nil
     env.stats_read_accessor = nil
-    env.write_cache = {}
-    env.write_cache_day = nil
     env.last_observed_input = ""
     env.titles = nil
     env.average_sample = {}
@@ -822,8 +813,6 @@ local function fini(env)
         env.stat_notifier = nil
     end
     env.titles = nil
-    env.write_cache = nil
-    env.write_cache_day = nil
     env.average_sample, env.peak_sample = nil, nil
     release_db(env)
 end
