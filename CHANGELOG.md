@@ -1,5 +1,18 @@
 # Changelog
 
+## [18.1.14](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.13...v18.1.14) (2026-11-14)
+
+
+### 📚 词库更新
+
+* 词库调整 ([0322f06](https://github.com/amzxyz/rime-wanxiang/commit/0322f067f172b3a752c40632a9ff54fd95c54595))
+* 词库调整 ([3439d27](https://github.com/amzxyz/rime-wanxiang/commit/3439d2782bb270bcbfead47ccf28fd393f9e04fa))
+
+
+### 🐛 Bug 修复
+
+* **shijian:** 修复中文时段与 AM/PM 混用时的输出 ([ec04f7c](https://github.com/amzxyz/rime-wanxiang/commit/ec04f7c8e9c7718c7de38c7b58fc00c0d2575190))
+
 ## [18.1.13](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.12...v18.1.13) (2026-11-14)
 
 
