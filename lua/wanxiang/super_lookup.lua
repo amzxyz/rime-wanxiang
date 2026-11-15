@@ -463,11 +463,23 @@ local function expand_code_variant(main_projection, xlit_projection, part, need_
     local seen_xlit = need_xlit and {} or nil
 
     if need_main then
-        local _, quote_count = part:gsub("'", "")
-        if quote_count == 1 then
-            local s1, s2 = part:match("^([^']*)'([^']*)$")
-            if s1 and s2 and #s1 > 0 and #s2 > 0 then
-                add_unique(out, seen, s1:sub(1, 1) .. s2:sub(1, 1))
+        -- 双组编码提取首字母；独立的纯数字组（如末尾声调 7/8/9/0）不计入组数。
+        -- 仅在存在分隔符且恰有两个非数字组时生成双字母辅助码。
+        if part:find("'", 1, true) then
+            local groups = {}
+            local valid = true
+            for block in (part .. "'"):gmatch("(.-)'") do
+                if block == "" then
+                    valid = false
+                    break
+                end
+                if not block:match("^%d+$") then
+                    groups[#groups + 1] = block
+                    if #groups > 2 then break end
+                end
+            end
+            if valid and #groups == 2 then
+                add_unique(out, seen, groups[1]:sub(1, 1) .. groups[2]:sub(1, 1))
             end
         end
 
