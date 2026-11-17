@@ -207,6 +207,7 @@ sort: by_weight
 霍州	huò;yf zhōu;dl	654
 吉县	jí;uk xiàn;qs	60
 吉镇	jí;uk zhèn;jb	87
+茄萣	jiā;ck dìng;cr	693
 郏县	jiá;je xiàn;qs	145
 佳县	jiā;rt xiàn;qs	115
 贾镇	jiǎ;xr zhèn;jb	89
@@ -478,7 +479,6 @@ sort: by_weight
 乔山	qiáo;yl shān;lk	68
 乔司	qiáo;yl sī;vk	270
 乔庄	qiáo;yl zhuāng;gt	209
-茄萣	qié;ck dìng;cr	693
 秦安	qín;fh ān;bn	22
 秦巴	qín;fh bā;sl	283
 秦城	qín;fh chéng;ti	16
@@ -10068,6 +10068,7 @@ sort: by_weight
 贾得乡	jiǎ;xr dé;ic xiāng;vp	565
 家地乡	jiā;bu dì;ty xiāng;vp	10
 嘉定区	jiā;uk dìng;br qū;kx	248
+茄萣区	jiā;ck dìng;cr qū;kx	10
 嘉定县	jiā;uk dìng;br xiàn;qs	180
 嘉定镇	jiā;uk dìng;br zhèn;jb	10
 加定镇	jiā;lk dìng;br zhèn;jb	10
@@ -17738,7 +17739,6 @@ sort: by_weight
 乔梓乡	qiáo;yl zǐ;mu xiāng;vp	10
 桥梓镇	qiáo;ml zǐ;mu zhèn;jb	10
 癿藏镇	qié;bv cáng;ci zhèn;jb	10
-茄萣区	qié;ck dìng;cr qū;kx	10
 切吉乡	qiè;qd jí;uk xiāng;vp	10
 伽蓝寺	qié;rk lán;cm sì;tc	16
 郄马镇	qiè;xe mǎ;va zhèn;jb	10
@@ -23009,9 +23009,9 @@ sort: by_weight
 五和镇	wǔ;aa hé;hk zhèn;jb	10
 五合镇	wǔ;aa hé;rk zhèn;jb	10
 五横乡	wǔ;aa héng;mb xiāng;vp	10
-武侯祠	wǔ;av hòu;ru cí;pk	486
-武侯区	wǔ;av hòu;ru qū;kx	242
-武侯镇	wǔ;av hòu;ru zhèn;jb	10
+武侯祠	wǔ;av hóu;ru cí;pk	486
+武侯区	wǔ;av hóu;ru qū;kx	242
+武侯镇	wǔ;av hóu;ru zhèn;jb	10
 芜湖市	wú;cw hú;do shì;wj	72
 芜湖县	wú;cw hú;do xiàn;qs	192
 五户乡	wǔ;aa hù;du xiāng;vp	10
@@ -33516,7 +33516,7 @@ sort: by_weight
 成都社区	chéng;wv dū;le shè;pt qū;kx	346
 成都双流	chéng;wv dū;le shuāng;yy liú;dv	10
 成都温江	chéng;wv dū;le wēn;dm jiāng;dg	10
-成都武侯	chéng;wv dū;le wǔ;av hòu;ru	10
+成都武侯	chéng;wv dū;le wǔ;av hóu;ru	10
 成都西站	chéng;wv dū;le xī;aa zhàn;lk	13
 成都新都	chéng;wv dū;le xīn;lj dū;le	10
 成都新津	chéng;wv dū;le xīn;lj jīn;dy	10
@@ -34448,6 +34448,7 @@ sort: by_weight
 大昌汗镇	dà;un chāng;oo hàn;dg zhèn;jb	10
 大厂街道	dà;un chǎng;ap jiē;ii dào;zz	10
 大厂三村	dà;un chǎng;ap sān;ae cūn;mc	10
+大长山岛	dà;un cháng;pn shān;lk dǎo;pe	436
 大长亭村	dà;un cháng;pn tíng;wd cūn;mc	10
 大长屯站	dà;un cháng;pn tún;av zhàn;lk	99
 大朝阳村	dà;un cháo;uo yáng;eo cūn;mc	10
@@ -40092,6 +40093,7 @@ sort: by_weight
 高雄冈山	gāo;wk xióng;uf gāng;kx shān;lk	10
 高雄鼓山	gāo;wk xióng;uf gǔ;uy shān;lk	10
 高雄湖内	gāo;wk xióng;uf hú;do nèi;ld	10
+高雄茄萣	gāo;wk xióng;uf jiā;ck dìng;cr	10
 高雄甲仙	gāo;wk xióng;uf jiǎ;ll xiān;re	10
 高雄林园	gāo;wk xióng;uf lín;mm yuán;ke	10
 高雄苓雅	gāo;wk xióng;uf líng;cs yǎ;yf	10
@@ -40108,7 +40110,6 @@ sort: by_weight
 高雄前金	gāo;wk xióng;uf qián;bd jīn;ra	10
 高雄前镇	gāo;wk xióng;uf qián;bd zhèn;jb	10
 高雄桥头	gāo;wk xióng;uf qiáo;ml tóu;dd	10
-高雄茄萣	gāo;wk xióng;uf qié;ck dìng;cr	10
 高雄仁武	gāo;wk xióng;uf rén;re wǔ;av	10
 高雄三民	gāo;wk xióng;uf sān;ae mín;vv	10
 高雄杉林	gāo;wk xióng;uf shān;mp lín;mm	10
@@ -43388,7 +43389,7 @@ sort: by_weight
 后王家庄	hòu;pk wáng;at jiā;bu zhuāng;gt	10
 后王楼村	hòu;pk wáng;at lóu;mn cūn;mc	10
 后王桥村	hòu;pk wáng;at qiáo;ml cūn;mc	10
-侯王庄村	hòu;ru wáng;at zhuāng;gt cūn;mc	10
+侯王庄村	hóu;ru wáng;at zhuāng;gt cūn;mc	10
 后苇沟村	hòu;pk wěi;cw gōu;ds cūn;mc	10
 后溪新村	hòu;pk xī;dd xīn;lj cūn;mc	10
 后夏公庄	hòu;pk xià;aw gōng;bs zhuāng;gt	10
@@ -62013,7 +62014,6 @@ sort: by_weight
 台北中山	tái;sk běi;lb zhōng;ll shān;lk	10
 台北中正	tái;sk běi;lb zhōng;ll zhèng;av	10
 太本站镇	tài;dd běn;aa zhàn;lk zhèn;jb	10
-大长山岛	tài;un cháng;pn shān;lk dǎo;pe	436
 台城街道	tái;sk chéng;ti jiē;ii dào;zz	10
 太春沟村	tài;dd chūn;fo gōu;ds cūn;mc	10
 泰达街道	tài;fu dá;zd jiē;ii dào;zz	10
@@ -65389,9 +65389,9 @@ sort: by_weight
 无合表县	wú;ay hé;rk biǎo;fy xiàn;qs	10
 五河新村	wǔ;aa hé;dk xīn;lj cūn;mc	10
 无何有乡	wú;ay hé;rk yǒu;uo xiāng;vp	10
-武侯祠站	wǔ;av hòu;ru cí;pk zhàn;lk	153
-武侯街道	wǔ;av hòu;ru jiē;ii dào;zz	10
-武侯山庄	wǔ;av hòu;ru shān;lk zhuāng;gt	10
+武侯祠站	wǔ;av hóu;ru cí;pk zhàn;lk	153
+武侯街道	wǔ;av hóu;ru jiē;ii dào;zz	10
+武侯山庄	wǔ;av hóu;ru shān;lk zhuāng;gt	10
 芜湖繁昌	wú;cw hú;do fán;px chāng;oo	10
 武湖街道	wǔ;av hú;do jiē;ii dào;zz	10
 芜湖镜湖	wú;cw hú;do jìng;je hú;do	10
@@ -77241,6 +77241,7 @@ sort: by_weight
 达布达尔乡	dá;zd bù;uj dá;zd ěr;dx xiāng;vp	10
 大埠桥街道	dà;un bù;tu qiáo;ml jiē;ii dào;zz	10
 大才回族乡	dà;un cái;ap huí;kk zú;fu xiāng;vp	10
+大长山岛镇	dà;un cháng;pn shān;lk dǎo;pe zhèn;jb	10
 大朝山东镇	dà;un cháo;uo shān;lk dōng;ad zhèn;jb	10
 大朝山西镇	dà;un cháo;uo shān;lk xī;aa zhèn;jb	10
 达达木图镇	dá;zd dá;zd mù;un tú;kd zhèn;jb	10
@@ -80682,7 +80683,6 @@ sort: by_weight
 泰安宁阳县	tài;fu ān;bn níng;bd yáng;eo xiàn;qs	10
 太白园街道	tài;dd bái;po yuán;ke jiē;ii dào;zz	10
 太保庄街道	tài;dd bǎo;rm zhuāng;gt jiē;ii dào;zz	10
-大长山岛镇	tài;un cháng;pn shān;lk dǎo;pe zhèn;jb	10
 太慈桥街道	tài;dd cí;bx qiáo;ml jiē;ii dào;zz	10
 太昊路街道	tài;dd hào;ot lù;zk jiē;ii dào;zz	10
 太和桥街道	tài;dd hé;hk qiáo;ml jiē;ii dào;zz	10
@@ -82841,7 +82841,7 @@ sort: by_weight
 成都市双流区	chéng;wv dū;le shì;wj shuāng;yy liú;dv qū;kx	10
 成都市双流县	chéng;wv dū;le shì;wj shuāng;yy liú;dv xiàn;qs	89
 成都市温江区	chéng;wv dū;le shì;wj wēn;dm jiāng;dg qū;kx	10
-成都市武侯区	chéng;wv dū;le shì;wj wǔ;av hòu;ru qū;kx	10
+成都市武侯区	chéng;wv dū;le shì;wj wǔ;av hóu;ru qū;kx	10
 成都市新都区	chéng;wv dū;le shì;wj xīn;lj dū;le qū;kx	10
 成都市新津区	chéng;wv dū;le shì;wj xīn;lj jīn;dy qū;kx	10
 城郊森林公园	chéng;ti jiāo;we sēn;mm lín;mm gōng;bs yuán;ke	10
@@ -83272,6 +83272,7 @@ sort: by_weight
 高雄市冈山区	gāo;wk xióng;uf shì;wj gāng;kx shān;lk qū;kx	10
 高雄市鼓山区	gāo;wk xióng;uf shì;wj gǔ;uy shān;lk qū;kx	10
 高雄市湖内区	gāo;wk xióng;uf shì;wj hú;do nèi;ld qū;kx	10
+高雄市茄萣区	gāo;wk xióng;uf shì;wj jiā;ck dìng;cr qū;kx	10
 高雄市甲仙区	gāo;wk xióng;uf shì;wj jiǎ;ll xiān;re qū;kx	10
 高雄市林园区	gāo;wk xióng;uf shì;wj lín;mm yuán;ke qū;kx	10
 高雄市苓雅区	gāo;wk xióng;uf shì;wj líng;cs yǎ;yf qū;kx	10
@@ -83288,7 +83289,6 @@ sort: by_weight
 高雄市前金区	gāo;wk xióng;uf shì;wj qián;bd jīn;ra qū;kx	10
 高雄市前镇区	gāo;wk xióng;uf shì;wj qián;bd zhèn;jb qū;kx	10
 高雄市桥头区	gāo;wk xióng;uf shì;wj qiáo;ml tóu;dd qū;kx	10
-高雄市茄萣区	gāo;wk xióng;uf shì;wj qié;ck dìng;cr qū;kx	10
 高雄市仁武区	gāo;wk xióng;uf shì;wj rén;re wǔ;av qū;kx	10
 高雄市三民区	gāo;wk xióng;uf shì;wj sān;ae mín;vv qū;kx	10
 高雄市杉林区	gāo;wk xióng;uf shì;wj shān;mp lín;mm qū;kx	10
