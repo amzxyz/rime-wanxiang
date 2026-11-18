@@ -464,6 +464,9 @@ sort: by_weight
 傅莹	fù yíng	60
 傅颖	fù yǐng	38
 傅说	fù yuè	1170
+盖茨	gài cí	703
+盖聂	gài niè	5194
+盖伊	gài yī	188
 该隐	gāi yǐn	270
 甘地	gān dì	1017
 高岗	gāo gǎng	63
@@ -477,16 +480,13 @@ sort: by_weight
 高云	gāo yún	100
 高湛	gāo zhàn	889
 告子	gào zǐ	64
-盖茨	gě cí	703
 歌德	gē dé	3174
 戈尔	gē ěr	235
 格非	gé fēi	782
 葛洪	gě hóng	305
 戈林	gē lín	580
 格美	gé měi	16
-盖聂	gě niè	5194
 戈雅	gē yǎ	864
-盖伊	gě yī	188
 耿纯	gěng chún	54
 耿恭	gěng gōng	630
 耿介	gěng jiè	90
@@ -4749,6 +4749,14 @@ sort: by_weight
 伽罗瓦	gā luó wǎ	716
 伽莫夫	gā mò fū	549
 伽桑狄	gā sāng dí	400
+盖茨比	gài cí bǐ	1482
+盖达尔	gài dá ěr	28
+盖尔曼	gài ěr màn	166
+盖里克	gài lǐ kè	6
+盖伦特	gài lún tè	16
+盖苏文	gài sū wén	644
+盖特纳	gài tè nà	75
+盖乌斯	gài wū sī	204
 甘凤池	gān fèng chí	6
 甘福尔	gān fú ěr	297
 甘夫人	gān fū rén	107
@@ -4943,11 +4951,9 @@ sort: by_weight
 戈贝尔	gē bèi ěr	911
 戈伯特	gē bó tè	13
 葛长庚	gé cháng gēng	234
-盖茨比	gě cí bǐ	1482
 葛从周	gé cóng zhōu	418
 戈达德	gē dá dé	144
 戈达尔	gē dá ěr	810
-盖达尔	gě dá ěr	28
 戈黛娃	gē dài wá	364
 葛道凯	gé dào kǎi	3
 哥德尔	gē dé ěr	411
@@ -4958,7 +4964,6 @@ sort: by_weight
 葛尔丹	gé ěr dān	59
 戈尔丁	gē ěr dīng	44
 戈尔贡	gē ěr gòng	441
-盖尔曼	gě ěr màn	166
 戈尔曼	gē ěr màn	94
 戈夫曼	gē fū màn	132
 戈公振	gē gōng zhèn	333
@@ -4983,7 +4988,6 @@ sort: by_weight
 格里格	gé lǐ gé	286
 葛利格	gé lì gé	257
 葛立恒	gé lì héng	446
-盖里克	gě lǐ kè	6
 歌利亚	gē lì yà	169
 哥利亚	gē lì yà	97
 格林卡	gé lín kǎ	132
@@ -4991,7 +4995,6 @@ sort: by_weight
 格鲁克	gé lǔ kè	151
 格鲁希	gé lǔ xī	19
 哥伦布	gē lún bù	2154
-盖伦特	gě lún tè	16
 阁罗凤	gé luó fèng	44
 阁逻凤	gé luó fèng	40
 格罗弗	gé luó fú	82
@@ -5010,14 +5013,11 @@ sort: by_weight
 格什温	gé shí wēn	135
 葛守礼	gé shǒu lǐ	133
 哥舒翰	gē shū hàn	374
-盖苏文	gě sū wén	644
 戈塔特	gē tǎ tè	113
-盖特纳	gě tè nà	75
 葛天氏	gé tiān shì	31
 格瓦拉	gé wǎ lā	848
 葛卫东	gé wèi dōng	567
 葛文耀	gé wén yào	531
-盖乌斯	gě wū sī	204
 葛仙翁	gé xiān wēng	302
 葛新爱	gé xīn ài	130
 葛宇路	gé yǔ lù	100
@@ -17370,6 +17370,10 @@ sort: by_weight
 福泽谕吉	fú zé yù jí	226
 伽达默尔	gā dá mò ěr	441
 噶玛拔希	gá mǎ bá xī	194
+盖德穆勒	gài dé mù lè	449
+盖尔范德	gài ěr fàn dé	360
+盖尔霍恩	gài ěr huò ēn	306
+盖吕萨克	gài lǚ sà kè	482
 干将莫邪	gān jiāng mò yé	204
 甘宁兴霸	gān níng xīng bà	117
 冈本一平	gāng běn yī píng	230
@@ -17418,7 +17422,6 @@ sort: by_weight
 戈德弗雷	gē dé fú léi	248
 戈德弗里	gē dé fú lǐ	274
 戈德弗瓦	gē dé fú wǎ	306
-盖德穆勒	gě dé mù lè	449
 戈德斯坦	gē dé sī tǎn	522
 戈德斯通	gē dé sī tōng	41
 戈登威泽	gē dēng wēi zé	220
@@ -17427,11 +17430,9 @@ sort: by_weight
 格敦嘉措	gé dūn jiā cuò	99
 戈尔德堡	gē ěr dé bǎo	180
 戈尔德温	gē ěr dé wēn	364
-盖尔范德	gě ěr fàn dé	360
 格尔凡德	gé ěr fán dé	207
 格尔丰德	gé ěr fēng dé	364
 格尔哈特	gé ěr hā tè	464
-盖尔霍恩	gě ěr huò ēn	306
 格莱斯顿	gé lái sī dùn	19
 戈兰斯基	gē lán sī jī	130
 格劳贝尔	gé láo bèi ěr	144
@@ -17471,7 +17472,6 @@ sort: by_weight
 葛罗莫夫	gé luó mò fū	162
 格罗斯曼	gé luó sī màn	242
 格罗斯让	gé luó sī ràng	72
-盖吕萨克	gě lǚ sà kè	482
 格迈纳尔	gé mài nà ěr	171
 格纳布里	gé nà bù lǐ	513
 格奈森瑙	gé nài sēn nǎo	684
