@@ -418,6 +418,9 @@ sort: by_weight
 付滃	fù;rh wēng;up	1
 富妍	fù;bh yán;nh	4
 嘎子	gǎ;kh zi;vh	747
+盖博	gài;dh bó;hh	671
+盖克	gài;dh kè;hv	189
+盖美	gài;dh měi;dd	5115
 甘龙	gān;ch lóng;hd	422
 甘露	gān;ch lù;hk	511
 甘宁	gān;ch níng;bs	1400
@@ -452,10 +455,7 @@ sort: by_weight
 高叶	gāo;dk yè;kh	1022
 高奕	gāo;dk yì;dd	54
 高媛	gāo;dk yuàn;np	386
-盖博	gě;dh bó;hh	671
-盖克	gě;dh kè;hv	189
 葛兰	gé;cv lán;dh	1048
-盖美	gě;dh měi;dd	5115
 葛平	gé;cv píng;hs	57
 葛帅	gé;cv shuài;ss	15
 葛天	gé;cv tiān;hd	2828
@@ -3686,6 +3686,13 @@ sort: by_weight
 傅园慧	fù;rh yuán;sh huì;hx	402
 福原遥	fú;dh yuán;hd yáo;pz	3
 傅子恩	fù;rh zǐ;vh ēn;sx	333
+盖叫天	gài;dh jiào;kv tiān;hd	28
+盖勒特	gài;dh lè;cv tè;pt	16
+盖丽丽	gài;dh lì;hd lì;hd	3
+盖里奇	gài;dh lǐ;lt qí;hs	60
+盖鸣晖	gài;dh míng;kp huī;ld	410
+盖瑞桑	gài;dh ruì;ws sāng;vm	279
+盖玥希	gài;dh yuè;wy xī;ps	15
 甘国亮	gān;ch guó;sh liàng;dv	504
 甘利明	gān;ch lì;es míng;ly	446
 干露露	gān;hs lù;hk lù;hk	662
@@ -3824,24 +3831,18 @@ sort: by_weight
 戈蒂耶	gē;hd dì;cs yé;hv	450
 葛荟婕	gé;cv huì;cd jié;nh	85
 葛慧君	gé;cv huì;hx jūn;vk	392
-盖叫天	gě;dh jiào;kv tiān;hd	28
 戈金斯	gē;hd jīn;jh sī;cp	328
 格兰杰	gé;mp lán;dh jié;mq	277
-盖勒特	gě;dh lè;cv tè;pt	16
 葛蕾塔	gé;cv lěi;ch tǎ;tc	99
-盖丽丽	gě;dh lì;hd lì;hd	3
-盖里奇	gě;dh lǐ;lt qí;hs	608
 格里森	gé;mp lǐ;lt sēn;mm	100
 格列柯	gé;mp liè;hs kē;mh	432
 格卢克	gé;mp lú;sp kè;hv	136
 葛曼棋	gé;cv màn;ld qí;mc	9
 戈梅兹	gē;hd méi;mp zī;di	544
 葛民辉	gé;cv mín;vv huī;sd	50
-盖鸣晖	gě;dh míng;kp huī;ld	410
 葛姆雷	gé;cv mǔ;nv léi;hh	288
 葛珮帆	gé;cv pèi;wp fān;sp	482
 哥普拉	gē;hs pǔ;dl lā;fd	346
-盖瑞桑	gě;dh ruì;ws sāng;vm	279
 葛瑞丝	gé;cv ruì;ws sī;ii	544
 葛珊珊	gé;cv shān;wp shān;wp	116
 葛斯林	gé;cv sī;cp lín;mm	464
@@ -3855,7 +3856,6 @@ sort: by_weight
 葛鑫怡	gé;cv xīn;jj yí;xv	15
 葛奕德	gé;cv yì;dd dé;ph	12
 歌浴森	gē;hp yù;up sēn;mm	364
-盖玥希	gě;dh yuè;wy xī;ps	15
 葛昀珀	gé;cv yún;lp pò;wp	12
 戈治均	gē;hd zhì;uv jūn;tp	15
 葛仲珊	gé;cv zhòng;rk shān;wp	382
@@ -12151,6 +12151,8 @@ sort: by_weight
 福圆美里	fú;dh yuán;sh měi;dd lǐ;lt	504
 福原美穗	fú;dh yuán;hd měi;dd suì;eh	279
 福原香织	fú;dh yuán;hd xiāng;el zhī;ik	405
+盖尔盖伊	gài;dh ěr;pd gài;dh yī;rv	320
+盖尔克奇	gài;dh ěr;pd kè;hv qí;hs	306
 甘利虎泰	gān;ch lì;es hǔ;sv tài;hu	320
 冈本多绪	gāng;sd běn;mh duō;pd xù;it	3
 冈本夏美	gāng;sd běn;mh xià;hd měi;dd	252
@@ -12209,8 +12211,6 @@ sort: by_weight
 隔壁老樊	gé;vh bì;vt lǎo;tv fán;md	181
 葛城美里	gé;cv chéng;th měi;dd lǐ;lt	242
 戈德芬格	gē;hd dé;ph fēn;cp gé;mp	220
-盖尔盖伊	gě;dh ěr;pd gài;dh yī;rv	320
-盖尔克奇	gě;dh ěr;pd kè;hv qí;hs	306
 格莱姆斯	gé;mp lái;cm mǔ;nv sī;cp	490
 格兰姆斯	gé;mp lán;dh mǔ;nv sī;cp	52
 格里杰夫	gé;mp lǐ;lt jié;mq fū;hd	202
