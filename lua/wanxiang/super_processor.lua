@@ -292,6 +292,7 @@ function M.init(env)
 
     -- [ToneFallback] 声调容错
     env.tone_state = "idle"
+    env.lookup_key = config:get_string("wanxiang_lookup/key") or "`"
 
     -- [QuickSymbol] 符号快打
     env.qs_trigger = "^([a-z])/$"
@@ -677,8 +678,10 @@ local function handle_number_logic(key, env, ctx)
                 end
             end
 
-            -- 不再根据反查前缀禁用声调回退，反查模式与普通输入一致。
-            if is_func_mode or is_first_cand_has_eng then
+            -- 前缀反查（wanxiang_reverse）保留声调回退；后置反查不回退。
+            local is_postfix_lookup = input:find(env.lookup_key, 1, true)
+                and not wanxiang.is_in_radical_mode(env)
+            if is_postfix_lookup or is_func_mode or is_first_cand_has_eng then
                 env.tone_state = "idle"
             else
                 env.tone_state = "compress"
