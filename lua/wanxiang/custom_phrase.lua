@@ -202,8 +202,10 @@ function M.func(input, env)
 end
 
 local function release_translator(translator)
-    if translator then
-        translator:disconnect()
+    if translator and translator.disconnect then
+        pcall(function()
+            translator:disconnect()
+        end)
     end
 end
 
