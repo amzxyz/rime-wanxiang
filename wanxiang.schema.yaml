@@ -10,8 +10,7 @@ schema:
   description: |
     请勾选【万象拼音PRO】启用PRO版：带调词库、语法模型，支持全拼、双拼、整句及声调辅助筛选。
     在方案文本框输入代码：/pinyin 全拼；/flypy 小鹤；/mspy 微软；/zrm 自然码；/sogou 搜狗；/znabc 智能ABC；/ziguang 紫光；/pyjj 拼音加加；/gbpy 国标；/lxsq 乱序17；/ltsp 蓝天；/sdpy 首道；/wxsp 万象；/zrlong 自然龙；/hxlong 汉心龙；/jjf 间接辅助；/zjf 直接辅助。完整说明见 README.md。
-  dependencies:
-    - wanxiang_english  #中英文混合词汇
+
 
 # 开关
 # reset: 默认状态。注释掉后，切换窗口时不会重置到默认状态。
@@ -153,13 +152,16 @@ partial_commit:
   last_key: "]"  # 以词定字后字
 
 
+auxiliary_suffix_segmentor:
+  trigger: "`"
+
 # 主翻译器，拼音
 translator:
   dictionary: wanxiang
-  aux: 自然码
+  aux: 万象
   user_dict: zc
-  user_dict_mode: auto  # auto / manual / off
-  aux_suffix: "`"
+  enable_direct_aux: true
+  user_dict_mode: manual  # auto / manual / off
   prisms: input_types
   enable_completion: true  # 启用候选词补全
   contextual_suggestions: false  #模型用来开启词组权重预测，效果一般关闭

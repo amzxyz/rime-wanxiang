@@ -23,21 +23,21 @@ input_types:
   enabled: [pinyin] #启用哪些build就部署哪些
   reset: pinyin
   options:
-    - {option: pinyin, label: 全拼}
-    - {option: zrm, label: 自然码}
-    - {option: flypy, label: 小鹤双拼}
-    - {option: mspy, label: 微软双拼}
-    - {option: sogou, label: 搜狗双拼}
-    - {option: znabc, label: 智能ABC}
-    - {option: ziguang, label: 紫光双拼}
-    - {option: pyjj, label: 拼音加加}
-    - {option: gbpy, label: 国标双拼}
-    - {option: lxsq, label: 乱序17}
-    - {option: ltsp, label: 蓝天双拼}
-    - {option: sdpy, label: 首道双拼}
-    - {option: wxsp, label: 万象双拼}
-    - {option: zrlong, label: 自然龙}
-    - {option: hxlong, label: 汉心龙}
+    - {option: pinyin, name: standalone_pinyin, label: 全拼}
+    - {option: zrm, name: standalone_zrm, label: 自然码}
+    - {option: flypy, name: standalone_flypy, label: 小鹤双拼}
+    - {option: mspy, name: standalone_mspy, label: 微软双拼}
+    - {option: sogou, name: standalone_sogou, label: 搜狗双拼}
+    - {option: znabc, name: standalone_znabc, label: 智能ABC}
+    - {option: ziguang, name: standalone_ziguang, label: 紫光双拼}
+    - {option: pyjj, name: standalone_pyjj, label: 拼音加加}
+    - {option: gbpy, name: standalone_gbpy, label: 国标双拼}
+    - {option: lxsq, name: standalone_lxsq, label: 乱序17}
+    - {option: ltsp, name: standalone_ltsp, label: 蓝天双拼}
+    - {option: sdpy, name: standalone_sdpy, label: 首道双拼}
+    - {option: wxsp, name: standalone_wxsp, label: 万象双拼}
+    - {option: zrlong, name: standalone_zrlong, label: 自然龙}
+    - {option: hxlong, name: standalone_hxlong, label: 汉心龙}
 # 输入引擎
 engine:
   processors:
@@ -69,77 +69,77 @@ build:
   dictionaries:
     wanxiang_english: #声明词表名称，翻译器可以调用
       algebra:  #编译类型prism调用的转写方式
-        pinyin:
+        standalone_pinyin:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/全拼
             
-        zrm:
+        standalone_zrm:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/自然码
             
-        flypy:
+        standalone_flypy:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/小鹤双拼
             
-        mspy:
+        standalone_mspy:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/微软双拼
             
-        sogou:
+        standalone_sogou:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/搜狗双拼
             
-        znabc:
+        standalone_znabc:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/智能ABC
             
-        ziguang:
+        standalone_ziguang:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/紫光双拼
             
-        pyjj:
+        standalone_pyjj:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/拼音加加
             
-        gbpy:
+        standalone_gbpy:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/国标双拼
             
-        lxsq:
+        standalone_lxsq:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/乱序17
             
-        ltsp:
+        standalone_ltsp:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/蓝天双拼
             
-        sdpy:
+        standalone_sdpy:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/首道双拼
             
-        wxsp:
+        standalone_wxsp:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/万象双拼
             
-        zrlong:
+        standalone_zrlong:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/自然龙
             
-        hxlong:
+        standalone_hxlong:
           __patch:
             - wanxiang_algebra:/english/混合派生
             - wanxiang_algebra:/english/汉心龙
@@ -174,6 +174,7 @@ recognizer:
     punct: "^/([0-9]|10|[A-Za-z]+)$"
 wanxiang_english:
   dictionary: wanxiang_english
+  prisms: input_types
   user_dict: en
   enable_completion: true
   enable_sentence: true
