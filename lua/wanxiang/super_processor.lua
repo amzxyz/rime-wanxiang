@@ -8,6 +8,14 @@
 local wanxiang = require("wanxiang/wanxiang")
 local M = {}
 
+-- [AuxBoundary] 仅面向严格两码一音节的双拼方案。
+-- 不将长码、九键或全拼的编码长度套用到这套规则中。
+local DOUBLE_PINYIN_TYPES = {
+    zrm=true, flypy=true, mspy=true, sogou=true, abc=true,
+    ziguang=true, pyjj=true, gbpy=true, wxsp=true,
+    ltsp=true, lxsq=true, dnsp=true, sdpy=true,
+}
+
 -- 1. 全局常量定义 (Constants)
 
 -- [KpNumber] 小键盘键码映射
@@ -237,12 +245,14 @@ function M.init(env)
     env.max_repeat = 8
     env.max_segments = 40
     env.is_t9 = false
+    env.is_double_pinyin = false
     if wanxiang.get_input_method_type then
         local im_type = wanxiang.get_input_method_type(env)
-        if im_type == "t9" then
-            env.is_t9 = true
-        end
+        env.is_t9 = im_type == "t9"
+        env.is_double_pinyin = DOUBLE_PINYIN_TYPES[im_type] == true
     end
+    -- [AuxBoundary] 仅万象 Pro 默认启用偶数编码选词非贪婪消耗。
+    env.even_code_non_greedy = wanxiang.is_pro_scheme(env)
     if config then
         -- 基础开关加载
         local ok_bs, bs_val = pcall(function() return config:get_bool("super_processor/enable_backspace_limit") end)
@@ -253,6 +263,9 @@ function M.init(env)
 
         local ok_tf, tf_val = pcall(function() return config:get_bool("super_processor/enable_tone_fallback") end)
         if ok_tf and tf_val ~= nil then env.enable_tone_fallback = tf_val end
+
+        local ok_ec, ec_val = pcall(function() return config:get_bool("super_processor/even_code_non_greedy") end)
+        if ok_ec and ec_val ~= nil then env.even_code_non_greedy = env.even_code_non_greedy and ec_val end
 
         local ok_ps, ps_val = pcall(function() return config:get_bool("super_processor/enable_predict_space") end)
         if ok_ps and ps_val ~= nil then env.enable_predict_space = ps_val end
@@ -578,6 +591,67 @@ local function handle_limit_repeat(key, env, ctx)
     return false
 end
 
+-- [AuxBoundary] 偶数双拼黏连码逐字选词时，不多消耗后一字的编码。
+-- spans 核对音节数量，确认后插入已经配置的手动分隔符。
+local function even_code_boundary(env, ctx, cand)
+    if not env.even_code_non_greedy or not env.is_double_pinyin or not cand then return nil end
+    local input, sep = ctx.input or "", env.seg_manual_delim
+    if not sep or #sep ~= 1 or ctx.caret_pos ~= #input or ctx.composition:empty() then return nil end
+
+    local seg = ctx.composition:back()
+    if cand.start ~= seg.start or cand._end >= #input or cand.type == "completion" then return nil end
+
+    -- 允许段首有一个分隔符，不干预用户已有的内部音节边界。
+    local raw = input:sub(seg.start + 1)
+    local lead = raw:sub(1, 1) == sep and 1 or 0
+    local letters = raw:sub(lead + 1)
+    if not letters:match("^[a-z]+$") or #letters % 2 ~= 0 then return nil end
+
+    local txt = cand.text or ""
+    local syllables = utf8.len(txt)
+    if not syllables or syllables == 0 or txt:match("[%w%p]") then return nil end
+    local spans = cand:spans()
+    if not spans or spans:count_between(cand.start, cand._end) ~= syllables then return nil end
+
+    local boundary = seg.start + lead + syllables * 2
+    if cand._end ~= boundary + 1 then return nil end
+    if not input:sub(boundary + 1, boundary + 1):match("^[a-z]$") then return nil end
+    return boundary
+end
+
+-- 复用原选词操作，不重复触发确认。只有命中保护规则时改写 ctx.input。
+local function apply_even_code_protection(env, ctx, cand, confirm)
+    local boundary = even_code_boundary(env, ctx, cand)
+    if not boundary then return false end
+
+    local input, old_end = ctx.input, cand._end
+    cand._end = boundary
+    if not confirm() then
+        cand._end = old_end
+        return false
+    end
+    if ctx.input == input then
+        ctx.input = input:sub(1, boundary) .. env.seg_manual_delim .. input:sub(boundary + 1)
+    end
+    return true
+end
+
+-- only_protected 用于小键盘 select 模式：未命中时仍交给原生 selector。
+local function select_with_even_code_protection(env, ctx, seg, index, only_protected)
+    local cand = seg and seg:get_candidate_at(index)
+    if cand and apply_even_code_protection(env, ctx, cand, function() return ctx:select(index) end) then
+        return true
+    end
+    return not only_protected and ctx:select(index) or false
+end
+
+local function handle_even_code_space(key, env, ctx)
+    if key:shift() or key:ctrl() or key:alt() or key:super() or not ctx:has_menu() then return false end
+    local cand = ctx:get_selected_candidate()
+    return cand and apply_even_code_protection(env, ctx, cand,
+        function() return ctx:confirm_current_selection() end) or false
+end
+
 -- [Letter Selector] 字母选词
 local function handle_letter_select(key, env, ctx)
     if not env.ls_active then return false end
@@ -599,7 +673,7 @@ local function handle_letter_select(key, env, ctx)
     local index = page_start + idx - 1
     if index >= count then return false end
 
-    ctx:select(index)
+    select_with_even_code_protection(env, ctx, seg, index)
     return true
 end
 
@@ -625,6 +699,16 @@ local function handle_number_logic(key, env, ctx)
         end
 
         if env.kp_mode == "select" then
+            -- 原生 selector 执行 KP 选词前，只有真正命中边界保护时才接管。
+            if ctx:has_menu() and kp_num >= 1 and kp_num <= env.kp_page_size then
+                local seg = ctx.composition:back()
+                local page_start = math.floor((seg.selected_index or 0) / env.kp_page_size)
+                    * env.kp_page_size
+                local index = page_start + kp_num - 1
+                if select_with_even_code_protection(env, ctx, seg, index, true) then
+                    return true
+                end
+            end
             return false
         end
 
@@ -678,8 +762,9 @@ local function handle_number_logic(key, env, ctx)
                 end
             end
 
-            -- 仅对后置反查禁用声调回退；前置反查按普通输入处理。
-            local is_postfix_lookup = input:find(env.lookup_key, #env.lookup_key + 1, true) ~= nil
+            -- 前缀反查（wanxiang_reverse）保留声调回退；后置反查不回退。
+            local is_postfix_lookup = input:find(env.lookup_key, 1, true)
+                and not wanxiang.is_in_radical_mode(env)
             if is_postfix_lookup or is_func_mode or is_first_cand_has_eng then
                 env.tone_state = "idle"
             else
@@ -710,7 +795,7 @@ local function handle_number_logic(key, env, ctx)
                         local sel_index = seg.selected_index or 0
                         local page_start = math.floor(sel_index / env.kp_page_size) * env.kp_page_size
                         local index = page_start + (d - 1)
-                        ctx:select(index)
+                        select_with_even_code_protection(env, ctx, seg, index)
                         return true
                     end
                 end
@@ -737,6 +822,11 @@ function M.func(key, env)
     end
 
     local kc = key.keycode
+
+    -- [AuxBoundary] 空格确认时保护偶数编码边界，未命中则交还原生编辑器。
+    if kc == 0x20 and handle_even_code_space(key, env, ctx) then
+        return wanxiang.RIME_PROCESS_RESULTS.kAccepted
+    end
 
     -- [Predict Space] 联想空格
     if kc == 0x20 then
