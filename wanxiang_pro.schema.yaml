@@ -429,6 +429,7 @@ partial_commit:
   last_key: "]"          # 以词定字：末字
 
 super_processor:
+  even_code_non_greedy: true  # 偶数编码逐字选词时非贪婪消耗，仅万象 Pro 生效
   enable_backspace_limit: true  # 开启/关闭退格限制
   enable_seg_loop: true  # 开启/关闭分词符（'）循环
   enable_tone_fallback: true  # 启用声调回退
