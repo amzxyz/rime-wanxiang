@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="642" viewBox="0 0 2000 642">
+<defs>
+<linearGradient id="band1" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#f0f5fb"/>
+<stop offset="50%" stop-color="#d9e5f3"/>
+<stop offset="100%" stop-color="#f0f5fb"/>
+</linearGradient>
+<linearGradient id="band2" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#eef8f6"/>
+<stop offset="50%" stop-color="#d7ece7"/>
+<stop offset="100%" stop-color="#eef8f6"/>
+</linearGradient>
+<linearGradient id="band3" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#fcf8ef"/>
+<stop offset="50%" stop-color="#efe0b7"/>
+<stop offset="100%" stop-color="#fcf8ef"/>
+</linearGradient>
+<linearGradient id="band4" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#fbf2f5"/>
+<stop offset="50%" stop-color="#ecd4db"/>
+<stop offset="100%" stop-color="#fbf2f5"/>
+</linearGradient>
+<linearGradient id="band0" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#f3f4f6"/>
+<stop offset="50%" stop-color="#e2e5ea"/>
+<stop offset="100%" stop-color="#f3f4f6"/>
+</linearGradient>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="0" dy="1.4" stdDeviation="1.8" flood-color="#000" flood-opacity="0.10"/>
+</filter>
+</defs>
+<style>
+text{font-family:"Noto Sans","Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei","PingFang SC",sans-serif;}
+.key{fill:#ffffff;stroke:#20242a;stroke-width:1.8;filter:url(#shadow)}
+.keyname{font-size:28px;font-weight:700;fill:#20242a}
+.initial{font-size:13px;font-weight:700;fill:#6a717a;font-style:italic}
+.cornerBadge{fill:#fafbfd;stroke:#d8dde5;stroke-width:1}
+.cornerText{font-size:14px;font-weight:700;fill:#4e5763}
+.toneLabel{font-size:11px;font-weight:700;fill:#69707a}
+</style>
+<rect x="0" y="0" width="2000" height="642" fill="#f6f7f9"/>
+<rect class="key" x="36.0" y="24.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="50.0" y="55.0">Q</text>
+<rect x="46.0" y="84.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="50.0" y="87.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="59.0" y="98.5" text-anchor="middle">1</text>
+<rect x="46.0" y="111.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="50.0" y="114.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="59.0" y="125.5" text-anchor="middle">2</text>
+<text x="74.0" y="127.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">uá</text>
+<text x="113.5" y="127.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">ún</text>
+<rect x="46.0" y="138.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="50.0" y="141.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="59.0" y="152.5" text-anchor="middle">3</text>
+<text x="74.0" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǒ</text>
+<text x="100.0" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǒu</text>
+<rect x="46.0" y="165.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="50.0" y="168.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="59.0" y="179.5" text-anchor="middle">4</text>
+<text x="74.0" y="181.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#755560">ào</text>
+<text x="108.2" y="181.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#755560">ìn</text>
+<text x="142.4" y="181.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#755560">üè</text>
+<rect x="46.0" y="192.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="50.0" y="195.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="59.0" y="206.5" text-anchor="middle">0</text>
+<text x="74.0" y="208.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">an</text>
+<rect class="key" x="230.0" y="24.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="244.0" y="55.0">W</text>
+<rect x="240.0" y="84.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="244.0" y="87.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="253.0" y="98.5" text-anchor="middle">1</text>
+<text x="268.0" y="100.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ē</text>
+<text x="294.0" y="100.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">iē</text>
+<rect x="240.0" y="111.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="244.0" y="114.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="253.0" y="125.5" text-anchor="middle">2</text>
+<text x="268.0" y="127.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">éi</text>
+<rect x="240.0" y="138.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="244.0" y="141.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="253.0" y="152.5" text-anchor="middle">3</text>
+<text x="268.0" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǐ</text>
+<text x="294.0" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">uǎ</text>
+<rect x="240.0" y="165.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="244.0" y="168.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="253.0" y="179.5" text-anchor="middle">4</text>
+<rect x="240.0" y="192.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="244.0" y="195.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="253.0" y="206.5" text-anchor="middle">0</text>
+<rect class="key" x="424.0" y="24.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="438.0" y="55.0">E</text>
+<rect class="cornerBadge" x="564.0" y="34.0" width="30" height="18" rx="8" ry="8"/>
+<text class="cornerText" x="579.0" y="47.0" text-anchor="middle">ee</text>
+<rect x="434.0" y="84.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="438.0" y="87.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="447.0" y="98.5" text-anchor="middle">1</text>
+<text x="462.0" y="100.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ēi</text>
+<text x="501.5" y="100.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ū</text>
+<rect x="434.0" y="111.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="438.0" y="114.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="447.0" y="125.5" text-anchor="middle">2</text>
+<rect x="434.0" y="138.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="438.0" y="141.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="447.0" y="152.5" text-anchor="middle">3</text>
+<text x="462.0" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">iǎng</text>
+<text x="528.4" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǔn</text>
+<rect x="434.0" y="165.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="438.0" y="168.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="447.0" y="179.5" text-anchor="middle">4</text>
+<text x="462.0" y="181.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">ài</text>
+<rect x="434.0" y="192.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="438.0" y="195.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="447.0" y="206.5" text-anchor="middle">0</text>
+<text x="462.0" y="208.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#616873">ie</text>
+<text x="496.2" y="208.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#616873">ui</text>
+<text x="530.4" y="208.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#616873">ü</text>
+<rect class="key" x="618.0" y="24.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="632.0" y="55.0">R</text>
+<rect x="628.0" y="84.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="632.0" y="87.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="641.0" y="98.5" text-anchor="middle">1</text>
+<text x="656.0" y="100.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ō</text>
+<rect x="628.0" y="111.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="632.0" y="114.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="641.0" y="125.5" text-anchor="middle">2</text>
+<text x="656.0" y="127.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">uáng</text>
+<rect x="628.0" y="138.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="632.0" y="141.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="641.0" y="152.5" text-anchor="middle">3</text>
+<text x="656.0" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">iǎo</text>
+<text x="709.0" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">iǔ</text>
+<rect x="628.0" y="165.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="632.0" y="168.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="641.0" y="179.5" text-anchor="middle">4</text>
+<text x="656.0" y="181.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">è</text>
+<rect x="628.0" y="192.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="632.0" y="195.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="641.0" y="206.5" text-anchor="middle">0</text>
+<text x="656.0" y="208.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">e</text>
+<rect class="key" x="812.0" y="24.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="826.0" y="55.0">T</text>
+<rect x="822.0" y="84.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="826.0" y="87.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="835.0" y="98.5" text-anchor="middle">1</text>
+<rect x="822.0" y="111.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="826.0" y="114.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="835.0" y="125.5" text-anchor="middle">2</text>
+<text x="850.0" y="127.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">áo</text>
+<rect x="822.0" y="138.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="826.0" y="141.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="835.0" y="152.5" text-anchor="middle">3</text>
+<rect x="822.0" y="165.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="826.0" y="168.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="835.0" y="179.5" text-anchor="middle">4</text>
+<text x="850.0" y="181.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">ì</text>
+<text x="876.0" y="181.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">uà</text>
+<rect x="822.0" y="192.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="826.0" y="195.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="835.0" y="206.5" text-anchor="middle">0</text>
+<rect class="key" x="1006.0" y="24.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1020.0" y="55.0">Y</text>
+<rect x="1016.0" y="84.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1020.0" y="87.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1029.0" y="98.5" text-anchor="middle">1</text>
+<rect x="1016.0" y="111.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1020.0" y="114.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1029.0" y="125.5" text-anchor="middle">2</text>
+<text x="1044.0" y="127.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#4b706a">iáo</text>
+<text x="1090.3" y="127.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#4b706a">ié</text>
+<text x="1124.5" y="127.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#4b706a">ín</text>
+<rect x="1016.0" y="138.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1020.0" y="141.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1029.0" y="152.5" text-anchor="middle">3</text>
+<text x="1044.0" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">iǎ</text>
+<text x="1083.5" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">uǎn</text>
+<rect x="1016.0" y="165.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1020.0" y="168.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1029.0" y="179.5" text-anchor="middle">4</text>
+<text x="1044.0" y="181.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">àng</text>
+<rect x="1016.0" y="192.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1020.0" y="195.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1029.0" y="206.5" text-anchor="middle">0</text>
+<rect class="key" x="1200.0" y="24.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1214.0" y="55.0">U</text>
+<text class="initial" x="1216.0" y="73.0">sh</text>
+<rect x="1210.0" y="84.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1214.0" y="87.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1223.0" y="98.5" text-anchor="middle">1</text>
+<text x="1238.0" y="100.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#51657f">iāng</text>
+<text x="1281.2" y="100.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#51657f">iāo</text>
+<text x="1315.6" y="100.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#51657f">ōng</text>
+<text x="1350.1" y="100.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#51657f">uā</text>
+<rect x="1210.0" y="111.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1214.0" y="114.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1223.0" y="125.5" text-anchor="middle">2</text>
+<text x="1238.0" y="127.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">uái</text>
+<rect x="1210.0" y="138.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1214.0" y="141.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1223.0" y="152.5" text-anchor="middle">3</text>
+<text x="1238.0" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǎ</text>
+<rect x="1210.0" y="165.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1214.0" y="168.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1223.0" y="179.5" text-anchor="middle">4</text>
+<rect x="1210.0" y="192.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1214.0" y="195.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1223.0" y="206.5" text-anchor="middle">0</text>
+<text x="1238.0" y="208.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">ia</text>
+<rect class="key" x="1394.0" y="24.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1408.0" y="55.0">I</text>
+<text class="initial" x="1410.0" y="73.0">ch</text>
+<rect x="1404.0" y="84.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1408.0" y="87.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1417.0" y="98.5" text-anchor="middle">1</text>
+<text x="1432.0" y="100.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#51657f">iā</text>
+<text x="1457.7" y="100.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#51657f">iōng</text>
+<text x="1500.9" y="100.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#51657f">uāng</text>
+<text x="1544.1" y="100.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#51657f">ūn</text>
+<rect x="1404.0" y="111.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1408.0" y="114.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1417.0" y="125.5" text-anchor="middle">2</text>
+<text x="1432.0" y="127.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">án</text>
+<text x="1471.5" y="127.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">iáng</text>
+<rect x="1404.0" y="138.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1408.0" y="141.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1417.0" y="152.5" text-anchor="middle">3</text>
+<rect x="1404.0" y="165.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1408.0" y="168.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1417.0" y="179.5" text-anchor="middle">4</text>
+<text x="1432.0" y="181.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">ìng</text>
+<rect x="1404.0" y="192.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1408.0" y="195.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1417.0" y="206.5" text-anchor="middle">0</text>
+<text x="1432.0" y="208.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">u</text>
+<rect class="key" x="1588.0" y="24.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1602.0" y="55.0">O</text>
+<rect class="cornerBadge" x="1728.0" y="34.0" width="30" height="18" rx="8" ry="8"/>
+<text class="cornerText" x="1743.0" y="47.0" text-anchor="middle">oo</text>
+<rect x="1598.0" y="84.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1602.0" y="87.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1611.0" y="98.5" text-anchor="middle">1</text>
+<text x="1626.0" y="100.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ōu</text>
+<text x="1665.5" y="100.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">uī</text>
+<rect x="1598.0" y="111.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1602.0" y="114.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1611.0" y="125.5" text-anchor="middle">2</text>
+<text x="1626.0" y="127.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">áng</text>
+<text x="1679.0" y="127.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">ó</text>
+<rect x="1598.0" y="138.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1602.0" y="141.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1611.0" y="152.5" text-anchor="middle">3</text>
+<rect x="1598.0" y="165.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1602.0" y="168.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1611.0" y="179.5" text-anchor="middle">4</text>
+<text x="1626.0" y="181.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">ǜ</text>
+<rect x="1598.0" y="192.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1602.0" y="195.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1611.0" y="206.5" text-anchor="middle">0</text>
+<text x="1626.0" y="208.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#616873">ao</text>
+<text x="1660.2" y="208.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#616873">ian</text>
+<text x="1706.5" y="208.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#616873">ün</text>
+<rect class="key" x="1782.0" y="24.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1796.0" y="55.0">P</text>
+<rect x="1792.0" y="84.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1796.0" y="87.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1805.0" y="98.5" text-anchor="middle">1</text>
+<text x="1820.0" y="100.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ān</text>
+<text x="1859.5" y="100.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">uān</text>
+<rect x="1792.0" y="111.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1796.0" y="114.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1805.0" y="125.5" text-anchor="middle">2</text>
+<text x="1820.0" y="127.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#4b706a">én</text>
+<text x="1854.2" y="127.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#4b706a">iú</text>
+<text x="1888.4" y="127.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#4b706a">üé</text>
+<rect x="1792.0" y="138.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1796.0" y="141.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1805.0" y="152.5" text-anchor="middle">3</text>
+<text x="1820.0" y="154.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǒng</text>
+<rect x="1792.0" y="165.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1796.0" y="168.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1805.0" y="179.5" text-anchor="middle">4</text>
+<text x="1820.0" y="181.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">uàng</text>
+<rect x="1792.0" y="192.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1796.0" y="195.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1805.0" y="206.5" text-anchor="middle">0</text>
+<text x="1820.0" y="208.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">en</text>
+<rect class="key" x="133.0" y="226.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="147.0" y="257.0">A</text>
+<rect class="cornerBadge" x="273.0" y="236.0" width="30" height="18" rx="8" ry="8"/>
+<text class="cornerText" x="288.0" y="249.0" text-anchor="middle">aa</text>
+<rect x="143.0" y="286.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="147.0" y="289.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="156.0" y="300.5" text-anchor="middle">1</text>
+<text x="171.0" y="302.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">üē</text>
+<rect x="143.0" y="313.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="147.0" y="316.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="156.0" y="327.5" text-anchor="middle">2</text>
+<text x="171.0" y="329.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">ái</text>
+<rect x="143.0" y="340.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="147.0" y="343.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="156.0" y="354.5" text-anchor="middle">3</text>
+<text x="171.0" y="356.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">iǎn</text>
+<text x="224.0" y="356.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǔ</text>
+<rect x="143.0" y="367.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="147.0" y="370.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="156.0" y="381.5" text-anchor="middle">4</text>
+<text x="171.0" y="383.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">èr</text>
+<text x="210.5" y="383.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">m̀</text>
+<rect x="143.0" y="394.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="147.0" y="397.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="156.0" y="408.5" text-anchor="middle">0</text>
+<text x="171.0" y="410.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">o</text>
+<text x="197.0" y="410.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">uan</text>
+<rect class="key" x="327.0" y="226.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="341.0" y="257.0">S</text>
+<rect x="337.0" y="286.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="341.0" y="289.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="350.0" y="300.5" text-anchor="middle">1</text>
+<text x="365.0" y="302.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">īng</text>
+<rect x="337.0" y="313.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="341.0" y="316.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="350.0" y="327.5" text-anchor="middle">2</text>
+<text x="365.0" y="329.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">ǘ</text>
+<rect x="337.0" y="340.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="341.0" y="343.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="350.0" y="354.5" text-anchor="middle">3</text>
+<text x="365.0" y="356.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǎo</text>
+<rect x="337.0" y="367.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="341.0" y="370.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="350.0" y="381.5" text-anchor="middle">4</text>
+<text x="365.0" y="383.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">èn</text>
+<rect x="337.0" y="394.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="341.0" y="397.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="350.0" y="408.5" text-anchor="middle">0</text>
+<text x="365.0" y="410.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#616873">ang</text>
+<text x="399.4" y="410.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#616873">ei</text>
+<text x="425.2" y="410.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#616873">iao</text>
+<text x="459.6" y="410.2" text-anchor="start" font-size="14.07" font-weight="700" fill="#616873">iong</text>
+<rect class="key" x="521.0" y="226.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="535.0" y="257.0">D</text>
+<rect x="531.0" y="286.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="535.0" y="289.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="544.0" y="300.5" text-anchor="middle">1</text>
+<text x="559.0" y="302.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ā</text>
+<text x="585.0" y="302.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">āi</text>
+<rect x="531.0" y="313.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="535.0" y="316.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="544.0" y="327.5" text-anchor="middle">2</text>
+<text x="559.0" y="329.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">ǘn</text>
+<rect x="531.0" y="340.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="535.0" y="343.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="544.0" y="354.5" text-anchor="middle">3</text>
+<rect x="531.0" y="367.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="535.0" y="370.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="544.0" y="381.5" text-anchor="middle">4</text>
+<text x="559.0" y="383.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">iù</text>
+<text x="598.5" y="383.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">uàn</text>
+<rect x="531.0" y="394.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="535.0" y="397.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="544.0" y="408.5" text-anchor="middle">0</text>
+<text x="559.0" y="410.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">a</text>
+<rect class="key" x="715.0" y="226.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="729.0" y="257.0">F</text>
+<rect x="725.0" y="286.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="729.0" y="289.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="738.0" y="300.5" text-anchor="middle">1</text>
+<rect x="725.0" y="313.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="729.0" y="316.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="738.0" y="327.5" text-anchor="middle">2</text>
+<text x="753.0" y="329.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#4b706a">í</text>
+<text x="775.1" y="329.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#4b706a">ióng</text>
+<text x="833.5" y="329.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#4b706a">uó</text>
+<rect x="725.0" y="340.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="729.0" y="343.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="738.0" y="354.5" text-anchor="middle">3</text>
+<text x="753.0" y="356.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#7b6437">ǎi</text>
+<text x="787.2" y="356.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#7b6437">ěr</text>
+<text x="821.4" y="356.2" text-anchor="start" font-size="19.50" font-weight="700" fill="#7b6437">üě</text>
+<rect x="725.0" y="367.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="729.0" y="370.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="738.0" y="381.5" text-anchor="middle">4</text>
+<rect x="725.0" y="394.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="729.0" y="397.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="738.0" y="408.5" text-anchor="middle">0</text>
+<text x="753.0" y="410.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">iang</text>
+<text x="819.4" y="410.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">uo</text>
+<rect class="key" x="909.0" y="226.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="923.0" y="257.0">G</text>
+<rect x="919.0" y="286.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="923.0" y="289.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="932.0" y="300.5" text-anchor="middle">1</text>
+<rect x="919.0" y="313.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="923.0" y="316.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="932.0" y="327.5" text-anchor="middle">2</text>
+<rect x="919.0" y="340.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="923.0" y="343.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="932.0" y="354.5" text-anchor="middle">3</text>
+<text x="947.0" y="356.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǎng</text>
+<text x="1000.0" y="356.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ěng</text>
+<rect x="919.0" y="367.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="923.0" y="370.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="932.0" y="381.5" text-anchor="middle">4</text>
+<text x="947.0" y="383.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">iàn</text>
+<text x="1000.0" y="383.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">ùn</text>
+<rect x="919.0" y="394.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="923.0" y="397.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="932.0" y="408.5" text-anchor="middle">0</text>
+<text x="947.0" y="410.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">uai</text>
+<rect class="key" x="1103.0" y="226.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1117.0" y="257.0">H</text>
+<rect x="1113.0" y="286.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1117.0" y="289.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1126.0" y="300.5" text-anchor="middle">1</text>
+<text x="1141.0" y="302.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">āo</text>
+<rect x="1113.0" y="313.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1117.0" y="316.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1126.0" y="327.5" text-anchor="middle">2</text>
+<text x="1141.0" y="329.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">ú</text>
+<rect x="1113.0" y="340.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1117.0" y="343.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1126.0" y="354.5" text-anchor="middle">3</text>
+<text x="1141.0" y="356.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ě</text>
+<text x="1167.0" y="356.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǐn</text>
+<rect x="1113.0" y="367.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1117.0" y="370.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1126.0" y="381.5" text-anchor="middle">4</text>
+<text x="1141.0" y="383.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">iàng</text>
+<rect x="1113.0" y="394.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1117.0" y="397.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1126.0" y="408.5" text-anchor="middle">0</text>
+<rect class="key" x="1297.0" y="226.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1311.0" y="257.0">J</text>
+<rect x="1307.0" y="286.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1311.0" y="289.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1320.0" y="300.5" text-anchor="middle">1</text>
+<text x="1335.0" y="302.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">iū</text>
+<rect x="1307.0" y="313.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1311.0" y="316.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1320.0" y="327.5" text-anchor="middle">2</text>
+<text x="1335.0" y="329.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">óng</text>
+<rect x="1307.0" y="340.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1311.0" y="343.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1320.0" y="354.5" text-anchor="middle">3</text>
+<text x="1335.0" y="356.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǚ</text>
+<rect x="1307.0" y="367.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1311.0" y="370.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1320.0" y="381.5" text-anchor="middle">4</text>
+<text x="1335.0" y="383.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">ù</text>
+<rect x="1307.0" y="394.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1311.0" y="397.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1320.0" y="408.5" text-anchor="middle">0</text>
+<rect class="key" x="1491.0" y="226.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1505.0" y="257.0">K</text>
+<rect x="1501.0" y="286.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1505.0" y="289.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1514.0" y="300.5" text-anchor="middle">1</text>
+<text x="1529.0" y="302.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">āng</text>
+<text x="1582.0" y="302.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ǖn</text>
+<rect x="1501.0" y="313.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1505.0" y="316.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1514.0" y="327.5" text-anchor="middle">2</text>
+<text x="1529.0" y="329.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">ér</text>
+<text x="1568.5" y="329.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">íng</text>
+<rect x="1501.0" y="340.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1505.0" y="343.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1514.0" y="354.5" text-anchor="middle">3</text>
+<text x="1529.0" y="356.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">iǒng</text>
+<text x="1595.4" y="356.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">uǎi</text>
+<rect x="1501.0" y="367.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1505.0" y="370.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1514.0" y="381.5" text-anchor="middle">4</text>
+<text x="1529.0" y="383.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">òu</text>
+<rect x="1501.0" y="394.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1505.0" y="397.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1514.0" y="408.5" text-anchor="middle">0</text>
+<text x="1529.0" y="410.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">er</text>
+<rect class="key" x="1685.0" y="226.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1699.0" y="257.0">L</text>
+<rect x="1695.0" y="286.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1699.0" y="289.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1708.0" y="300.5" text-anchor="middle">1</text>
+<rect x="1695.0" y="313.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1699.0" y="316.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1708.0" y="327.5" text-anchor="middle">2</text>
+<text x="1723.0" y="329.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">óu</text>
+<text x="1762.5" y="329.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">uí</text>
+<rect x="1695.0" y="340.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1699.0" y="343.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1708.0" y="354.5" text-anchor="middle">3</text>
+<text x="1723.0" y="356.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǎn</text>
+<rect x="1695.0" y="367.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1699.0" y="370.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1708.0" y="381.5" text-anchor="middle">4</text>
+<text x="1723.0" y="383.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">iào</text>
+<rect x="1695.0" y="394.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1699.0" y="397.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1708.0" y="408.5" text-anchor="middle">0</text>
+<text x="1723.0" y="410.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">i</text>
+<rect class="key" x="327.0" y="428.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="341.0" y="459.0">Z</text>
+<rect x="337.0" y="488.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="341.0" y="491.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="350.0" y="502.5" text-anchor="middle">1</text>
+<text x="365.0" y="504.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">iān</text>
+<text x="418.0" y="504.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">uō</text>
+<rect x="337.0" y="515.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="341.0" y="518.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="350.0" y="529.5" text-anchor="middle">2</text>
+<text x="365.0" y="531.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">éng</text>
+<rect x="337.0" y="542.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="341.0" y="545.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="350.0" y="556.5" text-anchor="middle">3</text>
+<rect x="337.0" y="569.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="341.0" y="572.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="350.0" y="583.5" text-anchor="middle">4</text>
+<text x="365.0" y="585.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">uài</text>
+<text x="418.0" y="585.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">ǜn</text>
+<rect x="337.0" y="596.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="341.0" y="599.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="350.0" y="610.5" text-anchor="middle">0</text>
+<text x="365.0" y="612.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">iu</text>
+<text x="404.5" y="612.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">ong</text>
+<rect class="key" x="521.0" y="428.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="535.0" y="459.0">X</text>
+<rect x="531.0" y="488.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="535.0" y="491.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="544.0" y="502.5" text-anchor="middle">1</text>
+<rect x="531.0" y="515.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="535.0" y="518.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="544.0" y="529.5" text-anchor="middle">2</text>
+<text x="559.0" y="531.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">é</text>
+<text x="585.0" y="531.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">ián</text>
+<rect x="531.0" y="542.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="535.0" y="545.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="544.0" y="556.5" text-anchor="middle">3</text>
+<text x="559.0" y="558.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">uǐ</text>
+<rect x="531.0" y="569.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="535.0" y="572.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="544.0" y="583.5" text-anchor="middle">4</text>
+<text x="559.0" y="585.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">àn</text>
+<text x="598.5" y="585.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">iè</text>
+<rect x="531.0" y="596.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="535.0" y="599.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="544.0" y="610.5" text-anchor="middle">0</text>
+<rect class="key" x="715.0" y="428.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="729.0" y="459.0">C</text>
+<rect x="725.0" y="488.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="729.0" y="491.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="738.0" y="502.5" text-anchor="middle">1</text>
+<text x="753.0" y="504.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ēng</text>
+<text x="806.0" y="504.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">īn</text>
+<rect x="725.0" y="515.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="729.0" y="518.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="738.0" y="529.5" text-anchor="middle">2</text>
+<text x="753.0" y="531.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">ḿ</text>
+<rect x="725.0" y="542.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="729.0" y="545.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="738.0" y="556.5" text-anchor="middle">3</text>
+<text x="753.0" y="558.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ěi</text>
+<text x="792.5" y="558.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">uǒ</text>
+<rect x="725.0" y="569.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="729.0" y="572.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="738.0" y="583.5" text-anchor="middle">4</text>
+<text x="753.0" y="585.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">òng</text>
+<rect x="725.0" y="596.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="729.0" y="599.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="738.0" y="610.5" text-anchor="middle">0</text>
+<text x="753.0" y="612.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">ing</text>
+<text x="806.0" y="612.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">ua</text>
+<rect class="key" x="909.0" y="428.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="923.0" y="459.0">V</text>
+<text class="initial" x="925.0" y="477.0">zh</text>
+<rect x="919.0" y="488.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="923.0" y="491.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="932.0" y="502.5" text-anchor="middle">1</text>
+<text x="947.0" y="504.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">uāi</text>
+<rect x="919.0" y="515.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="923.0" y="518.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="932.0" y="529.5" text-anchor="middle">2</text>
+<text x="947.0" y="531.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">á</text>
+<text x="973.0" y="531.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">iá</text>
+<rect x="919.0" y="542.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="923.0" y="545.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="932.0" y="556.5" text-anchor="middle">3</text>
+<text x="947.0" y="558.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">iě</text>
+<rect x="919.0" y="569.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="923.0" y="572.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="932.0" y="583.5" text-anchor="middle">4</text>
+<text x="947.0" y="585.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">èi</text>
+<text x="986.5" y="585.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">uò</text>
+<rect x="919.0" y="596.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="923.0" y="599.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="932.0" y="610.5" text-anchor="middle">0</text>
+<rect class="key" x="1103.0" y="428.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1117.0" y="459.0">B</text>
+<rect x="1113.0" y="488.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1117.0" y="491.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1126.0" y="502.5" text-anchor="middle">1</text>
+<text x="1141.0" y="504.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ēn</text>
+<rect x="1113.0" y="515.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1117.0" y="518.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1126.0" y="529.5" text-anchor="middle">2</text>
+<text x="1141.0" y="531.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#4b706a">uán</text>
+<rect x="1113.0" y="542.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1117.0" y="545.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1126.0" y="556.5" text-anchor="middle">3</text>
+<rect x="1113.0" y="569.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1117.0" y="572.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1126.0" y="583.5" text-anchor="middle">4</text>
+<text x="1141.0" y="585.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">à</text>
+<text x="1167.0" y="585.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">ià</text>
+<rect x="1113.0" y="596.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1117.0" y="599.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1126.0" y="610.5" text-anchor="middle">0</text>
+<rect class="key" x="1297.0" y="428.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1311.0" y="459.0">N</text>
+<rect x="1307.0" y="488.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1311.0" y="491.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1320.0" y="502.5" text-anchor="middle">1</text>
+<text x="1335.0" y="504.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ī</text>
+<rect x="1307.0" y="515.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1311.0" y="518.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1320.0" y="529.5" text-anchor="middle">2</text>
+<rect x="1307.0" y="542.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1311.0" y="545.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1320.0" y="556.5" text-anchor="middle">3</text>
+<text x="1335.0" y="558.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ěn</text>
+<text x="1374.5" y="558.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">uǎng</text>
+<rect x="1307.0" y="569.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1311.0" y="572.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1320.0" y="583.5" text-anchor="middle">4</text>
+<text x="1335.0" y="585.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#755560">ò</text>
+<rect x="1307.0" y="596.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1311.0" y="599.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1320.0" y="610.5" text-anchor="middle">0</text>
+<text x="1335.0" y="612.2" text-anchor="start" font-size="16.33" font-weight="700" fill="#616873">ai</text>
+<text x="1363.5" y="612.2" text-anchor="start" font-size="16.33" font-weight="700" fill="#616873">ou</text>
+<text x="1392.1" y="612.2" text-anchor="start" font-size="16.33" font-weight="700" fill="#616873">uang</text>
+<text x="1440.8" y="612.2" text-anchor="start" font-size="16.33" font-weight="700" fill="#616873">un</text>
+<rect class="key" x="1491.0" y="428.0" width="182" height="190" rx="16" ry="16"/>
+<text class="keyname" x="1505.0" y="459.0">M</text>
+<rect x="1501.0" y="488.0" width="162" height="22" rx="8" ry="8" fill="url(#band1)"/>
+<rect x="1505.0" y="491.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1514.0" y="502.5" text-anchor="middle">1</text>
+<text x="1529.0" y="504.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#51657f">ǖ</text>
+<rect x="1501.0" y="515.0" width="162" height="22" rx="8" ry="8" fill="url(#band2)"/>
+<rect x="1505.0" y="518.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1514.0" y="529.5" text-anchor="middle">2</text>
+<rect x="1501.0" y="542.0" width="162" height="22" rx="8" ry="8" fill="url(#band3)"/>
+<rect x="1505.0" y="545.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1514.0" y="556.5" text-anchor="middle">3</text>
+<text x="1529.0" y="558.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǐng</text>
+<text x="1582.0" y="558.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#7b6437">ǚn</text>
+<rect x="1501.0" y="569.0" width="162" height="22" rx="8" ry="8" fill="url(#band4)"/>
+<rect x="1505.0" y="572.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1514.0" y="583.5" text-anchor="middle">4</text>
+<text x="1529.0" y="585.2" text-anchor="start" font-size="19.07" font-weight="700" fill="#755560">èng</text>
+<text x="1574.3" y="585.2" text-anchor="start" font-size="19.07" font-weight="700" fill="#755560">iòng</text>
+<text x="1631.3" y="585.2" text-anchor="start" font-size="19.07" font-weight="700" fill="#755560">uì</text>
+<rect x="1501.0" y="596.0" width="162" height="22" rx="8" ry="8" fill="url(#band0)"/>
+<rect x="1505.0" y="599.0" width="18" height="16" rx="7" ry="7" fill="#ffffff" fill-opacity="0.50"/>
+<text class="toneLabel" x="1514.0" y="610.5" text-anchor="middle">0</text>
+<text x="1529.0" y="612.2" text-anchor="start" font-size="21.75" font-weight="700" fill="#616873">eng</text>
+</svg>
