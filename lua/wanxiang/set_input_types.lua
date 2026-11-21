@@ -178,7 +178,6 @@ local function translator(input, seg, env)
     local files = {
         "wanxiang_mixedcode.custom.yaml",
         "wanxiang_reverse.custom.yaml",
-        "wanxiang_english.custom.yaml",
         "wanxiang_abbrev.custom.yaml",
         "wanxiang_phrase.custom.yaml",
         main_file,
