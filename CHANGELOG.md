@@ -280,7 +280,7 @@
 
 ### 🐛 Bug 修复
 
-* pro版本增加万象双拼测试，同时优化set_schema ([fa82cb9](https://github.com/amzxyz/rime-wanxiang/commit/fa82cb9fb88b49370dcf72a2d59474a31f0a3255))
+* pro版本增加万象双拼测试，同时优化set_input_types ([fa82cb9](https://github.com/amzxyz/rime-wanxiang/commit/fa82cb9fb88b49370dcf72a2d59474a31f0a3255))
 * 修复整体替换导致的错误 ([64e4277](https://github.com/amzxyz/rime-wanxiang/commit/64e4277dd216ec656b070ed04146d0917fd70a9f))
 * 港繁预设文件分隔符错误 ([afb4d69](https://github.com/amzxyz/rime-wanxiang/commit/afb4d694e711acf4d46505eff3b74b7261109346))
 * 移除中文翻译英文数据 ([4f21216](https://github.com/amzxyz/rime-wanxiang/commit/4f21216a9cc2eea0fc884856467ac3a3a35c6ce8))
@@ -427,7 +427,7 @@
 
 ### 🐛 Bug 修复
 
-* set_schema不再无辜覆盖附属custom文件 ([f1db912](https://github.com/amzxyz/rime-wanxiang/commit/f1db91273a4a946e06734f1f2c708e2a2d4aae30))
+* set_input_types不再无辜覆盖附属custom文件 ([f1db912](https://github.com/amzxyz/rime-wanxiang/commit/f1db91273a4a946e06734f1f2c708e2a2d4aae30))
 
 ## [18.0.4](https://github.com/amzxyz/rime-wanxiang/compare/v18.0.3...v18.0.4) (2026-09-18)
 
@@ -5866,7 +5866,7 @@
 ### 🐛 Bug 修复
 
 * 候选格式化新增非标空格转换为标准空格的能力，先期主要解决OpenCC字符连续所产生的候选 ([8c07306](https://github.com/amzxyz/rime-wanxiang/commit/8c0730637820302c3292b272d9f7290b6cb6b442))
-* 推出过渡性set_schema ([fd9ac58](https://github.com/amzxyz/rime-wanxiang/commit/fd9ac58370c2c95c4878d0f0a3e54266b9c0532d))
+* 推出过渡性set_input_types ([fd9ac58](https://github.com/amzxyz/rime-wanxiang/commit/fd9ac58370c2c95c4878d0f0a3e54266b9c0532d))
 
 ## [13.0.1](https://github.com/amzxyz/rime-wanxiang/compare/v13.0.0...v13.0.1) (2025-09-29)
 
@@ -6818,7 +6818,7 @@
 
 ### ✨ 新特性
 
-* 新增快速初始化插件set_schema.lua ([f557533](https://github.com/amzxyz/rime-wanxiang/commit/f5575330c245d24d64fac5a7553da2717c79ec30))
+* 新增快速初始化插件set_input_types.lua ([f557533](https://github.com/amzxyz/rime-wanxiang/commit/f5575330c245d24d64fac5a7553da2717c79ec30))
 
 
 ### 📚 词库更新

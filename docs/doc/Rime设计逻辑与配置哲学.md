@@ -280,7 +280,7 @@ Translator 的职责是：
     - script_translator
     - lua_translator@*wanxiang.context_reorder*T
     - lua_translator@*wanxiang.version_display
-    - lua_translator@*wanxiang.set_schema
+    - lua_translator@*wanxiang.set_input_types
     - lua_translator@*wanxiang.shijian
     - lua_translator@*wanxiang.unicode
     - lua_translator@*wanxiang.number_translator
@@ -381,7 +381,7 @@ engine:
     - script_translator
     - lua_translator@*wanxiang.context_reorder*T
     - lua_translator@*wanxiang.version_display
-    - lua_translator@*wanxiang.set_schema
+    - lua_translator@*wanxiang.set_input_types
     - lua_translator@*wanxiang.shijian
     - lua_translator@*wanxiang.unicode
     - lua_translator@*wanxiang.number_translator

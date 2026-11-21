@@ -97,7 +97,7 @@ P99=36ms 的按键对应复杂场景（多候选过滤 + 用户预测）。
 | wanxiang_english | 813 | 108.5 | 88,181.4 | C++ |
 | *wanxiang.version_display | 813 | 93.7 | 76,178.8 | Lua |
 | *wanxiang.super_calculator | 813 | 77.2 | 62,794.5 | Lua |
-| *wanxiang.set_schema | 813 | 43.2 | 35,156.7 | Lua |
+| *wanxiang.set_input_types | 813 | 43.2 | 35,156.7 | Lua |
 | add_user_dict | 813 | 25.9 | 21,067.5 | C++ |
 | wanxiang_mixedcode | 813 | 24.0 | 19,491.9 | C++ |
 | custom_phrase | 813 | 12.3 | 10,017.7 | C++ |
@@ -195,7 +195,7 @@ P99=36ms 的按键对应复杂场景（多候选过滤 + 用户预测）。
 | *wanxiang.super_english | 58,145 | 813 | 71.5 |
 | *wanxiang.auto_phrase | 45,311 | 813 | 55.7 |
 | *wanxiang.key_binder | 42,040 | 1,791 | 23.5 |
-| *wanxiang.set_schema | 35,157 | 813 | 43.2 |
+| *wanxiang.set_input_types | 35,157 | 813 | 43.2 |
 | *wanxiang.super_tips | 18,919 | 1,838 | 10.3 |
 | *wanxiang.partial_commit | 9,850 | 1,844 | 5.3 |
 
@@ -240,7 +240,7 @@ ProcessKey                                       7,739 µs  (100%)
 
 P99 延迟约 36ms，超过部分由偶发尖峰拉高。Top 10 尖峰均为 >49ms。
 
-这些高延迟按键的共同特征：均触发完整 Compose + TransSeg，主翻译器字典查询耗时（script_translator 3-4ms）和 同时存在 `set_schema` 偶发尖峰（见 line 432 出现 2505µs，是正常 43µs 的 58 倍）。
+这些高延迟按键的共同特征：均触发完整 Compose + TransSeg，主翻译器字典查询耗时（script_translator 3-4ms）和 同时存在 `set_input_types` 偶发尖峰（见 line 432 出现 2505µs，是正常 43µs 的 58 倍）。
 
 ---
 
@@ -261,7 +261,7 @@ P99 延迟约 36ms，超过部分由偶发尖峰拉高。Top 10 尖峰均为 >49
 
 1. **Lua filter 链长度优化** — 9 个 Lua filter 串行处理每轮候选。`super_filter` (1,280µs) 排最前面，其 yield 等待后续 8 个 filter 完成才继续。考虑合并 `super_sequence*F` (844µs) 和 `super_replacer` (338µs) 入 `super_filter`。
 2. **`super_filter.lua:538` os.date 缓存** — 同一按键内不重复调用系统时间。
-3. **`set_schema` 偶发尖峰排查** — line 432 出现 2,505µs 异常值（正常均值 43µs），可能是配置读取出错重试。
+3. **`set_input_types` 偶发尖峰排查** — line 432 出现 2,505µs 异常值（正常均值 43µs），可能是配置读取出错重试。
 
 ### Lua vs C++ 最终结论
 

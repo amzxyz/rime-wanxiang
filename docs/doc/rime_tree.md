@@ -79,7 +79,7 @@
         * **librime.lua** —— `librime 底层接口封装`
         * **number_translator.lua** —— `数字与人民币大写转换模块`
         * **partial_commit.lua** —— `局部提交与分段上屏模块`
-        * **set_schema.lua** —— `输入类型快捷切换模块`
+        * **set_input_types.lua** —— `输入类型快捷切换模块`
         * **shijian.lua** —— `日期、时间、农历、节气等动态内容模块`
         * **super_calculator.lua** —— `计算器模块`
         * **super_comment_preedit.lua** —— `候选注释与 Preedit 处理模块`
