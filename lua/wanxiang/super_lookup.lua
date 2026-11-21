@@ -1111,7 +1111,7 @@ end
 
 -- explicit 一次扫描同时得到“是否入选”和“排序来源”。
 -- 入选仍受声调约束；source/level 仍按旧逻辑忽略声调，保持原排序语义。
-local function match_explicit(raw_data, cand_len, clean_fuma, fuma1, fuma2, tone_filter_seq, apply_tone_filter, env, need_rank, memo)
+local function match_explicit(raw_data, cand_len, clean_fuma, fuma1, fuma2, tone_filter_seq, apply_tone_filter, env, need_rank, memo, single_prefix_match)
     local rank_source, rank_level
 
     for index, source_type in ipairs(env.data_sources) do
@@ -1121,10 +1121,20 @@ local function match_explicit(raw_data, cand_len, clean_fuma, fuma1, fuma2, tone
             local fuzzy_known = false
             local fuzzy_result = false
 
+            -- 仅多字后缀裁剪到首字时，允许 b 命中 lb；普通单字反查仍须前缀匹配。
+            local single_level
+            if cand_len == 1 then
+                if group_match(codes_seq[1], clean_fuma) then
+                    single_level = 1
+                elseif single_prefix_match and match_direct_word(codes_seq, 1, clean_fuma, is_db) then
+                    single_level = 2
+                end
+            end
+
             if need_rank and not rank_source then
                 if cand_len == 1 then
-                    if group_match(codes_seq[1], clean_fuma) then
-                        rank_source, rank_level = index, 1
+                    if single_level then
+                        rank_source, rank_level = index, single_level
                     end
                 else
                     for i = 1, cand_len do
@@ -1160,7 +1170,7 @@ local function match_explicit(raw_data, cand_len, clean_fuma, fuma1, fuma2, tone
             if tone_match_pass and (source_type == "aux" or source_type == "db") then
                 local matched
                 if cand_len == 1 then
-                    matched = group_match(codes_seq[1], clean_fuma)
+                    matched = single_level ~= nil
                 else
                     if not fuzzy_known then
                         clear_table(memo)
@@ -1249,7 +1259,6 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
 
     local ctx = env.engine.context
     local clean_fuma, tone_filter_seq, fuma_chunks = parse_fuma_rules(explicitly_fuma)
-    local fuma1, fuma2 = clean_fuma:sub(1, 1), clean_fuma:sub(2, 2)
     local apply_tone_filter = env.enable_tone and #tone_filter_seq > 0
     local if_single_char_first = ctx:get_option("char_priority")
 
@@ -1267,13 +1276,16 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
     local scanned = 0
     local flushed = false
     local passthrough_started = false
+    local tone_prefix_cache = {}
 
     local function yield_collected()
         if flushed then return end
         flushed = true
 
         if buckets then
-            for _, bucket in pairs(buckets) do table.sort(bucket, lookup_item_less) end
+            for len, bucket in pairs(buckets) do
+                if len > 1 then table.sort(bucket, lookup_item_less) end
+            end
             if if_single_char_first then
                 local singles = buckets[1]
                 if singles then for i = 1, #singles do yield(singles[i].cand) end end
@@ -1353,9 +1365,30 @@ local function handle_explicit_mode(input, env, ctx_input, pure_code, explicitly
 
         local raw_data = build_candidate_raw_data(cand, cand_len, env, raw_scratch)
         local need_rank = not (if_single_char_first and cand_len > 1)
+
+        -- 短候选只负责已经覆盖的前几个字。反查后缀可能还包含后续字的
+        -- 辅助码/声调，不能拿它们要求当前的前缀单字、短词全部匹配。
+        -- 只有候选未消耗完反查前的正文时才截取；整词仍严格匹配全部条件。
+        local match_fuma, match_tones = clean_fuma, tone_filter_seq
+        if cand._end < #pure_code then
+            if #match_fuma > cand_len then
+                match_fuma = match_fuma:sub(1, cand_len)
+            end
+            if #match_tones > cand_len then
+                local prefix = tone_prefix_cache[cand_len]
+                if not prefix then
+                    prefix = {}
+                    for i = 1, cand_len do prefix[i] = tone_filter_seq[i] end
+                    tone_prefix_cache[cand_len] = prefix
+                end
+                match_tones = prefix
+            end
+        end
+
         local matched, source_index, level = match_explicit(
-            raw_data, cand_len, clean_fuma, fuma1, fuma2,
-            tone_filter_seq, apply_tone_filter, env, need_rank, fuzzy_memo
+            raw_data, cand_len, match_fuma, match_fuma:sub(1, 1), match_fuma:sub(2, 2),
+            match_tones, apply_tone_filter, env, need_rank, fuzzy_memo,
+            cand_len == 1 and #match_fuma < #clean_fuma
         )
 
         if matched then
@@ -1750,7 +1783,6 @@ function f.fini(env)
         end)
     end
     env.main_translator = nil
-
     env.db_names = nil
     env.db_table = nil
     env.main_projection = nil
