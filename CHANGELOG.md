@@ -1,5 +1,26 @@
 # Changelog
 
+## [18.2.0](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.14...v18.2.0) (2026-11-21)
+
+
+### ✨ 新特性
+
+* **lookup:** 词组筛选或者首句修改时，支持回退单字筛选，不再完整匹配过滤掉所有单字，这样在需要造词的时候可以逐个选择 ([c6878a1](https://github.com/amzxyz/rime-wanxiang/commit/c6878a1106f66bbdf148b2f54400b4db72ec96d2))
+
+
+### 📚 词库更新
+
+* 词库调整 ([907edf6](https://github.com/amzxyz/rime-wanxiang/commit/907edf67ce6d1f5c73b9f65ce9a2de55f8d7c82d))
+
+
+### 🐛 Bug 修复
+
+* guard translator disconnect in custom_phrase fini ([386258d](https://github.com/amzxyz/rime-wanxiang/commit/386258dd10de102dced6944353380d22d355d553))
+* pro新增偶数编码输入逐个选字造词时编码非贪婪消耗，意思就是不会把心目中的声母变成前一个字的辅助码用掉了 ([f9756e7](https://github.com/amzxyz/rime-wanxiang/commit/f9756e7cb376451c61ebc20100525f057aa6b096))
+* 修复looup状态下声调造成了回退的问题 ([e52c295](https://github.com/amzxyz/rime-wanxiang/commit/e52c2958464d23fe2675f7c6770d921926b5d245))
+* 反查数据库按权重排序 ([0a137fa](https://github.com/amzxyz/rime-wanxiang/commit/0a137fa979277228ac7580f28b941d604a4be16d))
+* 移除英文方案中复杂的派生未来混合的全部移动到mixed处理 ([f2ebba6](https://github.com/amzxyz/rime-wanxiang/commit/f2ebba669dd5b5a98ef140018e53138e5245a36b))
+
 ## [18.1.14](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.13...v18.1.14) (2026-11-18)
 
 
