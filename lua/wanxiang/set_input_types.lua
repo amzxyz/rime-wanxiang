@@ -1,26 +1,28 @@
 local wanxiang = require("wanxiang/wanxiang")
 
-local function copy_file(src, dest)
-    local fi = io.open(src, "rb")
-    if not fi then
-        return false
-    end
+local function read_file(path)
+    local f, err = io.open(path, "rb")
+    if not f then return nil, err end
 
-    local content = fi:read("*a")
-    fi:close()
+    local content, read_err = f:read("*a")
+    local closed, close_err = f:close()
+    if not content then return nil, read_err end
+    if not closed then return nil, close_err end
+    return content
+end
 
-    local fo = io.open(dest, "wb")
-    if not fo then
-        return false
-    end
+local function write_file(path, content)
+    local f, err = io.open(path, "wb")
+    if not f then return false, err end
 
-    fo:write(content)
-    fo:close()
+    local written, write_err = f:write(content)
+    local closed, close_err = f:close()
+    if not written or not closed then return false, write_err or close_err end
     return true
 end
 
 local function file_exists(path)
-    local f = io.open(path, "r")
+    local f = io.open(path, "rb")
     if f then
         f:close()
         return true
@@ -43,23 +45,23 @@ local function get_scheme_info(env)
 end
 
 local schema_map = {
-        ["/flypy"]   = "小鹤双拼",
-        ["/mspy"]    = "微软双拼",
-        ["/zrm"]     = "自然码",
-        ["/sogou"]   = "搜狗双拼",
-        ["/znabc"]   = "智能ABC",
-        ["/ziguang"] = "紫光双拼",
-        ["/pyjj"]    = "拼音加加",
-        ["/gbpy"]    = "国标双拼",
-        ["/lxsq"]    = "乱序17",
-        ["/ltsp"]    = "蓝天双拼",
-        ["/zrlong"]  = "自然龙",
-        ["/hxlong"]  = "汉心龙",
-        ["/pinyin"]  = "全拼",
-        ["/sdpy"]    = "首道双拼",
-        ["/dnsp"]    = "大牛双拼",
-        ["/wxsp"]    = "万象双拼",
-    }
+    ["/flypy"]   = "小鹤双拼",
+    ["/mspy"]    = "微软双拼",
+    ["/zrm"]     = "自然码",
+    ["/sogou"]   = "搜狗双拼",
+    ["/znabc"]   = "智能ABC",
+    ["/ziguang"] = "紫光双拼",
+    ["/pyjj"]    = "拼音加加",
+    ["/gbpy"]    = "国标双拼",
+    ["/lxsq"]    = "乱序17",
+    ["/ltsp"]    = "蓝天双拼",
+    ["/zrlong"]  = "自然龙",
+    ["/hxlong"]  = "汉心龙",
+    ["/pinyin"]  = "全拼",
+    ["/sdpy"]    = "首道双拼",
+    ["/dnsp"]    = "大牛双拼",
+    ["/wxsp"]    = "万象双拼",
+}
 
 local tone_required_schema = {
     ["万象双拼"] = true,
@@ -69,149 +71,169 @@ local tone_required_schema = {
 
 local function is_schema_name(name)
     for _, value in pairs(schema_map) do
-        if name == value then
-            return true
-        end
+        if name == value then return true end
     end
     return false
 end
 
-local function replace_schema(file_path, target_schema)
-    local f = io.open(file_path, "r")
-    if not f then
-        return false
-    end
-
-    local content = f:read("*a")
-    f:close()
-
-    content = content:gsub(
+-- 在内存中完成替换；不触碰磁盘，也不改动不认识的 algebra 规则。
+local function replace_schema_content(content, target_schema)
+    local matched = 0
+    local updated = content:gsub(
         "(wanxiang_algebra:/[^/]+/)([^%s#]+)",
         function(prefix, name)
             if is_schema_name(name) then
+                matched = matched + 1
                 return prefix .. target_schema
             end
             return prefix .. name
         end
     )
+    return updated, matched
+end
 
-    f = io.open(file_path, "w")
-    if not f then
-        return false
+-- source_path 为 nil 时修改现有文件；有值时从模板生成新文件。
+-- 返回 changed / created / unchanged / no_rule，失败时返回 nil 和原因。
+local function update_schema_file(dest, source_path, target_schema, require_rule)
+    local content, err = read_file(source_path or dest)
+    if not content then return nil, "读取失败：" .. tostring(err) end
+
+    local updated, matched = replace_schema_content(content, target_schema)
+    if require_rule and matched == 0 then
+        return nil, "主配置未找到可切换的输入方案规则"
+    end
+    if not source_path and updated == content then
+        return matched > 0 and "unchanged" or "no_rule"
     end
 
-    f:write(content)
-    f:close()
-    return true
+    local ok, write_err = write_file(dest, updated)
+    if not ok then return nil, "写入失败：" .. tostring(write_err) end
+    return source_path and "created" or "changed"
+end
+
+local function replace_aux_content(content, target_aux)
+    local matched = 0
+    local updated = content:gsub(
+        "(%-+%s*wanxiang_algebra:/[%w_]+/)([^%s#]+)",
+        function(prefix, name)
+            if name == "直接辅助" or name == "间接辅助" then
+                matched = matched + 1
+                return prefix .. target_aux
+            end
+            return prefix .. name
+        end
+    )
+    return updated, matched
+end
+
+local function emit(seg, message)
+    yield(Candidate("switch", seg.start, seg._end, message, ""))
 end
 
 local function translator(input, seg, env)
     local profile, main_file = get_scheme_info(env)
-    if not profile then
-        return
-    end
+    if not profile then return end
 
     if input == "/zjf" or input == "/jjf" then
         if profile == "lite" or profile == "base" then
-            yield(Candidate("switch", seg.start, seg._end, "当前方案不支持辅助码", ""))
+            emit(seg, "当前方案不支持辅助码")
             return
         end
 
-        local target_aux
-
-        if input == "/zjf" then
-            target_aux = "直接辅助"
-        else
-            target_aux = "间接辅助"
+        local target_aux = input == "/zjf" and "直接辅助" or "间接辅助"
+        local p = rime_api.get_user_data_dir() .. "/" .. main_file
+        if not file_exists(p) then
+            emit(seg, "未找到当前配置，请先切换双拼方案")
+            return
         end
 
-        local user_dir = rime_api.get_user_data_dir()
-        local p = user_dir .. "/" .. main_file
+        local content, read_err = read_file(p)
+        if not content then
+            emit(seg, "读取配置失败：" .. tostring(read_err))
+            return
+        end
 
-        if file_exists(p) then
-            local f = io.open(p, "r")
-            local content = f:read("*a")
-            f:close()
-
-            local n1, n2 = 0, 0
-            content, n1 = content:gsub(
-                "(%-+%s*wanxiang_algebra:/[%w_]+/)直接辅助(%s*#?.*)",
-                "%1" .. target_aux .. "%2"
-            )
-            content, n2 = content:gsub(
-                "(%-+%s*wanxiang_algebra:/[%w_]+/)间接辅助(%s*#?.*)",
-                "%1" .. target_aux .. "%2"
-            )
-
-            if (n1 + n2) > 0 then
-                local w = io.open(p, "w")
-                if w then
-                    w:write(content)
-                    w:close()
-                end
-                local msg = "当前方案已切换到〔" .. target_aux .. "〕，请重新部署"
-                yield(Candidate("switch", seg.start, seg._end, msg, ""))
-            else
-                yield(Candidate("switch", seg.start, seg._end, "当前配置未找到可切换的条目", ""))
-            end
+        local updated, matched = replace_aux_content(content, target_aux)
+        if matched == 0 then
+            emit(seg, "当前配置未找到可切换的辅助码条目")
+        elseif updated == content then
+            emit(seg, "当前已是〔" .. target_aux .. "〕，无需重新部署")
         else
-            yield(Candidate("switch", seg.start, seg._end, "未找到当前配置，请先切换双拼方案", ""))
+            local ok, write_err = write_file(p, updated)
+            if not ok then
+                emit(seg, "切换失败，写入配置出错：" .. tostring(write_err))
+            else
+                emit(seg, "当前方案已切换到〔" .. target_aux .. "〕，请重新部署")
+            end
         end
         return
     end
 
     local target_schema = schema_map[input]
-    if not target_schema then
-        return
-    end
+    if not target_schema then return end
 
     if profile == "lite" and tone_required_schema[target_schema] then
-        yield(Candidate("switch", seg.start, seg._end, "Lite 词库不含声调，不支持〔" .. target_schema .. "〕", ""))
+        emit(seg, "Lite 词库不含声调，不支持〔" .. target_schema .. "〕")
         return
     end
 
     local user_dir = rime_api.get_user_data_dir()
     local shared_dir = rime_api.get_shared_data_dir()
-    local dest_main = user_dir .. "/" .. main_file
-    local main_exists = file_exists(dest_main)
 
+    -- 主文件必须具备可切换规则；先处理主文件，避免主文件有误时先改动关联配置。
     local files = {
+        main_file,
         "wanxiang_mixedcode.custom.yaml",
         "wanxiang_reverse.custom.yaml",
         "wanxiang_abbrev.custom.yaml",
         "wanxiang_phrase.custom.yaml",
-        main_file,
     }
 
+    local changed = 0
+    local errors = {}
+    local main_ok = false
     for _, name in ipairs(files) do
-        local dest       = user_dir .. "/" .. name
-        local user_src   = user_dir .. "/custom/" .. name
+        local dest = user_dir .. "/" .. name
+        local user_src = user_dir .. "/custom/" .. name
         local shared_src = shared_dir .. "/custom/" .. name
+        local source_path = nil
+        local status, err
 
         if file_exists(dest) then
-            -- 1. 外部已存在：只改，绝不复制覆盖
-            replace_schema(dest, target_schema)
-        elseif file_exists(user_src) then
-            -- 2. 用户自己放在 custom 里的模板优先
-            if copy_file(user_src, dest) then
-                replace_schema(dest, target_schema)
+            status, err = update_schema_file(dest, nil, target_schema, name == main_file)
+        else
+            if file_exists(user_src) then
+                source_path = user_src
+            elseif file_exists(shared_src) then
+                source_path = shared_src
             end
-        elseif file_exists(shared_src) then
-            -- 3. 系统自带模板兜底
-            if copy_file(shared_src, dest) then
-                replace_schema(dest, target_schema)
+            if source_path then
+                status, err = update_schema_file(dest, source_path, target_schema, name == main_file)
+            elseif name == main_file then
+                err = "未找到主配置及其模板"
+            end
+        end
+
+        if err then
+            errors[#errors + 1] = name .. "（" .. err .. "）"
+            if name == main_file then break end
+        elseif status then
+            if name == main_file then main_ok = true end
+            if status == "changed" or status == "created" then
+                changed = changed + 1
             end
         end
     end
 
-    local msg
-
-    if main_exists then
-        msg = "检测到专属配置，已切换到〔" .. target_schema .. "〕，请手动重新部署"
+    if not main_ok then
+        emit(seg, "切换失败：" .. table.concat(errors, "；"))
+    elseif #errors > 0 then
+        emit(seg, "切换未全部完成，已更改 " .. changed .. " 个文件；失败：" .. table.concat(errors, "；"))
+    elseif changed == 0 then
+        emit(seg, "当前已是〔" .. target_schema .. "〕，配置无需修改或重新部署")
     else
-        msg = "已从系统目录构建配置并切换到〔" .. target_schema .. "〕，请手动重新部署"
+        emit(seg, "已切换到〔" .. target_schema .. "〕，共更新或创建 " .. changed .. " 个文件，请手动重新部署")
     end
-
-    yield(Candidate("switch", seg.start, seg._end, msg, ""))
 end
+
 return translator
