@@ -101,7 +101,6 @@ engine:
     - lua_filter@*wanxiang.super_lookup  #字词输入中反查辅助筛选
     - lua_filter@*wanxiang.custom_phrase  #用户自定义置顶词与简码前置
     - lua_filter@*wanxiang.context_reorder*F  #用于输入编码后的上下文调频
-    - lua_filter@*wanxiang.charset_filter  #放replacer前面,全方位自定义的字符集过滤器，支持繁体字符集开放
     - lua_filter@*wanxiang.super_comment_preedit  #放其他需要注释处理器后面,会有清空注释的操作,超级注释模块，支持错词提示、辅助码显示，部件组字读音注释，支持个性化配置和关闭相应的功能，详情搜索super_comment进行详细配置
     - simplifier@s2t  #简转繁
     - simplifier@s2hk  #简转港
