@@ -1598,12 +1598,8 @@ end
 
 -- main()
 
-local format_Time = function()
-    if os.date("%p") == "AM" then
-        return "上午"
-    else
-        return "下午"
-    end
+local format_Time = function(timestamp)
+    return tonumber(os.date("%H", timestamp)) < 12 and "上午" or "下午"
 end
 
 function CnDate_translator(y)
@@ -2670,7 +2666,7 @@ local function translator(input, seg, env)
             return {
                 { os.date("%H:%M", now_ts), "" },
                 { os.date("%H:%M:%S", now_ts), "" },
-                { format_Time() .. os.date("%I:%M", now_ts), "" },
+                { format_Time(now_ts) .. os.date("%I:%M", now_ts), "" },
                 { (string.gsub(os.date("%H点%M分%S秒", now_ts), "^0", "")), "" },
             }
         end)
