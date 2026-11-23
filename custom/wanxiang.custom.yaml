@@ -1,15 +1,8 @@
 # 本文件的工作目录是在用户根目录，本目录携带是因为如果放外面就会更新的时候覆盖你的修改，因此我只能藏起来。
 # 如果没有按初始化说明进行初始化那么你需要手动复制本文件到上层目录，请知悉。
 patch:
+  # 启用清单决定可部署、可切换的输入类型，reset 指定默认项。
   input_types/enabled: [zrm]
   input_types/reset: zrm
-
-  # 可选输入方案名称：参考方案中input_types节点
-
-
-  #导入根目录下名称为user.dict.yaml的自定义固定词典
-  #build/dictionaries/wanxiang/packs:
-  #  - user
-  #下面是候选数量
   menu/page_size: 6
 

@@ -8,7 +8,7 @@ schema:
   author:
     - amzxyz
   description: |
-    请勾选【万象拼音PRO】启用PRO版：带调词库、语法模型，支持全拼、双拼、整句及声调辅助筛选。
+    请勾选【万象拼音】以启用万象拼音方案：带调词库、语法模型，支持全拼、双拼、整句及声调辅助筛选。
     在方案文本框输入代码：/pinyin 全拼；/flypy 小鹤；/mspy 微软；/zrm 自然码；/sogou 搜狗；/znabc 智能ABC；/ziguang 紫光；/pyjj 拼音加加；/gbpy 国标；/lxsq 乱序17；/ltsp 蓝天；/sdpy 首道；/wxsp 万象；/zrlong 自然龙；/hxlong 汉心龙；/jjf 间接辅助；/zjf 直接辅助。完整说明见 README.md。
 
 
@@ -105,7 +105,6 @@ engine:
     # - script_translator@user_dict_set
     # - script_translator@add_user_dict  #自造词之制造词汇入口
     - lua_translator@*wanxiang.version_display  #输入'/wx'，显示万象项目网址和当前版本号
-    - lua_translator@*wanxiang.set_schema  #输入类似'/zrm'，快速切换为自然码双拼其余阅读文档
     - lua_translator@*wanxiang.shijian  #农历、日期、节气、节日、时间、周、问候模板等等，触发清单看下文
     - lua_translator@*wanxiang.unicode_conversion*T  #通过输入大写U引导，并输入Unicode编码获得汉字输出
     - lua_translator@*wanxiang.number_conversion  #数字、金额大写，通过输入大写R1234获得候选输出
