@@ -878,40 +878,6 @@
     - derive/^(.).+(\d)$/$1$2/
 
 
-  直接辅助:
-    __append:
-      - derive/^([a-z◯]+)(\d?);.*$/$1/  # 纯双拼的情况
-      # 第二组辅助码复制成第一组格式，供下面规则统一处理
-      - derive|^([a-z◯]+)(\d?);[^,]*,([a-z])([a-z]?).*$|$1$2;$3$4|
-      #分号后面第一组辅助码
-      - derive/^([a-z◯]+)(\d?);.*$/$1$2/  # 双拼+声调的情况
-      #- abbrev/^([a-z◯]+)(\d?);([a-z])([a-z]).*$/$1$3$4/  # 双拼+2位辅助码
-      #- erase/.*;.*/  # 删除原始带分号编码，加速检索，并防大写变体套娃
-      - xform/◯/;/  #对于微软双拼、搜狗双拼，前面将分号保护了起来，现在放出来让其发挥作用
-
-  间接辅助:
-    __append:
-      - xform/ⅲ//  # 用于Lua判断是否处于间接辅助的标记
-      # 纯双拼与声调
-      - derive/^([a-z◯]+)\d?;.*$/$1/  # 纯双拼的情况
-      - derive/^([a-z◯]+)(\d?);.*$/$1$2/  # 双拼+声调的情况
-      # 分号后面第一组辅助码 (引入 / 间接标记)
-      - derive|^([a-z◯]+)(\d?);([a-z]).*$|$1/$3|  # 双拼+/1位辅码
-      - derive|^([a-z◯]+)(\d?);([a-z]).*$|$1$2/$3|  # 双拼+声调+/1位辅码
-      - derive|^([a-z◯]+)(\d?);([a-z])([a-z]).*$|$1/$3$4|  # 双拼+/2位辅码
-      - derive|^([a-z◯]+)(\d?);([a-z])([a-z]).*$|$1$2/$3$4|  # 双拼+声调+/2位辅码
-      # 分号后面第二组辅助码 (利用 [^,]* 零回溯直达逗号)
-      - derive|^([a-z◯]+)(\d?);[^,]*,([a-z]).*$|$1/$3|  # 双拼+/1位辅码
-      - derive|^([a-z◯]+)(\d?);[^,]*,([a-z]).*$|$1$2/$3|  # 双拼+声调+/1位辅码
-      - derive|^([a-z◯]+)(\d?);[^,]*,([a-z])([a-z]).*$|$1/$3$4|  # 双拼+/2位辅码
-      - derive|^([a-z◯]+)(\d?);[^,]*,([a-z])([a-z]).*$|$1$2/$3$4|  # 双拼+声调+/2位辅码
-      - erase/.*;.*/  # 删除原始带分号编码，加速检索
-      - xform/◯/;/  # 释放微软/搜狗双拼保护的分号
-      # 以下直接大写辅助
-      - derive|^([a-z]{2})(\d?)/([a-z])([a-z]?)$|$1$2\u$3\u$4|
-      - derive|^([a-z]{2})(\d?)/([a-z])([a-z]?)$|$1\u$3$2\u$4|
-      - derive|^([a-z]{2})(\d?)/([a-z])([a-z]?)$|$1\u$3\u$4$2|
-
 #反查转写段落
 reverse:
   hspzn:
@@ -1364,6 +1330,15 @@ reverse:
       - xform/er(?=^|$|')/<u>/
       - xform/'|<|>//
 
+
+  # 专用规则待补充，当前使用全拼。
+  万象双拼:
+    __append:
+      - xform/'//
+      - derive/^([nl])ue$/$1ve/
+      - derive/'([nl])ue$/'$1ve/
+      - derive/^([jqxy])u/$1v/
+      - derive/'([jqxy])u/'$1v/
 
 #混合编码转写段落
 mixed:
@@ -1901,259 +1876,39 @@ mixed:
       - derive/^.+$/\L$0/
       - erase/.*[\-+'_#@\.·0-9].*$/
 
-english:
-  混合派生:
+  # 专用规则待补充，当前使用全拼。
+  乱序17:
     __append:
-      - derive|^(.{1,3})$|$1/|
-      - derive/1([4-7|9])/$1teen/
-      - derive/11/eleven/
-      - derive/12/twelve/
-      - derive/13/thirteen/
-      - derive/15/fifteen/
-      - derive/18/eighteen/
-      - derive/0/o/
-      - derive/0/O/
-      - derive/0/zero/
-      - derive/1/one/
-      - derive/10/ten/
-      - derive/2/to/
-      - derive/2/two/
-      - derive/3/three/
-      - derive/4/for/
-      - derive/4/four/
-      - derive/5/five/
-      - derive/6/six/
-      - derive/7/seven/
-      - derive/8/eight/
-      - derive/9/nine/
-      - derive/[.]//
-      - derive/[+]//
-      - derive/[-]//
+      - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
+      - xform/'//
+      - derive/^([nl])ue$/$1ve/
+      - derive/'([nl])ue$/'$1ve/
+      - derive/^([jqxy])u/$1v/
+      - derive/'([jqxy])u/'$1v/
       - derive/^.+$/\L$0/
-      - derive/^.+$/\U$0/
-      - derive/^./\U$0/
-      - derive/^([a-z]{2})/\U$1/
-
-  全拼:
+      - erase/.*[\-+'_#@\.·0-9].*$/
+  # 专用规则待补充，当前使用全拼。
+  蓝天双拼:
     __append:
-      - derive/(?<!\d)1([1-9])(?!\d)/shi$1/
-      - derive/([1-9])0000(?!0)/$1wan/
-      - derive/([1-9])000(?!0)/$1qian/
-      - derive/([1-9])00(?!0)/$1bai/
-      - derive/([2-9])0(?!0)/$1shi/
-      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1shi$2/
-      - derive/\./dian/
-      - derive/10/shi/
-      - derive/0/ling/
-      - derive/1/yi/
-      - derive/2/er/
-      - derive/2/liang/
-      - derive/3/san/
-      - derive/4/si/
-      - derive/5/wu/
-      - derive/6/liu/
-      - derive/7/qi/
-      - derive/8/ba/
-      - derive/9/jiu/
-      - derive/\+/jia/
-      - derive/#/jing/
-      - erase/.*[0-9].*/
-  自然码:
+      - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
+      - xform/'//
+      - derive/^([nl])ue$/$1ve/
+      - derive/'([nl])ue$/'$1ve/
+      - derive/^([jqxy])u/$1v/
+      - derive/'([jqxy])u/'$1v/
+      - derive/^.+$/\L$0/
+      - erase/.*[\-+'_#@\.·0-9].*$/
+  # 专用规则待补充，当前使用全拼。
+  万象双拼:
     __append:
-      - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
-      - derive/([1-9])0000(?!0)/$1wj/
-      - derive/([1-9])000(?!0)/$1qm/
-      - derive/([1-9])00(?!0)/$1bl/
-      - derive/([2-9])0(?!0)/$1ui/
-      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
-      - derive/\./dm/
-      - derive/10/ui/
-      - derive/0/ly/
-      - derive/1/yi/
-      - derive/2/er/
-      - derive/2/ld/
-      - derive/3/sj/
-      - derive/4/si/
-      - derive/5/wu/
-      - derive/6/lq/
-      - derive/7/qi/
-      - derive/8/ba/
-      - derive/9/jq/
-      - derive/\+/jw/
-      - derive/#/jy/
-      - erase/.*[0-9].*/
-  小鹤双拼:
-    __append:
-      - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
-      - derive/([1-9])0000(?!0)/$1wj/
-      - derive/([1-9])000(?!0)/$1qm/
-      - derive/([1-9])00(?!0)/$1bd/
-      - derive/([2-9])0(?!0)/$1ui/
-      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
-      - derive/\./dm/
-      - derive/10/ui/
-      - derive/0/lk/
-      - derive/1/yi/
-      - derive/2/er/
-      - derive/2/ll/
-      - derive/3/sj/
-      - derive/4/si/
-      - derive/5/wu/
-      - derive/6/lq/
-      - derive/7/qi/
-      - derive/8/ba/
-      - derive/9/jq/
-      - derive/\+/jx/
-      - derive/#/jk/
-      - erase/.*[0-9].*/
-  微软双拼:
-    __append:
-      - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
-      - derive/([1-9])0000(?!0)/$1wj/
-      - derive/([1-9])000(?!0)/$1qm/
-      - derive/([1-9])00(?!0)/$1bl/
-      - derive/([2-9])0(?!0)/$1ui/
-      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
-      - derive/\./dm/
-      - derive/10/ui/
-      - derive/0/l;/
-      - derive/1/yi/
-      - derive/2/er/
-      - derive/2/or/
-      - derive/2/ld/
-      - derive/3/sj/
-      - derive/4/si/
-      - derive/5/wu/
-      - derive/6/lq/
-      - derive/7/qi/
-      - derive/8/ba/
-      - derive/9/jq/
-      - derive/\+/jw/
-      - derive/#/j;/
-      - erase/.*[0-9].*/
-  搜狗双拼:
-    __append:
-      - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
-      - derive/([1-9])0000(?!0)/$1wj/
-      - derive/([1-9])000(?!0)/$1qm/
-      - derive/([1-9])00(?!0)/$1bl/
-      - derive/([2-9])0(?!0)/$1ui/
-      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
-      - derive/\./dm/
-      - derive/10/ui/
-      - derive/0/l;/
-      - derive/1/yi/
-      - derive/2/er/
-      - derive/2/or/
-      - derive/2/ld/
-      - derive/3/sj/
-      - derive/4/si/
-      - derive/5/wu/
-      - derive/6/lq/
-      - derive/7/qi/
-      - derive/8/ba/
-      - derive/9/jq/
-      - derive/\+/jw/
-      - derive/#/jy/
-      - erase/.*[0-9].*/
-  智能ABC:
-    __append:
-      - derive/(?<!\d)1([1-9])(?!\d)/vi$1/
-      - derive/([1-9])0000(?!0)/$1wj/
-      - derive/([1-9])000(?!0)/$1qw/
-      - derive/([1-9])00(?!0)/$1bl/
-      - derive/([2-9])0(?!0)/$1vi/
-      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1vi$2/
-      - derive/\./dw/
-      - derive/10/vi/
-      - derive/0/ly/
-      - derive/1/yi/
-      - derive/2/er/
-      - derive/2/or/
-      - derive/2/lt/
-      - derive/3/sj/
-      - derive/4/si/
-      - derive/5/wu/
-      - derive/6/lr/
-      - derive/7/qi/
-      - derive/8/ba/
-      - derive/9/jr/
-      - derive/\+/jd/
-      - derive/#/jy/
-      - erase/.*[0-9].*/
-  紫光双拼:
-    __append:
-      - derive/(?<!\d)1([1-9])(?!\d)/ii$1/
-      - derive/([1-9])0000(?!0)/$1wr/
-      - derive/([1-9])000(?!0)/$1qf/
-      - derive/([1-9])00(?!0)/$1bp/
-      - derive/([2-9])0(?!0)/$1ii/
-      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ii$2/
-      - derive/\./df/
-      - derive/10/ii/
-      - derive/0/l;/
-      - derive/1/yi/
-      - derive/2/er/
-      - derive/2/oj/
-      - derive/2/lg/
-      - derive/3/sr/
-      - derive/4/si/
-      - derive/5/wu/
-      - derive/6/lj/
-      - derive/7/qi/
-      - derive/8/ba/
-      - derive/9/jj/
-      - derive/\+/jx/
-      - derive/#/j;/
-      - erase/.*[0-9].*/
-  拼音加加:
-    __append:
-      - derive/(?<!\d)1([1-9])(?!\d)/ii$1/
-      - derive/([1-9])0000(?!0)/$1wf/
-      - derive/([1-9])000(?!0)/$1qj/
-      - derive/([1-9])00(?!0)/$1bs/
-      - derive/([2-9])0(?!0)/$1ii/Add commentMore actions
-      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ii$2/
-      - derive/\./dj/
-      - derive/10/ii/
-      - derive/0/lq/
-      - derive/1/yi/
-      - derive/2/eq/
-      - derive/2/lh/
-      - derive/3/sf/
-      - derive/4/si/
-      - derive/5/wu/
-      - derive/6/ln/
-      - derive/7/qi/
-      - derive/8/ba/
-      - derive/9/jn/
-      - derive/\+/jb/
-      - derive/#/jq/
-      - erase/.*[0-9].*/
-  首道双拼:
-    __append:
-      - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
-      - derive/([1-9])0000(?!0)/$1wj/
-      - derive/([1-9])000(?!0)/$1qn/
-      - derive/([1-9])00(?!0)/$1bl/
-      - derive/([2-9])0(?!0)/$1ui/
-      - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
-      - derive/\./dn/
-      - derive/10/ui/
-      - derive/0/lg/
-      - derive/1/yi/
-      - derive/2/er/
-      - derive/2/lx/
-      - derive/3/sj/
-      - derive/4/si/
-      - derive/5/wu/
-      - derive/6/lq/
-      - derive/7/qi/
-      - derive/8/ba/
-      - derive/9/jq/
-      - derive/\+/jk/
-      - derive/#/jg/
-      - erase/.*[0-9].*/
+      - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
+      - xform/'//
+      - derive/^([nl])ue$/$1ve/
+      - derive/'([nl])ue$/'$1ve/
+      - derive/^([jqxy])u/$1v/
+      - derive/'([jqxy])u/'$1v/
+      - derive/^.+$/\L$0/
+      - erase/.*[\-+'_#@\.·0-9].*$/
 
 模糊音_nl:
   __append:
