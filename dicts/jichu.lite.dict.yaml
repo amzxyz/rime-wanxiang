@@ -6727,6 +6727,7 @@ sort: by_weight
 避险	bi xian	1595
 避嫌	bi xian	1234
 必先	bi xian	816
+必现	bi xian	800
 笔仙	bi xian	652
 毕现	bi xian	521
 比先	bi xian	398
@@ -57230,9 +57231,9 @@ sort: by_weight
 鸡毫	ji hao	29
 集合	ji he	17571
 几何	ji he	11219
+几盒	ji he	2326
+即合	ji he	808
 稽核	ji he	511
-即合	ji he	408
-几盒	ji he	326
 机核	ji he	260
 吉河	ji he	158
 济河	ji he	138
@@ -108865,6 +108866,7 @@ sort: by_weight
 赛点	sai dian	634
 赛段	sai duan	750
 塞阀	sai fa	378
+赛方	sai fang	56
 噻吩	sai fen	104
 赛风	sai feng	3
 塞弗	sai fu	151
@@ -129713,6 +129715,7 @@ sort: by_weight
 挺脏	ting zang	734
 挺早	ting zao	336
 挺糟	ting zao	173
+挺窄	ting zhai	121
 停战	ting zhan	1086
 停站	ting zhan	141
 厅长	ting zhang	641
@@ -271924,6 +271927,7 @@ sort: by_weight
 但人品	dan ren pin	572
 但任凭	dan ren ping	360
 但人气	dan ren qi	819
+单人寝	dan ren qin	21
 但人情	dan ren qing	369
 但人却	dan ren que	531
 但人群	dan ren qun	378
@@ -351799,7 +351803,6 @@ sort: by_weight
 还在吃	hai zai chi	229
 还在打	hai zai da	936
 还在等	hai zai deng	1224
-还在调	hai zai diao	50
 还在跌	hai zai die	44
 还在堵	hai zai du	3
 还在改	hai zai gai	47
@@ -351825,6 +351828,7 @@ sort: by_weight
 还在耍	hai zai shua	374
 还在送	hai zai song	464
 还在算	hai zai suan	396
+还在调	hai zai tiao	50
 还在听	hai zai ting	603
 还在玩	hai zai wan	864
 还在为	hai zai wei	1504
@@ -371163,6 +371167,7 @@ sort: by_weight
 划进来	hua jin lai	35
 滑进了	hua jin le	518
 划进了	hua jin le	361
+画进去	hua jin qu	45
 滑进去	hua jin qu	31
 划进去	hua jin qu	28
 画锦堂	hua jin tang	50
@@ -374103,7 +374108,8 @@ sort: by_weight
 欢乐事	huan le shi	20
 欢乐颂	huan le song	1055
 欢乐送	huan le song	544
-欢乐台	huan le tai	580
+换了台	huan le tai	580
+欢乐台	huan le tai	42
 换了条	huan le tiao	536
 换了头	huan le tou	3
 欢乐星	huan le xing	387
@@ -566009,7 +566015,7 @@ sort: by_weight
 闪了吧	shan le ba	193
 删了吗	shan le ma	13
 删了你	shan le ni	603
-扇了扇	shan le shan	52
+扇了扇	shan le sha	52
 删了删	shan le shan	52
 删了他	shan le ta	716
 删了我	shan le wo	846
@@ -581943,6 +581949,7 @@ sort: by_weight
 是人民	shi ren min	1642
 市人民	shi ren min	1167
 食人魔	shi ren mo	1086
+十人寝	shi ren qin	21
 食人肉	shi ren rou	47
 食人鲨	shi ren sha	53
 噬人鲨	shi ren sha	48
@@ -592639,6 +592646,7 @@ sort: by_weight
 双人墓	shuang ren mu	39
 双人旁	shuang ren pang	35
 双人票	shuang ren piao	364
+双人寝	shuang ren qin	21
 双人赛	shuang ren sai	594
 双人跳	shuang ren tiao	28
 双人位	shuang ren wei	490
@@ -701929,6 +701937,7 @@ sort: by_weight
 写好后	xie hao hou	644
 写好看	xie hao kan	29
 写好了	xie hao le	2176
+歇好了	xie hao le	322
 写好呢	xie hao ne	356
 写好字	xie hao zi	630
 卸荷阀	xie he fa	162
@@ -722660,6 +722669,7 @@ sort: by_weight
 药师奴	yao shi nu	279
 钥匙牌	yao shi pai	315
 钥匙盘	yao shi pan	25
+要适配	yao shi pei	311
 钥匙胚	yao shi pei	32
 钥匙坯	yao shi pi	32
 钥匙片	yao shi pian	32
@@ -962400,7 +962410,6 @@ sort: by_weight
 还在打嗝	hai zai da ge	207
 还在等待	hai zai deng dai	214
 还在等她	hai zai deng ta	6
-还在调查	hai zai diao cha	25
 还在吊水	hai zai diao shui	76
 还在封控	hai zai feng kong	4
 还在干活	hai zai gan huo	369
@@ -962437,6 +962446,7 @@ sort: by_weight
 还在使用	hai zai shi yong	706
 还在睡觉	hai zai shui jiao	270
 还在探索	hai zai tan suo	308
+还在调查	hai zai tiao cha	25
 还在吐沙	hai zai tu sha	25
 还在途中	hai zai tu zhong	374
 还在外面	hai zai wai mian	327
@@ -1077823,6 +1077833,7 @@ sort: by_weight
 每个周末	mei ge zhou mo	999
 每个专业	mei ge zhuan ye	828
 美格装饰	mei ge zhuang shi	171
+没个准信	mei ge zhun xin	91
 没给你回	mei gei ni hui	207
 没给我回	mei gei wo hui	446
 没给我讲	mei gei wo jiang	266
@@ -1149197,8 +1149208,8 @@ sort: by_weight
 如何化解	ru he hua jie	886
 如何缓解	ru he huan jie	1089
 如何回答	ru he hui da	1152
-如何恢复	ru he hui fu	828
-如何回复	ru he hui fu	608
+如何回复	ru he hui fu	828
+如何恢复	ru he hui fu	608
 如何回退	ru he hui tui	4
 如何回向	ru he hui xiang	256
 如何回应	ru he hui ying	914
@@ -1177895,7 +1177906,7 @@ sort: by_weight
 世纪华阳	shi ji hua yang	194
 世纪华园	shi ji hua yuan	75
 市级环保	shi ji huan bao	464
-世纪环境	shi ji huan jing	225
+实际环境	shi ji huan jing	225
 世纪皇朝	shi ji huang chao	45
 世纪皇冠	shi ji huang guan	315
 世纪皇家	shi ji huang jia	279
@@ -1518934,6 +1518945,7 @@ sort: by_weight
 耐化学药品性	nai hua xue yao pin xing	10
 耐火的防燃剂	nai huo de fang ran ji	12
 乃甲切木石窟	nai jia qie mu shi ku	10
+奈奎斯特极限	nai kui si te ji xian	10
 奈奎斯特频率	nai kui si te pin lv	12
 奈奎斯特曲线	nai kui si te qu xian	10
 奈奎斯特速率	nai kui si te su lv	10
@@ -1550890,7 +1550902,6 @@ sort: by_weight
 个体工商户注册	ge ti gong shang hu zhu ce	10
 个体劳动者协会	ge ti lao dong zhe xie hui	10
 歌舞大王齐格飞	ge wu da wang qi ge fei	10
-歌舞大王齐格菲	ge wu da wang qi ge fei	10
 各项社会保险费	ge xiang she hui bao xian fei	10
 各乡镇党委书记	ge xiang zhen dang wei shu ji	10
 各乡镇人民政府	ge xiang zhen ren min zheng fu	10
@@ -1553121,7 +1553132,6 @@ sort: by_weight
 两栖装甲侦察车	liang qi zhuang jia zhen cha che	10
 两情若是久长时	liang qing ruo shi jiu chang shi	10
 两人对酌山花开	liang ren dui zhuo shan hua kai	10
-两三星火是瓜州	liang san xing huo shi gua zhou	10
 两三星火是瓜洲	liang san xing huo shi gua zhou	10
 两山排闼送青来	liang shan pai ta song qing lai	10
 良药苦口利于病	liang yao ku kou li yu bing	10
