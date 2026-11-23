@@ -69,81 +69,15 @@ build:
   dictionaries:
     wanxiang_english: #声明词表名称，翻译器可以调用
       algebra:  #编译类型prism调用的转写方式
-        standalone_pinyin:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/全拼
-            
-        standalone_zrm:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/自然码
-            
-        standalone_flypy:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/小鹤双拼
-            
-        standalone_mspy:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/微软双拼
-            
-        standalone_sogou:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/搜狗双拼
-            
-        standalone_znabc:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/智能ABC
-            
-        standalone_ziguang:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/紫光双拼
-            
-        standalone_pyjj:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/拼音加加
-            
-        standalone_gbpy:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/国标双拼
-            
-        standalone_lxsq:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/乱序17
-            
-        standalone_ltsp:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/蓝天双拼
-            
-        standalone_sdpy:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/首道双拼
-            
-        standalone_wxsp:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/万象双拼
-            
-        standalone_zrlong:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/自然龙
-            
-        standalone_hxlong:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/汉心龙
-            
+        - derive|^(.{1,3})$|$1/|
+        - derive/[.]//
+        - derive/[+]//
+        - derive/[-]//
+        - derive/^.+$/\L$0/
+        - derive/^.+$/\U$0/
+        - derive/^./\U$0/
+        - derive/^([a-z]{2})/\U$1/
+
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/\
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/

@@ -3,7 +3,7 @@
 # 方案说明
 schema:
   schema_id: wanxiang
-  name: 万象拼音EVO
+  name: 万象拼音
   version: "LTS"
   author:
     - amzxyz
@@ -135,6 +135,7 @@ engine:
 
 grammar:
   language: wanxiang-lts-zh-hans
+  contextual_sections: [collocations, long_phrases]
   collocation_max_length: 6
   collocation_min_length: 2
   collocation_penalty: -14
@@ -164,7 +165,7 @@ translator:
   user_dict_mode: manual  # auto / manual / off
   prisms: input_types
   enable_completion: true  # 启用候选词补全
-  contextual_suggestions: false  #模型用来开启词组权重预测，效果一般关闭
+  contextual_suggestions: true  #模型用来开启词组权重预测，效果一般关闭
   max_homophones: 8
   #  disable_user_dict_for_patterns:
   #    - "^[a-z]{1,6}"    #基本的6码3字不调频
@@ -197,7 +198,6 @@ abbrev_phrase:
 wanxiang_english:
   dictionary: wanxiang_english
   user_dict: en
-  prisms: input_types
   enable_completion: true
   enable_sentence: false
   initial_quality: 2.1
@@ -494,81 +494,14 @@ build:
             - wanxiang_algebra:/reverse/hspzn
     wanxiang_english: #声明词表名称，翻译器可以调用
       algebra:
-        pinyin:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/全拼
-            - wanxiang_algebra:/26jian
-        zrm:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/自然码
-            - wanxiang_algebra:/26jian
-        flypy:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/小鹤双拼
-            - wanxiang_algebra:/26jian
-        mspy:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/微软双拼
-            - wanxiang_algebra:/26jian
-        sogou:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/搜狗双拼
-            - wanxiang_algebra:/26jian
-        znabc:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/智能ABC
-            - wanxiang_algebra:/26jian
-        ziguang:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/紫光双拼
-            - wanxiang_algebra:/26jian
-        pyjj:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/拼音加加
-            - wanxiang_algebra:/26jian
-        gbpy:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/国标双拼
-            - wanxiang_algebra:/26jian
-        lxsq:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/乱序17
-            - wanxiang_algebra:/26jian
-        ltsp:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/蓝天双拼
-            - wanxiang_algebra:/26jian
-        sdpy:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/首道双拼
-            - wanxiang_algebra:/26jian
-        wxsp:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/万象双拼
-            - wanxiang_algebra:/26jian
-        zrlong:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/自然龙
-            - wanxiang_algebra:/26jian
-        hxlong:
-          __patch:
-            - wanxiang_algebra:/english/混合派生
-            - wanxiang_algebra:/english/汉心龙
-            - wanxiang_algebra:/26jian
+        - derive|^(.{1,3})$|$1/|
+        - derive/[.]//
+        - derive/[+]//
+        - derive/[-]//
+        - derive/^.+$/\L$0/
+        - derive/^.+$/\U$0/
+        - derive/^./\U$0/
+        - derive/^([a-z]{2})/\U$1/
     wanxiang_abbrev:
       algebra:
         __patch:

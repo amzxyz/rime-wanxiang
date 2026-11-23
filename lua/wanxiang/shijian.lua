@@ -1598,12 +1598,8 @@ end
 
 -- main()
 
-local format_Time = function()
-    if os.date("%p") == "AM" then
-        return "上午"
-    else
-        return "下午"
-    end
+local format_Time = function(timestamp)
+    return tonumber(os.date("%H", timestamp)) < 12 and "上午" or "下午"
 end
 
 function CnDate_translator(y)
@@ -1745,12 +1741,6 @@ function format_dt(dt, format_str)
         s = s:gsub("l", tostring(h12))
     end
 
-    if need_ampm then
-        local ampm = (dt.hour < 12) and "AM" or "PM"
-        s = s:gsub("p", ampm:lower())
-        s = s:gsub("P", ampm)
-    end
-
     if need_period then
         local h = dt.hour
         local zh_period
@@ -1760,6 +1750,13 @@ function format_dt(dt, format_str)
         elseif h < 18 then zh_period = "下午"
         else zh_period = "晚上" end
         s = s:gsub("A", zh_period)
+    end
+
+    -- 先替换中文时段，避免 A 再次匹配 P 展开后的 AM。
+    if need_ampm then
+        local ampm = (dt.hour < 12) and "AM" or "PM"
+        s = s:gsub("p", ampm:lower())
+        s = s:gsub("P", ampm)
     end
 
     if need_timezone then
@@ -2669,7 +2666,7 @@ local function translator(input, seg, env)
             return {
                 { os.date("%H:%M", now_ts), "" },
                 { os.date("%H:%M:%S", now_ts), "" },
-                { format_Time() .. os.date("%I:%M", now_ts), "" },
+                { format_Time(now_ts) .. os.date("%I:%M", now_ts), "" },
                 { (string.gsub(os.date("%H点%M分%S秒", now_ts), "^0", "")), "" },
             }
         end)
