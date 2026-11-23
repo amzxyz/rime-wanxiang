@@ -1,5 +1,20 @@
 # Changelog
 
+## [18.2.1](https://github.com/amzxyz/rime-wanxiang/compare/v18.2.0...v18.2.1) (2026-11-23)
+
+
+### 📚 词库更新
+
+* 词库调整 ([8a47886](https://github.com/amzxyz/rime-wanxiang/commit/8a478866de9659a46837844bf86a58b470c6345a))
+
+
+### 🐛 Bug 修复
+
+* **set_input_types:** 优化逻辑 ([64de093](https://github.com/amzxyz/rime-wanxiang/commit/64de09378698e572c9d0987761fedd94f6dda35f))
+* **shijian:** 修复系统本地化不再检测AM字符 ([0b1d00e](https://github.com/amzxyz/rime-wanxiang/commit/0b1d00e898c60dc669b674598ce5a5ec578e6d65))
+* 修复九键一些preedit转换错误 ([54de958](https://github.com/amzxyz/rime-wanxiang/commit/54de9584b584b8965963a16d948923f322f95c69))
+* 删除多余行 ([7b1d1aa](https://github.com/amzxyz/rime-wanxiang/commit/7b1d1aa37578170a2a0c412855990ff02635ee8c))
+
 ## [18.2.0](https://github.com/amzxyz/rime-wanxiang/compare/v18.1.14...v18.2.0) (2026-11-22)
 
 
