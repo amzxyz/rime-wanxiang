@@ -394,9 +394,12 @@ end
 -- 例如 7 + shi -> s，966 + yong -> yon，9664 + yong -> yong。
 -- 不能因为模糊匹配已经产生完整候选，就把尚未输入的后续字母提前补进 preedit。
 local function convert_t9_syllable(part, py, state)
-    if state.is_pro or not part:match("^%d+$") then return py end
+    -- 九键选定拼音后，该段可能已由数字变成字母。
+    -- 字母是当前真实输入，不允许再用候选注释里的完整拼音回填，
+    -- 否则退格删掉末尾字母后，下一次候选刷新会将它补回来。
+    if not part:match("^%d+$") then return part end
 
-    if state.convert_abbrev_preedit then
+    if state.is_pro or state.convert_abbrev_preedit then
         return py
     end
 
@@ -435,6 +438,18 @@ local function convert_preedit(preedit, initial_comment, state)
     local pinyins = extract_pinyin_segments(
         initial_comment, state.comment_split_pattern, state.has_aux
     )
+    -- 九键候选刷新时，comment 的音节数有时与当前 preedit 分段不一致。
+    -- 这种情况下无法安全地按下标配对，必须保留原始 preedit。
+    if state.is_t9 then
+        local syllable_count = 0
+        for _, part in ipairs(parts) do
+            if part ~= state.auto_delimiter and part ~= state.manual_delimiter then
+                syllable_count = syllable_count + 1
+            end
+        end
+        if syllable_count ~= #pinyins then return preedit end
+    end
+
     local pinyin_index = 1
 
     for i, part in ipairs(parts) do
