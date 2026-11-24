@@ -16719,9 +16719,9 @@ sort: by_weight
 崇道	chóng;sd dào;dz	326
 冲倒	chōng;dk dào;rh	297
 冲的	chōng;dk de;pp	1513
+充的	chōng;dv de;pp	914
 崇德	chóng;sd dé;ph	411
 宠的	chǒng;bd de;pp	314
-冲得	chōng;dk de;pl	251
 宠得	chǒng;bd de;pl	200
 重登	chóng;pt dēng;vh	868
 冲抵	chōng;dk dǐ;fp	380
@@ -23855,7 +23855,7 @@ sort: by_weight
 弹线	dàn;vd xiàn;ih	69
 单项	dān;ds xiàng;hh	3523
 单向	dān;ds xiàng;pk	2697
-单相	dān;ds xiāng;ms	1381
+单相	dān;ds xiàng;ms	1381
 但想	dàn;rl xiǎng;mx	423
 淡香	dàn;uq xiāng;el	338
 蛋香	dàn;vo xiāng;el	270
@@ -32669,7 +32669,7 @@ sort: by_weight
 耳线	ěr;hh xiàn;ih	69
 二项	èr;hh xiàng;hh	562
 而向	ér;hs xiàng;pk	106
-二相	èr;hh xiāng;ms	84
+二相	èr;hh xiàng;ms	84
 二小	èr;hh xiǎo;sd	1418
 而笑	ér;hs xiào;gd	885
 二校	èr;hh xiào;md	460
@@ -78080,7 +78080,6 @@ sort: by_weight
 两项	liǎng;hd xiàng;hh	2810
 两箱	liǎng;hd xiāng;gh	891
 两厢	liǎng;hd xiāng;hh	687
-两相	liǎng;hd xiāng;ms	543
 良乡	liáng;dd xiāng;ip	335
 粮饷	liáng;dd xiǎng;pp	204
 良相	liáng;dd xiāng;ms	151
@@ -80207,7 +80206,7 @@ sort: by_weight
 柳巷	liǔ;mp xiàng;cv	165
 流香	liú;ud xiāng;el	148
 六向	liù;dd xiàng;pk	133
-六相	liù;dd xiāng;ms	120
+六相	liù;dd xiàng;ms	120
 六巷	liù;dd xiàng;cv	87
 留校	liú;ph xiào;md	2324
 六校	liù;dd xiào;md	529
@@ -85012,15 +85011,15 @@ sort: by_weight
 没份	méi;up fèn;rp	67
 没粉	méi;up fěn;dp	36
 每逢	měi;pd féng;pz	2138
-眉峰	méi;vh fēng;sp	885
+美缝	měi;dd fèng;ip	1160
+没风	méi;up fēng;pd	938
+没疯	méi;up fēng;dd	748
+美凤	měi;dd fèng;pd	563
 每封	měi;pd fēng;th	417
-美凤	měi;dd fèng;pd	163
+没封	méi;up fēng;th	376
+眉峰	méi;vh fēng;sp	285
 梅峰	méi;mp fēng;sp	119
 美丰	měi;dd fēng;hs	95
-没封	méi;up fēng;th	76
-美缝	měi;dd fèng;ip	60
-没疯	méi;up fēng;dd	48
-没风	méi;up fēng;pd	38
 妹夫	mèi;nh fu;hd	1184
 没付	méi;up fù;rh	963
 美肤	měi;dd fū;yh	304
@@ -101549,7 +101548,7 @@ sort: by_weight
 枪族	qiāng;mr zú;dp	289
 羌族	qiāng;dv zú;dp	275
 抢座	qiǎng;fr zuò;dt	1008
-强作	qiáng;vk zuò;rp	958
+强作	qiǎng;vk zuò;rp	958
 峭拔	qiào;ss bá;fh	1044
 瞧吧	qiáo;sr ba;kv	873
 翘班	qiào;hh bān;wd	154
@@ -109661,7 +109660,7 @@ sort: by_weight
 三项	sān;hh xiàng;hh	2917
 三箱	sān;hh xiāng;gh	558
 三厢	sān;hh xiāng;hh	414
-三相	sān;hh xiāng;ms	301
+三相	sān;hh xiàng;ms	301
 三香	sān;hh xiāng;el	240
 三湘	sān;hh xiāng;um	192
 三乡	sān;hh xiāng;ip	184
@@ -122095,10 +122094,10 @@ sort: by_weight
 四项	sì;sh xiàng;hh	2059
 四箱	sì;sh xiāng;gh	643
 思乡	sī;sx xiāng;ip	364
-死相	sǐ;hv xiāng;ms	348
+死相	sǐ;hv xiàng;ms	348
 私享	sī;ev xiǎng;dh	160
 四象	sì;sh xiàng;pd	128
-四相	sì;sh xiāng;ms	102
+四相	sì;sh xiàng;ms	102
 四向	sì;sh xiàng;pk	81
 四乡	sì;sh xiāng;ip	64
 寺巷	sì;td xiàng;cv	51
@@ -163290,6 +163289,7 @@ sort: by_weight
 月赚	yuè;yh zhuàn;sd	950
 岳庄	yuè;ps zhuāng;dt	400
 约妆	yuē;ip zhuāng;dn	186
+𬸚𬸦	yuè; zhuó;	2
 月子	yuè;yh zi;vh	694
 悦子	yuè;xd zǐ;vh	625
 越走	yuè;td zǒu;tr	97
@@ -167895,6 +167895,7 @@ sort: by_weight
 针锉	zhēn;jh cuò;jr	54
 真大	zhēn;hd dà;hd	446
 真打	zhēn;hd dǎ;fh	424
+真哒	zhēn;hd dā;kh	91
 震带	zhèn;hd dài;hs	53
 针袋	zhēn;jh dài;rd	42
 震旦	zhèn;hd dàn;lh	248
@@ -196876,7 +196877,6 @@ sort: by_weight
 保发后	bǎo;rk fā;vd hòu;pk	464
 暴发户	bào;lu fā;vd hù;dp	1981
 爆发了	bào;ql fā;vd le;vs	4832
-暴发了	bào;lu fā;vd le;vs	477
 保发了	bǎo;rk fā;vd le;vs	52
 爆发力	bào;ql fā;vd lì;vp	6230
 爆发年	bào;ql fā;vd nián;ps	742
@@ -232421,6 +232421,7 @@ sort: by_weight
 常绿林	cháng;ss lǜ;iv lín;mm	59
 常绿树	cháng;ss lǜ;iv shù;mv	544
 肠麻痹	cháng;yv má;dm bì;ds	13
+长马甲	cháng;pd mǎ;vh jiǎ;ls	513
 长码头	cháng;pd mǎ;hv tóu;dd	310
 唱慢点	chàng;kl màn;xl diǎn;sq	43
 长螨了	cháng;pd mǎn;oc le;vs	79
@@ -232626,7 +232627,6 @@ sort: by_weight
 长青沙	cháng;pd qīng;hy shā;us	252
 长青山	cháng;pd qīng;hy shān;ss	328
 常青树	cháng;ss qīng;hy shù;mv	628
-长青苔	cháng;pd qīng;hy tái;ck	405
 常青藤	cháng;ss qīng;hy téng;cu	1193
 长青藤	cháng;pd qīng;hy téng;cu	423
 长青园	cháng;pd qīng;hy yuán;sh	464
@@ -255033,7 +255033,6 @@ sort: by_weight
 大宝儿	dà;hd bǎo;bd er;pv	526
 大保尔	dà;hd bǎo;rk ěr;pd	42
 大爆发	dà;hd bào;ql fā;vd	2525
-大暴发	dà;hd bào;lu fā;vd	369
 打包费	dǎ;fh bāo;pv fèi;vr	91
 大包粉	dà;hd bāo;pv fěn;dp	418
 大包袱	dà;hd bāo;pv fú;dr	648
@@ -255041,6 +255040,7 @@ sort: by_weight
 大包干	dà;hd bāo;pv gān;hs	66
 打报告	dǎ;fh bào;fv gào;pk	458
 大报告	dà;hd bào;fv gào;pk	412
+打包个	dǎ;fh bāo;pv gè;rs	191
 打饱嗝	dǎ;fh bǎo;pp gé;kh	47
 大宝哥	dà;hd bǎo;bd gē;hs	42
 打包工	dǎ;fh bāo;pv gōng;hh	3
@@ -274035,7 +274035,7 @@ sort: by_weight
 单向道	dān;ds xiàng;pk dào;dz	315
 单向的	dān;ds xiàng;pk de;pp	779
 单项的	dān;ds xiàng;hh de;pp	666
-单相电	dān;ds xiāng;ms diàn;lv	126
+单相电	dān;ds xiàng;ms diàn;lv	126
 单向度	dān;ds xiàng;pk dù;dd	148
 但相对	dàn;rl xiāng;ms duì;vh	1107
 单向阀	dān;ds xiàng;pk fá;dd	236
@@ -274058,7 +274058,7 @@ sort: by_weight
 但想了	dàn;rl xiǎng;mx le;vs	680
 单向历	dān;ds xiàng;pk lì;hp	346
 单向流	dān;ds xiàng;pk liú;ud	554
-单相流	dān;ds xiāng;ms liú;ud	68
+单相流	dān;ds xiàng;ms liú;ud	68
 但想买	dàn;rl xiǎng;mx mǎi;vd	382
 但相貌	dàn;rl xiàng;ms mào;pp	423
 单向门	dān;ds xiàng;pk mén;dv	256
@@ -274095,7 +274095,7 @@ sort: by_weight
 但想象	dàn;rl xiǎng;mx xiàng;pd	426
 但相信	dàn;rl xiāng;ms xìn;ra	950
 单向性	dān;ds xiàng;pk xìng;xp	94
-单相型	dān;ds xiāng;ms xíng;ht	85
+单相型	dān;ds xiàng;ms xíng;ht	85
 但想要	dàn;rl xiǎng;mx yào;hn	864
 但相应	dàn;rl xiāng;ms yìng;dh	680
 但想用	dàn;rl xiǎng;mx yòng;ps	364
@@ -320939,7 +320939,7 @@ sort: by_weight
 服刑犯	fú;yv xíng;hs fàn;pv	13
 复兴岗	fù;pd xīng;dd gǎng;sd	410
 福兴宫	fú;dh xīng;dd gōng;bk	526
-福星观	fú;dh xīng;lh guān;vs	256
+福星观	fú;dh xīng;lh guàn;vs	256
 复兴号	fù;pd xīng;dd hào;kv	72
 复兴河	fù;pd xīng;dd hé;uh	288
 福兴河	fú;dh xīng;dd hé;uh	129
@@ -460321,7 +460321,7 @@ sort: by_weight
 两厢版	liǎng;hd xiāng;hh bǎn;pp	53
 两厢车	liǎng;hd xiāng;hh chē;hs	414
 良乡的	liáng;dd xiāng;ip de;pp	446
-两相电	liǎng;hd xiāng;ms diàn;lv	19
+两相电	liǎng;hd xiàng;ms diàn;lv	19
 两相和	liǎng;hd xiāng;ms hé;ek	405
 亮相后	liàng;dv xiàng;ms hòu;pk	675
 两相流	liǎng;hd xiāng;ms liú;ud	69
@@ -460329,7 +460329,7 @@ sort: by_weight
 两箱奶	liǎng;hd xiāng;gh nǎi;nv	16
 两相配	liǎng;hd xiāng;ms pèi;hv	310
 两相牵	liǎng;hd xiāng;ms qiān;hs	180
-两相区	liǎng;hd xiāng;ms qū;hv	194
+两相区	liǎng;hd xiàng;ms qū;hv	194
 亮相时	liàng;dv xiàng;ms shí;lh	711
 两相思	liǎng;hd xiāng;ms sī;sx	292
 两向听	liǎng;hd xiàng;pk tīng;kp	50
@@ -460339,7 +460339,7 @@ sort: by_weight
 两相依	liǎng;hd xiāng;ms yī;rd	133
 两箱油	liǎng;hd xiāng;gh yóu;us	31
 亮相于	liàng;dv xiàng;ms yú;hs	738
-两相制	liǎng;hd xiāng;ms zhì;ps	76
+两相制	liǎng;hd xiàng;ms zhì;ps	76
 亮相中	liàng;dv xiàng;ms zhōng;ks	752
 量小吧	liàng;lt xiǎo;sd ba;kv	310
 两小车	liǎng;hd xiǎo;sd chē;hs	288
@@ -539088,7 +539088,7 @@ sort: by_weight
 抢座吧	qiǎng;fr zuò;dt ba;kv	225
 抢座位	qiǎng;fr zuò;dt wèi;rd	126
 强作为	qiáng;vk zuò;rp wéi;dd	113
-强作用	qiáng;vk zuò;rp yòng;ps	0
+强作用	qiáng;vk zuò;rp yòng;ps	40
 巧安排	qiǎo;hh ān;bn pái;fs	428
 荞粑粑	qiáo;cs bā;dv bā;dv	338
 俏巴妹	qiào;rs bā;vv mèi;nh	356
@@ -562687,14 +562687,14 @@ sort: by_weight
 三陷证	sān;hh xiàn;vp zhèng;ah	45
 三线制	sān;hh xiàn;ih zhì;ps	432
 三厢版	sān;hh xiāng;hh bǎn;pp	78
-三相表	sān;hh xiāng;ms biǎo;hd	3
+三相表	sān;hh xiàng;ms biǎo;hd	3
 三厢车	sān;hh xiāng;hh chē;hs	220
-三相弹	sān;hh xiāng;ms dàn;vd	248
-三相的	sān;hh xiāng;ms de;pp	680
+三相弹	sān;hh xiàng;ms dàn;vd	248
+三相的	sān;hh xiàng;ms de;pp	680
 三项的	sān;hh xiàng;hh de;pp	391
-三相电	sān;hh xiāng;ms diàn;lv	336
-三相点	sān;hh xiāng;ms diǎn;sq	302
-三相逢	sān;hh xiāng;ms féng;pz	180
+三相电	sān;hh xiàng;ms diàn;lv	336
+三相点	sān;hh xiàng;ms diǎn;sq	302
+三相逢	sān;hh xiàng;ms féng;pz	180
 三乡河	sān;hh xiāng;ip hé;uh	171
 三向量	sān;hh xiàng;pk liàng;lt	189
 三香路	sān;hh xiāng;el lù;zp	526
@@ -562702,10 +562702,10 @@ sort: by_weight
 三项赛	sān;hh xiàng;hh sài;br	814
 三项式	sān;hh xiàng;hh shì;hd	19
 三向听	sān;hh xiàng;pk tīng;kp	76
-三相图	sān;hh xiāng;ms tú;sh	162
-三相线	sān;hh xiāng;ms xiàn;ih	580
+三相图	sān;hh xiàng;ms tú;sh	162
+三相线	sān;hh xiàng;ms xiàn;ih	580
 三箱油	sān;hh xiāng;gh yóu;us	3
-三相制	sān;hh xiāng;ms zhì;ps	76
+三相制	sān;hh xiàng;ms zhì;ps	76
 三小姐	sān;hh xiǎo;sd jiě;ns	487
 三孝口	sān;hh xiào;th kǒu;kh	19
 三小块	sān;hh xiǎo;sd kuài;tv	19
@@ -566548,7 +566548,7 @@ sort: by_weight
 删一个	shān;ps yí;hh gè;rs	486
 闪一个	shǎn;dr yí;hh gè;rs	308
 删一删	shān;ps yì;hh shān;ps	252
-扇一扇	shān;dh yí;hh shān;dh	52
+扇一扇	shān;dh yì;hh shān;dh	52
 善意时	shàn;dk yì;dx shí;lh	436
 闪一下	shǎn;dr yí;hh xià;hd	675
 删一下	shān;ps yí;hh xià;hd	323
@@ -584882,9 +584882,7 @@ sort: by_weight
 使用在	shǐ;rh yòng;ps zài;ht	1386
 是用在	shì;lr yòng;ps zài;ht	821
 使用者	shǐ;rh yòng;ps zhě;tl	13697
-食用者	shí;rd yòng;ps zhě;tl	398
-试用者	shì;ah yòng;ps zhě;tl	219
-适用者	shì;pz yòng;ps zhě;tl	175
+使用着	shǐ;rh yòng;ps zhe;dh	511
 使用证	shǐ;rh yòng;ps zhèng;ah	19
 适用症	shì;pz yòng;ps zhèng;dh	17
 使用中	shǐ;rh yòng;ps zhōng;ks	1350
@@ -652691,6 +652689,7 @@ sort: by_weight
 文不会	wén;dd bú;hd huì;rd	688
 问不来	wèn;dk bù;hd lái;hm	52
 温布利	wēn;ul bù;hs lì;es	195
+问不了	wèn;dk bù;hd liǎo;vs	164
 闻不了	wén;dh bù;hd liǎo;vs	50
 文部省	wén;dd bù;dv shěng;sh	179
 稳不稳	wěn;ep bù;hd wěn;ep	160
@@ -689916,11 +689915,11 @@ sort: by_weight
 象电荷	xiàng;pd diàn;lv hè;cs	50
 想点开	xiǎng;mx diǎn;sq kāi;hs	486
 想点了	xiǎng;mx diǎn;sq le;vs	522
-相电流	xiāng;ms diàn;lv liú;ud	25
+相电流	xiàng;ms diàn;lv liú;ud	25
 像电脑	xiàng;rp diàn;lv nǎo;yd	747
 想点啥	xiǎng;mx diǎn;sq shá;kr	320
 像电视	xiàng;rp diàn;lv shì;ds	914
-相电压	xiāng;ms diàn;lv yā;hd	75
+相电压	xiàng;ms diàn;lv yā;hd	75
 像电影	xiàng;rp diàn;lv yǐng;lp	1071
 向电影	xiàng;pk diàn;lv yǐng;lp	581
 想点子	xiǎng;mx diǎn;sq zi;vh	151
@@ -712383,7 +712382,7 @@ sort: by_weight
 选定局	xuǎn;pz dìng;bd jú;vk	50
 选定了	xuǎn;pz dìng;bd le;vs	1093
 炫动版	xuàn;qd dòng;hv bǎn;pp	9
-玄都观	xuán;di dū;tv guān;vs	423
+玄都观	xuán;di dū;tv guàn;vs	423
 选读课	xuǎn;pz dú;ah kè;al	19
 宣读了	xuān;bh dú;ah le;vs	113
 选对戒	xuǎn;pz duì;vh jiè;hd	103
@@ -767236,7 +767235,6 @@ sort: by_weight
 张罗起	zhāng;vp luo;sd qǐ;tv	472
 张罗着	zhāng;vp luo;sd zhe;dh	264
 张律师	zhāng;vp lǜ;pv shī;sh	626
-长马甲	zhǎng;pd mǎ;vh jiǎ;ls	513
 章妈妈	zhāng;ds mā;nv ma;nv	500
 长螨虫	zhǎng;pd mǎn;oc chóng;od	6
 长满刺	zhǎng;pd mǎn;uc cì;hs	19
@@ -767318,6 +767316,7 @@ sort: by_weight
 掌乾坤	zhǎng;sf qián;hp kūn;tl	310
 涨钱了	zhǎng;uv qián;jh le;vs	774
 掌浅支	zhǎng;sf qiǎn;uh zhī;hd	76
+长青苔	zhǎng;pd qīng;hy tái;ck	405
 章丘的	zhāng;ds qiū;ph de;pp	428
 章丘人	zhāng;ds qiū;ph rén;rd	405
 长蛆了	zhǎng;pd qū;os le;vs	52
@@ -849718,11 +849717,13 @@ sort: by_weight
 常绿雨林	cháng;ss lǜ;iv yǔ;hd lín;mm	225
 常绿植物	cháng;ss lǜ;iv zhí;mh wù;pp	549
 长绿植物	cháng;pd lǜ;iv zhí;mh wù;pp	137
+长马尾辫	cháng;pd mǎ;vh wěi;vv biàn;di	4
 长矛刺击	cháng;pd máo;vp cì;hs jī;hs	76
 长矛大刀	cháng;pd máo;vp dà;hd dāo;vp	13
 长矛飞掷	cháng;pd máo;vp fēi;vd zhì;fd	130
 长茅水库	cháng;pd máo;cp shuǐ;ud kù;ds	171
 长矛投掷	cháng;pd máo;vp tóu;fp zhì;fd	144
+长毛细犬	cháng;pd máo;pv xì;is quǎn;hd	153
 长眉老猴	cháng;pd méi;vh lǎo;tv hóu;pr	99
 长眉入鬓	cháng;pd méi;vh rù;pd bìn;hd	52
 长眠不起	cháng;pd mián;sv bù;hd qǐ;tv	6
@@ -879879,25 +879880,25 @@ sort: by_weight
 单项表示	dān;ds xiàng;hh biǎo;hd shì;hd	50
 单向玻璃	dān;ds xiàng;pk bō;wv li;wd	9
 单向操作	dān;ds xiàng;pk cāo;fk zuò;rp	13
-单相触电	dān;ds xiāng;ms chù;po diàn;lv	162
+单相触电	dān;ds xiàng;ms chù;po diàn;lv	162
 单向传播	dān;ds xiàng;pk chuán;rh bō;fp	57
 单向传输	dān;ds xiàng;pk chuán;rh shū;hr	19
 单向打印	dān;ds xiàng;pk dǎ;fh yìn;pv	194
 单向的爱	dān;ds xiàng;pk de;pp ài;pd	3
-单相电表	dān;ds xiāng;ms diàn;lv biǎo;hd	194
-单相电机	dān;ds xiāng;ms diàn;lv jī;mp	324
-单相电流	dān;ds xiāng;ms diàn;lv liú;ud	202
+单相电表	dān;ds xiàng;ms diàn;lv biǎo;hd	194
+单相电机	dān;ds xiàng;ms diàn;lv jī;mp	324
+单相电流	dān;ds xiàng;ms diàn;lv liú;ud	202
 单向电流	dān;ds xiàng;pk diàn;lv liú;ud	110
-单相电路	dān;ds xiāng;ms diàn;lv lù;zp	238
+单相电路	dān;ds xiàng;ms diàn;lv lù;zp	238
 单向电路	dān;ds xiàng;pk diàn;lv lù;zp	38
-单相电压	dān;ds xiāng;ms diàn;lv yā;hd	234
-单相电源	dān;ds xiāng;ms diàn;lv yuán;uh	356
+单相电压	dān;ds xiàng;ms diàn;lv yā;hd	234
+单相电源	dān;ds xiàng;ms diàn;lv yuán;uh	356
 单向阀的	dān;ds xiàng;pk fá;dd de;pp	248
 单向阀门	dān;ds xiàng;pk fá;dd mén;dv	333
 单向反射	dān;ds xiàng;pk fǎn;pd shè;ph	99
 单项方程	dān;ds xiàng;hh fāng;dp chéng;ek	45
 单向分类	dān;ds xiàng;pk fēn;pp lèi;dd	45
-单相负荷	dān;ds xiāng;ms fù;pr hè;cs	153
+单相负荷	dān;ds xiàng;ms fù;pr hè;cs	153
 单项工程	dān;ds xiàng;hh gōng;hh chéng;ek	31
 单项工作	dān;ds xiàng;hh gōng;hh zuò;rp	297
 单向工作	dān;ds xiàng;pk gōng;hh zuò;rp	84
@@ -879908,9 +879909,9 @@ sort: by_weight
 单向横坡	dān;ds xiàng;pk héng;mc pō;tv	117
 单向活动	dān;ds xiàng;pk huó;up dòng;hv	45
 单向加密	dān;ds xiàng;pk jiā;vk mì;bs	230
-单相交流	dān;ds xiāng;ms jiāo;dd liú;ud	598
+单相交流	dān;ds xiàng;ms jiāo;dd liú;ud	598
 单向交通	dān;ds xiàng;pk jiāo;dd tōng;vz	508
-单相接地	dān;ds xiāng;ms jiē;fd dì;tv	19
+单相接地	dān;ds xiàng;ms jiē;fd dì;tv	19
 单向接头	dān;ds xiàng;pk jiē;fd tóu;dd	44
 单项矩阵	dān;ds xiàng;hh jǔ;ph zhèn;vh	4
 单向空间	dān;ds xiàng;pk kōng;bh jiān;dl	486
@@ -879923,8 +879924,8 @@ sort: by_weight
 单向坡度	dān;ds xiàng;pk pō;tv dù;dd	45
 单项期权	dān;ds xiàng;hh qī;cy quán;mv	45
 丹香清脂	dān;ph xiāng;el qīng;uh zhī;yp	45
-单相绕组	dān;ds xiāng;ms rào;ih zǔ;is	180
-单相三线	dān;ds xiāng;ms sān;hh xiàn;ih	297
+单相绕组	dān;ds xiàng;ms rào;ih zǔ;is	180
+单相三线	dān;ds xiàng;ms sān;hh xiàn;ih	297
 单向上链	dān;ds xiàng;pk shàng;sh liàn;jh	48
 单向市场	dān;ds xiàng;pk shì;ds chǎng;tv	144
 单向收费	dān;ds xiàng;pk shōu;vp fèi;vr	13
@@ -879935,7 +879936,7 @@ sort: by_weight
 单向通信	dān;ds xiàng;pk tōng;vz xìn;ra	6
 单向通行	dān;ds xiàng;pk tōng;vz xíng;ph	3
 单向透视	dān;ds xiàng;pk tòu;ez shì;ds	333
-单相系统	dān;ds xiāng;ms xì;pi tǒng;id	117
+单相系统	dān;ds xiàng;ms xì;pi tǒng;id	117
 单向信任	dān;ds xiàng;pk xìn;ra rèn;rp	50
 但相信我	dàn;rl xiāng;ms xìn;ra wǒ;pd	327
 单向行车	dān;ds xiàng;pk xíng;ph chē;hs	400
@@ -879945,8 +879946,8 @@ sort: by_weight
 单向循环	dān;ds xiàng;pk xún;pp huán;wh	472
 单向压力	dān;ds xiàng;pk yā;hd lì;vp	99
 单项样条	dān;ds xiàng;hh yàng;md tiáo;pm	45
-单相异步	dān;ds xiāng;ms yì;vs bù;sp	346
-单相抑郁	dān;ds xiāng;ms yì;fp yù;hv	418
+单相异步	dān;ds xiàng;ms yì;vs bù;sp	346
+单相抑郁	dān;ds xiàng;ms yì;fp yù;hv	418
 单项因子	dān;ds xiàng;hh yīn;sh zǐ;vh	45
 单向轴承	dān;ds xiàng;pk zhóu;hs chéng;vd	45
 单向转换	dān;ds xiàng;pk zhuǎn;hh huàn;fp	4
@@ -888669,7 +888670,7 @@ sort: by_weight
 低压容器	dī;rp yā;hd róng;bk qì;kk	194
 抵押融资	dǐ;fp yā;fl róng;ho zī;dr	612
 低压软管	dī;rp yā;hd ruǎn;hp guǎn;gh	44
-低压三相	dī;rp yā;hd sān;hh xiāng;ms	94
+低压三相	dī;rp yā;hd sān;hh xiàng;ms	94
 低压设备	dī;rp yā;hd shè;ap bèi;ph	279
 低压套管	dī;rp yā;hd tào;hd guǎn;gh	94
 低压停机	dī;rp yā;hd tíng;rd jī;mp	68
@@ -909625,14 +909626,14 @@ sort: by_weight
 二仙传道	èr;hh xiān;rs chuán;rh dào;dz	117
 二线蓝筹	èr;hh xiàn;ih lán;ch chóu;gd	810
 二仙桥路	èr;hh xiān;rs qiáo;mp lù;zp	50
-二相电流	èr;hh xiāng;ms diàn;lv liú;ud	4
+二相电流	èr;hh xiàng;ms diàn;lv liú;ud	4
 二项方程	èr;hh xiàng;hh fāng;dp chéng;ek	4
 二项分布	èr;hh xiàng;hh fēn;pp bù;hs	226
 二向分类	èr;hh xiàng;pk fēn;pp lèi;dd	45
 二项级数	èr;hh xiàng;hh jí;ip shù;dp	4
 二项检验	èr;hh xiàng;hh jiǎn;mr yàn;vr	45
-二相流体	èr;hh xiāng;ms liú;ud tǐ;rm	76
-二相平衡	èr;hh xiāng;ms píng;hs héng;pp	76
+二相流体	èr;hh xiàng;ms liú;ud tǐ;rm	76
+二相平衡	èr;hh xiàng;ms píng;hs héng;pp	76
 二向色镜	èr;hh xiàng;pk sè;pv jìng;jd	45
 二向色性	èr;hh xiàng;pk sè;pv xìng;xp	194
 而想象成	ér;hs xiǎng;mx xiàng;pd chéng;hd	50
@@ -973721,7 +973722,7 @@ sort: by_weight
 红线以内	hóng;ih xiàn;ih yǐ;vr nèi;sd	243
 红线以外	hóng;ih xiàn;ih yǐ;vr wài;ps	315
 红线制度	hóng;ih xiàn;ih zhì;ps dù;dd	315
-红相电力	hóng;ih xiāng;ms diàn;lv lì;vp	306
+红相电力	hóng;ih xiàng;ms diàn;lv lì;vp	306
 鸿祥公司	hóng;uh xiáng;dd gōng;pd sī;vk	50
 红相股份	hóng;ih xiāng;ms gǔ;yp fèn;rp	50
 鸿翔集团	hóng;uh xiáng;dv jí;rm tuán;sh	207
@@ -976387,7 +976388,7 @@ sort: by_weight
 胡思年月	hú;hy sī;sx nián;ps yuè;yh	117
 狐死首丘	hú;pp sǐ;hv shǒu;dh qiū;ph	16
 狐死兔泣	hú;pp sǐ;hv tù;pd qì;ud	3
-胡四相公	hú;hy sì;sh xiāng;ms gōng;pd	99
+胡四相公	hú;hy sì;sh xiàng;ms gōng;pd	99
 胡斯战争	hú;hy sī;cp zhàn;sh zhēng;ps	418
 沪松公路	hù;ud sōng;mp gōng;pd lù;zp	387
 忽松忽紧	hū;px sōng;mp hū;px jǐn;sd	6
@@ -1010134,7 +1010135,7 @@ sort: by_weight
 交流融合	jiāo;dd liú;ud róng;ho hé;rk	621
 焦溜肉片	jiāo;rq liū;up ròu;sr piàn;pv	432
 焦熘肉片	jiāo;rq liū;qp ròu;sr piàn;pv	52
-交流三相	jiāo;dd liú;ud sān;hh xiāng;ms	261
+交流三相	jiāo;dd liú;ud sān;hh xiàng;ms	261
 交流盛会	jiāo;dd liú;ud shèng;hh huì;rd	6
 交流试验	jiāo;dd liú;ud shì;ah yàn;vr	324
 交流输电	jiāo;dd liú;ud shū;hr diàn;lv	504
@@ -1061523,7 +1061524,7 @@ sort: by_weight
 两项措施	liǎng;hd xiàng;hh cuò;fc shī;dp	410
 两项大奖	liǎng;hd xiàng;hh dà;hd jiǎng;dd	720
 良乡大角	liáng;dd xiāng;ip dà;hd jiǎo;ps	50
-两相电路	liǎng;hd xiāng;ms diàn;lv lù;zp	50
+两相电路	liǎng;hd xiàng;ms diàn;lv lù;zp	50
 两相对比	liǎng;hd xiāng;ms duì;vh bǐ;hp	644
 两厢飞度	liǎng;hd xiāng;hh fēi;vd dù;dd	369
 两项服务	liǎng;hd xiàng;hh fú;yv wù;pp	464
@@ -1061553,6 +1061554,7 @@ sort: by_weight
 两厢小车	liǎng;hd xiāng;hh xiǎo;sd chē;hs	441
 两项研究	liǎng;hd xiàng;hh yán;hh jiū;bv	513
 两项业务	liǎng;hd xiàng;hh yè;sh wù;pp	554
+两相映证	liǎng;hd xiāng;ms yìng;ls zhèng;ah	45
 两相运行	liǎng;hd xiāng;ms yùn;hz xíng;ph	76
 两项政策	liǎng;hd xiàng;hh zhèng;hp cè;gd	513
 两项指标	liǎng;hd xiàng;hh zhǐ;fp biāo;mh	670
@@ -1067221,7 +1067223,7 @@ sort: by_weight
 流向查询	liú;ud xiàng;pk chá;mh xún;ap	207
 留香持久	liú;ph xiāng;el chí;ft jiǔ;pd	486
 六项措施	liù;dd xiàng;hh cuò;fc shī;dp	454
-六相电压	liù;dd xiāng;ms diàn;lv yā;hd	4
+六相电压	liù;dd xiàng;ms diàn;lv yā;hd	4
 留香饭店	liú;ph xiāng;el fàn;pp diàn;dk	4
 浏翔公路	liú;ud xiáng;dv gōng;pd lù;zp	230
 留香公子	liú;ph xiāng;el gōng;pd zǐ;vh	4
@@ -1067239,7 +1067241,7 @@ sort: by_weight
 留香时间	liú;ph xiāng;el shí;lh jiān;dl	864
 刘翔退役	liú;ds xiáng;dv tuì;vz yì;pp	774
 流向远方	liú;ud xiàng;pk yuǎn;hz fāng;dp	387
-六相圆融	liù;dd xiāng;ms yuán;sh róng;ho	144
+六相圆融	liù;dd xiàng;ms yuán;sh róng;ho	144
 六项原则	liù;dd xiàng;hh yuán;hd zé;ss	324
 六项指标	liù;dd xiàng;hh zhǐ;fp biāo;mh	328
 六项制度	liù;dd xiàng;hh zhì;ps dù;dd	238
@@ -1081514,7 +1081516,7 @@ sort: by_weight
 没想到哇	méi;up xiǎng;mx dào;hs wa;kt	9
 没想到呀	méi;up xiǎng;mx dào;hs ya;kh	57
 没想到在	méi;up xiǎng;mx dào;hs zài;ht	1125
-每相电流	měi;pd xiāng;ms diàn;lv liú;ud	117
+每相电流	měi;pd xiàng;ms diàn;lv liú;ud	117
 没想法啊	méi;up xiǎng;mx fǎ;ut a;kv	207
 没想法吧	méi;up xiǎng;mx fǎ;ut ba;kv	3
 没想法了	méi;up xiǎng;mx fǎ;ut le;vs	25
@@ -1128220,11 +1128222,11 @@ sort: by_weight
 抢走风头	qiǎng;fr zǒu;tr fēng;pd tóu;dd	279
 羌族历史	qiāng;dv zú;dp lì;hp shǐ;kd	162
 羌族双煞	qiāng;dv zú;dp shuāng;vv shā;pq	50
-强作欢颜	qiáng;vk zuò;rp huān;vp yán;dh	13
+强作欢颜	qiǎng;vk zuò;rp huān;vp yán;dh	13
 强作解人	qiǎng;vk zuò;rp jiě;pv rén;rd	234
 强作解事	qiáng;vk zuò;rp jiě;pv shì;hs	144
 强作用力	qiáng;vk zuò;rp yòng;ps lì;vp	60
-强作镇定	qiáng;vk zuò;rp zhèn;jh dìng;bd	558
+强作镇定	qiǎng;vk zuò;rp zhèn;jh dìng;bd	558
 峭拔冷峻	qiào;ss bá;fh lěng;dr jùn;sv	4
 桥斑蛋白	qiáo;mp bān;wd dàn;vo bái;pl	45
 翘板开关	qiào;hh bǎn;mp kāi;hs guān;dd	189
@@ -1154504,7 +1154506,7 @@ sort: by_weight
 三摄组合	sān;hh shè;fh zǔ;is hé;rk	284
 三审定谳	sān;hh shěn;bs dìng;bd yàn;ah	52
 三审判决	sān;hh shěn;bs pàn;ds jué;dv	310
-三审三校	sān;hh shěn;bs sān;hh xiào;md	410
+三审三校	sān;hh shěn;bs sān;hh jiào;md	410
 三肾温阳	sān;hh shèn;sy wēn;ul yáng;vl	45
 三申五令	sān;hh shēn;ls wǔ;hh lìng;rd	13
 三审终审	sān;hh shěn;bs zhōng;ip shěn;bs	52
@@ -1154632,7 +1154634,7 @@ sort: by_weight
 三十二万	sān;hh shí;hs èr;hh wàn;hp	31
 三十二位	sān;hh shí;hs èr;hh wèi;rd	16
 三十二席	sān;hh shí;hs èr;hh xí;ds	50
-三十二相	sān;hh shí;hs èr;hh xiāng;ms	16
+三十二相	sān;hh shí;hs èr;hh xiàng;ms	16
 三十而已	sān;hh shí;hs ér;hs yǐ;vv	182
 三十二应	sān;hh shí;hs èr;hh yīng;dh	324
 三十二员	sān;hh shí;hs èr;hh yuán;kr	99
@@ -1155638,63 +1155640,63 @@ sort: by_weight
 三弦乐器	sān;hh xián;vd yuè;pd qì;kk	144
 三鲜煮馍	sān;hh xiān;pd zhǔ;tq mó;pc	446
 三线坐标	sān;hh xiàn;ih zuò;rt biāo;mh	256
-三相包体	sān;hh xiāng;ms bāo;pv tǐ;rm	69
+三相包体	sān;hh xiàng;ms bāo;pv tǐ;rm	69
 三香包子	sān;hh xiāng;el bāo;pv zi;vh	99
-三相补偿	sān;hh xiāng;ms bǔ;ds cháng;rs	94
+三相补偿	sān;hh xiàng;ms bǔ;ds cháng;rs	94
 三厢车型	sān;hh xiāng;hh chē;hs xíng;ht	616
-三相电表	sān;hh xiāng;ms diàn;lv biǎo;hd	238
-三相电机	sān;hh xiāng;ms diàn;lv jī;mp	387
-三相电力	sān;hh xiāng;ms diàn;lv lì;vp	279
-三相电流	sān;hh xiāng;ms diàn;lv liú;ud	41
-三相电路	sān;hh xiāng;ms diàn;lv lù;zp	414
-三相电炉	sān;hh xiāng;ms diàn;lv lú;qd	42
-三相电压	sān;hh xiāng;ms diàn;lv yā;hd	441
-三相电源	sān;hh xiāng;ms diàn;lv yuán;uh	464
-三相短路	sān;hh xiāng;ms duǎn;ph lù;zp	342
+三相电表	sān;hh xiàng;ms diàn;lv biǎo;hd	238
+三相电机	sān;hh xiàng;ms diàn;lv jī;mp	387
+三相电力	sān;hh xiàng;ms diàn;lv lì;vp	279
+三相电流	sān;hh xiàng;ms diàn;lv liú;ud	41
+三相电路	sān;hh xiàng;ms diàn;lv lù;zp	414
+三相电炉	sān;hh xiàng;ms diàn;lv lú;qd	42
+三相电压	sān;hh xiàng;ms diàn;lv yā;hd	441
+三相电源	sān;hh xiàng;ms diàn;lv yuán;uh	464
+三相短路	sān;hh xiàng;ms duǎn;ph lù;zp	342
 三湘儿女	sān;hh xiāng;um ér;pv nǚ;nh	220
 三项方程	sān;hh xiàng;hh fāng;dp chéng;ek	50
-三相分离	sān;hh xiāng;ms fēn;pp lí;dd	238
+三相分离	sān;hh xiàng;ms fēn;pp lí;dd	238
 三湘风纪	sān;hh xiāng;um fēng;pd jì;iv	360
-三相负荷	sān;hh xiāng;ms fù;pr hè;cs	364
-三相负载	sān;hh xiāng;ms fù;pr zǎi;td	382
+三相负荷	sān;hh xiàng;ms fù;pr hè;cs	364
+三相负载	sān;hh xiàng;ms fù;pr zǎi;td	382
 三乡工程	sān;hh xiāng;ip gōng;hh chéng;ek	45
-三相供电	sān;hh xiāng;ms gōng;rc diàn;lv	297
-三相功率	sān;hh xiāng;ms gōng;hv lǜ;ds	225
+三相供电	sān;hh xiàng;ms gōng;rc diàn;lv	297
+三相功率	sān;hh xiàng;ms gōng;hv lǜ;ds	225
 三湘股份	sān;hh xiāng;um gǔ;yp fèn;rp	441
 三项关系	sān;hh xiàng;hh guān;dd xì;pi	45
 三湘花卉	sān;hh xiāng;um huā;cv huì;hc	4
 三项纪录	sān;hh xiàng;hh jì;iv lù;vu	310
 三湘集团	sān;hh xiāng;um jí;rm tuán;sh	4
 三厢轿车	sān;hh xiāng;hh jiào;hp chē;hs	1125
-三相交流	sān;hh xiāng;ms jiāo;dd liú;ud	706
-三相开关	sān;hh xiāng;ms kāi;hs guān;dd	76
+三相交流	sān;hh xiàng;ms jiāo;dd liú;ud	706
+三相开关	sān;hh xiàng;ms kāi;hs guān;dd	76
 三祥科技	sān;hh xiáng;dd kē;ed jì;fh	310
-三相泡沫	sān;hh xiāng;ms pào;up mò;uh	45
-三相平衡	sān;hh xiāng;ms píng;hs héng;pp	356
+三相泡沫	sān;hh xiàng;ms pào;up mò;uh	45
+三相平衡	sān;hh xiàng;ms píng;hs héng;pp	356
 三项权利	sān;hh xiàng;hh quán;mv lì;es	225
-三相绕组	sān;hh xiāng;ms rào;ih zǔ;is	378
+三相绕组	sān;hh xiàng;ms rào;ih zǔ;is	378
 三湘人家	sān;hh xiāng;um rén;rd jiā;bd	266
-三相三线	sān;hh xiāng;ms sān;hh xiàn;ih	432
+三相三线	sān;hh xiàng;ms sān;hh xiàn;ih	432
 三项式的	sān;hh xiàng;hh shì;hd de;pp	171
 三湘石头	sān;hh xiāng;um shí;hk tou;dd	45
-三相四线	sān;hh xiāng;ms sì;sh xiàn;ih	50
+三相四线	sān;hh xiàng;ms sì;sh xiàn;ih	50
 三向调色	sān;hh xiàng;pk tiáo;ap sè;pv	50
-三相同期	sān;hh xiāng;ms tóng;sk qī;cy	94
+三相同期	sān;hh xiàng;ms tóng;sk qī;cy	94
 三想吾身	sān;hh xiǎng;mx wú;hk shēn;pp	50
-三相五线	sān;hh xiāng;ms wǔ;hh xiàn;ih	396
-三相线路	sān;hh xiāng;ms xiàn;ih lù;zp	171
+三相五线	sān;hh xiàng;ms wǔ;hh xiàn;ih	396
+三相线路	sān;hh xiàng;ms xiàn;ih lù;zp	171
 散香效果	sàn;cp xiāng;el xiào;dp guǒ;lm	28
 三祥新材	sān;hh xiáng;dd xīn;dp cái;mh	400
 三向压力	sān;hh xiàng;pk yā;hd lì;vp	45
-三相异步	sān;hh xiāng;ms yì;vs bù;sp	580
+三相异步	sān;hh xiàng;ms yì;vs bù;sp	580
 三湘银行	sān;hh xiāng;um yín;jv háng;ph	69
 三湘印象	sān;hh xiāng;um yìn;pv xiàng;pd	333
 三向应力	sān;hh xiàng;pk yìng;dh lì;vp	117
 三项运算	sān;hh xiàng;hh yùn;hz suàn;gs	45
-三相整流	sān;hh xiāng;ms zhěng;hh liú;ud	162
-三相之力	sān;hh xiāng;ms zhī;dd lì;vp	25
+三相整流	sān;hh xiàng;ms zhěng;hh liú;ud	162
+三相之力	sān;hh xiàng;ms zhī;dd lì;vp	25
 三项之力	sān;hh xiàng;hh zhī;dd lì;vp	22
-三相状态	sān;hh xiāng;ms zhuàng;dh tài;hx	4
+三相状态	sān;hh xiàng;ms zhuàng;dh tài;hx	4
 三小场所	sān;hh xiǎo;sd chǎng;tv suǒ;pp	396
 三小车辆	sān;hh xiǎo;sd chē;hs liàng;hh	50
 三校合并	sān;hh xiào;md hé;rk bìng;ds	490
@@ -1157956,7 +1157958,7 @@ sort: by_weight
 闪斑玢岩	shǎn;dr bān;wd bīn;wp yán;sk	45
 杉板桥路	shān;mp bǎn;mp qiáo;mp lù;zp	279
 舢板运动	shān;ps bǎn;mp yùn;hz dòng;hv	45
-讪谤君相	shàn;as bàng;ad jūn;vk xiāng;ms	117
+讪谤君相	shàn;as bàng;ad jūn;vk xiàng;ms	117
 闪爆事故	shǎn;dr bào;ql shì;hs gù;hp	234
 陕北道情	shǎn;vh běi;sp dào;dz qíng;xh	117
 陕北方言	shǎn;vh běi;sp fāng;dp yán;ak	351
@@ -1192454,7 +1192456,7 @@ sort: by_weight
 蜀汉皇室	shǔ;so hàn;uv huáng;pw shì;bt	4
 蜀汉吉祥	shǔ;so hàn;uv jí;tk xiáng;dd	4
 蜀汉三杰	shǔ;so hàn;uv sān;hh jié;mq	130
-蜀汉四相	shǔ;so hàn;uv sì;sh xiāng;ms	16
+蜀汉四相	shǔ;so hàn;uv sì;sh xiàng;ms	16
 蜀汉太守	shǔ;so hàn;uv tài;hd shǒu;bd	50
 蜀汉五虎	shǔ;so hàn;uv wǔ;hh hǔ;sv	410
 属汉彝藏	shǔ;vd hàn;uv yí;vs cáng;cd	4
@@ -1203897,7 +1203899,7 @@ sort: by_weight
 四项原则	sì;sh xiàng;hh yuán;hd zé;ss	25
 思想战线	sī;sx xiǎng;mx zhàn;sh xiàn;ih	13
 思想阵地	sī;sx xiǎng;mx zhèn;vh dì;tv	22
-死相枕藉	sǐ;hv xiāng;ms zhěn;md jiè;cl	6
+死相枕藉	sǐ;hv xiàng;ms zhěn;md jiè;cl	6
 思想政治	sī;sx xiǎng;mx zhèng;hp zhì;uv	367
 四项指标	sì;sh xiàng;hh zhǐ;fp biāo;mh	482
 思想指导	sī;sx xiǎng;mx zhǐ;fp dǎo;vd	630
@@ -1248899,6 +1248901,7 @@ sort: by_weight
 我伤不起	wǒ;pd shāng;rp bù;hd qǐ;tv	387
 我上不去	wǒ;pd shàng;sh bú;hd qù;td	38
 我上车了	wǒ;pd shàng;sh chē;hs le;vs	22
+我上传了	wǒ;pd shàng;sh chuán;rh le;vs	122
 我上船了	wǒ;pd shàng;sh chuán;pp le;vs	76
 我上床的	wǒ;pd shàng;sh chuáng;dm de;pp	477
 我上单位	wǒ;pd shàng;sh dān;ds wèi;rd	45
@@ -1258558,7 +1258561,7 @@ sort: by_weight
 吾有大患	wú;hk yǒu;hy dà;hd huàn;kx	180
 吾有大树	wú;hk yǒu;hy dà;hd shù;mv	99
 无有地狱	wú;hv yǒu;hy dì;tv yù;pa	76
-无有二相	wú;hv yǒu;hy èr;hh xiāng;ms	4
+无有二相	wú;hv yǒu;hy èr;hh xiàng;ms	4
 无有非人	wú;hv yǒu;hy fēi;ss rén;rd	117
 无有高下	wú;hv yǒu;hy gāo;dk xià;hd	342
 无忧寒潭	wú;hv yōu;xh hán;bd tán;uh	292
@@ -1269708,7 +1269711,7 @@ sort: by_weight
 想到这儿	xiǎng;mx dào;hs zhè;dz er;pv	900
 想到这里	xiǎng;mx dào;hs zhè;dz lǐ;lt	1395
 想到这么	xiǎng;mx dào;hs zhè;dz me;pd	1287
-相的变化	xiāng;ms de;pp biàn;dd huà;rp	436
+相的变化	xiàng;ms de;pp biàn;dd huà;rp	436
 想的不是	xiǎng;mx de;pp bú;hd shì;lr	323
 想的不行	xiǎng;mx de;pp bù;hd xíng;ph	418
 项的材料	xiàng;hh de;pp cái;mh liào;dd	76
@@ -1269761,7 +1269764,7 @@ sort: by_weight
 香堤水岸	xiāng;el dī;tl shuǐ;ud àn;ss	45
 像第一次	xiàng;rp dì;gp yī;hh cì;dp	774
 象帝之先	xiàng;pd dì;ds zhī;dd xiān;pv	274
-相电动势	xiāng;ms diàn;lv dòng;hv shì;fp	4
+相电动势	xiàng;ms diàn;lv dòng;hv shì;fp	4
 湘电风能	xiāng;um diàn;lv fēng;pd néng;vp	306
 湘电股份	xiāng;um diàn;lv gǔ;yp fèn;rp	531
 湘电集团	xiāng;um diàn;lv jí;rm tuán;sh	378
@@ -1270897,10 +1270900,10 @@ sort: by_weight
 相见匆匆	xiāng;ms jiàn;sv cōng;pd cōng;pd	117
 想见到你	xiǎng;mx jiàn;sv dào;hs nǐ;rp	657
 想见的人	xiǎng;mx jiàn;sv de;pp rén;rd	738
-相间电压	xiāng;ms jiàn;dl diàn;lv yā;hd	153
+相间电压	xiàng;ms jiān;dl diàn;lv yā;hd	153
 香煎豆腐	xiāng;el jiān;dq dòu;hh fu;dr	495
 想剪短发	xiǎng;mx jiǎn;dp duǎn;ph fà;vd	554
-相间短路	xiāng;ms jiàn;dl duǎn;ph lù;zp	364
+相间短路	xiàng;ms jiān;dl duǎn;ph lù;zp	364
 相间分离	xiāng;ms jiàn;dl fēn;pp lí;dd	45
 详见附件	xiáng;ad jiàn;sv fù;vr jiàn;rp	824
 详见附录	xiáng;ad jiàn;sv fù;vr lù;vu	35
@@ -1270915,7 +1270918,7 @@ sort: by_weight
 想见就见	xiǎng;mx jiàn;sv jiù;dh jiàn;sv	374
 想剪就剪	xiǎng;mx jiǎn;dp jiù;dh jiǎn;dp	186
 相间距离	xiāng;ms jiàn;dl jù;zh lí;dd	99
-相间绝缘	xiāng;ms jiàn;dl jué;ip yuán;iv	117
+相间绝缘	xiàng;ms jiān;dl jué;ip yuán;iv	117
 乡间郎中	xiāng;ip jiān;dl láng;dv zhōng;ks	45
 乡间老厨	xiāng;ip jiān;dl lǎo;tv chú;hd	220
 想见你了	xiǎng;mx jiàn;sv nǐ;rp le;vs	382
@@ -1289005,7 +1289008,7 @@ sort: by_weight
 虚实透视	xū;sh shí;bd tòu;ez shì;ds	4
 蓄势突围	xù;ch shì;fp tū;bd wéi;sh	4
 虚实相对	xū;sh shí;bd xiàng;ms duì;vh	189
-虚实相间	xū;sh shí;bd xiàng;ms jiān;dl	414
+虚实相间	xū;sh shí;bd xiāng;ms jiān;dl	414
 虚实相生	xū;sh shí;bd xiàng;ms shēng;ph	88
 蓄势形态	xù;ch shì;fp xíng;hp tài;hx	189
 蓄势以待	xù;ch shì;fp yǐ;vr dài;pt	428
@@ -1317814,9 +1317817,9 @@ sort: by_weight
 一丝希望	yì;hh sī;ii xī;ps wàng;dw	932
 一丝喜悦	yì;hh sī;ii xǐ;tk yuè;xd	513
 一丝线索	yì;hh sī;ii xiàn;ih suǒ;hi	459
-以死相逼	yǐ;vr sǐ;hv xiāng;ms bī;hz	195
-以死相搏	yǐ;vr sǐ;hv xiāng;ms bó;fh	52
-以死相拼	yǐ;vr sǐ;hv xiāng;ms pīn;fd	356
+以死相逼	yǐ;vr sǐ;hv xiàng;ms bī;hz	195
+以死相搏	yǐ;vr sǐ;hv xiàng;ms bó;fh	52
+以死相拼	yǐ;vr sǐ;hv xiàng;ms pīn;fd	356
 一丝笑意	yì;hh sī;ii xiào;gd yì;dx	900
 一丝懈怠	yì;hh sī;ii xiè;xp dài;vx	405
 疑似泄露	yí;pv sì;rv xiè;uc lòu;hk	302
@@ -1319615,7 +1319618,7 @@ sort: by_weight
 意向登记	yì;dx xiàng;pk dēng;vh jì;av	572
 一向低调	yí;hh xiàng;pk dī;rp diào;ap	82
 意向地区	yì;dx xiàng;pk dì;tv qū;hv	6
-移相电路	yí;ep xiāng;ms diàn;lv lù;zp	144
+移相电路	yí;ep xiàng;ms diàn;lv lù;zp	144
 意向调查	yì;dx xiàng;pk diào;ap chá;mh	405
 一项调查	yí;hh xiàng;hh diào;ap chá;mh	364
 意向订单	yì;dx xiàng;pk dìng;ah dān;ds	459
@@ -1356451,14 +1356454,12 @@ sort: by_weight
 涨落现象	zhǎng;uv luò;ck xiàn;ws xiàng;pd	270
 杖履相从	zhàng;mh lǚ;vd xiāng;ms cóng;rr	45
 仗马寒蝉	zhàng;rh mǎ;vh hán;bd chán;od	76
-长马尾辫	zhǎng;pd mǎ;vh wěi;vv biàn;di	4
 张脉偾兴	zhāng;vp mài;yd fèn;rh xīng;dd	3
 长满了草	zhǎng;pd mǎn;uc le;vs cǎo;cs	346
 长满青苔	zhǎng;pd mǎn;uc qīng;hy tái;ck	66
 长毛地毯	zhǎng;pd máo;pv dì;tv tǎn;pq	351
 长毛对虾	zhǎng;pd máo;pv duì;vh xiā;oh	117
 长毛腊肠	zhǎng;pd máo;pv là;yc cháng;yv	207
-长毛细犬	zhǎng;pd máo;pv xì;is quǎn;hd	153
 长毛锥花	zhǎng;pd máo;pv zhuī;jr huā;cv	117
 张袂成阴	zhāng;vp mèi;dv chéng;hd yīn;vy	130
 张眉怒目	zhāng;vp méi;vh nù;nx mù;sh	45
@@ -1380704,6 +1380705,7 @@ sort: by_weight
 中山简王	zhōng;ks shān;ss jiǎn;gl wáng;wh	220
 中山街南	zhōng;ks shān;ss jiē;pt nán;hs	130
 众山皆响	zhòng;rr shān;ss jiē;hl xiǎng;kp	76
+中山靖王	zhōng;ks shān;ss jìng;dh wáng;wh	8
 中山科学	zhōng;ks shān;ss kē;ed xué;dh	585
 中山狼传	zhōng;ks shān;ss láng;pd zhuàn;rh	256
 中山路店	zhōng;ks shān;ss lù;zp diàn;dk	441
@@ -1414414,20 +1414416,20 @@ sort: by_weight
 单系统映像	dān;ds xì;pi tǒng;id yìng;ls xiàng;rp	10
 弹匣容弹量	dàn;vd xiá;hv róng;bk dàn;vd liàng;lt	10
 单弦牌子曲	dān;ds xián;vd pái;pp zi;vh qǔ;sh	10
-单相变压器	dān;ds xiāng;ms biàn;dd yā;hd qì;kk	10
+单相变压器	dān;ds xiàng;ms biàn;dd yā;hd qì;kk	10
 单向导电性	dān;ds xiàng;pk dǎo;vd diàn;lv xìng;xp	10
-单相电动机	dān;ds xiāng;ms diàn;lv dòng;hv jī;mp	10
-单相电度表	dān;ds xiāng;ms diàn;lv dù;dd biǎo;hd	10
-单相电能表	dān;ds xiāng;ms diàn;lv néng;vp biǎo;hd	10
+单相电动机	dān;ds xiàng;ms diàn;lv dòng;hv jī;mp	10
+单相电度表	dān;ds xiàng;ms diàn;lv dù;dd biǎo;hd	10
+单相电能表	dān;ds xiàng;ms diàn;lv néng;vp biǎo;hd	10
 单向阀排气	dān;ds xiàng;pk fá;dd pái;fs qì;pv	10
-单相关系数	dān;ds xiāng;ms guān;dd xì;pi shù;dp	10
+单相关系数	dān;ds xiàng;ms guān;dd xì;pi shù;dp	10
 单向或双向	dān;ds xiàng;pk huò;hd shuāng;vv xiàng;pk	10
-单相交流电	dān;ds xiāng;ms jiāo;dd liú;ud diàn;lv	10
+单相交流电	dān;ds xiàng;ms jiāo;dd liú;ud diàn;lv	10
 单向节流阀	dān;ds xiàng;pk jié;cs liú;ud fá;dd	10
 单向可控硅	dān;ds xiàng;pk kě;hs kòng;fb guī;ht	10
 淡响蓝白岩	dàn;uq xiǎng;kp lán;ch bái;pl yán;sk	10
 单向离合器	dān;ds xiàng;pk lí;dd hé;rk qì;kk	10
-单相潜水泵	dān;ds xiāng;ms qián;uh shuǐ;ud bèng;hu	10
+单相潜水泵	dān;ds xiàng;ms qián;uh shuǐ;ud bèng;hu	10
 单像素面积	dān;ds xiàng;rp sù;hi miàn;hh jī;ek	10
 胆小狗英雄	dǎn;yl xiǎo;sd gǒu;pp yīng;cd xióng;hr	10
 胆小者慎入	dǎn;yl xiǎo;sd zhě;tl shèn;xh rù;pd	10
@@ -1419122,7 +1419124,7 @@ sort: by_weight
 耳蜗植入物	ěr;hh wō;ok zhí;mh rù;pd wù;pp	10
 而无车马喧	ér;hs wú;hv chē;hs mǎ;vh xuān;kb	10
 二仙桥北路	èr;hh xiān;rs qiáo;mp běi;sp lù;zp	10
-二相抽样法	èr;hh xiāng;ms chōu;fs yàng;md fǎ;ut	10
+二相抽样法	èr;hh xiàng;ms chōu;fs yàng;md fǎ;ut	10
 二项式系数	èr;hh xiàng;hh shì;hd xì;pi shù;dp	10
 二项展开式	èr;hh xiàng;hh zhǎn;vd kāi;hs shì;hd	10
 二行程引擎	èr;hh xíng;ph chéng;ek yǐn;vs qíng;cf	10
@@ -1421615,7 +1421617,7 @@ sort: by_weight
 疯狂绅士帮	fēng;dd kuáng;pw shēn;il shì;th bāng;hs	10
 疯狂小旅鼠	fēng;dd kuáng;pw xiǎo;sd lǚ;dp shǔ;pv	10
 风来的西林	fēng;pd lái;hm de;pp xī;hh lín;mm	10
-风来君相忆	fēng;pd lái;hm jūn;vk xiāng;ms yì;xv	10
+风来君相忆	fēng;pd lái;hm jūn;vk xiàng;ms yì;xv	10
 丰乐生态园	fēng;hs lè;pd shēng;ph tài;hx yuán;sh	10
 锋利的宝剑	fēng;jp lì;es de;pp bǎo;bd jiàn;rs	10
 锋利的剪刀	fēng;jp lì;es de;pp jiǎn;dp dāo;vp	10
@@ -1457037,18 +1457039,18 @@ sort: by_weight
 三线性形式	sān;hh xiàn;ih xìng;xp xíng;hp shì;hd	10
 三线性映射	sān;hh xiàn;ih xìng;xp yìng;ls shè;ph	10
 三县洲大桥	sān;hh xiàn;sd zhōu;ud dà;hd qiáo;mp	10
-三相变压器	sān;hh xiāng;ms biàn;dd yā;hd qì;kk	10
-三相不平衡	sān;hh xiāng;ms bù;hd píng;hs héng;pp	10
-三相电动机	sān;hh xiāng;ms diàn;lv dòng;hv jī;mp	10
-三相电抗器	sān;hh xiāng;ms diàn;lv kàng;fd qì;kk	10
-三相发电机	sān;hh xiāng;ms fā;vd diàn;lv jī;mp	10
+三相变压器	sān;hh xiàng;ms biàn;dd yā;hd qì;kk	10
+三相不平衡	sān;hh xiàng;ms bù;hd píng;hs héng;pp	10
+三相电动机	sān;hh xiàng;ms diàn;lv dòng;hv jī;mp	10
+三相电抗器	sān;hh xiàng;ms diàn;lv kàng;fd qì;kk	10
+三相发电机	sān;hh xiàng;ms fā;vd diàn;lv jī;mp	10
 三香广场站	sān;hh xiāng;el guǎng;dp chǎng;tv zhàn;ds	10
-三相交流电	sān;hh xiāng;ms jiāo;dd liú;ud diàn;lv	10
-三相三线制	sān;hh xiāng;ms sān;hh xiàn;ih zhì;ps	10
+三相交流电	sān;hh xiàng;ms jiāo;dd liú;ud diàn;lv	10
+三相三线制	sān;hh xiàng;ms sān;hh xiàn;ih zhì;ps	10
 三乡收费站	sān;hh xiāng;ip shōu;vp fèi;vr zhàn;ds	10
-三相四线制	sān;hh xiāng;ms sì;sh xiàn;ih zhì;ps	10
+三相四线制	sān;hh xiàng;ms sì;sh xiàn;ih zhì;ps	10
 三项铁人赛	sān;hh xiàng;hh tiě;jp rén;rd sài;br	10
-三相五线制	sān;hh xiāng;ms wǔ;hh xiàn;ih zhì;ps	10
+三相五线制	sān;hh xiàng;ms wǔ;hh xiàn;ih zhì;ps	10
 三硝基苯酚	sān;hh xiāo;hs jī;ct běn;ch fēn;hp	10
 三硝基甲苯	sān;hh xiāo;hs jī;ct jiǎ;ls běn;ch	10
 三消类游戏	sān;hh xiāo;us lèi;dd yóu;ud xì;vh	10
@@ -1481298,7 +1481300,7 @@ sort: by_weight
 一切向前看	yí;hh qiè;hv xiàng;pk qián;ds kàn;ph	12
 一切向钱看	yí;hh qiè;hv xiàng;pk qián;jh kàn;ph	10
 一切种子识	yí;hh qiè;hv zhǒng;ek zi;vh shí;ak	10
-疫情爆发时	yì;dd qíng;xh bào;ql fā;vd shí;lh	10
+疫情暴发时	yì;dd qíng;xh bào;lu fā;vd shí;lh	10
 以青春之名	yǐ;vr qīng;hy chūn;hl zhī;dd míng;pk	10
 以青春之我	yǐ;vr qīng;hy chūn;hl zhī;dd wǒ;pd	10
 以清淡为主	yǐ;vr qīng;uh dàn;uq wéi;dd zhǔ;dw	10
@@ -1497829,6 +1497831,7 @@ sort: by_weight
 长隆欢乐世界	cháng;pd lóng;vp huān;vp lè;pd shì;cv jiè;ss	10
 长龙生化药业	cháng;pd lóng;hd shēng;ph huà;rp yào;cd yè;sh	10
 长螺旋灌注桩	cháng;pd luó;os xuán;dp guàn;uc zhù;ud zhuāng;md	10
+长马尾的姑娘	cháng;pd mǎ;vh wěi;vv de;pp gū;nh niang;nd	10
 长毛狗的故事	cháng;pd máo;pv gǒu;pp de;pp gù;hp shi;hs	10
 场面一度失控	chǎng;tv miàn;hh yí;hh dù;dd shī;pd kòng;fb	10
 肠内营养制剂	cháng;yv nèi;sd yíng;ck yǎng;ds zhì;ps jì;ds	10
@@ -1500396,7 +1500399,7 @@ sort: by_weight
 弹匣释放按钮	dàn;vd xiá;hv shì;pv fàng;dp àn;fb niǔ;jv	10
 单向方差分析	dān;ds xiàng;pk fāng;dp chā;dh fēn;pp xī;mp	10
 单向观察玻璃	dān;ds xiàng;pk guān;vs chá;bd bō;wv li;wd	10
-单相接地故障	dān;ds xiāng;ms jiē;fd dì;tv gù;hp zhàng;vd	10
+单相接地故障	dān;ds xiàng;ms jiē;fd dì;tv gù;hp zhàng;vd	10
 单向土工格栅	dān;ds xiàng;pk tǔ;th gōng;hh gé;mp shān;mp	10
 单向旋转表圈	dān;ds xiàng;pk xuán;dp zhuǎn;hh biǎo;hd quān;sh	10
 单斜对称岩组	dān;ds xié;rd duì;vh chèn;ep yán;sk zǔ;is	10
@@ -1502247,7 +1502250,7 @@ sort: by_weight
 对称多处理机	duì;vh chèn;ep duō;pd chǔ;pd lǐ;wl jī;mp	10
 对称尖棱褶皱	duì;vh chèn;ep jiān;sd léng;mt zhě;dv zhòu;pv	10
 对称联邦主义	duì;vh chèn;ep lián;hd bāng;hv zhǔ;dw yì;dd	10
-对称三相电路	duì;vh chèn;ep sān;hh xiāng;ms diàn;lv lù;zp	10
+对称三相电路	duì;vh chèn;ep sān;hh xiàng;ms diàn;lv lù;zp	10
 对称伸缩振动	duì;vh chèn;ep shēn;rl suō;ib zhèn;fh dòng;hv	10
 对称始海星介	duì;vh chèn;ep shǐ;nv hǎi;up xīng;lh jiè;rs	10
 对称双线性型	duì;vh chèn;ep shuāng;vv xiàn;ih xìng;xp xíng;ht	10
@@ -1504338,6 +1504341,7 @@ sort: by_weight
 服部良一家族	fú;yv bù;dv liáng;dd yì;hh jiā;bd zú;dp	10
 扶不起的阿斗	fú;fh bù;hd qǐ;tv de;pp ā;vh dǒu;ds	10
 俯察品类之盛	fǔ;rd chá;bd pǐn;kk lèi;dd zhī;dd shèng;hh	10
+抚长高速公路	fǔ;fh cháng;pd gāo;dk sù;hz gōng;pd lù;zp	10
 负超几何分布	fù;pr chāo;tk jǐ;pv hé;rh fēn;pp bù;hs	10
 副沉积角砾岩	fù;hs chén;ud jī;ek jiǎo;ps lì;hp yán;sk	10
 浮沉浪似人潮	fú;up chén;ud làng;ud sì;rv rén;rd cháo;uh	10
@@ -1504833,7 +1504837,6 @@ sort: by_weight
 负责组织实施	fù;pr zé;hr zǔ;is zhī;ik shí;bd shī;dp	10
 负债抵销科目	fù;pr zhài;rh dǐ;fp xiāo;js kē;ed mù;sh	10
 副长的白夜叉	fù;hs zhǎng;pd de;pp bái;pl yè;dd chā;vd	10
-抚长高速公路	fǔ;fh zhǎng;pd gāo;dk sù;hz gōng;pd lù;zp	10
 复正方双锥类	fù;pd zhèng;hh fāng;dp shuāng;vv zhuī;jr lèi;dd	10
 复制背景图层	fù;pd zhì;ps bèi;sy jǐng;ld tú;sh céng;vd	10
 负值万有引力	fù;pr zhí;rh wàn;hp yǒu;hy yǐn;vs lì;vp	10
@@ -1523492,8 +1523495,8 @@ sort: by_weight
 三峡游客中心	sān;hh xiá;sh yóu;ud kè;bk zhōng;ks xīn;xd	10
 三峡专用公路	sān;hh xiá;sh zhuān;hd yòng;ps gōng;pd lù;zp	10
 三香跌打损伤	sān;hh xiāng;el diē;zp dǎ;fh sǔn;fk shāng;rp	10
-三相交变电流	sān;hh xiāng;ms jiāo;dd biàn;dd diàn;lv liú;ud	10
-三相交通理论	sān;hh xiāng;ms jiāo;dd tōng;vz lǐ;wl lùn;ar	10
+三相交变电流	sān;hh xiàng;ms jiāo;dd biàn;dd diàn;lv liú;ud	10
+三相交通理论	sān;hh xiàng;ms jiāo;dd tōng;vz lǐ;wl lùn;ar	10
 三项联合信条	sān;hh xiàng;hh lián;hd hé;rk xìn;ra tiáo;pm	10
 三项指示为纲	sān;hh xiàng;hh zhǐ;fp shì;hd wéi;dd gāng;is	10
 三笑才子佳人	sān;hh xiào;gd cái;hp zǐ;vh jiā;rt rén;rd	10
@@ -1530946,7 +1530949,7 @@ sort: by_weight
 我欲乘风归去	wǒ;pd yù;pp chéng;pd fēng;pd guī;sv qù;td	10
 我欲乘风破浪	wǒ;pd yù;pp chéng;pd fēng;pd pò;hv làng;ud	10
 我欲穿花寻路	wǒ;pd yù;pp chuān;bp huā;cv xún;vd lù;zp	10
-我欲与君相知	wǒ;pd yù;pp yǔ;hh jūn;vk xiāng;ms zhī;pk	10
+我欲与君相知	wǒ;pd yù;pp yǔ;hh jūn;vk xiàng;ms zhī;pk	10
 我愿逆流而上	wǒ;pd yuàn;hx nì;dz liú;ud ér;hs shàng;sh	10
 我在呼和浩特	wǒ;pd zài;ht hū;kp hé;ek hào;up tè;pt	10
 我在荒山野岭	wǒ;pd zài;ht huāng;cv shān;ss yě;lv lǐng;sr	10
@@ -1539265,7 +1539268,6 @@ sort: by_weight
 张量微分方程	zhāng;vp liàng;lt wēi;ps fēn;pp fāng;dp chéng;ek	10
 漳龙高速公路	zhāng;ud lóng;hd gāo;dk sù;hz gōng;pd lù;zp	10
 涨落耗散定理	zhǎng;uv luò;ck hào;hp sàn;cp dìng;bd lǐ;wl	10
-长马尾的姑娘	zhǎng;pd mǎ;vh wěi;vv de;pp gū;nh niang;nd	10
 长毛窗翅叶蝉	zhǎng;pd máo;pv chuāng;bh chì;hh yè;kh chán;od	10
 长门级战列舰	zhǎng;pd mén;dv jí;ip zhàn;sh liè;hs jiàn;ps	10
 丈母娘和女婿	zhàng;hd mǔ;vd niáng;nd hé;ek nǚ;nh xu;nv	10
@@ -1541120,6 +1541122,7 @@ sort: by_weight
 重砂矿物分析	zhòng;pt shā;hs kuàng;hd wù;pp fēn;pp xī;mp	12
 钟山宾馆集团	zhōng;jk shān;ss bīn;bd guǎn;pb jí;rm tuán;sh	10
 中山高速公路	zhōng;ks shān;ss gāo;dk sù;hz gōng;pd lù;zp	10
+中山靖王刘胜	zhōng;ks shān;ss jìng;dh wáng;wh liú;ds shèng;yp	10
 重商主义学派	zhòng;pt shāng;dk zhǔ;dw yì;dd xué;dh pài;up	10
 终审法院大楼	zhōng;ip shěn;bs fǎ;ut yuàn;vb dà;hd lóu;md	10
 终身讲席教授	zhōng;ip shēn;pp jiǎng;ah xí;ds jiào;tp shòu;fp	10
@@ -1547630,7 +1547633,7 @@ sort: by_weight
 单稳多谐振荡器	dān;ds wěn;ep duō;pd xié;ah zhèn;fh dàng;cp qì;kk	10
 但闻人马之行声	dàn;rl wén;dh rén;rd mǎ;vh zhī;dd xíng;ph shēng;tp	10
 但我真心不喜欢	dàn;rl wǒ;pd zhēn;hd xīn;xd bù;hd xǐ;tk huan;vp	10
-单相感应电动机	dān;ds xiāng;ms gǎn;hx yīng;dh diàn;lv dòng;hv jī;mp	10
+单相感应电动机	dān;ds xiàng;ms gǎn;hx yīng;dh diàn;lv dòng;hv jī;mp	10
 单项体育联合会	dān;ds xiàng;hh tǐ;rm yù;dy lián;hd hé;rk huì;rd	10
 胆小不得将军做	dǎn;yl xiǎo;sd bù;hd dé;pl jiāng;dp jūn;ds zuò;rh	10
 单硝酸山梨酯片	dān;ds xiāo;hs suān;hv shān;ss lí;em zhǐ;hp piàn;pv	10
@@ -1556359,7 +1556362,7 @@ sort: by_weight
 需要足够的耐心	xū;hs yào;hn zú;zr gòu;pp de;pp nài;hh xīn;xd	10
 续之数十日不解	xù;ih zhī;dd shù;dp shí;hs rì;lh bù;hd jiě;pv	10
 选拔与安置测验	xuǎn;pz bá;fh yǔ;hh ān;bn zhì;sh cè;us yàn;vr	10
-玄都观里桃千树	xuán;di dū;tv guān;vs lǐ;lt táo;mp qiān;ps shù;mv	10
+玄都观里桃千树	xuán;di dū;tv guàn;vs lǐ;lt táo;mp qiān;ps shù;mv	10
 宣父犹能畏后生	xuān;bh fù;pd yóu;ph néng;vp wèi;sd hòu;pk shēng;ph	10
 玄参贝母桔甘藏	xuán;di shēn;vp bèi;sr mǔ;vd jú;mt gān;ch cáng;cd	10
 宣室求贤访逐臣	xuān;bh shì;bt qiú;hd xián;sr fǎng;ad zhú;hz chén;hv	10
