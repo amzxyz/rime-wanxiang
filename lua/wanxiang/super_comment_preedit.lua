@@ -175,6 +175,15 @@ local function get_charset_label(text)
     return nil
 end
 
+local function lookup_aux_comment(db, text)
+    local parts = {}
+    for char in text:gmatch("[%z\1-\127\194-\244][\128-\191]*") do
+        local code = db:lookup(char)
+        if code ~= "" then parts[#parts + 1] = code end
+    end
+    return table.concat(parts, "/")
+end
+
 local function get_az_comment(cand, env, initial_comment)
     local inner_parts = {}
 
@@ -187,7 +196,7 @@ local function get_az_comment(cand, env, initial_comment)
 
         if #segments > 0 then
             local has_aux = env.has_aux
-            local semicolon_count = has_aux
+            local semicolon_count = has_aux and not env.aux_lookup
                 and select(2, string.gsub(segments[1], ";", "")) or 0
             local pinyins = {}
             local fuzhu = nil
@@ -220,6 +229,10 @@ local function get_az_comment(cand, env, initial_comment)
     end
 
     if cand and cand.text then
+        if env.aux_lookup then
+            local aux = lookup_aux_comment(env.aux_lookup, cand.text)
+            if aux ~= "" then inner_parts[#inner_parts + 1] = "辅" .. aux end
+        end
         local label = get_charset_label(cand.text)
         if label then
             inner_parts[#inner_parts + 1] = label
@@ -246,7 +259,8 @@ local function strip_aux_comment(initial_comment, split_pattern)
     end))
 end
 
-local function get_aux_comment(env, initial_comment)
+local function get_aux_comment(env, initial_comment, text)
+    if env.aux_lookup then return lookup_aux_comment(env.aux_lookup, text) end
     if not initial_comment or initial_comment == "" then return "" end
 
     local first_segment = initial_comment:match(env.settings.comment_split_pattern) or ""
@@ -380,12 +394,9 @@ end
 -- 例如 7 + shi -> s，966 + yong -> yon，9664 + yong -> yong。
 -- 不能因为模糊匹配已经产生完整候选，就把尚未输入的后续字母提前补进 preedit。
 local function convert_t9_syllable(part, py, state)
-    -- 九键选定拼音后，该段可能已由数字变成字母。
-    -- 字母是当前真实输入，不允许再用候选注释里的完整拼音回填，
-    -- 否则退格删掉末尾字母后，下一次候选刷新会将它补回来。
-    if not part:match("^%d+$") then return part end
+    if state.is_pro or not part:match("^%d+$") then return py end
 
-    if state.is_pro or state.convert_abbrev_preedit then
+    if state.convert_abbrev_preedit then
         return py
     end
 
@@ -424,18 +435,6 @@ local function convert_preedit(preedit, initial_comment, state)
     local pinyins = extract_pinyin_segments(
         initial_comment, state.comment_split_pattern, state.has_aux
     )
-    -- 九键候选刷新时，comment 的音节数有时与当前 preedit 分段不一致。
-    -- 这种情况下无法安全地按下标配对，必须保留原始 preedit。
-    if state.is_t9 then
-        local syllable_count = 0
-        for _, part in ipairs(parts) do
-            if part ~= state.auto_delimiter and part ~= state.manual_delimiter then
-                syllable_count = syllable_count + 1
-            end
-        end
-        if syllable_count ~= #pinyins then return preedit end
-    end
-
     local pinyin_index = 1
 
     for i, part in ipairs(parts) do
@@ -475,6 +474,10 @@ function ZH.init(env)
 
     env.has_tone = caps.tone
     env.has_aux = caps.aux
+    local aux_group = config:get_string("translator/aux")
+    if aux_group and aux_group ~= "" and type(AuxiliaryLookup) == "function" then
+        env.aux_lookup = AuxiliaryLookup(aux_group)
+    end
     env.is_pro = caps.pro
     env.is_lite = caps.lite
     env.is_t9 = caps.t9
@@ -527,6 +530,7 @@ function ZH.fini(env)
     env.corrector_style_right = nil
     env.has_tone = nil
     env.has_aux = nil
+    env.aux_lookup = nil
     env.is_pro = nil
     env.is_lite = nil
     env.is_t9 = nil
@@ -567,7 +571,7 @@ function ZH.func(input, env)
 
     local comment_mode = COMMENT_CLEAR
     if not skip_comment and not is_radical_mode then
-        if has_aux and context:get_option("fuzhu_hint") then
+        if (env.aux_lookup or has_aux) and context:get_option("fuzhu_hint") then
             comment_mode = COMMENT_AUX
         elseif has_tone then
             if context:get_option("tone_hint") then
@@ -632,7 +636,7 @@ function ZH.func(input, env)
             and utf8_within(cand.text, candidate_length)
         then
             if comment_mode == COMMENT_AUX then
-                final_comment = get_aux_comment(env, initial_comment)
+                final_comment = get_aux_comment(env, initial_comment, cand.text)
             elseif comment_mode == COMMENT_TONE then
                 if has_aux then
                     final_comment = strip_aux_comment(
