@@ -34556,6 +34556,7 @@ sort: by_weight
 放盘	fàng;fw pán;vm	75
 方盘	fāng;dw pán;vm	71
 放炮	fàng;fw pào;hb	427
+放跑	fàng;fw pǎo;zb	402
 防炮	fáng;ef pào;hb	384
 方袍	fāng;dw páo;yb	239
 放喷	fàng;fw pēn;kb	382
@@ -68811,7 +68812,6 @@ sort: by_weight
 卡键	kǎ;ub jiàn;jj	72
 卡肩	kǎ;ub jiān;ho	30
 卡脚	kǎ;ub jiǎo;oe	81
-卡紧	kǎ;ub jǐn;lx	35
 咔咔	kā;kb kā;kb	1001
 卡卡	kǎ;ub kǎ;ub	35
 卡口	kǎ;ub kǒu;aa	945
@@ -85698,9 +85698,10 @@ sort: by_weight
 美鞋	měi;yd xié;gt	2371
 美协	měi;yd xié;ub	2246
 镁屑	měi;jd xiè;uo	128
-美心	měi;yd xīn;dv	1364
+没心	méi;du xīn;dv	1364
 眉心	méi;uo xīn;dv	1296
-没心	méi;du xīn;dv	1144
+没信	méi;du xìn;rk	1144
+美心	měi;yd xīn;dv	611
 美信	měi;yd xìn;rk	374
 昧心	mèi;ow xīn;dv	161
 眉形	méi;uo xíng;kp	1178
@@ -100005,6 +100006,7 @@ sort: by_weight
 髂嵴	qià;gk jǐ;uj	75
 掐架	qiā;fj jià;lm	807
 掐尖	qiā;fj jiān;xd	565
+卡紧	qiǎ;ub jǐn;lx	35
 卡具	qiǎ;ub jù;qb	43
 卡壳	qiǎ;ub ké;uj	2173
 恰空	qià;xk kōng;bg	504
@@ -142243,6 +142245,7 @@ sort: by_weight
 显祖	xiǎn;oy zǔ;pq	184
 先醉	xiān;ne zuì;yu	477
 仙尊	xiān;ru zūn;bc	377
+县尊	xiàn;qs zūn;bc	200
 先做	xiān;ne zuò;rw	6324
 闲坐	xián;mm zuò;rt	750
 现做	xiàn;wj zuò;rw	285
@@ -171951,8 +171954,8 @@ sort: by_weight
 中杰	zhōng;aa jié;mh	44
 重接	zhòng;pa jiē;fn	35
 忠节	zhōng;vx jié;ce	22
-中金	zhōng;aa jīn;ra	3532
-重金	zhòng;pa jīn;ra	1387
+重金	zhòng;pa jīn;ra	3532
+中金	zhōng;aa jīn;ra	1387
 中津	zhōng;aa jīn;dy	790
 中经	zhōng;aa jīng;sg	961
 中京	zhōng;aa jīng;wx	659
@@ -206229,6 +206232,7 @@ sort: by_weight
 比较烂	bǐ;bb jiào;ix làn;hl	860
 比较浪	bǐ;bb jiào;ix làng;dl	778
 比较老	bǐ;bb jiào;ix lǎo;lb	1269
+比较牢	bǐ;bb jiào;ix láo;bn	322
 比较了	bǐ;bb jiào;ix le;vu	1296
 比较累	bǐ;bb jiào;ix lèi;tx	968
 比较冷	bǐ;bb jiào;ix lěng;ds	443
@@ -310377,7 +310381,7 @@ sort: by_weight
 方式一	fāng;dw shì;yg yī;aa	1251
 坊市制	fāng;tf shì;wj zhì;pd	46
 房室支	fáng;hf shì;bt zhī;uy	45
-方世忠	fāng;dw shì;av zhōng;vx	374
+方式中	fāng;dw shì;yg zhōng;aa	374
 仿石砖	fǎng;rf shí;ak zhuān;uv	212
 放狮子	fàng;fw shī;qj zi;aa	338
 放手啊	fàng;fw shǒu;ub a;kk	464
@@ -572051,8 +572055,8 @@ sort: by_weight
 摄像管	shè;fy xiàng;rx guǎn;vg	35
 麝香龟	shè;gc xiāng;ho guī;dd	405
 摄像机	shè;fy xiàng;rx jī;mj	5260
-射向了	shè;uc xiàng;pk le;vu	765
-设想了	shè;yu xiǎng;mx le;vu	471
+设想了	shè;yu xiǎng;mx le;vu	765
+射向了	shè;uc xiàng;pk le;vu	471
 麝香猫	shè;gc xiāng;ho māo;qt	702
 奢香墓	shē;do xiāng;ho mù;ct	202
 摄像枪	shè;fy xiàng;rx qiāng;mv	266
@@ -733128,7 +733132,8 @@ sort: by_weight
 已上床	yǐ;vv shàng;aa chuáng;gm	396
 以上的	yǐ;vr shàng;aa de;bu	2151
 一垧地	yī;aa shǎng;tk dì;ty	194
-一商店	yī;aa shāng;wk diàn;gk	436
+一上电	yí;aa shàng;aa diàn;og	436
+一商店	yī;aa shāng;wk diàn;gk	201
 已上调	yǐ;vv shàng;aa diào;yk	441
 已商定	yǐ;vv shāng;wk dìng;bp	369
 一上冻	yí;aa shàng;aa dòng;dd	76
@@ -914312,6 +914317,7 @@ sort: by_weight
 反制美国	fǎn;py zhì;pd měi;yd guó;ky	369
 泛指那些	fàn;df zhǐ;fo nà;ve xiē;ve	22
 繁殖能力	fán;px zhí;dq néng;sb lì;vp	512
+反制能力	fǎn;py zhì;pd néng;sb lì;vp	40
 反治其身	fǎn;py zhì;dk qí;hb shēn;pp	4
 反制手段	fǎn;py zhì;pd shǒu;ub duàn;pu	450
 繁殖温床	fán;px zhí;dq wēn;dm chuáng;gm	130
@@ -1269648,7 +1269654,7 @@ sort: by_weight
 相当普遍	xiāng;mo dāng;xe pǔ;bo biàn;zc	778
 相当强大	xiāng;mo dāng;xe qiáng;gi dà;hr	706
 相当清晰	xiāng;mo dāng;xe qīng;do xī;oj	590
-想当然地	xiǎng;mx dāng;xe rán;hq dì;ty	824
+想当然地	xiǎng;mx dāng;xe rán;hq de;ty	824
 想当然耳	xiǎng;mx dāng;xe rán;hq ěr;aa	57
 相当热闹	xiāng;mo dāng;xe rè;fh nao;mj	580
 相当任性	xiāng;mo dāng;xe rèn;rr xìng;xu	378
