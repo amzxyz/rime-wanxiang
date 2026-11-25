@@ -243,13 +243,13 @@ wanxiang_lookup:  #设置归属于super_lookup.lua
   #但注释在前有时候与笔画的感知会有一定冲突，可针对习惯使用一类数据库即可
 
 emoji:
+  data: emoji
   option: emoji
   tags: [abc]
   mode: derive
-  files:
-    - data/emoji.txt
 
 abbrev:
+  data: abbrev
   option: true
   tags: [abc]
   mode: abbrev
@@ -260,46 +260,37 @@ abbrev:
     - user_table
     - completion
   fallback_on_empty: true
-  files:
-    - data/abbrev.txt
 
 sentence:
+  data: sentence
   option: true
   tags: [abc]
   mode: derive
   enable_sentence: true
-  files:
-    - data/sentence.txt
-
 
 s2t:
+  data: s2t
   option: [s2t, s2hk, s2tw]
   tags: [abc]
   mode: replace
   enable_sentence: true
-  # preset: s2t  # 与 files 必须且只能配置一种
-  files:
-    - data/STPhrases.txt
-    - data/STCharacters.txt
 
 s2hk:
+  data: s2hk
   option: s2hk
   tags: [abc]
   mode: replace
   enable_sentence: true
-  # preset: s2hk  # 与 files 必须且只能配置一种
-  files:
-    - data/HKVariants.txt
 
 s2tw:
+  data: s2tw
   option: s2tw
   tags: [abc]
   mode: replace
   enable_sentence: true
-  files:
-    - data/TWVariants.txt
 
 t9_abbrev:
+  data: t9_abbrev
   option: true
   tags: [abc]
   mode: abbrev
@@ -312,11 +303,6 @@ t9_abbrev:
     - completion
   # 上游无候选时，是否释放全部简码兜底。
   fallback_on_empty: true
-  # jys<TAB>静夜思
-  # 部署后 lookup key = 597，preedit = jys。
-  key_xlit: "abcdefghijklmnopqrstuvwxyz>22233344455566677778889999"
-  files:
-    - data/t9_abbrev.txt
 
 build:
   dictionaries:
@@ -511,6 +497,42 @@ build:
       algebra:
         __patch:
           - wanxiang_algebra:/26jian
+
+  rewrites:
+    emoji:
+      files:
+        - data/emoji.txt
+
+    abbrev:
+      files:
+        - data/abbrev.txt
+
+    sentence:
+      files:
+        - data/sentence.txt
+
+    s2t:
+      # preset: s2t  # 与 files 必须且只能配置一种
+      files:
+        - data/STPhrases.txt
+        - data/STCharacters.txt
+
+    s2hk:
+      # preset: s2hk  # 与 files 必须且只能配置一种
+      files:
+        - data/HKVariants.txt
+
+    s2tw:
+      files:
+        - data/TWVariants.txt
+
+    # 九键简码源文件尚未提供，添加文件后取消下方注释。
+    # t9_abbrev:
+    #   # jys<TAB>静夜思
+    #   # 部署后 lookup key = 597，preedit = jys。
+    #   key_xlit: "abcdefghijklmnopqrstuvwxyz>22233344455566677778889999"
+    #   files:
+    #     - data/t9_abbrev.txt
 
   auxiliary:
     dictionary: aux_code
