@@ -51,8 +51,6 @@ switches:
   - name: english
     reset: 1
     states: [英文关, 英文开]
-  - name: direct_word_aux
-    states: [词辅关, 词辅开]
 
 # 前端UI调用 set_option("zrm", true)，其余option互斥，完成输入类型切换
 input_types:
@@ -163,8 +161,7 @@ translator:
   dictionary: wanxiang
   aux: 万象
   user_dict: zc
-  enable_direct_char_aux: true                     # 单字直接辅助
-  enable_direct_word_aux: {option: direct_word_aux} # 词语直接辅助
+  direct_aux_mode: word  # off / char / word
   user_dict_mode: manual  # auto / manual / off
   prisms: input_types
   enable_completion: true  # 启用候选词补全
