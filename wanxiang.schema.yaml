@@ -43,11 +43,11 @@ switches:
     states: [注释关, 辅助开, 读音开]
   - options: [s2s, s2t, s2hk, s2tw]
     states: [简体, 通繁, 港繁, 臺繁]
-  - name: abbrev
-    states: [简码关, 简码开]
-    reset: 1
-  - name: char_priority
-    states: [词组先, 单字先]
+  # - name: abbrev
+  #   states: [简码关, 简码开]
+  #   reset: 1
+  # - name: char_priority
+  #   states: [词组先, 单字先]
   - name: english
     reset: 1
     states: [英文关, 英文开]
