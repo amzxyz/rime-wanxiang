@@ -761,7 +761,7 @@ editor:
     Control+Delete: auto_delete  #重置自动造词
     Shift+Delete: manual_delete  #重置手动造词
     Control+Up: manual_up  #将当前高亮选中词条上移/左移
-    Control+Down: manual_down  #将当前高亮选中词条上移/左移
+    Control+Down: manual_down  #将当前高亮选中词条下移/右移
 
 # 在边界按音节移动，在音节内部按字符移动  rewind , forward
 # 按字符移动（循环）       left_by_char , right_by_char
@@ -782,7 +782,7 @@ super_comment:  # 超级注释模块，子项配置 true 开启，false 关闭
   convert_abbrev_preedit: false  #单音节简码是否转换为全拼读音
   cand_type:
     user_phrase: "⁺"
-    sentence: ""
+    sentence: "𝑺"
     phrase: ""
     table: ""
     user_table: ""
