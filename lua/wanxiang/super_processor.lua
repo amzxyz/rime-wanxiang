@@ -1,7 +1,7 @@
 -- lua/super_processor.lua
 -- @amzxyz
 -- https://github.com/amzxyz/rime-wanxiang
--- 全能按键处理器：整合 KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退
+-- 全能按键处理器：整合 字母选词、符号快打、超强分词、重复限制、退格限制、声调回退
 -- 
 -- 用法: 在 schema.yaml 中 engine/processors 列表添加 - lua_processor@*super_processor
 
@@ -17,14 +17,6 @@ local DOUBLE_PINYIN_TYPES = {
 }
 
 -- 1. 全局常量定义 (Constants)
-
--- [KpNumber] 小键盘键码映射
-local KP_MAP = {
-    [0xFFB1] = 1, [0xFFB2] = 2, [0xFFB3] = 3,
-    [0xFFB4] = 4, [0xFFB5] = 5, [0xFFB6] = 6,
-    [0xFFB7] = 7, [0xFFB8] = 8, [0xFFB9] = 9,
-    [0xFFB0] = 0,
-}
 
 -- [LetterSelector] 字母选词键码映射 (qwert...)
 local LETTER_SEL_MAP = {
@@ -165,13 +157,13 @@ local function load_rime_regex_matchers(config, path)
     return matchers
 end
 
--- 检查数字后是否紧跟功能编码 (KpNumber 使用)
+-- 检查追加主键盘数字后是否匹配功能编码
 local function is_function_code_after_digit(env, context, digit_char)
     if not context or not digit_char or digit_char == "" then return false end
 
     -- digit_char 必为数字，因此这里传入 regex_matches() 的 input 保证非空。
     local input = (context.input or "") .. digit_char
-    local matchers = env.kp_func_matchers
+    local matchers = env.func_matchers
     if not matchers then return false end
 
     for _, matcher in ipairs(matchers) do
@@ -294,11 +286,9 @@ function M.init(env)
     env.bs_prev_len = -1
     env.bs_sequence = false
 
-    -- [KpNumber] 小键盘
-    env.kp_page_size = config:get_int("menu/page_size") or 6
-    local m = config:get_string("super_processor/kp_number_mode") or "select"
-    env.kp_mode = (m == "auto" or m == "compose" or m == "select") and m or "select"
-    env.kp_func_matchers = load_rime_regex_matchers(config, "recognizer/patterns")
+    -- [NumberSelector] 主键盘数字选词及功能编码
+    env.page_size = config:get_int("menu/page_size") or 6
+    env.func_matchers = load_rime_regex_matchers(config, "recognizer/patterns")
 
     -- [LetterSelector] 字母选词状态位
     env.ls_active = false 
@@ -396,11 +386,7 @@ function M.init(env)
             end
         end
 
-        -- D. [KpNumber] 缓存状态
-        env.kp_is_composing = ctx:is_composing()
-        env.kp_has_menu = ctx:has_menu()
-
-        -- E. [QuickSymbol] 自动上屏逻辑
+        -- D. [QuickSymbol] 自动上屏逻辑
         execute_quick_symbol(env, ctx, input)
     end)
     -- [3] 统一 Commit Notifier (记录上屏)
@@ -636,13 +622,12 @@ local function apply_even_code_protection(env, ctx, cand, confirm)
     return true
 end
 
--- only_protected 用于小键盘 select 模式：未命中时仍交给原生 selector。
-local function select_with_even_code_protection(env, ctx, seg, index, only_protected)
+local function select_with_even_code_protection(env, ctx, seg, index)
     local cand = seg and seg:get_candidate_at(index)
     if cand and apply_even_code_protection(env, ctx, cand, function() return ctx:select(index) end) then
         return true
     end
-    return not only_protected and ctx:select(index) or false
+    return ctx:select(index)
 end
 
 local function handle_even_code_space(key, env, ctx)
@@ -663,7 +648,7 @@ local function handle_letter_select(key, env, ctx)
     local seg = ctx.composition:back()
     if not seg or not seg.menu then return false end
 
-    local page_size = tonumber(env.kp_page_size) or 10
+    local page_size = tonumber(env.page_size) or 10
     if page_size < 1 then page_size = 10 end
     if idx > page_size then return false end
 
@@ -677,62 +662,10 @@ local function handle_letter_select(key, env, ctx)
     return true
 end
 
--- [KpNumber & ToneFallback] 数字键综合逻辑
+-- [ToneFallback & NumberSelector] 主键盘数字处理
 local function handle_number_logic(key, env, ctx)
-    local kc = key.keycode
     local input = ctx.input or ""
     local r = key:repr() or ""
-
-    local kp_num = KP_MAP[kc]
-
-    -- A. 小键盘不上屏处理
-    if kp_num ~= nil then
-        if key:ctrl() or key:alt() or key:super() or key:shift() then return false end
-
-        if env.enable_tone_fallback then
-            env.tone_state = "skip"
-        end
-        local ch = tostring(kp_num)
-        if is_function_code_after_digit(env, ctx, ch) then
-            if ctx.push_input then ctx:push_input(ch) else ctx.input = input .. ch end
-            return true
-        end
-
-        if env.kp_mode == "select" then
-            -- 原生 selector 执行 KP 选词前，只有真正命中边界保护时才接管。
-            if ctx:has_menu() and kp_num >= 1 and kp_num <= env.kp_page_size then
-                local seg = ctx.composition:back()
-                local page_start = math.floor((seg.selected_index or 0) / env.kp_page_size)
-                    * env.kp_page_size
-                local index = page_start + kp_num - 1
-                if select_with_even_code_protection(env, ctx, seg, index, true) then
-                    return true
-                end
-            end
-            return false
-        end
-
-        if env.kp_mode == "auto" then
-            if env.kp_is_composing then
-                if ctx.push_input then
-                    ctx:push_input(ch)
-                else
-                    ctx.input = input .. ch
-                end
-            else
-                return false
-            end
-        else
-            if ctx.push_input then
-                ctx:push_input(ch)
-            else
-                ctx.input = input .. ch
-            end
-        end
-        return true
-    end
-
-    -- B. 统一数字处理：提取主键盘的数字，或者移动端的小键盘数字
     local digit_str = nil
     if r:match("^[0-9]$") then
         digit_str = r
@@ -783,17 +716,17 @@ local function handle_number_logic(key, env, ctx)
         end
 
         -- 选词逻辑 (桌面端主键盘数字 / 移动端所有数字)
-        if env.kp_has_menu then
+        if ctx:has_menu() then
             local d = tonumber(digit_str)
             if d == 0 then d = 10 end
-            if d and d >= 1 and d <= env.kp_page_size then
+            if d and d >= 1 and d <= env.page_size then
                 local comp = ctx.composition
                 if comp and not comp:empty() then
                     local seg = comp:back()
                     local menu = seg and seg.menu
                     if menu and not menu:empty() then
                         local sel_index = seg.selected_index or 0
-                        local page_start = math.floor(sel_index / env.kp_page_size) * env.kp_page_size
+                        local page_start = math.floor(sel_index / env.page_size) * env.page_size
                         local index = page_start + (d - 1)
                         select_with_even_code_protection(env, ctx, seg, index)
                         return true
@@ -822,6 +755,12 @@ function M.func(key, env)
     end
 
     local kc = key.keycode
+
+    -- 小键盘数字完全交给原生 keypad_processor / selector。
+    if kc >= 0xFFB0 and kc <= 0xFFB9 then
+        env.tone_state = "idle"
+        return wanxiang.RIME_PROCESS_RESULTS.kNoop
+    end
 
     -- [AuxBoundary] 空格确认时保护偶数编码边界，未命中则交还原生编辑器。
     if kc == 0x20 and handle_even_code_space(key, env, ctx) then
@@ -858,8 +797,8 @@ function M.func(key, env)
         if handle_letter_select(key, env, ctx) then return wanxiang.RIME_PROCESS_RESULTS.kAccepted end
     end
 
-    -- 7. 数字键 (小键盘 + 声调 + 选词)[KpNumber & ToneFallback] 数字键综合逻辑
-    if (kc >= 0xFFB0 and kc <= 0xFFB9) or (kc >= 0x30 and kc <= 0x39) then
+    -- 7. 主键盘数字：声调回退与选词
+    if kc >= 0x30 and kc <= 0x39 then
         if handle_number_logic(key, env, ctx) then return wanxiang.RIME_PROCESS_RESULTS.kAccepted end
     else
         -- 非数字键，重置声调状态

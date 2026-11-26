@@ -78,7 +78,7 @@ engine:
     - lua_processor@*wanxiang.force_upper_aux  #自动将N-1首选数量的汉字大写辅助码施加到音节后面起到固定语句分词的作用
     - lua_processor@*wanxiang.context_reorder*P  #靠自己养的专属上下文调频工具
     - lua_processor@*wanxiang.unicode_conversion*P  # 通过ctrl+u快捷键捕获当前高亮候选转换查询unicode，重复按下可还原
-    - lua_processor@*wanxiang.super_processor  #KP小键盘、字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
+    - lua_processor@*wanxiang.super_processor  #字母选词、符号快打、超强分词、重复限制、退格限制、声调回退、以词定字
     - lua_processor@*wanxiang.super_english*P  #英文只能加空格捕获按键操作
     - lua_processor@*wanxiang.super_tips  #超级提示模块：表情、简码、翻译、化学式、等等靠你想象
     - partial_commit  #按需提交，两个功能：ctrl+数字提交句子中的前几个字，以词定字
