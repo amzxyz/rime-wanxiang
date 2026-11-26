@@ -9,7 +9,6 @@ schema:
     - amzxyz
   description: |
     请勾选【万象拼音】以启用万象拼音方案：带调词库、语法模型，支持全拼、双拼、整句及声调辅助筛选。
-    在方案文本框输入代码：/pinyin 全拼；/flypy 小鹤；/mspy 微软；/zrm 自然码；/sogou 搜狗；/znabc 智能ABC；/ziguang 紫光；/pyjj 拼音加加；/gbpy 国标；/lxsq 乱序17；/ltsp 蓝天；/sdpy 首道；/wxsp 万象；/zrlong 自然龙；/hxlong 汉心龙；/jjf 间接辅助；/zjf 直接辅助。完整说明见 README.md。
 
 
 # 开关
