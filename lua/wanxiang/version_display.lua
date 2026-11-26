@@ -4,7 +4,7 @@ local wanxiang = require("wanxiang/wanxiang")
 local function translator(input, seg, env)
     if input == "/wx" then
         -- 判断是否为专业版
-        local version_prefix = wanxiang.is_pro_scheme(env) and "增强版" or "标准版"
+        local version_prefix = wanxiang.is_pro_scheme(env) and "增强版" or "未来版"
 
         -- 候选1: 当前版本号（加上“增强版”或“标准版”前缀）
         yield(Candidate("version", seg.start, seg._end, version_prefix .. wanxiang.version, ""))
