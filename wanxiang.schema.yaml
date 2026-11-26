@@ -54,8 +54,8 @@ switches:
 
 # 前端UI调用 set_option("zrm", true)，其余option互斥，完成输入类型切换
 input_types:
-  enabled: [zrm] #启用哪些build就部署哪些
-  reset: zrm
+  enabled: [pinyin,zrm,flypy,mspy,sogou,znabc,ziguang,pyjj,gbpy,ltsp,sdpy,wxsp,zrlong,hxlong] #启用哪些build就部署哪些
+  reset: pinyin
   options:
     - {option: pinyin, label: 全拼}
     - {option: zrm, label: 自然码}
