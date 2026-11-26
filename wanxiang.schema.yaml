@@ -117,7 +117,6 @@ engine:
     - table_translator@wanxiang_mixedcode  #混合编码词汇表导入
     - reverse_lookup_translator@wanxiang_reverse  #挂接部件组字和笔画反查
   filters:
-    - lua_filter@*wanxiang.charset_filter  #放replacer前面,全方位自定义的字符集过滤器，支持繁体字符集开放
     #- lua_filter@*wanxiang.super_lookup  #字词输入中反查辅助筛选
     - lua_filter@*wanxiang.custom_phrase  #用户自定义置顶词与简码前置
     - lua_filter@*wanxiang.context_reorder*F  #用于输入编码后的上下文调频
@@ -159,6 +158,7 @@ auxiliary_suffix_segmentor:
 # 主翻译器，拼音
 translator:
   dictionary: wanxiang
+  charset: charset  # 原生单字准入，组句前过滤
   aux: 万象
   user_dict: zc
   direct_aux_mode: word  # off / char / word
@@ -215,6 +215,7 @@ wanxiang_english:
 
 wanxiang_mixedcode:
   dictionary: wanxiang_mixedcode
+  charset: charset
   prisms: input_types
   db_class: stabledb
   enable_completion: true
@@ -499,6 +500,10 @@ build:
           - wanxiang_algebra:/26jian
 
   rewrites:
+    charset:
+      files:
+        - data/charset.txt  # 完整字符集 TSV：汉字<TAB>属性标识
+
     emoji:
       files:
         - data/emoji.txt
@@ -906,41 +911,34 @@ input_stats:
 #    - "500000:掌控法则·化神期"
 #    - "1000000:破碎虚空·渡劫期"
 
-# 字符集过滤lua
-# a,通用规范汉字表
-# b,GB2312,
-# g,GBK,
-# T,Big5,(台港澳常用)
-# j,简体,OpenCC (t2s)
-# f,通用繁体,OpenCC (s2t)
-# h,香港繁体, OpenCC (s2hk)
-# t,台湾繁体, OpenCC (s2tw)
-# u,基本区,U+4E00 - U+9FFF
-# A-I,扩展 A-I 区,U+3400 及各扩展区 (支持到 Ext-I)
-# c,兼容区汉字
-# 你可以通过黑白名单微调你自己每个开关下面的字符集过滤清单，主数据库位于lua/charset.reverse.bin不可编辑
-# 你可以按上面提到的规则代号在base处填写上基础集，还可以在每一个开关的开白名单设置微调数据，就像默认添加的字符集过滤在8105基础上新增了一些
-# 你可以定义多个开关，多个开启状态的开关求并集，比如charset_filter开着，s2hk也开着，那么就会显示这两个集合的所有汉字
-# 优雅的地方在于s2hk开着，charset_filter关着 我们照样能使用 港繁能用到的所有字，是真正的本体，无关字会被过滤，而当都开着则是享受简体转换成繁体的后的结果
-# 这个设计真正的兼容了简繁转换与字符集过滤的矛盾，还能满足用户多种自定义需求，你可以在开关增加类别，并在charset下面新增option类去选择按照字区去过滤，等多种组合方式
-charset_filter:
-  - option: charset_filter
-    base: a
-    addlist:
-      - "诶濛硷氽尛躝〇冇吔磺咗囧屌鲶芶咲畑垅𰻝𰻞龍朙頔雲"
-    blacklist: []
-  - option: s2t
-    base: fa
-    addlist: []
-    blacklist: []
-  - option: s2hk
-    base: ha
-    addlist: []
-    blacklist: []
-  - option: s2tw
-    base: ta
-    addlist: []
-    blacklist: []
+# 原生字符集准入：仅限制系统词库单字，多字词及用户词保留。
+# 字符集标签由 data/charset.txt 定义，内核不解释字母的业务含义。
+# a 通用规范汉字表；b GB2312；g GBK；T Big5；j 简体；
+# f 通繁；h 港繁；t 台繁；u 基本区；A-I 扩展区；c 兼容区。
+# 多个开启规则的 base 和 addlist 取并集，blacklist 一票否决。
+# 简繁转换在组句之后执行，繁体规则保留 a 以维持简体源词权重。
+# 没有启用规则时放行。反查、符号及其他未引用策略的翻译器不受影响。
+charset:
+  data: charset
+  exclude_tags: [number, unicode, punct, calculator, shijian, super_symbol, wanxiang_reverse]
+  rules:
+    - option: charset_filter
+      base: a
+      addlist:
+        - "诶濛硷氽尛躝〇冇吔磺咗囧屌鲶芶咲畑垅𰻝𰻞龍朙頔雲"
+      blacklist: []
+    - option: s2t
+      base: fa
+      addlist: []
+      blacklist: []
+    - option: s2hk
+      base: ha
+      addlist: []
+      blacklist: []
+    - option: s2tw
+      base: ta
+      addlist: []
+      blacklist: []
 
 #shijian:仅支持修改前缀，为了固定习惯，后两码写死，如有需求lua中修改
 #时间：osj 或者 /sj

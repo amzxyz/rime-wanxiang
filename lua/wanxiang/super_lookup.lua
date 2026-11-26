@@ -9,17 +9,77 @@
 
 local wanxiang = require("wanxiang/wanxiang")
 
--- 字符集联动是可选增强：模块缺失/未挂载/数据库不可用时，lookup 仍可独立工作。
-local charset_filter
-do
-    local ok, mod = pcall(require, "wanxiang/charset_filter")
-    if ok and type(mod) == "table" then
-        charset_filter = mod
+-- 可选的 Lua 反查纠错直接查询原生 Rewrite 资源，不依赖字符集滤镜实例。
+local CORRECTION_CHARSET = "a"
+
+local function make_correction_checker(env)
+    local cfg = env.engine.schema.config
+    local name = cfg:get_string("translator/charset")
+    local data = name and cfg:get_string(name .. "/data")
+    if not data then return nil end
+    if not env.correction_charset_db then
+        env.correction_charset_db = RewriteLookup(data)
+    end
+    local db = env.correction_charset_db
+    if not db then return nil end
+    local ctx = env.engine.context
+    local add, ban, memo = {}, {}, {}
+    local rules = cfg:get_list(name .. "/rules")
+
+    local function strings(item, visit)
+        if not item then return end
+        if item.type == "kScalar" then
+            local value = item:get_value()
+            if value then visit(value:get_string()) end
+        elseif item.type == "kList" then
+            local list = item:get_list()
+            for i = 0, list.size - 1 do
+                local value = list:get_value_at(i)
+                if value then visit(value:get_string()) end
+            end
+        end
+    end
+
+    local function collect(item, target)
+        strings(item, function(value)
+            if not value then return end
+            for _, cp in utf8.codes(value) do target[cp] = true end
+        end)
+    end
+
+    if rules and not wanxiang.is_special_mode(ctx) then
+        for i = 0, rules.size - 1 do
+            local item = rules:get_at(i)
+            local rule = item and item:get_map()
+            if rule then
+                local active = false
+                local function check(option)
+                    if option == "true" or
+                        (option and option ~= "false" and ctx:get_option(option))
+                    then active = true end
+                end
+                strings(rule:get("option"), check)
+                strings(rule:get("options"), check)
+                if active then
+                    collect(rule:get("addlist"), add)
+                    collect(rule:get("blacklist"), ban)
+                end
+            end
+        end
+    end
+
+    return function(cp)
+        local cached = memo[cp]
+        if cached ~= nil then return cached end
+        local char = utf8.char(cp)
+        local allowed = not wanxiang.IsChineseCharacter(char) or
+            (not ban[cp] and (add[cp] or
+                db:lookup(char):find(CORRECTION_CHARSET, 1, true) ~= nil))
+        memo[cp] = not not allowed
+        return memo[cp]
     end
 end
 
--- 自动句子纠错的基础字符集；之后新增更小集合时只改这里。
-local CORRECTION_CHARSET = "a"
 -- 字符集保护不可用时，单字纠错只从前 N 个词典结果中按 weight 选最好。
 local CORRECTION_LOOKUP_LIMIT = 100
 -- 保留稍靠后的正常词条，同时避免长句/简码候选爆炸。
@@ -1039,14 +1099,7 @@ local function attempt_phrase_correction(cand, cand_len, env, syllables, fuma_ch
         return nil
     end
 
-    local charset_checker = nil
-    if charset_filter and type(charset_filter.make_checker) == "function" then
-        local schema_id = env.engine.schema.schema_id
-        local ok, checker = pcall(charset_filter.make_checker, schema_id, env.engine.context, CORRECTION_CHARSET)
-        if ok and type(checker) == "function" then
-            charset_checker = checker
-        end
-    end
+    local charset_checker = make_correction_checker(env)
 
     -- charset_filter 开启时若共享 checker 暂时不可用，宁可不纠错，也不能绕过字符集限制。
     if env.engine.context:get_option("charset_filter") and not charset_checker then return nil end
