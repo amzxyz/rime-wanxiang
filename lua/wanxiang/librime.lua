@@ -21,6 +21,10 @@
 --- 获取毫秒级时间值，适合双击判断、超时、输入间隔和性能统计。
 --- 兼容旧版插件时可先判断：rime_api and rime_api.get_time_ms and rime_api.get_time_ms() or os.time() * 1000
 ---@field get_time_ms fun(): number
+--- Unix epoch 毫秒时间戳，不用于随机数种子。
+---@field get_unix_time_ms fun(): number
+--- 系统密码学安全随机字节，系统失败返回 nil。
+---@field secure_random_bytes fun(length: integer): string?
 --- 使用 librime 的正则实现判断输入；
 ---@field regex_match fun(input: string, pattern: string): boolean
 ---@field regex_search fun(input: string, pattern: string): string[] | nil
