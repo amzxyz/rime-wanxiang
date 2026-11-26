@@ -807,7 +807,7 @@ super_comment:  # 超级注释模块，子项配置 true 开启，false 关闭
   convert_abbrev_preedit: false  #单音节简码是否转换为全拼读音
   cand_type:
     user_phrase: "⁺"
-    sentence: "𝑺"
+    sentence: ""
     phrase: ""
     table: ""
     user_table: ""
