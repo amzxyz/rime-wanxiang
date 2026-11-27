@@ -48,10 +48,24 @@ end
 
 -- 查询辅助码
 local function lookup_aux_code(env, char)
+    local group = wanxiang.get_aux_group(env)
+    if env.aux_group ~= group then
+        env.aux_group = group
+        env.aux_cache = {}
+        env.aux_lookup = group and group ~= "" and type(AuxiliaryLookup) == "function"
+            and AuxiliaryLookup(group) or nil
+    end
     if env.aux_cache[char] then return env.aux_cache[char] end
-    local raw_code = get_dict(env):lookup(char)
+    local raw_code
+    if group and group ~= "" then
+        if not env.aux_lookup then return "" end
+        raw_code = env.aux_lookup:lookup(char)
+    else
+        raw_code = get_dict(env):lookup(char)
+    end
     if not raw_code or raw_code == "" then return "" end
-    local aux_part = raw_code:match(";([^,]+)") or raw_code:match("^([^;]+)") or ""
+    local aux_part = env.aux_lookup and raw_code:match("^%S+")
+        or raw_code:match(";([^,]+)") or raw_code:match("^([^;]+)") or ""
     local final_code = aux_part:gsub("[^a-zA-Z]", ""):sub(1, 2):upper()
     env.aux_cache[char] = final_code
     return final_code
@@ -133,6 +147,8 @@ function ForceUpperAux.fini(env)
     env.dict = nil
     env.dict_name = nil
     env.aux_cache = nil
+    env.aux_group = nil
+    env.aux_lookup = nil
     env.history_first = nil
     env.snapshot_parts = nil
 end
