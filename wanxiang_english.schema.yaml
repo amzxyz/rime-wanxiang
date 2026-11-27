@@ -20,6 +20,7 @@ switches:
   - name: english_chinese
     states: [翻译关, 英译中]
 
+# 未提供原生输入类型菜单的前端，可输入 /pinyin、/zrm、/flypy 等命令切换。
 input_types:
   - {option: pinyin, name: standalone_pinyin, label: 全拼}
   - {option: zrm, name: standalone_zrm, label: 自然码}
@@ -56,6 +57,7 @@ engine:
     - fallback_segmentor
   translators:
     - table_translator
+    - lua_translator@*wanxiang.set_input_types  #兼容入口：通过 /zrm、/flypy 等命令切换输入类型
     - lua_translator@*wanxiang.super_english*T
     - punct_translator
   filters:
