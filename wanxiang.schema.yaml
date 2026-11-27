@@ -53,8 +53,7 @@ switches:
 
 # 前端UI调用 set_option("zrm", true)，其余option互斥，完成输入类型切换
 input_types:
-  enabled: [pinyin,zrm,flypy,mspy,sogou,znabc,ziguang,pyjj,gbpy,ltsp,sdpy,wxsp,zrlong,hxlong] # 控制编译、预加载和运行时可选类型（由 build 显式引用）
-  # 首次使用 enabled 的第一项，之后由内核在 user.yaml 保存选择。
+  # 首次选择 options 的第一项，后续选择由内核保存至 user.yaml。
   options:
     - {option: pinyin, label: 全拼}
     - {option: zrm, label: 自然码}
@@ -71,9 +70,8 @@ input_types:
     - {option: wxsp, label: 万象双拼}
     - {option: zrlong, label: 自然龙}
     - {option: hxlong, label: 汉心龙}
-# 辅助码类型独立于输入类型；enabled 控制 build 引用的编译组及运行时选择。
+# 辅助码类型独立于输入类型，编译资源由 build 声明。
 aux_types:
-  enabled: [aux_wanxiang, aux_moqi, aux_yehe, aux_zrm, aux_huma, aux_wubi, aux_hanxin, aux_shouyou, aux_shouyou_plus]
   options:
     - {option: aux_wanxiang, label: 万象}
     - {option: aux_moqi, label: 墨奇}
@@ -321,7 +319,6 @@ t9_abbrev:
 build:
   dictionaries:
     wanxiang: #声明词表名称，翻译器可以调用
-      enabled: input_types  # 按输入类型启用清单编译 Prism
       # packs:
       #   - extdicts  #引入自定义的少量词库
       algebra:  #编译类型prism调用的转写方式
@@ -371,7 +368,6 @@ build:
           __patch:
             - wanxiang_algebra:/汉心龙
     wanxiang_mixedcode:
-      enabled: input_types  # 按输入类型启用清单编译 Prism
       algebra:
         pinyin:
           __patch:
@@ -434,7 +430,6 @@ build:
             - wanxiang_algebra:/mixed/混合派生
             - wanxiang_algebra:/mixed/汉心龙
     wanxiang_reverse:
-      enabled: input_types  # 按输入类型启用清单编译 Prism
       algebra:
         pinyin:
           __patch:
@@ -556,7 +551,6 @@ build:
     #     - data/t9_abbrev.txt
 
   auxiliary:
-    enabled: aux_types  # 按辅助码启用清单编译资源
     dictionary: aux_code
     algebra:
       aux_wanxiang:
