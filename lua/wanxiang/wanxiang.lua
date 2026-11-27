@@ -409,11 +409,11 @@ function wanxiang.get_aux_group(env)
     local config = env.engine.schema.config
     local group = config:get_string("translator/aux")
     if group ~= "aux_types" then return group end
-    local options = config:get_list("aux_types/options")
+    local options = config:get_list("aux_types")
     if not options then return nil end
     local context = env.engine.context
     for i = 0, options.size - 1 do
-        local option = config:get_string("aux_types/options/@" .. i .. "/option")
+        local option = config:get_string("aux_types/@" .. i .. "/option")
         if option and context:get_option(option) then return option end
     end
     return nil

@@ -53,35 +53,33 @@ switches:
 
 # 前端UI调用 set_option("zrm", true)，其余option互斥，完成输入类型切换
 input_types:
-  # 首次选择 options 的第一项，后续选择由内核保存至 user.yaml。
-  options:
-    - {option: pinyin, label: 全拼}
-    - {option: zrm, label: 自然码}
-    - {option: flypy, label: 小鹤双拼}
-    - {option: mspy, label: 微软双拼}
-    - {option: sogou, label: 搜狗双拼}
-    - {option: znabc, label: 智能ABC}
-    - {option: ziguang, label: 紫光双拼}
-    - {option: pyjj, label: 拼音加加}
-    - {option: gbpy, label: 国标双拼}
-    - {option: lxsq, label: 乱序17}
-    - {option: ltsp, label: 蓝天双拼}
-    - {option: sdpy, label: 首道双拼}
-    - {option: wxsp, label: 万象双拼}
-    - {option: zrlong, label: 自然龙}
-    - {option: hxlong, label: 汉心龙}
+  # 首次选择 列表的第一项，后续选择由内核保存至 user.yaml。
+  - {option: pinyin, label: 全拼}
+  - {option: zrm, label: 自然码}
+  - {option: flypy, label: 小鹤双拼}
+  - {option: mspy, label: 微软双拼}
+  - {option: sogou, label: 搜狗双拼}
+  - {option: znabc, label: 智能ABC}
+  - {option: ziguang, label: 紫光双拼}
+  - {option: pyjj, label: 拼音加加}
+  - {option: gbpy, label: 国标双拼}
+  - {option: lxsq, label: 乱序17}
+  - {option: ltsp, label: 蓝天双拼}
+  - {option: sdpy, label: 首道双拼}
+  - {option: wxsp, label: 万象双拼}
+  - {option: zrlong, label: 自然龙}
+  - {option: hxlong, label: 汉心龙}
 # 辅助码类型独立于输入类型，编译资源由 build 声明。
 aux_types:
-  options:
-    - {option: aux_wanxiang, label: 万象}
-    - {option: aux_moqi, label: 墨奇}
-    - {option: aux_yehe, label: 野鹤}
-    - {option: aux_zrm, label: 自然码}
-    - {option: aux_huma, label: 虎码首末}
-    - {option: aux_wubi, label: 五笔前2}
-    - {option: aux_hanxin, label: 汉心码}
-    - {option: aux_shouyou, label: 首右}
-    - {option: aux_shouyou_plus, label: 首右Plus}
+  - {option: aux_wanxiang, label: 万象}
+  - {option: aux_moqi, label: 墨奇}
+  - {option: aux_yehe, label: 野鹤}
+  - {option: aux_zrm, label: 自然码}
+  - {option: aux_huma, label: 虎码首末}
+  - {option: aux_wubi, label: 五笔前2}
+  - {option: aux_hanxin, label: 汉心码}
+  - {option: aux_shouyou, label: 首右}
+  - {option: aux_shouyou_plus, label: 首右Plus}
 
 # 输入引擎
 engine:
