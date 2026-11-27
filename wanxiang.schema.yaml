@@ -161,7 +161,7 @@ translator:
   charset: charset  # 原生单字准入，组句前过滤
   aux: 万象
   user_dict: zc
-  direct_aux_mode: word  # off / char / word
+  direct_aux_mode: off  # off / char / word
   user_dict_mode: manual  # auto / manual / off
   prisms: input_types
   enable_completion: true  # 启用候选词补全
