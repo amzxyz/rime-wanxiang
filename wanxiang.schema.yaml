@@ -53,7 +53,7 @@ switches:
 
 # 前端UI调用 set_option("zrm", true)，其余option互斥，完成输入类型切换
 input_types:
-  enabled: [pinyin,zrm,flypy,mspy,sogou,znabc,ziguang,pyjj,gbpy,ltsp,sdpy,wxsp,zrlong,hxlong] #启用哪些build就部署哪些
+  enabled: [pinyin,zrm,flypy,mspy,sogou,znabc,ziguang,pyjj,gbpy,ltsp,sdpy,wxsp,zrlong,hxlong] # 仅限制运行时可选类型，编译范围由 build 控制
   # 首次使用 enabled 的第一项，之后由内核在 user.yaml 保存选择。
   options:
     - {option: pinyin, label: 全拼}
@@ -71,7 +71,7 @@ input_types:
     - {option: wxsp, label: 万象双拼}
     - {option: zrlong, label: 自然龙}
     - {option: hxlong, label: 汉心龙}
-# 辅助码类型独立于输入类型，选择由内核持久化。
+# 辅助码类型独立于输入类型；enabled 只限制运行时选择，build 声明的资源全部编译。
 aux_types:
   enabled: [aux_wanxiang, aux_moqi, aux_yehe, aux_zrm, aux_huma, aux_wubi, aux_hanxin, aux_shouyou, aux_shouyou_plus]
   options:
