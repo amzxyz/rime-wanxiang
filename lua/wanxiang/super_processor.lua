@@ -11,7 +11,7 @@ local M = {}
 -- [AuxBoundary] 仅面向严格两码一音节的双拼方案。
 -- 不将长码、九键或全拼的编码长度套用到这套规则中。
 local DOUBLE_PINYIN_TYPES = {
-    zrm=true, flypy=true, mspy=true, sogou=true, abc=true,
+    zrm=true, flypy=true, mspy=true, sogou=true, abc=true, znabc=true,
     ziguang=true, pyjj=true, gbpy=true, wxsp=true,
     ltsp=true, lxsq=true, dnsp=true, sdpy=true,
 }
