@@ -54,6 +54,7 @@ switches:
     states: [英文关, 英文开]
 
 # 输入方式由 input_types 管理；前端使用 select_type_option 选择，互斥状态由内核维护。
+# 未提供原生输入类型菜单的前端，可输入 /pinyin、/zrm、/flypy 等命令切换。
 input_types:
   # 首次选择 列表的第一项，后续选择由内核保存至 user.yaml。
   - {option: pinyin, label: 全拼}
@@ -114,6 +115,7 @@ engine:
   translators:
     - punct_translator  #配合 punct_segmentor 转换标点符号
     - script_translator  #脚本翻译器，用于拼音、粤拼等基于音节表的输入方案
+    - lua_translator@*wanxiang.set_input_types  #兼容入口：通过 /zrm、/flypy 等命令切换输入类型
     # - script_translator@user_dict_set
     # - script_translator@add_user_dict  #自造词之制造词汇入口
     - lua_translator@*wanxiang.version_display  #输入'/wx'，显示万象项目网址和当前版本号
