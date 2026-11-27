@@ -489,10 +489,8 @@ function ZH.init(env)
 
     env.has_tone = caps.tone
     env.has_aux = caps.aux
-    local aux_group = config:get_string("translator/aux")
-    if aux_group and aux_group ~= "" and type(AuxiliaryLookup) == "function" then
-        env.aux_lookup = AuxiliaryLookup(aux_group)
-    end
+    env.aux_group = nil
+    env.aux_lookup = nil
     env.is_pro = caps.pro
     env.is_lite = caps.lite
     env.is_t9 = caps.t9
@@ -546,12 +544,19 @@ function ZH.fini(env)
     env.has_tone = nil
     env.has_aux = nil
     env.aux_lookup = nil
+    env.aux_group = nil
     env.is_pro = nil
     env.is_lite = nil
     env.is_t9 = nil
 end
 
 function ZH.func(input, env)
+    local aux_group = wanxiang.get_aux_group(env)
+    if aux_group ~= env.aux_group then
+        env.aux_group = aux_group
+        env.aux_lookup = aux_group and aux_group ~= "" and type(AuxiliaryLookup) == "function"
+            and AuxiliaryLookup(aux_group) or nil
+    end
     local context = env.engine.context
     local settings = env.settings
     local has_tone = env.has_tone

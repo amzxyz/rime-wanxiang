@@ -54,8 +54,7 @@ switches:
 # 前端UI调用 set_option("zrm", true)，其余option互斥，完成输入类型切换
 input_types:
   enabled: [pinyin,zrm,flypy,mspy,sogou,znabc,ziguang,pyjj,gbpy,ltsp,sdpy,wxsp,zrlong,hxlong] #启用哪些build就部署哪些
-  # 前端切换option并将reset写入custom保障长期使用输入类型的稳定性
-  reset: pinyin
+  # 首次使用 enabled 的第一项，之后由内核在 user.yaml 保存选择。
   options:
     - {option: pinyin, label: 全拼}
     - {option: zrm, label: 自然码}
@@ -72,6 +71,20 @@ input_types:
     - {option: wxsp, label: 万象双拼}
     - {option: zrlong, label: 自然龙}
     - {option: hxlong, label: 汉心龙}
+# 辅助码类型独立于输入类型，选择由内核持久化。
+aux_types:
+  enabled: [aux_wanxiang, aux_moqi, aux_yehe, aux_zrm, aux_huma, aux_wubi, aux_hanxin, aux_shouyou, aux_shouyou_plus]
+  options:
+    - {option: aux_wanxiang, label: 万象}
+    - {option: aux_moqi, label: 墨奇}
+    - {option: aux_yehe, label: 野鹤}
+    - {option: aux_zrm, label: 自然码}
+    - {option: aux_huma, label: 虎码首末}
+    - {option: aux_wubi, label: 五笔前2}
+    - {option: aux_hanxin, label: 汉心码}
+    - {option: aux_shouyou, label: 首右}
+    - {option: aux_shouyou_plus, label: 首右Plus}
+
 # 输入引擎
 engine:
   processors:
@@ -159,7 +172,7 @@ auxiliary_suffix_segmentor:
 translator:
   dictionary: wanxiang
   charset: charset  # 原生单字准入，组句前过滤
-  aux: 万象
+  aux: aux_types
   user_dict: zc
   direct_aux_mode: off  # off / char / word
   user_dict_mode: manual  # auto / manual / off
@@ -542,7 +555,7 @@ build:
   auxiliary:
     dictionary: aux_code
     algebra:
-      万象:
+      aux_wanxiang:
         # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
         - "derive|^()(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
         - "derive|^()(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
@@ -556,7 +569,7 @@ build:
         - 'aux|^([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
         - "aux|^([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
 
-      墨奇:
+      aux_moqi:
         # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
         - "derive|^((?:[^;]*;){1})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
         - "derive|^((?:[^;]*;){1})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
@@ -570,7 +583,7 @@ build:
         - 'aux|^(?:[^;]*;){1}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
         - "aux|^(?:[^;]*;){1}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
 
-      野鹤:
+      aux_yehe:
         # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
         - "derive|^((?:[^;]*;){2})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
         - "derive|^((?:[^;]*;){2})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
@@ -584,7 +597,7 @@ build:
         - 'aux|^(?:[^;]*;){2}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
         - "aux|^(?:[^;]*;){2}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
 
-      自然码:
+      aux_zrm:
         # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
         - "derive|^((?:[^;]*;){3})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
         - "derive|^((?:[^;]*;){3})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
@@ -598,7 +611,7 @@ build:
         - 'aux|^(?:[^;]*;){3}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
         - "aux|^(?:[^;]*;){3}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
 
-      虎码首末:
+      aux_huma:
         # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
         - "derive|^((?:[^;]*;){4})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
         - "derive|^((?:[^;]*;){4})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
@@ -612,7 +625,7 @@ build:
         - 'aux|^(?:[^;]*;){4}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
         - "aux|^(?:[^;]*;){4}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
 
-      五笔前2:
+      aux_wubi:
         # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
         - "derive|^((?:[^;]*;){5})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
         - "derive|^((?:[^;]*;){5})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
@@ -626,7 +639,7 @@ build:
         - 'aux|^(?:[^;]*;){5}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
         - "aux|^(?:[^;]*;){5}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
 
-      汉心码:
+      aux_hanxin:
         # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
         - "derive|^((?:[^;]*;){6})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
         - "derive|^((?:[^;]*;){6})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
@@ -640,7 +653,7 @@ build:
         - 'aux|^(?:[^;]*;){6}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
         - "aux|^(?:[^;]*;){6}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
 
-      首右:
+      aux_shouyou:
         # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
         - "derive|^((?:[^;]*;){7})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
         - "derive|^((?:[^;]*;){7})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
@@ -654,7 +667,7 @@ build:
         - 'aux|^(?:[^;]*;){7}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
         - "aux|^(?:[^;]*;){7}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
 
-      首右Plus:
+      aux_shouyou_plus:
         # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
         - "derive|^((?:[^;]*;){8})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
         - "derive|^((?:[^;]*;){8})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"

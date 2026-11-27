@@ -404,4 +404,19 @@ function wanxiang.get_input_method_type(env)
     return result_id
 end
 
+-- Resolve a fixed AUX group or the currently selected auxiliary type.
+function wanxiang.get_aux_group(env)
+    local config = env.engine.schema.config
+    local group = config:get_string("translator/aux")
+    if group ~= "aux_types" then return group end
+    local options = config:get_list("aux_types/options")
+    if not options then return nil end
+    local context = env.engine.context
+    for i = 0, options.size - 1 do
+        local option = config:get_string("aux_types/options/@" .. i .. "/option")
+        if option and context:get_option(option) then return option end
+    end
+    return nil
+end
+
 return wanxiang
