@@ -20,7 +20,6 @@ switches:
     states: [翻译关, 英译中]
 
 input_types:
-  reset: pinyin
   options:
     - {option: pinyin, name: standalone_pinyin, label: 全拼}
     - {option: zrm, name: standalone_zrm, label: 自然码}
