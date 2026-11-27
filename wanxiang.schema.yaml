@@ -53,7 +53,7 @@ switches:
     reset: 1
     states: [英文关, 英文开]
 
-# 前端UI调用 set_option("zrm", true)，其余option互斥，完成输入类型切换
+# 输入方式由 input_types 管理；前端使用 select_type_option 选择，互斥状态由内核维护。
 input_types:
   # 首次选择 列表的第一项，后续选择由内核保存至 user.yaml。
   - {option: pinyin, label: 全拼}
