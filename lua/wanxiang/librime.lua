@@ -702,7 +702,7 @@ Component = {}
 ---@field active boolean
 ---@field process_key fun(self: self, key_event: KeyEvent): boolean
 ---@field select_next_schema fun(self: self)
----@field is_auto_save fun(self: self, option: string): boolean
+---@field select_switch fun(self: self, option: string, value: boolean): boolean
 ---@field refresh_menu fun(self: self)
 ---@field activate fun(self: self)
 ---@field deactivate fun(self: self)
