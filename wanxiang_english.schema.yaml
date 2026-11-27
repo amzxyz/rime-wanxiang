@@ -20,23 +20,6 @@ switches:
   - name: english_chinese
     states: [翻译关, 英译中]
 
-# 未提供原生输入类型菜单的前端，可输入 /pinyin、/zrm、/flypy 等命令切换。
-input_types:
-  - {option: pinyin, name: standalone_pinyin, label: 全拼}
-  - {option: zrm, name: standalone_zrm, label: 自然码}
-  - {option: flypy, name: standalone_flypy, label: 小鹤双拼}
-  - {option: mspy, name: standalone_mspy, label: 微软双拼}
-  - {option: sogou, name: standalone_sogou, label: 搜狗双拼}
-  - {option: znabc, name: standalone_znabc, label: 智能ABC}
-  - {option: ziguang, name: standalone_ziguang, label: 紫光双拼}
-  - {option: pyjj, name: standalone_pyjj, label: 拼音加加}
-  - {option: gbpy, name: standalone_gbpy, label: 国标双拼}
-  - {option: lxsq, name: standalone_lxsq, label: 乱序17}
-  - {option: ltsp, name: standalone_ltsp, label: 蓝天双拼}
-  - {option: sdpy, name: standalone_sdpy, label: 首道双拼}
-  - {option: wxsp, name: standalone_wxsp, label: 万象双拼}
-  - {option: zrlong, name: standalone_zrlong, label: 自然龙}
-  - {option: hxlong, name: standalone_hxlong, label: 汉心龙}
 # 输入引擎
 engine:
   processors:
@@ -57,7 +40,6 @@ engine:
     - fallback_segmentor
   translators:
     - table_translator
-    - lua_translator@*wanxiang.set_input_types  #兼容入口：通过 /zrm、/flypy 等命令切换输入类型
     - lua_translator@*wanxiang.super_english*T
     - punct_translator
   filters:
@@ -89,7 +71,6 @@ translator:
   initial_quality: 2
   comment_format:
     - xform/^~.+$//
-  prisms: input_types
   user_dict_mode: off
 key_binder:
   import_preset: default
@@ -108,7 +89,6 @@ recognizer:
     punct: "^/([0-9]|10|[A-Za-z]+)$"
 wanxiang_english:
   dictionary: wanxiang_english
-  prisms: input_types
   user_dict: en
   enable_completion: true
   enable_sentence: true
@@ -153,7 +133,6 @@ wanxiang_english:
 # exclude_types: [pinyin]  # 让当前节点排除特定类型的输入类型例如：全拼，这样他就能在非全拼的输入类型下自动生效
 # only_types: [pinyin]  # 仅对特定类型的候选词生效，其他类型候选词不受影响
 
-  prisms: input_types
 super_replacer:
   comment_format: "〔%s〕"
   chain: true  #true表示流水线作业，上一个option产出交给下一个处理，典型的s2t>t2hk=s2hk，false就是并行，直接用text转换
