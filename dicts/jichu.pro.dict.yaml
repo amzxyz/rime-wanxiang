@@ -18809,6 +18809,7 @@ sort: by_weight
 创队	chuàng;jp duì;tj	576
 窗扉	chuāng;eh fēi;mr	53
 窗缝	chuāng;eh fèng;iu	113
+床缝	chuáng;xe fèng;iu	91
 创富	chuàng;jp fù;wq	1012
 闯缸	chuǎng;an gāng;au	100
 创个	chuàng;jp gè;jg	323
@@ -41317,7 +41318,7 @@ sort: by_weight
 隔振	gé;tn zhèn;uf	164
 搁置	gē;us zhì;yf	2314
 咯吱	gē;ds zhī;dc	307
-胳肢	gē;vs zhī;vc	210
+胳肢	gē;vs zhi;vc	210
 革职	gé;tg zhí;qh	207
 格致	gé;es zhì;yh	97
 各支	gè;sg zhī;ci	77
@@ -59154,8 +59155,8 @@ sort: by_weight
 假哭	jiǎ;jr kū;dm	91
 加快	jiā;sd kuài;hj	11568
 夹块	jiā;hh kuài;gj	40
-价款	jià;jp kuǎn;ge	1231
-加宽	jiā;sd kuān;we	898
+加宽	jiā;sd kuān;we	1231
+价款	jià;jp kuǎn;ge	898
 家宽	jiā;wj kuān;we	680
 加框	jiā;sd kuàng;en	44
 加辣	jiā;sd là;nx	1071
@@ -81087,7 +81088,8 @@ sort: by_weight
 鲁达	lǔ;wo dá;mu	520
 卤代	lǔ;yb dài;jp	661
 卤蛋	lǔ;yb dàn;tc	700
-路单	lù;ps dān;hn	630
+录单	lù;bk dān;hn	630
+路单	lù;ps dān;hn	230
 芦荡	lú;lm dàng;le	460
 录到	lù;bk dào;yp	537
 鹿岛	lù;xl dǎo;xv	483
@@ -99289,6 +99291,7 @@ sort: by_weight
 欺骗	qī;ze piàn;ni	14240
 七篇	qī;rq piān;ri	178
 七片	qī;rq piàn;ap	142
+弃票	qì;bl piào;vf	132
 期票	qī;zv piào;vf	35
 七品	qī;rq pǐn;dd	144
 棋品	qí;eh pǐn;dd	35
@@ -106566,7 +106569,7 @@ sort: by_weight
 人狼	rén;jr láng;mi	408
 人浪	rén;jr làng;ki	125
 人老	rén;jr lǎo;ql	251
-任老	rèn;jg lǎo;ql	238
+任老	rén;jg lǎo;ql	238
 认了	rèn;sj le;rl	3083
 忍了	rěn;ph le;rl	2942
 人类	rén;jr lèi;pm	229019
@@ -106601,7 +106604,7 @@ sort: by_weight
 人名	rén;jr míng;ld	4794
 人命	rén;jr mìng;jz	2838
 认命	rèn;sj mìng;jz	1905
-任某	rèn;jg mǒu;ze	918
+任某	rén;jg mǒu;ze	918
 人母	rén;jr mǔ;km	47
 人哪	rén;jr nǎ;dt	842
 人呐	rén;jr nà;dj	185
@@ -125040,9 +125043,9 @@ sort: by_weight
 泰捷	tài;ak jié;us	675
 邰姐	tái;kt jiě;bf	46
 太近	tài;mi jìn;tu	2261
-钛金	tài;zi jīn;zj	1478
-太紧	tài;mi jǐn;pi	266
-抬进	tái;ud jìn;qu	213
+太紧	tài;mi jǐn;pi	1478
+抬进	tái;ud jìn;qu	266
+钛金	tài;zi jīn;zj	213
 太精	tài;mi jīng;pv	110
 钛晶	tài;zi jīng;oo	104
 太静	tài;mi jìng;ab	89
@@ -143719,8 +143722,8 @@ sort: by_weight
 小范	xiǎo;yx fàn;lz	128
 孝幡	xiào;qh fān;rq	39
 消防	xiāo;kv fáng;tl	4625
-校方	xiào;eb fāng;lf	4151
-效仿	xiào;ah fǎng;jl	2760
+效仿	xiào;ah fǎng;jl	4151
+校方	xiào;eb fāng;lf	2760
 小芳	xiǎo;yx fāng;ll	785
 小方	xiǎo;yx fāng;lf	580
 小房	xiǎo;yx fáng;ml	188
@@ -151760,6 +151763,7 @@ sort: by_weight
 雁柱	yàn;xu zhù;en	72
 阉猪	yān;aa zhū;mo	62
 岩株	yán;vm zhū;ea	51
+严抓	yán;fx zhuā;uy	109
 盐砖	yán;ga zhuān;mi	62
 眼妆	yǎn;qi zhuāng;ab	864
 言状	yán;sy zhuàng;am	657
@@ -171301,6 +171305,7 @@ sort: by_weight
 置于	zhì;yf yú;fn	7463
 止于	zhǐ;si yú;fn	6653
 之于	zhī;ri yú;fn	2097
+只与	zhǐ;dh yǔ;ff	1010
 志于	zhì;gh yú;fn	989
 之誉	zhī;ri yù;ks	772
 之语	zhī;ri yǔ;sd	458
@@ -267194,8 +267199,8 @@ sort: by_weight
 带着光	dài;lr zhe;gq guāng;mg	16
 带着火	dài;lr zhe;gq huǒ;ch	16
 带着看	dài;lr zhe;gq kàn;uq	760
-待着了	dāi;wk zhe;gq le;rl	502
-带着了	dài;lr zhe;gq le;rl	335
+带着了	dài;lr zhe;gq le;rl	502
+待着了	dāi;wk zhe;gq le;rl	335
 带着泪	dài;lr zhe;gq lèi;kq	47
 带这里	dài;lr zhè;vu lǐ;dl	608
 带这么	dài;lr zhè;vu me;tk	922
@@ -288404,6 +288409,7 @@ sort: by_weight
 电源口	diàn;oa yuán;ky kǒu;dk	374
 电源类	diàn;oa yuán;ky lèi;pm	392
 店员们	diàn;xd yuán;do men;ja	742
+电源盘	diàn;oa yuán;ky pán;ia	66
 店员说	diàn;xd yuán;do shuō;sp	52
 点元素	diǎn;yc yuán;mp sù;ai	585
 碘元素	diǎn;mh yuán;mp sù;ai	452
@@ -321802,7 +321808,7 @@ sort: by_weight
 呷一口	gā;ds yì;fi kǒu;dk	540
 嘎吱地	gā;dp zhī;dc de;ge	387
 嘎吱声	gā;dp zhī;dc shēng;gc	495
-胳肢窝	gā;vs zhī;vc wō;ej	195
+胳肢窝	gā;vs zhi;vc wō;ej	195
 尬住了	gà;op zhù;jn le;rl	103
 该挨打	gāi;sk ái;uo dǎ;ua	374
 该挨骂	gāi;sk ái;uo mà;dn	396
@@ -332733,7 +332739,6 @@ sort: by_weight
 咯吱声	gē;ds zhī;dc shēng;gc	9
 各直属	gè;sg zhí;nf shǔ;cv	3
 歌之王	gē;ze zhī;ri wáng;nw	91
-咯吱窝	gē;ds zhī;dc wō;ej	540
 搁置物	gē;us zhì;yf wù;qe	324
 咯吱响	gē;ds zhī;dc xiǎng;dd	13
 各职业	gè;sg zhí;qh yè;cy	201
@@ -514519,14 +514524,14 @@ sort: by_weight
 你再没	nǐ;jy zài;fg méi;kr	391
 你在梦	nǐ;jy zài;ng mèng;el	554
 你在某	nǐ;jy zài;ng mǒu;ze	842
-你在哪	nǐ;jy zài;ng nǎ;dt	537
+你在哪	nǐ;jy zài;ng nǎ;dt	864
 你在那	nǐ;jy zài;ng nà;at	483
 你再拿	nǐ;jy zài;fg ná;ju	435
-你再闹	nǐ;jy zài;fg nào;ar	500
+你再闹	nǐ;jy zài;fg nào;ar	630
 你在闹	nǐ;jy zài;ng nào;ar	353
 你在呢	nǐ;jy zài;ng ne;dv	279
-你在内	nǐ;jy zài;ng nèi;mj	630
-你在你	nǐ;jy zài;ng nǐ;jy	864
+你在内	nǐ;jy zài;ng nèi;mj	500
+你在你	nǐ;jy zài;ng nǐ;jy	537
 你再牛	nǐ;jy zài;fg niú;qn	522
 你在怕	nǐ;jy zài;ng pà;hu	477
 你再拍	nǐ;jy zài;fg pāi;uu	594
@@ -515628,8 +515633,8 @@ sort: by_weight
 你装了	nǐ;jy zhuāng;at le;rl	407
 你撞门	nǐ;jy zhuàng;ud mén;am	50
 你装傻	nǐ;jy zhuāng;at shǎ;jh	351
-你撞上	nǐ;jy zhuàng;ud shàng;yf	472
-你装上	nǐ;jy zhuāng;at shàng;yf	342
+你装上	nǐ;jy zhuāng;at shàng;yf	472
+你撞上	nǐ;jy zhuàng;ud shàng;yf	342
 你装甚	nǐ;jy zhuāng;at shèn;za	4
 你装睡	nǐ;jy zhuāng;at shuì;qg	288
 你装死	nǐ;jy zhuāng;at sǐ;gv	382
@@ -515639,7 +515644,6 @@ sort: by_weight
 你撞我	nǐ;jy zhuàng;ud wǒ;tp	378
 你装修	nǐ;jy zhuāng;at xiū;je	630
 你装着	nǐ;jy zhuāng;at zhe;gq	279
-你状纸	nǐ;jy zhuàng;am zhǐ;ib	4
 你庄子	nǐ;jy zhuāng;xg zǐ;hi	202
 你装醉	nǐ;jy zhuāng;at zuì;yn	207
 你装作	nǐ;jy zhuāng;at zuò;jw	454
@@ -774048,8 +774052,8 @@ sort: by_weight
 振作吧	zhèn;uf zuò;jw ba;dm	306
 真做吧	zhēn;nh zuò;jh ba;dm	194
 振作点	zhèn;uf zuò;jw diǎn;yc	369
-振作了	zhèn;uf zuò;jw le;rl	702
-真做了	zhēn;nh zuò;jh le;rl	456
+真做了	zhēn;nh zuò;jh le;rl	402
+振作了	zhèn;uf zuò;jw le;rl	56
 真作孽	zhēn;nh zuò;jw niè;lh	369
 镇座式	zhèn;zh zuò;xg shì;pu	328
 真作者	zhēn;nh zuò;jw zhě;qo	284
@@ -844988,7 +844992,7 @@ sort: by_weight
 参考离子	cān;ke kǎo;qa lí;zv zǐ;hi	50
 参考链接	cān;ke kǎo;qa liàn;zu jiē;ub	857
 参考列表	cān;ke kǎo;qa liè;gp biǎo;at	360
-参考那里	cān;ke kǎo;qa nà;at lǐ;dl	76
+参考哪里	cān;ke kǎo;qa nǎ;dt lǐ;dl	76
 参考票价	cān;ke kǎo;qa piào;vf jià;jp	9
 参考平面	cān;ke kǎo;qa píng;eh miàn;bm	28
 参考设计	cān;ke kǎo;qa shè;sr jì;sn	110
@@ -930127,7 +930131,7 @@ sort: by_weight
 呷着热茶	gā;ds zhe;gq rè;uc chá;le	59
 嘎吱嘎吱	gā;dp zhī;dc gā;dp zhī;dc	752
 噶吱噶吱	gá;df zhī;dc gá;df zhī;dc	122
-胳肢窝儿	gā;vs zhī;vc wō;ej ér;pe	4
+胳肢窝儿	gā;vs zhi;vc wō;ej ér;pe	4
 嘎吱一声	gā;dp zhī;dc yì;fi shēng;gc	472
 嘎吱一响	gā;dp zhī;dc yì;fi xiǎng;dd	59
 嘎吱作响	gā;dp zhī;dc zuò;jw xiǎng;dd	518
@@ -1014220,6 +1014224,9 @@ sort: by_weight
 街上卖笛	jiē;pg shàng;yf mài;nm dí;rd	130
 皆伤心史	jiē;vu shāng;js xīn;hx shǐ;db	99
 街尚羊汤	jiē;pg shàng;ss yáng;gy tāng;ke	274
+接上一个	jiē;ub shàng;yf yí;fi gè;jg	145
+街上一个	jiē;pg shàng;yf yí;fi gè;jg	94
+姐上一个	jiě;bf shàng;yf yí;fi gè;jg	40
 介绍背景	jiè;jp shào;id bèi;av jǐng;oy	598
 介绍产品	jiè;jp shào;id chǎn;ix pǐn;dd	900
 介绍对象	jiè;jp shào;id duì;rk xiàng;wx	891
@@ -1136716,9 +1136723,9 @@ sort: by_weight
 区位优势	qū;nb wèi;ji yōu;jo shì;us	484
 趣味游戏	qù;pr wèi;da yóu;kh xì;rp	91
 区位优越	qū;nb wèi;ji yōu;jo yuè;pn	486
-曲为之解	qǔ;yq wéi;ii zhī;ri jiě;xq	50
+曲为之解	qū;yq wéi;ii zhī;ri jiě;xq	50
 趣味知识	qù;pr wèi;da zhī;od shi;sh	518
-曲为之说	qǔ;yq wéi;ii zhī;ri shuō;sp	3
+曲为之说	qū;yq wéi;ii zhī;ri shuō;sp	3
 区位状况	qū;nb wèi;ji zhuàng;am kuàng;wp	50
 曲文宝玉	qǔ;yq wén;vw bǎo;wi yù;ni	212
 驱蚊产品	qū;nb wén;cv chǎn;ix pǐn;dd	515
@@ -1142271,7 +1142278,7 @@ sort: by_weight
 人币汇率	rén;jr bì;tr huì;kn lǜ;zn	76
 人比较多	rén;jr bǐ;vv jiào;yb duō;ll	1259
 人比较少	rén;jr bǐ;vv jiào;yb shǎo;yt	1179
-任笔沈诗	rèn;jg bǐ;rv shěn;kp shī;sk	4
+任笔沈诗	rén;jg bǐ;rv shěn;kp shī;sk	4
 人必知之	rén;jr bì;ht zhī;od zhī;ri	99
 人必自辱	rén;jr bì;ht zì;oi rǔ;fk	52
 人必自侮	rén;jr bì;ht zì;oi wǔ;jk	52
@@ -1143795,7 +1143802,7 @@ sort: by_weight
 人老无刚	rén;jr lǎo;ql wú;du gāng;mp	50
 人老心红	rén;jr lǎo;ql xīn;hx hóng;iu	76
 人老眼花	rén;jr lǎo;ql yǎn;qi huā;lv	153
-任老爷子	rèn;jg lǎo;ql yé;hz zǐ;hi	338
+任老爷子	rén;jg lǎo;ql yé;hz zǐ;hi	338
 人老珠黄	rén;jr lǎo;ql zhū;na huáng;nh	242
 认了出来	rèn;sj le;rl chū;sm lái;ah	88
 忍了又忍	rěn;ph le;rl yòu;ry rěn;ph	44
@@ -1243834,6 +1243841,7 @@ sort: by_weight
 文理兼通	wén;vw lǐ;nd jiān;hc tōng;ku	297
 文理兼修	wén;vw lǐ;nd jiān;hc xiū;je	414
 文理兼招	wén;vw lǐ;nd jiān;hc zhāo;ud	414
+问理解没	wèn;ad lǐ;nd jiě;xq méi;kr	17
 文理解释	wén;vw lǐ;nd jiě;xq shì;tu	189
 稳利年年	wěn;xh lì;xp nián;ev nián;ev	45
 纹理清晰	wén;iv lǐ;nd qīng;kv xī;ot	706
@@ -1329578,7 +1329586,6 @@ sort: by_weight
 甬莞高速	yǒng;kt guǎn;lp gāo;gg sù;xu	378
 永冠股份	yǒng;ik guān;wk gǔ;vr fèn;jp	76
 勇冠三军	yǒng;ks guàn;wk sān;ts jūn;wy	210
-勇贯三军	yǒng;ks guàn;ko sān;ts jūn;wy	153
 勇冠天下	yǒng;ks guān;wk tiān;fm xià;fy	248
 永归不朽	yǒng;ik guī;pb bù;cb xiǔ;ea	76
 永贵电器	yǒng;ik guì;co diàn;oa qì;dd	603
@@ -1330055,7 +1330062,6 @@ sort: by_weight
 庸懦无能	yōng;xt nuò;hl wú;du néng;kv	3
 用帕玛森	yòng;ty pà;ru mǎ;nn sēn;ee	297
 勇攀高峰	yǒng;ks pān;eu gāo;gg fēng;va	144
-永攀高峰	yǒng;ik pān;eu gāo;gg fēng;va	130
 永鹏科技	yǒng;ik péng;vx kē;xj jì;uc	4
 用批处理	yòng;ty pī;uv chǔ;hy lǐ;nd	3
 用屁股想	yòng;ty pì;cv gu;vr xiǎng;eh	464
@@ -1330634,7 +1330640,6 @@ sort: by_weight
 拥政爱民	yōng;ut zhèng;fh ài;yr mín;dm	495
 雍正登基	yōng;zu zhèng;fs dēng;hz jī;zg	360
 勇争第一	yǒng;ks zhēng;xb dì;rt yī;fi	396
-永争第一	yǒng;ik zhēng;xb dì;rt yī;fi	312
 雍正继位	yōng;zu zhèng;fs jì;ia wèi;ji	436
 雍正即位	yōng;zu zhèng;fs jí;iz wèi;ji	353
 雍正年间	yōng;zu zhèng;fs nián;ev jiān;ao	107
@@ -1332731,7 +1332736,9 @@ sort: by_weight
 油画颜料	yóu;kd huà;fm yán;iw liào;pj	72
 有话要讲	yǒu;nv huà;sa yào;vb jiǎng;sq	414
 有话要说	yǒu;nv huà;sa yào;vb shuō;sp	380
-油画一般	yóu;kd huà;fm yì;fi bān;ir	500
+优化一版	yōu;jo huà;jv yì;fi bǎn;ar	500
+优化一般	yōu;jo huà;jv yì;fi bān;ir	109
+油画一般	yóu;kd huà;fm yì;fi bān;ir	50
 油画艺术	yóu;kd huà;fm yì;la shù;ei	612
 优化一下	yōu;jo huà;jv yí;fi xià;fy	578
 优化营商	yōu;jo huà;jv yíng;ld shāng;id	608
@@ -1392718,8 +1392725,8 @@ sort: by_weight
 自己捉摸	zì;oi jǐ;vj zhuō;up mō;um	310
 自给自足	zì;oi jǐ;id zì;oi zú;pu	2656
 自己走的	zì;oi jǐ;vj zǒu;pz de;ui	792
+自己做的	zì;oi jǐ;vj zuò;jh de;ui	159
 自己作的	zì;oi jǐ;vj zuò;jw de;ui	52
-自己做的	zì;oi jǐ;vj zuò;jh de;ui	52
 自己做饭	zì;oi jǐ;vj zuò;jh fàn;qr	1972
 自己作死	zì;oi jǐ;vj zuō;jw sǐ;gv	52
 自己做主	zì;oi jǐ;vj zuò;jh zhǔ;in	922
@@ -1515482,6 +1515489,7 @@ sort: by_weight
 拉格朗日陀螺	lā;ui gé;es lǎng;iv rì;or tuó;tv luó;ci	10
 拉格朗日问题	lā;ui gé;es lǎng;iv rì;or wèn;ad tí;ow	10
 拉格朗日系数	lā;ui gé;es lǎng;iv rì;or xì;ti shù;ph	12
+拉格朗日余项	lā;ui gé;es lǎng;iv rì;or yú;jx xiàng;uw	10
 拉胡科略塔山	lā;ui hú;cv kē;xj lüè;qs tǎ;gd shān;vs	10
 垃圾变废为宝	lā;gi jī;gc biàn;zr fèi;xi wéi;ii bǎo;wi	10
 垃圾不分蓝绿	lā;gi jī;gc bù;cb fēn;hp lán;la lǜ;ik	10
