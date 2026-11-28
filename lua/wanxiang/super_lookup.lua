@@ -15,10 +15,10 @@ local CORRECTION_CHARSET = "a"
 local function make_correction_checker(env)
     local cfg = env.engine.schema.config
     local name = cfg:get_string("translator/charset")
-    local data = name and cfg:get_string(name .. "/data")
+    local data = name and cfg:get_resource(name .. "/data")
     if not data then return nil end
     if not env.correction_charset_db then
-        env.correction_charset_db = RewriteLookup(wanxiang.resource_name(data))
+        env.correction_charset_db = RewriteLookup(data)
     end
     local db = env.correction_charset_db
     if not db then return nil end

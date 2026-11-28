@@ -277,6 +277,7 @@ function Schema(schema_id) end
 ---@field get_double fun(self: self, conf_path: string): number|nil
 ---@field set_double fun(self: self, conf_path: string, f: number): boolean
 ---@field get_string fun(self: self, conf_path: string): string|nil
+---@field get_resource fun(self: self, conf_path: string): string|nil
 ---@field set_string fun(self: self, conf_path: string, s: string): boolean
 ---@field get_item fun(self: self, conf_path: string): ConfigItem|nil
 ---@field set_item fun(self: self, conf_path: string, item: ConfigItem): boolean

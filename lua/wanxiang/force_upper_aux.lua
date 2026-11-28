@@ -76,7 +76,7 @@ function ForceUpperAux.init(env)
     local config = env.engine.schema.config
     env.trigger_key = config:get_string("force_upper_aux/hotkey") or "Tab"
     env.aux_cache = {}
-    env.dict_name = wanxiang.resource_name(config:get_string("translator/dictionary")) or "wanxiang_pro"
+    env.dict_name = config:get_resource("translator/dictionary") or "wanxiang_pro"
     env.dict = nil
     
     env.history_first = {}   
