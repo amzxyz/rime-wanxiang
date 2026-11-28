@@ -18,7 +18,7 @@ local function make_correction_checker(env)
     local data = name and cfg:get_string(name .. "/data")
     if not data then return nil end
     if not env.correction_charset_db then
-        env.correction_charset_db = RewriteLookup(data)
+        env.correction_charset_db = RewriteLookup(wanxiang.resource_name(data))
     end
     local db = env.correction_charset_db
     if not db then return nil end

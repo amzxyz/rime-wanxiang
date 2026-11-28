@@ -368,13 +368,21 @@ local INPUT_METHOD_MD_MARKER = "ⅲ"
 ---@param env Env
 ---@return string id
 ---@return string|nil md
+function wanxiang.resource_name(value)
+    if not value then return nil end
+    return value:match("^%$([%w_-]+)$") or value
+end
+
 function wanxiang.get_input_method_type(env)
     local config = env.engine.schema.config
     local prism = config:get_string("translator/prism")
     local group = prism and prism:match("^%$%{([%w_-]+)%}$")
-    local selected = group and env.engine.context:get_setting_value(group) or ""
+    local selected = group and env.engine.context:get_setting_value(group)
+        or (prism and prism:match("^%$([%w_-]+)$")) or ""
     if selected ~= "" then
-        local algebra = config:get_list("speller/algebra")
+        local dictionary = wanxiang.resource_name(config:get_string("translator/dictionary"))
+        local algebra = dictionary and config:get_list("build/$" .. dictionary .. "/prism/$" .. selected)
+        algebra = algebra or config:get_list("speller/algebra")
         if algebra then
             for i = 0, algebra.size - 1 do
                 local value = algebra:get_value_at(i)
@@ -427,7 +435,7 @@ function wanxiang.get_aux_group(env)
     local config = env.engine.schema.config
     local group = config:get_string("translator/aux")
     local setting = group and group:match("^%$%{([%w_-]+)%}$")
-    if not setting then return group end
+    if not setting then return wanxiang.resource_name(group) end
     local selected = env.engine.context:get_setting_value(setting)
     return selected ~= "" and selected or nil
 end

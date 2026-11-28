@@ -119,6 +119,14 @@ runtime_settings:
       char: 单字
       word: 词组
 
+  user_dict_mode:
+    label: 用户词学习
+    mode: single
+    default: manual
+    values:
+      auto: 自动及手动
+      manual: 仅手动
+      'off': 关闭
 
 # 输入引擎
 engine:
@@ -206,12 +214,12 @@ auxiliary_suffix_segmentor:
 # 主翻译器，拼音
 translator:
   dictionary: $wanxiang
-  charset: $charset  # 原生单字准入，组句前过滤
+  charset: charset  # 原生单字准入，组句前过滤
   aux: ${aux_types}
   fuzzy: ${fuzzy_types}
   user_dict: zc
   direct_aux_mode: ${direct_aux_mode}
-  user_dict_mode: manual  # auto / manual / off
+  user_dict_mode: ${user_dict_mode}  # auto / manual / off
   prism: ${input_types}
   enable_completion: true  # 启用候选词补全
   contextual_suggestions: false  #模型用来开启词组权重预测，效果一般关闭
@@ -264,7 +272,7 @@ wanxiang_english:
 
 wanxiang_mixedcode:
   dictionary: $wanxiang_mixedcode
-  charset: $charset
+  charset: charset
   prism: ${input_types}
   db_class: stabledb
   enable_completion: true
