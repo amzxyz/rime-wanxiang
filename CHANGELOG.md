@@ -1,5 +1,19 @@
 # Changelog
 
+## [18.2.2](https://github.com/amzxyz/rime-wanxiang/compare/v18.2.1...v18.2.2) (2026-11-28)
+
+
+### 📚 词库更新
+
+* 词库调整 ([acf1ccd](https://github.com/amzxyz/rime-wanxiang/commit/acf1ccda4592c26d5699b57861e6fa5fc9d65464))
+* 词库调整 ([4ead0b8](https://github.com/amzxyz/rime-wanxiang/commit/4ead0b84d5ef0cd1e47c6a09e74fb8b1fee16022))
+* 词库调整 ([119c081](https://github.com/amzxyz/rime-wanxiang/commit/119c081f37d942b83ae3a8d62b57b2cfe4826a92))
+
+
+### 🤖 持续集成
+
+* update ([0e715b5](https://github.com/amzxyz/rime-wanxiang/commit/0e715b553a74e365bb6e0f58105ebbe053a2500c))
+
 ## [18.2.1](https://github.com/amzxyz/rime-wanxiang/compare/v18.2.0...v18.2.1) (2026-11-23)
 
 
