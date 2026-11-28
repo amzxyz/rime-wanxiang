@@ -37,15 +37,12 @@ switches:
     states: [提示关, 提示开]
   - name: context_reorder
     states: [上下文关, 上下文开]
-  - id: preedit
-    options: [raw_input, tone_display, full_pinyin]
+  - options: [raw_input, tone_display, full_pinyin]
     states: [原编码, 有声调, 无声调]
     # 无 reset 时记忆用户选择，未设置时选第一项；reset: 2 会强制选择第三项
-  - id: comment
-    options: [comment_off, fuzhu_hint, tone_hint]
+  - options: [comment_off, fuzhu_hint, tone_hint]
     states: [注释关, 辅助开, 读音开]
-  - id: script
-    options: [s2s, s2t, s2hk, s2tw]
+  - options: [s2s, s2t, s2hk, s2tw]
     states: [简体, 通繁, 港繁, 臺繁]
   # - name: abbrev
   #   states: [简码关, 简码开]
