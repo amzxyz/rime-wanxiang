@@ -18809,6 +18809,7 @@ sort: by_weight
 创队	chuàng duì	576
 窗扉	chuāng fēi	53
 窗缝	chuāng fèng	113
+床缝	chuáng fèng	91
 创富	chuàng fù	1012
 闯缸	chuǎng gāng	100
 创个	chuàng gè	323
@@ -41317,7 +41318,7 @@ sort: by_weight
 隔振	gé zhèn	164
 搁置	gē zhì	2314
 咯吱	gē zhī	307
-胳肢	gē zhī	210
+胳肢	gē zhi	210
 革职	gé zhí	207
 格致	gé zhì	97
 各支	gè zhī	77
@@ -59154,8 +59155,8 @@ sort: by_weight
 假哭	jiǎ kū	91
 加快	jiā kuài	11568
 夹块	jiā kuài	40
-价款	jià kuǎn	1231
-加宽	jiā kuān	898
+加宽	jiā kuān	1231
+价款	jià kuǎn	898
 家宽	jiā kuān	680
 加框	jiā kuàng	44
 加辣	jiā là	1071
@@ -81087,7 +81088,8 @@ sort: by_weight
 鲁达	lǔ dá	520
 卤代	lǔ dài	661
 卤蛋	lǔ dàn	700
-路单	lù dān	630
+录单	lù dān	630
+路单	lù dān	230
 芦荡	lú dàng	460
 录到	lù dào	537
 鹿岛	lù dǎo	483
@@ -99289,6 +99291,7 @@ sort: by_weight
 欺骗	qī piàn	14240
 七篇	qī piān	178
 七片	qī piàn	142
+弃票	qì piào	132
 期票	qī piào	35
 七品	qī pǐn	144
 棋品	qí pǐn	35
@@ -106566,7 +106569,7 @@ sort: by_weight
 人狼	rén láng	408
 人浪	rén làng	125
 人老	rén lǎo	251
-任老	rèn lǎo	238
+任老	rén lǎo	238
 认了	rèn le	3083
 忍了	rěn le	2942
 人类	rén lèi	229019
@@ -106601,7 +106604,7 @@ sort: by_weight
 人名	rén míng	4794
 人命	rén mìng	2838
 认命	rèn mìng	1905
-任某	rèn mǒu	918
+任某	rén mǒu	918
 人母	rén mǔ	47
 人哪	rén nǎ	842
 人呐	rén nà	185
@@ -125040,9 +125043,9 @@ sort: by_weight
 泰捷	tài jié	675
 邰姐	tái jiě	46
 太近	tài jìn	2261
-钛金	tài jīn	1478
-太紧	tài jǐn	266
-抬进	tái jìn	213
+太紧	tài jǐn	1478
+抬进	tái jìn	266
+钛金	tài jīn	213
 太精	tài jīng	110
 钛晶	tài jīng	104
 太静	tài jìng	89
@@ -143719,8 +143722,8 @@ sort: by_weight
 小范	xiǎo fàn	128
 孝幡	xiào fān	39
 消防	xiāo fáng	4625
-校方	xiào fāng	4151
-效仿	xiào fǎng	2760
+效仿	xiào fǎng	4151
+校方	xiào fāng	2760
 小芳	xiǎo fāng	785
 小方	xiǎo fāng	580
 小房	xiǎo fáng	188
@@ -151760,6 +151763,7 @@ sort: by_weight
 雁柱	yàn zhù	72
 阉猪	yān zhū	62
 岩株	yán zhū	51
+严抓	yán zhuā	109
 盐砖	yán zhuān	62
 眼妆	yǎn zhuāng	864
 言状	yán zhuàng	657
@@ -171301,6 +171305,7 @@ sort: by_weight
 置于	zhì yú	7463
 止于	zhǐ yú	6653
 之于	zhī yú	2097
+只与	zhǐ yǔ	1010
 志于	zhì yú	989
 之誉	zhī yù	772
 之语	zhī yǔ	458
@@ -267194,8 +267199,8 @@ sort: by_weight
 带着光	dài zhe guāng	16
 带着火	dài zhe huǒ	16
 带着看	dài zhe kàn	760
-待着了	dāi zhe le	502
-带着了	dài zhe le	335
+带着了	dài zhe le	502
+待着了	dāi zhe le	335
 带着泪	dài zhe lèi	47
 带这里	dài zhè lǐ	608
 带这么	dài zhè me	922
@@ -288404,6 +288409,7 @@ sort: by_weight
 电源口	diàn yuán kǒu	374
 电源类	diàn yuán lèi	392
 店员们	diàn yuán men	742
+电源盘	diàn yuán pán	66
 店员说	diàn yuán shuō	52
 点元素	diǎn yuán sù	585
 碘元素	diǎn yuán sù	452
@@ -321802,7 +321808,7 @@ sort: by_weight
 呷一口	gā yì kǒu	540
 嘎吱地	gā zhī de	387
 嘎吱声	gā zhī shēng	495
-胳肢窝	gā zhī wō	195
+胳肢窝	gā zhi wō	195
 尬住了	gà zhù le	103
 该挨打	gāi ái dǎ	374
 该挨骂	gāi ái mà	396
@@ -332733,7 +332739,6 @@ sort: by_weight
 咯吱声	gē zhī shēng	9
 各直属	gè zhí shǔ	3
 歌之王	gē zhī wáng	91
-咯吱窝	gē zhī wō	540
 搁置物	gē zhì wù	324
 咯吱响	gē zhī xiǎng	13
 各职业	gè zhí yè	201
@@ -514519,14 +514524,14 @@ sort: by_weight
 你再没	nǐ zài méi	391
 你在梦	nǐ zài mèng	554
 你在某	nǐ zài mǒu	842
-你在哪	nǐ zài nǎ	537
+你在哪	nǐ zài nǎ	864
 你在那	nǐ zài nà	483
 你再拿	nǐ zài ná	435
-你再闹	nǐ zài nào	500
+你再闹	nǐ zài nào	630
 你在闹	nǐ zài nào	353
 你在呢	nǐ zài ne	279
-你在内	nǐ zài nèi	630
-你在你	nǐ zài nǐ	864
+你在内	nǐ zài nèi	500
+你在你	nǐ zài nǐ	537
 你再牛	nǐ zài niú	522
 你在怕	nǐ zài pà	477
 你再拍	nǐ zài pāi	594
@@ -515628,8 +515633,8 @@ sort: by_weight
 你装了	nǐ zhuāng le	407
 你撞门	nǐ zhuàng mén	50
 你装傻	nǐ zhuāng shǎ	351
-你撞上	nǐ zhuàng shàng	472
-你装上	nǐ zhuāng shàng	342
+你装上	nǐ zhuāng shàng	472
+你撞上	nǐ zhuàng shàng	342
 你装甚	nǐ zhuāng shèn	4
 你装睡	nǐ zhuāng shuì	288
 你装死	nǐ zhuāng sǐ	382
@@ -515639,7 +515644,6 @@ sort: by_weight
 你撞我	nǐ zhuàng wǒ	378
 你装修	nǐ zhuāng xiū	630
 你装着	nǐ zhuāng zhe	279
-你状纸	nǐ zhuàng zhǐ	4
 你庄子	nǐ zhuāng zǐ	202
 你装醉	nǐ zhuāng zuì	207
 你装作	nǐ zhuāng zuò	454
@@ -774048,8 +774052,8 @@ sort: by_weight
 振作吧	zhèn zuò ba	306
 真做吧	zhēn zuò ba	194
 振作点	zhèn zuò diǎn	369
-振作了	zhèn zuò le	702
-真做了	zhēn zuò le	456
+真做了	zhēn zuò le	402
+振作了	zhèn zuò le	56
 真作孽	zhēn zuò niè	369
 镇座式	zhèn zuò shì	328
 真作者	zhēn zuò zhě	284
@@ -844988,7 +844992,7 @@ sort: by_weight
 参考离子	cān kǎo lí zǐ	50
 参考链接	cān kǎo liàn jiē	857
 参考列表	cān kǎo liè biǎo	360
-参考那里	cān kǎo nà lǐ	76
+参考哪里	cān kǎo nǎ lǐ	76
 参考票价	cān kǎo piào jià	9
 参考平面	cān kǎo píng miàn	28
 参考设计	cān kǎo shè jì	110
@@ -930127,7 +930131,7 @@ sort: by_weight
 呷着热茶	gā zhe rè chá	59
 嘎吱嘎吱	gā zhī gā zhī	752
 噶吱噶吱	gá zhī gá zhī	122
-胳肢窝儿	gā zhī wō ér	4
+胳肢窝儿	gā zhi wō ér	4
 嘎吱一声	gā zhī yì shēng	472
 嘎吱一响	gā zhī yì xiǎng	59
 嘎吱作响	gā zhī zuò xiǎng	518
@@ -1014220,6 +1014224,9 @@ sort: by_weight
 街上卖笛	jiē shàng mài dí	130
 皆伤心史	jiē shāng xīn shǐ	99
 街尚羊汤	jiē shàng yáng tāng	274
+接上一个	jiē shàng yí gè	145
+街上一个	jiē shàng yí gè	94
+姐上一个	jiě shàng yí gè	40
 介绍背景	jiè shào bèi jǐng	598
 介绍产品	jiè shào chǎn pǐn	900
 介绍对象	jiè shào duì xiàng	891
@@ -1136716,9 +1136723,9 @@ sort: by_weight
 区位优势	qū wèi yōu shì	484
 趣味游戏	qù wèi yóu xì	91
 区位优越	qū wèi yōu yuè	486
-曲为之解	qǔ wéi zhī jiě	50
+曲为之解	qū wéi zhī jiě	50
 趣味知识	qù wèi zhī shi	518
-曲为之说	qǔ wéi zhī shuō	3
+曲为之说	qū wéi zhī shuō	3
 区位状况	qū wèi zhuàng kuàng	50
 曲文宝玉	qǔ wén bǎo yù	212
 驱蚊产品	qū wén chǎn pǐn	515
@@ -1142271,7 +1142278,7 @@ sort: by_weight
 人币汇率	rén bì huì lǜ	76
 人比较多	rén bǐ jiào duō	1259
 人比较少	rén bǐ jiào shǎo	1179
-任笔沈诗	rèn bǐ shěn shī	4
+任笔沈诗	rén bǐ shěn shī	4
 人必知之	rén bì zhī zhī	99
 人必自辱	rén bì zì rǔ	52
 人必自侮	rén bì zì wǔ	52
@@ -1143795,7 +1143802,7 @@ sort: by_weight
 人老无刚	rén lǎo wú gāng	50
 人老心红	rén lǎo xīn hóng	76
 人老眼花	rén lǎo yǎn huā	153
-任老爷子	rèn lǎo yé zǐ	338
+任老爷子	rén lǎo yé zǐ	338
 人老珠黄	rén lǎo zhū huáng	242
 认了出来	rèn le chū lái	88
 忍了又忍	rěn le yòu rěn	44
@@ -1243834,6 +1243841,7 @@ sort: by_weight
 文理兼通	wén lǐ jiān tōng	297
 文理兼修	wén lǐ jiān xiū	414
 文理兼招	wén lǐ jiān zhāo	414
+问理解没	wèn lǐ jiě méi	17
 文理解释	wén lǐ jiě shì	189
 稳利年年	wěn lì nián nián	45
 纹理清晰	wén lǐ qīng xī	706
@@ -1329578,7 +1329586,6 @@ sort: by_weight
 甬莞高速	yǒng guǎn gāo sù	378
 永冠股份	yǒng guān gǔ fèn	76
 勇冠三军	yǒng guàn sān jūn	210
-勇贯三军	yǒng guàn sān jūn	153
 勇冠天下	yǒng guān tiān xià	248
 永归不朽	yǒng guī bù xiǔ	76
 永贵电器	yǒng guì diàn qì	603
@@ -1330055,7 +1330062,6 @@ sort: by_weight
 庸懦无能	yōng nuò wú néng	3
 用帕玛森	yòng pà mǎ sēn	297
 勇攀高峰	yǒng pān gāo fēng	144
-永攀高峰	yǒng pān gāo fēng	130
 永鹏科技	yǒng péng kē jì	4
 用批处理	yòng pī chǔ lǐ	3
 用屁股想	yòng pì gu xiǎng	464
@@ -1330634,7 +1330640,6 @@ sort: by_weight
 拥政爱民	yōng zhèng ài mín	495
 雍正登基	yōng zhèng dēng jī	360
 勇争第一	yǒng zhēng dì yī	396
-永争第一	yǒng zhēng dì yī	312
 雍正继位	yōng zhèng jì wèi	436
 雍正即位	yōng zhèng jí wèi	353
 雍正年间	yōng zhèng nián jiān	107
@@ -1332731,7 +1332736,9 @@ sort: by_weight
 油画颜料	yóu huà yán liào	72
 有话要讲	yǒu huà yào jiǎng	414
 有话要说	yǒu huà yào shuō	380
-油画一般	yóu huà yì bān	500
+优化一版	yōu huà yì bǎn	500
+优化一般	yōu huà yì bān	109
+油画一般	yóu huà yì bān	50
 油画艺术	yóu huà yì shù	612
 优化一下	yōu huà yí xià	578
 优化营商	yōu huà yíng shāng	608
@@ -1392718,8 +1392725,8 @@ sort: by_weight
 自己捉摸	zì jǐ zhuō mō	310
 自给自足	zì jǐ zì zú	2656
 自己走的	zì jǐ zǒu de	792
+自己做的	zì jǐ zuò de	159
 自己作的	zì jǐ zuò de	52
-自己做的	zì jǐ zuò de	52
 自己做饭	zì jǐ zuò fàn	1972
 自己作死	zì jǐ zuō sǐ	52
 自己做主	zì jǐ zuò zhǔ	922
@@ -1515482,6 +1515489,7 @@ sort: by_weight
 拉格朗日陀螺	lā gé lǎng rì tuó luó	10
 拉格朗日问题	lā gé lǎng rì wèn tí	10
 拉格朗日系数	lā gé lǎng rì xì shù	12
+拉格朗日余项	lā gé lǎng rì yú xiàng	10
 拉胡科略塔山	lā hú kē lüè tǎ shān	10
 垃圾变废为宝	lā jī biàn fèi wéi bǎo	10
 垃圾不分蓝绿	lā jī bù fēn lán lǜ	10
