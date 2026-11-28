@@ -372,6 +372,16 @@ function wanxiang.get_input_method_type(env)
     local config = env.engine.schema.config
     local selected = env.engine.context:get_setting_value("input_types")
     if selected ~= "" then
+        local algebra = config:get_list("speller/algebra")
+        if algebra then
+            for i = 0, algebra.size - 1 do
+                local value = algebra:get_value_at(i)
+                local rule = value and value:get_string()
+                if rule and rule:find(INPUT_METHOD_MD_MARKER, 1, true) then
+                    return selected, INPUT_METHOD_MD_MARKER
+                end
+            end
+        end
         return selected
     end
 
