@@ -126,10 +126,9 @@ runtime_settings:
     default: off
     # fixed: off  # 固定直接辅助模式：off 关闭、char 单字、word 词组
     values:
+      - {value: char, label: 逐字辅}
+      - {value: word, label: 词组辅}
       - {value: off, label: 关闭}
-      - {value: char, label: 单字}
-      - {value: word, label: 词组}
-
   user_dict_mode:
     label: 用户词学习
     mode: single
