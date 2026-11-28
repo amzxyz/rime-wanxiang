@@ -53,50 +53,72 @@ switches:
     reset: 1
     states: [英文关, 英文开]
 
-# 输入方式、辅助码、模糊音均由内核运行时设置接口管理。
-# 前端使用 get_settings / get_setting / select_setting；选中值保存在 user.yaml。
-input_types:
-  # 首次选择 列表的第一项，后续选择由内核保存至 user.yaml。
-  - {id: pinyin, label: 全拼}
-  - {id: zrm, label: 自然码}
-  - {id: flypy, label: 小鹤双拼}
-  - {id: mspy, label: 微软双拼}
-  - {id: sogou, label: 搜狗双拼}
-  - {id: znabc, label: 智能ABC}
-  - {id: ziguang, label: 紫光双拼}
-  - {id: pyjj, label: 拼音加加}
-  - {id: gbpy, label: 国标双拼}
-  - {id: lxsq, label: 乱序17}
-  - {id: ltsp, label: 蓝天双拼}
-  - {id: sdpy, label: 首道双拼}
-  - {id: wxsp, label: 万象双拼}
-  - {id: zrlong, label: 自然龙}
-  - {id: hxlong, label: 汉心龙}
-# 辅助码类型独立于输入类型，编译资源由 build 声明。
-aux_types:
-  - {id: aux_wanxiang, label: 万象}
-  - {id: aux_moqi, label: 墨奇}
-  - {id: aux_yehe, label: 野鹤}
-  - {id: aux_zrm, label: 自然码}
-  - {id: aux_huma, label: 虎码首末}
-  - {id: aux_wubi, label: 五笔前2}
-  - {id: aux_hanxin, label: 汉心码}
-  - {id: aux_shouyou, label: 首右}
-  - {id: aux_shouyou_plus, label: 首右Plus}
+# 运行时变量：由方案声明，用户可通过接口选择或 patch 固定。
+runtime_settings:
+  input_types:
+    label: 输入方式
+    type: prism
+    mode: single
+    default: $pinyin
+    values:
+      $pinyin: 全拼
+      $zrm: 自然码
+      $flypy: 小鹤双拼
+      $mspy: 微软双拼
+      $sogou: 搜狗双拼
+      $znabc: 智能ABC
+      $ziguang: 紫光双拼
+      $pyjj: 拼音加加
+      $gbpy: 国标双拼
+      $lxsq: 乱序17
+      $ltsp: 蓝天双拼
+      $sdpy: 首道双拼
+      $wxsp: 万象双拼
+      $zrlong: 自然龙
+      $hxlong: 汉心龙
 
-# 模糊音多选；默认全部关闭。声明和拼写规则独立，选择时无需重新部署。
-fuzzy_types:
-  - {id: z_zh, label: "z / zh"}
-  - {id: c_ch, label: "c / ch"}
-  - {id: s_sh, label: "s / sh"}
-  - {id: n_l, label: "n / l"}
-  - {id: f_h, label: "f / h"}
-  - {id: r_y, label: "r / y"}
-  - {id: r_l, label: "r / l"}
-  - {id: g_k, label: "g / k"}
-  - {id: an_ang, label: "an / ang"}
-  - {id: en_eng, label: "en / eng"}
-  - {id: in_ing, label: "in / ing"}
+  aux_types:
+    label: 辅助码
+    type: auxiliary
+    mode: single
+    default: $aux_wanxiang
+    values:
+      $aux_wanxiang: 万象
+      $aux_moqi: 墨奇
+      $aux_yehe: 野鹤
+      $aux_zrm: 自然码
+      $aux_huma: 虎码首末
+      $aux_wubi: 五笔前2
+      $aux_hanxin: 汉心码
+      $aux_shouyou: 首右
+      $aux_shouyou_plus: 首右Plus
+
+  fuzzy_types:
+    label: 模糊音
+    mode: multiple
+    default: []
+    values:
+      z_zh: "z / zh"
+      c_ch: "c / ch"
+      s_sh: "s / sh"
+      n_l: "n / l"
+      f_h: "f / h"
+      r_y: "r / y"
+      r_l: "r / l"
+      g_k: "g / k"
+      an_ang: "an / ang"
+      en_eng: "en / eng"
+      in_ing: "in / ing"
+
+  direct_aux_mode:
+    label: 直接辅助
+    mode: single
+    default: 'off'
+    values:
+      'off': 关闭
+      char: 单字
+      word: 词组
+
 
 # 输入引擎
 engine:
@@ -185,11 +207,12 @@ auxiliary_suffix_segmentor:
 translator:
   dictionary: $wanxiang
   charset: $charset  # 原生单字准入，组句前过滤
-  aux: aux_types
+  aux: ${aux_types}
+  fuzzy: ${fuzzy_types}
   user_dict: zc
-  direct_aux_mode: off  # off / char / word
+  direct_aux_mode: ${direct_aux_mode}
   user_dict_mode: manual  # auto / manual / off
-  prisms: input_types
+  prism: ${input_types}
   enable_completion: true  # 启用候选词补全
   contextual_suggestions: false  #模型用来开启词组权重预测，效果一般关闭
   max_homophones: 8
@@ -242,7 +265,7 @@ wanxiang_english:
 wanxiang_mixedcode:
   dictionary: $wanxiang_mixedcode
   charset: $charset
-  prisms: input_types
+  prism: ${input_types}
   db_class: stabledb
   enable_completion: true
   enable_sentence: false
@@ -254,7 +277,7 @@ wanxiang_mixedcode:
 wanxiang_reverse:
   tag: wanxiang_reverse
   dictionary: $wanxiang_reverse
-  prisms: input_types
+  prism: ${input_types}
   enable_completion: true
   prefix: "`"  # 反查前缀（反查时前缀会消失），与 recognizer/patterns/wanxiang_reverse 匹配
   tips: "〔反查：拆分|笔画〕"
@@ -334,6 +357,7 @@ t9_abbrev:
 build:
   $wanxiang:
     type: dictionary
+    fuzzy: ${fuzzy_types}
     # packs:
     #   - extdicts  #引入自定义的少量词库
     prism:

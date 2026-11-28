@@ -370,7 +370,9 @@ local INPUT_METHOD_MD_MARKER = "ⅲ"
 ---@return string|nil md
 function wanxiang.get_input_method_type(env)
     local config = env.engine.schema.config
-    local selected = env.engine.context:get_setting_value("input_types")
+    local prism = config:get_string("translator/prism")
+    local group = prism and prism:match("^%$%{([%w_-]+)%}$")
+    local selected = group and env.engine.context:get_setting_value(group) or ""
     if selected ~= "" then
         local algebra = config:get_list("speller/algebra")
         if algebra then
@@ -424,8 +426,9 @@ end
 function wanxiang.get_aux_group(env)
     local config = env.engine.schema.config
     local group = config:get_string("translator/aux")
-    if group ~= "aux_types" then return group end
-    local selected = env.engine.context:get_setting_value("aux_types")
+    local setting = group and group:match("^%$%{([%w_-]+)%}$")
+    if not setting then return group end
+    local selected = env.engine.context:get_setting_value(setting)
     return selected ~= "" and selected or nil
 end
 
