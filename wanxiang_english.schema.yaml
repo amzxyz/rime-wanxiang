@@ -48,17 +48,17 @@ engine:
     - lua_filter@*wanxiang.super_replacer
     - uniquifier
 build:
-  dictionaries:
-    wanxiang_english: #声明词表名称，翻译器可以调用
-      algebra:  #编译类型prism调用的转写方式
-        - derive|^(.{1,3})$|$1/|
-        - derive/[.]//
-        - derive/[+]//
-        - derive/[-]//
-        - derive/^.+$/\L$0/
-        - derive/^.+$/\U$0/
-        - derive/^./\U$0/
-        - derive/^([a-z]{2})/\U$1/
+  $wanxiang_english:
+    type: dictionary
+    prism:
+      - derive|^(.{1,3})$|$1/|
+      - derive/[.]//
+      - derive/[+]//
+      - derive/[-]//
+      - derive/^.+$/\L$0/
+      - derive/^.+$/\U$0/
+      - derive/^./\U$0/
+      - derive/^([a-z]{2})/\U$1/
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/\
@@ -67,7 +67,7 @@ speller:
 
 
 translator:
-  dictionary: wanxiang_english
+  dictionary: $wanxiang_english
   initial_quality: 2
   comment_format:
     - xform/^~.+$//
@@ -88,7 +88,7 @@ recognizer:
   patterns:
     punct: "^/([0-9]|10|[A-Za-z]+)$"
 wanxiang_english:
-  dictionary: wanxiang_english
+  dictionary: $wanxiang_english
   user_dict: en
   enable_completion: true
   enable_sentence: true

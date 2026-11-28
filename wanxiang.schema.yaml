@@ -183,8 +183,8 @@ auxiliary_suffix_segmentor:
 
 # 主翻译器，拼音
 translator:
-  dictionary: wanxiang
-  charset: charset  # 原生单字准入，组句前过滤
+  dictionary: $wanxiang
+  charset: $charset  # 原生单字准入，组句前过滤
   aux: aux_types
   user_dict: zc
   direct_aux_mode: off  # off / char / word
@@ -204,7 +204,7 @@ translator:
 
 # 自定义短语，用来置顶
 custom_phrase:
-  dictionary: custom_phrase
+  dictionary: $custom_phrase
   user_dict_mode: off
   enable_completion: false
   always_show_comments: true
@@ -212,7 +212,7 @@ custom_phrase:
 
 # 自定义简码，用来游走在候选任意位置
 abbrev_phrase:
-  dictionary: wanxiang_abbrev
+  dictionary: $wanxiang_abbrev
   user_dict_mode: off
   enable_completion: false
   always_show_comments: true
@@ -222,7 +222,7 @@ abbrev_phrase:
 
 # 中文、英文、数字、符号等混合词汇
 wanxiang_english:
-  dictionary: wanxiang_english
+  dictionary: $wanxiang_english
   user_dict: en
   enable_completion: true
   enable_sentence: false
@@ -240,8 +240,8 @@ wanxiang_english:
   trigger: "\\"  #英文造词符号\，写一个用时双击
 
 wanxiang_mixedcode:
-  dictionary: wanxiang_mixedcode
-  charset: charset
+  dictionary: $wanxiang_mixedcode
+  charset: $charset
   prisms: input_types
   db_class: stabledb
   enable_completion: true
@@ -253,7 +253,7 @@ wanxiang_mixedcode:
 
 wanxiang_reverse:
   tag: wanxiang_reverse
-  dictionary: wanxiang_reverse
+  dictionary: $wanxiang_reverse
   prisms: input_types
   enable_completion: true
   prefix: "`"  # 反查前缀（反查时前缀会消失），与 recognizer/patterns/wanxiang_reverse 匹配
@@ -270,13 +270,13 @@ wanxiang_lookup:  #设置归属于super_lookup.lua
   #但注释在前有时候与笔画的感知会有一定冲突，可针对习惯使用一类数据库即可
 
 emoji:
-  data: emoji
+  data: $emoji
   option: emoji
   tags: [abc]
   mode: derive
 
 abbrev:
-  data: abbrev
+  data: $abbrev
   option: true
   tags: [abc]
   mode: abbrev
@@ -289,28 +289,28 @@ abbrev:
   fallback_on_empty: true
 
 sentence:
-  data: sentence
+  data: $sentence
   option: true
   tags: [abc]
   mode: derive
   enable_sentence: true
 
 s2t:
-  data: s2t
+  data: $s2t
   option: [s2t, s2hk, s2tw]
   tags: [abc]
   mode: replace
   enable_sentence: true
 
 s2hk:
-  data: s2hk
+  data: $s2hk
   option: s2hk
   tags: [abc]
   mode: replace
   enable_sentence: true
 
 s2tw:
-  data: s2tw
+  data: $s2tw
   option: s2tw
   tags: [abc]
   mode: replace
@@ -332,382 +332,288 @@ t9_abbrev:
   fallback_on_empty: true
 
 build:
-  dictionaries:
-    wanxiang: #声明词表名称，翻译器可以调用
-      # packs:
-      #   - extdicts  #引入自定义的少量词库
-      algebra:  #编译类型prism调用的转写方式
-        pinyin:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/全拼
-        zrm:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/自然码
-        flypy:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/小鹤双拼
-        mspy:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/微软双拼
-        sogou:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/搜狗双拼
-        znabc:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/智能ABC
-        ziguang:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/紫光双拼
-        pyjj:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/拼音加加
-        gbpy:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/国标双拼
-        lxsq:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/乱序17
-        ltsp:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/蓝天双拼
-        sdpy:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/首道双拼
-        wxsp:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/万象双拼
-        zrlong:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/自然龙
-        hxlong:
-          __patch:
-            - wanxiang_algebra:/模糊音
-            - wanxiang_algebra:/汉心龙
-    wanxiang_mixedcode:
-      algebra:
-        pinyin:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/全拼
-        zrm:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/自然码
-        flypy:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/小鹤双拼
-        mspy:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/微软双拼
-        sogou:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/搜狗双拼
-        znabc:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/智能ABC
-        ziguang:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/紫光双拼
-        pyjj:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/拼音加加
-        gbpy:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/国标双拼
-        lxsq:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/乱序17
-        ltsp:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/蓝天双拼
-        sdpy:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/首道双拼
-        wxsp:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/万象双拼
-        zrlong:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/自然龙
-        hxlong:
-          __patch:
-            - wanxiang_algebra:/mixed/混合派生
-            - wanxiang_algebra:/mixed/汉心龙
-    wanxiang_reverse:
-      algebra:
-        pinyin:
-          __patch:
-            - wanxiang_algebra:/reverse/全拼
-            - wanxiang_algebra:/reverse/hspzn
-        zrm:
-          __patch:
-            - wanxiang_algebra:/reverse/自然码
-            - wanxiang_algebra:/reverse/hspzn
-        flypy:
-          __patch:
-            - wanxiang_algebra:/reverse/小鹤双拼
-            - wanxiang_algebra:/reverse/hspzn
-        mspy:
-          __patch:
-            - wanxiang_algebra:/reverse/微软双拼
-            - wanxiang_algebra:/reverse/hspzn
-        sogou:
-          __patch:
-            - wanxiang_algebra:/reverse/搜狗双拼
-            - wanxiang_algebra:/reverse/hspzn
-        znabc:
-          __patch:
-            - wanxiang_algebra:/reverse/智能ABC
-            - wanxiang_algebra:/reverse/hspzn
-        ziguang:
-          __patch:
-            - wanxiang_algebra:/reverse/紫光双拼
-            - wanxiang_algebra:/reverse/hspzn
-        pyjj:
-          __patch:
-            - wanxiang_algebra:/reverse/拼音加加
-            - wanxiang_algebra:/reverse/hspzn
-        gbpy:
-          __patch:
-            - wanxiang_algebra:/reverse/国标双拼
-            - wanxiang_algebra:/reverse/hspzn
-        lxsq:
-          __patch:
-            - wanxiang_algebra:/reverse/乱序17
-            - wanxiang_algebra:/reverse/hspzn
-        ltsp:
-          __patch:
-            - wanxiang_algebra:/reverse/蓝天双拼
-            - wanxiang_algebra:/reverse/hspzn
-        sdpy:
-          __patch:
-            - wanxiang_algebra:/reverse/首道双拼
-            - wanxiang_algebra:/reverse/hspzn
-        wxsp:
-          __patch:
-            - wanxiang_algebra:/reverse/万象双拼
-            - wanxiang_algebra:/reverse/hspzn
-        zrlong:
-          __patch:
-            - wanxiang_algebra:/reverse/自然龙
-            - wanxiang_algebra:/reverse/hspzn
-        hxlong:
-          __patch:
-            - wanxiang_algebra:/reverse/汉心龙
-            - wanxiang_algebra:/reverse/hspzn
-    wanxiang_english: #声明词表名称，翻译器可以调用
-      algebra:
-        - derive|^(.{1,3})$|$1/|
-        - derive/[.]//
-        - derive/[+]//
-        - derive/[-]//
-        - derive/^.+$/\L$0/
-        - derive/^.+$/\U$0/
-        - derive/^./\U$0/
-        - derive/^([a-z]{2})/\U$1/
-    wanxiang_abbrev:
-      algebra:
+  $wanxiang:
+    type: dictionary
+    # packs:
+    #   - extdicts  #引入自定义的少量词库
+    prism:
+      $pinyin:
         __patch:
-          - wanxiang_algebra:/26jian
-    custom_phrase:
-      algebra:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/全拼
+      $zrm:
         __patch:
-          - wanxiang_algebra:/26jian
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/自然码
+      $flypy:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/小鹤双拼
+      $mspy:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/微软双拼
+      $sogou:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/搜狗双拼
+      $znabc:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/智能ABC
+      $ziguang:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/紫光双拼
+      $pyjj:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/拼音加加
+      $gbpy:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/国标双拼
+      $lxsq:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/乱序17
+      $ltsp:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/蓝天双拼
+      $sdpy:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/首道双拼
+      $wxsp:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/万象双拼
+      $zrlong:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/自然龙
+      $hxlong:
+        __patch:
+          - wanxiang_algebra:/模糊音
+          - wanxiang_algebra:/汉心龙
+  $wanxiang_mixedcode:
+    type: dictionary
+    prism:
+      $pinyin:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/全拼
+      $zrm:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/自然码
+      $flypy:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/小鹤双拼
+      $mspy:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/微软双拼
+      $sogou:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/搜狗双拼
+      $znabc:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/智能ABC
+      $ziguang:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/紫光双拼
+      $pyjj:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/拼音加加
+      $gbpy:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/国标双拼
+      $lxsq:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/乱序17
+      $ltsp:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/蓝天双拼
+      $sdpy:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/首道双拼
+      $wxsp:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/万象双拼
+      $zrlong:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/自然龙
+      $hxlong:
+        __patch:
+          - wanxiang_algebra:/mixed/混合派生
+          - wanxiang_algebra:/mixed/汉心龙
+  $wanxiang_reverse:
+    type: dictionary
+    prism:
+      $pinyin:
+        __patch:
+          - wanxiang_algebra:/reverse/全拼
+          - wanxiang_algebra:/reverse/hspzn
+      $zrm:
+        __patch:
+          - wanxiang_algebra:/reverse/自然码
+          - wanxiang_algebra:/reverse/hspzn
+      $flypy:
+        __patch:
+          - wanxiang_algebra:/reverse/小鹤双拼
+          - wanxiang_algebra:/reverse/hspzn
+      $mspy:
+        __patch:
+          - wanxiang_algebra:/reverse/微软双拼
+          - wanxiang_algebra:/reverse/hspzn
+      $sogou:
+        __patch:
+          - wanxiang_algebra:/reverse/搜狗双拼
+          - wanxiang_algebra:/reverse/hspzn
+      $znabc:
+        __patch:
+          - wanxiang_algebra:/reverse/智能ABC
+          - wanxiang_algebra:/reverse/hspzn
+      $ziguang:
+        __patch:
+          - wanxiang_algebra:/reverse/紫光双拼
+          - wanxiang_algebra:/reverse/hspzn
+      $pyjj:
+        __patch:
+          - wanxiang_algebra:/reverse/拼音加加
+          - wanxiang_algebra:/reverse/hspzn
+      $gbpy:
+        __patch:
+          - wanxiang_algebra:/reverse/国标双拼
+          - wanxiang_algebra:/reverse/hspzn
+      $lxsq:
+        __patch:
+          - wanxiang_algebra:/reverse/乱序17
+          - wanxiang_algebra:/reverse/hspzn
+      $ltsp:
+        __patch:
+          - wanxiang_algebra:/reverse/蓝天双拼
+          - wanxiang_algebra:/reverse/hspzn
+      $sdpy:
+        __patch:
+          - wanxiang_algebra:/reverse/首道双拼
+          - wanxiang_algebra:/reverse/hspzn
+      $wxsp:
+        __patch:
+          - wanxiang_algebra:/reverse/万象双拼
+          - wanxiang_algebra:/reverse/hspzn
+      $zrlong:
+        __patch:
+          - wanxiang_algebra:/reverse/自然龙
+          - wanxiang_algebra:/reverse/hspzn
+      $hxlong:
+        __patch:
+          - wanxiang_algebra:/reverse/汉心龙
+          - wanxiang_algebra:/reverse/hspzn
+  $wanxiang_english:
+    type: dictionary
+    prism:
+      - derive|^(.{1,3})$|$1/|
+      - derive/[.]//
+      - derive/[+]//
+      - derive/[-]//
+      - derive/^.+$/\L$0/
+      - derive/^.+$/\U$0/
+      - derive/^./\U$0/
+      - derive/^([a-z]{2})/\U$1/
+  $wanxiang_abbrev:
+    type: dictionary
+    prism:
+      __patch:
+        - wanxiang_algebra:/26jian
+  $custom_phrase:
+    type: dictionary
+    prism:
+      __patch:
+        - wanxiang_algebra:/26jian
 
-  rewrites:
-    charset:
-      files:
-        - data/charset.txt  # 完整字符集 TSV：汉字<TAB>属性标识
+  $charset:
+    type: rewrite
+    files:
+      - data/charset.txt  # 完整字符集 TSV：汉字<TAB>属性标识
 
-    emoji:
-      files:
-        - data/emoji.txt
+  $emoji:
+    type: rewrite
+    files:
+      - data/emoji.txt
 
-    abbrev:
-      files:
-        - data/abbrev.txt
+  $abbrev:
+    type: rewrite
+    files:
+      - data/abbrev.txt
 
-    sentence:
-      files:
-        - data/sentence.txt
+  $sentence:
+    type: rewrite
+    files:
+      - data/sentence.txt
 
-    s2t:
-      # preset: s2t  # 与 files 必须且只能配置一种
-      files:
-        - data/STPhrases.txt
-        - data/STCharacters.txt
+  $s2t:
+    type: rewrite
+    # preset: s2t  # 与 files 必须且只能配置一种
+    files:
+      - data/STPhrases.txt
+      - data/STCharacters.txt
 
-    s2hk:
-      # preset: s2hk  # 与 files 必须且只能配置一种
-      files:
-        - data/HKVariants.txt
+  $s2hk:
+    type: rewrite
+    # preset: s2hk  # 与 files 必须且只能配置一种
+    files:
+      - data/HKVariants.txt
 
-    s2tw:
-      files:
-        - data/TWVariants.txt
+  $s2tw:
+    type: rewrite
+    files:
+      - data/TWVariants.txt
 
-    # 九键简码源文件尚未提供，添加文件后取消下方注释。
-    # t9_abbrev:
-    #   # jys<TAB>静夜思
-    #   # 部署后 lookup key = 597，preedit = jys。
-    #   key_xlit: "abcdefghijklmnopqrstuvwxyz>22233344455566677778889999"
-    #   files:
-    #     - data/t9_abbrev.txt
+  # 九键简码源文件尚未提供，添加文件后取消下方注释。
+  # t9_abbrev:
+  #   # jys<TAB>静夜思
+  #   # 部署后 lookup key = 597，preedit = jys。
+  #   key_xlit: "abcdefghijklmnopqrstuvwxyz>22233344455566677778889999"
+  #   files:
+  #     - data/t9_abbrev.txt
 
-  auxiliary:
-    dictionary: aux_code
-    algebra:
-      aux_wanxiang:
-        # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
-        - "derive|^()(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^()(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^()(?:[a-z]{2},){4}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "aux|^([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1|"
-        - "aux|^([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2/|"
-        # 大写辅助只使用 AUX 编码，不保留拼音或双拼前缀
-        - 'aux|^([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1|'
-        - 'aux|^([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1\u$2|'
-        - 'aux|^([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1$2|'
-        - 'aux|^([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
-        - "aux|^([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
 
-      aux_moqi:
-        # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
-        - "derive|^((?:[^;]*;){1})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){1})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){1})(?:[a-z]{2},){4}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "aux|^(?:[^;]*;){1}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1|"
-        - "aux|^(?:[^;]*;){1}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2/|"
-        # 大写辅助只使用 AUX 编码，不保留拼音或双拼前缀
-        - 'aux|^(?:[^;]*;){1}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1|'
-        - 'aux|^(?:[^;]*;){1}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1\u$2|'
-        - 'aux|^(?:[^;]*;){1}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1$2|'
-        - 'aux|^(?:[^;]*;){1}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
-        - "aux|^(?:[^;]*;){1}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
+  $aux_code:
+    type: auxiliary
+    aux:
+      $aux_wanxiang:
+        __patch: wanxiang_auxiliary:/万象
+      $aux_moqi:
+        __patch: wanxiang_auxiliary:/墨奇
+      $aux_yehe:
+        __patch: wanxiang_auxiliary:/野鹤
+      $aux_zrm:
+        __patch: wanxiang_auxiliary:/自然码
+      $aux_huma:
+        __patch: wanxiang_auxiliary:/虎码首末
+      $aux_wubi:
+        __patch: wanxiang_auxiliary:/五笔前2
+      $aux_hanxin:
+        __patch: wanxiang_auxiliary:/汉心码
+      $aux_shouyou:
+        __patch: wanxiang_auxiliary:/首右
+      $aux_shouyou_plus:
+        __patch: wanxiang_auxiliary:/首右Plus
 
-      aux_yehe:
-        # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
-        - "derive|^((?:[^;]*;){2})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){2})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){2})(?:[a-z]{2},){4}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "aux|^(?:[^;]*;){2}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1|"
-        - "aux|^(?:[^;]*;){2}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2/|"
-        # 大写辅助只使用 AUX 编码，不保留拼音或双拼前缀
-        - 'aux|^(?:[^;]*;){2}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1|'
-        - 'aux|^(?:[^;]*;){2}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1\u$2|'
-        - 'aux|^(?:[^;]*;){2}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1$2|'
-        - 'aux|^(?:[^;]*;){2}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
-        - "aux|^(?:[^;]*;){2}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
-
-      aux_zrm:
-        # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
-        - "derive|^((?:[^;]*;){3})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){3})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){3})(?:[a-z]{2},){4}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "aux|^(?:[^;]*;){3}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1|"
-        - "aux|^(?:[^;]*;){3}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2/|"
-        # 大写辅助只使用 AUX 编码，不保留拼音或双拼前缀
-        - 'aux|^(?:[^;]*;){3}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1|'
-        - 'aux|^(?:[^;]*;){3}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1\u$2|'
-        - 'aux|^(?:[^;]*;){3}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1$2|'
-        - 'aux|^(?:[^;]*;){3}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
-        - "aux|^(?:[^;]*;){3}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
-
-      aux_huma:
-        # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
-        - "derive|^((?:[^;]*;){4})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){4})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){4})(?:[a-z]{2},){4}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "aux|^(?:[^;]*;){4}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1|"
-        - "aux|^(?:[^;]*;){4}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2/|"
-        # 大写辅助只使用 AUX 编码，不保留拼音或双拼前缀
-        - 'aux|^(?:[^;]*;){4}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1|'
-        - 'aux|^(?:[^;]*;){4}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1\u$2|'
-        - 'aux|^(?:[^;]*;){4}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1$2|'
-        - 'aux|^(?:[^;]*;){4}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
-        - "aux|^(?:[^;]*;){4}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
-
-      aux_wubi:
-        # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
-        - "derive|^((?:[^;]*;){5})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){5})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){5})(?:[a-z]{2},){4}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "aux|^(?:[^;]*;){5}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1|"
-        - "aux|^(?:[^;]*;){5}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2/|"
-        # 大写辅助只使用 AUX 编码，不保留拼音或双拼前缀
-        - 'aux|^(?:[^;]*;){5}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1|'
-        - 'aux|^(?:[^;]*;){5}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1\u$2|'
-        - 'aux|^(?:[^;]*;){5}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1$2|'
-        - 'aux|^(?:[^;]*;){5}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
-        - "aux|^(?:[^;]*;){5}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
-
-      aux_hanxin:
-        # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
-        - "derive|^((?:[^;]*;){6})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){6})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){6})(?:[a-z]{2},){4}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "aux|^(?:[^;]*;){6}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1|"
-        - "aux|^(?:[^;]*;){6}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2/|"
-        # 大写辅助只使用 AUX 编码，不保留拼音或双拼前缀
-        - 'aux|^(?:[^;]*;){6}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1|'
-        - 'aux|^(?:[^;]*;){6}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1\u$2|'
-        - 'aux|^(?:[^;]*;){6}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1$2|'
-        - 'aux|^(?:[^;]*;){6}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
-        - "aux|^(?:[^;]*;){6}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
-
-      aux_shouyou:
-        # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
-        - "derive|^((?:[^;]*;){7})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){7})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){7})(?:[a-z]{2},){4}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "aux|^(?:[^;]*;){7}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1|"
-        - "aux|^(?:[^;]*;){7}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2/|"
-        # 大写辅助只使用 AUX 编码，不保留拼音或双拼前缀
-        - 'aux|^(?:[^;]*;){7}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1|'
-        - 'aux|^(?:[^;]*;){7}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1\u$2|'
-        - 'aux|^(?:[^;]*;){7}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1$2|'
-        - 'aux|^(?:[^;]*;){7}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
-        - "aux|^(?:[^;]*;){7}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
-
-      aux_shouyou_plus:
-        # 从左侧分号定位，允许省略尾部字段；组内多码按 1、2、4 递进派生（最多 8 码）
-        - "derive|^((?:[^;]*;){8})(?:[a-z]{2},){1}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){8})(?:[a-z]{2},){2}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "derive|^((?:[^;]*;){8})(?:[a-z]{2},){4}([a-z]{2}(?:,[a-z]{2})*(?:;.*)?)$|$1$2|"
-        - "aux|^(?:[^;]*;){8}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1|"
-        - "aux|^(?:[^;]*;){8}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2/|"
-        # 大写辅助只使用 AUX 编码，不保留拼音或双拼前缀
-        - 'aux|^(?:[^;]*;){8}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1|'
-        - 'aux|^(?:[^;]*;){8}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1\u$2|'
-        - 'aux|^(?:[^;]*;){8}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1$2|'
-        - 'aux|^(?:[^;]*;){8}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|\u$1\u$2|'
-        - "aux|^(?:[^;]*;){8}([a-z])([a-z])(?:,[a-z]{2})*(?:;.*)?$|$1$2|abbrev,display"
 
 speller:
   # table_translator翻译器，支持自动上屏。例如 “zmhu”可以自动上屏“怎么回事”
@@ -960,7 +866,7 @@ input_stats:
 # 简繁转换在组句之后执行，繁体规则保留 a 以维持简体源词权重。
 # 没有启用规则时放行。反查、符号及其他未引用策略的翻译器不受影响。
 charset:
-  data: charset
+  data: $charset
   exclude_tags: [number, unicode, punct, calculator, shijian, super_symbol, wanxiang_reverse]
   rules:
     - option: charset_filter
