@@ -88,7 +88,6 @@
     - derive/([jqx])iong$/$1oign/
     # 其他
     - derive/ong$/on/  # lon → long
-    - derive/([tl])eng$/$1en/  # ten → teng
 
 万象双拼:
   __append:
@@ -1910,62 +1909,44 @@ mixed:
       - derive/^.+$/\L$0/
       - erase/.*[\-+'_#@\.·0-9].*$/
 
-模糊音_nl:
+# 在带调拼音转换为全拼、双拼编码前执行；按组记录派生路径，不额外降权。
+# an/ang 同时覆盖 ian/iang、uan/uang，en/eng 同时覆盖相应复合韵母。
+模糊音:
   __append:
-    # n - l
-    - derive/^l/n
-    - derive/^n/l
+    # z / zh
+    - fuzzy/^zh/z/z_zh
+    - fuzzy/^z(?!h)/zh/z_zh
+    # c / ch
+    - fuzzy/^ch/c/c_ch
+    - fuzzy/^c(?!h)/ch/c_ch
+    # s / sh
+    - fuzzy/^sh/s/s_sh
+    - fuzzy/^s(?!h)/sh/s_sh
+    # n / l
+    - fuzzy/^n/l/n_l
+    - fuzzy/^l/n/n_l
+    # f / h
+    - fuzzy/^f/h/f_h
+    - fuzzy/^h/f/f_h
+    # r / y
+    - fuzzy/^r/y/r_y
+    - fuzzy/^y/r/r_y
+    # r / l
+    - fuzzy/^r/l/r_l
+    - fuzzy/^l/r/r_l
+    # g / k
+    - fuzzy/^g/k/g_k
+    - fuzzy/^k/g/g_k
+    # an / ang
+    - fuzzy/(ā|á|ǎ|à|a)ng$/$1n/an_ang
+    - fuzzy/(ā|á|ǎ|à|a)n$/$1ng/an_ang
+    # en / eng
+    - fuzzy/(ē|é|ě|è|e)ng$/$1n/en_eng
+    - fuzzy/(ē|é|ě|è|e)n$/$1ng/en_eng
+    # in / ing
+    - fuzzy/(ī|í|ǐ|ì|i)ng$/$1n/in_ing
+    - fuzzy/(ī|í|ǐ|ì|i)n$/$1ng/in_ing
 
-模糊音_ry:
-  __append:
-    # r - y 开头
-    - derive/^y/r
-    - derive/^r/y
-
-模糊音_hf:
-  __append:
-    # h - f 开头
-    - derive/^h/f
-    - derive/^f/h
-
-模糊音_rl:
-  __append:
-    # r - l 开头
-    - derive/^r/l
-    - derive/^l/r
-
-模糊音_kg:
-  __append:
-    # k - g 开头
-    - derive/^k/g
-    - derive/^g/k
-
-模糊音_en_eng:
-  __append:
-    # en - eng
-    - derive/(ē|é|ě|è|e)ng(.*)$/$1n$2
-    - derive/(ē|é|ě|è|e)n([^g].*)?$/$1ng$2
-
-模糊音_in_ing:
-  __append:
-    # in - ing
-    - derive/(ī|í|ǐ|ì|i)ng(.*)$/$1n$2
-    - derive/(ī|í|ǐ|ì|i)n([^g].*)?$/$1ng$2
-
-模糊音_c_ch:
-  __append:
-    - derive/^ch/c
-    - derive/^c([^h]*)/ch$1
-
-模糊音_z_zh:
-  __append:
-    - derive/^zh/z
-    - derive/^z([^h]*)/zh$1
-
-模糊音_s_sh:
-  __append:
-    - derive/^sh/s
-    - derive/^s([^h]*)/sh$1
 #特殊优化：部分音节字极少，几乎不参与构词，则提升对应四码字的优先级，仅对小鹤双拼有效，其他双拼方案需作对应修改）
 小鹤双拼提权:
   __append:

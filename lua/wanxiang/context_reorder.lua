@@ -519,6 +519,7 @@ function P.init(env)
 end
 
 function P.func(key, env)
+    env.is_t9 = wanxiang.get_input_method_type(env) == "t9"
     local ctx = env.engine.context
 
     if not ctx:get_option(OPTION_NAME) then

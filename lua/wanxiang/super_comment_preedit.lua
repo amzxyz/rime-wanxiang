@@ -551,6 +551,9 @@ function ZH.fini(env)
 end
 
 function ZH.func(input, env)
+    if not env.is_t9 then
+        env.input_method_type = wanxiang.get_input_method_type(env)
+    end
     local aux_group = wanxiang.get_aux_group(env)
     if aux_group ~= env.aux_group then
         env.aux_group = aux_group

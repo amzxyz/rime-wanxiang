@@ -112,6 +112,7 @@ function Set(values) end
 ---@field compose fun(self: self, ctx: Context)
 ---@field commit_text fun(self: self, text: string)
 ---@field apply_schema fun(self: self, schema: Schema)
+---@field select_setting fun(self: self, group: string, values: string[]): boolean
 
 ---@class Context
 ---@field composition Composition
@@ -156,6 +157,10 @@ function Set(values) end
 --- 修改 option；引擎在正在组词时会触发未确认候选刷新。
 ---@field set_option fun(self: self, name: string, value: boolean)
 ---@field get_option fun(self: self, name: string): boolean
+--- 读取内核声明的运行时值；单值接口在未选中或多选时返回空字符串。
+---@field get_setting_value fun(self: self, group: string): string
+---@field get_setting_values fun(self: self, group: string): string[]
+---@field setting_selected fun(self: self, group: string, value: string): boolean
 ---@field set_property fun(self: self, key: string, value: string)
 ---@field get_property fun(self: self, key: string): string
 ---@field clear_transient_options fun(self: self)

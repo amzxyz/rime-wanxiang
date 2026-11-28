@@ -370,25 +370,9 @@ local INPUT_METHOD_MD_MARKER = "ⅲ"
 ---@return string|nil md
 function wanxiang.get_input_method_type(env)
     local config = env.engine.schema.config
-    local input_types = config:get_list("input_types")
-    if input_types then
-        local context = env.engine.context
-        for i = 0, input_types.size - 1 do
-            local option = config:get_string("input_types/@" .. i .. "/option")
-            if option and context:get_option(option) then
-                local algebra = config:get_list("speller/algebra")
-                if algebra then
-                    for j = 0, algebra.size - 1 do
-                        local value = algebra:get_value_at(j)
-                        local rule = value and value:get_string()
-                        if rule and rule:find(INPUT_METHOD_MD_MARKER, 1, true) then
-                            return option, INPUT_METHOD_MD_MARKER
-                        end
-                    end
-                end
-                return option
-            end
-        end
+    local selected = env.engine.context:get_setting_value("input_types")
+    if selected ~= "" then
+        return selected
     end
 
     -- 未声明 input_types 的独立方案仍按其 speller/algebra 标记识别。
@@ -431,14 +415,8 @@ function wanxiang.get_aux_group(env)
     local config = env.engine.schema.config
     local group = config:get_string("translator/aux")
     if group ~= "aux_types" then return group end
-    local options = config:get_list("aux_types")
-    if not options then return nil end
-    local context = env.engine.context
-    for i = 0, options.size - 1 do
-        local option = config:get_string("aux_types/@" .. i .. "/option")
-        if option and context:get_option(option) then return option end
-    end
-    return nil
+    local selected = env.engine.context:get_setting_value("aux_types")
+    return selected ~= "" and selected or nil
 end
 
 return wanxiang

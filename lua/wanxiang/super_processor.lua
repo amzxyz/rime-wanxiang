@@ -746,6 +746,10 @@ local function handle_number_logic(key, env, ctx)
 end
 -- 5. 主入口函数 (Main Logic Flow)
 function M.func(key, env)
+    -- 类型切换不重建 Lua 组件，每次按键使用当前内核选择。
+    local im_type = wanxiang.get_input_method_type(env)
+    env.is_t9 = im_type == "t9"
+    env.is_double_pinyin = DOUBLE_PINYIN_TYPES[im_type] == true
     local ctx = env.engine.context
 
     -- 1. 优先处理按键释放
