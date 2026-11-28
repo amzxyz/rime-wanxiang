@@ -8,6 +8,7 @@ schema:
   author:
     - amzxyz
   description: |
+    本方案基于内核：https://github.com/amzxyz/librime-evo (进化版)制作，非官方rime内核
     请勾选【万象拼音】以启用万象拼音方案：带调词库、语法模型，支持全拼、双拼、整句及声调辅助筛选。
 
 
