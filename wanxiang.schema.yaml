@@ -53,80 +53,92 @@ switches:
     reset: 1
     states: [英文关, 英文开]
 
-# 运行时变量：由方案声明，用户可通过接口选择或 patch 固定。
+# 运行时设置：连续两次按方案选单快捷键进入设置，也可由前端直接切换。
+# mode: single 为单选，multiple 为多选；values 按列表顺序显示。value 为实际取值，label 为显示名称；type 声明资源类型。
+# default 仅在没有有效用户记录时生效；平时记忆用户的选择。
+# fixed 为强制固定值，取消下方对应注释即可启用，启用后不可通过菜单切换。
+# fixed 必须取自 values 中对应的 value，多选使用列表（[] 表示全部关闭）。
+# 删除 fixed 后恢复原先记忆的选择，不会因固定设置而覆盖用户记录。
+# 建议通过 wanxiang.custom.yaml 修改，例如 patch 中设置：
+#   runtime_settings/input_types/fixed: $zrm
 runtime_settings:
   input_types:
     label: 输入方式
     type: prism
     mode: single
     default: $pinyin
+    # fixed: $pinyin  # 固定输入方式，例如 $zrm 为自然码
     values:
-      $pinyin: 全拼
-      $zrm: 自然码
-      $flypy: 小鹤双拼
-      $mspy: 微软双拼
-      $sogou: 搜狗双拼
-      $znabc: 智能ABC
-      $ziguang: 紫光双拼
-      $pyjj: 拼音加加
-      $gbpy: 国标双拼
-      $lxsq: 乱序17
-      $ltsp: 蓝天双拼
-      $sdpy: 首道双拼
-      $wxsp: 万象双拼
-      $zrlong: 自然龙
-      $hxlong: 汉心龙
+      - {value: $pinyin, label: 全拼}
+      - {value: $zrm, label: 自然码}
+      - {value: $flypy, label: 小鹤双拼}
+      - {value: $mspy, label: 微软双拼}
+      - {value: $sogou, label: 搜狗双拼}
+      - {value: $znabc, label: 智能ABC}
+      - {value: $ziguang, label: 紫光双拼}
+      - {value: $pyjj, label: 拼音加加}
+      - {value: $gbpy, label: 国标双拼}
+      - {value: $lxsq, label: 乱序17}
+      - {value: $ltsp, label: 蓝天双拼}
+      - {value: $sdpy, label: 首道双拼}
+      - {value: $wxsp, label: 万象双拼}
+      - {value: $zrlong, label: 自然龙}
+      - {value: $hxlong, label: 汉心龙}
 
   aux_types:
     label: 辅助码
     type: auxiliary
     mode: single
     default: $aux_wanxiang
+    # fixed: $aux_wanxiang  # 固定辅助码类型
     values:
-      $aux_wanxiang: 万象
-      $aux_moqi: 墨奇
-      $aux_yehe: 野鹤
-      $aux_zrm: 自然码
-      $aux_huma: 虎码首末
-      $aux_wubi: 五笔前2
-      $aux_hanxin: 汉心码
-      $aux_shouyou: 首右
-      $aux_shouyou_plus: 首右Plus
+      - {value: $aux_wanxiang, label: 万象}
+      - {value: $aux_moqi, label: 墨奇}
+      - {value: $aux_yehe, label: 野鹤}
+      - {value: $aux_zrm, label: 自然码}
+      - {value: $aux_huma, label: 虎码首末}
+      - {value: $aux_wubi, label: 五笔前2}
+      - {value: $aux_hanxin, label: 汉心码}
+      - {value: $aux_shouyou, label: 首右}
+      - {value: $aux_shouyou_plus, label: 首右Plus}
 
   fuzzy_types:
     label: 模糊音
     mode: multiple
-    default: []
+    default: []  # 默认不启用模糊音
+    # fixed: [z_zh, c_ch]  # 固定启用指定模糊音；[] 为全部关闭
     values:
-      z_zh: "z / zh"
-      c_ch: "c / ch"
-      s_sh: "s / sh"
-      n_l: "n / l"
-      f_h: "f / h"
-      r_y: "r / y"
-      r_l: "r / l"
-      g_k: "g / k"
-      an_ang: "an / ang"
-      en_eng: "en / eng"
-      in_ing: "in / ing"
+      - {value: z_zh, label: "z / zh"}
+      - {value: c_ch, label: "c / ch"}
+      - {value: s_sh, label: "s / sh"}
+      - {value: n_l, label: "n / l"}
+      - {value: f_h, label: "f / h"}
+      - {value: r_y, label: "r / y"}
+      - {value: r_l, label: "r / l"}
+      - {value: g_k, label: "g / k"}
+      - {value: an_ang, label: "an / ang"}
+      - {value: en_eng, label: "en / eng"}
+      - {value: in_ing, label: "in / ing"}
 
   direct_aux_mode:
     label: 直接辅助
     mode: single
-    default: 'off'
+    default: off
+    # fixed: off  # 固定直接辅助模式：off 关闭、char 单字、word 词组
     values:
-      'off': 关闭
-      char: 单字
-      word: 词组
+      - {value: off, label: 关闭}
+      - {value: char, label: 单字}
+      - {value: word, label: 词组}
 
   user_dict_mode:
     label: 用户词学习
     mode: single
     default: manual
+    # fixed: manual  # 固定学习模式：auto 自动及手动、manual 仅手动、off 关闭
     values:
-      auto: 自动及手动
-      manual: 仅手动
-      'off': 关闭
+      - {value: auto, label: 自动及手动}
+      - {value: manual, label: 仅手动}
+      - {value: off, label: 关闭}
 
 # 输入引擎
 engine:
@@ -628,23 +640,23 @@ build:
     type: auxiliary
     aux:
       $aux_wanxiang:
-        __patch: wanxiang_auxiliary:/万象
+        __include: wanxiang_auxiliary:/万象
       $aux_moqi:
-        __patch: wanxiang_auxiliary:/墨奇
+        __include: wanxiang_auxiliary:/墨奇
       $aux_yehe:
-        __patch: wanxiang_auxiliary:/野鹤
+        __include: wanxiang_auxiliary:/野鹤
       $aux_zrm:
-        __patch: wanxiang_auxiliary:/自然码
+        __include: wanxiang_auxiliary:/自然码
       $aux_huma:
-        __patch: wanxiang_auxiliary:/虎码首末
+        __include: wanxiang_auxiliary:/虎码首末
       $aux_wubi:
-        __patch: wanxiang_auxiliary:/五笔前2
+        __include: wanxiang_auxiliary:/五笔前2
       $aux_hanxin:
-        __patch: wanxiang_auxiliary:/汉心码
+        __include: wanxiang_auxiliary:/汉心码
       $aux_shouyou:
-        __patch: wanxiang_auxiliary:/首右
+        __include: wanxiang_auxiliary:/首右
       $aux_shouyou_plus:
-        __patch: wanxiang_auxiliary:/首右Plus
+        __include: wanxiang_auxiliary:/首右Plus
 
 
 speller:
